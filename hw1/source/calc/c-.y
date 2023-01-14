@@ -1,33 +1,52 @@
 %{
-// // // // // // // // // // // // // // // // // // // // // // // 
-// CS445 - Calculator Example Program written in the style of the C-
-// compiler for the class.
-//
-// Robert Heckendorn
-// Jan 21, 2021    
+/*
+Taylor Martin
+CS-445 Compiler Design
+University Of Idaho
+HW1
+Dr. Wilder
+1/14/2023
 
-#include "scanType.h"  // TokenData Type
+FILE: c-.y
+DESC: yacc parser for the calculator language
+
+Based off CS445 - Calculator Example Program by Robert Heckendorn
+*/
+
+#include "scanType.hpp"  // TokenData Type
+
 #include <stdio.h>
+#include <string>
+#include <iosream>
 
 double vars[26];    
 
+// Variables for YACC
 extern int yylex();
 extern FILE *yyin;
-extern int line;         // ERR line number from the scanner!!
-extern int numErrors;    // ERR err count
+extern int yydebug;
 
+// Variables for ERR,from c-.l scanner
+extern int lineNumber;         // ERR line number from the scanner!!
+extern int numberOfErrors;    // ERR err count
+
+//ERROR Message Definition and Output Function
 #define YYERROR_VERBOSE
-void yyerror(const char *msg)
+void yyerror(const char *message)
 {
-    printf("ERROR(%d): %s\n", line, msg);
-    numErrors++;
+    //Output the error message
+    std::cout << "ERROR(" << lineNumber + 1 << "): " << message << std::endl;
+    
+    //increment the error count
+    numberOfErrors++;
 }
 
 %}
 
-// this is included in the tab.h file
-// so scanType.h must be included before the tab.h file!!!!
-%union {
+// this is included in the tab.hpp file
+// so scanType.hpp must be included before the tab.hpp file!!!!
+%union 
+{
     TokenData *tokenData;
     double value;
 }
@@ -66,7 +85,8 @@ factor        : ID                  { $$ = vars[$1->idIndex]; }
               | NUMBER              { $$ = $1->numValue; }
               ;
 %%
-extern int yydebug;
+
+
 int main(int argc, char *argv[])
 {
     if (argc > 1) {

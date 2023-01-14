@@ -1,10 +1,27 @@
 %{
+/*
+Taylor Martin
+CS-445 Compiler Design
+University Of Idaho
+HW1
+Dr. Wilder
+1/14/2023
+
+FILE: c-.l
+DESC: scanner for the calculator language
+
+Based off CS445 - Calculator Example Program by Robert Heckendorn
+*/
+
 // this *order* of these includes is mandatory
 #include "scanType.h"  // TokenData Type
-#include "calc.tab.h"  // token definitions from the bison
+#include "c-.tab.h"  // token definitions from the bison
 
-int line;
-int numErrors;    // ERR err count
+#include <string>
+
+// Variables for ERR
+int lineNumber;         // ERR line number from the scanner!!
+int numberOfErrors;    // ERR err count
 
 static int setValue(int linenum, int tokenClass, char *svalue)
 {
@@ -21,7 +38,7 @@ static int setValue(int linenum, int tokenClass, char *svalue)
     else if (tokenClass == ID) {
         yylval.tokenData->idIndex = svalue[0]-'a';
     }
-    // return the tokenclass
+
     return tokenClass;
 }
 
@@ -30,14 +47,14 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 %option noyywrap
 
 %%
-"stop"|"quit"|"exit"   { return setValue(line, QUIT, yytext); }
-"pi"                   { return setValue(line, NUMBER, (char *)"3.141592653589793238"); }
-[0-9]+|[0-9]*\.[0-9]+  { return setValue(line, NUMBER, yytext); }
-[0-9]+\.[0-9]*         { return setValue(line, NUMBER, yytext); }
-[a-z]                  { return setValue(line, ID, yytext); }
-[\=\+\-\*\/\(\)]       { return setValue(line, yytext[0], yytext ); }
+"stop"|"quit"|"exit"   { return setValue(lineNumber, QUIT, yytext); }
+"pi"                   { return setValue(lineNumber, NUMBER, (char *)"3.141592653589793238"); }
+[0-9]+|[0-9]*\.[0-9]+  { return setValue(lineNumber, NUMBER, yytext); }
+[0-9]+\.[0-9]*         { return setValue(lineNumber, NUMBER, yytext); }
+[a-z]                  { return setValue(lineNumber, ID, yytext); }
+[\=\+\-\*\/\(\)]       { return setValue(lineNumber, yytext[0], yytext ); }
 [ \t]                  ;
 \/\/.*                 ;
-\n                     { line++; return setValue(line, yytext[0], yytext ); }
-.                      { printf("ERROR(%d): char \'%c\' is not in the language\n", line, yytext[0]); numErrors++; }
+\n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }
+.                      { printf("ERROR(%d): char \'%c\' is not in the language\n", lineNumber, yytext[0]); numberOfErrors++; }
 %%
