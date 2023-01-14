@@ -1,22 +1,36 @@
-BIN = calc
+##################################################
+#Taylor Martin
+#CS-445 Compiler Design
+#University Of Idaho
+#HW1
+#Dr. Wilder
+#1/14/2023
+
+#FILE: makefile
+#DESC: makefile for c- compiler
+
+#Based off CS445 - Calculator Example Program by Robert Heckendorn
+###################################################
+
+
 CC = g++
 
-DOCS = calcGrammar.pdf
-SRCS = $(BIN).y  $(BIN).l
-HDRS = scanType.h
-OBJS = lex.yy.o $(BIN).tab.o
 
-$(BIN) : $(OBJS)
-	$(CC) $(OBJS) -o $(BIN)
+SRCS = c-.y  c-.l
+HDRS = scanType.hpp
+OBJS = lex.yy.o c-.tab.o
 
-lex.yy.c : $(BIN).l $(BIN).tab.h $(HDR)
-	flex $(BIN).l
+c-: $(OBJS)
+	$(CC) $(OBJS) o c- -std=c++17
 
-$(BIN).tab.h $(BIN).tab.c : $(BIN).y
-	bison -v -t -d $(BIN).y
+lex.yy.c : c-.l c-.tab.h $(HDR)
+	flex c-.l
+
+c-.tab.h c-.tab.c : c-.y
+	bison -v -t -d c-.y
 
 clean :
-	rm -f *~ $(OBJS) $(BIN) lex.yy.c $(BIN).tab.h $(BIN).tab.c $(BIN).output
+	rm -f *~ c- c-.output c-.tab.h c-.tab.c lex.yy.c $(OBJS)
 
 tar : $(HDR) $(SRCS) makefile
-	tar -cvf $(BIN).tar $(HDRS) $(SRCS) $(DOCS) makefile
+	tar -cvf c-.tar $(HDRS) $(SRCS) makefile
