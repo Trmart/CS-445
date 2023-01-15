@@ -46,7 +46,7 @@ static int setValue(int linenum, int tokenClass, char *svalue)
             break;
         case NUMCONST:
                 {
-                    yylval.tokenData->numValue = stoi(yylval.tokenData->tokenInformation);
+                    yylval.tokenData->numValue = std::stoi(yylval.tokenData->tokenInformation);
                 }
                 break;
         case STRINGCONST:
