@@ -7,7 +7,7 @@ Dr. Wilder
 1/14/2023
 
 FILE: scanType.hpp
-DESC: Contains the TokenData struct
+DESC: Contains the TokenData struct Definition
 
 Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
@@ -23,7 +23,7 @@ struct TokenData
     // The Line Number Within the File Where the Token Occurred
     int tokenLineNumber;     
 
-    // The Token That Was Read
+    // The Token Information That Was Read
     std::string tokenInformation;  
     
     // True if length of character > 1

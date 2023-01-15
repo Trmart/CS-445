@@ -8,7 +8,7 @@ Dr. Wilder
 1/14/2023
 
 FILE: c-.l
-DESC: scanner for the calculator language
+DESC: scanner for the c- language
 
 Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
@@ -118,11 +118,17 @@ return|to|do|by  { return setValue(lineNumber, KEYWORD, yytext); }
 true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 
 
-/*TOKENS*/
+/*TOKENS & REGEX*/
 
-[0-9]+                 { return setValue(lineNumber, NUMCONST, yytext); }
-[a-zA-Z][a-zA-Z0-9]*   { return setValue(lineNumber,ID, yytext); }
-[\=\+\-\*\/\(\)]       { return setValue(lineNumber, yytext[0], yytext ); }
+[0-9]+                  { return setValue(lineNumber, NUMCONST, yytext); }
+[a-zA-Z][a-zA-Z0-9]*    { return setValue(lineNumber,ID, yytext); }
+\"((\\\")|[^\n"])*\"    { return setValue(lineNumber, STRINGCONST, yytext); }
+\'((\\\")|[^\n"])*\'    { return setValue(lineNumber, CHARCONST, yytext); }
+\(|\)|\{|\}|\[|\]       { return setValue(lineNumber, TOKEN, yytext ); }
+\;|\:|\,                        { return setValue(lineCount, TOKEN, yytext); }
+\?|\*|\/|\%|\-|\+               { return setValue(lineCount, TOKEN, yytext); }
+\/\=|\+\=|\-\=|\*\=|\+\+|\-\-   { return setValue(lineCount, TOKEN, yytext); }
+\<|\<\=|\>|\>\=|\=\=|\=|\!\=    { return setValue(lineCount, TOKEN, yytext); }
 [ \t]                  { /* ignore white space */ }
 \/\/.*\n               { lineNumber++; }                 ;
 \n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }
