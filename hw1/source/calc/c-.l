@@ -30,13 +30,28 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 
     // fill it up
     yylval.tokenData->linenum = linenum;
-    yylval.tokenData->tokenstr = strdup(svalue);  // duplicating string!!
+
+    // duplicate string!!
+    yylval.tokenData->tokenstr = strdup(svalue);  
   
-    if (tokenClass == NUMBER) {
-        yylval.tokenData->numValue = atof(svalue); 
-    }
-    else if (tokenClass == ID) {
-        yylval.tokenData->idIndex = svalue[0]-'a';
+    // tokenClass State Machine
+    switch (tokenClass)
+    {
+        ID NUMCONST STRINGCONST CHARCONST BOOLCONST TOKEN KEYWORD
+        case ID:
+            break;
+        case NUMCONST:
+            break;
+        case STRINGCONST:
+            break;
+        case CHARCONST:
+            break;
+        case BOOLCONST:
+            break;
+        case TOKEN:
+            break;
+        case KEYWORD:
+            break;
     }
 
     return tokenClass;
@@ -47,14 +62,32 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 %option noyywrap
 
 %%
-"stop"|"quit"|"exit"   { return setValue(lineNumber, QUIT, yytext); }
-"pi"                   { return setValue(lineNumber, NUMBER, (char *)"3.141592653589793238"); }
-[0-9]+|[0-9]*\.[0-9]+  { return setValue(lineNumber, NUMBER, yytext); }
-[0-9]+\.[0-9]*         { return setValue(lineNumber, NUMBER, yytext); }
-[a-z]                  { return setValue(lineNumber, ID, yytext); }
+
+/*KEYWORDS*/
+
+int|bool|char|static  { return setValue(lineNumber, KEYWORD, yytext); }
+
+while|for|break  { return setValue(lineNumber, KEYWORD, yytext); }
+
+if|else|begin|end|then  { return setValue(lineNumber, KEYWORD, yytext); }
+
+and|or|not  { return setValue(lineNumber, KEYWORD, yytext); }
+
+return|to|do|by  { return setValue(lineNumber, KEYWORD, yytext); }
+
+true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
+
+
+/*TOKENS*/
+
+[0-9]+                 { return setValue(lineNumber, NUMCONST, yytext); }
+[a-zA-Z][a-zA-Z0-9]*   { return setValue(lineNumber,ID, yytext); }
 [\=\+\-\*\/\(\)]       { return setValue(lineNumber, yytext[0], yytext ); }
-[ \t]                  ;
-\/\/.*                 ;
+[ \t]                  { /* ignore white space */ }
+\/\/.*\n               { lineNumber++; }                 ;
 \n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }
-.                      { printf("ERROR(%d): char \'%c\' is not in the language\n", lineNumber, yytext[0]); numberOfErrors++; }
+.                       { 
+                            printf("ERROR(%d): Invalid or misplaced input character: \'%c\' Character Ignored.\n", lineNumber, yytext[0]);
+                            NumberOfErrors++;
+                        }
 %%
