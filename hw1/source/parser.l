@@ -23,6 +23,11 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 int lineNumber;         // ERR line number from the scanner!!
 int numberOfErrors;    // ERR err count
 
+void setTokenString(int line)
+{
+    lineNumber = line;
+}
+
 static int setValue(int linenum, int tokenClass, char *svalue)
 {
     // create the pass-back data space
@@ -61,35 +66,40 @@ static int setValue(int linenum, int tokenClass, char *svalue)
                     break;
         case TOKEN:
                 {
-                    switch (yylval.tokenData->tokenInformation)
+                    if(yylval.tokenData->tokenInformation == '==')
                     {
-                        case '==':
-                            yylval.tokenData->stringValue = "EQ";
-                            break;
-                        case '++':
-                            yylval.tokenData->stringValue = "INC";
-                            break;
-                        case '--':
-                            yylval.tokenData->stringValue = "DEC";
-                            break;
-                        case '>=':
-                            yylval.tokenData->stringValue = "GEQ";
-                            break;
-                        case '<=':
-                            yylval.tokenData->stringValue = "LEQ";
-                            break;
-                        case '!=':
-                            yylval.tokenData->stringValue = "NEQ";
-                            break;
-                        case '+=':
-                            yylval.tokenData->stringValue = "ADDASS";
-                            break;
-                        default:
-                            yylval.tokenData->stringValue = yylval.tokenData->tokenInformation;
-                            break;
+                        yylval.tokenData->stringValue = "EQ";
+                    }
+                    else if(yylval.tokenData->tokenInformation == '++')
+                    {
+                        yylval.tokenData->stringValue = "INC";
+                    }
+                    else if(yylval.tokenData->tokenInformation == '--')
+                    {
+                        yylval.tokenData->stringValue = "DEC";
+                    }
+                    else if(yylval.tokenData->tokenInformation == '>=')
+                    {
+                        yylval.tokenData->stringValue = "GEQ";
+                    }
+                    else if(yylval.tokenData->tokenInformation == '<=')
+                    {
+                        yylval.tokenData->stringValue = "LEQ";
+                    }
+                    else if(yylval.tokenData->tokenInformation == '!=')
+                    {
+                        yylval.tokenData->stringValue = "NEQ";
+                    }
+                    else if(yylval.tokenData->tokenInformation == '+=')
+                    {
+                        yylval.tokenData->stringValue = "ADDASS";
+                    }
+                    else
+                    {
+                        yylval.tokenData->stringValue = yylval.tokenData->tokenInformation;
                     }
                 }
-            break;
+                break;
         case KEYWORD:
             break;
     }
@@ -130,7 +140,7 @@ true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 \/\=|\+\=|\-\=|\*\=|\+\+|\-\-   { return setValue(lineCount, TOKEN, yytext); }
 \<|\<\=|\>|\>\=|\=\=|\=|\!\=    { return setValue(lineCount, TOKEN, yytext); }
 [ \t]                  { /* ignore white space */ }
-\/\/.*\n               { lineNumber++; }                 ;
+\/\/.*\n               { /* ignore comments */ lineNumber++; }
 \n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }
 .                      { 
                             printf("ERROR(%d): Invalid or misplaced input character: \'%c\' Character Ignored.\n", lineNumber, yytext[0]);
