@@ -14,7 +14,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
 // this *order* of these includes is mandatory
-#include "scanType.h"  // TokenData Type
+#include "scanType.hpp"  // TokenData Type
 #include "c-.tab.h"  // token definitions from the bison
 
 #include <string>
@@ -37,18 +37,58 @@ static int setValue(int linenum, int tokenClass, char *svalue)
     // tokenClass State Machine
     switch (tokenClass)
     {
-        ID NUMCONST STRINGCONST CHARCONST BOOLCONST TOKEN KEYWORD
         case ID:
             break;
         case NUMCONST:
-            break;
+                {
+                    yylval.tokenData->numValue = stoi(yylval.tokenData->tokenData);
+                }
+                break;
         case STRINGCONST:
-            break;
+                    {
+
+                    }
+                    break;
         case CHARCONST:
-            break;
+                    { 
+
+                    }
+                    break;
         case BOOLCONST:
-            break;
+                    {
+                        yylval.tokenData->numValue = yyval.tokenData->tokenData == "true";
+                    }
+                    break;
         case TOKEN:
+                {
+                    switch (yylval.tokenData->tokenData)
+                    {
+                        case '==':
+                            yylval.tokenData->stringValue = "EQ";
+                            break;
+                        case '++':
+                            yylval.tokenData->stringValue = "INC";
+                            break;
+                        case '--':
+                            yylval.tokenData->stringValue = "DEC";
+                            break;
+                        case '>=':
+                            yylval.tokenData->stringValue = "GEQ";
+                            break;
+                        case '<=':
+                            yylval.tokenData->stringValue = "LEQ";
+                            break;
+                        case '!=':
+                            yylval.tokenData->stringValue = "NEQ";
+                            break;
+                        case '+=':
+                            yylval.tokenData->stringValue = "ADDASS";
+                            break;
+                        default:
+                            yylval.tokenData->stringValue = yylval.tokenData->tokenData;
+                            break;
+                    }
+                }
             break;
         case KEYWORD:
             break;
@@ -86,8 +126,8 @@ true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 [ \t]                  { /* ignore white space */ }
 \/\/.*\n               { lineNumber++; }                 ;
 \n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }
-.                       { 
+.                      { 
                             printf("ERROR(%d): Invalid or misplaced input character: \'%c\' Character Ignored.\n", lineNumber, yytext[0]);
                             NumberOfErrors++;
-                        }
+                       }
 %%
