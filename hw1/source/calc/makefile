@@ -14,8 +14,6 @@
 
 
 CC = g++
-
-
 SRCS = c-.y  c-.l
 HDRS = scanType.hpp
 OBJS = lex.yy.o c-.tab.o
