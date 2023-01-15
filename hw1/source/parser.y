@@ -7,7 +7,7 @@ HW1
 Dr. Wilder
 1/14/2023
 
-FILE: c-.y
+FILE: parser.y
 DESC: yacc parser for the calculator language
 
 Based off CS445 - Calculator Example Program by Robert Heckendorn
@@ -80,6 +80,7 @@ statement     : '\n'
                 | TOKEN { std::cout << "Line " << $1->tokenLineNumber << " Token: " << $1->stringValue << std::endl; }
 
                 | KEYWORD { std::cout << "Line " << $1->tokenLineNumber << " Token: " << $1->stringValue << std::endl; }
+                ;
 %%
 
 

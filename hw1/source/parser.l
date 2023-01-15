@@ -7,7 +7,7 @@ HW1
 Dr. Wilder
 1/14/2023
 
-FILE: c-.l
+FILE: parser.l
 DESC: scanner for the c- language
 
 Based off CS445 - Calculator Example Program by Robert Heckendorn
@@ -15,7 +15,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 
 // this *order* of these includes is mandatory
 #include "scanType.hpp"  // TokenData Type
-#include "c-.tab.h"  // token definitions from the bison
+#include "parser.tab.h"  // token definitions from the bison
 
 #include <string>
 

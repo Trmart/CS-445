@@ -29,7 +29,7 @@ struct TokenData
     // True if length of character > 1
     bool isCharLengthGreaterThan1 = false; 
     
-    // The Value of the scanned Token Data Types
+    // The Stored Value of the scanned Token (if applicable)
     
     //int values
     int numValue; 
