@@ -41,7 +41,7 @@ static int setValue(int linenum, int tokenClass, char *svalue)
             break;
         case NUMCONST:
                 {
-                    yylval.tokenData->numValue = stoi(yylval.tokenData->tokenData);
+                    yylval.tokenData->numValue = stoi(yylval.tokenData->tokenInformation);
                 }
                 break;
         case STRINGCONST:
@@ -56,12 +56,12 @@ static int setValue(int linenum, int tokenClass, char *svalue)
                     break;
         case BOOLCONST:
                     {
-                        yylval.tokenData->numValue = yyval.tokenData->tokenData == "true";
+                        yylval.tokenData->numValue = yyval.tokenData->tokenInformation == "true";
                     }
                     break;
         case TOKEN:
                 {
-                    switch (yylval.tokenData->tokenData)
+                    switch (yylval.tokenData->tokenInformation)
                     {
                         case '==':
                             yylval.tokenData->stringValue = "EQ";
@@ -85,7 +85,7 @@ static int setValue(int linenum, int tokenClass, char *svalue)
                             yylval.tokenData->stringValue = "ADDASS";
                             break;
                         default:
-                            yylval.tokenData->stringValue = yylval.tokenData->tokenData;
+                            yylval.tokenData->stringValue = yylval.tokenData->tokenInformation;
                             break;
                     }
                 }

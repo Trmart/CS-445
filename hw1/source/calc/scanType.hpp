@@ -24,7 +24,7 @@ struct TokenData
     int tokenLineNumber;     
 
     // The Token That Was Read
-    std::string tokenData;  
+    std::string tokenInformation;  
     
     // True if length of character > 1
     bool isCharLengthGreaterThan1 = false; 
