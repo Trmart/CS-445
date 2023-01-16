@@ -1,0 +1,153 @@
+Grammar
+
+    0 $accept: statementlist $end
+
+    1 statementlist: statementlist statement
+    2              | statement
+
+    3 statement: '\n'
+    4          | ID
+    5          | NUMCONST
+    6          | STRINGCONST
+    7          | CHARCONST
+    8          | BOOLCONST
+    9          | TOKEN
+   10          | KEYWORD
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '\n' (10) 3
+    error (256)
+    ID <tokenData> (258) 4
+    NUMCONST <tokenData> (259) 5
+    STRINGCONST <tokenData> (260) 6
+    CHARCONST <tokenData> (261) 7
+    BOOLCONST <tokenData> (262) 8
+    TOKEN <tokenData> (263) 9
+    KEYWORD <tokenData> (264) 10
+
+
+Nonterminals, with rules where they appear
+
+    $accept (11)
+        on left: 0
+    statementlist (12)
+        on left: 1 2
+        on right: 0 1
+    statement (13)
+        on left: 3 4 5 6 7 8 9 10
+        on right: 1 2
+
+
+State 0
+
+    0 $accept: . statementlist $end
+
+    ID           shift, and go to state 1
+    NUMCONST     shift, and go to state 2
+    STRINGCONST  shift, and go to state 3
+    CHARCONST    shift, and go to state 4
+    BOOLCONST    shift, and go to state 5
+    TOKEN        shift, and go to state 6
+    KEYWORD      shift, and go to state 7
+    '\n'         shift, and go to state 8
+
+    statementlist  go to state 9
+    statement      go to state 10
+
+
+State 1
+
+    4 statement: ID .
+
+    $default  reduce using rule 4 (statement)
+
+
+State 2
+
+    5 statement: NUMCONST .
+
+    $default  reduce using rule 5 (statement)
+
+
+State 3
+
+    6 statement: STRINGCONST .
+
+    $default  reduce using rule 6 (statement)
+
+
+State 4
+
+    7 statement: CHARCONST .
+
+    $default  reduce using rule 7 (statement)
+
+
+State 5
+
+    8 statement: BOOLCONST .
+
+    $default  reduce using rule 8 (statement)
+
+
+State 6
+
+    9 statement: TOKEN .
+
+    $default  reduce using rule 9 (statement)
+
+
+State 7
+
+   10 statement: KEYWORD .
+
+    $default  reduce using rule 10 (statement)
+
+
+State 8
+
+    3 statement: '\n' .
+
+    $default  reduce using rule 3 (statement)
+
+
+State 9
+
+    0 $accept: statementlist . $end
+    1 statementlist: statementlist . statement
+
+    $end         shift, and go to state 11
+    ID           shift, and go to state 1
+    NUMCONST     shift, and go to state 2
+    STRINGCONST  shift, and go to state 3
+    CHARCONST    shift, and go to state 4
+    BOOLCONST    shift, and go to state 5
+    TOKEN        shift, and go to state 6
+    KEYWORD      shift, and go to state 7
+    '\n'         shift, and go to state 8
+
+    statement  go to state 12
+
+
+State 10
+
+    2 statementlist: statement .
+
+    $default  reduce using rule 2 (statementlist)
+
+
+State 11
+
+    0 $accept: statementlist $end .
+
+    $default  accept
+
+
+State 12
+
+    1 statementlist: statementlist statement .
+
+    $default  reduce using rule 1 (statementlist)

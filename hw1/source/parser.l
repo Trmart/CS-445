@@ -34,10 +34,10 @@ static int setValue(int linenum, int tokenClass, char *svalue)
     yylval.tokenData = new TokenData;
 
     // fill it up
-    yylval.tokenData->linenum = linenum;
+    yylval.tokenData->tokenLineNumber = linenum;
 
     // duplicate string!!
-    yylval.tokenData->tokenstr = strdup(svalue);  
+    yylval.tokenData->tokenInformation = strdup(svalue);  
   
     // tokenClass State Machine
     switch (tokenClass)
@@ -61,36 +61,36 @@ static int setValue(int linenum, int tokenClass, char *svalue)
                     break;
         case BOOLCONST:
                     {
-                        yylval.tokenData->numValue = yyval.tokenData->tokenInformation == "true";
+                        yylval.tokenData->numValue = yylval.tokenData->tokenInformation == "true";
                     }
                     break;
         case TOKEN:
                 {
-                    if(yylval.tokenData->tokenInformation == '==')
+                    if(yylval.tokenData->tokenInformation == "==")
                     {
                         yylval.tokenData->stringValue = "EQ";
                     }
-                    else if(yylval.tokenData->tokenInformation == '++')
+                    else if(yylval.tokenData->tokenInformation == "++")
                     {
                         yylval.tokenData->stringValue = "INC";
                     }
-                    else if(yylval.tokenData->tokenInformation == '--')
+                    else if(yylval.tokenData->tokenInformation == "--")
                     {
                         yylval.tokenData->stringValue = "DEC";
                     }
-                    else if(yylval.tokenData->tokenInformation == '>=')
+                    else if(yylval.tokenData->tokenInformation == ">=")
                     {
                         yylval.tokenData->stringValue = "GEQ";
                     }
-                    else if(yylval.tokenData->tokenInformation == '<=')
+                    else if(yylval.tokenData->tokenInformation == "<=")
                     {
                         yylval.tokenData->stringValue = "LEQ";
                     }
-                    else if(yylval.tokenData->tokenInformation == '!=')
+                    else if(yylval.tokenData->tokenInformation == "!=")
                     {
                         yylval.tokenData->stringValue = "NEQ";
                     }
-                    else if(yylval.tokenData->tokenInformation == '+=')
+                    else if(yylval.tokenData->tokenInformation == "+=")
                     {
                         yylval.tokenData->stringValue = "ADDASS";
                     }
@@ -113,7 +113,7 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 
 %%
 
-/*KEYWORDS*/
+
 
 int|bool|char|static  { return setValue(lineNumber, KEYWORD, yytext); }
 
@@ -128,22 +128,21 @@ return|to|do|by  { return setValue(lineNumber, KEYWORD, yytext); }
 true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 
 
-/*TOKENS & REGEX*/
 
 [0-9]+                  { return setValue(lineNumber, NUMCONST, yytext); }
 [a-zA-Z][a-zA-Z0-9]*    { return setValue(lineNumber,ID, yytext); }
 \"((\\\")|[^\n"])*\"    { return setValue(lineNumber, STRINGCONST, yytext); }
 \'((\\\")|[^\n"])*\'    { return setValue(lineNumber, CHARCONST, yytext); }
 \(|\)|\{|\}|\[|\]       { return setValue(lineNumber, TOKEN, yytext ); }
-\;|\:|\,                        { return setValue(lineCount, TOKEN, yytext); }
-\?|\*|\/|\%|\-|\+               { return setValue(lineCount, TOKEN, yytext); }
-\/\=|\+\=|\-\=|\*\=|\+\+|\-\-   { return setValue(lineCount, TOKEN, yytext); }
-\<|\<\=|\>|\>\=|\=\=|\=|\!\=    { return setValue(lineCount, TOKEN, yytext); }
+\;|\:|\,                        { return setValue(lineNumber, TOKEN, yytext); }
+\?|\*|\/|\%|\-|\+               { return setValue(lineNumber, TOKEN, yytext); }
+\/\=|\+\=|\-\=|\*\=|\+\+|\-\-   { return setValue(lineNumber, TOKEN, yytext); }
+\<|\<\=|\>|\>\=|\=\=|\=|\!\=    { return setValue(lineNumber, TOKEN, yytext); }
 [ \t]                  { /* ignore white space */ }
 \/\/.*\n               { /* ignore comments */ lineNumber++; }
 \n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }
 .                      { 
                             printf("ERROR(%d): Invalid or misplaced input character: \'%c\' Character Ignored.\n", lineNumber, yytext[0]);
-                            NumberOfErrors++;
+                            numberOfErrors++;
                        }
 %%

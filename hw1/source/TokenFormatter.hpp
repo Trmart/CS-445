@@ -7,7 +7,7 @@ Dr. Wilder
 1/14/2023
 
 FILE: TokenFormatter.hpp
-DESC: Formats the TokenData contained string value for output
+DESC: Defines Function Prototypes to Format the TokenData contained string value for output
 
 Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
@@ -20,6 +20,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 class TokenFormatter
 {
    public:
+   
       // Formats the TokenData contained string value to UpperCase Letters
       static std::string toUpperCase(const std::string &str);
 

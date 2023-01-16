@@ -17,7 +17,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 
 #include <stdio.h>
 #include <string>
-#include <iosream>
+#include <iostream>
 
 
 // Variables for YACC
@@ -69,7 +69,7 @@ statement     : '\n'
                                 //check if the char is a valid char
                                 if($1->isCharLengthGreaterThan1)
                                 {
-                                    std::cout << "WARNING(" << $1->tokenLineNumber << "): " << "character is " << tokenData.length() - 2 << " characters long and not a single character: '" << $1->tokenData <<"'.  The first char will be used.\n";
+                                    std::cout << "WARNING(" << $1->tokenLineNumber << "): " << "character is " << $1->tokenInformation.length() - 2 << " characters long and not a single character: '" << $1->tokenInformation<<"'.  The first char will be used.\n";
                                 }
 
                                 std::cout << "Line " << $1->tokenLineNumber << " Token: CHARCONST Value: " << $1->charValue << "Input: " << $1->tokenInformation << std::endl; 
