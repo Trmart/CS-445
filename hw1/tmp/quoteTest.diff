@@ -1,6 +1,0 @@
-17c17,19
-< Line 16 Token: CHARCONST Value: '"'  Input: '"'
----
-> ERROR(16): Invalid or misplaced input character: '''. Character Ignored.
-> ERROR(16): Invalid or misplaced input character: '"'. Character Ignored.
-> ERROR(16): Invalid or misplaced input character: '''. Character Ignored.

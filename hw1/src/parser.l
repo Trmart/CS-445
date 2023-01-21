@@ -146,7 +146,7 @@ true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 [0-9]+                  { return setValue(lineNumber, NUMCONST, yytext); }
 [a-zA-Z][a-zA-Z0-9]*    { return setValue(lineNumber,ID, yytext); }
 \"((\\\")|[^\n"])*\"    { return setValue(lineNumber, STRINGCONST, yytext); }
-\'((\\\")|[^\n"])*\'    { return setValue(lineNumber, CHARCONST, yytext); }
+\'((\\\')|[^\n'])*\'    { return setValue(lineNumber, CHARCONST, yytext); }
 \(|\)|\[|\]       { return setValue(lineNumber, TOKEN, yytext ); }
 \;|\:|\,                        { return setValue(lineNumber, TOKEN, yytext); }
 \?|\*|\/|\%|\-|\+               { return setValue(lineNumber, TOKEN, yytext); }
