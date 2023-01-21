@@ -77,11 +77,7 @@ static int setValue(int linenum, int tokenClass, char *svalue)
         case TOKEN:
                 {
                     //Token State Machine for string comparisons and token formatting
-                    if(yylval.tokenData->tokenInformation == "==")
-                    {
-                        yylval.tokenData->stringValue = '=';
-                    }
-                    else if(yylval.tokenData->tokenInformation == "++")
+                    if(yylval.tokenData->tokenInformation == "++")
                     {
                         yylval.tokenData->stringValue = "INC";
                     }
@@ -167,7 +163,7 @@ true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 \;|\:|\,                        { return setValue(lineNumber, TOKEN, yytext); }
 \?|\*|\/|\%|\-|\+               { return setValue(lineNumber, TOKEN, yytext); }
 \/\=|\+\=|\-\=|\*\=|\+\+|\-\-   { return setValue(lineNumber, TOKEN, yytext); }
-\<|\<\=|\>|\>\=|\=\=|\=|\!\=|\!\<|\!\>|\.\.    { return setValue(lineNumber, TOKEN, yytext); }
+\<|\<\=|\>|\>\=|\=|\!\=|\!\<|\!\>|\.\.    { return setValue(lineNumber, TOKEN, yytext); }
 [ \t]                  { /* ignore white space */ }
 \#\#.*\n               { /* ignore comments */ lineNumber++; }
 \n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }
