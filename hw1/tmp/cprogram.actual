@@ -12,17 +12,17 @@ Line 2 Token: ID Value: stdlib
 ERROR(2): Invalid or misplaced input character: '.'. Character Ignored.
 Line 2 Token: ID Value: h
 Line 2 Token: >
-Line 4 Token: 
+Line 4 Token: INT
 Line 4 Token: ID Value: main
 Line 4 Token: (
 Line 4 Token: )
 ERROR(5): Invalid or misplaced input character: '{'. Character Ignored.
-Line 6 Token: 
+Line 6 Token: INT
 Line 6 Token: ID Value: x
 Line 6 Token: =
 Line 6 Token: NUMCONST Value: 666Input: 666
 Line 6 Token: ;
-Line 8 Token: 
+Line 8 Token: IF
 Line 8 Token: (
 Line 8 Token: ID Value: x
 Line 8 Token: EQ
@@ -39,7 +39,7 @@ Line 9 Token: STRINGCONST Value: "
 "  Len: 2  Input: "\n"
 Line 9 Token: )
 Line 9 Token: ;
-Line 10 Token: 
+Line 10 Token: RETURN
 Line 10 Token: NUMCONST Value: 0Input: 0
 Line 10 Token: ;
 ERROR(11): Invalid or misplaced input character: '}'. Character Ignored.

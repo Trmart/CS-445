@@ -72,7 +72,7 @@ statement     : '\n'
                                     std::cout << "WARNING(" << $1->tokenLineNumber << "): " << "character is " << $1->tokenInformation.length() - 2 << " characters long and not a single character: '" << $1->tokenInformation<<"'.  The first char will be used.\n";
                                 }
 
-                                std::cout << "Line " << $1->tokenLineNumber << " Token: CHARCONST Value: " << $1->charValue << "Input: " << $1->tokenInformation << std::endl; 
+                                std::cout << "Line " << $1->tokenLineNumber << " Token: CHARCONST Value: '" << $1->charValue << "'  Input: " << $1->tokenInformation << std::endl; 
                             }
 
                 | BOOLCONST { std::cout << "Line " << $1->tokenLineNumber << " Token: BOOLCONST Value: " << $1->numValue << "Input: " << $1->tokenInformation << std::endl; }

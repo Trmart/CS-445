@@ -112,6 +112,9 @@ static int setValue(int linenum, int tokenClass, char *svalue)
                 }
                 break;
         case KEYWORD:
+                {
+                    yylval.tokenData->stringValue = TokenFormatter::toUpperCase(yylval.tokenData->tokenInformation);
+                }
             break;
     }
 

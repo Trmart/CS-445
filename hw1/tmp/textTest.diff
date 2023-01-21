@@ -1,8 +1,0 @@
-13c13
-< Line 1 Token: OR
----
-> Line 1 Token: 
-18c18
-< Line 2 Token: CHARCONST Value: 's'  Input: 's how it'
----
-> Line 2 Token: CHARCONST Value: sInput: 's how it'
