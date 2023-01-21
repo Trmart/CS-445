@@ -42,8 +42,6 @@ static int setValue(int linenum, int tokenClass, char *svalue)
     // tokenClass State Machine
     switch (tokenClass)
     {
-        case ID:
-            break;
         case NUMCONST:
                 {
                     yylval.tokenData->numValue = std::stoi(yylval.tokenData->tokenInformation);
