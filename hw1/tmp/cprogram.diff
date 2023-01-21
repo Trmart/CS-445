@@ -1,0 +1,37 @@
+15c15
+< Line 4 Token: INT
+---
+> Line 4 Token: 
+20c20
+< Line 6 Token: INT
+---
+> Line 6 Token: 
+23c23
+< Line 6 Token: NUMCONST Value: 666  Input: 666
+---
+> Line 6 Token: NUMCONST Value: 666Input: 666
+25c25
+< Line 8 Token: IF
+---
+> Line 8 Token: 
+28,30c28,29
+< Line 8 Token: =
+< Line 8 Token: =
+< Line 8 Token: NUMCONST Value: 666  Input: 666
+---
+> Line 8 Token: EQ
+> Line 8 Token: NUMCONST Value: 666Input: 666
+34c33
+< Line 8 Token: STRINGCONST Value: "hog\"  Len: 4  Input: "hog\\"
+---
+> Line 8 Token: STRINGCONST Value: "hog\"  Len: 5  Input: "hog\\"
+40c39
+< "  Len: 1  Input: "\n"
+---
+> "  Len: 2  Input: "\n"
+43,44c42,43
+< Line 10 Token: RETURN
+< Line 10 Token: NUMCONST Value: 0  Input: 0
+---
+> Line 10 Token: 
+> Line 10 Token: NUMCONST Value: 0Input: 0

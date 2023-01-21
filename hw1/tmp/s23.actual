@@ -1,0 +1,183 @@
+ERROR(1): Invalid or misplaced input character: '#'. Character Ignored.
+ERROR(1): Invalid or misplaced input character: '#'. Character Ignored.
+Line 1 Token: ID Value: C
+Line 1 Token: -
+Line 1 Token: ID Value: S23
+Line 2 Token: 
+Line 2 Token: ID Value: gb
+Line 2 Token: ;
+Line 3 Token: 
+Line 3 Token: ID Value: gc
+Line 3 Token: ;
+Line 4 Token: 
+Line 4 Token: ID Value: gi
+Line 4 Token: ;
+Line 7 Token: 
+Line 7 Token: ID Value: main
+Line 7 Token: (
+Line 7 Token: )
+Line 8 Token: 
+Line 9 Token: 
+Line 9 Token: ID Value: b
+Line 9 Token: ;
+Line 10 Token: 
+Line 10 Token: ID Value: c
+Line 10 Token: ;
+Line 11 Token: 
+Line 11 Token: ID Value: i
+Line 11 Token: ,
+Line 11 Token: ID Value: shuri
+Line 11 Token: ,
+Line 11 Token: ID Value: tchalla
+Line 11 Token: ,
+Line 11 Token: ID Value: X23
+Line 11 Token: ;
+Line 12 Token: 
+Line 12 Token: 
+Line 12 Token: ID Value: sb
+Line 12 Token: :
+Line 12 Token: NUMCONST Value: 44Input: 44
+Line 12 Token: >
+Line 12 Token: NUMCONST Value: 22Input: 22
+Line 12 Token: ;
+Line 13 Token: 
+Line 13 Token: 
+Line 13 Token: ID Value: sc
+Line 13 Token: :
+Line 13 Token: CHARCONST Value: xInput: 'x'
+Line 13 Token: ;
+Line 14 Token: 
+Line 14 Token: 
+Line 14 Token: ID Value: si
+Line 14 Token: :
+Line 14 Token: NUMCONST Value: 676Input: 676
+Line 14 Token: ;
+Line 15 Token: 
+Line 15 Token: ID Value: ba
+Line 15 Token: [
+Line 15 Token: NUMCONST Value: 6Input: 6
+Line 15 Token: ]
+Line 15 Token: :
+Line 15 Token: NUMCONST Value: 89Input: 89
+Line 15 Token: <
+Line 15 Token: NUMCONST Value: 34Input: 34
+Line 15 Token: ;
+Line 16 Token: 
+Line 16 Token: ID Value: ca
+Line 16 Token: [
+Line 16 Token: NUMCONST Value: 6Input: 6
+Line 16 Token: ]
+Line 16 Token: :
+Line 16 Token: STRINGCONST Value: "vibranium"  Len: 9  Input: "vibranium"
+Line 16 Token: ;
+Line 17 Token: 
+Line 17 Token: ID Value: ia
+Line 17 Token: [
+Line 17 Token: NUMCONST Value: 6Input: 6
+Line 17 Token: ]
+Line 17 Token: ;
+ERROR(19): Invalid or misplaced input character: '#'. Character Ignored.
+ERROR(19): Invalid or misplaced input character: '#'. Character Ignored.
+Line 19 Token: ID Value: more
+Line 19 Token: ID Value: nonsense
+Line 20 Token: ID Value: b
+Line 20 Token: =
+Line 20 Token: ID Value: b
+Line 20 Token: 
+Line 20 Token: ID Value: b
+Line 20 Token: 
+Line 20 Token: BOOLCONST Value: 1Input: true
+Line 20 Token: 
+Line 20 Token: 
+Line 20 Token: BOOLCONST Value: 0Input: false
+Line 20 Token: ;
+Line 21 Token: 
+Line 21 Token: ID Value: wakanda
+Line 21 Token: LEQ
+Line 21 Token: ID Value: ia
+ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
+ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
+Line 21 Token: NUMCONST Value: 666Input: 666
+Line 21 Token: ID Value: step
+Line 21 Token: NUMCONST Value: 42Input: 42
+Line 21 Token: 
+Line 21 Token: 
+Line 21 Token: 
+Line 21 Token: ID Value: wakanda
+Line 21 Token: =
+Line 21 Token: NUMCONST Value: 42Input: 42
+Line 21 Token: 
+Line 21 Token: 
+Line 21 Token: ;
+Line 21 Token: 
+Line 21 Token: ID Value: i
+Line 21 Token: INC
+Line 21 Token: ;
+Line 21 Token: 
+Line 22 Token: ID Value: i
+Line 22 Token: LEQ
+Line 22 Token: NUMCONST Value: 3Input: 3
+Line 22 Token: *
+Line 22 Token: *
+Line 22 Token: ID Value: ca
+Line 22 Token: +
+Line 22 Token: NUMCONST Value: 56Input: 56
+Line 22 Token: %
+Line 22 Token: ID Value: i
+Line 22 Token: /
+Line 22 Token: NUMCONST Value: 3Input: 3
+Line 22 Token: -
+Line 22 Token: ?
+Line 22 Token: NUMCONST Value: 6Input: 6
+Line 22 Token: +
+Line 22 Token: ?
+Line 22 Token: ID Value: ia
+Line 22 Token: DEC
+Line 22 Token: ID Value: si
+Line 22 Token: ;
+Line 23 Token: 
+Line 23 Token: ID Value: shuri
+ERROR(23): Invalid or misplaced input character: '!'. Character Ignored.
+Line 23 Token: <
+Line 23 Token: NUMCONST Value: 10Input: 10
+Line 23 Token: 
+Line 23 Token: ID Value: i
+ERROR(23): Invalid or misplaced input character: '!'. Character Ignored.
+Line 23 Token: >
+Line 23 Token: NUMCONST Value: 2Input: 2
+Line 23 Token: 
+Line 23 Token: ID Value: c
+Line 23 Token: =
+Line 23 Token: CHARCONST Value: zInput: 'z'
+Line 23 Token: 
+Line 23 Token: ID Value: ba
+Line 23 Token: [
+Line 23 Token: NUMCONST Value: 3Input: 3
+Line 23 Token: ]
+Line 23 Token: NEQ
+Line 23 Token: BOOLCONST Value: 1Input: true
+Line 23 Token: ID Value: repeat
+Line 23 Token: ID Value: shuri
+Line 23 Token: DEC
+Line 23 Token: ;
+Line 25 Token: 
+Line 25 Token: NUMCONST Value: 1284Input: 1284
+Line 25 Token: ;
+Line 26 Token: 
+Line 28 Token: 
+Line 28 Token: ID Value: forever
+Line 28 Token: ,
+Line 28 Token: ID Value: in
+Line 28 Token: ,
+Line 28 Token: ID Value: foreach
+Line 28 Token: ,
+Line 28 Token: ID Value: loop
+Line 28 Token: ,
+Line 28 Token: ID Value: elsif
+Line 28 Token: ,
+Line 28 Token: ID Value: range
+Line 28 Token: ,
+Line 28 Token: ID Value: with
+Line 28 Token: ,
+Line 28 Token: ID Value: xor
+Line 28 Token: ;

@@ -63,7 +63,7 @@ statement     : '\n'
 
                 | NUMCONST { std::cout << "Line " << $1->tokenLineNumber << " Token: NUMCONST Value: " << $1->numValue << "Input: " << $1->tokenInformation << std::endl; }
 
-                | STRINGCONST { std::cout << "Line " << $1->tokenLineNumber << " Token: STRINGCONST Value: " << "Input: " << $1->tokenInformation << std::endl; }
+                | STRINGCONST { std::cout << "Line " << $1->tokenLineNumber << " Token: STRINGCONST Value: " << $1->stringValue << "  Len: " << $1->tokenInformation.length() - 2 << "  Input: " << $1->tokenInformation << std::endl; }
 
                 | CHARCONST { 
                                 //check if the char is a valid char

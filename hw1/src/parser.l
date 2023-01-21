@@ -16,11 +16,11 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 // this *order* of these includes is mandatory
 #include "scanType.hpp"  // TokenData Type
 #include "parser.tab.h"  // token definitions from the bison
-
+#include "TokenFormatter.hpp" // TokenFormatter class
 #include <string>
 
 // Variables for ERR
-int lineNumber;         // ERR line number from the scanner!!
+int lineNumber = 1;         // ERR line number from the scanner!!
 int numberOfErrors;    // ERR err count
 
 void setTokenString(int line)
@@ -51,12 +51,23 @@ static int setValue(int linenum, int tokenClass, char *svalue)
                 break;
         case STRINGCONST:
                     {
-
+                        //remove the leftmost and rightmost escape characters
+                        TokenFormatter::deleteLeftmostAndRightmostCharacters(yylval.tokenData->tokenInformation);
+                        
+                        //parse the string
+                        yylval.tokenData->stringValue = TokenFormatter::parseCharacters(yylval.tokenData->tokenInformation);
                     }
                     break;
         case CHARCONST:
                     { 
-
+                        std::string chars = TokenFormatter::deleteLeftmostAndRightmostCharacters(yylval.tokenData->tokenInformation);
+                        
+                        yylval.tokenData->charValue = TokenFormatter::parseLeftmostCharacter(chars);
+                        
+                        if (chars.length() > 1 && chars[0] != '\\')
+                        {
+                            yylval.tokenData->isCharLengthGreaterThan1 = true;
+                        }
                     }
                     break;
         case BOOLCONST:
@@ -133,7 +144,7 @@ true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 [a-zA-Z][a-zA-Z0-9]*    { return setValue(lineNumber,ID, yytext); }
 \"((\\\")|[^\n"])*\"    { return setValue(lineNumber, STRINGCONST, yytext); }
 \'((\\\")|[^\n"])*\'    { return setValue(lineNumber, CHARCONST, yytext); }
-\(|\)|\{|\}|\[|\]       { return setValue(lineNumber, TOKEN, yytext ); }
+\(|\)|\[|\]       { return setValue(lineNumber, TOKEN, yytext ); }
 \;|\:|\,                        { return setValue(lineNumber, TOKEN, yytext); }
 \?|\*|\/|\%|\-|\+               { return setValue(lineNumber, TOKEN, yytext); }
 \/\=|\+\=|\-\=|\*\=|\+\+|\-\-   { return setValue(lineNumber, TOKEN, yytext); }
@@ -142,7 +153,7 @@ true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 \/\/.*\n               { /* ignore comments */ lineNumber++; }
 \n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }
 .                      { 
-                            printf("ERROR(%d): Invalid or misplaced input character: \'%c\' Character Ignored.\n", lineNumber, yytext[0]);
+                            printf("ERROR(%d): Invalid or misplaced input character: \'%c\'. Character Ignored.\n", lineNumber, yytext[0]);
                             numberOfErrors++;
                        }
 %%

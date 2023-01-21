@@ -75,7 +75,7 @@ class Tester:
         out = os.path.join(self.test_dir, test + '.out')
         actual = os.path.join(self.tmp_dir, test + '.actual')
         expected = os.path.join(self.tmp_dir, test + '.expected')
-        compiler = os.path.join(self.src_dir, 'c-')
+        compiler = os.path.join(self.src_dir, 'parser')
 
         if not os.path.exists(compiler):
             self.execute(self.src_dir, 'make')
