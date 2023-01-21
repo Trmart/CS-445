@@ -1,29 +1,3 @@
-3,11c3,11
-< Line 3 Token: STRINGCONST Value: "dog"  Len: 3  Input: "\dog"
-< Line 4 Token: STRINGCONST Value: "dog"cat"  Len: 7  Input: "dog\"cat"
-< Line 5 Token: STRINGCONST Value: ""dog""  Len: 5  Input: "\"dog\""
-< Line 6 Token: STRINGCONST Value: ""dog"cat""  Len: 9  Input: "\"dog\"cat\""
-< Line 7 Token: STRINGCONST Value: ""dog""cat""  Len: 10  Input: "\"dog\"\"cat\""
-< Line 8 Token: STRINGCONST Value: "dog\cat"  Len: 7  Input: "dog\\cat"
-< Line 9 Token: STRINGCONST Value: "\dog\cat"  Len: 8  Input: "\\dog\\cat"
-< Line 10 Token: STRINGCONST Value: "\dog\cat\"  Len: 9  Input: "\\dog\\cat\\"
-< Line 11 Token: STRINGCONST Value: "dog\"  Len: 4  Input: "dog\\"
----
-> Line 3 Token: STRINGCONST Value: "dog"  Len: 4  Input: "\dog"
-> Line 4 Token: STRINGCONST Value: "dog"cat"  Len: 8  Input: "dog\"cat"
-> Line 5 Token: STRINGCONST Value: ""dog""  Len: 7  Input: "\"dog\""
-> Line 6 Token: STRINGCONST Value: ""dog"cat""  Len: 12  Input: "\"dog\"cat\""
-> Line 7 Token: STRINGCONST Value: ""dog""cat""  Len: 14  Input: "\"dog\"\"cat\""
-> Line 8 Token: STRINGCONST Value: "dog\cat"  Len: 8  Input: "dog\\cat"
-> Line 9 Token: STRINGCONST Value: "\dog\cat"  Len: 10  Input: "\\dog\\cat"
-> Line 10 Token: STRINGCONST Value: "\dog\cat\"  Len: 12  Input: "\\dog\\cat\\"
-> Line 11 Token: STRINGCONST Value: "dog\"  Len: 5  Input: "dog\\"
-14,15c14,15
-< Line 13 Token: STRINGCONST Value: ""dog""  Len: 5  Input: "\"dog\""
-< Line 14 Token: STRINGCONST Value: "abc""  Len: 4  Input: "\a\b\c\""
----
-> Line 13 Token: STRINGCONST Value: ""dog""  Len: 7  Input: "\"dog\""
-> Line 14 Token: STRINGCONST Value: "abc""  Len: 8  Input: "\a\b\c\""
 17c17,19
 < Line 16 Token: CHARCONST Value: '"'  Input: '"'
 ---

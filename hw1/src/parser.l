@@ -79,7 +79,7 @@ static int setValue(int linenum, int tokenClass, char *svalue)
                 {
                     if(yylval.tokenData->tokenInformation == "==")
                     {
-                        yylval.tokenData->stringValue = "EQ";
+                        yylval.tokenData->stringValue = '=';
                     }
                     else if(yylval.tokenData->tokenInformation == "++")
                     {
