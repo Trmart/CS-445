@@ -84,7 +84,7 @@ Line 20 Token: BOOLCONST Value: 0  Input: false
 Line 20 Token: ;
 Line 21 Token: FOR
 Line 21 Token: ID Value: wakanda
-Line 21 Token: LEQ
+Line 21 Token: ASGN
 Line 21 Token: ID Value: ia
 ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
 ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
@@ -106,7 +106,7 @@ Line 21 Token: INC
 Line 21 Token: ;
 Line 21 Token: END
 Line 22 Token: ID Value: i
-Line 22 Token: LEQ
+Line 22 Token: ASGN
 Line 22 Token: NUMCONST Value: 3  Input: 3
 Line 22 Token: *
 Line 22 Token: *
@@ -128,13 +128,11 @@ Line 22 Token: ID Value: si
 Line 22 Token: ;
 Line 23 Token: WHILE
 Line 23 Token: ID Value: shuri
-ERROR(23): Invalid or misplaced input character: '!'. Character Ignored.
-Line 23 Token: <
+Line 23 Token: GEQ
 Line 23 Token: NUMCONST Value: 10  Input: 10
 Line 23 Token: AND
 Line 23 Token: ID Value: i
-ERROR(23): Invalid or misplaced input character: '!'. Character Ignored.
-Line 23 Token: >
+Line 23 Token: LEQ
 Line 23 Token: NUMCONST Value: 2  Input: 2
 Line 23 Token: AND
 Line 23 Token: ID Value: c

@@ -1,7 +1,3 @@
-87c87
-< Line 21 Token: ASGN
----
-> Line 21 Token: LEQ
 89c89,90
 < Line 21 Token: TO
 ---
@@ -11,17 +7,3 @@
 < Line 21 Token: BY
 ---
 > Line 21 Token: ID Value: step
-108c109
-< Line 22 Token: ASGN
----
-> Line 22 Token: LEQ
-130c131,132
-< Line 23 Token: GEQ
----
-> ERROR(23): Invalid or misplaced input character: '!'. Character Ignored.
-> Line 23 Token: <
-134c136,137
-< Line 23 Token: LEQ
----
-> ERROR(23): Invalid or misplaced input character: '!'. Character Ignored.
-> Line 23 Token: >
