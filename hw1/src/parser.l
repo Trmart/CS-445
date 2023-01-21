@@ -72,11 +72,13 @@ static int setValue(int linenum, int tokenClass, char *svalue)
                     break;
         case BOOLCONST:
                     {
+                        //if num value is 1, then it is true. else it is false
                         yylval.tokenData->numValue = yylval.tokenData->tokenInformation == "true";
                     }
                     break;
         case TOKEN:
                 {
+                    //Token State Machine for string comparisons and token formatting
                     if(yylval.tokenData->tokenInformation == "==")
                     {
                         yylval.tokenData->stringValue = '=';
@@ -121,7 +123,15 @@ static int setValue(int linenum, int tokenClass, char *svalue)
                 break;
         case KEYWORD:
                 {
+                    //convery string to uppercase for output formatting
                     yylval.tokenData->stringValue = TokenFormatter::toUpperCase(yylval.tokenData->tokenInformation);
+                    
+                    //convert STEP keyword to BY keyword
+                    if(yylval.tokenData->stringValue == "STEP")
+                    {
+                        yylval.tokenData->stringValue = "BY";
+                    }
+
                 }
             break;
     }
@@ -145,7 +155,7 @@ if|else|begin|end|then  { return setValue(lineNumber, KEYWORD, yytext); }
 
 and|or|not  { return setValue(lineNumber, KEYWORD, yytext); }
 
-return|to|do|by  { return setValue(lineNumber, KEYWORD, yytext); }
+return|do|step  { return setValue(lineNumber, KEYWORD, yytext); }
 
 true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 

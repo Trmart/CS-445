@@ -77,6 +77,7 @@ std::string TokenFormatter::parseCharacters(const std::string &str)
 
       parsedChars += parseLeftmostCharacter(unparsedChars);
       
+      //remove '\\' from unparsedChars
       if (currChar == '\\' && unparsedChars.length() >= 2)
       {
          unparsedChars = unparsedChars.substr(2);
