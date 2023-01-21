@@ -1,114 +1,39 @@
-0a1,5
-> ERROR(1): Invalid or misplaced input character: '#'. Character Ignored.
-> ERROR(1): Invalid or misplaced input character: '#'. Character Ignored.
-> Line 1 Token: ID Value: C
-> Line 1 Token: -
-> Line 1 Token: ID Value: S23
-34c39
-< Line 12 Token: NUMCONST Value: 44  Input: 44
----
-> Line 12 Token: NUMCONST Value: 44Input: 44
-36c41
-< Line 12 Token: NUMCONST Value: 22  Input: 22
----
-> Line 12 Token: NUMCONST Value: 22Input: 22
-48c53
-< Line 14 Token: NUMCONST Value: 676  Input: 676
----
-> Line 14 Token: NUMCONST Value: 676Input: 676
-53c58
-< Line 15 Token: NUMCONST Value: 6  Input: 6
----
-> Line 15 Token: NUMCONST Value: 6Input: 6
-56c61
-< Line 15 Token: NUMCONST Value: 89  Input: 89
----
-> Line 15 Token: NUMCONST Value: 89Input: 89
-58c63
-< Line 15 Token: NUMCONST Value: 34  Input: 34
----
-> Line 15 Token: NUMCONST Value: 34Input: 34
-63c68
-< Line 16 Token: NUMCONST Value: 6  Input: 6
----
-> Line 16 Token: NUMCONST Value: 6Input: 6
-71c76
-< Line 17 Token: NUMCONST Value: 6  Input: 6
----
-> Line 17 Token: NUMCONST Value: 6Input: 6
-73a79,82
-> ERROR(19): Invalid or misplaced input character: '#'. Character Ignored.
-> ERROR(19): Invalid or misplaced input character: '#'. Character Ignored.
-> Line 19 Token: ID Value: more
-> Line 19 Token: ID Value: nonsense
-80c89
+80c80
 < Line 20 Token: BOOLCONST Value: 1  Input: true
 ---
 > Line 20 Token: BOOLCONST Value: 1Input: true
-83c92
+83c83
 < Line 20 Token: BOOLCONST Value: 0  Input: false
 ---
 > Line 20 Token: BOOLCONST Value: 0Input: false
-87c96
+87c87
 < Line 21 Token: ASGN
 ---
 > Line 21 Token: LEQ
-89,92c98,102
+89c89,90
 < Line 21 Token: TO
-< Line 21 Token: NUMCONST Value: 666  Input: 666
+---
+> ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
+> ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
+91c92
 < Line 21 Token: BY
-< Line 21 Token: NUMCONST Value: 42  Input: 42
 ---
-> ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
-> ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
-> Line 21 Token: NUMCONST Value: 666Input: 666
 > Line 21 Token: ID Value: step
-> Line 21 Token: NUMCONST Value: 42Input: 42
-98c108
-< Line 21 Token: NUMCONST Value: 42  Input: 42
----
-> Line 21 Token: NUMCONST Value: 42Input: 42
-108,109c118,119
+108c109
 < Line 22 Token: ASGN
-< Line 22 Token: NUMCONST Value: 3  Input: 3
 ---
 > Line 22 Token: LEQ
-> Line 22 Token: NUMCONST Value: 3Input: 3
-114c124
-< Line 22 Token: NUMCONST Value: 56  Input: 56
----
-> Line 22 Token: NUMCONST Value: 56Input: 56
-118c128
-< Line 22 Token: NUMCONST Value: 3  Input: 3
----
-> Line 22 Token: NUMCONST Value: 3Input: 3
-121c131
-< Line 22 Token: NUMCONST Value: 6  Input: 6
----
-> Line 22 Token: NUMCONST Value: 6Input: 6
-130,131c140,142
+130c131,132
 < Line 23 Token: GEQ
-< Line 23 Token: NUMCONST Value: 10  Input: 10
 ---
 > ERROR(23): Invalid or misplaced input character: '!'. Character Ignored.
 > Line 23 Token: <
-> Line 23 Token: NUMCONST Value: 10Input: 10
-134,135c145,147
+134c136,137
 < Line 23 Token: LEQ
-< Line 23 Token: NUMCONST Value: 2  Input: 2
 ---
 > ERROR(23): Invalid or misplaced input character: '!'. Character Ignored.
 > Line 23 Token: >
-> Line 23 Token: NUMCONST Value: 2Input: 2
-143c155
-< Line 23 Token: NUMCONST Value: 3  Input: 3
----
-> Line 23 Token: NUMCONST Value: 3Input: 3
-146c158
+146c149
 < Line 23 Token: BOOLCONST Value: 1  Input: true
 ---
 > Line 23 Token: BOOLCONST Value: 1Input: true
-152c164
-< Line 25 Token: NUMCONST Value: 1284  Input: 1284
----
-> Line 25 Token: NUMCONST Value: 1284Input: 1284

@@ -153,7 +153,7 @@ true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 \/\=|\+\=|\-\=|\*\=|\+\+|\-\-   { return setValue(lineNumber, TOKEN, yytext); }
 \<|\<\=|\>|\>\=|\=\=|\=|\!\=    { return setValue(lineNumber, TOKEN, yytext); }
 [ \t]                  { /* ignore white space */ }
-\/\/.*\n               { /* ignore comments */ lineNumber++; }
+\#\#.*\n               { /* ignore comments */ lineNumber++; }
 \n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }
 .                      { 
                             printf("ERROR(%d): Invalid or misplaced input character: \'%c\'. Character Ignored.\n", lineNumber, yytext[0]);
