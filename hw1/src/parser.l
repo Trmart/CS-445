@@ -85,6 +85,10 @@ static int setValue(int linenum, int tokenClass, char *svalue)
                     {
                         yylval.tokenData->stringValue = "INC";
                     }
+                    else if(yylval.tokenData->tokenInformation == "..")
+                    {
+                        yylval.tokenData->stringValue = "TO";
+                    }
                     else if(yylval.tokenData->tokenInformation == "--")
                     {
                         yylval.tokenData->stringValue = "DEC";
@@ -155,7 +159,7 @@ true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 \;|\:|\,                        { return setValue(lineNumber, TOKEN, yytext); }
 \?|\*|\/|\%|\-|\+               { return setValue(lineNumber, TOKEN, yytext); }
 \/\=|\+\=|\-\=|\*\=|\+\+|\-\-   { return setValue(lineNumber, TOKEN, yytext); }
-\<|\<\=|\>|\>\=|\=\=|\=|\!\=|\!\<|\!\>    { return setValue(lineNumber, TOKEN, yytext); }
+\<|\<\=|\>|\>\=|\=\=|\=|\!\=|\!\<|\!\>|\.\.    { return setValue(lineNumber, TOKEN, yytext); }
 [ \t]                  { /* ignore white space */ }
 \#\#.*\n               { /* ignore comments */ lineNumber++; }
 \n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }

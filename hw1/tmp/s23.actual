@@ -86,8 +86,7 @@ Line 21 Token: FOR
 Line 21 Token: ID Value: wakanda
 Line 21 Token: ASGN
 Line 21 Token: ID Value: ia
-ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
-ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
+Line 21 Token: TO
 Line 21 Token: NUMCONST Value: 666  Input: 666
 Line 21 Token: ID Value: step
 Line 21 Token: NUMCONST Value: 42  Input: 42

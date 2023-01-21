@@ -1,9 +1,4 @@
-89c89,90
-< Line 21 Token: TO
----
-> ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
-> ERROR(21): Invalid or misplaced input character: '.'. Character Ignored.
-91c92
+91c91
 < Line 21 Token: BY
 ---
 > Line 21 Token: ID Value: step
