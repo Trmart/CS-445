@@ -77,10 +77,10 @@ Line 20 Token: ID Value: b
 Line 20 Token: AND
 Line 20 Token: ID Value: b
 Line 20 Token: OR
-Line 20 Token: BOOLCONST Value: 1Input: true
+Line 20 Token: BOOLCONST Value: 1  Input: true
 Line 20 Token: AND
 Line 20 Token: NOT
-Line 20 Token: BOOLCONST Value: 0Input: false
+Line 20 Token: BOOLCONST Value: 0  Input: false
 Line 20 Token: ;
 Line 21 Token: FOR
 Line 21 Token: ID Value: wakanda
@@ -146,7 +146,7 @@ Line 23 Token: [
 Line 23 Token: NUMCONST Value: 3  Input: 3
 Line 23 Token: ]
 Line 23 Token: NEQ
-Line 23 Token: BOOLCONST Value: 1Input: true
+Line 23 Token: BOOLCONST Value: 1  Input: true
 Line 23 Token: ID Value: repeat
 Line 23 Token: ID Value: shuri
 Line 23 Token: DEC

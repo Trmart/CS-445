@@ -1,11 +1,3 @@
-80c80
-< Line 20 Token: BOOLCONST Value: 1  Input: true
----
-> Line 20 Token: BOOLCONST Value: 1Input: true
-83c83
-< Line 20 Token: BOOLCONST Value: 0  Input: false
----
-> Line 20 Token: BOOLCONST Value: 0Input: false
 87c87
 < Line 21 Token: ASGN
 ---
@@ -33,7 +25,3 @@
 ---
 > ERROR(23): Invalid or misplaced input character: '!'. Character Ignored.
 > Line 23 Token: >
-146c149
-< Line 23 Token: BOOLCONST Value: 1  Input: true
----
-> Line 23 Token: BOOLCONST Value: 1Input: true

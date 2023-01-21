@@ -75,7 +75,7 @@ statement     : '\n'
                                 std::cout << "Line " << $1->tokenLineNumber << " Token: CHARCONST Value: '" << $1->charValue << "'  Input: " << $1->tokenInformation << std::endl; 
                             }
 
-                | BOOLCONST { std::cout << "Line " << $1->tokenLineNumber << " Token: BOOLCONST Value: " << $1->numValue << "Input: " << $1->tokenInformation << std::endl; }
+                | BOOLCONST { std::cout << "Line " << $1->tokenLineNumber << " Token: BOOLCONST Value: " << $1->numValue << "  Input: " << $1->tokenInformation << std::endl; }
 
                 | TOKEN { std::cout << "Line " << $1->tokenLineNumber << " Token: " << $1->stringValue << std::endl; }
 
