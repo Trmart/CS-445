@@ -23,11 +23,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 int lineNumber = 1;         // ERR line number from the scanner!!
 int numberOfErrors;    // ERR err count
 
-void setTokenString(int line)
-{
-    lineNumber = line;
-}
-
+// this is the function that the scanner will call to set the token data
 static int setValue(int linenum, int tokenClass, char *svalue)
 {
     // create the pass-back data space
