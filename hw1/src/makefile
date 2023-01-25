@@ -19,7 +19,7 @@ HDRS = scanType.hpp
 OBJS = lex.yy.o $(BIN).tab.o
 
 $(BIN) : $(OBJS)
-			$(CC) $(OBJS) TokenFormatter.cpp -o $(BIN) -std=c++17
+			$(CC) $(OBJS) TokenFormatter.cpp -o c- -std=c++17
 
 lex.yy.c : $(BIN).l $(BIN).tab.h $(HDR)
 				flex $(BIN).l
