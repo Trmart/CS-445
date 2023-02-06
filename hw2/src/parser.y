@@ -76,12 +76,87 @@ void yyerror(const char *message)
 
 
 %%
-statementlist : statementlist statement
-              | statement
-              ;
+program : declList
+    {
 
-statement     : '\n'
-                ;
+    };
+declList : declList decl
+    {
+
+    }
+    | decl
+    {
+
+    }
+    ;
+decl : varDecl
+    {
+
+    }
+    | funDecl
+    {
+
+    }
+    ;
+varDecl : typeSpec varDeclList SEMICOLON
+    {
+
+    }
+    ;
+scopedVarDecl : STATIC typeSpec varDeclList SEMICOLON
+    {
+
+    }
+    ;
+varDeclList : varDeclList COMMA varDeclInit
+    {
+
+    }
+    | varDeclInit
+    {
+
+    }
+    ;
+varDeclInit : varDeclId
+    {
+
+    }
+    | varDeclId COLON simpleExp
+    {
+
+    }
+    ;
+varDeclId : ID
+    {
+
+    }
+    | ID LBRACKET NUMCONST RBRACKET
+    {
+
+    }
+    ;
+
+typeSpec : STATIC
+    {
+
+    }
+    | INT
+    {
+
+    }
+    | CHAR
+    {
+
+    }
+    | BOOL
+    {
+
+    }
+    ;
+funDecl : typeSpec ID LPAREN parms RPAREN compoundStmt
+    {
+        
+    }
 %%
 
 
