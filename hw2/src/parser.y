@@ -14,6 +14,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
 #include "scanType.hpp"  // TokenData Type
+#include "CompilerFlags.hpp" // Compiler Flags
 
 #include <stdio.h>
 #include <string>
@@ -28,6 +29,8 @@ extern int yydebug;
 // Variables for ERR,from c-.l scanner
 extern int lineNumber;         // ERR line number from the scanner!!
 extern int numberOfErrors;    // ERR err count
+
+Node *root; // AST root node
 
 //ERROR Message Definition and Output Function
 #define YYERROR_VERBOSE
@@ -46,7 +49,9 @@ void yyerror(const char *message)
 // so scanType.hpp must be included before the tab.hpp file!!!!
 %union 
 {
+    Primitive::Type primitiveType;
     TokenData *tokenData;
+    Node *node;
 }
 
 %token <tokenData> ID NUMCONST STRINGCONST CHARCONST BOOLCONST TOKEN KEYWORD
@@ -58,41 +63,29 @@ statementlist : statementlist statement
               ;
 
 statement     : '\n'
-
-                | ID    { std::cout << "Line " << $1->tokenLineNumber << " Token: ID Value: " << $1->tokenInformation << std::endl; }
-
-                | NUMCONST { std::cout << "Line " << $1->tokenLineNumber << " Token: NUMCONST Value: " << $1->numValue << "  Input: " << $1->tokenInformation << std::endl; }
-
-                | STRINGCONST { std::cout << "Line " << $1->tokenLineNumber << " Token: STRINGCONST Value: " << $1->stringValue << "  Len: " << $1->stringValue.length() - 2 << "  Input: " << $1->tokenInformation << std::endl; }
-
-                | CHARCONST { 
-                                //check if the char is a valid char
-                                if($1->isCharLengthGreaterThan1)
-                                {
-                                    std::cout << "WARNING(" << $1->tokenLineNumber << "): " << "character is " << $1->tokenInformation.length() - 2 << " characters long and not a single character: '" << $1->tokenInformation<<"'.  The first char will be used.\n";
-                                }
-
-                                std::cout << "Line " << $1->tokenLineNumber << " Token: CHARCONST Value: '" << $1->charValue << "'  Input: " << $1->tokenInformation << std::endl; 
-                            }
-
-                | BOOLCONST { std::cout << "Line " << $1->tokenLineNumber << " Token: BOOLCONST Value: " << $1->numValue << "  Input: " << $1->tokenInformation << std::endl; }
-
-                | TOKEN { std::cout << "Line " << $1->tokenLineNumber << " Token: " << $1->stringValue << std::endl; }
-
-                | KEYWORD { std::cout << "Line " << $1->tokenLineNumber << " Token: " << $1->stringValue << std::endl; }
                 ;
 %%
 
 
 int main(int argc, char *argv[])
 {
+    //create the compiler flags object. This will parse the command line arguments
+    CompilerFlags compilerFlags(argc, argv);
+
+    //get the debug flag from the compiler flags object
+    yydebug = compilerFlags.getDebugFlag();
+
+    //get the file name from the compiler flags object
+    std::string fileName = compilerFlags.getFileName();
+
+    //if the compiler flags object has an error, print the error and exit
     if (argc > 1) 
     {
         // if failed to open file
-        if (!(yyin = fopen(argv[1], "r"))) 
+        if (!(yyin = fileName.c_str(), "r"))) 
         {
             //print error message
-            printf("ERROR: failed to open \'%s\'\n", argv[1]);
+            printf("ERROR: failed to open \'%s\'\n", fileName.c_str());
             //exit with error
             exit(1);
         }
@@ -100,6 +93,22 @@ int main(int argc, char *argv[])
 
     //parse the input
     yyparse();
+
+    //if the the -p flag was passed, print the AST
+    if(compilerFlags.getPrintFlag())
+    {
+        if(root != NULL)
+        {
+            root->print();
+        }
+    }
+
+    //delete the tree root. Free the memory. 
+    delete root;
+
+    //close the file sent into the c- compiler
+    fclose(yyin);
+
 
     //close the file and exit with success
     return 0;
