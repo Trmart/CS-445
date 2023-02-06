@@ -54,7 +54,25 @@ void yyerror(const char *message)
     Node *node;
 }
 
+%type <primitiveType> typeSpec
 %token <tokenData> ID NUMCONST STRINGCONST CHARCONST BOOLCONST TOKEN KEYWORD
+%token <tokenData> STATIC INT CHAR BOOL 
+%token <tokenData> FOR WHILE BY DO 
+%token <tokenData> IF ELSE THEN BEGIN END STEP 
+%token <tokenData> RETURN BREAK
+%token <tokenData> AND OR TRUE FALSE
+%token <tokenData> INC DEC TO LEQ ASGN GEQ NEQ ADDASS
+%token <tokenData> LCURLY RCURLY LPAREN RPAREN LBRACKET RBRACKET 
+%token <tokenData> SEMICOLON COLON QUESTION COMMA
+%token <tokenData> ASSIGN ADD SUB MUL DIV MOD NOT
+
+
+%type <node> program declList decl varDecl scopedVarDecl varDeclList varDeclInit
+%type <node> varDeclId funDecl parms parmList parmTypeList parmIdList parmId stmt
+%type <node> stmtUnmatched stmtMatched expStmt compoundStmt localDecls stmtList
+%type <node> selectStmtUnmatched selectStmtMatched iterStmtUnmatched iterStmtMatched iterRange
+%type <node> returnStmt breakStmt exp assignop simpleExp andExp unaryRelExp relExp relOp sumExp
+%type <node> sumOp mulExp mulOp unaryExp unaryOp factor mutable immutable call args argList constant
 
 
 %%
@@ -82,10 +100,10 @@ int main(int argc, char *argv[])
     if (argc > 1) 
     {
         // if failed to open file
-        if (!(yyin = fileName.c_str(), "r"))) 
+        if (!(yyin = fileName.c_str(), "r"))
         {
             //print error message
-            printf("ERROR: failed to open \'%s\'\n", fileName.c_str());
+            std :: cout << "ERROR: failed to open \'" << fileName << "\'" << std :: endl;
             //exit with error
             exit(1);
         }
@@ -99,7 +117,7 @@ int main(int argc, char *argv[])
     {
         if(root != NULL)
         {
-            root->print();
+            root->printAST();
         }
     }
 
