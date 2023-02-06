@@ -35,96 +35,6 @@ static int setValue(int linenum, int tokenClass, char *svalue)
     // duplicate string!!
     yylval.tokenData->tokenInformation = strdup(svalue);  
   
-    // tokenClass State Machine
-    switch (tokenClass)
-    {
-        case NUMCONST:
-                {
-                    yylval.tokenData->numValue = std::stoi(yylval.tokenData->tokenInformation);
-                }
-                break;
-        case STRINGCONST:
-                    {
-                        //remove the leftmost and rightmost escape characters
-                        TokenFormatter::deleteLeftmostAndRightmostCharacters(yylval.tokenData->tokenInformation);
-                        
-                        //parse the string
-                        yylval.tokenData->stringValue = TokenFormatter::parseCharacters(yylval.tokenData->tokenInformation);
-                    }
-                    break;
-        case CHARCONST:
-                    { 
-                        std::string chars = TokenFormatter::deleteLeftmostAndRightmostCharacters(yylval.tokenData->tokenInformation);
-                        
-                        yylval.tokenData->charValue = TokenFormatter::parseLeftmostCharacter(chars);
-                        
-                        if (chars.length() > 1 && chars[0] != '\\')
-                        {
-                            yylval.tokenData->isCharLengthGreaterThan1 = true;
-                        }
-                    }
-                    break;
-        case BOOLCONST:
-                    {
-                        //if num value is 1, then it is true. else it is false
-                        yylval.tokenData->numValue = yylval.tokenData->tokenInformation == "true";
-                    }
-                    break;
-        case TOKEN:
-                {
-                    //Token State Machine for string comparisons and token formatting
-                    if(yylval.tokenData->tokenInformation == "++")
-                    {
-                        yylval.tokenData->stringValue = "INC";
-                    }
-                    else if(yylval.tokenData->tokenInformation == "..")
-                    {
-                        yylval.tokenData->stringValue = "TO";
-                    }
-                    else if(yylval.tokenData->tokenInformation == "--")
-                    {
-                        yylval.tokenData->stringValue = "DEC";
-                    }
-                    else if(yylval.tokenData->tokenInformation == "!>")
-                    {
-                        yylval.tokenData->stringValue = "LEQ";
-                    }
-                    else if(yylval.tokenData->tokenInformation == "<=")
-                    {
-                        yylval.tokenData->stringValue = "ASGN";
-                    }
-                    else if(yylval.tokenData->tokenInformation == "!<")
-                    {
-                        yylval.tokenData->stringValue = "GEQ";
-                    }
-                    else if(yylval.tokenData->tokenInformation == "!=")
-                    {
-                        yylval.tokenData->stringValue = "NEQ";
-                    }
-                    else if(yylval.tokenData->tokenInformation == "+=")
-                    {
-                        yylval.tokenData->stringValue = "ADDASS";
-                    }
-                    else
-                    {
-                        yylval.tokenData->stringValue = yylval.tokenData->tokenInformation;
-                    }
-                }
-                break;
-        case KEYWORD:
-                {
-                    //convery string to uppercase for output formatting
-                    yylval.tokenData->stringValue = TokenFormatter::toUpperCase(yylval.tokenData->tokenInformation);
-                    
-                    //convert STEP keyword to BY keyword
-                    if(yylval.tokenData->stringValue == "STEP")
-                    {
-                        yylval.tokenData->stringValue = "BY";
-                    }
-
-                }
-            break;
-    }
 
     return tokenClass;
 }
@@ -137,32 +47,72 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 
 
 
-int|bool|char|static  { return setValue(lineNumber, KEYWORD, yytext); }
+"int" {return setValue(lineNumber, INT, yytext);}
+"char" {return setValue(lineNumber, CHAR, yytext);}
+"static" {return setValue(lineNumber, STATIC, yytext);}
+"bool" {return setValue(lineNumber, BOOL, yytext);}
 
-while|for|break  { return setValue(lineNumber, KEYWORD, yytext); }
+"for" {return setValue(lineNumber, FOR, yytext);}
+"while" {return setValue(lineNumber, WHILE, yytext);}
+"by" {return setValue(lineNumber, BY, yytext);}
+"to" {return setValue(lineNumber, TO, yytext);}
+"do" {return setValue(lineNumber, DO, yytext);}
 
-if|else|begin|end|then  { return setValue(lineNumber, KEYWORD, yytext); }
+"if" {return setValue(lineNumber, IF, yytext);}
+"else" {return setValue(lineNumber, ELSE, yytext);}
+"then" {return setValue(lineNumber, THEN, yytext);}
+"begin" {return setValue(lineNumber, BEGIN, yytext);}
+"end" {return setValue(lineNumber, END, yytext);}
+"step" {return setValue(lineNumber, STEP, yytext);}
 
-and|or|not  { return setValue(lineNumber, KEYWORD, yytext); }
-
-return|do|step  { return setValue(lineNumber, KEYWORD, yytext); }
-
-true|false  { return setValue(lineNumber, BOOLCONST, yytext); }
 
 
+"return" {return setValue(lineNumber, RETURN, yytext);}
+"break" {return setValue(lineNumber, INT, yytext);}
+
+"and" {return setValue(lineNumber, INT, yytext);}
+"or" {return setValue(lineNumber, INT, yytext);}
+"not" {return setValue(lineNumber, INT, yytext);}
+"true" {return setValue(lineNumber, BOOLCONST, yytext);}
+"false" {return setValue(lineNumber, BOOLSCONST, yytext);}
+
+
+"++" {return setValue(lineNumber, INC, yytext);}
+"--" {return setValue(lineNumber, DEC, yytext);}
+".." {return setValue(lineNumber, TO, yytext);}
+"!>" {return setValue(lineNumber, LEQ, yytext);}
+"<=" {return setValue(lineNumber, ASGN, yytext);}
+"!<" {return setValue(lineNumber, GEQ, yytext);}
+"!=" {return setValue(lineNumber, NEQ, yytext);}
+"+=" {return setValue(lineNumber, ADDASS, yytext);}
+
+"{" { return setValue(lineCount, LCURLY, yytext); }
+"}" { return setValue(lineCount, RCURLY, yytext); }
+"(" { return setValue(lineCount, LPAREN, yytext); }
+")" { return setValue(lineCount, RPAREN, yytext); }
+"[" { return setValue(lineCount, LBRACK, yytext); }
+"]" { return setValue(lineCount, RBRACK, yytext); }
+
+"=" { return setValue(lineCount, ASSIGN, yytext); }
+"+" { return setValue(lineCount, ADD, yytext); }
+"-" { return setValue(lineCount, SUB, yytext); }
+"*" { return setValue(lineCount, MUL, yytext); }
+"/" { return setValue(lineCount, DIV, yytext); }
+"%" { return setValue(lineCount, MOD, yytext); }
+"!" { return setValue(lineCount, NOT, yytext); }
+
+";" { return setValue(lineCount, SEMICOLON, yytext); }
+":" { return setValue(lineCount, COLON, yytext); }
+"?" { return setValue(lineCount, QUESTION, yytext); }
+"," { return setValue(lineCount, COMMA, yytext); }
 
 [0-9]+                  { return setValue(lineNumber, NUMCONST, yytext); }
 [a-zA-Z][a-zA-Z0-9]*    { return setValue(lineNumber,ID, yytext); }
 \"((\\\")|[^\n"])*\"    { return setValue(lineNumber, STRINGCONST, yytext); }
 \'((\\\')|[^\n'])*\'    { return setValue(lineNumber, CHARCONST, yytext); }
-\(|\)|\[|\]       { return setValue(lineNumber, TOKEN, yytext ); }
-\;|\:|\,                        { return setValue(lineNumber, TOKEN, yytext); }
-\?|\*|\/|\%|\-|\+               { return setValue(lineNumber, TOKEN, yytext); }
-\/\=|\+\=|\-\=|\*\=|\+\+|\-\-   { return setValue(lineNumber, TOKEN, yytext); }
-\<|\<\=|\>|\>\=|\=|\!\=|\!\<|\!\>|\.\.    { return setValue(lineNumber, TOKEN, yytext); }
 [ \t]                  { /* ignore white space */ }
 \#\#.*\n               { /* ignore comments */ lineNumber++; }
-\n                     { lineNumber++; return setValue(lineNumber, yytext[0], yytext ); }
+"\n"                     { lineNumber++; }
 .                      { 
                             printf("ERROR(%d): Invalid or misplaced input character: \'%c\'. Character Ignored.\n", lineNumber, yytext[0]);
                             numberOfErrors++;

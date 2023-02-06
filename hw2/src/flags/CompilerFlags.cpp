@@ -19,28 +19,43 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
 {
     //from ourgetopt.h
     extern char *optarg;                   /* option argument if : in opts */
-    extern int optopt;  
+    extern int optind;  
     
     resetCompilerFlags();
     
     char compilerFlag = ' ';
 
-    while((compilerFlag = ourGetopt(argc, argv, (char*) "dp") != EOF))
+    while(1)
     {
-        if(compilerFlag == 'd')
-        {
-            setDebugFlag(true);
-        }
 
-        else if(compilerFlag == 'p')
+        while((compilerFlag = ourGetopt(argc, argv, (char*) "dp") != EOF))
         {
-            setPrintASTFlag(true);
-        }
+            if(compilerFlag == 'd')
+            {
+                setDebugFlag(true);
+            }
 
+            else if(compilerFlag == 'p')
+            {
+                setPrintASTFlag(true);
+            }
+
+            else
+            {
+                std::cout << "Invalid Compiler Flag: " << compilerFlag << std::endl;
+                exit(1);
+            }
+        }
+        
+        // Pick off a nonoption
+        if (optind < argc)
+        {
+            m_file = argv[optind];
+            optind++;
+        }
         else
         {
-            std::cout << "Invalid Compiler Flag: " << compilerFlag << std::endl;
-            exit(1);
+            break;
         }
     }
 }
