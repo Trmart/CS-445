@@ -54,20 +54,23 @@ void yyerror(const char *message)
     Node *node;
 }
 
+/* Primative Types */
 %type <primitiveType> typeSpec
-%token <tokenData> ID NUMCONST STRINGCONST CHARCONST BOOLCONST TOKEN KEYWORD
+
+/* Token Data */
+%token <tokenData> ID NUMCONST STRINGCONST CHARCONST BOOLCONST 
 %token <tokenData> STATIC INT CHAR BOOL 
 %token <tokenData> FOR WHILE BY DO 
-%token <tokenData> IF ELSE THEN BEGIN END STEP 
+%token <tokenData> IF ELSE THEN 
 %token <tokenData> RETURN BREAK
-%token <tokenData> AND OR TRUE FALSE
+%token <tokenData> AND OR 
 %token <tokenData> INC DEC TO LEQ ASGN GEQ NEQ EQ
 %token <tokenData> ADDASS SUBASS MULASS DIVASS 
 %token <tokenData> LCURLY RCURLY LPAREN RPAREN LBRACK RBRACK 
 %token <tokenData> SEMICOLON COLON QUESTION COMMA
-%token <tokenData> ASSIGN ADD SUB MUL DIV MOD NOT GT LT
+%token <tokenData>  ADD SUB MUL DIV MOD NOT GT LT
 
-
+/* AST Nodes */
 %type <node> program declList decl varDecl scopedVarDecl varDeclList varDeclInit
 %type <node> varDeclId funDecl parms parmList parmTypeList parmIdList parmId stmt
 %type <node> stmtUnmatched stmtMatched expStmt compoundStmt localDecls stmtList

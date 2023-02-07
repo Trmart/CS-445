@@ -83,26 +83,34 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 "!<" {return setValue(lineNumber, GEQ, yytext);}
 "!=" {return setValue(lineNumber, NEQ, yytext);}
 "+=" {return setValue(lineNumber, ADDASS, yytext);}
+"-=" {return setValue(lineNumber, SUBASS, yytext);}
+"/=" {return setValue(lineNumber, DIVASS, yytext);}
+"*=" {return setValue(lineNumber, MULASS, yytext);}
 
-"{" { return setValue(lineCount, LCURLY, yytext); }
-"}" { return setValue(lineCount, RCURLY, yytext); }
-"(" { return setValue(lineCount, LPAREN, yytext); }
-")" { return setValue(lineCount, RPAREN, yytext); }
-"[" { return setValue(lineCount, LBRACK, yytext); }
-"]" { return setValue(lineCount, RBRACK, yytext); }
 
-"=" { return setValue(lineCount, ASSIGN, yytext); }
-"+" { return setValue(lineCount, ADD, yytext); }
-"-" { return setValue(lineCount, SUB, yytext); }
-"*" { return setValue(lineCount, MUL, yytext); }
-"/" { return setValue(lineCount, DIV, yytext); }
-"%" { return setValue(lineCount, MOD, yytext); }
-"!" { return setValue(lineCount, NOT, yytext); }
 
-";" { return setValue(lineCount, SEMICOLON, yytext); }
-":" { return setValue(lineCount, COLON, yytext); }
-"?" { return setValue(lineCount, QUESTION, yytext); }
-"," { return setValue(lineCount, COMMA, yytext); }
+"{" { return setValue(lineNumber, LCURLY, yytext); }
+"}" { return setValue(lineNumber, RCURLY, yytext); }
+"(" { return setValue(lineNumber, LPAREN, yytext); }
+")" { return setValue(lineNumber, RPAREN, yytext); }
+"[" { return setValue(lineNumber, LBRACK, yytext); }
+"]" { return setValue(lineNumber, RBRACK, yytext); }
+
+"=" { return setValue(lineNumber, ASSIGN, yytext); }
+"+" { return setValue(lineNumber, ADD, yytext); }
+"-" { return setValue(lineNumber, SUB, yytext); }
+"*" { return setValue(lineNumber, MUL, yytext); }
+"/" { return setValue(lineNumber, DIV, yytext); }
+"%" { return setValue(lineNumber, MOD, yytext); }
+"!" { return setValue(lineNumber, NOT, yytext); }
+">" {return setValue(lineNumber, GT, yytext);}
+"<" {return setValue(lineNumber, LT, yytext);}
+
+
+";" { return setValue(lineNumber, SEMICOLON, yytext); }
+":" { return setValue(lineNumber, COLON, yytext); }
+"?" { return setValue(lineNumber, QUESTION, yytext); }
+"," { return setValue(lineNumber, COMMA, yytext); }
 
 [0-9]+                  { return setValue(lineNumber, NUMCONST, yytext); }
 [a-zA-Z][a-zA-Z0-9]*    { return setValue(lineNumber,ID, yytext); }
