@@ -28,7 +28,7 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
     while(1)
     {
 
-        while((compilerFlag = ourGetopt(argc, argv, (char*) "dp") != EOF))
+        while((compilerFlag = ourGetopt(argc, argv, (char*) "dph") != EOF))
         {
             switch (compilerFlag)
             {

@@ -6,7 +6,10 @@
 //Statements, Expressions, and Declarations all inherit from this class
 class Node
 {
+    public:
 
+
+    protected:
 }; 
 
 

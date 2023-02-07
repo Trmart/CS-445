@@ -6,7 +6,9 @@
 
 class ExpressionNode : public Node
 {
+    public :
 
+    protected :
 }; 
 
 
