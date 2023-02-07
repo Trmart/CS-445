@@ -24,6 +24,7 @@ class CompilerFlags
 
         // Reset all flags to false
         void resetCompilerFlags();
+        void printHelpMenu();
 
         // Getters
         bool getDebugFlag() const;

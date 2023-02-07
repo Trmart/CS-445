@@ -30,24 +30,35 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
 
         while((compilerFlag = ourGetopt(argc, argv, (char*) "dp") != EOF))
         {
-            if(compilerFlag == 'd')
+            switch (compilerFlag)
             {
-                setDebugFlag(true);
-            }
-
-            else if(compilerFlag == 'p')
-            {
-                setPrintASTFlag(true);
-            }
-
-            else
-            {
-                std::cout << "Invalid Compiler Flag: " << compilerFlag << std::endl;
-                exit(1);
+                case 'd':
+                        {
+                            setDebugFlag(true);
+                        }
+                        break;
+                case 'p':
+                        {
+                            setPrintASTFlag(true);
+                        }
+                        break;
+                case 'h':
+                        {
+                            printHelpMenu();
+                            exit(0);
+                        }
+                        break;
+                default:
+                        {
+                            std::cout << "Invalid Compiler Flag: " << compilerFlag << std::endl;
+                            printHelpMenu();
+                            exit(1);
+                        }
+                    break;
             }
         }
         
-        // Pick off a nonoption
+        // Remove an invalid input option
         if (optind < argc)
         {
             m_file = argv[optind];
@@ -58,6 +69,15 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
             break;
         }
     }
+}
+
+void printHelpMenu()
+{
+    std::cout << "Usage: ./c- [options] file" << std::endl;
+    std::cout << "Options:" << std::endl;
+    std::cout << "-d: Enable debug mode" << std::endl;
+    std::cout << "-p: Print the AST" << std::endl;
+    std::cout << "-h: Print this help message" << std::endl;
 }
 
 //Setters
