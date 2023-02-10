@@ -29,7 +29,6 @@ class Node
         // ************ Node Class Constructors ************************
         
         //Base Constructors
-        Node(); 
         Node(int tokenLineNumber);
 
         //Int Constructor
@@ -55,7 +54,7 @@ class Node
         virtual std::string printTokenString() const;
 
         //Print AST Nodes
-        virtual void printASTNode(int indent) const;
+        virtual void printASTNode() const;
 
         //Print The Whole AST
         void printAST() const;
@@ -79,8 +78,8 @@ class Node
         //Vector of current AST childern Nodes
         std::vector<Node*>m_childernNodes;
 
-        //Keep track of Siblings Nodes
-        Node * m_siblings;  
+        //Keep track of Sibling Nodes
+        Node * m_siblingNode;  
 
 
 }; 

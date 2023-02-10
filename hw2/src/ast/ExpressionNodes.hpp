@@ -16,7 +16,7 @@ DESC: ExpressionNodes Subclass. Inherits from Node Base Class.
 
 
 #include "Node.hpp"
-
+//Assignment, Binary, Call, Constant, Identifier, Unary, UnaryAssignment
 class ExpressionNode : public Node
 {
     public :

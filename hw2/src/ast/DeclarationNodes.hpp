@@ -17,9 +17,12 @@ DESC: DeclarationNodes Subclass. Inherits from Node Base Class.
 
 #include "Node.hpp"
 
+// Function, Parameters, Variable
 class DeclarationNodes : public Node
 {
     public :
+
+    
 
     protected :
 }; 
