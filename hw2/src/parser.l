@@ -67,10 +67,10 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 
 
 "return" {return setValue(lineNumber, RETURN, yytext);}
-"break" {return setValue(lineNumber, INT, yytext);}
+"break" {return setValue(lineNumber, BREAK, yytext);}
 
-"and" {return setValue(lineNumber, INT, yytext);}
-"or" {return setValue(lineNumber, INT, yytext);}
+"and" {return setValue(lineNumber, AND, yytext);}
+"or" {return setValue(lineNumber, OR, yytext);}
 "true" {return setValue(lineNumber, BOOLCONST, yytext);}
 "false" {return setValue(lineNumber, BOOLSCONST, yytext);}
 

@@ -40,6 +40,9 @@ struct TokenData
     //char values
     char charValue;
 
+    //bool values
+    bool boolValue; 
+
 };
 
 #endif
