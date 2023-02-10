@@ -1,35 +1,16 @@
-/*
-Taylor Martin
-CS-445 Compiler Design
-University Of Idaho
-HW2
-Dr. Wilder
-1/30/2023
+#include "StatementNodes.hpp"
 
-FILE: StatementNodes.hpp
-DESC: StatementsNodes Subclass. Inherits from Node Base Class. 
 
-*/
-
-#ifndef STATEMENTNODES_HPP
-#define STATEMENTNODES_HPP
-
-#include "Node.hpp"
-//Break, Coumpound, For, If, Range, Return, Statment, While
-class StatementNode : public Node
+StatementNode::StatementNode(const int tokenLineNumber, const StatementNode::Type statementType)
 {
-    public :
-        enum class Type { Break, Compound, For, If, Return, While, Range };
 
-        StatementNode(const int tokenLineNumber, const StatementNode::Type statementType);
+}
 
-        StatementNode::Type getTypeOfStatement() const; 
-    
-    
-    protected :
+StatementNode::Type getTypeOfStatement() const
+{
 
-        const StatementNode::Type m_statementType;
-};
+}
+
 
 class BreakNode : public StatementNode
 {
@@ -39,8 +20,11 @@ class BreakNode : public StatementNode
         std::string printTokenString() const override;
 };
 
+
+
 class CompoundNode : public StatementNode
 {
+
     public :
 
         CompoundNode(const int tokenLineNumber);
@@ -57,6 +41,8 @@ class ForNode : public StatementNode
         std::string printTokenString() const override;
 };
 
+
+
 class IfNode : public StatementNode
 {
     public :
@@ -65,6 +51,8 @@ class IfNode : public StatementNode
 
         std::string printTokenString() const override;
 };
+
+
 
 
 class RangeNode : public StatementNode
@@ -95,5 +83,3 @@ class WhileNode : public StatementNode
 
         std::string printTokenString() const override;
 };
-
-#endif
