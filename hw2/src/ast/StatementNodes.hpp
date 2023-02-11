@@ -16,6 +16,11 @@ DESC: StatementsNodes Subclass. Inherits from Node Base Class.
 
 #include "Node.hpp"
 //Break, Coumpound, For, If, Range, Return, Statment, While
+
+
+//**********************************************************
+// ************ StatementNode Class ************************
+//**********************************************************
 class StatementNode : public Node
 {
     public :
@@ -31,6 +36,10 @@ class StatementNode : public Node
         const StatementNode::Type m_statementType;
 };
 
+//******************************************************
+// ************ BreakNode Class ************************
+//******************************************************
+
 class BreakNode : public StatementNode
 {
     public :
@@ -39,6 +48,9 @@ class BreakNode : public StatementNode
         std::string printTokenString() const override;
 };
 
+//*********************************************************
+// ************ CompoundNode Class ************************
+//*********************************************************
 class CompoundNode : public StatementNode
 {
     public :
@@ -48,6 +60,9 @@ class CompoundNode : public StatementNode
         std::string printTokenString() const override;
 };
 
+//*********************************************************
+// ************ ForNode Class *****************************
+//*********************************************************
 class ForNode : public StatementNode
 {
     public :
@@ -57,6 +72,9 @@ class ForNode : public StatementNode
         std::string printTokenString() const override;
 };
 
+//*********************************************************
+// ************ IfNode Class ******************************
+//*********************************************************
 class IfNode : public StatementNode
 {
     public :
@@ -67,6 +85,9 @@ class IfNode : public StatementNode
 };
 
 
+//******************************************************
+// ************ RangeNode Class ************************
+//******************************************************
 class RangeNode : public StatementNode
 {
     public :
@@ -76,7 +97,9 @@ class RangeNode : public StatementNode
         std::string printTokenString() const override;
 };
 
-
+//*******************************************************
+// ************ ReturnNode Class ************************
+//*********************************************************
 class ReturnNode : public StatementNode
 {
     public :
@@ -86,7 +109,9 @@ class ReturnNode : public StatementNode
         std::string printTokenString() const override;
 };
 
-
+//******************************************************
+// ************ WhileNode Class ************************
+//******************************************************
 class WhileNode : public StatementNode
 {
     public :
