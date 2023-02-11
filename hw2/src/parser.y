@@ -638,12 +638,12 @@ factor                  : mutable
 
 mutable                 : ID
                         {
-                            $$ = new IdentifierNode($1->tokenLineNumber, $1->tokenContent);
+                            $$ = new IdentifierNode($1->tokenLineNumber, $1->tokenInformation);
                         }
                         | ID LBRACK exp RBRACK
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::Index);
-                            Id *node = new IdentifierNode($1->tokenLineNumber, $1->tokenContent, true);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::INDEX);
+                            IdentifierNode *node = new IdentifierNode($1->tokenLineNumber, $1->tokenInformation, true);
                             $$->addChildNode(node);
                             $$->addChildNode($3);
                         }
@@ -665,7 +665,7 @@ immutable               : LPAREN exp RPAREN
 
 call                    : ID LPAREN args RPAREN
                         {
-                            $$ = new Call($1->tokenLineNum, $1->tokenContent);
+                            $$ = new CallNode($1->tokenLineNumber, $1->tokenInformation);
                             $$->addChildNode($3);
                         }
                         ;
@@ -693,19 +693,19 @@ argList                 : argList COMMA exp
 
 constant                : NUMCONST
                         {
-                            $$ = new Const($1->tokenLineNum, Const::Type::Int, $1->tokenContent);
+                            $$ = new ConstantNode($1->tokenLineNumber, ConstantNode::Type::INT, $1->tokenInformation);
                         }
                         | BOOLCONST
                         {
-                            $$ = new Const($1->tokenLineNum, Const::Type::Bool, $1->tokenContent);
+                            $$ = new ConstantNode($1->tokenLineNumber, ConstantNode::Type::BOOL, $1->tokenInformation);
                         }
                         | CHARCONST
                         {
-                            $$ = new Const($1->tokenLineNum, Const::Type::Char, $1->tokenContent);
+                            $$ = new ConstantNode($1->tokenLineNumber, ConstantNode::Type::CHAR, $1->tokenInformation);
                         }
                         | STRINGCONST
                         {
-                            $$ = new Const($1->tokenLineNum, Const::Type::String, $1->tokenContent);
+                            $$ = new ConstantNode($1->tokenLineNumber, ConstantNode::Type::STRING, $1->tokenInformation);
                         }
                         ;
 %%
