@@ -90,7 +90,7 @@ program                 : declList
 declList                : declList decl
                         {
                             $$ = $1;
-                            $$->addSibling($2);
+                            $$->addSiblingNode($2);
                         }
                         | decl
                         {
@@ -134,7 +134,7 @@ scopedVarDecl           : STATIC typeSpec varDeclList SEMICOLON
 varDeclList             : varDeclList COMMA varDeclInit
                         {
                             $$ = $1;
-                            $$->addSibling($3);
+                            $$->addSiblingNode($3);
                         }
                         | varDeclInit
                         {
@@ -149,45 +149,45 @@ varDeclInit             : varDeclId
                         | varDeclId COLON simpleExp
                         {
                             $$ = $1;
-                            $$->addChild($3);
+                            $$->addChildNode($3);
                         }
                         ;
 
 varDeclId               : ID
                         {
-                            $$ = new Var($1->tokenLineNum, new Primitive(Primitive::Type::Void), $1->tokenContent);
+                            $$ = new VariableNode($1->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::VOID), $1->tokenInformation);
                         }
                         | ID LBRACK NUMCONST RBRACK
                         {
-                            $$ = new Var($1->tokenLineNum, new Primitive(Primitive::Type::Void, true), $1->tokenContent);
+                            $$ = new VariableNode($1->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::VOID, true), $1->tokenInformation);
                         }
                         ;
 
 typeSpec                : INT
                         {
-                            $$ = Primitive::Type::Int;
+                            $$ = PrimitiveType::Type::INT;
                         }
                         | BOOL
                         {
-                            $$ = Primitive::Type::Bool;
+                            $$ = PrimitiveType::Type::BOOL;
                         }
                         | CHAR
                         {
-                            $$ = Primitive::Type::Char;
+                            $$ = PrimitiveType::Type::CHAR;
                         }
                         ;
 
 funDecl                 : typeSpec ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new Func($2->tokenLineNum, new Primitive($1), $2->tokenContent);
-                            $$->addChild($4);
-                            $$->addChild($6);
+                            $$ = new FunctionNode($2->tokenLineNumber, new PrimitiveType($1), $2->tokenInformation);
+                            $$->addChildNode($4);
+                            $$->addChildNode($6);
                         }
                         | ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new Func($1->tokenLineNum, new Primitive(Primitive::Type::Void), $1->tokenContent);
-                            $$->addChild($3);
-                            $$->addChild($5);
+                            $$ = new FunctionNode($1->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::Void), $1->tokenInformation);
+                            $$->addChildNode($3);
+                            $$->addChildNode($5);
                         }
                         ;
 
@@ -204,7 +204,7 @@ parms                   : parmList
 parmList                : parmList SEMICOLON parmTypeList
                         {
                             $$ = $1;
-                            $$->addSibling($3);
+                            $$->addSiblingNode($3);
                         }
                         | parmTypeList
                         {
@@ -215,8 +215,8 @@ parmList                : parmList SEMICOLON parmTypeList
 parmTypeList            : typeSpec parmIdList
                         {
                             $$ = $2;
-                            Parm *node = (Parm *)$$;
-                            node->setType($1);
+                            ParameterNode *node = (ParameterNode *)$$;
+                            node->setParameterType($1);
                         }
                         ;
 
@@ -229,7 +229,7 @@ parmIdList              : parmIdList COMMA parmId
                             else
                             {
                                 $$ = $1;
-                                $$->addSibling($3);
+                                $$->addSiblingNode($3);
                             }
                         }
                         | parmId
@@ -240,11 +240,11 @@ parmIdList              : parmIdList COMMA parmId
 
 parmId                  : ID
                         {
-                            $$ = new Parm($1->tokenLineNum, new Primitive(Primitive::Type::Void), $1->tokenContent);
+                            $$ = new ParameterNode($1->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::VOID), $1->tokenInformation);
                         }
                         | ID LBRACK RBRACK
                         {
-                            $$ = new Parm($1->tokenLineNum, new Primitive(Primitive::Type::Void, true), $1->tokenContent);
+                            $$ = new ParameterNode($1->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::VOID, true), $1->tokenInformation);
                         }
                         ;
 
@@ -306,9 +306,9 @@ expStmt                 : exp SEMICOLON
 
 compoundStmt            : LCURLY localDecls stmtList RCURLY
                         {
-                            $$ = new Compound($1->tokenLineNum);
-                            $$->addChild($2);
-                            $$->addChild($3);
+                            $$ = new CompoundNode($1->tokenLineNumber);
+                            $$->addChildNode($2);
+                            $$->addChildNode($3);
                         }
                         ;
 
@@ -321,7 +321,7 @@ localDecls              : localDecls scopedVarDecl
                             else
                             {
                                 $$ = $1;
-                                $$->addSibling($2);
+                                $$->addSiblingNode($2);
                             }
                         }
                         |
@@ -339,7 +339,7 @@ stmtList                : stmtList stmt
                             else
                             {
                                 $$ = $1;
-                                $$->addSibling($2);
+                                $$->addSiblingNode($2);
                             }
                         }
                         |
@@ -350,57 +350,57 @@ stmtList                : stmtList stmt
 
 selectStmtUnmatched     : IF simpleExp THEN stmt
                         {
-                            $$ = new If($1->tokenLineNum);
-                            $$->addChild($2);
-                            $$->addChild($4);
+                            $$ = new IfNode($1->tokenLineNumber);
+                            $$->addChildNode($2);
+                            $$->addChildNode($4);
                         }
                         | IF simpleExp THEN stmtMatched ELSE stmtUnmatched
                         {
-                            $$ = new If($1->tokenLineNum);
-                            $$->addChild($2);
-                            $$->addChild($4);
-                            $$->addChild($6);
+                            $$ = new IfNode($1->tokenLineNumber);
+                            $$->addChildNode($2);
+                            $$->addChildNode($4);
+                            $$->addChildNode($6);
                         }
                         ;
 
 selectStmtMatched       : IF simpleExp THEN stmtMatched ELSE stmtMatched
                         {
-                            $$ = new If($1->tokenLineNum);
-                            $$->addChild($2);
-                            $$->addChild($4);
-                            $$->addChild($6);
+                            $$ = new IfNode($1->tokenLineNumber);
+                            $$->addChildNode($2);
+                            $$->addChildNode($4);
+                            $$->addChildNode($6);
                         }
                         ;
 
 iterStmtUnmatched       : WHILE simpleExp DO stmtUnmatched
                         {
-                            $$ = new While($1->tokenLineNum);
-                            $$->addChild($2);
-                            $$->addChild($4);
+                            $$ = new WhileNode($1->tokenLineNumber);
+                            $$->addChildNode($2);
+                            $$->addChildNode($4);
                         }
                         | FOR ID ASGN iterRange DO stmtUnmatched
                         {
-                            $$ = new For($1->tokenLineNum);
-                            Var *node = new Var($2->tokenLineNum, new Primitive(Primitive::Type::Int), $2->tokenContent);
-                            $$->addChild(node);
-                            $$->addChild($4);
-                            $$->addChild($6);
+                            $$ = new ForNode($1->tokenLineNumber);
+                            VariableNode *node = new VariableNode($2->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::INT), $2->tokenInformation);
+                            $$->addChildNode(node);
+                            $$->addChildNode($4);
+                            $$->addChildNode($6);
                         }
                         ;
 
 iterStmtMatched         : WHILE simpleExp DO stmtMatched
                         {
                             $$ = new While($1->tokenLineNum);
-                            $$->addChild($2);
-                            $$->addChild($4);
+                            $$->addChildNode($2);
+                            $$->addChildNode($4);
                         }
                         | FOR ID ASGN iterRange DO stmtMatched
                         {
                             $$ = new For($1->tokenLineNum);
                             Var *node = new Var($2->tokenLineNum, new Primitive(Primitive::Type::Int), $2->tokenContent);
-                            $$->addChild(node);
-                            $$->addChild($4);
-                            $$->addChild($6);
+                            $$->addChildNode(node);
+                            $$->addChildNode($4);
+                            $$->addChildNode($6);
                         }
                         ;
 
@@ -413,9 +413,9 @@ iterRange               : simpleExp TO simpleExp
                         | simpleExp TO simpleExp BY simpleExp
                         {
                             $$ = new Range($1->getTokenLineNum());
-                            $$->addChild($1);
-                            $$->addChild($3);
-                            $$->addChild($5);
+                            $$->addChildNode($1);
+                            $$->addChildNode($3);
+                            $$->addChildNode($5);
                         }
                         ;
 
@@ -426,7 +426,7 @@ returnStmt              : RETURN SEMICOLON
                         | RETURN exp SEMICOLON
                         {
                             $$ = new Return($1->tokenLineNum);
-                            $$->addChild($2);
+                            $$->addChildNode($2);
                         }
                         ;
 
@@ -439,18 +439,18 @@ breakStmt               : BREAK SEMICOLON
 exp                     : mutable assignop exp
                         {
                             $$ = $2;
-                            $$->addChild($1);
-                            $$->addChild($3);
+                            $$->addChildNode($1);
+                            $$->addChildNode($3);
                         }
                         | mutable INC
                         {
                             $$ = new UnaryAsgn($1->getTokenLineNum(), UnaryAsgn::Type::Inc);
-                            $$->addChild($1);
+                            $$->addChildNode($1);
                         }
                         | mutable DEC
                         {
                             $$ = new UnaryAsgn($1->getTokenLineNum(), UnaryAsgn::Type::Dec);
-                            $$->addChild($1);
+                            $$->addChildNode($1);
                         }
                         | simpleExp
                         {
@@ -483,8 +483,8 @@ assignop                : ASGN
 simpleExp               : simpleExp OR andExp
                         {
                             $$ = new Binary($1->getTokenLineNum(), Binary::Type::Or);
-                            $$->addChild($1);
-                            $$->addChild($3);
+                            $$->addChildNode($1);
+                            $$->addChildNode($3);
                         }
                         | andExp
                         {
@@ -495,8 +495,8 @@ simpleExp               : simpleExp OR andExp
 andExp                  : andExp AND unaryRelExp
                         {
                             $$ = new Binary($1->getTokenLineNum(), Binary::Type::And);
-                            $$->addChild($1);
-                            $$->addChild($3);
+                            $$->addChildNode($1);
+                            $$->addChildNode($3);
                         }
                         | unaryRelExp
                         {
@@ -507,7 +507,7 @@ andExp                  : andExp AND unaryRelExp
 unaryRelExp             : NOT unaryRelExp
                         {
                             $$ = new Unary($1->tokenLineNum, Unary::Type::Not);
-                            $$->addChild($2);
+                            $$->addChildNode($2);
                         }
                         | relExp
                         {
@@ -518,8 +518,8 @@ unaryRelExp             : NOT unaryRelExp
 relExp                  : sumExp relOp sumExp
                         {
                             $$ = $2;
-                            $$->addChild($1);
-                            $$->addChild($3);
+                            $$->addChildNode($1);
+                            $$->addChildNode($3);
                         }
                         | sumExp
                         {
@@ -556,8 +556,8 @@ relOp                   : LT
 sumExp                  : sumExp sumOp mulExp
                         {
                             $$ = $2;
-                            $$->addChild($1);
-                            $$->addChild($3);
+                            $$->addChildNode($1);
+                            $$->addChildNode($3);
                         }
                         | mulExp
                         {
@@ -578,8 +578,8 @@ sumOp                   : ADD
 mulExp                  : mulExp mulOp unaryExp
                         {
                             $$ = $2;
-                            $$->addChild($1);
-                            $$->addChild($3);
+                            $$->addChildNode($1);
+                            $$->addChildNode($3);
                         }
                         | unaryExp
                         {
@@ -604,7 +604,7 @@ mulOp                   : MUL
 unaryExp                : unaryOp unaryExp
                         {
                             $$ = $1;
-                            $$->addChild($2);
+                            $$->addChildNode($2);
                         }
                         | factor
                         {
@@ -644,8 +644,8 @@ mutable                 : ID
                         {
                             $$ = new Binary($1->tokenLineNum, Binary::Type::Index);
                             Id *node = new Id($1->tokenLineNum, $1->tokenContent, true);
-                            $$->addChild(node);
-                            $$->addChild($3);
+                            $$->addChildNode(node);
+                            $$->addChildNode($3);
                         }
                         ;
 
@@ -666,7 +666,7 @@ immutable               : LPAREN exp RPAREN
 call                    : ID LPAREN args RPAREN
                         {
                             $$ = new Call($1->tokenLineNum, $1->tokenContent);
-                            $$->addChild($3);
+                            $$->addChildNode($3);
                         }
                         ;
 
@@ -683,7 +683,7 @@ args                    : argList
 argList                 : argList COMMA exp
                         {
                             $$ = $1;
-                            $$->addSibling($3);
+                            $$->addSiblingNode($3);
                         }
                         | exp
                         {
