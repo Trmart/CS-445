@@ -19,30 +19,38 @@ DESC: ExpressionNodes Subclass. Inherits from Node Base Class.
 //Assignment, Binary, Call, Constant, Identifier, Unary, UnaryAssignment
 
 //**********************************************************
-// ************ ExpressionNode Classes ************************
+// ************ ExpressionNode Class ************************
 //**********************************************************
 class ExpressionNode : public Node
 {
-    public :
+    public:
 
         enum class Type
         {
-            Assign,
+            Assignment,
             Binary,
             Call,
             Constant,
             Identifier,
-            Unary, 
-            UnaryAssignment
+            Unary,
+            UnaryAssignment,
+            None
         };
-        ExpressionNode(int tokenLineNumber, const ExpressionNode::Type expressionType);
-    protected :
+
+        //Constructor
+        ExpressionNode(int tokenLineNumber, const Type nodeType); 
+
+        ExpressionNode::Type getTypeOfExpressionNode() const; 
+
+    protected:
+        ExpressionNode::Type m_expressionNodeType;
 };
+
 
 //******************************************************
 // ************ AssignmentNode Class *******************
 //******************************************************
-class AssignmentNode : public Node
+class AssignmentNode : public ExpressionNode
 {
     public :
 
@@ -67,7 +75,7 @@ class AssignmentNode : public Node
 //**********************************************************
 // ************ BinaryNode Class ***************************
 //**********************************************************
-class BinaryNode : public Node
+class BinaryNode : public ExpressionNode
 {
     public :
         BinaryNode(int tokenLineNumber, const Node::Type nodeType) : ExpressionNode(tokenLineNumber, nodeType)
@@ -82,7 +90,7 @@ class BinaryNode : public Node
 //**********************************************************
 // ************ CallNode Class *****************************
 //**********************************************************
-class CallNode : public Node
+class CallNode : public ExpressionNode
 {
     public :
 
@@ -93,7 +101,7 @@ class CallNode : public Node
 //**********************************************************
 // ************ ConstantNode Class *************************
 //**********************************************************
-class ConstantNode : public Node
+class ConstantNode : public ExpressionNode
 {
     public :
 
@@ -104,7 +112,7 @@ class ConstantNode : public Node
 //**********************************************************
 // ************ IdentifierNode Class ************************
 //**********************************************************
-class IdentifierNode : public Node
+class IdentifierNode : public ExpressionNode
 {
     public :
         IdentifierNode(int tokenLineNumber, std:: string identifierName, bool isArray)
@@ -120,7 +128,7 @@ class IdentifierNode : public Node
 //**********************************************************
 // ************ UnaryNode Class ****************************
 //**********************************************************
-class UnaryNode : public Node
+class UnaryNode : public ExpressionNode
 {
     public :
 
@@ -131,7 +139,7 @@ class UnaryNode : public Node
 //**********************************************************
 // ************ UnaryAssignmentNode Class ******************
 //**********************************************************
-class UnaryAssignmentNode : public Node
+class UnaryAssignmentNode : public ExpressionNode
 {
     public :
 

@@ -15,4 +15,8 @@ DESC: ExpressionNodes Subclass Member Definitions.
 //********************************************************************************
 // ************ ExpressionNode Class Member Functions *********************************
 //********************************************************************************
-
+ExpressionNode :: ExpressionNode(int tokenLineNumber, const Node::Type nodeType) : Node(tokenLineNumber, nodeType)
+{
+    //initialize sibling node to nullptr
+    m_siblingNode = nullptr; 
+}

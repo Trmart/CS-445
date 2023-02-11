@@ -25,15 +25,15 @@ class StatementNode : public Node
 {
     public :
         enum class Type { Break, Compound, For, If, Return, While, Range };
-        StatementNode(); 
-        StatementNode(const int tokenLineNumber);
+
+        StatementNode(const int tokenLineNumber, const StatementNode::Type statementType);
 
         StatementNode::Type getTypeOfStatement() const; 
     
     
     protected :
 
-        // const StatementNode::Type m_statementType;
+        const StatementNode::Type m_statementType;
 };
 
 //******************************************************
