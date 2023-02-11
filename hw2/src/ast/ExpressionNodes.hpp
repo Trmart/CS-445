@@ -23,96 +23,162 @@ DESC: ExpressionNodes Subclass. Inherits from Node Base Class.
 //**********************************************************
 class ExpressionNode : public Node
 {
-    public :
+    public:
 
+        //Expression Type Enum
         enum class Type
         {
-            Assign,
-            Binary,
-            Call,
-            Constant,
-            Identifier,
-            Unary, 
-            UnaryAssignment
+            ASSIGN,
+            BINARY,
+            CALL,
+            CONSTANT,
+            IDENTIFIER,
+            UNARY, 
+            UNARYASSIGN,
         };
+
+        //Constructor
         ExpressionNode(int tokenLineNumber, const ExpressionNode::Type expressionType);
-    protected :
+    
+        std::string printTokenString() const;
+    
+    protected:
+        
+        //Expression Type
+        const ExpressionNode::Type m_expressionType;
 };
 
 //******************************************************
 // ************ AssignmentNode Class *******************
 //******************************************************
-class AssignmentNode : public Node
+class AssignmentNode : public ExpressionNode
 {
-    public :
+    public:
 
         enum class Type
         {
-            Asgn,
-            AddAss,
-            SubAss,
-            MulAss,
-            DivAss,
-            None
+            ASGN,
+            ADDASS,
+            SUBASS,
+            MULASS,
+            DIVASS,
+            NONE
         };
-        AssignmentNode(int tokenLineNumber, const Node::Type nodeType) : ExpressionNode(tokenLineNumber, nodeType)
-        {
-            //initialize sibling node to nullptr
-            m_siblingNode = nullptr; 
-        }
-    protected :
+        AssignmentNode(int tokenLineNumber, const Type assignmentType);
+
+        std::string printTokenString() const;
+    protected:
+
+        //Assignment Type
+        const AssignmentNode::Type m_assignmentType;
 };
 
 
 //**********************************************************
 // ************ BinaryNode Class ***************************
 //**********************************************************
-class BinaryNode : public Node
+class BinaryNode : public ExpressionNode
 {
-    public :
-        BinaryNode(int tokenLineNumber, const Node::Type nodeType) : ExpressionNode(tokenLineNumber, nodeType)
+    public:
+        
+        //Binary Type Enum
+        enum class Type
         {
-            //initialize sibling node to nullptr
-            m_siblingNode = nullptr; 
-        }
-    protected :
+            ADD,
+            SUD,
+            MUL,
+            DIV,
+            MOD,
+            AND,
+            OR,
+            NOT,
+            LT,
+            LEQ,
+            GT,
+            GEQ,
+            EQ,
+            NEQ,
+            INDEX,
+            NONE
+        };
+
+
+        //BinaryNode Constructor
+        BinaryNode(int tokenLineNumber, const Type assignmentType);
+
+        //Print Token Output String
+        std::string printTokenString() const;
+
+    protected:
+    
+        //Binary Type
+        const BinaryNode::Type m_binaryType;
 };
 
 
 //**********************************************************
 // ************ CallNode Class *****************************
 //**********************************************************
-class CallNode : public Node
+class CallNode : public ExpressionNode
 {
-    public :
+    public:
 
-    protected :
+        //CallNode Constructor
+        CallNode(int tokenLineNumber, std::string functionName);
+
+        //Print Token Output String
+        std::string printTokenString() const;
 };
 
 
 //**********************************************************
 // ************ ConstantNode Class *************************
 //**********************************************************
-class ConstantNode : public Node
+class ConstantNode : public ExpressionNode
 {
     public :
 
-    protected :
+        //Constant Type Enum
+        enum class Type
+        {
+            INT,
+            CHAR,
+            BOOL,
+            STRING,
+            NONE
+        };
+
+        //ConstantNode Constructor
+        ConstantNode(int tokenLineNumber, const std::string constantValue, Type constantType);
+
+        //Print Token Output String
+        std::string printTokenString() const;
+
+    protected:
+    
+        //Constant Type
+        const ConstantNode::Type m_constantType;
+
+        //TokenFormatter
+        TokenFormatter m_tokenFormatter;
 };
 
 
 //**********************************************************
 // ************ IdentifierNode Class ************************
 //**********************************************************
-class IdentifierNode : public Node
+class IdentifierNode : public ExpressionNode
 {
-    public :
-        IdentifierNode(int tokenLineNumber, std:: string identifierName, bool isArray)
-        {
+    public:
+        
+        //IdentifierNode Constructor
+        IdentifierNode(int tokenLineNumber, bool isArray, std:: string identifierName);
+    
+    
+    protected:
 
-        }
-    protected :
-
+        //flag to hold whether or not the identifier is an array
+        const bool m_isArray;
 
 };
 
@@ -120,22 +186,57 @@ class IdentifierNode : public Node
 //**********************************************************
 // ************ UnaryNode Class ****************************
 //**********************************************************
-class UnaryNode : public Node
+class UnaryNode : public ExpressionNode
 {
-    public :
+    public:
 
-    protected :
+        //Unary Type Enum
+        enum class Type
+        {
+            QUESTION, 
+            NOT, 
+            SIZEOF,
+            CHARSIGN
+        };
+
+        //UnaryNode Constructor
+        UnaryNode(int tokenLineNumber, const Type unaryType);
+
+        //Print Token Output String
+        std::string printTokenString() const;
+
+    protected:
+
+        //Unary Type
+        const UnaryNode::Type m_unaryType;
 };
 
 
 //**********************************************************
 // ************ UnaryAssignmentNode Class ******************
 //**********************************************************
-class UnaryAssignmentNode : public Node
+class UnaryAssignmentNode : public ExpressionNode
 {
-    public :
+    public:
 
-    protected :
+        //UnaryAssignment Type Enum
+        enum class Type
+        {
+            INC, 
+            DEC
+        };
+
+        //UnaryAssignmentNode Constructor
+        UnaryAssignmentNode(int tokenLineNumber, const Type unaryAssignmentType);
+
+        //Print Token Output String
+        std::string printTokenString() const;
+
+
+    protected:
+
+        //UnaryAssignment Type
+        const UnaryAssignmentNode::Type m_unaryAssignmentType;
 };
 
 
