@@ -14,10 +14,13 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
 // this *order* of these includes is mandatory
+#include "flags/CompilerFlags.hpp" // CompilerFlags class
 #include "scanType.hpp"  // TokenData Type
+#include "ast/AST.hpp"  // AST classes
 #include "parser.tab.h"  // token definitions from the bison
-#include "TokenFormatter.hpp" // TokenFormatter class
+
 #include <string>
+#include <iostream>
 
 // Variables for ERR
 int lineNumber = 1;         // ERR line number from the scanner!!
@@ -47,10 +50,10 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 
 
 
-"int" {return setValue(lineNumber, INT, yytext);}
-"char" {return setValue(lineNumber, CHAR, yytext);}
+"int" {return INT;}
+"char" {return CHAR;}
 "static" {return setValue(lineNumber, STATIC, yytext);}
-"bool" {return setValue(lineNumber, BOOL, yytext);}
+"bool" {return BOOL}
 
 "for" {return setValue(lineNumber, FOR, yytext);}
 "while" {return setValue(lineNumber, WHILE, yytext);}
@@ -61,8 +64,6 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 "else" {return setValue(lineNumber, ELSE, yytext);}
 "then" {return setValue(lineNumber, THEN, yytext);}
 "begin" {return setValue(lineNumber, BEGIN, yytext);}
-"end" {return setValue(lineNumber, END, yytext);}
-"step" {return setValue(lineNumber, STEP, yytext);}
 
 
 
@@ -72,7 +73,7 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 "and" {return setValue(lineNumber, AND, yytext);}
 "or" {return setValue(lineNumber, OR, yytext);}
 "true" {return setValue(lineNumber, BOOLCONST, yytext);}
-"false" {return setValue(lineNumber, BOOLSCONST, yytext);}
+"false" {return setValue(lineNumber, BOOLCONST, yytext);}
 
 
 "++" {return setValue(lineNumber, INC, yytext);}
@@ -96,7 +97,7 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 "[" { return setValue(lineNumber, LBRACK, yytext); }
 "]" { return setValue(lineNumber, RBRACK, yytext); }
 
-"=" { return setValue(lineNumber, ASSIGN, yytext); }
+"=" { return setValue(lineNumber, ASGN, yytext); }
 "+" { return setValue(lineNumber, ADD, yytext); }
 "-" { return setValue(lineNumber, SUB, yytext); }
 "*" { return setValue(lineNumber, MUL, yytext); }

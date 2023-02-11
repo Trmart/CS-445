@@ -12,7 +12,6 @@ DESC: Node base class definitions for AST nodes. Statements, Expressions, and De
 */
 
 #include "Node.hpp"
-#include "scanType.hpp"
 
 
 // ************ Node Class Constructors ************************

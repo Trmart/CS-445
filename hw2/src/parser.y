@@ -15,7 +15,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 
 #include "scanType.hpp"  // TokenData Type
 #include "CompilerFlags.hpp" // Compiler Flags
-
+#include "ast/AST.hpp" // AST Node Types
 #include <stdio.h>
 #include <string>
 #include <iostream>
@@ -49,7 +49,7 @@ void yyerror(const char *message)
 // so scanType.hpp must be included before the tab.hpp file!!!!
 %union 
 {
-    Primitive::Type primitiveType;
+    PrimitiveType::Type primitiveType;
     TokenData *tokenData;
     Node *node;
 }
@@ -111,23 +111,23 @@ decl                    : varDecl
 varDecl                 : typeSpec varDeclList SEMICOLON
                         {
                             $$ = $2;
-                            Var *node = (Var *)$$;
-                            node->setType($1);
+                            VariableNode *node = (VariableNode *)$$;
+                            node->setVariableType($1);
                         }
                         ;
 
 scopedVarDecl           : STATIC typeSpec varDeclList SEMICOLON
                         {
                             $$ = $3;
-                            Var *node = (Var *)$$;
-                            node->setType($2);
-                            node->makeStatic();
+                            VariableNode *node = (VariableNode *)$$;
+                            node->setVariableType($2);
+                            node->setStaticVariable();
                         }
                         | typeSpec varDeclList SEMICOLON
                         {
                             $$ = $2;
-                            Var *node = (Var *)$$;
-                            node->setType($1);
+                            VariableNode *node = (VariableNode *)$$;
+                            node->setVariableType($1);
                         }
                         ;
 

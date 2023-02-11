@@ -14,8 +14,8 @@ DESC: Node base class declarations for AST nodes. Statements, Expressions, and D
 #ifndef NODE_HPP
 #define NODE_HPP
 
-#include "scanType.hpp"
-#include "TokenFormatter.hpp"
+#include "../scanType.hpp"
+#include "../TokenFormatter.hpp"
 #include <vector>
 #include <string>
 #include <iostream>
