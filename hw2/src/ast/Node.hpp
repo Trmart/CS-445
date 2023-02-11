@@ -87,7 +87,7 @@ class Node
         Node * m_siblingNode;  
 
         //Node Type
-        Node::Type m_nodeType;
+        // Node::Type m_nodeType;
 
 
 }; 

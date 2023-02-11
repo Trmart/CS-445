@@ -70,7 +70,7 @@ class AssignmentNode : public ExpressionNode
     protected:
 
         //Assignment Type
-        const AssignmentNode::Type m_assignmentType;
+        AssignmentNode::Type m_assignmentType;
 };
 
 
@@ -85,7 +85,7 @@ class BinaryNode : public ExpressionNode
         enum class Type
         {
             ADD,
-            SUD,
+            SUB,
             MUL,
             DIV,
             MOD,
@@ -112,7 +112,7 @@ class BinaryNode : public ExpressionNode
     protected:
     
         //Binary Type
-        const BinaryNode::Type m_binaryType;
+        BinaryNode::Type m_binaryType;
 };
 
 
@@ -157,7 +157,7 @@ class ConstantNode : public ExpressionNode
     protected:
     
         //Constant Type
-        const ConstantNode::Type m_constantType;
+        ConstantNode::Type m_constantType;
 
         //TokenFormatter
         TokenFormatter m_tokenFormatter;
@@ -173,12 +173,14 @@ class IdentifierNode : public ExpressionNode
         
         //IdentifierNode Constructor
         IdentifierNode(int tokenLineNumber, bool isArray, std:: string identifierName);
-    
+
+        //Print Token Output String
+        std::string printTokenString() const;
     
     protected:
 
         //flag to hold whether or not the identifier is an array
-        const bool m_isArray;
+        bool m_isArray;
 
 };
 
@@ -196,7 +198,7 @@ class UnaryNode : public ExpressionNode
             QUESTION, 
             NOT, 
             SIZEOF,
-            CHARSIGN
+            CHSIGN
         };
 
         //UnaryNode Constructor
@@ -208,7 +210,7 @@ class UnaryNode : public ExpressionNode
     protected:
 
         //Unary Type
-        const UnaryNode::Type m_unaryType;
+        UnaryNode::Type m_unaryType;
 };
 
 
@@ -236,7 +238,7 @@ class UnaryAssignmentNode : public ExpressionNode
     protected:
 
         //UnaryAssignment Type
-        const UnaryAssignmentNode::Type m_unaryAssignmentType;
+        UnaryAssignmentNode::Type m_unaryAssignmentType;
 };
 
 
