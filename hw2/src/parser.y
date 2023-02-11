@@ -390,14 +390,14 @@ iterStmtUnmatched       : WHILE simpleExp DO stmtUnmatched
 
 iterStmtMatched         : WHILE simpleExp DO stmtMatched
                         {
-                            $$ = new While($1->tokenLineNum);
+                            $$ = new WhileNode($1->tokenLineNumber);
                             $$->addChildNode($2);
                             $$->addChildNode($4);
                         }
                         | FOR ID ASGN iterRange DO stmtMatched
                         {
-                            $$ = new For($1->tokenLineNum);
-                            Var *node = new Var($2->tokenLineNum, new Primitive(Primitive::Type::Int), $2->tokenContent);
+                            $$ = new ForNode($1->tokenLineNumber);
+                            VariableNode *node = new VariableNode($2->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::INT), $2->tokenInformation);
                             $$->addChildNode(node);
                             $$->addChildNode($4);
                             $$->addChildNode($6);
@@ -406,13 +406,13 @@ iterStmtMatched         : WHILE simpleExp DO stmtMatched
 
 iterRange               : simpleExp TO simpleExp
                         {
-                            $$ = new Range($1->getTokenLineNum());
-                            $$->addChild($1);
-                            $$->addChild($3);
+                            $$ = new RangeNode($1->getTokenLineNumber());
+                            $$->addChildNode($1);
+                            $$->addChildNode($3);
                         }
                         | simpleExp TO simpleExp BY simpleExp
                         {
-                            $$ = new Range($1->getTokenLineNum());
+                            $$ = new RangeNode($1->getTokenLineNumber());
                             $$->addChildNode($1);
                             $$->addChildNode($3);
                             $$->addChildNode($5);
@@ -421,18 +421,18 @@ iterRange               : simpleExp TO simpleExp
 
 returnStmt              : RETURN SEMICOLON
                         {
-                            $$ = new Return($1->tokenLineNum);
+                            $$ = new ReturnNode($1->tokenLineNumber);
                         }
                         | RETURN exp SEMICOLON
                         {
-                            $$ = new Return($1->tokenLineNum);
+                            $$ = new ReturnNode($1->tokenLineNumber);
                             $$->addChildNode($2);
                         }
                         ;
 
 breakStmt               : BREAK SEMICOLON
                         {
-                            $$ = new Break($1->tokenLineNum);
+                            $$ = new BreakNode($1->tokenLineNumber);
                         }
                         ;
 
@@ -444,12 +444,12 @@ exp                     : mutable assignop exp
                         }
                         | mutable INC
                         {
-                            $$ = new UnaryAsgn($1->getTokenLineNum(), UnaryAsgn::Type::Inc);
+                            $$ = new UnaryAssignmentNode($1->getTokenLineNumber(), UnaryAssignmentNode::Type::INC);
                             $$->addChildNode($1);
                         }
                         | mutable DEC
                         {
-                            $$ = new UnaryAsgn($1->getTokenLineNum(), UnaryAsgn::Type::Dec);
+                            $$ = new UnaryAssignmentNode($1->getTokenLineNumber(), UnaryAssignmentNode::Type::DEC);
                             $$->addChildNode($1);
                         }
                         | simpleExp
@@ -460,29 +460,29 @@ exp                     : mutable assignop exp
 
 assignop                : ASGN
                         {
-                            $$ = new Asgn($1->tokenLineNum, Asgn::Type::Asgn);
+                            $$ = new AssignmentNode($1->tokenLineNumber, AssignmentNode::Type::ASGN);
                         }
                         | ADDASS
                         {
-                            $$ = new Asgn($1->tokenLineNum, Asgn::Type::AddAsgn);
+                            $$ = new AssignmentNode($1->tokenLineNumber, AssignmentNode::Type::ADDASS);
                         }
                         | SUBASS
                         {
-                            $$ = new Asgn($1->tokenLineNum, Asgn::Type::SubAsgn);
+                            $$ = new AssignmentNode($1->tokenLineNumber, AssignmentNode::Type::SUBASS);
                         }
                         | MULASS
                         {
-                            $$ = new Asgn($1->tokenLineNum, Asgn::Type::MulAsgn);
+                            $$ = new AssignmentNode($1->tokenLineNumber, AssignmentNode::Type::MULASS);
                         }
                         | DIVASS
                         {
-                            $$ = new Asgn($1->tokenLineNum, Asgn::Type::DivAsgn);
+                            $$ = new AssignmentNode($1->tokenLineNumber, AssignmentNode::Type::DIVASS);
                         }
                         ;
 
 simpleExp               : simpleExp OR andExp
                         {
-                            $$ = new Binary($1->getTokenLineNum(), Binary::Type::Or);
+                            $$ = new BinaryNode($1->getTokenLineNumber(), BinaryNode::Type::OR);
                             $$->addChildNode($1);
                             $$->addChildNode($3);
                         }
@@ -494,7 +494,7 @@ simpleExp               : simpleExp OR andExp
 
 andExp                  : andExp AND unaryRelExp
                         {
-                            $$ = new Binary($1->getTokenLineNum(), Binary::Type::And);
+                            $$ = new BinaryNode($1->getTokenLineNumber(), BinaryNode::Type::AND);
                             $$->addChildNode($1);
                             $$->addChildNode($3);
                         }
@@ -506,7 +506,7 @@ andExp                  : andExp AND unaryRelExp
 
 unaryRelExp             : NOT unaryRelExp
                         {
-                            $$ = new Unary($1->tokenLineNum, Unary::Type::Not);
+                            $$ = new UnaryNode($1->tokenLineNumber, UnaryNode::Type::NOT);
                             $$->addChildNode($2);
                         }
                         | relExp
@@ -529,27 +529,27 @@ relExp                  : sumExp relOp sumExp
 
 relOp                   : LT
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::LT);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::LT);
                         }
                         | LEQ
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::LEQ);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::LEQ);
                         }
                         | GT
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::GT);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::GT);
                         }
                         | GEQ
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::GEQ);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::GEQ);
                         }
                         | EQ
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::EQ);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::EQ);
                         }
                         | NEQ
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::NEQ);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::NEQ);
                         }
                         ;
 
@@ -567,11 +567,11 @@ sumExp                  : sumExp sumOp mulExp
 
 sumOp                   : ADD
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::Add);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::ADD);
                         }
                         | SUB
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::Sub);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::SUB);
                         }
                         ;
 
@@ -589,15 +589,15 @@ mulExp                  : mulExp mulOp unaryExp
 
 mulOp                   : MUL
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::Mul);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::MUL);
                         }
                         | DIV
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::Div);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::DIV);
                         }
                         | MOD
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::Mod);
+                            $$ = new BinaryNode($1->tokenLineNumber, BinaryNode::Type::MOD);
                         }
                         ;
 
@@ -614,15 +614,15 @@ unaryExp                : unaryOp unaryExp
 
 unaryOp                 : SUB
                         {
-                            $$ = new Unary($1->tokenLineNum, Unary::Type::Chsign);
+                            $$ = new UnaryNode($1->tokenLineNumber, UnUnaryNodeary::Type::CHSIGN);
                         }
                         | MUL
                         {
-                            $$ = new Unary($1->tokenLineNum, Unary::Type::Sizeof);
+                            $$ = new UnaryNode($1->tokenLineNumber, UnaryNode::Type::SIZEOF);
                         }
                         | QUESTION
                         {
-                            $$ = new Unary($1->tokenLineNum, Unary::Type::Question);
+                            $$ = new UnaryNode($1->tokenLineNumber, UnaryNode::Type::QUESTION);
                         }
                         ;
 
@@ -638,12 +638,12 @@ factor                  : mutable
 
 mutable                 : ID
                         {
-                            $$ = new Id($1->tokenLineNum, $1->tokenContent);
+                            $$ = new IdentifierNode($1->tokenLineNumber, $1->tokenContent);
                         }
                         | ID LBRACK exp RBRACK
                         {
-                            $$ = new Binary($1->tokenLineNum, Binary::Type::Index);
-                            Id *node = new Id($1->tokenLineNum, $1->tokenContent, true);
+                            $$ = new Binary($1->tokenLineNumber, Binary::Type::Index);
+                            Id *node = new IdentifierNode($1->tokenLineNumber, $1->tokenContent, true);
                             $$->addChildNode(node);
                             $$->addChildNode($3);
                         }
