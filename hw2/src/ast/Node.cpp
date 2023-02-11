@@ -18,6 +18,7 @@ DESC: Node base class definitions for AST nodes. Statements, Expressions, and De
 // ************ Node Class Constructors ************************
 
 //Base Constructors
+
 Node :: Node(int tokenLineNumber)
 {
     //initialize tokenLineNumber
@@ -25,10 +26,26 @@ Node :: Node(int tokenLineNumber)
 
     //initialize sibling node to nullptr
     m_siblingNode = nullptr; 
+
+    //initialize nodeType
+    m_nodeType = Node::Type::None;
+}
+
+
+Node :: Node(int tokenLineNumber, const Node::Type nodeType)
+{
+    //initialize tokenLineNumber
+    m_tokenData.tokenLineNumber = tokenLineNumber;
+
+    //initialize sibling node to nullptr
+    m_siblingNode = nullptr; 
+
+    //initialize nodeType
+    m_nodeType = nodeType;
 }
 
 //Int Constructor
-Node :: Node(int tokenLineNumber, int numValue)
+Node :: Node(int tokenLineNumber, int numValue, const Node::Type nodeType)
 {
     //initialize tokenLineNumber
     m_tokenData.tokenLineNumber = tokenLineNumber;
@@ -39,10 +56,13 @@ Node :: Node(int tokenLineNumber, int numValue)
     //initialize sibling node to nullptr
     m_siblingNode = nullptr; 
 
+    //initialize nodeType
+    m_nodeType = nodeType;
+
 }
 
 //Char Constructor
-Node :: Node(int tokenLineNumber, char charValue)
+Node :: Node(int tokenLineNumber, char charValue, const Node::Type nodeType)
 {
     //initialize tokenLineNumber
     m_tokenData.tokenLineNumber = tokenLineNumber;
@@ -53,10 +73,13 @@ Node :: Node(int tokenLineNumber, char charValue)
     //initialize sibling node to nullptr
     m_siblingNode = nullptr; 
 
+    //initialize nodeType
+    m_nodeType = nodeType;
+
 }
 
 //Bool Constructor
-Node :: Node(int tokenLineNumber, bool boolValue)
+Node :: Node(int tokenLineNumber, bool boolValue, const Node::Type nodeType)
 {
     //initialize tokenLineNumber
     m_tokenData.tokenLineNumber = tokenLineNumber;
@@ -67,10 +90,13 @@ Node :: Node(int tokenLineNumber, bool boolValue)
     //initialize sibling node to nullptr
     m_siblingNode = nullptr; 
 
+    //initialize nodeType
+    m_nodeType = nodeType;
+
 }
 
 //String Constructor
-Node :: Node(int tokenLineNumber, std::string stringValue)
+Node :: Node(int tokenLineNumber, std::string stringValue, const Node::Type nodeType)
 {
     //initialize tokenLineNumber
     m_tokenData.tokenLineNumber = tokenLineNumber;
@@ -80,6 +106,9 @@ Node :: Node(int tokenLineNumber, std::string stringValue)
 
     //initialize sibling node to nullptr
     m_siblingNode = nullptr; 
+
+    //initialize nodeType
+    m_nodeType = nodeType;
 
 }
 

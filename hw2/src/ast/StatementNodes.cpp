@@ -1,85 +1,83 @@
+#include "Node.hpp"
 #include "StatementNodes.hpp"
 
-
-StatementNode::StatementNode(const int tokenLineNumber, const StatementNode::Type statementType)
+StatementNode::StatementNode(const int tokenLineNumber, const StatementNode::Type statementType) : Node(tokenLineNumber, Node::Type::Statement), m_statementType(statementType)
 {
 
 }
 
-StatementNode::Type getTypeOfStatement() const
+StatementNode::Type StatementNode::getTypeOfStatement() const
+{
+    return m_statementType;
+}
+
+BreakNode::BreakNode(const int tokenLineNumber) : StatementNode(tokenLineNumber, StatementNode::Type::Break)
 {
 
 }
 
-
-class BreakNode : public StatementNode
+std::string BreakNode::printTokenString() const
 {
-    public :
-        BreakNode(const int tokenLineNumber);
-
-        std::string printTokenString() const override;
-};
+    return "Break";
+}
 
 
-
-class CompoundNode : public StatementNode
+CompoundNode::CompoundNode(const int tokenLineNumber) : StatementNode(tokenLineNumber, StatementNode::Type::Compound)
 {
 
-    public :
+}
 
-        CompoundNode(const int tokenLineNumber);
-
-        std::string printTokenString() const override;
-};
-
-class ForNode : public StatementNode
+std::string CompoundNode::printTokenString() const
 {
-    public :
+    return "Compound";
+}
 
-        ForNode(const int tokenLineNumber);
-
-        std::string printTokenString() const override;
-};
-
-
-
-class IfNode : public StatementNode
+ForNode::ForNode(const int tokenLineNumber) : StatementNode(tokenLineNumber, StatementNode::Type::For)
 {
-    public :
 
-        IfNode(const int tokenLineNumber);
+}
 
-        std::string printTokenString() const override;
-};
-
-
-
-
-class RangeNode : public StatementNode
+std::string ForNode::printTokenString() const
 {
-    public :
+    return "For";
+}
 
-        RangeNode(const int tokenLineNumber);
-
-        std::string printTokenString() const override;
-};
-
-
-class ReturnNode : public StatementNode
+IfNode::IfNode(const int tokenLineNumber) : StatementNode(tokenLineNumber, StatementNode::Type::If)
 {
-    public :
 
-        ReturnNode(const int tokenLineNumber);
+}
 
-        std::string printTokenString() const override;
-};
-
-
-class WhileNode : public StatementNode
+std::string IfNode::printTokenString() const
 {
-    public :
+    return "If";
+}
 
-        WhileNode(const int tokenLineNumber);
+RangeNode::RangeNode(const int tokenLineNumber) : StatementNode(tokenLineNumber, StatementNode::Type::Range)
+{
 
-        std::string printTokenString() const override;
-};
+}
+
+std::string RangeNode::printTokenString() const
+{
+    return "Range";
+}
+
+ReturnNode::ReturnNode(const int tokenLineNumber) : StatementNode(tokenLineNumber, StatementNode::Type::Return)
+{
+
+}
+
+std::string ReturnNode::printTokenString() const
+{
+    return "Return";
+}
+
+WhileNode::WhileNode(const int tokenLineNumber) : StatementNode(tokenLineNumber, StatementNode::Type::While)
+{
+
+}
+
+std::string WhileNode::printTokenString() const
+{
+    return "While";
+}

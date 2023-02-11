@@ -26,22 +26,27 @@ class Node
 {
     public:
         
+
+        enum class Type {None, Statement, Expression, Declaration};
+        
+        
         // ************ Node Class Constructors ************************
         
         //Base Constructors
-        Node(int tokenLineNumber);
+        Node(int tokenLineNumber); 
+        Node(int tokenLineNumber, const Node::Type nodeType);
 
         //Int Constructor
-        Node(int tokenLineNumber, int numValue);
+        Node(int tokenLineNumber, int numValue, const Node::Type nodeType);
 
         //Char Constructor
-        Node(int tokenLineNumber, char charValue);
+        Node(int tokenLineNumber, char charValue, const Node::Type nodeType);
 
         //Bool Constructor
-        Node(int tokenLineNumber, bool boolValue);
+        Node(int tokenLineNumber, bool boolValue, const Node::Type nodeType);
 
         //String Constructor
-        Node(int tokenLineNumber, std::string stringValue);
+        Node(int tokenLineNumber, std::string stringValue, const Node::Type nodeType);
 
         
         // ******************** Node Base Class Destructor *********************
@@ -80,6 +85,9 @@ class Node
 
         //Keep track of Sibling Nodes
         Node * m_siblingNode;  
+
+        //Node Type
+        Node::Type m_nodeType;
 
 
 }; 
