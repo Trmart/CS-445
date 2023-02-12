@@ -37,16 +37,16 @@ class Node
         Node(int tokenLineNumber);
 
         //Int Constructor
-        Node(int tokenLineNumber, int numValue);
+        Node(const int tokenLineNumber, const int numValue);
 
         //Char Constructor
-        Node(int tokenLineNumber, char charValue);
+        Node(const int tokenLineNumber, const char charValue);
 
         //Bool Constructor
-        Node(int tokenLineNumber, bool boolValue);
+        Node(const int tokenLineNumber, const bool boolValue);
 
         //String Constructor
-        Node(int tokenLineNumber, std::string stringValue);
+        Node(const int tokenLineNumber, const std::string stringValue);
 
         
         // ******************** Node Base Class Destructor *********************
@@ -78,8 +78,15 @@ class Node
         int getTokenLineNumber() const;
 
     protected:
-        //token data struct from scanType.hpp
-        TokenData m_tokenData;
+
+
+        //token data storage struct from scanType.hpp
+        const int m_tokenLineNumber; 
+        int m_numValue;
+        bool m_boolValue;
+        char m_charValue;
+        std::string m_stringValue;
+        bool m_isCharLengthGreaterThan1 = false;
         
 
         //Vector of current AST childern Nodes

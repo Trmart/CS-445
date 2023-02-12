@@ -115,7 +115,7 @@ FunctionNode::FunctionNode(int tokenLineNumber, const std::string functionName, 
 //printTokenString
 std::string FunctionNode::printTokenString() const
 {
-    return "Func: " + m_tokenData.stringValue + " returns type " + m_returnType->printTokenString();
+    return "Func: " + m_stringValue + " returns type " + m_returnType->printTokenString();
 }
 
 //******************************************************
@@ -133,11 +133,11 @@ std::string ParameterNode::printTokenString() const
 {
     if (m_parameterType->getIsArray())
     {
-        return "Param: " + m_tokenData.stringValue + " of array of type " + m_parameterType->printTokenString();
+        return "Param: " + m_stringValue + " of array of type " + m_parameterType->printTokenString();
     }
     else
     {
-        return "Param: " + m_tokenData.stringValue + " of type " + m_parameterType->printTokenString();
+        return "Param: " + m_stringValue + " of type " + m_parameterType->printTokenString();
     }
 }
 
@@ -173,18 +173,18 @@ std::string VariableNode::printTokenString() const
 {
     if (m_variableType->getIsArray() && m_isStaticVariable)
     {
-        return "Var: " + m_tokenData.stringValue + " of static array of type " + m_variableType->printTokenString();
+        return "Var: " + m_stringValue + " of static array of type " + m_variableType->printTokenString();
     }
     else if (m_variableType->getIsArray())
     {
-        return "Var: " + m_tokenData.stringValue + " of array of type " + m_variableType->printTokenString();
+        return "Var: " + m_stringValue + " of array of type " + m_variableType->printTokenString();
     }
     else if(m_isStaticVariable)
     {
-        return "Var: " + m_tokenData.stringValue + " of static type " + m_variableType->printTokenString();
+        return "Var: " + m_stringValue + " of static type " + m_variableType->printTokenString();
     }
     else
     {
-        return "Var: " + m_tokenData.stringValue + " of type " + m_variableType->printTokenString();
+        return "Var: " + m_stringValue + " of type " + m_variableType->printTokenString();
     }
 }

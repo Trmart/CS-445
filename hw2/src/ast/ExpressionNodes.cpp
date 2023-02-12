@@ -19,11 +19,6 @@ DESC: ExpressionNodes Subclass Member Definitions.
 //ExpressionNode Constructor
 ExpressionNode :: ExpressionNode(int tokenLineNumber, const ExpressionNode::Type expressionType) : Node::Node(tokenLineNumber), m_expressionType(expressionType)
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
-
-    //initialize sibling node to nullptr
-    m_siblingNode = nullptr; 
 
 }
 
@@ -38,13 +33,9 @@ std::string ExpressionNode :: printTokenString() const
 //********************************************************************************
 
 //AssignmentNode Constructor
-AssignmentNode :: AssignmentNode(int tokenLineNumber, const AssignmentNode::Type assignmentType) : ExpressionNode::ExpressionNode(tokenLineNumber, ExpressionNode::Type::ASSIGN), m_assignmentType(assignmentType)
+AssignmentNode :: AssignmentNode(int tokenLineNumber, const AssignmentNode::Type assignmentType) : Node::Node{tokenLineNumber}, m_assignmentType{assignmentType}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
 
-    //initialize m_assignmentType
-    m_assignmentType = assignmentType;
 }
 
 std::string AssignmentNode :: printTokenString() const
@@ -100,13 +91,9 @@ std::string AssignmentNode :: printTokenString() const
 //********************************************************************************
 
 //BinaryNode Constructor
-BinaryNode :: BinaryNode(int tokenLineNumber, const BinaryNode::Type binaryType) : ExpressionNode::ExpressionNode(tokenLineNumber, ExpressionNode::Type::BINARY), m_binaryType(binaryType)
+BinaryNode :: BinaryNode(int tokenLineNumber, const BinaryNode::Type binaryType) : Node::Node{tokenLineNumber}, m_binaryType{binaryType}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
 
-    //initialize m_binaryType
-    m_binaryType = binaryType;
 }
 
 //BinaryNode printTokenString
@@ -211,19 +198,15 @@ std::string BinaryNode::printTokenString() const
 //********************************************************************************
 
 //CallNode Constructor
-CallNode :: CallNode(int tokenLineNumber, std::string functionName) : ExpressionNode::ExpressionNode(tokenLineNumber, ExpressionNode::Type::CALL)
+CallNode :: CallNode(int tokenLineNumber, std::string functionName) : Node::Node{tokenLineNumber, functionName}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
 
-    //initialize string value
-    m_tokenData.stringValue  = functionName;
 }
 
 //CallNode printTokenString
 std::string CallNode::printTokenString() const
 {
-    return "Call: " + m_tokenData.stringValue;
+    return "Call: " + m_stringValue;
 }
 
 //********************************************************************************
@@ -232,31 +215,26 @@ std::string CallNode::printTokenString() const
 
 
 //ConstantNode Constructor
-ConstantNode :: ConstantNode(int tokenLineNumber, const std::string constantValue, Type constantType) : ExpressionNode::ExpressionNode(tokenLineNumber, ExpressionNode::Type::CONSTANT), m_constantType(constantType)
+ConstantNode :: ConstantNode(int tokenLineNumber, const std::string constantValue, Type constantType) : Node::Node{tokenLineNumber}, m_constantType{constantType}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
-
-    //initialize m_constantType
-    m_constantType = constantType;
-
+    //switch statement to determine tokenOutputString
     switch (m_constantType)
     {
         case ConstantNode::Type::INT:
                                 {
-                                    m_tokenData.numValue = std::stoi(constantValue);
+                                    m_numValue = std::stoi(constantValue);
                                 }
                                 break;
         
         case ConstantNode::Type::BOOL:
                                 {
-                                    m_tokenData.boolValue = (constantValue == "true" ? true : false); 
+                                    m_boolValue = (constantValue == "true" ? true : false); 
                                 }
                                 break;
         
         case ConstantNode::Type::STRING:
                                     {
-                                        m_tokenData.stringValue = m_tokenFormatter.parseCharacters(constantValue);
+                                        m_stringValue = m_tokenFormatter.parseCharacters(constantValue);
                                     }
                                     break;
         
@@ -266,12 +244,12 @@ ConstantNode :: ConstantNode(int tokenLineNumber, const std::string constantValu
                                     std::string tempString = m_tokenFormatter.deleteLeftmostAndRightmostCharacters(constantValue);
                                     
                                     //parse the tempString and assign the char value to m_tokenData.charValue
-                                    m_tokenData.charValue = m_tokenFormatter.parseLeftmostCharacter(tempString);
+                                    m_charValue = m_tokenFormatter.parseLeftmostCharacter(tempString);
 
                                     if(tempString.length() > 1 && tempString[0] != '\\')
                                     {
                                         //throw error flag
-                                        m_tokenData.isCharLengthGreaterThan1 = true;
+                                        m_isCharLengthGreaterThan1 = true;
                                     }
                                 }
                                 break; 
@@ -288,7 +266,7 @@ std::string ConstantNode::printTokenString() const
     {
         case ConstantNode::Type::INT:
                                 {
-                                    tokenOutputString += std::to_string(m_tokenData.numValue);
+                                    tokenOutputString += std::to_string(m_numValue);
                                 }
                                 break;
         
@@ -296,7 +274,7 @@ std::string ConstantNode::printTokenString() const
         case ConstantNode::Type::BOOL:
                                 {
 
-                                    if(m_tokenData.boolValue == true)
+                                    if(m_boolValue == true)
                                     {
                                         tokenOutputString += "true";
                                     }
@@ -310,14 +288,14 @@ std::string ConstantNode::printTokenString() const
         
         case ConstantNode::Type::CHAR:
                                 {
-                                    tokenOutputString += "'" + std::string(1, m_tokenData.charValue) + "'";
+                                    tokenOutputString += "'" + std::string(1, m_charValue) + "'";
                                 }
                                 break;
         
         
         case ConstantNode::Type::STRING:
                                 {
-                                    tokenOutputString += "\"" + m_tokenData.stringValue + "\"";
+                                    tokenOutputString += "\"" + m_stringValue + "\"";
                                 }
                                 break;
     }
@@ -331,22 +309,15 @@ std::string ConstantNode::printTokenString() const
 //********************************************************************************
 
 //IdentifierNode Constructor
-IdentifierNode :: IdentifierNode(int tokenLineNumber,std:: string identifierName, bool isArray) : ExpressionNode::ExpressionNode(tokenLineNumber, ExpressionNode::Type::IDENTIFIER)
+IdentifierNode :: IdentifierNode(int tokenLineNumber,std:: string identifierName, bool isArray) : Node::Node{tokenLineNumber, identifierName}, m_isArray{isArray}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
 
-    //initialize string value
-    m_tokenData.stringValue  = identifierName;
-
-    //initialize m_isArray
-    m_isArray = isArray;
 }
 
 //IdentifierNode printTokenString
 std::string IdentifierNode::printTokenString() const
 {
-    return "Id: " + m_tokenData.stringValue;
+    return "Id: " + m_stringValue;
 }
 
 //********************************************************************************
@@ -354,13 +325,9 @@ std::string IdentifierNode::printTokenString() const
 //********************************************************************************
 
 //UnaryNode Constructor
-UnaryNode :: UnaryNode(int tokenLineNumber, Type unaryType) : ExpressionNode::ExpressionNode(tokenLineNumber, ExpressionNode::Type::UNARY), m_unaryType(unaryType)
+UnaryNode :: UnaryNode(int tokenLineNumber, Type unaryType) : Node::Node{tokenLineNumber}, m_unaryType{unaryType}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
 
-    //initialize m_unaryType
-    m_unaryType = unaryType;
 }
 
 //UnaryNode printTokenString
@@ -410,13 +377,9 @@ std::string UnaryNode::printTokenString() const
 //********************************************************************************
 
 //UnaryAssignmentNode Constructor
-UnaryAssignmentNode :: UnaryAssignmentNode(int tokenLineNumber, Type unaryAssignmentType) : ExpressionNode::ExpressionNode(tokenLineNumber, ExpressionNode::Type::UNARYASSIGN), m_unaryAssignmentType(unaryAssignmentType)
+UnaryAssignmentNode :: UnaryAssignmentNode(int tokenLineNumber, Type unaryAssignmentType) : Node::Node{tokenLineNumber}, m_unaryAssignmentType{unaryAssignmentType}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
 
-    //initialize m_unaryAssignmentType
-    m_unaryAssignmentType = unaryAssignmentType;
 }
 
 //UnaryAssignmentNode printTokenString

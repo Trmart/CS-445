@@ -6,10 +6,10 @@
 
 
 //StatementNode Constructor
-StatementNode::StatementNode(const int tokenLineNumber)
-{
+// StatementNode::StatementNode(const int tokenLineNumber)
+// {
 
-}
+// }
 
 
 //StatementNode Print Token String
@@ -23,7 +23,7 @@ StatementNode::StatementNode(const int tokenLineNumber)
 //********************************************************************************
 
 //BreakNode Constructor
-BreakNode::BreakNode(const int tokenLineNumber)
+BreakNode::BreakNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
@@ -41,7 +41,7 @@ std::string BreakNode::printTokenString() const
 //********************************************************************************
 
 //CompoundNode Constructor
-CompoundNode::CompoundNode(const int tokenLineNumber)
+CompoundNode::CompoundNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
@@ -58,7 +58,7 @@ std::string CompoundNode::printTokenString() const
 
 
 //ForNode Constructor
-ForNode::ForNode(const int tokenLineNumber)
+ForNode::ForNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
@@ -76,7 +76,7 @@ std::string ForNode::printTokenString() const
 
 
 //IfNode Constructor
-IfNode::IfNode(const int tokenLineNumber)
+IfNode::IfNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
@@ -94,7 +94,7 @@ std::string IfNode::printTokenString() const
 
 
 //RangeNode Constructor
-RangeNode::RangeNode(const int tokenLineNumber)
+RangeNode::RangeNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
@@ -112,7 +112,7 @@ std::string RangeNode::printTokenString() const
 
 
 //ReturnNode Constructor
-ReturnNode::ReturnNode(const int tokenLineNumber)
+ReturnNode::ReturnNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
@@ -130,7 +130,7 @@ std::string ReturnNode::printTokenString() const
 
 
 //WhileNode Constructor
-WhileNode::WhileNode(const int tokenLineNumber)
+WhileNode::WhileNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }

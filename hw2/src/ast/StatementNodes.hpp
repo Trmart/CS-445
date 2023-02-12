@@ -21,26 +21,26 @@ DESC: StatementsNodes Subclass. Inherits from Node Base Class.
 //**********************************************************
 // ************ StatementNode Class ************************
 //**********************************************************
-class StatementNode : public Node
-{
-    public :
-        enum class Type { Break, Compound, For, If, Return, While, Range };
-        StatementNode(); 
-        StatementNode(const int tokenLineNumber);
+// class StatementNode : public Node
+// {
+//     public :
+//         enum class Type { Break, Compound, For, If, Return, While, Range };
+//         StatementNode(); 
+//         StatementNode(const int tokenLineNumber);
 
-        StatementNode::Type getTypeOfStatement() const; 
+//         StatementNode::Type getTypeOfStatement() const; 
     
     
-    protected :
+//     protected :
 
-        // const StatementNode::Type m_statementType;
-};
+//         // const StatementNode::Type m_statementType;
+// };
 
 //******************************************************
 // ************ BreakNode Class ************************
 //******************************************************
 
-class BreakNode : public StatementNode
+class BreakNode : public Node
 {
     public :
         BreakNode(const int tokenLineNumber);
@@ -51,7 +51,7 @@ class BreakNode : public StatementNode
 //*********************************************************
 // ************ CompoundNode Class ************************
 //*********************************************************
-class CompoundNode : public StatementNode
+class CompoundNode : public Node
 {
     public :
 
@@ -63,7 +63,7 @@ class CompoundNode : public StatementNode
 //*********************************************************
 // ************ ForNode Class *****************************
 //*********************************************************
-class ForNode : public StatementNode
+class ForNode : public Node
 {
     public :
 
@@ -75,7 +75,7 @@ class ForNode : public StatementNode
 //*********************************************************
 // ************ IfNode Class ******************************
 //*********************************************************
-class IfNode : public StatementNode
+class IfNode : public Node
 {
     public :
 
@@ -88,7 +88,7 @@ class IfNode : public StatementNode
 //******************************************************
 // ************ RangeNode Class ************************
 //******************************************************
-class RangeNode : public StatementNode
+class RangeNode : public Node
 {
     public :
 
@@ -100,7 +100,7 @@ class RangeNode : public StatementNode
 //*******************************************************
 // ************ ReturnNode Class ************************
 //*********************************************************
-class ReturnNode : public StatementNode
+class ReturnNode : public Node
 {
     public :
 
@@ -112,7 +112,7 @@ class ReturnNode : public StatementNode
 //******************************************************
 // ************ WhileNode Class ************************
 //******************************************************
-class WhileNode : public StatementNode
+class WhileNode : public Node
 {
     public :
 

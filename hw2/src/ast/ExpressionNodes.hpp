@@ -51,7 +51,7 @@ class ExpressionNode : public Node
 //******************************************************
 // ************ AssignmentNode Class *******************
 //******************************************************
-class AssignmentNode : public ExpressionNode
+class AssignmentNode : public Node
 {
     public:
 
@@ -77,7 +77,7 @@ class AssignmentNode : public ExpressionNode
 //**********************************************************
 // ************ BinaryNode Class ***************************
 //**********************************************************
-class BinaryNode : public ExpressionNode
+class BinaryNode : public Node
 {
     public:
         
@@ -119,7 +119,7 @@ class BinaryNode : public ExpressionNode
 //**********************************************************
 // ************ CallNode Class *****************************
 //**********************************************************
-class CallNode : public ExpressionNode
+class CallNode : public Node
 {
     public:
 
@@ -134,7 +134,7 @@ class CallNode : public ExpressionNode
 //**********************************************************
 // ************ ConstantNode Class *************************
 //**********************************************************
-class ConstantNode : public ExpressionNode
+class ConstantNode : public Node
 {
     public :
 
@@ -167,7 +167,7 @@ class ConstantNode : public ExpressionNode
 //**********************************************************
 // ************ IdentifierNode Class ************************
 //**********************************************************
-class IdentifierNode : public ExpressionNode
+class IdentifierNode : public Node
 {
     public:
         
@@ -188,7 +188,7 @@ class IdentifierNode : public ExpressionNode
 //**********************************************************
 // ************ UnaryNode Class ****************************
 //**********************************************************
-class UnaryNode : public ExpressionNode
+class UnaryNode : public Node
 {
     public:
 
@@ -217,7 +217,7 @@ class UnaryNode : public ExpressionNode
 //**********************************************************
 // ************ UnaryAssignmentNode Class ******************
 //**********************************************************
-class UnaryAssignmentNode : public ExpressionNode
+class UnaryAssignmentNode : public Node
 {
     public:
 

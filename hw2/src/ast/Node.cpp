@@ -18,69 +18,33 @@ DESC: Node base class definitions for AST nodes. Statements, Expressions, and De
 
 //Base Constructors
 
-Node :: Node(int tokenLineNumber)
+Node :: Node(int tokenLineNumber) : m_tokenLineNumber{tokenLineNumber}, m_siblingNode{nullptr}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
-
-    //initialize sibling node to nullptr
-    m_siblingNode = nullptr; 
 
 }
 
-//Int Constructor
-Node :: Node(int tokenLineNumber, int numValue)
-{
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
-    
-    //initialize numValue
-    m_tokenData.numValue = numValue; 
 
-    //initialize sibling node to nullptr
-    m_siblingNode = nullptr; 
+//Int Constructor
+Node :: Node(int tokenLineNumber, int numValue) : m_tokenLineNumber{tokenLineNumber}, m_numValue{numValue}, m_siblingNode{nullptr}
+{
 
 }
 
 //Char Constructor
-Node :: Node(int tokenLineNumber, char charValue)
+Node :: Node(int tokenLineNumber, char charValue) : m_tokenLineNumber{tokenLineNumber}, m_charValue{charValue}, m_siblingNode{nullptr}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
-
-    //initialize charValue
-    m_tokenData.charValue = charValue;
-
-    //initialize sibling node to nullptr
-    m_siblingNode = nullptr; 
 
 }
 
 //Bool Constructor
-Node :: Node(int tokenLineNumber, bool boolValue)
+Node :: Node(int tokenLineNumber, bool boolValue) : m_tokenLineNumber{tokenLineNumber}, m_boolValue{boolValue}, m_siblingNode{nullptr}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
-
-    //initialize boolValue
-    m_tokenData.boolValue = boolValue;
-
-    //initialize sibling node to nullptr
-    m_siblingNode = nullptr; 
 
 }
 
 //String Constructor
-Node :: Node(int tokenLineNumber, std::string stringValue)
+Node :: Node(int tokenLineNumber, std::string stringValue) : m_tokenLineNumber{tokenLineNumber}, m_stringValue{stringValue}, m_siblingNode{nullptr}
 {
-    //initialize tokenLineNumber
-    m_tokenData.tokenLineNumber = tokenLineNumber;
-
-    //initialize stringValue
-    m_tokenData.stringValue = stringValue;
-
-    //initialize sibling node to nullptr
-    m_siblingNode = nullptr;
 
 }
 
@@ -107,7 +71,7 @@ Node :: ~Node()
 //Print Token Output String
 std::string Node ::printTokenString() const
 {
-    return " [line: " + std::to_string(m_tokenData.tokenLineNumber) + "]";
+    return " [line: " + std::to_string(m_tokenLineNumber) + "]";
 }
 
 //Print AST Nodes
@@ -216,6 +180,6 @@ void Node :: addSiblingNode(Node* node)
 
 int Node :: getTokenLineNumber() const
 {
-    return m_tokenData.tokenLineNumber;
+    return m_tokenLineNumber;
 }
 
