@@ -96,7 +96,7 @@ void Node :: printAST() const
     //go through and print all of the childern nodes. 
     for(int i = 0; i < m_childernNodes.size(); i++)
     {
-        Node *tempChildNode = m_childernNodes[i]; 
+        Node* tempChildNode = m_childernNodes[i]; 
         
         //check and make sure the ith child node is not null
         if(tempChildNode != nullptr)
@@ -127,8 +127,11 @@ void Node :: printAST() const
     //check to see if the sibling node is nullptr
     if(m_siblingNode != nullptr)
     {
-        printASTNode();
+        //print formatting output tabs
+        printOutputTabs(numTabs);
+        //print current sibling node
         std :: cout << "Sibling: " + std :: to_string(numSiblingNodes) << "  "; 
+        //print the sibling node
         m_siblingNode->printAST(); 
     } 
 

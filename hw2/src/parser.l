@@ -73,6 +73,8 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 "true" {return setValue(lineNumber, BOOLCONST, yytext);}
 "false" {return setValue(lineNumber, BOOLCONST, yytext);}
 
+"begin" {return setValue(lineNumber, BEGIN, yytext);}
+"end" {return setValue(lineNumber, END, yytext);}
 
 "++" {return setValue(lineNumber, INC, yytext);}
 "--" {return setValue(lineNumber, DEC, yytext);}
@@ -85,17 +87,17 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 "-=" {return setValue(lineNumber, SUBASS, yytext);}
 "/=" {return setValue(lineNumber, DIVASS, yytext);}
 "*=" {return setValue(lineNumber, MULASS, yytext);}
+"==" {return setValue(lineNumber, EQ, yytext);}
 
 
 
-"{" { return setValue(lineNumber, LCURLY, yytext); }
-"}" { return setValue(lineNumber, RCURLY, yytext); }
+
 "(" { return setValue(lineNumber, LPAREN, yytext); }
 ")" { return setValue(lineNumber, RPAREN, yytext); }
 "[" { return setValue(lineNumber, LBRACK, yytext); }
 "]" { return setValue(lineNumber, RBRACK, yytext); }
 
-"=" { return setValue(lineNumber, ASGN, yytext); }
+
 "+" { return setValue(lineNumber, ADD, yytext); }
 "-" { return setValue(lineNumber, SUB, yytext); }
 "*" { return setValue(lineNumber, MUL, yytext); }

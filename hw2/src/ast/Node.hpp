@@ -90,10 +90,10 @@ class Node
         
 
         //Vector of current AST childern Nodes
-        std::vector<Node*>m_childernNodes;
+        std::vector<Node* >m_childernNodes;
 
         //Keep track of Sibling Nodes
-        Node * m_siblingNode;  
+        Node* m_siblingNode;  
 
         //Node Type
         // Node::Type m_nodeType;

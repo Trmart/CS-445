@@ -66,9 +66,9 @@ void yyerror(const char *message)
 %token <tokenData> AND OR 
 %token <tokenData> INC DEC TO LEQ ASGN GEQ NEQ EQ
 %token <tokenData> ADDASS SUBASS MULASS DIVASS 
-%token <tokenData> LCURLY RCURLY LPAREN RPAREN LBRACK RBRACK 
+%token <tokenData> BEGIN END LPAREN RPAREN LBRACK RBRACK 
 %token <tokenData> SEMICOLON COLON QUESTION COMMA
-%token <tokenData>  ADD SUB MUL DIV MOD NOT GT LT
+%token <tokenData> ADD SUB MUL DIV MOD NOT GT LT
 
 /* AST Nodes */
 %type <node> program declList decl varDecl scopedVarDecl varDeclList varDeclInit
@@ -304,7 +304,7 @@ expStmt                 : exp SEMICOLON
                         }
                         ;
 
-compoundStmt            : LCURLY localDecls stmtList RCURLY
+compoundStmt            : BEGIN localDecls stmtList END
                         {
                             $$ = new CompoundNode($1->tokenLineNumber);
                             $$->addChildNode($2);

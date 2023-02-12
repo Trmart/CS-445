@@ -157,12 +157,12 @@ std::string BinaryNode::printTokenString() const
                                     break;
         case::BinaryNode::Type::LEQ:
                                     {
-                                        tokenOutputString += "<=";
+                                        tokenOutputString += "!>";
                                     }
 
         case::BinaryNode::Type::GEQ:
                                     {
-                                        tokenOutputString += ">=";
+                                        tokenOutputString += "!<";
                                     }
                                     break;
 

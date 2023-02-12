@@ -20,6 +20,7 @@ class CompilerFlags
     public: 
         
         // Constructor
+        CompilerFlags(); 
         CompilerFlags(int argc, char *argv[]);
 
         // Reset all flags to false

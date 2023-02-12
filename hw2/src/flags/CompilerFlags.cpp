@@ -14,7 +14,13 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 #include "../ourgetopt/ourgetopt.h"
 #include <iostream>
 
-    
+// default constructor
+CompilerFlags::CompilerFlags()
+{
+
+}
+
+// constructor
 CompilerFlags::CompilerFlags(int argc, char *argv[])
 {
     //from ourgetopt.h
