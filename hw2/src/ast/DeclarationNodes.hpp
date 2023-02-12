@@ -73,7 +73,7 @@ class PrimitiveType
 
         const bool m_isArray;
 
-        PrimitiveType::Type *m_next;
+        PrimitiveType *m_next;
 };
 
 class FunctionNode : public Node

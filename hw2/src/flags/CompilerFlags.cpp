@@ -71,7 +71,7 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
     }
 }
 
-void printHelpMenu()
+void CompilerFlags::printHelpMenu()
 {
     std::cout << "Usage: ./c- [options] file" << std::endl;
     std::cout << "Options:" << std::endl;
