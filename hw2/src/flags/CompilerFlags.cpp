@@ -11,7 +11,7 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 */
 
 #include "CompilerFlags.hpp"
-#include "ourgetopt/ourgetopt.h"
+#include "../ourgetopt/ourgetopt.h"
 #include <iostream>
 
     
@@ -81,13 +81,13 @@ void printHelpMenu()
 }
 
 //Setters
-bool CompilerFlags::setDebugFlag(bool debugFlag)
+void CompilerFlags::setDebugFlag(bool debugFlag)
 {
     m_debugFlag = debugFlag;
 }
 
 
-bool CompilerFlags::setPrintASTFlag(bool printASTFlag)
+void CompilerFlags::setPrintASTFlag(bool printASTFlag)
 {
     m_printASTFlag = printASTFlag;
 }

@@ -41,8 +41,8 @@ class CompilerFlags
         std::string m_file = "";
 
         //Setters
-        bool setDebugFlag(bool debugFlag);
-        bool setPrintASTFlag(bool printASTFlag);
+        void setDebugFlag(bool debugFlag);
+        void setPrintASTFlag(bool printASTFlag);
         void setFile(std::string file);
 }; 
 

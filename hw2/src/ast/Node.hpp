@@ -75,10 +75,12 @@ class Node
         //add sibling node to AST 
         void addSiblingNode(Node* node); 
 
+        int getTokenLineNumber() const;
+
     protected:
-        
         //token data struct from scanType.hpp
         TokenData m_tokenData;
+        
 
         //Vector of current AST childern Nodes
         std::vector<Node*>m_childernNodes;

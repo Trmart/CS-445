@@ -213,3 +213,9 @@ void Node :: addSiblingNode(Node* node)
         return; 
     }
 }
+
+int Node :: getTokenLineNumber() const
+{
+    return m_tokenData.tokenLineNumber;
+}
+
