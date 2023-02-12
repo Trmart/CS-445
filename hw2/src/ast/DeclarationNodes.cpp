@@ -188,3 +188,33 @@ std::string VariableNode::printTokenString() const
         return "Var: " + m_stringValue + " of type " + m_variableType->printTokenString();
     }
 }
+
+//***********************setters***********************
+//set static variable
+void VariableNode::setStaticVariable()
+{
+    //check if siblingNode is not null
+    if(m_siblingNode != nullptr)
+    {
+        //set temp node to siblingNode
+        VariableNode *node = dynamic_cast<VariableNode*>(m_siblingNode);
+    }
+    
+    m_isStaticVariable = true;
+}
+
+//set variable type
+void VariableNode::setVariableType(const PrimitiveType::Type variableType)
+{
+    //set variable type
+    m_variableType->setPrimitiveType(variableType);
+
+    if(m_siblingNode != nullptr)
+    {
+        //set temp node to siblingNode
+        VariableNode *node = dynamic_cast<VariableNode*>(m_siblingNode);
+
+        //set node type
+        node->setVariableType(variableType);
+    }
+}

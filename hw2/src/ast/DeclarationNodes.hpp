@@ -124,7 +124,7 @@ class VariableNode : public Node
         std::string printTokenString() const;
 
         //set static variable
-        static void setStaticVariable();
+        void setStaticVariable();
 
         //setters
         void setVariableType(const PrimitiveType::Type variableType);
