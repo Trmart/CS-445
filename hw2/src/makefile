@@ -14,9 +14,9 @@
 
 BIN = parser
 CC = g++ -std=c++17 -g
-CC_SRCS = TokenFormatter.cpp ast/*.cpp flags/CompilerFlags.cpp ourgetopt/ourgetopt.cpp
+CC_SRCS = TokenFormatter.cpp ast/*.cpp CompilerFlags.cpp ourgetopt/ourgetopt.cpp
 SRCS = $(BIN).y  $(BIN).l
-HDRS = scanType.hpp ast/*.hpp flags/CompilerFlags.hpp ourgetopt/ourgetopt.h
+HDRS = scanType.hpp ast/*.hpp CompilerFlags.hpp ourgetopt/ourgetopt.h
 OBJS = lex.yy.o $(BIN).tab.o
 
 $(BIN) : $(OBJS)

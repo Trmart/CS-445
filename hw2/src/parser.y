@@ -14,7 +14,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
 #include "scanType.hpp"  // TokenData Type
-#include "flags/CompilerFlags.hpp" // Compiler Flags
+#include "CompilerFlags.hpp" // Compiler Flags
 #include "ast/AST.hpp" // AST Node Types
 #include <stdio.h>
 #include <string>

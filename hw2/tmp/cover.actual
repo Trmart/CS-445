@@ -1,6 +1,0 @@
-Invalid Compiler Flag: 
-Usage: ./c- [options] file
-Options:
--d: Enable debug mode
--p: Print the AST
--h: Print this help message

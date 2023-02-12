@@ -14,7 +14,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
 // this *order* of these includes is mandatory
-#include "flags/CompilerFlags.hpp" // CompilerFlags class
+#include "CompilerFlags.hpp" // CompilerFlags class
 #include "scanType.hpp"  // TokenData Type
 #include "ast/AST.hpp"  // AST classes
 #include "parser.tab.h"  // token definitions from the bison

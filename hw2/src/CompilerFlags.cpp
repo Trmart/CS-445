@@ -11,7 +11,7 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 */
 
 #include "CompilerFlags.hpp"
-#include "../ourgetopt/ourgetopt.h"
+#include "ourgetopt/ourgetopt.h"
 #include <iostream>
 
 // default constructor
