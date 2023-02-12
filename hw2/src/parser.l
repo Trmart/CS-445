@@ -13,31 +13,27 @@ DESC: scanner for the c- language
 Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
-// this *order* of these includes is mandatory
-#include "CompilerFlags.hpp" // CompilerFlags class
-#include "scanType.hpp"  // TokenData Type
-#include "ast/AST.hpp"  // AST classes
-#include "parser.tab.h"  // token definitions from the bison
+// The order of includes is mandatory
+#include "CompilerFlags.hpp"
+#include "scanType.hpp"
+#include "AST/AST.hpp"
 
 #include <string>
 #include <iostream>
 
-// Variables for ERR
-int lineNumber = 1;         // ERR line number from the scanner!!
-int numberOfErrors;    // ERR err count
+#include "parser.tab.h"
 
-// this is the function that the scanner will call to set the token data
-static int setValue(int linenum, int tokenClass, char *svalue)
+int lineCount = 1;
+int errorCount;
+
+static int setValue(unsigned tokenLineNum, int tokenClass, char *sValue)
 {
-    // create the pass-back data space
+    // Create the pass-back data space
     yylval.tokenData = new TokenData;
 
-    // fill it up
-    yylval.tokenData->tokenLineNumber = linenum;
-
-    // duplicate string!!
-    yylval.tokenData->tokenInformation = strdup(svalue);  
-  
+    // Fill it up
+    yylval.tokenData->tokenLineNumber = tokenLineNum;
+    yylval.tokenData->tokenInformation = std::string(sValue);
 
     return tokenClass;
 }
@@ -48,80 +44,72 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 
 %%
 
+\#\#.*\n                    { lineCount++; }                 // Ignore comments
+[ \t]                       { }                 // Ignore whitespace
+"\n"                        { lineCount++; }    // Newlines
 
+"int"                       { return INT; }
+"bool"                      { return BOOL; }
+"char"                      { return CHAR; }
+"static"                    { return setValue(lineCount, STATIC, yytext); }
 
-"int" {return INT;}
-"char" {return CHAR;}
-"static" {return setValue(lineNumber, STATIC, yytext);}
-"bool" {return BOOL;}
+"if"                        { return setValue(lineCount, IF, yytext); }
+"then"                      { return setValue(lineCount, THEN, yytext); }
+"else"                      { return setValue(lineCount, ELSE, yytext); }
+"while"                     { return setValue(lineCount, WHILE, yytext); }
+"for"                       { return setValue(lineCount, FOR, yytext); }
+".."                        { return setValue(lineCount, TO, yytext); }
+"by"                        { return setValue(lineCount, BY, yytext); }
+"step"                        { return setValue(lineCount, BY, yytext); }
+"do"                        { return setValue(lineCount, DO, yytext); }
 
-"for" {return setValue(lineNumber, FOR, yytext);}
-"while" {return setValue(lineNumber, WHILE, yytext);}
-"by" {return setValue(lineNumber, BY, yytext);}
-"do" {return setValue(lineNumber, DO, yytext);}
+"return"                    { return setValue(lineCount, RETURN, yytext); }
+"break"                     { return setValue(lineCount, BREAK, yytext); }
 
-"if" {return setValue(lineNumber, IF, yytext);}
-"else" {return setValue(lineNumber, ELSE, yytext);}
-"then" {return setValue(lineNumber, THEN, yytext);}
+"and"                       { return setValue(lineCount, AND, yytext); }
+"or"                        { return setValue(lineCount, OR, yytext); }
+"not"                       { return setValue(lineCount, NOT, yytext); }
 
+"begin"                     { return setValue(lineCount, T_BEGIN, yytext); }
+"end"                       { return setValue(lineCount, T_END, yytext); }
+"("                         { return setValue(lineCount, LPAREN, yytext); }
+")"                         { return setValue(lineCount, RPAREN, yytext); }
+"["                         { return setValue(lineCount, LBRACK, yytext); }
+"]"                         { return setValue(lineCount, RBRACK, yytext); }
 
-"return" {return setValue(lineNumber, RETURN, yytext);}
-"break" {return setValue(lineNumber, BREAK, yytext);}
+"*"                         { return setValue(lineCount, MUL, yytext); }
+"/"                         { return setValue(lineCount, DIV, yytext); }
+"%"                         { return setValue(lineCount, MOD, yytext); }
+"+"                         { return setValue(lineCount, ADD, yytext); }
+"-"                         { return setValue(lineCount, SUB, yytext); }
+"++"                        { return setValue(lineCount, INC, yytext); }
+"--"                        { return setValue(lineCount, DEC, yytext); }
 
-"and" {return setValue(lineNumber, AND, yytext);}
-"or" {return setValue(lineNumber, OR, yytext);}
-"true" {return setValue(lineNumber, BOOLCONST, yytext);}
-"false" {return setValue(lineNumber, BOOLCONST, yytext);}
+"+="                        { return setValue(lineCount, ADDASGN, yytext); }
+"-="                        { return setValue(lineCount, SUBASGN, yytext); }
+"*="                        { return setValue(lineCount, MULASGN, yytext); }
+"/="                        { return setValue(lineCount, DIVASGN, yytext); }
+"<="                         { return setValue(lineCount, ASGN, yytext); }
 
-"begin" {return setValue(lineNumber, BEGIN, yytext);}
-"end" {return setValue(lineNumber, END, yytext);}
+"="                        { return setValue(lineCount, EQ, yytext); }
+"!="                        { return setValue(lineCount, NEQ, yytext); }
+"<"                         { return setValue(lineCount, LT, yytext); }
+"!>"                        { return setValue(lineCount, LEQ, yytext); }
+">"                         { return setValue(lineCount, GT, yytext); }
+"!<"                        { return setValue(lineCount, GEQ, yytext); }
 
-"++" {return setValue(lineNumber, INC, yytext);}
-"--" {return setValue(lineNumber, DEC, yytext);}
-".." {return setValue(lineNumber, TO, yytext);}
-"!>" {return setValue(lineNumber, LEQ, yytext);}
-"<=" {return setValue(lineNumber, ASGN, yytext);}
-"!<" {return setValue(lineNumber, GEQ, yytext);}
-"!=" {return setValue(lineNumber, NEQ, yytext);}
-"+=" {return setValue(lineNumber, ADDASS, yytext);}
-"-=" {return setValue(lineNumber, SUBASS, yytext);}
-"/=" {return setValue(lineNumber, DIVASS, yytext);}
-"*=" {return setValue(lineNumber, MULASS, yytext);}
-"==" {return setValue(lineNumber, EQ, yytext);}
+";"                         { return setValue(lineCount, SEMICOLON, yytext); }
+":"                         { return setValue(lineCount, COLON, yytext); }
+","                         { return setValue(lineCount, COMMA, yytext); }
+"?"                         { return setValue(lineCount, QUESTION, yytext); }
 
+"true"|"false"              { return setValue(lineCount, BOOLCONST, yytext); }
 
+[a-zA-Z][a-zA-Z0-9]*        { return setValue(lineCount, ID, yytext); }             // Variable names (the id)
+[0-9]+                      { return setValue(lineCount, NUMCONST, yytext); }       // Number literals
+\"((\\\")|([^\n\"]))*\"     { return setValue(lineCount, STRINGCONST, yytext); }    // String literals
+\'((\\\')|([^\n\']))*\'     { return setValue(lineCount, CHARCONST, yytext); }      // Char literals
 
+. { std::cout << "ERROR(" << lineCount << "): Invalid or misplaced input character: '" << yytext[0] << "'. Character Ignored." << std::endl; errorCount++; }  // Any error-causing inputs
 
-"(" { return setValue(lineNumber, LPAREN, yytext); }
-")" { return setValue(lineNumber, RPAREN, yytext); }
-"[" { return setValue(lineNumber, LBRACK, yytext); }
-"]" { return setValue(lineNumber, RBRACK, yytext); }
-
-
-"+" { return setValue(lineNumber, ADD, yytext); }
-"-" { return setValue(lineNumber, SUB, yytext); }
-"*" { return setValue(lineNumber, MUL, yytext); }
-"/" { return setValue(lineNumber, DIV, yytext); }
-"%" { return setValue(lineNumber, MOD, yytext); }
-"!" { return setValue(lineNumber, NOT, yytext); }
-">" {return setValue(lineNumber, GT, yytext);}
-"<" {return setValue(lineNumber, LT, yytext);}
-
-
-";" { return setValue(lineNumber, SEMICOLON, yytext); }
-":" { return setValue(lineNumber, COLON, yytext); }
-"?" { return setValue(lineNumber, QUESTION, yytext); }
-"," { return setValue(lineNumber, COMMA, yytext); }
-
-[0-9]+                  { return setValue(lineNumber, NUMCONST, yytext); }
-[a-zA-Z][a-zA-Z0-9]*    { return setValue(lineNumber,ID, yytext); }
-\"((\\\")|[^\n"])*\"    { return setValue(lineNumber, STRINGCONST, yytext); }
-\'((\\\')|[^\n'])*\'    { return setValue(lineNumber, CHARCONST, yytext); }
-[ \t]                  { /* ignore white space */ }
-\#\#.*\n               { /* ignore comments */ lineNumber++; }
-"\n"                     { lineNumber++; }
-.                      { 
-                            printf("ERROR(%d): Invalid or misplaced input character: \'%c\'. Character Ignored.\n", lineNumber, yytext[0]);
-                            numberOfErrors++;
-                       }
 %%

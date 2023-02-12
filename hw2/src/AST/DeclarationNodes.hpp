@@ -36,7 +36,7 @@ DESC: DeclarationNodes Subclass. Inherits from Node Base Class.
 //     protected:
 // };
 
-class PrimitiveType
+class Primitive
 {
     public:
 
@@ -50,7 +50,7 @@ class PrimitiveType
         };
 
         //Constructor
-        PrimitiveType(const PrimitiveType::Type type, const bool isArray = false);
+        Primitive(Type type, const bool isArray = false);
 
         //printTokenString
         std::string printTokenString() const;
@@ -58,30 +58,30 @@ class PrimitiveType
         //setters
 
         //setPrimitiveType
-        void setPrimitiveType(const PrimitiveType::Type type);
+        void setType(Type type);
 
 
         //getters
         bool getIsArray() const;
 
-        Type getPrimitiveType() const;
+        Type getType() const { return m_type; }
     
 
     protected:
 
-        PrimitiveType::Type m_type;
+        Type m_type;
 
         const bool m_isArray;
 
-        PrimitiveType *m_next;
+        Primitive* m_next;
 };
 
-class FunctionNode : public Node
+class Func : public Node
 {
     public:
 
         //Constructor
-        FunctionNode(int tokenLineNumber, const std::string functionName, PrimitiveType *returnType);
+        Func(const int tokenLineNumber, Primitive* returnType, const std::string functionName);
     
         //printTokenString
         std::string printTokenString() const;
@@ -89,50 +89,50 @@ class FunctionNode : public Node
 
     protected:
 
-        PrimitiveType *m_returnType;
+        const Primitive *m_returnType;
 }; 
 
 
-class ParameterNode : public Node
+class Parm : public Node
 {
     public:
 
         //Constructor
-        ParameterNode(int tokenLineNumber, const std::string parameterName, PrimitiveType *parameterType);
+        Parm(const int tokenLineNumber,  Primitive* parameterType, const std::string parameterName);
     
         //printTokenString
         std::string printTokenString() const;
 
         //setters
-        void setParameterType(PrimitiveType::Type parameterType);
+        void setType(Primitive::Type parameterType);
     
 
     protected:
 
-        PrimitiveType *m_parameterType;
+        Primitive* m_parameterType;
 };
 
 
-class VariableNode : public Node
+class Var : public Node
 {
     public:
 
         //Constructor
-        VariableNode(int tokenLineNumber, const std::string variableName, PrimitiveType *variableType, const bool isStaticVariable = false);
+        Var(const int tokenLineNumber, Primitive* variableType, const std::string variableName, const bool isStaticVariable = false);
 
         //printTokenString
         std::string printTokenString() const;
 
         //set static variable
-        void setStaticVariable();
+        void makeStatic();
 
         //setters
-        void setVariableType(const PrimitiveType::Type variableType);
+        void setType(const Primitive::Type variableType);
     
 
     protected:
 
-        PrimitiveType *m_variableType;
+        Primitive* m_variableType;
 
         bool  m_isStaticVariable;
 }; 

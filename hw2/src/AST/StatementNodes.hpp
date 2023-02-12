@@ -40,85 +40,85 @@ DESC: StatementsNodes Subclass. Inherits from Node Base Class.
 // ************ BreakNode Class ************************
 //******************************************************
 
-class BreakNode : public Node
+class Break : public Node
 {
     public :
-        BreakNode(const int tokenLineNumber);
+        Break(const int tokenLineNumber);
 
-        std::string printTokenString() const override;
+        std::string printTokenString() const;
 };
 
 //*********************************************************
 // ************ CompoundNode Class ************************
 //*********************************************************
-class CompoundNode : public Node
+class Compound : public Node
 {
     public :
 
-        CompoundNode(const int tokenLineNumber);
+        Compound(const int tokenLineNumber);
 
-        std::string printTokenString() const override;
+        std::string printTokenString() const;
 };
 
 //*********************************************************
 // ************ ForNode Class *****************************
 //*********************************************************
-class ForNode : public Node
+class For : public Node
 {
     public :
 
-        ForNode(const int tokenLineNumber);
+        For(const int tokenLineNumber);
 
-        std::string printTokenString() const override;
+        std::string printTokenString() const;
 };
 
 //*********************************************************
 // ************ IfNode Class ******************************
 //*********************************************************
-class IfNode : public Node
+class If : public Node
 {
     public :
 
-        IfNode(const int tokenLineNumber);
+        If(const int tokenLineNumber);
 
-        std::string printTokenString() const override;
+        std::string printTokenString() const;
 };
 
 
 //******************************************************
 // ************ RangeNode Class ************************
 //******************************************************
-class RangeNode : public Node
+class Range : public Node
 {
     public :
 
-        RangeNode(const int tokenLineNumber);
+        Range(const int tokenLineNumber);
 
-        std::string printTokenString() const override;
+        std::string printTokenString() const;
 };
 
 //*******************************************************
 // ************ ReturnNode Class ************************
 //*********************************************************
-class ReturnNode : public Node
+class Return: public Node
 {
     public :
 
-        ReturnNode(const int tokenLineNumber);
+        Return(const int tokenLineNumber);
 
-        std::string printTokenString() const override;
+        std::string printTokenString() const;
 };
 
 //******************************************************
 // ************ WhileNode Class ************************
 //******************************************************
-class WhileNode : public Node
+class While : public Node
 {
     public :
 
-        WhileNode(const int tokenLineNumber);
+        While(const int tokenLineNumber);
 
-        std::string printTokenString() const override;
+        std::string printTokenString() const;
 };
 
 #endif

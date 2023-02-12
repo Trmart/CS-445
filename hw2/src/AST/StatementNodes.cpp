@@ -23,14 +23,14 @@
 //********************************************************************************
 
 //BreakNode Constructor
-BreakNode::BreakNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
+Break::Break(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
 
 
 //BreakNode Print Token String
-std::string BreakNode::printTokenString() const
+std::string Break::printTokenString() const
 {
     return "Break";
 }
@@ -41,13 +41,13 @@ std::string BreakNode::printTokenString() const
 //********************************************************************************
 
 //CompoundNode Constructor
-CompoundNode::CompoundNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
+Compound::Compound(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
 
 //CompoundNode Print Token String
-std::string CompoundNode::printTokenString() const
+std::string Compound::printTokenString() const
 {
     return "Compound";
 }
@@ -58,14 +58,14 @@ std::string CompoundNode::printTokenString() const
 
 
 //ForNode Constructor
-ForNode::ForNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
+For::For(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
 
 
 //ForNode Print Token String
-std::string ForNode::printTokenString() const
+std::string For::printTokenString() const
 {
     return "For";
 }
@@ -76,14 +76,14 @@ std::string ForNode::printTokenString() const
 
 
 //IfNode Constructor
-IfNode::IfNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
+If::If(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
 
 
 //IfNode Print Token String
-std::string IfNode::printTokenString() const
+std::string If::printTokenString() const
 {
     return "If";
 }
@@ -94,14 +94,14 @@ std::string IfNode::printTokenString() const
 
 
 //RangeNode Constructor
-RangeNode::RangeNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
+Range::Range(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
 
 
 //RangeNode Print Token String
-std::string RangeNode::printTokenString() const
+std::string Range::printTokenString() const
 {
     return "Range";
 }
@@ -112,14 +112,14 @@ std::string RangeNode::printTokenString() const
 
 
 //ReturnNode Constructor
-ReturnNode::ReturnNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
+Return::Return(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
 
 
 //ReturnNode Print Token String
-std::string ReturnNode::printTokenString() const
+std::string Return::printTokenString() const
 {
     return "Return";
 }
@@ -130,13 +130,13 @@ std::string ReturnNode::printTokenString() const
 
 
 //WhileNode Constructor
-WhileNode::WhileNode(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
+While::While(const int tokenLineNumber) : Node :: Node(tokenLineNumber)
 {
 
 }
 
 //WhileNode Print Token String
-std::string WhileNode::printTokenString() const
+std::string While::printTokenString() const
 {
     return "While";
 }

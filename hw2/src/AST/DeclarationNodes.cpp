@@ -15,7 +15,7 @@ DESC: DeclarationNodes Subclass Member Definitions.
 //******************************************************
 // ************ PrimitiveType Class *******************
 //******************************************************
-PrimitiveType::PrimitiveType(const PrimitiveType::Type type, const bool isArray) : m_type(type), m_isArray(isArray)
+Primitive::Primitive(Type type, const bool isArray) : m_isArray(isArray)
 {
     //set next to null
     m_next = nullptr;
@@ -24,7 +24,7 @@ PrimitiveType::PrimitiveType(const PrimitiveType::Type type, const bool isArray)
     if (isArray)
     {
         //create new PrimitiveType
-        m_next = new PrimitiveType(type);
+        m_next = new Primitive(type);
         //set type to void
         m_type = Type::VOID;
     }
@@ -36,7 +36,7 @@ PrimitiveType::PrimitiveType(const PrimitiveType::Type type, const bool isArray)
     }
 }
 
-std::string PrimitiveType::printTokenString() const
+std::string Primitive::printTokenString() const
 {
     std::string tokenOutputString;
     switch(m_type)
@@ -67,7 +67,7 @@ std::string PrimitiveType::printTokenString() const
                     break;
         default:
             {
-                tokenOutputString += "ERROR. Could not determine PrimitiveType::Type.";
+                throw std::runtime_error("ERROR. Could not determine Primitive::Type");
             }
             break;
     }
@@ -75,7 +75,7 @@ std::string PrimitiveType::printTokenString() const
 }
 
 //setPrimitiveType
-void PrimitiveType::setPrimitiveType(const PrimitiveType::Type type)
+void Primitive::setType(Type type)
 {
     //set type
     m_type = type;
@@ -84,20 +84,13 @@ void PrimitiveType::setPrimitiveType(const PrimitiveType::Type type)
     if (m_next != nullptr)
     {
         //set next type
-        m_next->setPrimitiveType(type);
+        m_next->setType(type);
     }
 }
 
-//getters
-
-//getPrimitiveType
-PrimitiveType::Type PrimitiveType::getPrimitiveType() const
-{
-    return m_type;
-}
 
 //getIsArray
-bool PrimitiveType::getIsArray() const
+bool Primitive::getIsArray() const
 {
     return m_isArray;
 }
@@ -107,13 +100,13 @@ bool PrimitiveType::getIsArray() const
 //******************************************************
 
 //Constructor
-FunctionNode::FunctionNode(int tokenLineNumber, const std::string functionName, PrimitiveType *returnType) : Node::Node(tokenLineNumber,functionName), m_returnType(returnType)
+Func::Func(const int tokenLineNumber,  Primitive* returnType, const std::string functionName) : Node::Node(tokenLineNumber,functionName), m_returnType(returnType)
 {
 
 }
 
 //printTokenString
-std::string FunctionNode::printTokenString() const
+std::string Func::printTokenString() const
 {
     return "Func: " + m_stringValue + " returns type " + m_returnType->printTokenString();
 }
@@ -123,38 +116,38 @@ std::string FunctionNode::printTokenString() const
 //******************************************************
 
 //Constructor
-ParameterNode::ParameterNode(int tokenLineNumber, const std::string parameterName, PrimitiveType *parameterType) : Node::Node(tokenLineNumber,parameterName), m_parameterType(parameterType)
+Parm::Parm(const int tokenLineNumber,  Primitive* parameterType, const std::string parameterName) : Node::Node(tokenLineNumber,parameterName), m_parameterType(parameterType)
 {
 
 }
 
 //printTokenString
-std::string ParameterNode::printTokenString() const
+std::string Parm::printTokenString() const
 {
     if (m_parameterType->getIsArray())
     {
-        return "Param: " + m_stringValue + " of array of type " + m_parameterType->printTokenString();
+        return "Parm: " + m_stringValue + " of array of type " + m_parameterType->printTokenString();
     }
     else
     {
-        return "Param: " + m_stringValue + " of type " + m_parameterType->printTokenString();
+        return "Parm: " + m_stringValue + " of type " + m_parameterType->printTokenString();
     }
 }
 
 //setParameterType
-void ParameterNode::setParameterType(PrimitiveType::Type parameterType)
+void Parm::setType(Primitive::Type parameterType)
 {
     //set parameter type
-    m_parameterType->setPrimitiveType(parameterType);
+    m_parameterType->setType(parameterType);
 
     //check if siblingNode is not null
     if (m_siblingNode != nullptr)
     {
         //set temp node to siblingNode
-        ParameterNode *node = dynamic_cast<ParameterNode*>(m_siblingNode);
+        Parm *node = (Parm *)m_siblingNode;
         
         //set node type
-        node->setParameterType(parameterType);
+        node->setType(parameterType);
     }
 }
 
@@ -163,13 +156,13 @@ void ParameterNode::setParameterType(PrimitiveType::Type parameterType)
 //******************************************************
 
 //Constructor
-VariableNode::VariableNode(int tokenLineNumber, const std::string variableName, PrimitiveType *variableType, const bool isStaticVariable) : Node::Node(tokenLineNumber,variableName), m_variableType(variableType), m_isStaticVariable(isStaticVariable)
+Var::Var(const int tokenLineNumber,  Primitive* variableType, const std::string variableName, const bool isStaticVariable) : Node::Node(tokenLineNumber,variableName), m_variableType(variableType), m_isStaticVariable(isStaticVariable)
 {
 
 }
 
 //printTokenString
-std::string VariableNode::printTokenString() const
+std::string Var::printTokenString() const
 {
     if (m_variableType->getIsArray() && m_isStaticVariable)
     {
@@ -191,30 +184,30 @@ std::string VariableNode::printTokenString() const
 
 //***********************setters***********************
 //set static variable
-void VariableNode::setStaticVariable()
+void Var::makeStatic()
 {
     //check if siblingNode is not null
     if(m_siblingNode != nullptr)
     {
         //set temp node to siblingNode
-        VariableNode *node = dynamic_cast<VariableNode*>(m_siblingNode);
+        ((Var* )m_siblingNode)->makeStatic();
     }
     
     m_isStaticVariable = true;
 }
 
 //set variable type
-void VariableNode::setVariableType(const PrimitiveType::Type variableType)
+void Var::setType(const Primitive::Type variableType)
 {
     //set variable type
-    m_variableType->setPrimitiveType(variableType);
+    m_variableType->setType(variableType);
 
     if(m_siblingNode != nullptr)
     {
         //set temp node to siblingNode
-        VariableNode *node = dynamic_cast<VariableNode*>(m_siblingNode);
+        Var* node = (Var *)m_siblingNode;
 
         //set node type
-        node->setVariableType(variableType);
+        node->setType(variableType);
     }
 }

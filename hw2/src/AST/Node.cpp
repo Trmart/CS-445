@@ -17,35 +17,38 @@ DESC: Node base class definitions for AST nodes. Statements, Expressions, and De
 // ************ Node Class Constructors ************************
 
 //Base Constructors
-
-Node :: Node(int tokenLineNumber) : m_tokenLineNumber{tokenLineNumber}, m_siblingNode{nullptr}
+Node::Node(const int tokenLineNumber) : m_tokenLineNumber(tokenLineNumber), m_siblingNode(nullptr)
 {
 
 }
+
 
 
 //Int Constructor
-Node :: Node(int tokenLineNumber, int numValue) : m_tokenLineNumber{tokenLineNumber}, m_numValue{numValue}, m_siblingNode{nullptr}
+Node::Node(const int tokenLineNumber, const int value) : m_tokenLineNumber(tokenLineNumber), m_siblingNode(nullptr)
 {
-
+    m_numValue = value;
 }
+
 
 //Char Constructor
-Node :: Node(int tokenLineNumber, char charValue) : m_tokenLineNumber{tokenLineNumber}, m_charValue{charValue}, m_siblingNode{nullptr}
+Node::Node(const int tokenLineNumber, const char value) : m_tokenLineNumber(tokenLineNumber), m_siblingNode(nullptr)
 {
-
+    m_charValue = value;
 }
+
 
 //Bool Constructor
-Node :: Node(int tokenLineNumber, bool boolValue) : m_tokenLineNumber{tokenLineNumber}, m_boolValue{boolValue}, m_siblingNode{nullptr}
+Node::Node(const int tokenLineNumber, const bool value) : m_tokenLineNumber(tokenLineNumber), m_siblingNode(nullptr)
 {
-
+    m_boolValue = value;
 }
 
-//String Constructor
-Node :: Node(int tokenLineNumber, std::string stringValue) : m_tokenLineNumber{tokenLineNumber}, m_stringValue{stringValue}, m_siblingNode{nullptr}
-{
 
+//String Constructor
+Node::Node(const int tokenLineNumber, const std::string value) : m_tokenLineNumber(tokenLineNumber), m_siblingNode(nullptr)
+{
+    m_stringValue = value;
 }
 
 
@@ -77,18 +80,19 @@ std::string Node ::printTokenString() const
 //Print AST Nodes
 void Node :: printASTNode() const
 {
-    printTokenString(); 
+    std:: cout << printTokenString(); 
 }
 
 //Print The Whole AST
 void Node :: printAST() const
 {
-    int numSiblingNodes = 0; 
+    static int numSiblingNodes = 0; 
 
-    int numTabs = 0; 
+    static int numTabs = 0; 
 
     printASTNode(); 
-    printTokenString(); 
+
+    std::cout << " [line: " << m_tokenLineNumber << "]" << std::endl;
 
     //increment number of tabs. default is 1
     numTabs++; 
@@ -160,24 +164,18 @@ void Node :: addChildNode(Node* node)
 //add sibling node to AST 
 void Node :: addSiblingNode(Node* node)
 {
-    //check if the node is not null
-    if(node != nullptr)
+    if (node == nullptr)
     {
-        //check if the sibling is not null
-        if(m_siblingNode != nullptr)
-        {
-            //if sibling is not null, recursivley call addSiblingNode untill the node can be added. 
-            m_siblingNode->addSiblingNode(node); 
-        }
-        else
-        {
-            //if sibling is null, add sibling node
-            m_siblingNode = node; 
-        }
+        return;
+    }
+
+    if (m_siblingNode == nullptr)
+    {
+        m_siblingNode = node;
     }
     else
     {
-        return; 
+        m_siblingNode->addSiblingNode(node);
     }
 }
 
@@ -185,4 +183,5 @@ int Node :: getTokenLineNumber() const
 {
     return m_tokenLineNumber;
 }
+
 

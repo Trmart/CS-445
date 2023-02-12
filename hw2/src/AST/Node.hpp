@@ -27,14 +27,14 @@ class Node
     public:
         
 
-        enum class Type {None, Statement, Expression, Declaration};
+        // enum class Type {None, Statement, Expression, Declaration};
         
         
         // ************ Node Class Constructors ************************
         
         //Base Constructors
         Node(); 
-        Node(int tokenLineNumber);
+        Node(const int tokenLineNumber);
 
         //Int Constructor
         Node(const int tokenLineNumber, const int numValue);
