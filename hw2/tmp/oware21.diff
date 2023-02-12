@@ -1,4 +1,4 @@
-1,499c1
+1,499c1,6
 < Var: cups of array of type int [line: 100]
 < Sibling: 1  Var: sumPlayerT of type int [line: 101]
 < Sibling: 2  Var: sumPlayerF of type int [line: 102]
@@ -499,4 +499,9 @@
 < .   .   .   .   Sibling: 6  Call: outnl [line: 347]
 < .   .   Sibling: 11  Return [line: 349]
 ---
-> ERROR(109): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

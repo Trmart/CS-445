@@ -1,4 +1,4 @@
-1,66c1
+1,66c1,6
 < Func: main returns type int [line: 1]
 < .   Child: 1  Compound [line: 2]
 < .   .   Child: 1  If [line: 3]
@@ -66,4 +66,9 @@
 < .   .   .   .   .   Child: 1  Const 13 [line: 17]
 < .   .   .   .   .   Child: 2  Const 14 [line: 18]
 ---
-> ERROR(3): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

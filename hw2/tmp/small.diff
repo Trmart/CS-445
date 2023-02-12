@@ -1,4 +1,4 @@
-1,31c1
+1,31c1,6
 < Var: x of array of type int [line: 1]
 < Sibling: 1  Var: y of type int [line: 1]
 < Sibling: 2  Var: z of type int [line: 1]
@@ -31,4 +31,9 @@
 < .   .   .   Child: 1  Assign: ++ [line: 8]
 < .   .   .   .   Child: 0  Id: i [line: 8]
 ---
-> ERROR(3): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

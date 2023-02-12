@@ -1,4 +1,4 @@
-1,176c1
+1,176c1,6
 < Var: zev of array of type char [line: 1]
 < .   Child: 0  Const "corgis" [line: 1]
 < Sibling: 1  Var: x of type int [line: 2]
@@ -176,4 +176,9 @@
 < .   .   .   .   Child: 1  Op: chsign [line: 47]
 < .   .   .   .   .   Child: 0  Id: fox [line: 47]
 ---
-> ERROR(8): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

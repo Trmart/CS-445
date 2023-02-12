@@ -1,4 +1,4 @@
-1,13c1
+1,13c1,6
 < Var: g of type int [line: 2]
 < Sibling: 1  Func: main returns type void [line: 4]
 < .   Child: 1  Compound [line: 4]
@@ -13,4 +13,9 @@
 < .   .   .   .   Child: 0  Var: e of type int [line: 15]
 < .   .   .   .   Sibling: 1  Var: f of type int [line: 16]
 ---
-> ERROR(5): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

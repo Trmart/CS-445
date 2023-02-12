@@ -1,4 +1,4 @@
-1,231c1
+1,231c1,6
 < Func: showInt returns type int [line: 2]
 < .   Child: 0  Parm: x of type int [line: 2]
 < .   Child: 1  Compound [line: 3]
@@ -231,4 +231,9 @@
 < .   .   .   .   .   .   Child: 1  Const 13 [line: 117]
 < .   .   Sibling: 19  Call: outnl [line: 118]
 ---
-> ERROR(4): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

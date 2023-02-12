@@ -31,10 +31,10 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
     
     char compilerFlag = ' ';
 
-    while(1)
+    while(true)
     {
 
-        while((compilerFlag = ourGetopt(argc, argv, (char*) "dph") != EOF))
+        while((compilerFlag = ourGetopt(argc, argv, (char* )"dph")) != EOF)
         {
             switch (compilerFlag)
             {
@@ -50,29 +50,41 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
                         break;
                 case 'h':
                         {
-                            printHelpMenu();
-                            exit(0);
+                            setHelpFlag(true);
                         }
                         break;
                 default:
                         {
-                            std::cout << "Invalid Compiler Flag: " << compilerFlag << std::endl;
-                            printHelpMenu();
-                            exit(1);
+                            setErrorFlag(true);
                         }
                     break;
             }
         }
         
-        // Remove an invalid input option
-        if (optind < argc)
+        if(getHelpFlag())
         {
-            m_file = argv[optind];
-            optind++;
+            printHelpMenu();
+            exit(0);
         }
-        else
+        else if(getErrorFlag())
         {
-            break;
+            std::cout << "Invalid flag: \'" << compilerFlag << "\'" << std::endl;
+            printHelpMenu();
+            exit(1);
+        }
+        // Remove an invalid input option
+        else 
+        {
+            if(optind < argc)
+            {
+                // m_file = argv[optind];
+                setFile(argv[optind]);
+                optind++;
+            }
+            else
+            {
+                break; 
+            }
         }
     }
 }
@@ -103,12 +115,26 @@ void CompilerFlags::setFile(std::string file)
     m_file = file;
 }
 
+void CompilerFlags::setHelpFlag(bool helpFlag)
+{
+    m_helpFlag = helpFlag;
+}
+
+void CompilerFlags::setErrorFlag(bool errorFlag)
+{
+    m_errorFlag = errorFlag;
+}
+
 
 void CompilerFlags::resetCompilerFlags()
 {
     m_debugFlag = false;
 
     m_printASTFlag = false;
+
+    m_helpFlag = false;
+
+    m_errorFlag = false;
 }
 
 // Getters
@@ -123,4 +149,14 @@ bool CompilerFlags::getPrintASTFlag() const
 std::string CompilerFlags::getFile() const
 {
     return m_file;
+}
+
+bool CompilerFlags::getErrorFlag() const
+{
+    return m_errorFlag;
+}
+
+bool CompilerFlags::getHelpFlag() const
+{
+    return m_helpFlag;
 }

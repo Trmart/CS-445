@@ -30,7 +30,7 @@ extern int yydebug;
 extern int lineNumber;         // ERR line number from the scanner!!
 extern int numberOfErrors;    // ERR err count
 
-Node *root; // AST root node
+Node* root; // AST root node
 
 //ERROR Message Definition and Output Function
 #define YYERROR_VERBOSE
@@ -50,12 +50,10 @@ void yyerror(const char *message)
 %union 
 {
     PrimitiveType::Type primitiveType;
-    TokenData *tokenData;
-    Node *node;
+    TokenData* tokenData;
+    Node* node;
 }
 
-/* Primative Types */
-%type <primitiveType> typeSpec
 
 /* Token Data */
 %token <tokenData> ID NUMCONST STRINGCONST CHARCONST BOOLCONST 
@@ -78,6 +76,8 @@ void yyerror(const char *message)
 %type <node> returnStmt breakStmt exp assignop simpleExp andExp unaryRelExp relExp relOp sumExp
 %type <node> sumOp mulExp mulOp unaryExp unaryOp factor mutable immutable call args argList constant
 
+/* Primative Types */
+%type <primitiveType> typeSpec
 
 %%
 program                 : declList
@@ -723,16 +723,13 @@ int main(int argc, char *argv[])
     std::string fileName = compilerFlags.getFile();
 
     //if the compiler flags object has an error, print the error and exit
-    if (argc > 1) 
+    if (argc > 1 && !(yyin = fopen(fileName.c_str(), "r")))
     {
         // if failed to open file
-        if (!(yyin = fopen(fileName.c_str(), "r")))
-        {
-            //print error message
-            std :: cout << "ERROR: failed to open \'" << fileName << "\'" << std :: endl;
-            //exit with error
-            exit(1);
-        }
+        //print error message
+        std :: cout << "ERROR: failed to open \'" << fileName << "\'" << std :: endl;
+        //exit with error
+        exit(1);
     }
 
     //parse the input
@@ -744,6 +741,11 @@ int main(int argc, char *argv[])
         if(root != NULL)
         {
             root->printAST();
+        }
+        else
+        {
+            std::cout << "ERROR: AST is empty" << std::endl;
+            exit(1);
         }
     }
 

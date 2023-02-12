@@ -1,4 +1,4 @@
-1,41c1
+1,41c1,6
 < Func: ant returns type void [line: 1]
 < .   Child: 1  Compound [line: 2]
 < .   .   Child: 0  Var: x of type bool [line: 3]
@@ -41,4 +41,9 @@
 < .   .   .   .   Child: 1  Const 222 [line: 20]
 < .   .   .   .   Child: 2  Const 444 [line: 20]
 ---
-> ERROR(3): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

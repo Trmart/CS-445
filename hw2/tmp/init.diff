@@ -1,4 +1,4 @@
-1,73c1
+1,73c1,6
 < Var: s of type int [line: 2]
 < .   Child: 0  Const 73 [line: 2]
 < Sibling: 1  Var: t of type char [line: 3]
@@ -73,4 +73,9 @@
 < .   .   Sibling: 4  Call: output [line: 29]
 < .   .   .   Child: 0  Const 666 [line: 29]
 ---
-> ERROR(6): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

@@ -1,4 +1,4 @@
-1,87c1
+1,87c1,6
 < Var: w of array of type int [line: 2]
 < Sibling: 1  Func: dog returns type int [line: 4]
 < .   Child: 0  Parm: x of type int [line: 4]
@@ -87,4 +87,9 @@
 < .   .   Sibling: 1  Call: dog [line: 25]
 < .   .   .   Child: 0  Const 666 [line: 25]
 ---
-> ERROR(5): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

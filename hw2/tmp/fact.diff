@@ -1,4 +1,4 @@
-1,30c1
+1,30c1,6
 < Func: fact returns type int [line: 2]
 < .   Child: 0  Parm: n of type int [line: 2]
 < .   Child: 1  Compound [line: 3]
@@ -30,4 +30,9 @@
 < .   .   .   .   .   .   Child: 0  Id: i [line: 12]
 < .   .   .   .   Sibling: 2  Call: outnl [line: 13]
 ---
-> ERROR(4): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

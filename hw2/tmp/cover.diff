@@ -1,4 +1,4 @@
-1,110c1
+1,110c1,6
 < Var: fahrenheit of type int [line: 2]
 < .   Child: 0  Const 451 [line: 2]
 < Sibling: 1  Func: carbon returns type int [line: 4]
@@ -110,4 +110,9 @@
 < .   .   .   Sibling: 4  Id: e [line: 34]
 < .   .   .   Sibling: 5  Id: f [line: 34]
 ---
-> ERROR(5): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

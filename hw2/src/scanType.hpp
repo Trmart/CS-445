@@ -24,24 +24,7 @@ struct TokenData
     int tokenLineNumber;     
 
     // The Token Information That Was Read
-    std::string tokenInformation;  
-    
-    // True if length of character > 1
-    bool isCharLengthGreaterThan1 = false; 
-    
-    // The Stored Value of the scanned Token (if applicable)
-    
-    //int values
-    int numValue; 
-    
-    //string values
-    std::string stringValue;
-    
-    //char values
-    char charValue;
-
-    //bool values
-    bool boolValue; 
+    std::string tokenInformation; 
 
 };
 

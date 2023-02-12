@@ -1,4 +1,4 @@
-1,81c1
+1,81c1,6
 < Func: main returns type void [line: 1]
 < .   Child: 1  Compound [line: 2]
 < .   .   Child: 0  Var: s of type bool [line: 3]
@@ -81,4 +81,9 @@
 < .   .   .   .   .   .   Child: 2  Id: b [line: 11]
 < .   .   .   .   .   Child: 2  Id: c [line: 11]
 ---
-> ERROR(3): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

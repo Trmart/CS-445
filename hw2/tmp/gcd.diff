@@ -1,4 +1,4 @@
-1,26c1
+1,26c1,6
 < Func: gcd returns type int [line: 2]
 < .   Child: 0  Parm: u of type int [line: 2]
 < .   Sibling: 1  Parm: v of type int [line: 2]
@@ -26,4 +26,9 @@
 < .   .   .   .   Child: 0  Call: input [line: 8]
 < .   .   .   .   Sibling: 1  Call: input [line: 8]
 ---
-> ERROR(3): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

@@ -30,6 +30,8 @@ class CompilerFlags
         // Getters
         bool getDebugFlag() const;
         bool getPrintASTFlag() const;
+        bool getHelpFlag() const;
+        bool getErrorFlag() const;
         std::string getFile() const;
 
     protected:
@@ -37,6 +39,9 @@ class CompilerFlags
         // Flag member variables
         bool m_debugFlag = false;   // -d
         bool m_printASTFlag = false;   // -p
+        bool m_helpFlag = false;   // -h
+        bool m_errorFlag = false;   // flag error
+
 
         //file member variable
         std::string m_file = "";
@@ -44,6 +49,8 @@ class CompilerFlags
         //Setters
         void setDebugFlag(bool debugFlag);
         void setPrintASTFlag(bool printASTFlag);
+        void setHelpFlag(bool helpFlag);
+        void setErrorFlag(bool errorFlag);
         void setFile(std::string file);
 }; 
 

@@ -1,4 +1,4 @@
-1,346c1
+1,346c1,6
 < Func: main returns type int [line: 2]
 < .   Child: 1  Compound [line: 3]
 < .   .   Child: 0  Var: x of type int [line: 4]
@@ -346,4 +346,9 @@
 < .   .   Sibling: 34  Return [line: 47]
 < .   .   .   Child: 0  Const 1184 [line: 47]
 ---
-> ERROR(4): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

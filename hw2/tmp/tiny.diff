@@ -1,4 +1,4 @@
-1,12c1
+1,12c1,6
 < Var: walace of type int [line: 1]
 < Sibling: 1  Var: gromit of type int [line: 1]
 < Sibling: 2  Var: preston of type char [line: 2]
@@ -12,4 +12,9 @@
 < .   .   Sibling: 1  Return [line: 8]
 < .   .   .   Child: 0  Id: cat [line: 8]
 ---
-> ERROR(5): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message

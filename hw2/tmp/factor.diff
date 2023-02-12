@@ -1,4 +1,4 @@
-1,59c1
+1,59c1,6
 < Func: main returns type void [line: 1]
 < .   Child: 1  Compound [line: 2]
 < .   .   Child: 0  Var: n of type int [line: 3]
@@ -59,4 +59,9 @@
 < .   .   .   .   .   .   Child: 0  Id: n [line: 21]
 < .   .   .   .   Sibling: 5  Call: outnl [line: 22]
 ---
-> ERROR(3): syntax error
+> Invalid Compiler Flag: 
+> Usage: ./c- [options] file
+> Options:
+> -d: Enable debug mode
+> -p: Print the AST
+> -h: Print this help message
