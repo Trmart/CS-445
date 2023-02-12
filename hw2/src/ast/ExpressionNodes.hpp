@@ -172,7 +172,7 @@ class IdentifierNode : public ExpressionNode
     public:
         
         //IdentifierNode Constructor
-        IdentifierNode(int tokenLineNumber, bool isArray, std:: string identifierName);
+        IdentifierNode(int tokenLineNumber, std:: string identifierName, bool isArray = false);
 
         //Print Token Output String
         std::string printTokenString() const;

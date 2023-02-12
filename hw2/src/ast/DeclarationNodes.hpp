@@ -73,7 +73,7 @@ class PrimitiveType
 
         const bool m_isArray;
 
-        PrimitiveType::PrimitiveType *m_next;
+        PrimitiveType::Type *m_next;
 };
 
 class FunctionNode : public Node
@@ -127,7 +127,7 @@ class VariableNode : public Node
         static void setStaticVariable();
 
         //setters
-        void setVariableType(PrimitiveType *variableType);
+        void setVariableType(const PrimitiveType::Type variableType);
     
 
     protected:

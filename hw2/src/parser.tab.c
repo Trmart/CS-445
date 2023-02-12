@@ -84,7 +84,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
 #include "scanType.hpp"  // TokenData Type
-#include "CompilerFlags.hpp" // Compiler Flags
+#include "flags/CompilerFlags.hpp" // Compiler Flags
 #include "ast/AST.hpp" // AST Node Types
 #include <stdio.h>
 #include <string>
@@ -1350,7 +1350,7 @@ yyreduce:
 #line 91 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-1].node);
-                            (yyval.node)->addSibling((yyvsp[0].node));
+                            (yyval.node)->addSiblingNode((yyvsp[0].node));
                         }
 #line 1356 "parser.tab.c"
     break;
@@ -1383,8 +1383,8 @@ yyreduce:
 #line 112 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-1].node);
-                            Var *node = (Var *)(yyval.node);
-                            node->setType((yyvsp[-2].primitiveType));
+                            VariableNode *node = (VariableNode *)(yyval.node);
+                            node->setVariableType((yyvsp[-2].primitiveType));
                         }
 #line 1390 "parser.tab.c"
     break;
@@ -1393,9 +1393,9 @@ yyreduce:
 #line 120 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-1].node);
-                            Var *node = (Var *)(yyval.node);
-                            node->setType((yyvsp[-2].primitiveType));
-                            node->makeStatic();
+                            VariableNode *node = (VariableNode *)(yyval.node);
+                            node->setVariableType((yyvsp[-2].primitiveType));
+                            node->setStaticVariable();
                         }
 #line 1401 "parser.tab.c"
     break;
@@ -1404,8 +1404,8 @@ yyreduce:
 #line 127 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-1].node);
-                            Var *node = (Var *)(yyval.node);
-                            node->setType((yyvsp[-2].primitiveType));
+                            VariableNode *node = (VariableNode *)(yyval.node);
+                            node->setVariableType((yyvsp[-2].primitiveType));
                         }
 #line 1411 "parser.tab.c"
     break;
@@ -1414,7 +1414,7 @@ yyreduce:
 #line 135 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-2].node);
-                            (yyval.node)->addSibling((yyvsp[0].node));
+                            (yyval.node)->addSiblingNode((yyvsp[0].node));
                         }
 #line 1420 "parser.tab.c"
     break;
@@ -1439,7 +1439,7 @@ yyreduce:
 #line 150 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-2].node);
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1445 "parser.tab.c"
     break;
@@ -1447,7 +1447,7 @@ yyreduce:
   case 14: /* varDeclId: ID  */
 #line 157 "parser.y"
                         {
-                            (yyval.node) = new Var((yyvsp[0].tokenData)->tokenLineNum, new Primitive(Primitive::Type::Void), (yyvsp[0].tokenData)->tokenContent);
+                            (yyval.node) = new VariableNode((yyvsp[0].tokenData)->tokenLineNumber, (yyvsp[0].tokenData)->tokenInformation, new PrimitiveType(PrimitiveType::Type::VOID));
                         }
 #line 1453 "parser.tab.c"
     break;
@@ -1455,7 +1455,7 @@ yyreduce:
   case 15: /* varDeclId: ID LBRACK NUMCONST RBRACK  */
 #line 161 "parser.y"
                         {
-                            (yyval.node) = new Var((yyvsp[-3].tokenData)->tokenLineNum, new Primitive(Primitive::Type::Void, true), (yyvsp[-3].tokenData)->tokenContent);
+                            (yyval.node) = new VariableNode((yyvsp[-3].tokenData)->tokenLineNumber, (yyvsp[-3].tokenData)->tokenInformation, new PrimitiveType(PrimitiveType::Type::VOID, true));
                         }
 #line 1461 "parser.tab.c"
     break;
@@ -1463,7 +1463,7 @@ yyreduce:
   case 16: /* typeSpec: INT  */
 #line 167 "parser.y"
                         {
-                            (yyval.primitiveType) = Primitive::Type::Int;
+                            (yyval.primitiveType) = PrimitiveType::Type::INT;
                         }
 #line 1469 "parser.tab.c"
     break;
@@ -1471,7 +1471,7 @@ yyreduce:
   case 17: /* typeSpec: BOOL  */
 #line 171 "parser.y"
                         {
-                            (yyval.primitiveType) = Primitive::Type::Bool;
+                            (yyval.primitiveType) = PrimitiveType::Type::BOOL;
                         }
 #line 1477 "parser.tab.c"
     break;
@@ -1479,7 +1479,7 @@ yyreduce:
   case 18: /* typeSpec: CHAR  */
 #line 175 "parser.y"
                         {
-                            (yyval.primitiveType) = Primitive::Type::Char;
+                            (yyval.primitiveType) = PrimitiveType::Type::CHAR;
                         }
 #line 1485 "parser.tab.c"
     break;
@@ -1487,9 +1487,9 @@ yyreduce:
   case 19: /* funDecl: typeSpec ID LPAREN parms RPAREN compoundStmt  */
 #line 181 "parser.y"
                         {
-                            (yyval.node) = new Func((yyvsp[-4].tokenData)->tokenLineNum, new Primitive((yyvsp[-5].primitiveType)), (yyvsp[-4].tokenData)->tokenContent);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new FunctionNode((yyvsp[-4].tokenData)->tokenLineNumber, (yyvsp[-4].tokenData)->tokenInformation, new PrimitiveType((yyvsp[-5].primitiveType)));
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1495 "parser.tab.c"
     break;
@@ -1497,9 +1497,9 @@ yyreduce:
   case 20: /* funDecl: ID LPAREN parms RPAREN compoundStmt  */
 #line 187 "parser.y"
                         {
-                            (yyval.node) = new Func((yyvsp[-4].tokenData)->tokenLineNum, new Primitive(Primitive::Type::Void), (yyvsp[-4].tokenData)->tokenContent);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new FunctionNode((yyvsp[-4].tokenData)->tokenLineNumber, (yyvsp[-4].tokenData)->tokenInformation,new PrimitiveType(PrimitiveType::Type::VOID));
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1505 "parser.tab.c"
     break;
@@ -1524,7 +1524,7 @@ yyreduce:
 #line 205 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-2].node);
-                            (yyval.node)->addSibling((yyvsp[0].node));
+                            (yyval.node)->addSiblingNode((yyvsp[0].node));
                         }
 #line 1530 "parser.tab.c"
     break;
@@ -1541,8 +1541,8 @@ yyreduce:
 #line 216 "parser.y"
                         {
                             (yyval.node) = (yyvsp[0].node);
-                            Parm *node = (Parm *)(yyval.node);
-                            node->setType((yyvsp[-1].primitiveType));
+                            ParameterNode *node = (ParameterNode *)(yyval.node);
+                            node->setParameterType((yyvsp[-1].primitiveType));
                         }
 #line 1548 "parser.tab.c"
     break;
@@ -1557,7 +1557,7 @@ yyreduce:
                             else
                             {
                                 (yyval.node) = (yyvsp[-2].node);
-                                (yyval.node)->addSibling((yyvsp[0].node));
+                                (yyval.node)->addSiblingNode((yyvsp[0].node));
                             }
                         }
 #line 1564 "parser.tab.c"
@@ -1574,7 +1574,7 @@ yyreduce:
   case 28: /* parmId: ID  */
 #line 242 "parser.y"
                         {
-                            (yyval.node) = new Parm((yyvsp[0].tokenData)->tokenLineNum, new Primitive(Primitive::Type::Void), (yyvsp[0].tokenData)->tokenContent);
+                            (yyval.node) = new ParameterNode((yyvsp[0].tokenData)->tokenLineNumber, (yyvsp[0].tokenData)->tokenInformation, new PrimitiveType(PrimitiveType::Type::VOID));
                         }
 #line 1580 "parser.tab.c"
     break;
@@ -1582,7 +1582,7 @@ yyreduce:
   case 29: /* parmId: ID LBRACK RBRACK  */
 #line 246 "parser.y"
                         {
-                            (yyval.node) = new Parm((yyvsp[-2].tokenData)->tokenLineNum, new Primitive(Primitive::Type::Void, true), (yyvsp[-2].tokenData)->tokenContent);
+                            (yyval.node) = new ParameterNode((yyvsp[-2].tokenData)->tokenLineNumber, (yyvsp[-2].tokenData)->tokenInformation, new PrimitiveType(PrimitiveType::Type::VOID, true));
                         }
 #line 1588 "parser.tab.c"
     break;
@@ -1686,9 +1686,9 @@ yyreduce:
   case 42: /* compoundStmt: LCURLY localDecls stmtList RCURLY  */
 #line 308 "parser.y"
                         {
-                            (yyval.node) = new Compound((yyvsp[-3].tokenData)->tokenLineNum);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[-1].node));
+                            (yyval.node) = new CompoundNode((yyvsp[-3].tokenData)->tokenLineNumber);
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[-1].node));
                         }
 #line 1694 "parser.tab.c"
     break;
@@ -1703,7 +1703,7 @@ yyreduce:
                             else
                             {
                                 (yyval.node) = (yyvsp[-1].node);
-                                (yyval.node)->addSibling((yyvsp[0].node));
+                                (yyval.node)->addSiblingNode((yyvsp[0].node));
                             }
                         }
 #line 1710 "parser.tab.c"
@@ -1727,7 +1727,7 @@ yyreduce:
                             else
                             {
                                 (yyval.node) = (yyvsp[-1].node);
-                                (yyval.node)->addSibling((yyvsp[0].node));
+                                (yyval.node)->addSiblingNode((yyvsp[0].node));
                             }
                         }
 #line 1734 "parser.tab.c"
@@ -1744,9 +1744,9 @@ yyreduce:
   case 47: /* selectStmtUnmatched: IF simpleExp THEN stmt  */
 #line 352 "parser.y"
                         {
-                            (yyval.node) = new If((yyvsp[-3].tokenData)->tokenLineNum);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new IfNode((yyvsp[-3].tokenData)->tokenLineNumber);
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1752 "parser.tab.c"
     break;
@@ -1754,10 +1754,10 @@ yyreduce:
   case 48: /* selectStmtUnmatched: IF simpleExp THEN stmtMatched ELSE stmtUnmatched  */
 #line 358 "parser.y"
                         {
-                            (yyval.node) = new If((yyvsp[-5].tokenData)->tokenLineNum);
-                            (yyval.node)->addChild((yyvsp[-4].node));
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new IfNode((yyvsp[-5].tokenData)->tokenLineNumber);
+                            (yyval.node)->addChildNode((yyvsp[-4].node));
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1763 "parser.tab.c"
     break;
@@ -1765,10 +1765,10 @@ yyreduce:
   case 49: /* selectStmtMatched: IF simpleExp THEN stmtMatched ELSE stmtMatched  */
 #line 367 "parser.y"
                         {
-                            (yyval.node) = new If((yyvsp[-5].tokenData)->tokenLineNum);
-                            (yyval.node)->addChild((yyvsp[-4].node));
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new IfNode((yyvsp[-5].tokenData)->tokenLineNumber);
+                            (yyval.node)->addChildNode((yyvsp[-4].node));
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1774 "parser.tab.c"
     break;
@@ -1776,9 +1776,9 @@ yyreduce:
   case 50: /* iterStmtUnmatched: WHILE simpleExp DO stmtUnmatched  */
 #line 376 "parser.y"
                         {
-                            (yyval.node) = new While((yyvsp[-3].tokenData)->tokenLineNum);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new WhileNode((yyvsp[-3].tokenData)->tokenLineNumber);
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1784 "parser.tab.c"
     break;
@@ -1786,11 +1786,11 @@ yyreduce:
   case 51: /* iterStmtUnmatched: FOR ID ASGN iterRange DO stmtUnmatched  */
 #line 382 "parser.y"
                         {
-                            (yyval.node) = new For((yyvsp[-5].tokenData)->tokenLineNum);
-                            Var *node = new Var((yyvsp[-4].tokenData)->tokenLineNum, new Primitive(Primitive::Type::Int), (yyvsp[-4].tokenData)->tokenContent);
-                            (yyval.node)->addChild(node);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new ForNode((yyvsp[-5].tokenData)->tokenLineNumber);
+                            VariableNode *node = new VariableNode((yyvsp[-4].tokenData)->tokenLineNumber, (yyvsp[-4].tokenData)->tokenInformation, new PrimitiveType(PrimitiveType::Type::INT));
+                            (yyval.node)->addChildNode(node);
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1796 "parser.tab.c"
     break;
@@ -1798,9 +1798,9 @@ yyreduce:
   case 52: /* iterStmtMatched: WHILE simpleExp DO stmtMatched  */
 #line 392 "parser.y"
                         {
-                            (yyval.node) = new While((yyvsp[-3].tokenData)->tokenLineNum);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new WhileNode((yyvsp[-3].tokenData)->tokenLineNumber);
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1806 "parser.tab.c"
     break;
@@ -1808,11 +1808,11 @@ yyreduce:
   case 53: /* iterStmtMatched: FOR ID ASGN iterRange DO stmtMatched  */
 #line 398 "parser.y"
                         {
-                            (yyval.node) = new For((yyvsp[-5].tokenData)->tokenLineNum);
-                            Var *node = new Var((yyvsp[-4].tokenData)->tokenLineNum, new Primitive(Primitive::Type::Int), (yyvsp[-4].tokenData)->tokenContent);
-                            (yyval.node)->addChild(node);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new ForNode((yyvsp[-5].tokenData)->tokenLineNumber);
+                            VariableNode *node = new VariableNode((yyvsp[-4].tokenData)->tokenLineNumber, (yyvsp[-4].tokenData)->tokenInformation, new PrimitiveType(PrimitiveType::Type::INT));
+                            (yyval.node)->addChildNode(node);
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1818 "parser.tab.c"
     break;
@@ -1820,9 +1820,9 @@ yyreduce:
   case 54: /* iterRange: simpleExp TO simpleExp  */
 #line 408 "parser.y"
                         {
-                            (yyval.node) = new Range((yyvsp[-2].node)->getTokenLineNum());
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new RangeNode((yyvsp[-2].node)->getTokenLineNumber());
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1828 "parser.tab.c"
     break;
@@ -1830,10 +1830,10 @@ yyreduce:
   case 55: /* iterRange: simpleExp TO simpleExp BY simpleExp  */
 #line 414 "parser.y"
                         {
-                            (yyval.node) = new Range((yyvsp[-4].node)->getTokenLineNum());
-                            (yyval.node)->addChild((yyvsp[-4].node));
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new RangeNode((yyvsp[-4].node)->getTokenLineNumber());
+                            (yyval.node)->addChildNode((yyvsp[-4].node));
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1839 "parser.tab.c"
     break;
@@ -1841,7 +1841,7 @@ yyreduce:
   case 56: /* returnStmt: RETURN SEMICOLON  */
 #line 423 "parser.y"
                         {
-                            (yyval.node) = new Return((yyvsp[-1].tokenData)->tokenLineNum);
+                            (yyval.node) = new ReturnNode((yyvsp[-1].tokenData)->tokenLineNumber);
                         }
 #line 1847 "parser.tab.c"
     break;
@@ -1849,8 +1849,8 @@ yyreduce:
   case 57: /* returnStmt: RETURN exp SEMICOLON  */
 #line 427 "parser.y"
                         {
-                            (yyval.node) = new Return((yyvsp[-2].tokenData)->tokenLineNum);
-                            (yyval.node)->addChild((yyvsp[-1].node));
+                            (yyval.node) = new ReturnNode((yyvsp[-2].tokenData)->tokenLineNumber);
+                            (yyval.node)->addChildNode((yyvsp[-1].node));
                         }
 #line 1856 "parser.tab.c"
     break;
@@ -1858,7 +1858,7 @@ yyreduce:
   case 58: /* breakStmt: BREAK SEMICOLON  */
 #line 434 "parser.y"
                         {
-                            (yyval.node) = new Break((yyvsp[-1].tokenData)->tokenLineNum);
+                            (yyval.node) = new BreakNode((yyvsp[-1].tokenData)->tokenLineNumber);
                         }
 #line 1864 "parser.tab.c"
     break;
@@ -1867,8 +1867,8 @@ yyreduce:
 #line 440 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-1].node);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1874 "parser.tab.c"
     break;
@@ -1876,8 +1876,8 @@ yyreduce:
   case 60: /* exp: mutable INC  */
 #line 446 "parser.y"
                         {
-                            (yyval.node) = new UnaryAsgn((yyvsp[-1].node)->getTokenLineNum(), UnaryAsgn::Type::Inc);
-                            (yyval.node)->addChild((yyvsp[-1].node));
+                            (yyval.node) = new UnaryAssignmentNode((yyvsp[-1].node)->getTokenLineNumber(), UnaryAssignmentNode::Type::INC);
+                            (yyval.node)->addChildNode((yyvsp[-1].node));
                         }
 #line 1883 "parser.tab.c"
     break;
@@ -1885,8 +1885,8 @@ yyreduce:
   case 61: /* exp: mutable DEC  */
 #line 451 "parser.y"
                         {
-                            (yyval.node) = new UnaryAsgn((yyvsp[-1].node)->getTokenLineNum(), UnaryAsgn::Type::Dec);
-                            (yyval.node)->addChild((yyvsp[-1].node));
+                            (yyval.node) = new UnaryAssignmentNode((yyvsp[-1].node)->getTokenLineNumber(), UnaryAssignmentNode::Type::DEC);
+                            (yyval.node)->addChildNode((yyvsp[-1].node));
                         }
 #line 1892 "parser.tab.c"
     break;
@@ -1902,7 +1902,7 @@ yyreduce:
   case 63: /* assignop: ASGN  */
 #line 462 "parser.y"
                         {
-                            (yyval.node) = new Asgn((yyvsp[0].tokenData)->tokenLineNum, Asgn::Type::Asgn);
+                            (yyval.node) = new AssignmentNode((yyvsp[0].tokenData)->tokenLineNumber, AssignmentNode::Type::ASGN);
                         }
 #line 1908 "parser.tab.c"
     break;
@@ -1910,7 +1910,7 @@ yyreduce:
   case 64: /* assignop: ADDASS  */
 #line 466 "parser.y"
                         {
-                            (yyval.node) = new Asgn((yyvsp[0].tokenData)->tokenLineNum, Asgn::Type::AddAsgn);
+                            (yyval.node) = new AssignmentNode((yyvsp[0].tokenData)->tokenLineNumber, AssignmentNode::Type::ADDASS);
                         }
 #line 1916 "parser.tab.c"
     break;
@@ -1918,7 +1918,7 @@ yyreduce:
   case 65: /* assignop: SUBASS  */
 #line 470 "parser.y"
                         {
-                            (yyval.node) = new Asgn((yyvsp[0].tokenData)->tokenLineNum, Asgn::Type::SubAsgn);
+                            (yyval.node) = new AssignmentNode((yyvsp[0].tokenData)->tokenLineNumber, AssignmentNode::Type::SUBASS);
                         }
 #line 1924 "parser.tab.c"
     break;
@@ -1926,7 +1926,7 @@ yyreduce:
   case 66: /* assignop: MULASS  */
 #line 474 "parser.y"
                         {
-                            (yyval.node) = new Asgn((yyvsp[0].tokenData)->tokenLineNum, Asgn::Type::MulAsgn);
+                            (yyval.node) = new AssignmentNode((yyvsp[0].tokenData)->tokenLineNumber, AssignmentNode::Type::MULASS);
                         }
 #line 1932 "parser.tab.c"
     break;
@@ -1934,7 +1934,7 @@ yyreduce:
   case 67: /* assignop: DIVASS  */
 #line 478 "parser.y"
                         {
-                            (yyval.node) = new Asgn((yyvsp[0].tokenData)->tokenLineNum, Asgn::Type::DivAsgn);
+                            (yyval.node) = new AssignmentNode((yyvsp[0].tokenData)->tokenLineNumber, AssignmentNode::Type::DIVASS);
                         }
 #line 1940 "parser.tab.c"
     break;
@@ -1942,9 +1942,9 @@ yyreduce:
   case 68: /* simpleExp: simpleExp OR andExp  */
 #line 484 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[-2].node)->getTokenLineNum(), Binary::Type::Or);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new BinaryNode((yyvsp[-2].node)->getTokenLineNumber(), BinaryNode::Type::OR);
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1950 "parser.tab.c"
     break;
@@ -1960,9 +1960,9 @@ yyreduce:
   case 70: /* andExp: andExp AND unaryRelExp  */
 #line 496 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[-2].node)->getTokenLineNum(), Binary::Type::And);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new BinaryNode((yyvsp[-2].node)->getTokenLineNumber(), BinaryNode::Type::AND);
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1968 "parser.tab.c"
     break;
@@ -1978,8 +1978,8 @@ yyreduce:
   case 72: /* unaryRelExp: NOT unaryRelExp  */
 #line 508 "parser.y"
                         {
-                            (yyval.node) = new Unary((yyvsp[-1].tokenData)->tokenLineNum, Unary::Type::Not);
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node) = new UnaryNode((yyvsp[-1].tokenData)->tokenLineNumber, UnaryNode::Type::NOT);
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 1985 "parser.tab.c"
     break;
@@ -1996,8 +1996,8 @@ yyreduce:
 #line 519 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-1].node);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 2003 "parser.tab.c"
     break;
@@ -2013,7 +2013,7 @@ yyreduce:
   case 76: /* relOp: LT  */
 #line 531 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::LT);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::LT);
                         }
 #line 2019 "parser.tab.c"
     break;
@@ -2021,7 +2021,7 @@ yyreduce:
   case 77: /* relOp: LEQ  */
 #line 535 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::LEQ);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::LEQ);
                         }
 #line 2027 "parser.tab.c"
     break;
@@ -2029,7 +2029,7 @@ yyreduce:
   case 78: /* relOp: GT  */
 #line 539 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::GT);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::GT);
                         }
 #line 2035 "parser.tab.c"
     break;
@@ -2037,7 +2037,7 @@ yyreduce:
   case 79: /* relOp: GEQ  */
 #line 543 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::GEQ);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::GEQ);
                         }
 #line 2043 "parser.tab.c"
     break;
@@ -2045,7 +2045,7 @@ yyreduce:
   case 80: /* relOp: EQ  */
 #line 547 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::EQ);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::EQ);
                         }
 #line 2051 "parser.tab.c"
     break;
@@ -2053,7 +2053,7 @@ yyreduce:
   case 81: /* relOp: NEQ  */
 #line 551 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::NEQ);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::NEQ);
                         }
 #line 2059 "parser.tab.c"
     break;
@@ -2062,8 +2062,8 @@ yyreduce:
 #line 557 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-1].node);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 2069 "parser.tab.c"
     break;
@@ -2079,7 +2079,7 @@ yyreduce:
   case 84: /* sumOp: ADD  */
 #line 569 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::Add);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::ADD);
                         }
 #line 2085 "parser.tab.c"
     break;
@@ -2087,7 +2087,7 @@ yyreduce:
   case 85: /* sumOp: SUB  */
 #line 573 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::Sub);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::SUB);
                         }
 #line 2093 "parser.tab.c"
     break;
@@ -2096,8 +2096,8 @@ yyreduce:
 #line 579 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-1].node);
-                            (yyval.node)->addChild((yyvsp[-2].node));
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node)->addChildNode((yyvsp[-2].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 2103 "parser.tab.c"
     break;
@@ -2113,7 +2113,7 @@ yyreduce:
   case 88: /* mulOp: MUL  */
 #line 591 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::Mul);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::MUL);
                         }
 #line 2119 "parser.tab.c"
     break;
@@ -2121,7 +2121,7 @@ yyreduce:
   case 89: /* mulOp: DIV  */
 #line 595 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::Div);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::DIV);
                         }
 #line 2127 "parser.tab.c"
     break;
@@ -2129,7 +2129,7 @@ yyreduce:
   case 90: /* mulOp: MOD  */
 #line 599 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[0].tokenData)->tokenLineNum, Binary::Type::Mod);
+                            (yyval.node) = new BinaryNode((yyvsp[0].tokenData)->tokenLineNumber, BinaryNode::Type::MOD);
                         }
 #line 2135 "parser.tab.c"
     break;
@@ -2138,7 +2138,7 @@ yyreduce:
 #line 605 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-1].node);
-                            (yyval.node)->addChild((yyvsp[0].node));
+                            (yyval.node)->addChildNode((yyvsp[0].node));
                         }
 #line 2144 "parser.tab.c"
     break;
@@ -2154,7 +2154,7 @@ yyreduce:
   case 93: /* unaryOp: SUB  */
 #line 616 "parser.y"
                         {
-                            (yyval.node) = new Unary((yyvsp[0].tokenData)->tokenLineNum, Unary::Type::Chsign);
+                            (yyval.node) = new UnaryNode((yyvsp[0].tokenData)->tokenLineNumber, UnaryNode::Type::CHSIGN);
                         }
 #line 2160 "parser.tab.c"
     break;
@@ -2162,7 +2162,7 @@ yyreduce:
   case 94: /* unaryOp: MUL  */
 #line 620 "parser.y"
                         {
-                            (yyval.node) = new Unary((yyvsp[0].tokenData)->tokenLineNum, Unary::Type::Sizeof);
+                            (yyval.node) = new UnaryNode((yyvsp[0].tokenData)->tokenLineNumber, UnaryNode::Type::SIZEOF);
                         }
 #line 2168 "parser.tab.c"
     break;
@@ -2170,7 +2170,7 @@ yyreduce:
   case 95: /* unaryOp: QUESTION  */
 #line 624 "parser.y"
                         {
-                            (yyval.node) = new Unary((yyvsp[0].tokenData)->tokenLineNum, Unary::Type::Question);
+                            (yyval.node) = new UnaryNode((yyvsp[0].tokenData)->tokenLineNumber, UnaryNode::Type::QUESTION);
                         }
 #line 2176 "parser.tab.c"
     break;
@@ -2194,7 +2194,7 @@ yyreduce:
   case 98: /* mutable: ID  */
 #line 640 "parser.y"
                         {
-                            (yyval.node) = new Id((yyvsp[0].tokenData)->tokenLineNum, (yyvsp[0].tokenData)->tokenContent);
+                            (yyval.node) = new IdentifierNode((yyvsp[0].tokenData)->tokenLineNumber, (yyvsp[0].tokenData)->tokenInformation);
                         }
 #line 2200 "parser.tab.c"
     break;
@@ -2202,10 +2202,10 @@ yyreduce:
   case 99: /* mutable: ID LBRACK exp RBRACK  */
 #line 644 "parser.y"
                         {
-                            (yyval.node) = new Binary((yyvsp[-3].tokenData)->tokenLineNum, Binary::Type::Index);
-                            Id *node = new Id((yyvsp[-3].tokenData)->tokenLineNum, (yyvsp[-3].tokenData)->tokenContent, true);
-                            (yyval.node)->addChild(node);
-                            (yyval.node)->addChild((yyvsp[-1].node));
+                            (yyval.node) = new BinaryNode((yyvsp[-3].tokenData)->tokenLineNumber, BinaryNode::Type::INDEX);
+                            IdentifierNode *node = new IdentifierNode((yyvsp[-3].tokenData)->tokenLineNumber, (yyvsp[-3].tokenData)->tokenInformation, true);
+                            (yyval.node)->addChildNode(node);
+                            (yyval.node)->addChildNode((yyvsp[-1].node));
                         }
 #line 2211 "parser.tab.c"
     break;
@@ -2237,8 +2237,8 @@ yyreduce:
   case 103: /* call: ID LPAREN args RPAREN  */
 #line 667 "parser.y"
                         {
-                            (yyval.node) = new Call((yyvsp[-3].tokenData)->tokenLineNum, (yyvsp[-3].tokenData)->tokenContent);
-                            (yyval.node)->addChild((yyvsp[-1].node));
+                            (yyval.node) = new CallNode((yyvsp[-3].tokenData)->tokenLineNumber, (yyvsp[-3].tokenData)->tokenInformation);
+                            (yyval.node)->addChildNode((yyvsp[-1].node));
                         }
 #line 2244 "parser.tab.c"
     break;
@@ -2263,7 +2263,7 @@ yyreduce:
 #line 684 "parser.y"
                         {
                             (yyval.node) = (yyvsp[-2].node);
-                            (yyval.node)->addSibling((yyvsp[0].node));
+                            (yyval.node)->addSiblingNode((yyvsp[0].node));
                         }
 #line 2269 "parser.tab.c"
     break;
@@ -2279,7 +2279,7 @@ yyreduce:
   case 108: /* constant: NUMCONST  */
 #line 695 "parser.y"
                         {
-                            (yyval.node) = new Const((yyvsp[0].tokenData)->tokenLineNum, Const::Type::Int, (yyvsp[0].tokenData)->tokenContent);
+                            (yyval.node) = new ConstantNode((yyvsp[0].tokenData)->tokenLineNumber, (yyvsp[0].tokenData)->tokenInformation, ConstantNode::Type::INT);
                         }
 #line 2285 "parser.tab.c"
     break;
@@ -2287,7 +2287,7 @@ yyreduce:
   case 109: /* constant: BOOLCONST  */
 #line 699 "parser.y"
                         {
-                            (yyval.node) = new Const((yyvsp[0].tokenData)->tokenLineNum, Const::Type::Bool, (yyvsp[0].tokenData)->tokenContent);
+                            (yyval.node) = new ConstantNode((yyvsp[0].tokenData)->tokenLineNumber, (yyvsp[0].tokenData)->tokenInformation, ConstantNode::Type::BOOL);
                         }
 #line 2293 "parser.tab.c"
     break;
@@ -2295,7 +2295,7 @@ yyreduce:
   case 110: /* constant: CHARCONST  */
 #line 703 "parser.y"
                         {
-                            (yyval.node) = new Const((yyvsp[0].tokenData)->tokenLineNum, Const::Type::Char, (yyvsp[0].tokenData)->tokenContent);
+                            (yyval.node) = new ConstantNode((yyvsp[0].tokenData)->tokenLineNumber, (yyvsp[0].tokenData)->tokenInformation, ConstantNode::Type::CHAR);
                         }
 #line 2301 "parser.tab.c"
     break;
@@ -2303,7 +2303,7 @@ yyreduce:
   case 111: /* constant: STRINGCONST  */
 #line 707 "parser.y"
                         {
-                            (yyval.node) = new Const((yyvsp[0].tokenData)->tokenLineNum, Const::Type::String, (yyvsp[0].tokenData)->tokenContent);
+                            (yyval.node) = new ConstantNode((yyvsp[0].tokenData)->tokenLineNumber, (yyvsp[0].tokenData)->tokenInformation, ConstantNode::Type::STRING);
                         }
 #line 2309 "parser.tab.c"
     break;
@@ -2515,13 +2515,13 @@ int main(int argc, char *argv[])
     yydebug = compilerFlags.getDebugFlag();
 
     //get the file name from the compiler flags object
-    std::string fileName = compilerFlags.getFileName();
+    std::string fileName = compilerFlags.getFile();
 
     //if the compiler flags object has an error, print the error and exit
     if (argc > 1) 
     {
         // if failed to open file
-        if (!(yyin = fileName.c_str(), "r"))
+        if (!(yyin = fopen(fileName.c_str(), "r")))
         {
             //print error message
             std :: cout << "ERROR: failed to open \'" << fileName << "\'" << std :: endl;
@@ -2534,7 +2534,7 @@ int main(int argc, char *argv[])
     yyparse();
 
     //if the the -p flag was passed, print the AST
-    if(compilerFlags.getPrintFlag())
+    if(compilerFlags.getPrintASTFlag())
     {
         if(root != NULL)
         {

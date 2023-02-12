@@ -331,7 +331,7 @@ std::string ConstantNode::printTokenString() const
 //********************************************************************************
 
 //IdentifierNode Constructor
-IdentifierNode :: IdentifierNode(int tokenLineNumber, bool isArray, std:: string identifierName) : ExpressionNode::ExpressionNode(tokenLineNumber, ExpressionNode::Type::IDENTIFIER)
+IdentifierNode :: IdentifierNode(int tokenLineNumber,std:: string identifierName, bool isArray) : ExpressionNode::ExpressionNode(tokenLineNumber, ExpressionNode::Type::IDENTIFIER)
 {
     //initialize tokenLineNumber
     m_tokenData.tokenLineNumber = tokenLineNumber;

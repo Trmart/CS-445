@@ -14,7 +14,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
 #include "scanType.hpp"  // TokenData Type
-#include "CompilerFlags.hpp" // Compiler Flags
+#include "flags/CompilerFlags.hpp" // Compiler Flags
 #include "ast/AST.hpp" // AST Node Types
 #include <stdio.h>
 #include <string>
@@ -155,11 +155,11 @@ varDeclInit             : varDeclId
 
 varDeclId               : ID
                         {
-                            $$ = new VariableNode($1->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::VOID), $1->tokenInformation);
+                            $$ = new VariableNode($1->tokenLineNumber, $1->tokenInformation, new PrimitiveType(PrimitiveType::Type::VOID));
                         }
                         | ID LBRACK NUMCONST RBRACK
                         {
-                            $$ = new VariableNode($1->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::VOID, true), $1->tokenInformation);
+                            $$ = new VariableNode($1->tokenLineNumber, $1->tokenInformation, new PrimitiveType(PrimitiveType::Type::VOID, true));
                         }
                         ;
 
@@ -179,13 +179,13 @@ typeSpec                : INT
 
 funDecl                 : typeSpec ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new FunctionNode($2->tokenLineNumber, new PrimitiveType($1), $2->tokenInformation);
+                            $$ = new FunctionNode($2->tokenLineNumber, $2->tokenInformation, new PrimitiveType($1));
                             $$->addChildNode($4);
                             $$->addChildNode($6);
                         }
                         | ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new FunctionNode($1->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::Void), $1->tokenInformation);
+                            $$ = new FunctionNode($1->tokenLineNumber, $1->tokenInformation,new PrimitiveType(PrimitiveType::Type::VOID));
                             $$->addChildNode($3);
                             $$->addChildNode($5);
                         }
@@ -240,11 +240,11 @@ parmIdList              : parmIdList COMMA parmId
 
 parmId                  : ID
                         {
-                            $$ = new ParameterNode($1->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::VOID), $1->tokenInformation);
+                            $$ = new ParameterNode($1->tokenLineNumber, $1->tokenInformation, new PrimitiveType(PrimitiveType::Type::VOID));
                         }
                         | ID LBRACK RBRACK
                         {
-                            $$ = new ParameterNode($1->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::VOID, true), $1->tokenInformation);
+                            $$ = new ParameterNode($1->tokenLineNumber, $1->tokenInformation, new PrimitiveType(PrimitiveType::Type::VOID, true));
                         }
                         ;
 
@@ -381,7 +381,7 @@ iterStmtUnmatched       : WHILE simpleExp DO stmtUnmatched
                         | FOR ID ASGN iterRange DO stmtUnmatched
                         {
                             $$ = new ForNode($1->tokenLineNumber);
-                            VariableNode *node = new VariableNode($2->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::INT), $2->tokenInformation);
+                            VariableNode *node = new VariableNode($2->tokenLineNumber, $2->tokenInformation, new PrimitiveType(PrimitiveType::Type::INT));
                             $$->addChildNode(node);
                             $$->addChildNode($4);
                             $$->addChildNode($6);
@@ -397,7 +397,7 @@ iterStmtMatched         : WHILE simpleExp DO stmtMatched
                         | FOR ID ASGN iterRange DO stmtMatched
                         {
                             $$ = new ForNode($1->tokenLineNumber);
-                            VariableNode *node = new VariableNode($2->tokenLineNumber, new PrimitiveType(PrimitiveType::Type::INT), $2->tokenInformation);
+                            VariableNode *node = new VariableNode($2->tokenLineNumber, $2->tokenInformation, new PrimitiveType(PrimitiveType::Type::INT));
                             $$->addChildNode(node);
                             $$->addChildNode($4);
                             $$->addChildNode($6);
@@ -614,7 +614,7 @@ unaryExp                : unaryOp unaryExp
 
 unaryOp                 : SUB
                         {
-                            $$ = new UnaryNode($1->tokenLineNumber, UnUnaryNodeary::Type::CHSIGN);
+                            $$ = new UnaryNode($1->tokenLineNumber, UnaryNode::Type::CHSIGN);
                         }
                         | MUL
                         {
@@ -693,19 +693,19 @@ argList                 : argList COMMA exp
 
 constant                : NUMCONST
                         {
-                            $$ = new ConstantNode($1->tokenLineNumber, ConstantNode::Type::INT, $1->tokenInformation);
+                            $$ = new ConstantNode($1->tokenLineNumber, $1->tokenInformation, ConstantNode::Type::INT);
                         }
                         | BOOLCONST
                         {
-                            $$ = new ConstantNode($1->tokenLineNumber, ConstantNode::Type::BOOL, $1->tokenInformation);
+                            $$ = new ConstantNode($1->tokenLineNumber, $1->tokenInformation, ConstantNode::Type::BOOL);
                         }
                         | CHARCONST
                         {
-                            $$ = new ConstantNode($1->tokenLineNumber, ConstantNode::Type::CHAR, $1->tokenInformation);
+                            $$ = new ConstantNode($1->tokenLineNumber, $1->tokenInformation, ConstantNode::Type::CHAR);
                         }
                         | STRINGCONST
                         {
-                            $$ = new ConstantNode($1->tokenLineNumber, ConstantNode::Type::STRING, $1->tokenInformation);
+                            $$ = new ConstantNode($1->tokenLineNumber, $1->tokenInformation, ConstantNode::Type::STRING);
                         }
                         ;
 %%
@@ -720,13 +720,13 @@ int main(int argc, char *argv[])
     yydebug = compilerFlags.getDebugFlag();
 
     //get the file name from the compiler flags object
-    std::string fileName = compilerFlags.getFileName();
+    std::string fileName = compilerFlags.getFile();
 
     //if the compiler flags object has an error, print the error and exit
     if (argc > 1) 
     {
         // if failed to open file
-        if (!(yyin = fileName.c_str(), "r"))
+        if (!(yyin = fopen(fileName.c_str(), "r")))
         {
             //print error message
             std :: cout << "ERROR: failed to open \'" << fileName << "\'" << std :: endl;
@@ -739,7 +739,7 @@ int main(int argc, char *argv[])
     yyparse();
 
     //if the the -p flag was passed, print the AST
-    if(compilerFlags.getPrintFlag())
+    if(compilerFlags.getPrintASTFlag())
     {
         if(root != NULL)
         {

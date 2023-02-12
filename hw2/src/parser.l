@@ -53,7 +53,7 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 "int" {return INT;}
 "char" {return CHAR;}
 "static" {return setValue(lineNumber, STATIC, yytext);}
-"bool" {return BOOL}
+"bool" {return BOOL;}
 
 "for" {return setValue(lineNumber, FOR, yytext);}
 "while" {return setValue(lineNumber, WHILE, yytext);}
@@ -63,8 +63,6 @@ static int setValue(int linenum, int tokenClass, char *svalue)
 "if" {return setValue(lineNumber, IF, yytext);}
 "else" {return setValue(lineNumber, ELSE, yytext);}
 "then" {return setValue(lineNumber, THEN, yytext);}
-"begin" {return setValue(lineNumber, BEGIN, yytext);}
-
 
 
 "return" {return setValue(lineNumber, RETURN, yytext);}
