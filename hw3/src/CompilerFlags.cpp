@@ -34,7 +34,7 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
     while(true)
     {
 
-        while((compilerFlag = ourGetopt(argc, argv, (char* )"dph")) != EOF)
+        while((compilerFlag = ourGetopt(argc, argv, (char* )"dDhpP")) != EOF)
         {
             switch (compilerFlag)
             {
@@ -43,16 +43,24 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
                             setDebugFlag(true);
                         }
                         break;
-                case 'p':
+                case 'D':
                         {
-                            setPrintASTFlag(true);
+                            setSymbolTableFlag(true);
                         }
-                        break;
                 case 'h':
                         {
                             setHelpFlag(true);
                         }
                         break;
+                case 'p':
+                        {
+                            setPrintASTFlag(true);
+                        }
+                        break;
+                case 'P':
+                        {
+                            setPrintASTWithTypesFlag(true);
+                        }
                 default:
                         {
                             setErrorFlag(true);
@@ -91,11 +99,13 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
 
 void CompilerFlags::printHelpMenu()
 {
-    std::cout << "Usage: ./c- [options] file" << std::endl;
-    std::cout << "Options:" << std::endl;
-    std::cout << "-d: Enable debug mode" << std::endl;
-    std::cout << "-p: Print the AST" << std::endl;
-    std::cout << "-h: Print this help message" << std::endl;
+    std::cout << "usage: c- [options] [sourcefile]" << std::endl;
+    std::cout << "options:" << std::endl;
+    std::cout << "-d     - turn on parser debugging" << std::endl;
+    std::cout << "-D     - turn on symbol table debugging" << std::endl;
+    std::cout << "-h     - print this usage message" << std::endl;
+    std::cout << "-p     - print the abstract syntax tree" << std::endl;
+    std::cout << "-P     - print the abstract syntax tree plus type information" << std::endl;
 }
 
 //Setters
@@ -104,15 +114,9 @@ void CompilerFlags::setDebugFlag(bool debugFlag)
     m_debugFlag = debugFlag;
 }
 
-
-void CompilerFlags::setPrintASTFlag(bool printASTFlag)
+void CompilerFlags::setSymbolTableFlag(bool symbolTableFlag)
 {
-    m_printASTFlag = printASTFlag;
-}
-
-void CompilerFlags::setFile(std::string file)
-{
-    m_file = file;
+    m_symbolTableFlag = symbolTableFlag;
 }
 
 void CompilerFlags::setHelpFlag(bool helpFlag)
@@ -120,10 +124,28 @@ void CompilerFlags::setHelpFlag(bool helpFlag)
     m_helpFlag = helpFlag;
 }
 
+void CompilerFlags::setPrintASTFlag(bool printASTFlag)
+{
+    m_printASTFlag = printASTFlag;
+}
+
+void CompilerFlags::setPrintASTWithTypesFlag(bool printASTWithTypesFlag)
+{
+    m_printASTWithTypesFlag = printASTWithTypesFlag;
+}
+
+void CompilerFlags::setFile(std::string file)
+{
+    m_file = file;
+}
+
+
 void CompilerFlags::setErrorFlag(bool errorFlag)
 {
     m_errorFlag = errorFlag;
 }
+
+
 
 
 void CompilerFlags::resetCompilerFlags()
@@ -159,4 +181,14 @@ bool CompilerFlags::getErrorFlag() const
 bool CompilerFlags::getHelpFlag() const
 {
     return m_helpFlag;
+}
+
+bool CompilerFlags::getSymbolTableFlag() const
+{
+    return m_symbolTableFlag;
+}
+
+bool CompilerFlags::getPrintASTWithTypesFlag() const
+{
+    return m_printASTWithTypesFlag;
 }

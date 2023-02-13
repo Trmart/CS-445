@@ -29,8 +29,10 @@ class CompilerFlags
 
         // Getters
         bool getDebugFlag() const;
-        bool getPrintASTFlag() const;
+        bool getSymbolTableFlag() const;
         bool getHelpFlag() const;
+        bool getPrintASTFlag() const;
+        bool getPrintASTWithTypesFlag() const;
         bool getErrorFlag() const;
         std::string getFile() const;
 
@@ -38,8 +40,10 @@ class CompilerFlags
 
         // Flag member variables
         bool m_debugFlag = false;   // -d
-        bool m_printASTFlag = false;   // -p
+        bool m_symbolTableFlag = false;   // -D
         bool m_helpFlag = false;   // -h
+        bool m_printASTFlag = false;   // -p
+        bool m_printASTWithTypesFlag = false;   // -P
         bool m_errorFlag = false;   // flag error
 
 
@@ -48,8 +52,10 @@ class CompilerFlags
 
         //Setters
         void setDebugFlag(bool debugFlag);
-        void setPrintASTFlag(bool printASTFlag);
+        void setSymbolTableFlag(bool symbolTableFlag);
         void setHelpFlag(bool helpFlag);
+        void setPrintASTFlag(bool printASTFlag);
+        void setPrintASTWithTypesFlag(bool printASTWithTypesFlag);
         void setErrorFlag(bool errorFlag);
         void setFile(std::string file);
 }; 
