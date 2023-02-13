@@ -151,11 +151,15 @@ void CompilerFlags::setErrorFlag(bool errorFlag)
 void CompilerFlags::resetCompilerFlags()
 {
     m_debugFlag = false;
-
-    m_printASTFlag = false;
+    
+    m_symbolTableFlag = false;
 
     m_helpFlag = false;
+    
+    m_printASTFlag = false;
 
+    m_printASTWithTypesFlag = false;
+    
     m_errorFlag = false;
 }
 

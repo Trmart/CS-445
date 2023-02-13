@@ -704,6 +704,10 @@ constant                : NUMCONST
 
 int main(int argc, char *argv[])
 {
+    //initialize the number of errors and warnings to 0
+    int numErrors = 0;
+    int numWarnings = 0;
+
     //create the compiler flags object. This will parse the command line arguments
     CompilerFlags compilerFlags(argc, argv);
 
@@ -726,18 +730,56 @@ int main(int argc, char *argv[])
     //parse the input
     yyparse();
 
-    //if the the -p flag was passed, print the AST
-    if(compilerFlags.getPrintASTFlag())
+    if(numErrors == 0)
     {
-        //if the root is null, throw an error
-        if (root == nullptr)
+        //if the the -p flag was passed, print the AST
+        if(compilerFlags.getPrintASTFlag())
         {
-            throw std::runtime_error("Cannot print root: nullptr");
+            //if the root is null, throw an error
+            if (root == nullptr)
+            {
+                throw std::runtime_error("Cannot print root: nullptr");
+            }
+
+            //print the AST
+            root->printAST();
         }
 
-        //print the AST
-        root->printAST();
+        //create the symbol table
+        symbolTable = new SymbolTable();
+
+        //perform semantic analysis
+        semanticAnalysis(root, symbolTable);
+
+        //if the -D flag was passed, print the symbol table
+        if(compilerFlags.getPrintSymbolTableFlag())
+        {
+            //if the root is null, throw an error
+            if (root == nullptr)
+            {
+                throw std::runtime_error("Cannot print root: nullptr");
+            }
+        }
+
+        //if the -P flag was passed, print the AST with types
+        if(compilerFlags.getPrintASTWithTypesFlag())
+        {
+            //if the root is null, throw an error
+            if (root == nullptr)
+            {
+                throw std::runtime_error("Cannot print root: nullptr");
+            }
+
+            //print the AST with types
+            root->printASTWithTypes();
+        }
+
+        //code generation will eventually go here
     }
+
+    //print the number of errors and warnings
+    std::cout << "Number of errors: " << numErrors << std::endl;
+    std::cout << "Number of warnings: " << numWarnings << std::endl;
 
     //delete the tree root. Free the memory. 
     delete root;
