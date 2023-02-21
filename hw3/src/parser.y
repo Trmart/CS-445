@@ -3,9 +3,9 @@
 Taylor Martin
 CS-445 Compiler Design
 University Of Idaho
-HW2
+HW3
 Dr. Wilder
-1/30/2023
+2/13/2023
 
 FILE: parser.y
 DESC: yacc parser for the calculator language
@@ -16,6 +16,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 #include "CompilerFlags.hpp"
 #include "scanType.hpp"
 #include "AST/AST.hpp"
+#include "Semantic/symbolTable.h"
 
 #include <iostream>
 #include <string>
@@ -724,6 +725,10 @@ int main(int argc, char *argv[])
         //print error message
         //exit with error
         throw std::runtime_error("Cannot open file: \'" + fileName + "\'");
+        
+        //print the number of errors and warnings
+        std::cout << "Number of errors: " << numErrors << std::endl;
+        std::cout << "Number of warnings: " << numWarnings << std::endl;
 
     }
 
@@ -748,8 +753,11 @@ int main(int argc, char *argv[])
         //create the symbol table
         symbolTable = new SymbolTable();
 
+        //create the semantics analyzer
+        Semantics analyzer = Semantics(&symbolTable);
+        
         //perform semantic analysis
-        semanticAnalysis(root, symbolTable);
+        analyzer.analyze(root);
 
         //if the -D flag was passed, print the symbol table
         if(compilerFlags.getPrintSymbolTableFlag())

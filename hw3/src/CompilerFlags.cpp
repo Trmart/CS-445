@@ -2,9 +2,9 @@
 Taylor Martin
 CS-445 Compiler Design
 University Of Idaho
-HW2
+HW3
 Dr. Wilder
-1/30/2023
+2/13/2023
 
 FILE: CompilerFlags.cpp
 DESC: Class functions definitions to detect and hold c- compiler flags
