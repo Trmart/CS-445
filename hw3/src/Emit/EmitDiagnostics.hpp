@@ -6,20 +6,19 @@ HW3
 Dr. Wilder
 2/13/2023
 
-FILE: Emit.hpp
-DESC: yacc parser for the calculator language
+FILE: EmitDiagnostics.hpp
+DESC: Creates classes within the EmitDiagnostics namespace to emit errors and warnings
 
-Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
-#ifndef EMIT_HPP
-#define EMIT_HPP
+#ifndef EMITDIAGNOSTICS_HPP
+#define EMITDIAGNOSTICS_HPP
 
 #include <iostream>
 #include <string>
 
 
-namespace Emit
+namespace EmitDiagnostics
 {
     class Error
     {
@@ -32,13 +31,17 @@ namespace Emit
             static void emitGenericError(const int lineNumber, const std::string errorMessage);
 
             //emit a Linker error
-            static void emitLinkerError(const int lineNumber, const std::string errorMessage);
+            static void emitLinkerError(const std::string errorMessage);
 
             //emit a ArgList error
-            static void emitArgListError(const int lineNumber, const std::string errorMessage);
+            static void emitArgListError(const std::string errorMessage);
 
             //emit an Undefined Main function error
-            static void emitUndefinedMainError(const int lineNumber, const std::string errorMessage);
+            static void emitUndefinedMainError();
+
+            //get the number of errors
+            static int getErrorCount(); 
+
 
 
         protected:
@@ -59,8 +62,10 @@ namespace Emit
             static void emitWarningCount();
 
             //emit a generic warning message
-            static void emitGenericWarnings(const char* message);
-        
+            static void emitGenericWarnings(const int lineNumber, const char* message);
+
+            //get the number of warnings
+            static int getWarningCount(); 
         
         protected:
             

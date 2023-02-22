@@ -1,4 +1,4 @@
-#include "symbolTable.h"
+#include "symbolTable.hpp"
 
 // // // // // // // // // // // // // // // // // // // // 
 //
@@ -60,50 +60,61 @@ void pointerPrintStr(void *data)
 // Helper class for SymbolTable
 //
 
-class SymbolTable::Scope {
-private:
-    static bool debugFlg;                      // turn on tedious debugging
-    std::string name;                          // name of scope
-    std::map<std::string , void *> symbols;    // use an ordered map (not as fast as unordered)
+class SymbolTable::Scope 
+{
 
-public:
-    Scope(std::string newname);
-    ~Scope();
-    std::string scopeName();                   // returns name of scope
-    void debug(bool state);                    // sets the debug flag to state
-    void print(void (*printData)(void *));     // prints the table using the supplied function to print the void *
-    void applyToAll(void (*action)(std::string , void *));  // applies func to all symbol/data pairs
-    bool insert(std::string sym, void *ptr);   // inserts a new ptr associated with symbol sym
-                                               // returns false if already defined
-    void *lookup(std::string sym);             // returns the ptr associated with sym
-                                               // returns NULL if symbol not found
+    public:
+        Scope(std::string newname);
+        ~Scope();
+        std::string scopeName();                   // returns name of scope
+        void debug(bool state);                    // sets the debug flag to state
+        void print(void (*printData)(void *));     // prints the table using the supplied function to print the void *
+        void applyToAll(void (*action)(std::string , void *));  // applies func to all symbol/data pairs
+        bool insert(std::string sym, void *ptr);   // inserts a new ptr associated with symbol sym
+                                                // returns false if already defined
+        void *lookup(std::string sym);             // returns the ptr associated with sym
+                                                // returns NULL if symbol not found
+
+        std::map<std::string , void *> getSymbols() { return symbols; }
+    
+    private:
+        static bool debugFlg;                      // turn on tedious debugging
+        std::string name;                          // name of scope
+        std::map<std::string , void *> symbols;    // use an ordered map (not as fast as unordered)
+
 };
 
 
-SymbolTable::Scope::Scope(std::string newname) {
+SymbolTable::Scope::Scope(std::string newname) 
+{
     name = newname;
     debugFlg = false;
 }
 
 
-SymbolTable::Scope::~Scope() {
+SymbolTable::Scope::~Scope() 
+{
 }
 
 // returns char *name of scope
-std::string SymbolTable::Scope::scopeName() {
+std::string SymbolTable::Scope::scopeName() 
+{
     return name;
 }
 
 // set scope debugging
-void SymbolTable::Scope::debug(bool state) {
+void SymbolTable::Scope::debug(bool state) 
+{
     debugFlg = state;
 }
 
 
 // print the scope
-void SymbolTable::Scope::print(void (*printData)(void *)) {
+void SymbolTable::Scope::print(void (*printData)(void *)) 
+{
     printf("Scope: %-15s -----------------\n", name.c_str());
-    for (std::map<std::string , void *>::iterator it=symbols.begin(); it!=symbols.end(); it++) {
+    for (std::map<std::string , void *>::iterator it=symbols.begin(); it!=symbols.end(); it++) 
+    {
         printf("%20s: ", (it->first).c_str());
         printData(it->second);
         printf("\n");
@@ -113,38 +124,47 @@ void SymbolTable::Scope::print(void (*printData)(void *)) {
 
 
 // apply the function to each symbol in this scope
-void SymbolTable::Scope::applyToAll(void (*action)(std::string , void *)) {
-    for (std::map<std::string , void *>::iterator it=symbols.begin(); it!=symbols.end(); it++) {
+void SymbolTable::Scope::applyToAll(void (*action)(std::string , void *)) 
+{
+    for (std::map<std::string , void *>::iterator it=symbols.begin(); it!=symbols.end(); it++) 
+    {
         action(it->first, it->second);
     }
 }
 
 
 // returns true if insert was successful and false if symbol already in this scope
-bool SymbolTable::Scope::insert(std::string sym, void *ptr) {
-    if (symbols.find(sym) == symbols.end()) {
+bool SymbolTable::Scope::insert(std::string sym, void *ptr) 
+{
+    if (symbols.find(sym) == symbols.end()) 
+    {
         if (debugFlg) printf("DEBUG(Scope): insert in \"%s\" the symbol \"%s\".\n",
                              name.c_str(),
                              sym.c_str());
-        if (ptr==NULL) {
+        if (ptr==NULL) 
+        {
             printf("ERROR(SymbolTable): Attempting to save a NULL pointer for the symbol '%s'.\n",
                    sym.c_str());
         }
         symbols[sym] = ptr;
         return true;
     }
-    else {
+    else 
+    {
         if (debugFlg) printf("DEBUG(Scope): insert in \"%s\" the symbol \"%s\" but symbol already there!\n", name.c_str(), sym.c_str());
         return false;
     }
 }
 
-void *SymbolTable::Scope::lookup(std::string sym) {
-    if (symbols.find(sym) != symbols.end()) {
+void *SymbolTable::Scope::lookup(std::string sym) 
+{
+    if (symbols.find(sym) != symbols.end()) 
+    {
         if (debugFlg) printf("DEBUG(Scope): lookup in \"%s\" for the symbol \"%s\" and found it.\n", name.c_str(), sym.c_str());
         return symbols[sym];
     }
-    else {
+    else 
+    {
         if (debugFlg) printf("DEBUG(Scope): lookup in \"%s\" for the symbol \"%s\" and did NOT find it.\n", name.c_str(), sym.c_str());
         return NULL;
     }
@@ -192,6 +212,11 @@ void SymbolTable::print(void (*printData)(void *))
     printf("===========  ============  ===========\n");
 }
 
+//get the symbol
+std::map<std::string , void *> SymbolTable::getSymbols()
+{
+    return (stack.back())->getSymbols();
+}
 
 // Enter a scope
 void SymbolTable::enter(std::string name)                    
@@ -312,12 +337,13 @@ int wordsLen = 7;
 
 
 int counter;
-void countSymbols(std::string sym, void *ptr) {
+void countSymbols(std::string sym, void *ptr) 
+{
     counter++;
     printf("%d %20s: ", counter, sym.c_str());
     pointerPrintAddr(ptr);
     printf("\n");
- }
+}
 
 
 bool SymbolTable::test()
