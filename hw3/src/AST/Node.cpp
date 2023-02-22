@@ -16,39 +16,16 @@ DESC: Node base class definitions for AST nodes. Statements, Expressions, and De
 
 // ************ Node Class Constructors ************************
 
-//Base Constructors
-Node::Node(const int tokenLineNumber) : m_tokenLineNumber(tokenLineNumber), m_siblingNode(nullptr)
+
+Node::Node(const int tokenLineNumber) : m_tokenLineNumber(tokenLineNumber), m_nodeType(Node::Type::None), m_siblingNode(nullptr), m_parentNode(nullptr)
 {
 
 }
 
 
-
-//Int Constructor
-Node::Node(const int tokenLineNumber, const int value) : m_tokenLineNumber(tokenLineNumber), m_siblingNode(nullptr)
+Node::Node(const int tokenLineNumber, const Node::Type nodeType) : m_tokenLineNumber(tokenLineNumber), m_nodeType(nodeType), m_siblingNode(nullptr), m_parentNode(nullptr)
 {
-    m_numValue = value;
-}
 
-
-//Char Constructor
-Node::Node(const int tokenLineNumber, const char value) : m_tokenLineNumber(tokenLineNumber), m_siblingNode(nullptr)
-{
-    m_charValue = value;
-}
-
-
-//Bool Constructor
-Node::Node(const int tokenLineNumber, const bool value) : m_tokenLineNumber(tokenLineNumber), m_siblingNode(nullptr)
-{
-    m_boolValue = value;
-}
-
-
-//String Constructor
-Node::Node(const int tokenLineNumber, const std::string value) : m_tokenLineNumber(tokenLineNumber), m_siblingNode(nullptr)
-{
-    m_stringValue = value;
 }
 
 
@@ -78,19 +55,19 @@ std::string Node ::printTokenString() const
 }
 
 //Print AST Nodes
-void Node :: printASTNode() const
+void Node :: printASTNode(const bool showNodeTypes) const
 {
     std:: cout << printTokenString(); 
 }
 
 //Print The Whole AST
-void Node :: printAST() const
+void Node :: printAST(const bool showNodeTypes) const
 {
     static int numSiblingNodes = 0; 
 
     static int numTabs = 0; 
 
-    printASTNode(); 
+    printASTNode(showNodeTypes); 
 
     std::cout << " [line: " << m_tokenLineNumber << "]" << std::endl;
 
@@ -116,7 +93,7 @@ void Node :: printAST() const
 
             numSiblingNodes = 0; 
 
-            tempChildNode->printAST();
+            tempChildNode->printAST(showNodeTypes);
 
             numSiblingNodes = tempSiblingCount; 
 
@@ -136,7 +113,7 @@ void Node :: printAST() const
         //print current sibling node
         std :: cout << "Sibling: " + std :: to_string(numSiblingNodes) << "  "; 
         //print the sibling node
-        m_siblingNode->printAST(); 
+        m_siblingNode->printAST(showNodeTypes); 
     } 
 
     //decrement number of sibling nodes
