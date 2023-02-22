@@ -14,28 +14,88 @@ DESC: Declares Functions to identify AST nodes
 #include "ASTNodeIdentifier.hpp"
 
 //******************************************************
+// ************ Declaration Nodes **********************
+//******************************************************
+
+bool isDeclarationNode(const Node* node)
+{
+    return (node != nullptr && node->getNodeType() == NodeType::Declaration);
+}
+
+bool isFunctionNode(const Node* node)
+{
+    if (!isDeclarationNode(node))
+    {
+        return false;
+    }
+    
+    return (node != nullptr && node->getNodeType() == NodeType::Function);
+}
+
+bool isParameterNode(const Node* node)
+{
+    if (!isDeclarationNode(node))
+    {
+        return false;
+    }
+    
+    return (node != nullptr && node->getNodeType() == NodeType::Parameter);
+}
+
+bool isVariableNode(const Node* node)
+{
+    if (!isDeclarationNode(node))
+    {
+        return false;
+    }
+    
+    return (node != nullptr && node->getNodeType() == NodeType::Variable);
+}
+
+
+//******************************************************
 // ************ Expression Nodes ***********************
 //******************************************************
 
 
 bool isAssignmentNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::Assignment;
+    if (!isExpressionNode(node))
+    {
+        return false;
+    }
+    
+    return (node != nullptr && node->getNodeType() == NodeType::Assignment);
 }
 
 bool isBinaryNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::Binary;
+    if (!isExpressionNode(node))
+    {
+        return false;
+    }
+    
+    return (node != nullptr && node->getNodeType() == NodeType::Binary);
 }
 
 bool isCallNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::Call;
+    if (!isExpressionNode(node))
+    {
+        return false;
+    }
+    
+    return (node != nullptr && node->getNodeType() == NodeType::Call);
 }
 
 bool isConstantNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::Constant;
+    if (!isExpressionNode(node))
+    {
+        return false;
+    }
+    
+    return (node != nullptr && node->getNodeType() == NodeType::Constant);
 }
 
 bool isExpressionNode(const Node* node)
@@ -45,42 +105,32 @@ bool isExpressionNode(const Node* node)
 
 bool isIdentifierNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::Identifier;
+    if(!isExpressionNode(node))
+    {
+        return false;
+    }
+    
+    return (node != nullptr && node->getNodeType() == NodeType::Identifier);
 }
 
 bool isUnaryAssignmentNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::UnaryAssignment;
+    if (!isExpressionNode(node))
+    {
+        return false;
+    }
+    
+    return (node != nullptr && node->getNodeType() == NodeType::UnaryAssignment);
 }
 
 bool isUnaryNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::Unary;
-}
-
-
-//******************************************************
-// ************ Declaration Nodes **********************
-//******************************************************
-
-bool isDeclarationNode(const Node* node)
-{
-    return node->getNodeType() == NodeType::Declaration;
-}
-
-bool isFunctionNode(const Node* node)
-{
-    return node->getNodeType() == NodeType::Function;
-}
-
-bool isParameterNode(const Node* node)
-{
-    return node->getNodeType() == NodeType::Parameter;
-}
-
-bool isVariableNode(const Node* node)
-{
-    return node->getNodeType() == NodeType::Variable;
+    if (!isExpressionNode(node))
+    {
+        return false;
+    }
+    
+    return (node != nullptr && node->getNodeType() == NodeType::Unary);
 }
 
 
@@ -91,32 +141,56 @@ bool isVariableNode(const Node* node)
 
 bool isBreakNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::Break;
+    if(!isStatementNode(node))
+    {
+        return false;
+    }
+    return (node != nullptr && node->getNodeType() == NodeType::Break);
 }
 
 bool isCompoundNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::Compound;
+    if(!isStatementNode(node))
+    {
+        return false;
+    }
+    return (node != nullptr && node->getNodeType() == NodeType::Compound);
 }
 
 bool isContinueNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::Continue;
+    if(!isStatementNode(node))
+    {
+        return false;
+    }
+    return (node != nullptr && node->getNodeType() == NodeType::Continue);
 }
 
 bool isForNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::For;
+    if(!isStatementNode(node))
+    {
+        return false;
+    }
+    return (node != nullptr && node->getNodeType() == NodeType::For);
 }
 
 bool isIfNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::If;
+    if(!isStatementNode(node))
+    {
+        return false;
+    }
+    return (node != nullptr && node->getNodeType() == NodeType::If);
 }
 
 bool isReturnNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::Return;
+    if(!isStatementNode(node))
+    {
+        return false;
+    }
+    return (node != nullptr && node->getNodeType() == NodeType::Return);
 }
 
 bool isStatementNode(const Node* node)
@@ -126,5 +200,9 @@ bool isStatementNode(const Node* node)
 
 bool isWhileNode(const Node* node)
 {
-    return node->getNodeType() == NodeType::While;
+    if(!isStatementNode(node))
+    {
+        return false;
+    }
+    return (node != nullptr && node->getNodeType() == NodeType::While);
 }
