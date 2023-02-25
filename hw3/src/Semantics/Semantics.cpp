@@ -879,7 +879,7 @@ void Semantics::checkOperandsOfType(ExpressionNode* expression, const NodeData::
     // Both sides must be the same type
     if (lhsData->getType() != rhsData->getType())
     {
-        EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires operands of the same type but lhs is type " + lhsData->printTokenString() + " and rhs is type " + rhsData->stringify() + ".");
+        EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires operands of the same type but lhs is type " + lhsData->printTokenString() + " and rhs is type " + rhsData->printTokenString() + ".");
     }
 
     // Both sides must be arrays or both must not be arrays
@@ -892,19 +892,19 @@ void Semantics::checkOperandsOfType(ExpressionNode* expression, const NodeData::
         EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires both operands be arrays or not but lhs is not an array and rhs is an array.");
     }
 
-    if (isId(lhsExp) && isId(rhsExp))
+    if (isIdentifierNode(lhsExp) && isIdentifierNode(rhsExp))
     {
-        Id *lhsId = (Id *)lhsExp;
-        Id *rhsId = (Id *)rhsExp;
-        if (lhsId->getName() != rhsId->getName())
+        Id* lhsId = (Id* )lhsExp;
+        Id* rhsId = (Id* )rhsExp;
+        if (lhsId->getIdentifierName() != rhsId->getIdentifierName())
         {
-            Decl *prevLhsDecl = (Decl *)(getFromSymTable(lhsId->getName()));
-            Decl *prevRhsDecl = (Decl *)(getFromSymTable(rhsId->getName()));
-            if ((prevLhsDecl != nullptr && isVar(prevLhsDecl)) && (prevRhsDecl != nullptr && isVar(prevRhsDecl)))
+            DeclarationNode* prevLhsDecl = (DeclarationNode* )(getFromSymTable(lhsId->getIdentifierName()));
+            DeclarationNode* prevRhsDecl = (DeclarationNode* )(getFromSymTable(rhsId->getIdentifierName()));
+            if ((prevLhsDecl != nullptr && isVariableNode(prevLhsDecl)) && (prevRhsDecl != nullptr && isVariableNode(prevRhsDecl)))
             {
-                if (rhsData->getCopyOf() != lhsId->getName())
+                if (rhsData->getCopyString() != lhsId->getIdentifierName())
                 {
-                    lhsData->setCopyOf(rhsId->getName());
+                    lhsData->setCopyString(rhsId->getIdentifierName());
                 }
             }
         }
@@ -914,97 +914,143 @@ void Semantics::checkOperandsOfType(ExpressionNode* expression, const NodeData::
 
 void Semantics::checkUnaryOperands(const Unary* unary) const
 {
-     if (!isUnary(unary))
+     if (!isUnaryNode(unary))
     {
         throw std::runtime_error("Semantics::checkUnaryOperands() - Invalid Unary");
     }
-    if (!lhsExists((Exp *)unary))
+    if (!lhsExists((ExpressionNode* )unary))
     {
         throw std::runtime_error("Semantics::checkUnaryOperands() - LHS operand must exist");
     }
 
-    std::vector<Node *> children = unary->getChildren();
-    Exp *lhsExp = (Exp *)(children[0]);
-    Data *lhsData = setAndGetExpData(lhsExp);
+    std::vector<Node* > children = unary->getChildernNodes();
+    
+    ExpressionNode *lhsExp = (ExpressionNode* )(children[0]);
+    
+    NodeData *lhsData = setAndGetExpData(lhsExp);
 
-    if (lhsData->getType() == Data::Type::Undefined)
+    if (lhsData->getType() == NodeData::Type::UNDEFINED)
     {
-        unary->getData()->setType(Data::Type::Undefined);
+        unary->getNodeData()->setType(NodeData::Type::UNDEFINED);
         return;
     }
 
-    switch (unary->getType())
+    switch (unary->getUnaryType())
     {
-        case Unary::Type::Chsign:
-        case Unary::Type::Question:
-            if (lhsData->getIsArray())
-            {
-                Emit::Error::generic(unary->getLineNum(), "The operation '" + unary->getSym() + "' does not work with arrays.");
-            }
-            if (lhsData->getType() != Data::Type::Int)
-            {
-                Emit::Error::generic(unary->getLineNum(), "Unary '" + unary->getSym() + "' requires an operand of type int but was given type " + lhsData->stringify() + ".");
-            }
-            break;
-        case Unary::Type::Sizeof:
-            if (!lhsData->getIsArray())
-            {
-                Emit::Error::generic(unary->getLineNum(), "The operation 'sizeof' only works with arrays.");
-            }
-            break;
-        case Unary::Type::Not:
-            if (lhsData->getType() != Data::Type::Bool)
-            {
-                Emit::Error::generic(unary->getLineNum(), "Unary '" + unary->getSym() + "' requires an operand of type bool but was given type " + lhsData->stringify() + ".");
-            }
-            if (lhsData->getIsArray())
-            {
-                Emit::Error::generic(unary->getLineNum(), "The operation 'not' does not work with arrays.");
-            }
-            break;
+        case Unary::Type::CHSIGN:
+                            {
+                                if (lhsData->getIsArray())
+                                {
+                                    EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "The operation '" + unary->printTokenString() + "' does not work with arrays.");
+                                }
+                                if (lhsData->getType() != NodeData::Type::INT)
+                                {
+                                    EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "Unary '" + unary->printTokenString() + "' requires an operand of type int but was given type " + lhsData->printTokenString() + ".");
+                                }
+                            }
+                            break;
+        
+        case Unary::Type::QUESTION:
+                                {
+                                    if (lhsData->getIsArray())
+                                    {
+                                        EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "The operation '" + unary->printTokenString() + "' does not work with arrays.");
+                                    }
+                                    if (lhsData->getType() != NodeData::Type::INT)
+                                    {
+                                        EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "Unary '" + unary->printTokenString() + "' requires an operand of type int but was given type " + lhsData->printTokenString() + ".");
+                                    }
+                                }
+                                break;
+        
+        case Unary::Type::SIZEOF:
+                            {
+                                if (!lhsData->getIsArray())
+                                {
+                                    EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "The operation 'sizeof' only works with arrays.");
+                                }
+                            }
+                            break;
+
+        case Unary::Type::NOT:
+                        {
+                            if (lhsData->getType() != NodeData::Type::BOOL)
+                            {
+                                EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "Unary '" + unary->printTokenString() + "' requires an operand of type bool but was given type " + lhsData->printTokenString() + ".");
+                            }
+                            if (lhsData->getIsArray())
+                            {
+                                EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "The operation 'not' does not work with arrays.");
+                            }
+                        }
+                        break;
+        
+        
         default:
+        {
             throw std::runtime_error("Semantics::checkUnaryOperands() - Unknown type");
-            break;
+        }
+        break;
     }
 }
 
 
 void Semantics::checkUnaryAsgnOperands(const UnaryAsgn* unaryAsgn) const
 {
-        if (!isUnaryAsgn(unaryAsgn))
+    if (!isUnaryAssignmentNode(unaryAsgn))
     {
         throw std::runtime_error("Semantics::checkUnaryAsgnOperands() - Invalid UnaryAsgn");
     }
-    if (!lhsExists((Exp *)unaryAsgn))
+    if (!lhsExists((ExpressionNode* )unaryAsgn))
     {
         throw std::runtime_error("Semantics::checkUnaryAsgnOperands() - LHS operand must exist");
     }
 
-    std::vector<Node *> children = unaryAsgn->getChildren();
-    Exp *lhsExp = (Exp *)(children[0]);
-    Data *lhsData = setAndGetExpData(lhsExp);
-    if (lhsData->getType() == Data::Type::Undefined)
+    std::vector<Node *> children = unaryAsgn->getChildernNodes();
+    ExpressionNode* lhsExp = (ExpressionNode* )(children[0]);
+    NodeData* lhsData = setAndGetExpData(lhsExp);
+    
+    
+    if (lhsData->getType() == NodeData::Type::UNDEFINED)
     {
-        unaryAsgn->getData()->setType(Data::Type::Undefined);
+        unaryAsgn->getNodeData()->setType(NodeData::Type::UNDEFINED);
         return;
     }
 
-    switch (unaryAsgn->getType())
+    switch (unaryAsgn->getUnaryAssignmentType())
     {
-        case UnaryAsgn::Type::Inc:
-        case UnaryAsgn::Type::Dec:
-            if (lhsData->getIsArray())
-            {
-                Emit::Error::generic(unaryAsgn->getLineNum(), "The operation '" + unaryAsgn->getSym() + "' does not work with arrays.");
-            }
-            if (lhsData->getType() != Data::Type::Int)
-            {
-                Emit::Error::generic(unaryAsgn->getLineNum(), "Unary '" + unaryAsgn->getSym() + "' requires an operand of type int but was given type " + lhsData->stringify() + ".");
-            }
-            break;
+        
+        case UnaryAsgn::Type::INC:
+                                {
+                                    if (lhsData->getIsArray())
+                                    {
+                                        EmitDiagnostics::Error::emitGenericError(unaryAsgn->getTokenLineNumber(), "The operation '" + unaryAsgn->printTokenString() + "' does not work with arrays.");
+                                    }
+                                    if (lhsData->getType() != NodeData::Type::INT)
+                                    {
+                                        EmitDiagnostics::Error::emitGenericError(unaryAsgn->getTokenLineNumber(), "Unary '" + unaryAsgn->printTokenString() + "' requires an operand of type int but was given type " + lhsData->printTokenString() + ".");
+                                    }
+                                }
+                                break;
+        
+        case UnaryAsgn::Type::DEC:
+                                {
+                                    if (lhsData->getIsArray())
+                                    {
+                                        EmitDiagnostics::Error::emitGenericError(unaryAsgn->getTokenLineNumber(), "The operation '" + unaryAsgn->printTokenString() + "' does not work with arrays.");
+                                    }
+                                    if (lhsData->getType() != NodeData::Type::INT)
+                                    {
+                                        EmitDiagnostics::Error::emitGenericError(unaryAsgn->getTokenLineNumber(), "Unary '" + unaryAsgn->printTokenString() + "' requires an operand of type int but was given type " + lhsData->printTokenString() + ".");
+                                    }
+                                }
+                                break;
+        
         default:
+        {
             throw std::runtime_error("Semantics::checkUnaryAsgnOperands() - Unknown type");
-            break;
+        }
+        break;
     }
 }
 
