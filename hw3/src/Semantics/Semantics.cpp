@@ -790,7 +790,7 @@ void Semantics::checkIndex(const Binary* binary) const
 
 void Semantics::checkOperandsOfSameType(ExpressionNode* expression) const
 {
-     if (!isExpressionNode(expression))
+    if (!isExpressionNode(expression))
     {
         throw std::runtime_error("Semantics::checkOperandsOfSameType() - Invalid Exp");
     }
@@ -808,7 +808,7 @@ void Semantics::checkOperandsOfSameType(ExpressionNode* expression) const
     NodeData *rhsData = setAndGetExpData(rhsExp);
 
     // Ignore cases where the LHS has no type
-    if (lhsData->getType() == Data::Type::Undefined)
+    if (lhsData->getType() == NodeData::Type::UNDEFINED)
     {
         expression->getNodeData()->setType(NodeData::Type::UNDEFINED);
         return;
@@ -817,32 +817,32 @@ void Semantics::checkOperandsOfSameType(ExpressionNode* expression) const
     // Both sides must be the same type
     if (lhsData->getType() != rhsData->getType())
     {
-        Emit::Error::generic(exp->getLineNum(), "'" + sym + "' requires operands of the same type but lhs is type " + lhsData->stringify() + " and rhs is type " + rhsData->stringify() + ".");
+        EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires operands of the same type but lhs is type " + lhsData->printTokenString() + " and rhs is type " + rhsData->printTokenString() + ".");
     }
 
     // Both sides must be arrays or both must not be arrays
     if (lhsData->getIsArray() && !rhsData->getIsArray())
     {
-        Emit::Error::generic(exp->getLineNum(), "'" + sym + "' requires both operands be arrays or not but lhs is an array and rhs is not an array.");
+        EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires both operands be arrays or not but lhs is an array and rhs is not an array.");
     }
     else if (!lhsData->getIsArray() && rhsData->getIsArray())
     {
-        Emit::Error::generic(exp->getLineNum(), "'" + sym + "' requires both operands be arrays or not but lhs is not an array and rhs is an array.");
+        EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires both operands be arrays or not but lhs is not an array and rhs is an array.");
     }
 
-    if (isId(lhsExp) && isId(rhsExp))
+    if (isIdentifierNode(lhsExp) && isIdentifierNode(rhsExp))
     {
         Id *lhsId = (Id *)lhsExp;
         Id *rhsId = (Id *)rhsExp;
-        if (lhsId->getName() != rhsId->getName())
+        if (lhsId->getIdentifierName() != rhsId->getIdentifierName())
         {
-            Decl *prevLhsDecl = (Decl *)(getFromSymTable(lhsId->getName()));
-            Decl *prevRhsDecl = (Decl *)(getFromSymTable(rhsId->getName()));
-            if ((prevLhsDecl != nullptr && isVar(prevLhsDecl)) && (prevRhsDecl != nullptr && isVar(prevRhsDecl)))
+            DeclarationNode* prevLhsDeclaration = (DeclarationNode* )(getFromSymTable(lhsId->getIdentifierName()));
+            DeclarationNode *prevRhsDeclaration = (DeclarationNode* )(getFromSymTable(rhsId->getIdentifierName()));
+            if ((prevLhsDeclaration != nullptr && isVariableNode(prevLhsDeclaration)) && (prevRhsDeclaration != nullptr && isVariableNode(prevRhsDeclaration)))
             {
-                if (rhsData->getCopyOf() != lhsId->getName())
+                if (rhsData->getCopyString() != lhsId->getIdentifierName())
                 {
-                    lhsData->setCopyOf(rhsId->getName());
+                    lhsData->setCopyString(rhsId->getIdentifierName());
                 }
             }
         }
@@ -863,7 +863,7 @@ void Semantics::checkOperandsOfType(ExpressionNode* expression, const NodeData::
 
     std::string sym = getExpSym(expression);
 
-    std::vector<Node* > children = expression->getChildren();
+    std::vector<Node* > children = expression->getChildernNodes();
     ExpressionNode* lhsExp = (ExpressionNode* )(children[0]);
     ExpressionNode* rhsExp = (ExpressionNode* )(children[1]);
     NodeData* lhsData = setAndGetExpData(lhsExp);
@@ -879,17 +879,17 @@ void Semantics::checkOperandsOfType(ExpressionNode* expression, const NodeData::
     // Both sides must be the same type
     if (lhsData->getType() != rhsData->getType())
     {
-        Emit::Error::generic(exp->getLineNum(), "'" + sym + "' requires operands of the same type but lhs is type " + lhsData->stringify() + " and rhs is type " + rhsData->stringify() + ".");
+        EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires operands of the same type but lhs is type " + lhsData->printTokenString() + " and rhs is type " + rhsData->stringify() + ".");
     }
 
     // Both sides must be arrays or both must not be arrays
     if (lhsData->getIsArray() && !rhsData->getIsArray())
     {
-        Emit::Error::generic(exp->getLineNum(), "'" + sym + "' requires both operands be arrays or not but lhs is an array and rhs is not an array.");
+        EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires both operands be arrays or not but lhs is an array and rhs is not an array.");
     }
     else if (!lhsData->getIsArray() && rhsData->getIsArray())
     {
-        Emit::Error::generic(exp->getLineNum(), "'" + sym + "' requires both operands be arrays or not but lhs is not an array and rhs is an array.");
+        EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires both operands be arrays or not but lhs is not an array and rhs is an array.");
     }
 
     if (isId(lhsExp) && isId(rhsExp))
@@ -1278,7 +1278,7 @@ void Semantics::leaveScope()
 
 bool Semantics::addToSymTable(const DeclarationNode* declaration, const bool global=false)
 {
-     if (!isDecl(decl))
+     if (!isDeclarationNode(declaration))
     {
         throw std::runtime_error("Semantics::addToSymTable() - Invalid Decl");
     }
@@ -1286,23 +1286,23 @@ bool Semantics::addToSymTable(const DeclarationNode* declaration, const bool glo
     bool inserted = false;
     if (global)
     {
-        inserted = m_symTable->insertGlobal(decl->getName(), (void *)decl);
+        inserted = m_symbolTable->insertGlobal(declaration->getName(), (void *)declaration);
     }
     else
     {
-        inserted = m_symTable->insert(decl->getName(), (void *)decl);
+        inserted = m_symbolTable->insert(declaration->getName(), (void *)declaration);
     }
 
     if (!inserted)
     {
-        DeclarationNode* prevDeclaration = (DeclarationNode* )(getFromSymTable(decl->getDeclarationName()));
+        DeclarationNode* prevDeclaration = (DeclarationNode* )(getFromSymTable(declaration->getName()));
         if (prevDeclaration == nullptr)
         {
             throw std::runtime_error("Semantics::addToSymTable() - Failed to insert Decl");
         }
         std::stringstream msg;
-        msg << "Symbol '" << decl->getName() << "' is already declared at line " << prevDeclaration->getLineNum() << ".";
-        EmitDiagnostics::Error::emitGenericError(decl->getToke(), msg.str());
+        msg << "Symbol '" << declaration->getName() << "' is already declared at line " << prevDeclaration->getTokenLineNumber() << ".";
+        EmitDiagnostics::Error::emitGenericError(declaration->get(), msg.str());
     }
 
     return inserted;
