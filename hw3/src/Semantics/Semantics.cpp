@@ -347,18 +347,52 @@ void Semantics::analyzeBinaryNode(const Binary* binary) const
                                 checkIndex(binary);
                             }
                             break;
-        case Binary::Type::And:
-        case Binary::Type::Or:
-            checkOperandsOfType((Exp *)binary, Data::Type::Bool);
-            break;
+        case Binary::Type::AND:
+                            {
+                                checkOperandsOfType((ExpressionNode* )binary, NodeData::Type::BOOL);
+                            }
+                            break; 
+        case Binary::Type::OR:
+                            {
+                                checkOperandsOfType((ExpressionNode* )binary, NodeData::Type::BOOL);
+                            }
+                            break;
+        
         case Binary::Type::LT:
+                            {
+                                checkOperandsOfSameType((ExpressionNode *)binary);
+                            }
+                            break; 
+        
         case Binary::Type::LEQ:
+                            {
+                                checkOperandsOfSameType((ExpressionNode *)binary);
+                            }
+                            break;
+                        
         case Binary::Type::GT:
+                            {
+                                checkOperandsOfSameType((ExpressionNode *)binary);
+                            }
+                            break; 
         case Binary::Type::GEQ:
+                            {
+                                checkOperandsOfSameType((ExpressionNode *)binary);
+                            }
+                            break;
+        
         case Binary::Type::EQ:
+                            {
+                                checkOperandsOfSameType((ExpressionNode *)binary);
+                            }
+                            break;
+
         case Binary::Type::NEQ:
-            checkOperandsOfSameType((Exp *)binary);
-            break;
+                            {
+                                checkOperandsOfSameType((ExpressionNode *)binary);
+                            }
+                            break;
+        
         default:
             {
                 throw std::runtime_error("Semantics::analyzeBinaryNode() - Unknown Binary Type");
@@ -370,7 +404,39 @@ void Semantics::analyzeBinaryNode(const Binary* binary) const
 
 void Semantics::analyzeCallNode(const Call* call) const
 {
+    // Check if call is valid
+    if (!isCallNode(call))
+    {
+        throw std::runtime_error("Semantics::analyzeCallNode() - Invalid Call");
+    }
 
+    setAndGetExpData(call);
+
+    DeclarationNode* prevDecl = (DeclarationNode* )(getFromSymTable(call->getFunctionCallName()));
+
+    // If the function name is not in the symbol table
+    if (prevDecl == nullptr)
+    {
+        EmitDiagnostics::Error::emitGenericError(call->getTokenLineNumber(), "Symbol '" + call->getFunctionCallName() + "' is not declared.");
+        return;
+    }
+
+    // If the function name is not associated with a function
+    if (!isFunctionNode(prevDecl))
+    {
+        EmitDiagnostics::Error::emitGenericError(call->getTokenLineNumber(), "'" + call->getFunctionCallName() + "' is a simple variable and cannot be called.");
+        if (isVariableNode(prevDecl))
+        {
+            Var *var = (Var *)prevDecl;
+            var->setUsed();
+        }
+        else if (isParameterNode(prevDecl))
+        {
+            Parm *parm = (Parm *)prevDecl;
+            parm->setUsed();
+        }
+        return;
+    }
 }
 
 
@@ -385,7 +451,7 @@ void Semantics::analyzeExpressionNode(ExpressionNode* expression)
     {
         case ExpressionNode::Type::ASSIGN:
                                         {
-                                            analyzeAsgn((Asgn* )expression);
+                                            analyzeAssignmentNode((Asgn* )expression);
                                         }
                                         break;
         case ExpressionNode::Type::BINARY:
