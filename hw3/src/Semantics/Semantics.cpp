@@ -1063,19 +1063,19 @@ void Semantics::checkUnaryAsgnOperands(const UnaryAsgn* unaryAsgn) const
 
 bool Semantics::isMainFunc(const Func* func) const
 {
-     if (!isFunc(func))
+    if (!isFunctionNode(func))
     {
         throw std::runtime_error("Semantics::isMainFunc() - Invalid Func");
     }
 
     // Function name must be main and in global scope
-    if (func->getName() != "main" || m_symTable->depth() != 1)
+    if (func->getName() != "main" || m_symbolTable->depth() != 1)
     {
         return false;
     }
 
     // Get the function children
-    std::vector<Node *> funcChildren = func->getChildren();
+    std::vector<Node* > funcChildren = func->getChildernNodes();
 
     // There can't be any parms (children)
     if (funcChildren[0] != nullptr)
@@ -1084,8 +1084,8 @@ bool Semantics::isMainFunc(const Func* func) const
     }
 
     // If main is previously defined as a variable
-    Decl *prevDecl = getFromSymTable(func->getName());
-    if (isVar(prevDecl))
+    DeclarationNode* prevDeclaration = getFromSymTable(func->getName());
+    if (isVariableNode(prevDeclaration))
     {
         return false;
     }
@@ -1096,13 +1096,13 @@ bool Semantics::isMainFunc(const Func* func) const
 
 bool Semantics::isDeclared(const Id* id) const
 {
-    if (!isId(id))
+    if (!isIdentifierNode(id))
     {
         throw std::runtime_error("Semantics::isDeclared() - Invalid Id");
     }
 
     // If the id name is not in the symbol table, it is not declared
-    if (getFromSymTable(id->getName()) == nullptr)
+    if (getFromSymTable(id->getIdentifierName()) == nullptr)
     {
         return false;
     }
@@ -1112,29 +1112,33 @@ bool Semantics::isDeclared(const Id* id) const
 
 bool Semantics::hasIndexAncestor(const ExpressionNode* expression) const
 {
-    if (!isExp(exp))
+    if (!isExpressionNode(expression))
     {
         throw std::runtime_error("Semantics::hasIndexAncestor() - Invalid Exp");
     }
 
-    Node *lastParent = (Node *)exp;
-    Node *parent = exp->getParent();
+    Node* lastParent = (Node* )expression;
+    Node* parent = expression->getParentNode();
+    
+    // If the parent is an index node, then the expression is an index
     while (parent != nullptr)
     {
-        if (isBinary(parent))
+        if (isBinaryNode(parent))
         {
             Binary *binary = (Binary *)parent;
-            if (binary->getType() == Binary::Type::Index)
+            if (binary->getBinaryType() == Binary::Type::INDEX)
             {
                 // On the right side
-                if (binary->getChildren()[1] == lastParent)
+                if (binary->getChildernNodes()[1] == lastParent)
                 {
                     return true;
                 }
             }
         }
+        
         lastParent = parent;
-        parent = parent->getParent();
+        
+        parent = parent->getParentNode();
     }
     return false;
 }
@@ -1142,87 +1146,106 @@ bool Semantics::hasIndexAncestor(const ExpressionNode* expression) const
 
 bool Semantics::hasAsgnAncestor(const ExpressionNode* expression) const
 {
-     if (!isExp(exp))
+    if (!isExpressionNode(expression))
     {
         throw std::runtime_error("Semantics::hasAsgnAncestor() - Invalid Exp");
     }
 
-    Node *lastParent = (Node *)exp;
-    Node *parent = exp->getParent();
+    Node* lastParent = (Node* )expression;
+    Node* parent = expression->getParentNode();
     while (parent != nullptr)
     {
-        if (isAsgn(parent))
+        if (isAssignmentNode(parent))
         {
             Asgn *asgn = (Asgn *)parent;
-            if (asgn->getType() == Asgn::Type::Asgn)
+            if (asgn->getAssignmentType() == Asgn::Type::ASGN)
             {
                 // On the left side
-                if (asgn->getChildren()[0] == lastParent)
+                if (asgn->getChildernNodes()[0] == lastParent)
                 {
                     return true;
                 }
             }
         }
+        
+        
         lastParent = parent;
-        parent = parent->getParent();
+        
+        
+        parent = parent->getParentNode();
     }
+    
+    
     return false;
 }
 
 
 bool Semantics::expOperandsExist(const ExpressionNode* expression) const
 {
-    if (!isExp(exp))
+    // If the expression has no children, it is not valid
+    if (!isExpressionNode(expression))
     {
         throw std::runtime_error("Semantics::expOperandsExist() - Invalid Exp");
     }
 
-    std::vector<Node *> children = exp->getChildren();
+    std::vector<Node* > children = expression->getChildernNodes();
+    
+    // If the expression has no children, it is not valid
     if (children.size() < 2 || children[0] == nullptr || children[1] == nullptr)
     {
         return false;
     }
-    if (!isExp(children[0]) || !isExp(children[1]))
+    
+    // If the expression has no children, it is not valid
+    if (!isExpressionNode(children[0]) || !isExpressionNode(children[1]))
     {
         return false;
     }
+    
+    
     return true;
 }
 
 
 bool Semantics::lhsExists(const ExpressionNode* expression) const
 {
-    if (!isExp(exp))
+    if (!isExpressionNode(expression))
     {
         throw std::runtime_error("Semantics::lhsExists() - Invalid Exp");
     }
 
-    std::vector<Node *> children = exp->getChildren();
-    Exp *lhsExp = (Exp *)(children[0]);
+    std::vector<Node *> children = expression->getChildernNodes();
+    
+    
+    ExpressionNode* lhsExp = (ExpressionNode* )(children[0]);
+    
+    
     if (children.size() == 0 || lhsExp == nullptr)
     {
         return false;
     }
+    
+    
     return true;
 }
 
 
 std::string Semantics::getExpSym(const ExpressionNode* expression) const
 {
-    if (!isExp(exp))
+    if (!isExpressionNode(expression))
     {
         throw std::runtime_error("Semantics::getExpSym() - Invalid Exp");
     }
 
-    if (isAsgn(exp))
+    if (isAssignmentNode(expression))
     {
-        Asgn *asgn = (Asgn *)exp;
-        return asgn->getSym();
+        Asgn *asgn = (Asgn *)expression;
+        return asgn->printTokenString();
     }
-    else if (isBinary(exp))
+    else if (isBinaryNode(expression))
     {
-        Binary *binary = (Binary *)exp;
-        return  binary->getSym();
+        Binary *binary = (Binary *)expression;
+        return  binary->printTokenString();
     }
     else
     {
@@ -1233,53 +1256,59 @@ std::string Semantics::getExpSym(const ExpressionNode* expression) const
 
 NodeData* Semantics::setAndGetExpData(const ExpressionNode* expression) const
 {
-    if (!isExp(exp))
+    if (!isExpressionNode(expression))
     {
         throw std::runtime_error("Semantics::setAndGetExpData() - Invalid Exp");
     }
 
     std::string name;
-    switch (exp->getExpKind())
+    
+    switch (expression->getExpressionNodeType())
     {
-        case Exp::Kind::Asgn:
-        {
-            Asgn *asgn = (Asgn *)exp;
-            Exp *lhsExp = (Exp *)(exp->getChildren()[0]);
-            asgn->setData(setAndGetExpData(lhsExp));
-            break;
-        }
-        case Exp::Kind::Binary:
-        {
-            Binary *binary = (Binary *)exp;
-            if (binary->getType() == Binary::Type::Index)
-            {
-                Id *arrayId = (Id *)(binary->getChildren()[0]);
-                binary->setData(new Data(setAndGetExpData(arrayId)->getType(), false, false));
-            }
-            break;
-        }
-        case Exp::Kind::Call:
-        {
-            Call *call = (Call *)exp;
-            Decl *prevDecl = getFromSymTable(call->getName());
-            if (prevDecl != nullptr && prevDecl->getDeclKind() != Decl::Kind::Var)
-            {
-                call->setData(prevDecl->getData());
-            }
-            break;
-        }
-        case Exp::Kind::Id:
-        {
-            Id *id = (Id *)exp;
-            Decl *prevDecl = getFromSymTable(id->getName());
-            if (prevDecl != nullptr && prevDecl->getDeclKind() != Decl::Kind::Func)
-            {
-                id->setData(prevDecl->getData());
-            }
-            break;
-        }
+        case ExpressionNode::Type::ASSIGN:
+                                        {
+                                            Asgn *asgn = (Asgn *)expression;
+                                            ExpressionNode *lhsExp = (Exp *)(exp->getChildren()[0]);
+                                            asgn->setData(setAndGetExpData(lhsExp));
+                                        }
+                                        break;
+        
+        case ExpressionNode::Kind::Binary:
+                                    {
+                                        Binary *binary = (Binary *)expression;
+                                        if (binary->getType() == Binary::Type::Index)
+                                        {
+                                            Id *arrayId = (Id *)(binary->getChildren()[0]);
+                                            binary->setData(new Data(setAndGetExpData(arrayId)->getType(), false, false));
+                                        }
+                                        break;
+                                    }
+        
+        case ExpressionNode::Kind::Call:
+                                    {
+                                        Call *call = (Call *)expression;
+                                        DeclarationNode *prevDecl = getFromSymTable(call->getName());
+                                        if (prevDecl != nullptr && prevDecl->getDeclKind() != Decl::Kind::Var)
+                                        {
+                                            call->setData(prevDecl->getData());
+                                        }
+                                        break;
+                                    }
+        
+        case ExpressionNode::Kind::Id:
+                                {
+                                    Id *id = (Id *)expression;
+                                    DeclarationNode *prevDecl = getFromSymTable(id->getName());
+                                    if (prevDecl != nullptr && prevDecl->getDeclKind() != Decl::Kind::Func)
+                                    {
+                                        id->setData(prevDecl->getData());
+                                    }
+                                    break;
+                                }
     }
-    return exp->getData();
+    
+    
+    return expression->getNodeData();
 }
 
 
@@ -1290,35 +1319,35 @@ NodeData* Semantics::setAndGetExpData(const ExpressionNode* expression) const
 
 void Semantics::leaveScope()
 {
-    std::map<std::string, void *> syms = m_symTable->getSyms();
+    std::map<std::string, void *> syms = m_symbolTable->getSymbols();
     for (auto const& [name, voisIdode] : syms)
     {
         Node *node = (Node *)voisIdode;
-        if (!isDecl(node))
+        if (!isDeclarationNode(node))
         {
             throw std::runtime_error("Semantics::leaveScope() - Illegal node found in symbol table");
         }
 
-        Decl *decl = (Decl *)node;
-        if (isVar(decl))
+        DeclarationNode* declaration = (DeclarationNode* )node;
+        if (isVariableNode(declaration))
         {
-            Var *var = (Var *)decl;
+            Var* var = (Var* )declaration;
             if (var->getIsUsed() == false)
             {
-                Emit::Warn::generic(var->getLineNum(), "The variable '" + var->getName() + "' seems not to be used.");
+                EmitDiagnostics::Warning::emitGenericWarnings(var->getTokenLineNumber(), "The variable '" + var->getName() + "' seems not to be used.");
             }
         }
-        else if (isParm(decl))
+        else if (isParameterNode(declaration))
         {
-            Parm *parm = (Parm *)decl;
+            Parm *parm = (Parm *)declaration;
             if (parm->getIsUsed() == false)
             {
-                Emit::Warn::generic(parm->getLineNum(), "The variable '" + parm->getName() + "' seems not to be used.");
+                EmitDiagnostics::Warning::emitGenericWarnings(parm->getTokenLineNumber(), "The variable '" + parm->getName() + "' seems not to be used.");
             }
         }
     }
 
-    m_symTable->leave();
+    m_symbolTable->leave();
 }
 
 
@@ -1348,7 +1377,7 @@ bool Semantics::addToSymTable(const DeclarationNode* declaration, const bool glo
         }
         std::stringstream msg;
         msg << "Symbol '" << declaration->getName() << "' is already declared at line " << prevDeclaration->getTokenLineNumber() << ".";
-        EmitDiagnostics::Error::emitGenericError(declaration->get(), msg.str());
+        EmitDiagnostics::Error::emitGenericError(declaration->getTokenLineNumber(), msg.str());
     }
 
     return inserted;
