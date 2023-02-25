@@ -52,105 +52,67 @@ class DeclarationNode : public Node
         bool m_showErrors = true; 
 };
 
-class Primitive
-{
-    public:
 
-        //Primitive Type Enum
-        enum class Type
-        {
-            INT,
-            CHAR,
-            BOOL,
-            VOID,
-        };
-
-        //Constructor
-        Primitive(Type type, const bool isArray = false);
-
-        //printTokenString
-        std::string printTokenString() const;
-
-        //setters
-
-        //setPrimitiveType
-        void setType(Type type);
-
-
-        //getters
-        bool getIsArray() const;
-
-        Type getType() const { return m_type; }
-    
-
-    protected:
-
-        Type m_type;
-
-        const bool m_isArray;
-
-        Primitive* m_next;
-};
-
-class Func : public Node
+class Func : public DeclarationNode
 {
     public:
 
         //Constructor
-        Func(const int tokenLineNumber, Primitive* returnType, const std::string functionName);
+        Func(const int tokenLineNumber, const std::string functionName, NodeData* functionReturnType);
     
         //printTokenString
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
 
-
-    protected:
-
-        const Primitive *m_returnType;
 }; 
 
 
-class Parm : public Node
+class Parm : public DeclarationNode
 {
     public:
 
         //Constructor
-        Parm(const int tokenLineNumber,  Primitive* parameterType, const std::string parameterName);
+        Parm(const int tokenLineNumber, const std::string parmName, NodeData* parmData);
     
         //printTokenString
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
 
+        //getters 
+        bool getIsUsed() const;
+        
         //setters
-        void setType(Primitive::Type parameterType);
+        void setUsed();
     
 
     protected:
 
-        Primitive* m_parameterType;
+        bool m_isUsed = false;
 };
 
 
-class Var : public Node
+class Var : public DeclarationNode
 {
     public:
 
         //Constructor
-        Var(const int tokenLineNumber, Primitive* variableType, const std::string variableName, const bool isStaticVariable = false);
+        Var(const int tokenLineNumber, const std::string variableName, NodeData* variableData);
 
         //printTokenString
-        std::string printTokenString() const;
-
-        //set static variable
-        void makeStatic();
+        std::string printTokenString() const override;
 
         //setters
-        void setType(const Primitive::Type variableType);
+        void setStatic();
+        void setInitialized();
+        void setUsed();
+
+        //getters                           
+        bool getIsUsed() const;
+        bool getIsInitialized() const;
     
 
     protected:
 
-        Primitive* m_variableType;
-
-        bool  m_isStaticVariable;
+        bool  m_isUsed = false;
+        bool  m_isInitialized = false;
 }; 
 
 

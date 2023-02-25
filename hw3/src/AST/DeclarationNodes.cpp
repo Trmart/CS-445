@@ -67,96 +67,12 @@ const DeclarationNode::Type DeclarationNode::getDeclarationNodeType() const
 
 
 
-
-//******************************************************
-// ************ PrimitiveType Class *******************
-//******************************************************
-Primitive::Primitive(Type type, const bool isArray) : m_isArray(isArray)
-{
-    //set next to null
-    m_next = nullptr;
-    
-    //check if array
-    if (isArray)
-    {
-        //create new PrimitiveType
-        m_next = new Primitive(type);
-        //set type to void
-        m_type = Type::VOID;
-    }
-    //not array
-    else
-    {
-        //set type
-        m_type = type;
-    }
-}
-
-std::string Primitive::printTokenString() const
-{
-    std::string tokenOutputString;
-    switch(m_type)
-    {
-        case Type::INT:
-                    {
-                        tokenOutputString = "int";
-                    }
-                    break;
-
-        case Type::CHAR:
-                    {
-                        tokenOutputString = "char";
-                    }
-                    break;
-        
-        case Type::BOOL:
-                    {
-                        tokenOutputString = "bool";
-                    }
-                    break;
-
-
-        case Type::VOID:
-                    {
-                        tokenOutputString = "void";
-                    }
-                    break;
-        default:
-            {
-                throw std::runtime_error("ERROR. Could not determine Primitive::Type");
-            }
-            break;
-    }
-    return tokenOutputString;
-}
-
-//setPrimitiveType
-void Primitive::setType(Type type)
-{
-    //set type
-    m_type = type;
-
-    //check if next is not null
-    if (m_next != nullptr)
-    {
-        //set next type
-        m_next->setType(type);
-    }
-}
-
-
-//getIsArray
-bool Primitive::getIsArray() const
-{
-    return m_isArray;
-}
-
 //******************************************************
 // ************ FunctionNode Class *********************
 //******************************************************
 
 //Constructor
-Func::Func(const int tokenLineNumber,  Primitive* returnType, const std::string functionName) : Node::Node(tokenLineNumber,functionName), m_returnType(returnType)
+Func::Func(const int tokenLineNumber, const std::string functionName, NodeData* functionReturnType) : DeclarationNode::DeclarationNode(tokenLineNumber, DeclarationNode::Type::FUNCTION, functionName, functionReturnType)
 {
 
 }
@@ -164,7 +80,7 @@ Func::Func(const int tokenLineNumber,  Primitive* returnType, const std::string 
 //printTokenString
 std::string Func::printTokenString() const
 {
-    return "Func: " + m_stringValue + " returns type " + m_returnType->printTokenString();
+    return "Func: " + m_declarationName + " returns type " + m_nodeData->printTokenString();
 }
 
 //******************************************************
@@ -172,7 +88,7 @@ std::string Func::printTokenString() const
 //******************************************************
 
 //Constructor
-Parm::Parm(const int tokenLineNumber,  Primitive* parameterType, const std::string parameterName) : Node::Node(tokenLineNumber,parameterName), m_parameterType(parameterType)
+Parm::Parm(const int tokenLineNumber, const std::string parmName, NodeData* parmData) : DeclarationNode::DeclarationNode(tokenLineNumber, DeclarationNode::Type::PARAMETER, parmName, parmData)
 {
 
 }
@@ -180,31 +96,24 @@ Parm::Parm(const int tokenLineNumber,  Primitive* parameterType, const std::stri
 //printTokenString
 std::string Parm::printTokenString() const
 {
-    if (m_parameterType->getIsArray())
+    if(m_nodeData == nullptr)
     {
-        return "Parm: " + m_stringValue + " of array of type " + m_parameterType->printTokenString();
+        throw std::runtime_error("Error: ParameterNode::printTokenString() - m_nodeData is null");
+    }
+    if (m_nodeData->getIsArray())
+    {
+        return "Parm: " + m_declarationName + " of array of type " + m_nodeData->printTokenString();
     }
     else
     {
-        return "Parm: " + m_stringValue + " of type " + m_parameterType->printTokenString();
+        return "Parm: " + m_declarationName + " of type " + m_nodeData->printTokenString();
     }
 }
 
-//setParameterType
-void Parm::setType(Primitive::Type parameterType)
+//setUsed
+void Parm::setUsed()
 {
-    //set parameter type
-    m_parameterType->setType(parameterType);
-
-    //check if siblingNode is not null
-    if (m_siblingNode != nullptr)
-    {
-        //set temp node to siblingNode
-        Parm *node = (Parm *)m_siblingNode;
-        
-        //set node type
-        node->setType(parameterType);
-    }
+    m_isUsed = true;
 }
 
 //******************************************************
@@ -212,7 +121,7 @@ void Parm::setType(Primitive::Type parameterType)
 //******************************************************
 
 //Constructor
-Var::Var(const int tokenLineNumber,  Primitive* variableType, const std::string variableName, const bool isStaticVariable) : Node::Node(tokenLineNumber,variableName), m_variableType(variableType), m_isStaticVariable(isStaticVariable)
+Var::Var(const int tokenLineNumber,  const std::string variableName, NodeData* variableType) : DeclarationNode::DeclarationNode(tokenLineNumber, DeclarationNode::Type::VARIABLE, variableName, variableType)
 {
 
 }
@@ -220,50 +129,61 @@ Var::Var(const int tokenLineNumber,  Primitive* variableType, const std::string 
 //printTokenString
 std::string Var::printTokenString() const
 {
-    if (m_variableType->getIsArray() && m_isStaticVariable)
+    if(m_nodeData == nullptr)
     {
-        return "Var: " + m_stringValue + " of static array of type " + m_variableType->printTokenString();
+        throw std::runtime_error("Error: VariableNode::printTokenString() - m_nodeData is null");
     }
-    else if (m_variableType->getIsArray())
+    if (m_nodeData->getIsArray() && m_nodeData->getIsStatic())
     {
-        return "Var: " + m_stringValue + " of array of type " + m_variableType->printTokenString();
+        return "Var: " + m_declarationName + " of static array of type " + m_nodeData->printTokenString();
     }
-    else if(m_isStaticVariable)
+    else if (m_nodeData->getIsArray())
     {
-        return "Var: " + m_stringValue + " of static type " + m_variableType->printTokenString();
+        return "Var: " + m_declarationName + " of array of type " + m_nodeData->printTokenString();
+    }
+    else if(m_nodeData->getIsStatic())
+    {
+        return "Var: " + m_declarationName + " of static type " + m_nodeData->printTokenString();
     }
     else
     {
-        return "Var: " + m_stringValue + " of type " + m_variableType->printTokenString();
+        return "Var: " + m_declarationName + " of type " + m_nodeData->printTokenString();
     }
 }
 
 //***********************setters***********************
-//set static variable
-void Var::makeStatic()
+
+void Var::setStatic()
 {
-    //check if siblingNode is not null
     if(m_siblingNode != nullptr)
     {
-        //set temp node to siblingNode
-        ((Var* )m_siblingNode)->makeStatic();
+        ((Var* )m_siblingNode)->setStatic();
     }
-    
-    m_isStaticVariable = true;
+
+
+    m_nodeData->setIsStatic(true);
 }
 
-//set variable type
-void Var::setType(const Primitive::Type variableType)
+
+void Var::setInitialized()
 {
-    //set variable type
-    m_variableType->setType(variableType);
+    m_isInitialized = true;
+}
 
-    if(m_siblingNode != nullptr)
-    {
-        //set temp node to siblingNode
-        Var* node = (Var *)m_siblingNode;
 
-        //set node type
-        node->setType(variableType);
-    }
+void Var::setUsed()
+{
+    m_isUsed = true;
+}
+
+//***********************getters***********************
+
+bool Var::getIsInitialized() const
+{
+    return m_isInitialized;
+}
+
+bool Var::getIsUsed() const
+{
+    return m_isUsed;
 }
