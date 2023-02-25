@@ -4,19 +4,19 @@
 // ************ StatementNode Class Member Functions *****************************
 //********************************************************************************
 
+// ****************** Constructor ******************************
 
-//StatementNode Constructor
-// StatementNode::StatementNode(const int tokenLineNumber)
-// {
+StatementNode::StatementNode(const int tokenLineNumber, const StatementNode::Type statementType): Node :: Node(tokenLineNumber, Node :: Type :: STATEMENT), m_statementType(statementType)
+{
 
-// }
+}
 
 
-//StatementNode Print Token String
-// StatementNode::Type StatementNode::getTypeOfStatement() const
-// {
-//     return m_statementType;
-// }
+// ****************** Getters ******************************
+const StatementNode::Type StatementNode::getStatementNodeType() const
+{
+    return m_statementType;
+}
 
 //********************************************************************************
 // ************ BreakNode Class Member Functions *********************************

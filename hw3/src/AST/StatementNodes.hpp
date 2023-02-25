@@ -26,16 +26,18 @@ DESC: StatementsNodes Subclass. Inherits from Node Base Class.
 class StatementNode : public Node
 {
     public :
-        enum class Type { Break, Compound, For, If, Return, While, Range };
-        StatementNode(); 
-        StatementNode(const int tokenLineNumber);
+        enum class Type { BREAK, COMPOUND, FOR, IF, RETURN, RANGE, WHILE};
 
-        StatementNode::Type getTypeOfStatement() const; 
-    
-    
-    protected :
+        // ****************** Constructor ******************************
 
-        // const StatementNode::Type m_statementType;
+        StatementNode(const int tokenLineNumber, const StatementNode::Type statementType);
+
+
+        // ****************** Getters ******************************
+        const StatementNode::Type getStatementNodeType() const;
+
+    protected:
+        const StatementNode::Type m_statementType;
 };
 
 //******************************************************
