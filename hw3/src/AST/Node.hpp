@@ -27,7 +27,7 @@ class Node
     public:
         
 
-        enum class Type {None, Statement, Expression, Declaration};
+        enum class Type {NONE, EXPRESSION, DECLARATION, STATEMENT};
         
         
         // ************ Node Class Constructors ************************

@@ -17,7 +17,7 @@ DESC: Node base class definitions for AST nodes. Statements, Expressions, and De
 // ************ Node Class Constructors ************************
 
 
-Node::Node(const int tokenLineNumber) : m_tokenLineNumber(tokenLineNumber), m_nodeType(Node::Type::None), m_siblingNode(nullptr), m_parentNode(nullptr)
+Node::Node(const int tokenLineNumber) : m_tokenLineNumber(tokenLineNumber), m_nodeType(Node::Type::NONE), m_siblingNode(nullptr), m_parentNode(nullptr)
 {
 
 }
