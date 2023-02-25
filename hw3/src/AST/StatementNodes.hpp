@@ -44,85 +44,85 @@ class StatementNode : public Node
 // ************ BreakNode Class ************************
 //******************************************************
 
-class Break : public Node
+class Break : public StatementNode
 {
     public :
         Break(const int tokenLineNumber);
 
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
 };
 
 //*********************************************************
 // ************ CompoundNode Class ************************
 //*********************************************************
-class Compound : public Node
+class Compound : public StatementNode
 {
     public :
 
         Compound(const int tokenLineNumber);
 
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
 };
 
 //*********************************************************
 // ************ ForNode Class *****************************
 //*********************************************************
-class For : public Node
+class For : public StatementNode
 {
     public :
 
         For(const int tokenLineNumber);
 
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
 };
 
 //*********************************************************
 // ************ IfNode Class ******************************
 //*********************************************************
-class If : public Node
+class If : public StatementNode
 {
     public :
 
         If(const int tokenLineNumber);
 
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
 };
 
 
 //******************************************************
 // ************ RangeNode Class ************************
 //******************************************************
-class Range : public Node
+class Range : public StatementNode
 {
     public :
 
         Range(const int tokenLineNumber);
 
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
 };
 
 //*******************************************************
 // ************ ReturnNode Class ************************
 //*********************************************************
-class Return: public Node
+class Return: public StatementNode
 {
     public :
 
         Return(const int tokenLineNumber);
 
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
 };
 
 //******************************************************
 // ************ WhileNode Class ************************
 //******************************************************
-class While : public Node
+class While : public StatementNode
 {
     public :
 
         While(const int tokenLineNumber);
 
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
 };
 
 #endif
