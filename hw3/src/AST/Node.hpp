@@ -67,7 +67,7 @@ class Node
         //add sibling node to AST 
         void addSiblingNode(Node* node); 
 
-        bool isNodeAssignedAType(Node* node) const;
+        bool isAncestorNodeAssignedAType(const Node::Type nodeType) const;
         
         // ****************** Node Getters and Setters ******************************
         
@@ -76,7 +76,7 @@ class Node
         Node::Type getNodeType() const;
         Node* getParentNode() const;
         bool getIsNodeAnalyzed() const;
-        Node* getNodeAncestor() const;
+        Node* getNodeAncestor(const Node::Type nodeType) const;
         std::vector<Node* > getChildernNodes() const;
         
         

@@ -54,10 +54,24 @@ std::string Node ::printTokenString() const
     return " [line: " + std::to_string(m_tokenLineNumber) + "]";
 }
 
+//Print Token Output String With Types
+std::string Node ::printTokenStringWithType() const
+{
+    return printTokenString();
+}
+
 //Print AST Nodes
 void Node :: printASTNode(const bool showNodeTypes) const
 {
-    std:: cout << printTokenString(); 
+    //check to see if we want to show the node types
+    if(showNodeTypes == true)
+    {
+        std:: cout << printTokenStringWithType();
+    }
+    else
+    {
+        std::cout << printTokenString();
+    }
 }
 
 //Print The Whole AST
@@ -136,6 +150,12 @@ void Node :: addChildNode(Node* node)
 {
     //add the sibling node to the childern node vector
     m_childernNodes.push_back(node); 
+
+    //check to see if the node is not nullptr and set the parent node to this
+    if(node != nullptr)
+    {
+        node->m_parentNode = this; 
+    }
 }
 
 //add sibling node to AST 
@@ -161,4 +181,79 @@ int Node :: getTokenLineNumber() const
     return m_tokenLineNumber;
 }
 
+// ****************** Node Utility Functions ******************************
+bool Node :: isAncestorNodeAssignedAType(const Node::Type nodeType) const
+{
+    //check to see if the parent node is a nullptr
+    if(m_parentNode == nullptr)
+    {
+        return false; 
+    }
+    //check if the parent node is assigned a node type
+    if(m_parentNode->getNodeType() == nodeType)
+    {
+        return true; 
+    }
+    
+
+    return m_parentNode->isAncestorNodeAssignedAType(nodeType); 
+}
+
+// ****************** Setters ******************************
+void Node::setIsNodeAnalyzed(const bool isNodeAnalyzed)
+{
+    m_isNodeAnalyzed = isNodeAnalyzed; 
+}
+void Node::setNodeType(const Node::Type nodeType)
+{
+    m_nodeType = nodeType;
+}
+void Node::setParentNode(Node* parentNode)
+{
+    m_parentNode = parentNode;
+}
+
+
+// ****************** Getters ******************************
+Node::Type Node :: getNodeType() const
+{
+    return m_nodeType;
+}
+
+Node* Node :: getSiblingNode() const
+{
+    return m_siblingNode;
+}
+
+Node* Node :: getParentNode() const
+{
+    return m_parentNode;
+}
+
+std::vector<Node*> Node :: getChildernNodes() const
+{
+    return m_childernNodes;
+}
+
+bool Node::getIsNodeAnalyzed() const
+{
+    return m_isNodeAnalyzed; 
+}
+
+Node* Node:: getNodeAncestor(const Node::Type nodeType) const
+{
+    //check to see if the parent node is a nullptr
+    if(m_parentNode == nullptr)
+    {
+        return nullptr; 
+    }
+    //check if the parent node is assigned a node type
+    if (m_parentNode->getNodeType() == nodeType)
+    {
+        return m_parentNode; 
+    }
+
+    //check if the parent node is assigned a node type
+    return m_parentNode->getNodeAncestor(nodeType);
+}
 
