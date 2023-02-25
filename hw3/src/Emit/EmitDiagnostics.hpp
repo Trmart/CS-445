@@ -62,7 +62,7 @@ namespace EmitDiagnostics
             static void emitWarningCount();
 
             //emit a generic warning message
-            static void emitGenericWarnings(const int lineNumber, const char* message);
+            static void emitGenericWarnings(const int lineNumber, const std::string warningMessage);
 
             //get the number of warnings
             static int getWarningCount(); 

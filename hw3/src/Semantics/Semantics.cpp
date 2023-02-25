@@ -35,8 +35,11 @@ void Semantics::analyze(Node* node)
 
 
 
-
+//**************************************************
 //********************Analyzers**********************
+//**************************************************
+
+
 void Semantics::analyzeAST(Node *node)
 {
     // Check if node is valid
@@ -117,7 +120,12 @@ void Semantics::analyzeAST(Node *node)
     analyzeAST(node->getSiblingNode());
 }
 
+
+//****************************************************************  
 //*********************Declaration Nodes**********************
+//****************************************************************
+
+
 void Semantics::analyzeDeclarationNode(const DeclarationNode* declaration)
 {
     // Check if declaration is valid
@@ -208,7 +216,10 @@ void Semantics::analyzeVariableNode(Var* var)
     addToSymTable(var);
 }
 
+
+//****************************************************************
 //*********************Expression Nodes**********************
+//****************************************************************
 
 void Semantics::analyzeAssignmentNode(const Asgn* asgn)
 {
@@ -481,7 +492,7 @@ void Semantics::analyzeExpressionNode(ExpressionNode* expression)
 
         case ExpressionNode::Type::UNARYASSIGN:
                                         {
-                                            analyzeUnaryAsgn((UnaryAsgn* )expression);
+                                            analyzeUnaryAsssignmentNode((UnaryAsgn* )expression);
                                         }
                                         break;
 
@@ -496,22 +507,100 @@ void Semantics::analyzeExpressionNode(ExpressionNode* expression)
 
 void Semantics::analyzeIdentifierNode(const Id* id) const
 {
+    // Check if id is valid
+    if(!isIdentifierNode(id))
+    {
+        throw std::runtime_error("Semantics::analyzeIdentifierNode() - Invalid Identifier");
+    }
 
+    // Check if the identifier is a function
+    setAndGetExpData(id);
+
+    DeclarationNode* prevDecl = (DeclarationNode* )(getFromSymTable(id->getIdentifierName()));
+    
+    // If the identifier is not in the symbol table
+    if(prevDecl == nullptr)
+    {
+        EmitDiagnostics::Error::emitGenericError(id->getTokenLineNumber(), "Symbol '" + id->getIdentifierName() + "' is not declared.");
+        return;
+    }
+    
+    // If the identifier is a function
+    if (isFunctionNode(prevDecl))
+    {
+        // If the identifier is a function, it cannot be used as a variable
+        EmitDiagnostics::Error::emitGenericError(id->getTokenLineNumber(), "Cannot use function '" + id->getIdentifierName() + "' as a variable.");
+        return;
+    }  
+
+    else if (isVariableNode(prevDecl))
+    {
+        // Mark the function as used
+        Var* prevDeclVar = (Var* )prevDecl;
+        prevDeclVar->setUsed();
+
+        // Check if the variable is initialized
+        if (!prevDeclVar->getIsInitialized() && prevDeclVar->getShowErrors())
+        {   
+            // If the variable is not initialized, check if it is an array or if it is used in an assignment
+            if (!hasIndexAncestor((ExpressionNode* )id) || id->getIsArray())
+            {
+                // If the variable is not initialized, check if it is used in an assignment
+                if (!hasAsgnAncestor((ExpressionNode* )id))
+                {
+                    EmitDiagnostics::Warning::emitGenericWarnings(id->getTokenLineNumber(), "Variable '" + id->getIdentifierName() + "' may be uninitialized when used here.");
+                    prevDeclVar->setShowErrors(false);
+                }
+            }
+        }
+
+    } 
+    
+    else if (isParameterNode(prevDecl))
+    {
+        Parm* prevDeclParm = (Parm* )prevDecl;
+        prevDeclParm->setUsed();
+    }
 }
 
 
 void Semantics::analyzeUnaryNode(const Unary* unary) const
 {
+    // Check if unary is valid
+    if (!isUnaryNode(unary))
+    {
+        throw std::runtime_error("Semantics::analyzeUnaryNode() - Invalid Unary Type");
+    }
+
+    // set the data of the unary node
+    setAndGetExpData(unary);
+
+    // Check the operands of the unary node
+    checkUnaryOperands(unary);
 
 }
 
 
-void Semantics::analyzeUnaryAsgn(const UnaryAsgn* unaryAsgn) const
+void Semantics::analyzeUnaryAsssignmentNode(const UnaryAsgn* unaryAsgn) const
 {
+    // Check if unaryAsgn is valid
+    if (!isUnaryAssignmentNode(unaryAsgn))
+    {
+        throw std::runtime_error("Semantics::analyzeUnaryAsssignmentNode() - Invalid UnaryAsgn Type");
+    }
 
+    // set the data of the unaryAsgn node
+    setAndGetExpData(unaryAsgn);
+
+    // Check the operands of the unaryAsgn node
+    checkUnaryAsgnOperands(unaryAsgn);
 }
 
+
+//*********************************************************
 //*********************Statement Nodes**********************
+//*********************************************************
+
 
 void Semantics::analyzeCompoundNode(const Compound* compound) const
 {
@@ -537,7 +626,11 @@ void Semantics::analyzeStatementNode(const StatementNode* statement) const
 }
 
 
+
+//**************************************************
 //********************Symbol Checkers**********************
+//**************************************************
+
 
 void Semantics::checkIndex(const Binary* binary) const
 {
@@ -569,7 +662,11 @@ void Semantics::checkUnaryAsgnOperands(const UnaryAsgn* unaryAsgn) const
 }
 
 
+//**********************************************************
 //********************Helper Functions**********************
+//**********************************************************
+
+
 
 bool Semantics::isMainFunc(const Func* func) const
 {
@@ -619,8 +716,9 @@ NodeData* Semantics::setAndGetExpData(const ExpressionNode* expression) const
 }
 
 
-
+//**************************************************
 //********************Symbol Table Functions**********************
+//**************************************************
 
 
 void Semantics::leaveScope()
