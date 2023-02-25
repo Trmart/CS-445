@@ -1262,49 +1262,54 @@ NodeData* Semantics::setAndGetExpData(const ExpressionNode* expression) const
     }
 
     std::string name;
-    
+
     switch (expression->getExpressionNodeType())
     {
         case ExpressionNode::Type::ASSIGN:
                                         {
-                                            Asgn *asgn = (Asgn *)expression;
-                                            ExpressionNode *lhsExp = (Exp *)(exp->getChildren()[0]);
-                                            asgn->setData(setAndGetExpData(lhsExp));
+                                            Asgn* asgn = (Asgn* )expression;
+                                            ExpressionNode* lhsExp = (ExpressionNode* )(expression->getChildernNodes()[0]);
+                                            asgn->setNodeData(setAndGetExpData(lhsExp));
                                         }
                                         break;
         
-        case ExpressionNode::Kind::Binary:
-                                    {
-                                        Binary *binary = (Binary *)expression;
-                                        if (binary->getType() == Binary::Type::Index)
+        case ExpressionNode::Type::BINARY:
                                         {
-                                            Id *arrayId = (Id *)(binary->getChildren()[0]);
-                                            binary->setData(new Data(setAndGetExpData(arrayId)->getType(), false, false));
+                                            Binary* binary = (Binary* )expression;
+                                            
+                                            if (binary->getBinaryType() == Binary::Type::INDEX)
+                                            {
+                                                Id *arrayId = (Id *)(binary->getChildernNodes()[0]);
+                                                binary->setNodeData(new NodeData(setAndGetExpData(arrayId)->getType(), false, false));
+                                            }
                                         }
                                         break;
-                                    }
         
-        case ExpressionNode::Kind::Call:
+        case ExpressionNode::Type::CALL:
                                     {
-                                        Call *call = (Call *)expression;
-                                        DeclarationNode *prevDecl = getFromSymTable(call->getName());
-                                        if (prevDecl != nullptr && prevDecl->getDeclKind() != Decl::Kind::Var)
+                                        Call* call = (Call* )expression;
+                                        
+                                        DeclarationNode* prevDecl = getFromSymTable(call->getFunctionCallName());
+                                        
+                                        if (prevDecl != nullptr && prevDecl->getDeclarationNodeType() != DeclarationNode::Type::VARIABLE)
                                         {
-                                            call->setData(prevDecl->getData());
+                                            call->setNodeData(prevDecl->getNodeData());
                                         }
-                                        break;
-                                    }
-        
-        case ExpressionNode::Kind::Id:
-                                {
-                                    Id *id = (Id *)expression;
-                                    DeclarationNode *prevDecl = getFromSymTable(id->getName());
-                                    if (prevDecl != nullptr && prevDecl->getDeclKind() != Decl::Kind::Func)
-                                    {
-                                        id->setData(prevDecl->getData());
                                     }
                                     break;
+        
+        case ExpressionNode::Type::IDENTIFIER:
+                                {
+                                    Id* id = (Id* )expression;
+                                    
+                                    DeclarationNode* prevDecl = getFromSymTable(id->getIdentifierName());
+                                    
+                                    if (prevDecl != nullptr && prevDecl->getDeclarationNodeType() != DeclarationNode::Type::FUNCTION)
+                                    {
+                                        id->setNodeData(prevDecl->getNodeData());
+                                    }
                                 }
+                                break;
     }
     
     
