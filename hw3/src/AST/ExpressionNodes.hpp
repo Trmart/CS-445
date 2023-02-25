@@ -62,7 +62,7 @@ class ExpressionNode : public Node
 //******************************************************
 // ************ AssignmentNode Class *******************
 //******************************************************
-class Asgn : public Node
+class Asgn : public ExpressionNode
 {
     public:
 
@@ -75,9 +75,15 @@ class Asgn : public Node
             DIVASS,
             NONE
         };
-        Asgn(const int tokenLineNumber, const Type assignmentType);
+        
+        Asgn(const int tokenLineNumber, const Asgn::Type assignmentType);
 
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
+
+        // ****************** Getters *****************************
+        std::string getSymbol() const;
+        Asgn::Type getAssignmentType() const;
+
     protected:
 
         //Assignment Type
@@ -88,7 +94,7 @@ class Asgn : public Node
 //**********************************************************
 // ************ BinaryNode Class ***************************
 //**********************************************************
-class Binary : public Node
+class Binary : public ExpressionNode
 {
     public:
         
@@ -115,10 +121,15 @@ class Binary : public Node
 
 
         //BinaryNode Constructor
-        Binary(const int tokenLineNumber, const Type assignmentType);
+        Binary(const int tokenLineNumber, const Binary::Type assignmentType);
 
         //Print Token Output String
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
+
+
+        // ****************** Getters ******************************
+        Binary::Type getBinaryType() const;
+        std::string getSymbol() const;
 
     protected:
     
@@ -130,7 +141,7 @@ class Binary : public Node
 //**********************************************************
 // ************ CallNode Class *****************************
 //**********************************************************
-class Call : public Node
+class Call : public ExpressionNode
 {
     public:
 
@@ -138,14 +149,22 @@ class Call : public Node
         Call(const int tokenLineNumber, std::string functionName);
 
         //Print Token Output String
-        std::string printTokenString() const;
+        std::string printTokenString() const override; 
+
+        // ****************** Getters ******************************
+        std::string getFunctionCallName() const;
+
+    protected:
+
+        //Function Name
+        std::string m_functionName;
 };
 
 
 //**********************************************************
 // ************ ConstantNode Class *************************
 //**********************************************************
-class Const : public Node
+class Const : public ExpressionNode
 {
     public :
 
@@ -160,38 +179,61 @@ class Const : public Node
         };
 
         //ConstantNode Constructor
-        Const(const int tokenLineNumber, Type constantType, const std::string constantValue);
+        Const(const int tokenLineNumber, Const::Type constantType, const std::string constantValue);
 
         //Print Token Output String
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
+        std::string printTokenStringWithType() const override;
+
+        // ****************** Getters ******************************
+        bool getIsCharLengthGreaterThanOne() const;
 
     protected:
     
         //Constant Type
-        Type m_constantType;
+        const Const::Type m_constantType;
 
         //TokenFormatter
         TokenFormatter m_tokenFormatter;
+
+        //char length warning flag
+        bool m_isCharLengthGreaterThanOne = false;
+
+        //Constant Values
+        int m_intValue;
+        char m_charValue;
+        bool m_boolValue;
+        std::string m_stringValue; 
+
+
 };
 
 
 //**********************************************************
 // ************ IdentifierNode Class ************************
 //**********************************************************
-class Id : public Node
+class Id : public ExpressionNode
 {
     public:
         
         //IdentifierNode Constructor
         Id(const int tokenLineNumber, std:: string identifierName, bool isArray = false);
 
-        //Print Token Output String
-        std::string printTokenString() const;
+        // ****************** Printers ******************************
+        
+        std::string printTokenString() const override;
+        std::string printTokenStringWithType() const override;
+
+        // ****************** Getters ******************************
+        std::string getIdentifierName() const;
+        bool getIsArray() const;
     
     protected:
 
         //flag to hold whether or not the identifier is an array
         bool m_isArray;
+
+        const std::string m_identifierName;
 
 };
 
@@ -199,7 +241,7 @@ class Id : public Node
 //**********************************************************
 // ************ UnaryNode Class ****************************
 //**********************************************************
-class Unary : public Node
+class Unary : public ExpressionNode
 {
     public:
 
@@ -213,22 +255,26 @@ class Unary : public Node
         };
 
         //UnaryNode Constructor
-        Unary(const int tokenLineNumber, const Type unaryType);
+        Unary(const int tokenLineNumber, const Unary::Type unaryType);
 
         //Print Token Output String
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
+
+        // ****************** Getters ******************************
+        Unary::Type getUnaryType() const;
+        std::string getSymbol() const;
 
     protected:
 
         //Unary Type
-        Type m_unaryType;
+        Unary::Type m_unaryType;
 };
 
 
 //**********************************************************
 // ************ UnaryAssignmentNode Class ******************
 //**********************************************************
-class UnaryAsgn : public Node
+class UnaryAsgn : public ExpressionNode
 {
     public:
 
@@ -240,16 +286,20 @@ class UnaryAsgn : public Node
         };
 
         //UnaryAssignmentNode Constructor
-        UnaryAsgn(const int tokenLineNumber, const Type unaryAssignmentType);
+        UnaryAsgn(const int tokenLineNumber, const UnaryAsgn::Type unaryAssignmentType);
 
         //Print Token Output String
-        std::string printTokenString() const;
+        std::string printTokenString() const override;
+
+        // ****************** Getters ******************************
+        UnaryAsgn::Type getUnaryAssignmentType() const;
+        std::string getSymbol() const;
 
 
     protected:
 
         //UnaryAssignment Type
-        Type m_unaryAssignmentType;
+        UnaryAsgn::Type m_unaryAssignmentType;
 };
 
 
