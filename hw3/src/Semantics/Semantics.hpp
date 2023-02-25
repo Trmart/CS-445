@@ -44,7 +44,7 @@ class Semantics
         void analyzeVariableNode(Var* var);
         
         //*********************Expression Nodes**********************
-        void analyzeAsgn(const Asgn* asgn);
+        void analyzeAssignmentNode(const Asgn* asgn);
         void analyzeBinaryNode(const Binary* binary) const;
         void analyzeCallNode(const Call* call) const;
         void analyzeExpressionNode(ExpressionNode* expression);
