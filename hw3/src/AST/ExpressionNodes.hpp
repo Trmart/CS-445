@@ -16,37 +16,48 @@ DESC: ExpressionNodes Subclass. Inherits from Node Base Class.
 
 
 #include "Node.hpp"
+#include "NodeData.hpp"
+
 //Assignment, Binary, Call, Constant, Identifier, Unary, UnaryAssignment
 
 //**********************************************************
 // ************ ExpressionNode Classes ************************
 //**********************************************************
-// class ExpressionNode : public Node
-// {
-//     public:
+class ExpressionNode : public Node
+{
+    public:
 
-//         //Expression Type Enum
-//         enum class Type
-//         {
-//             ASSIGN,
-//             BINARY,
-//             CALL,
-//             CONSTANT,
-//             IDENTIFIER,
-//             UNARY, 
-//             UNARYASSIGN,
-//         };
+        //Expression Type Enum
+        enum class Type
+        {
+            ASSIGN,
+            BINARY,
+            CALL,
+            CONSTANT,
+            IDENTIFIER,
+            UNARY, 
+            UNARYASSIGN,
+        };
 
-//         //Constructor
-//         ExpressionNode(int tokenLineNumber, const ExpressionNode::Type expressionType);
-    
-//         std::string printTokenString() const;
-    
-//     protected:
-        
-//         //Expression Type
-//         const ExpressionNode::Type m_expressionType;
-// };
+        //Constructor
+        ExpressionNode(int tokenLineNumber, const ExpressionNode::Type expressionType, NodeData* nodeData);
+
+
+        // ****************** Printing ******************************
+        virtual std::string printTokenStringWithType() const override;
+
+
+        // ****************** Setters ******************************
+        void setNodeData(NodeData* nodeData);
+
+        // ****************** Getters ******************************
+        const NodeData* getNodeData() const;
+        const ExpressionNode::Type getExpressionNodeType() const;
+
+    protected:
+        NodeData* m_nodeData;
+        const ExpressionNode::Type m_declarationType;
+};
 
 //******************************************************
 // ************ AssignmentNode Class *******************

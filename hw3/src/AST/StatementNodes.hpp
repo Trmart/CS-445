@@ -15,26 +15,28 @@ DESC: StatementsNodes Subclass. Inherits from Node Base Class.
 #define STATEMENTNODES_HPP
 
 #include "Node.hpp"
+#include "NodeData.hpp"
+
 //Break, Coumpound, For, If, Range, Return, Statment, While
 
 
 //**********************************************************
 // ************ StatementNode Class ************************
 //**********************************************************
-// class StatementNode : public Node
-// {
-//     public :
-//         enum class Type { Break, Compound, For, If, Return, While, Range };
-//         StatementNode(); 
-//         StatementNode(const int tokenLineNumber);
+class StatementNode : public Node
+{
+    public :
+        enum class Type { Break, Compound, For, If, Return, While, Range };
+        StatementNode(); 
+        StatementNode(const int tokenLineNumber);
 
-//         StatementNode::Type getTypeOfStatement() const; 
+        StatementNode::Type getTypeOfStatement() const; 
     
     
-//     protected :
+    protected :
 
-//         // const StatementNode::Type m_statementType;
-// };
+        // const StatementNode::Type m_statementType;
+};
 
 //******************************************************
 // ************ BreakNode Class ************************

@@ -16,25 +16,41 @@ DESC: DeclarationNodes Subclass. Inherits from Node Base Class.
 
 
 #include "Node.hpp"
+#include "NodeData.hpp"
 
 // Function, Parameters, Primitives,  Variable
-// class DeclarationNodes : public Node
-// {
-//     public:
+class DeclarationNode : public Node
+{
+    public:
 
-//     //Declaration Type Enum
-//     enum class Type
-//     {
-//         FUNCTION,
-//         PARAMETER,
-//         VARIABLE,
-//     };
+    //Declaration Type Enum
+    enum class Type
+    {
+        FUNCTION,
+        PARAMETER,
+        VARIABLE,
+    };
 
-//     //Constructor
-//     DeclarationNodes(int tokenLineNumber, const DeclarationNodes::Type declarationType);
+    //Constructor
+    DeclarationNode(int tokenLineNumber, const DeclarationNode::Type declarationType, const std::string declarationName, NodeData* data);
 
-//     protected:
-// };
+
+    // ****************** Setters ******************************
+    void setType(const NodeData::Type type);
+    void setShowErrors(const bool showErrors);
+
+    // ****************** Getters ******************************
+    const std::string getName() const;
+    const NodeData* getNodeData() const;
+    const bool getShowErrors() const;
+    const DeclarationNode::Type getDeclarationNodeType() const;
+
+    protected:
+        const std::string m_declarationName;
+        NodeData* m_nodeData;
+        const DeclarationNode::Type m_declarationType;
+        bool m_showErrors = true; 
+};
 
 class Primitive
 {

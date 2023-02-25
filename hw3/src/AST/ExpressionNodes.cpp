@@ -16,17 +16,49 @@ DESC: ExpressionNodes Subclass Member Definitions.
 // ************ ExpressionNode Class Member Functions *********************************
 //********************************************************************************
 
-//ExpressionNode Constructor
-// ExpressionNode :: ExpressionNode(int tokenLineNumber, const ExpressionNode::Type expressionType) : Node::Node(tokenLineNumber), m_expressionType(expressionType)
-// {
+//Constructor
+ExpressionNode::ExpressionNode(int tokenLineNumber, const ExpressionNode::Type expressionType, NodeData* nodeData) : Node::Node{tokenLineNumber, Node::Type::EXPRESSION}, m_nodeData{nodeData}, m_declarationType{expressionType}
+{
 
-// }
+}
 
-// std::string ExpressionNode :: printTokenString() const
-// {
-//     //return token string
-//     return "ExpressionNode";
-// }
+
+// ****************** Printing ******************************
+std::string ExpressionNode::printTokenStringWithType() const
+{
+    std::string expressionTypeString = m_nodeData->printTokenStringWithType();
+
+    if (expressionTypeString != "undefined")
+    {
+        return printTokenString() + " of type " + expressionTypeString;
+    }
+    else
+    {
+        return printTokenString() + " of undefined type";
+    }
+    
+}
+
+
+// ****************** Setters ******************************
+void ExpressionNode::setNodeData(NodeData* nodeData)
+{
+    m_nodeData = nodeData;
+}
+
+// ****************** Getters ******************************
+const NodeData* ExpressionNode::getNodeData() const
+{
+    return m_nodeData;
+}
+
+const ExpressionNode::Type ExpressionNode::getExpressionNodeType() const
+{
+    return m_declarationType;
+}
+
+
+
 
 //********************************************************************************
 // ************ AssignmentNode Class Member Functions *********************************

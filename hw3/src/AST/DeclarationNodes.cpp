@@ -12,6 +12,62 @@ DESC: DeclarationNodes Subclass Member Definitions.
 
 #include "DeclarationNodes.hpp"
 
+
+
+//******************************************************
+// ************ DeclarationNode Class *******************
+//******************************************************
+
+//Constructor
+DeclarationNode::DeclarationNode(int tokenLineNumber, const DeclarationNode::Type declarationType, const std::string declarationName, NodeData* data) : Node::Node(tokenLineNumber, Node::Type::DECLARATION), m_declarationName(declarationName), m_nodeData(data), m_declarationType(declarationType)
+{
+
+}
+
+
+// ****************** Setters ******************************
+void DeclarationNode::setType(const NodeData::Type type)
+{
+    //set type
+    m_nodeData->setType(type);
+    
+    //check if node data is not null
+    if (m_siblingNode != nullptr)
+    {
+        //set type
+        DeclarationNode* node = (DeclarationNode*)m_siblingNode;
+        node->setType(type);
+    }
+}
+
+
+
+void DeclarationNode::setShowErrors(const bool showErrors)
+{
+    m_showErrors = showErrors;
+}
+
+// ****************** Getters ******************************
+const std::string DeclarationNode::getName() const
+{
+    return m_declarationName;
+}
+const NodeData* DeclarationNode::getNodeData() const
+{
+    return m_nodeData;
+}
+const bool DeclarationNode::getShowErrors() const
+{
+    return m_showErrors;
+}
+const DeclarationNode::Type DeclarationNode::getDeclarationNodeType() const
+{
+    return m_declarationType;
+}
+
+
+
+
 //******************************************************
 // ************ PrimitiveType Class *******************
 //******************************************************
