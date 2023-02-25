@@ -4,7 +4,7 @@ CS-445 Compiler Design
 University Of Idaho
 HW2
 Dr. Wilder
-2/13/2023
+2/26/2023
 
 FILE: scanType.hpp
 DESC: Contains the TokenData struct Definition
