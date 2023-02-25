@@ -51,8 +51,8 @@ class ExpressionNode : public Node
         void setNodeData(NodeData* nodeData);
 
         // ****************** Getters ******************************
-        const NodeData* getNodeData() const;
-        const ExpressionNode::Type getExpressionNodeType() const;
+        NodeData* getNodeData() const;
+        ExpressionNode::Type getExpressionNodeType() const;
 
     protected:
         NodeData* m_nodeData;
@@ -134,7 +134,7 @@ class Binary : public ExpressionNode
     protected:
     
         //Binary Type
-        Type m_binaryType;
+        Binary::Type m_binaryType;
 };
 
 
