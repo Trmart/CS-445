@@ -44,7 +44,7 @@ std::string NodeData::printTokenStringWithType() const
     return convertTypeToString(m_nodeDataType);
 }
 
-std::string NodeData::convertTypeToString(const NodeData::Type type)
+std::string NodeData::convertTypeToString(NodeData::Type type)
 {
 
     std::string tokenOutputString;
@@ -114,7 +114,7 @@ NodeData::Type NodeData::getNextType() const
         return m_nodeDataType;
     }
     
-    return m_next->getType();
+    return m_next->getNextType();
 }
 std::string NodeData::getCopyString() const
 {

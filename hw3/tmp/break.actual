@@ -1,0 +1,12 @@
+.   .   .   Child: 0  Const true [line: 4]
+.   Child: 1  Compound [line: 3]
+.   .   .   Child: 1  Compound [line: 4]
+.   .   .   .   Child: 1  Const 666 [line: 5]
+.   .   Child: 1  While [line: 4]
+ERROR(LINKER): A function named 'main()' must be defined.
+Func: ( returns type void [line: 2]
+Number of errors: 1
+Number of warnings: 0
+.   .   .   .   Sibling: 1  Break [line: 6]
+.   .   .   .   Sibling: 2  Const 777 [line: 7]
+.   .   .   .   Sibling: 3  Break [line: 8]

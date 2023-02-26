@@ -19,7 +19,7 @@ DESC: DeclarationNodes Subclass Member Definitions.
 //******************************************************
 
 //Constructor
-DeclarationNode::DeclarationNode(int tokenLineNumber, const DeclarationNode::Type declarationType, const std::string declarationName, NodeData* data) : Node::Node(tokenLineNumber, Node::Type::DECLARATION), m_declarationName(declarationName), m_nodeData(data), m_declarationType(declarationType)
+DeclarationNode::DeclarationNode(int tokenLineNumber, const DeclarationNode::Type declarationType, const std::string declarationName, NodeData* data) : Node::Node(tokenLineNumber, Node::Type::DECLARATION),  m_declarationType(declarationType), m_declarationName(declarationName), m_nodeData(data)
 {
 
 }
@@ -114,6 +114,11 @@ std::string Parm::printTokenString() const
 void Parm::setUsed()
 {
     m_isUsed = true;
+}
+
+bool Parm::getIsUsed() const
+{
+    return m_isUsed;
 }
 
 //******************************************************

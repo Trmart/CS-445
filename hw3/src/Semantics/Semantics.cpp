@@ -49,7 +49,7 @@ void Semantics::analyzeAST(Node *node)
     }
 
     // Set node as analyzed
-    node->setIsNodeAnalyzed(true);
+    node->setIsNodeAnalyzed();
 
     // Check what type of node it is
     switch(node->getNodeType())
@@ -93,11 +93,12 @@ void Semantics::analyzeAST(Node *node)
 
 
     // Recursively analyze children
-    for (Node* child : node->getChildernNodes())
+    std:: vector<Node*> children = node->getChildernNodes();
+    for (int i = 0; i < children.size(); i++)
     {
-        analyzeAST(child);
+        analyzeAST(children[i]);
     }
-
+    
     if (isFunctionNode(node))
     {
         leaveScope();
@@ -1356,9 +1357,9 @@ void Semantics::leaveScope()
 }
 
 
-bool Semantics::addToSymTable(const DeclarationNode* declaration, const bool global=false)
+bool Semantics::addToSymTable(const DeclarationNode* declaration, const bool global)
 {
-     if (!isDeclarationNode(declaration))
+    if (!isDeclarationNode(declaration))
     {
         throw std::runtime_error("Semantics::addToSymTable() - Invalid Decl");
     }

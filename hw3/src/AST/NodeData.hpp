@@ -31,7 +31,7 @@ class NodeData
         // ****************** NodeData Printers  ******************************
         std::string printTokenString() const;
         std::string printTokenStringWithType() const;
-        static std::string convertTypeToString(const NodeData::Type type);
+        static std::string convertTypeToString(NodeData::Type type);
         
         
         // ****************** NodeData Getters  ******************************
@@ -49,7 +49,7 @@ class NodeData
         void setType(NodeData::Type type);
 
 
-    protected:
+    private:
 
         //Node Data Type
         NodeData::Type m_nodeDataType;

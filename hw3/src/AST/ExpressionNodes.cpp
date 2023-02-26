@@ -17,7 +17,7 @@ DESC: ExpressionNodes Subclass Member Definitions.
 //********************************************************************************
 
 //Constructor
-ExpressionNode::ExpressionNode(int tokenLineNumber, const ExpressionNode::Type expressionType, NodeData* nodeData) : Node::Node{tokenLineNumber, Node::Type::EXPRESSION}, m_nodeData{nodeData}, m_declarationType{expressionType}
+ExpressionNode::ExpressionNode(int tokenLineNumber, const ExpressionNode::Type expressionType, NodeData* nodeData) : Node::Node{tokenLineNumber, Node::Type::EXPRESSION},  m_expressionType{expressionType}, m_nodeData{nodeData}
 {
 
 }
@@ -54,7 +54,7 @@ NodeData* ExpressionNode::getNodeData() const
 
 ExpressionNode::Type ExpressionNode::getExpressionNodeType() const
 {
-    return m_declarationType;
+    return m_expressionType;
 }
 
 
@@ -70,41 +70,40 @@ Asgn :: Asgn(const int tokenLineNumber, const Type assignmentType) : ExpressionN
 
 }
 
-std::string Asgn :: printTokenString() const
+std::string Asgn::getSymbol() const
 {
-    
-    std::string tokenOutputString = "Assign: ";
-
     //switch statement to determine tokenOutputString
+    std::string tokenOutputString;
+    
     switch (m_assignmentType)
     {
         case::Asgn::Type::ASGN:
                                     {
-                                        tokenOutputString += "<=";
+                                        tokenOutputString = "<=";
                                     }
                                     break;
         
         case::Asgn::Type::ADDASS:
                                     {
-                                        tokenOutputString += "+=";
+                                        tokenOutputString = "+=";
                                     }
                                     break;
         
         case::Asgn::Type::SUBASS:
                                     {
-                                        tokenOutputString += "-=";
+                                        tokenOutputString = "-=";
                                     }
                                     break;
         
         case::Asgn::Type::MULASS:
                                     {
-                                        tokenOutputString += "*=";
+                                        tokenOutputString = "*=";
                                     }
                                     break;
         
         case::Asgn::Type::DIVASS:
                                     {
-                                        tokenOutputString += "/=";
+                                        tokenOutputString = "/=";
                                     }
                                     break;
         default:
@@ -115,6 +114,16 @@ std::string Asgn :: printTokenString() const
         }
 
     return tokenOutputString;
+}
+
+Asgn::Type Asgn::getAssignmentType() const
+{
+    return m_assignmentType;
+}
+
+std::string Asgn :: printTokenString() const
+{
+    return "Assign: " + getSymbol();
 }
 
 
@@ -201,93 +210,93 @@ Binary :: Binary(const int tokenLineNumber, const Type binaryType) : ExpressionN
     }
 }
 
-//BinaryNode printTokenString
-std::string Binary::printTokenString() const
+
+std::string Binary::getSymbol() const
 {
-    std::string tokenOutputString = "Op: ";
+    std::string tokenOutputString;
 
     //switch statement to determine tokenOutputString
     switch (m_binaryType)
     {
         case::Binary::Type::ADD:
                                     {
-                                        tokenOutputString += "+";
+                                        tokenOutputString = "+";
                                     }
                                     break;
         
         case::Binary::Type::SUB:
                                     {
-                                        tokenOutputString += "-";
+                                        tokenOutputString = "-";
                                     }
                                     break;
         
         case::Binary::Type::MUL:
                                     {
-                                        tokenOutputString += "*";
+                                        tokenOutputString = "*";
                                     }
                                     break;
         
         case::Binary::Type::DIV:
                                     {
-                                        tokenOutputString += "/";
+                                        tokenOutputString = "/";
                                     }
                                     break;
         
         case::Binary::Type::MOD:
                                     {
-                                        tokenOutputString += "%";
+                                        tokenOutputString = "%";
                                     }
                                     break;
 
         case::Binary::Type::EQ:
                                     {
-                                        tokenOutputString += "=";
+                                        tokenOutputString = "=";
                                     }
                                     break;
         
         case::Binary::Type::NEQ:
                                     {
-                                        tokenOutputString += "!=";
+                                        tokenOutputString = "!=";
                                     }
                                     break;
 
         case::Binary::Type::LT:
                                     {
-                                        tokenOutputString += "<";
+                                        tokenOutputString = "<";
                                     }
                                     break;
         case::Binary::Type::GT:
                                     {
-                                        tokenOutputString += ">";
+                                        tokenOutputString = ">";
                                     }
                                     break;
         case::Binary::Type::LEQ:
                                     {
-                                        tokenOutputString += "!>";
+                                        tokenOutputString = "!>";
                                     }
                                     break; 
 
         case::Binary::Type::GEQ:
                                     {
-                                        tokenOutputString += "!<";
+                                        tokenOutputString = "!<";
                                     }
                                     break;
 
         case::Binary::Type::AND:
                                     {
-                                        tokenOutputString += "and";
+                                        tokenOutputString = "and";
                                     }
                                     break;
 
         case::Binary::Type::OR:
                                     {
-                                        tokenOutputString += "or";
+                                        tokenOutputString = "or";
                                     }
                                     break; 
 
         case::Binary::Type::INDEX:
                                     {
-                                        tokenOutputString += "[";
+                                        tokenOutputString = "[";
                                     }
                                     break;
         
@@ -300,6 +309,18 @@ std::string Binary::printTokenString() const
 
     return tokenOutputString;
 }
+
+//BinaryNode printTokenString
+std::string Binary::printTokenString() const
+{
+    return "Op: " + getSymbol();
+}
+
+Binary::Type Binary::getBinaryType() const
+{
+    return m_binaryType;
+}
+
 
 //********************************************************************************
 // ************ CallNode Class Member Functions *********************************
@@ -315,6 +336,11 @@ Call :: Call(const int tokenLineNumber, std::string functionName) : ExpressionNo
 std::string Call::printTokenString() const
 {
     return "Call: " + m_functionName;
+}
+
+std::string Call::getFunctionCallName() const
+{
+    return m_functionName;
 }
 
 //********************************************************************************
@@ -376,6 +402,7 @@ Const :: Const(int tokenLineNumber, const Type constantType, const std::string c
     }
 }
 
+
 //ConstantNode printTokenString
 std::string Const::printTokenString() const
 {
@@ -424,6 +451,19 @@ std::string Const::printTokenString() const
     return tokenOutputString;
 }
 
+std::string Const::printTokenStringWithType() const
+{
+    std::string typeString = NodeData::convertTypeToString(m_nodeData->getNextType());
+    if (typeString != "undefined")
+    {
+        return printTokenString() + " of type " + typeString;
+    }
+    else
+    {
+        return printTokenString() + " of undefined type";
+    }
+}
+
 //********************************************************************************
 // ************ IdentifierNode Class Member Functions ****************************
 //********************************************************************************
@@ -438,6 +478,30 @@ Id :: Id(const int tokenLineNumber,std:: string identifierName, bool isArray) : 
 std::string Id::printTokenString() const
 {
     return "Id: " + m_identifierName;
+}
+
+std::string Id::printTokenStringWithType() const
+{
+    std::string typeString = NodeData::convertTypeToString(m_nodeData->getNextType());
+    if (typeString != "undefined")
+    {
+        return printTokenString() + " of type " + typeString;
+    }
+    else
+    {
+        return printTokenString() + " of undefined type";
+    }
+}
+
+std::string Id::getIdentifierName() const
+{
+    return m_identifierName;
+}
+
+
+bool Id::getIsArray() const
+{
+    return m_isArray;
 }
 
 //********************************************************************************
@@ -478,46 +542,49 @@ Unary :: Unary(int tokenLineNumber, const Type unaryType) : ExpressionNode::Expr
     }
 }
 
-//UnaryNode printTokenString
-std::string Unary::printTokenString() const
+std::string Unary::getSymbol() const
 {
-    //create tokenOutputString
-    std::string tokenOutputString = "Op: ";
-
-    //switch statement to determine tokenOutputString
+    std::string symbol;
+    
     switch (m_unaryType)
     {
-        case::Unary::Type::CHSIGN:
+        case Unary::Type::CHSIGN:
                                 {
-                                    tokenOutputString += "chsign";
+                                    symbol = "-";
                                 }
                                 break;
-        
-        case::Unary::Type::NOT:
+        case Unary::Type::NOT:
                                 {
-                                    tokenOutputString += "not";
+                                    symbol = "!";
                                 }
                                 break;
-
-        case::Unary::Type::QUESTION:
-                                    {
-                                        tokenOutputString += "?";
-                                    }
-                                    break;
-
-        case::Unary::Type::SIZEOF:
+        case Unary::Type::QUESTION:
                                 {
-                                    tokenOutputString += "sizeof";
+                                    symbol = "?";
                                 }
                                 break;
+        case Unary::Type::SIZEOF:
+                                {
+                                    symbol = "sizeof";
+                                }
+                                break;
+                                
         default:
             {
                 throw std::runtime_error("ERROR. Could not determine Unary::Type");
             }
             break;
-        }
+    }
+}
+//UnaryNode printTokenString
+std::string Unary::printTokenString() const
+{
+    return "Op: " + getSymbol();
+}
 
-    return tokenOutputString;
+Unary::Type Unary::getUnaryType() const
+{
+    return m_unaryType;
 }
 
 //********************************************************************************
@@ -530,33 +597,41 @@ UnaryAsgn :: UnaryAsgn(const int tokenLineNumber, const Type unaryAssignmentType
 
 }
 
-//UnaryAssignmentNode printTokenString
-std::string UnaryAsgn::printTokenString() const
+std::string UnaryAsgn::getSymbol() const
 {
-    //create tokenOutputString
-    std::string tokenOutputString = "Assign: ";
-
-    //switch statement to determine tokenOutputString
-    switch (m_unaryAssignmentType)
+    std::string symbol;
+    
+    switch(m_unaryAssignmentType)
     {
-        case::UnaryAsgn::Type::INC:
-                                        {
-                                            tokenOutputString += "++";
-                                        }
-                                        break;
+
+        case UnaryAsgn::Type::INC:
+                                {
+                                    symbol = "++";
+                                }
+                                break;
         
-        case::UnaryAsgn::Type::DEC:
-                                        {
-                                            tokenOutputString += "--";
-                                        }
-                                        break;
+        case UnaryAsgn::Type::DEC:
+                                {
+                                    symbol =  "--";
+                                }
+                                break;
         
         default:
             {
                 throw std::runtime_error("ERROR. Could not determine UnaryAsgn::Type");
             }
             break;
-        }
+    }
+}
 
-    return tokenOutputString;
+//UnaryAssignmentNode printTokenString
+std::string UnaryAsgn::printTokenString() const
+{
+
+    return "Assign: " + getSymbol();
+}
+
+UnaryAsgn::Type UnaryAsgn::getUnaryAssignmentType() const
+{
+    return m_unaryAssignmentType;
 }

@@ -1,0 +1,30 @@
+.   Child: 0  Const 111 [line: 2]
+.   .   .   Child: 0  Const 222 [line: 5]
+.   .   .   Child: 0  Const 333 [line: 6]
+.   .   .   Child: 0  Const true [line: 7]
+.   .   .   Child: 0  Const 'Z' [line: 8]
+.   .   .   Child: 0  Id: b [line: 13]
+.   .   .   Child: 0  Id: c [line: 14]
+.   .   .   Child: 0  Id: x [line: 10]
+.   .   .   Child: 0  Id: y [line: 11]
+.   .   .   Child: 0  Id: z [line: 12]
+.   .   Child: 0  Var: y of type int [line: 5]
+.   .   Child: 1  Call: output [line: 10]
+.   Child: 1  Compound [line: 4]
+ERROR(10): Symbol 'output' is not declared.
+ERROR(11): Symbol 'output' is not declared.
+ERROR(12): Symbol 'output' is not declared.
+ERROR(13): Symbol 'outputb' is not declared.
+ERROR(14): Symbol 'outputc' is not declared.
+ERROR(LINKER): A function named 'main()' must be defined.
+Number of errors: 6
+Number of warnings: 0
+.   .   Sibling: 1  Call: output [line: 11]
+Sibling: 1  Func: ( returns type void [line: 4]
+.   .   Sibling: 1  Var: z of static type int [line: 6]
+.   .   Sibling: 2  Call: output [line: 12]
+.   .   Sibling: 2  Var: b of static type bool [line: 7]
+.   .   Sibling: 3  Call: outputb [line: 13]
+.   .   Sibling: 3  Var: c of static type char [line: 8]
+.   .   Sibling: 4  Call: outputc [line: 14]
+Var: x of type int [line: 2]

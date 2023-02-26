@@ -1,0 +1,18 @@
+0a1,8
+> .   .   .   Child: 0  Const 111 [line: 4]
+> .   .   .   Child: 0  Id: x [line: 6]
+> .   .   .   Child: 0  Id: x [line: 7]
+> .   .   .   Child: 0  Id: x [line: 8]
+> .   .   Child: 0  Var: x of static type int [line: 4]
+> .   .   Child: 1  Call: output [line: 6]
+> .   Child: 1  Compound [line: 3]
+> .   .   .   Child: 1  Const 222 [line: 7]
+3c11,13
+< Number of errors: 2
+---
+> ERROR(LINKER): A function named 'main()' must be defined.
+> Func: ( returns type void [line: 2]
+> Number of errors: 3
+4a15,16
+> .   .   Sibling: 1  Assign: <= [line: 7]
+> .   .   Sibling: 2  Call: output [line: 8]

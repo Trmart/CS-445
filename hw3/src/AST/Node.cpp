@@ -200,14 +200,11 @@ bool Node :: isAncestorNodeAssignedAType(const Node::Type nodeType) const
 }
 
 // ****************** Setters ******************************
-void Node::setIsNodeAnalyzed(const bool isNodeAnalyzed)
+void Node::setIsNodeAnalyzed()
 {
-    m_isNodeAnalyzed = isNodeAnalyzed; 
+    m_isNodeAnalyzed = true; 
 }
-void Node::setNodeType(const Node::Type nodeType)
-{
-    m_nodeType = nodeType;
-}
+
 void Node::setParentNode(Node* parentNode)
 {
     m_parentNode = parentNode;

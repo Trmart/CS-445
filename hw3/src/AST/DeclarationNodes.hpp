@@ -48,6 +48,8 @@ class DeclarationNode : public Node
     protected:
         const std::string m_declarationName;
         NodeData* m_nodeData;
+
+    private:
         const DeclarationNode::Type m_declarationType;
         bool m_showErrors = true; 
 };
@@ -109,7 +111,7 @@ class Var : public DeclarationNode
         bool getIsInitialized() const;
     
 
-    protected:
+    private:
 
         bool  m_isUsed = false;
         bool  m_isInitialized = false;

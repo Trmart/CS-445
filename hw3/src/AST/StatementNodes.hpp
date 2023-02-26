@@ -34,9 +34,9 @@ class StatementNode : public Node
 
 
         // ****************** Getters ******************************
-        const StatementNode::Type getStatementNodeType() const;
+        StatementNode::Type getStatementNodeType() const;
 
-    protected:
+    private:
         const StatementNode::Type m_statementType;
 };
 

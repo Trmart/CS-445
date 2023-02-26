@@ -15,9 +15,9 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 
 #include "CompilerFlags.hpp"
 #include "scanType.hpp"
-#include "AST/AST.hpp"
 #include "Semantics/Semantics.hpp"
 #include "Emit/EmitDiagnostics.hpp"
+#include "AST/AST.hpp"
 
 #include <iostream>
 #include <string>
@@ -114,7 +114,7 @@ scopedVarDecl           : STATIC typeSpec varDeclList SEMICOLON
                             $$ = $3;
                             Var *node = (Var *)$$;
                             node->setType($2);
-                            node->makeStatic();
+                            node->setStatic();
                         }
                         | typeSpec varDeclList SEMICOLON
                         {
@@ -174,13 +174,13 @@ typeSpec                : INT
 
 funDecl                 : typeSpec ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new Func($2->tokenLineNumber, $2->tokenInformation, new NodeData($1, false, false);
+                            $$ = new Func($2->tokenLineNumber, $2->tokenInformation, new NodeData($1, false, false));
                             $$->addChildNode($4);
                             $$->addChildNode($6);
                         }
                         | ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new Func($1->tokenLineNumber, $2->tokenInformation, new NodeData(NodeData::Type::VOID, false, false), $1->tokenInformation);
+                            $$ = new Func($1->tokenLineNumber, $2->tokenInformation, new NodeData(NodeData::Type::VOID, false, false));
                             $$->addChildNode($3);
                             $$->addChildNode($5);
                         }
@@ -728,7 +728,7 @@ int main(int argc, char *argv[])
         throw std::runtime_error("Cannot open file: \'" + fileName + "\'");
         
         //print the number of errors and warnings
-        EmitDiagnostics::Error::emitArgListError("source file \"" + filename + "\" could not be opened. Terminating compilation."); 
+        EmitDiagnostics::Error::emitArgListError("source file \"" + fileName + "\" could not be opened. Terminating compilation."); 
 
         EmitDiagnostics::Warning::emitWarningCount();
 

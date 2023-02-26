@@ -53,10 +53,11 @@ class ExpressionNode : public Node
         // ****************** Getters ******************************
         NodeData* getNodeData() const;
         ExpressionNode::Type getExpressionNodeType() const;
+    private:
+        const ExpressionNode::Type m_expressionType;
 
     protected:
         NodeData* m_nodeData;
-        const ExpressionNode::Type m_declarationType;
 };
 
 //******************************************************
@@ -84,7 +85,7 @@ class Asgn : public ExpressionNode
         std::string getSymbol() const;
         Asgn::Type getAssignmentType() const;
 
-    protected:
+    private:
 
         //Assignment Type
         const Type m_assignmentType;
@@ -131,10 +132,10 @@ class Binary : public ExpressionNode
         Binary::Type getBinaryType() const;
         std::string getSymbol() const;
 
-    protected:
+    private:
     
         //Binary Type
-        Binary::Type m_binaryType;
+        const Binary::Type m_binaryType;
 };
 
 
@@ -154,10 +155,10 @@ class Call : public ExpressionNode
         // ****************** Getters ******************************
         std::string getFunctionCallName() const;
 
-    protected:
+    private:
 
         //Function Name
-        std::string m_functionName;
+        const std::string m_functionName;
 };
 
 
@@ -174,8 +175,7 @@ class Const : public ExpressionNode
             INT,
             CHAR,
             BOOL,
-            STRING,
-            NONE
+            STRING
         };
 
         //ConstantNode Constructor
@@ -188,7 +188,7 @@ class Const : public ExpressionNode
         // ****************** Getters ******************************
         bool getIsCharLengthGreaterThanOne() const;
 
-    protected:
+    private:
     
         //Constant Type
         const Const::Type m_constantType;
@@ -217,7 +217,7 @@ class Id : public ExpressionNode
     public:
         
         //IdentifierNode Constructor
-        Id(const int tokenLineNumber, std:: string identifierName, bool isArray = false);
+        Id(const int tokenLineNumber, std:: string identifierName, bool isArray=false);
 
         // ****************** Printers ******************************
         
@@ -228,10 +228,10 @@ class Id : public ExpressionNode
         std::string getIdentifierName() const;
         bool getIsArray() const;
     
-    protected:
+    private:
 
         //flag to hold whether or not the identifier is an array
-        bool m_isArray;
+        const bool m_isArray;
 
         const std::string m_identifierName;
 
@@ -264,10 +264,10 @@ class Unary : public ExpressionNode
         Unary::Type getUnaryType() const;
         std::string getSymbol() const;
 
-    protected:
+    private:
 
         //Unary Type
-        Unary::Type m_unaryType;
+       const Unary::Type m_unaryType;
 };
 
 
@@ -296,10 +296,10 @@ class UnaryAsgn : public ExpressionNode
         std::string getSymbol() const;
 
 
-    protected:
+    private:
 
         //UnaryAssignment Type
-        UnaryAsgn::Type m_unaryAssignmentType;
+        const UnaryAsgn::Type m_unaryAssignmentType;
 };
 
 

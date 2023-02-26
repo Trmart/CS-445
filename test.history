@@ -129,3 +129,4 @@
 1676241000.3852434,"python3 tester.py hw2/ -p",20,20,0,"[]"
 1676241013.586238,"python3 tester.py hw2/ -p",20,20,0,"[]"
 1676241204.0554333,"python3 tester.py hw2/ -p",20,20,0,"[]"
+1677379139.6582596,"python3 tester.py hw3/ -p --sort",2,62,2476,"['allbad', 'allgood', 'array', 'arrayops', 'arrayx', 'assignBool', 'assignChar', 'assignInt', 'assignb', 'break', 'break2', 'break3', 'break4', 'call', 'call2', 'call3', 'callerr', 'constants', 'cover', 'decl', 'emptyline', 'exp', 'expL', 'expR', 'for', 'for2', 'fora', 'forb', 'forscope', 'funcscope', 'if', 'ifNest', 'init', 'init2', 'init3', 'init4', 'mixedControl', 'mixedControl2', 'mixedControl3', 'nest', 'ops', 'optype', 'overlap', 'overlapArray', 'overlapStatic', 'part2', 'randomRoll', 'scope', 'static', 'strange', 'types', 'types3', 'undeclared', 'uninit', 'uninit2', 'var', 'varAssign', 'varPair', 'while', 'whileif']"

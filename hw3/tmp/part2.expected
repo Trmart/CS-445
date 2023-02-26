@@ -1,0 +1,13 @@
+ERROR(20): Symbol 'x' is already declared at line 18.
+ERROR(26): Symbol 'dog' is already declared at line 18.
+ERROR(35): '+' requires operands of type int but lhs is of type char.
+ERROR(42): Symbol 'zebu' is not declared.
+ERROR(47): '+' requires operands of type int but lhs is of type char.
+ERROR(47): Unary 'chsign' requires an operand of type int but was given type bool.
+ERROR(5): Cannot return an array.
+Number of errors: 7
+Number of warnings: 4
+WARNING(28): The variable 'z' seems not to be used.
+WARNING(35): The variable 'd' seems not to be used.
+WARNING(49): Variable 'z' may be uninitialized when used here.
+WARNING(4): Variable 'z' may be uninitialized when used here.

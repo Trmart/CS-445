@@ -1,0 +1,6 @@
+1,5d0
+< ERROR(LINKER): A function named 'main()' must be defined.
+< Number of errors: 1
+< Number of warnings: 2
+< WARNING(12): Variable 'x' may be uninitialized when used here.
+< WARNING(13): Variable 'y' may be uninitialized when used here.

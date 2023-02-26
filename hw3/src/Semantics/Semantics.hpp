@@ -32,7 +32,7 @@ class Semantics
         void analyze(Node* node);
 
 
-    protected:
+    private:
 
         //********************Analyzers**********************
         void analyzeAST(Node *node);
@@ -82,7 +82,7 @@ class Semantics
         //********************Symbol Table Functions**********************
         void leaveScope();
         bool addToSymTable(const DeclarationNode* declaration, const bool global=false);
-        DeclarationNode * getFromSymTable(const std::string name) const;
+        DeclarationNode* getFromSymTable(const std::string name) const;
 
 
         //********************Data Members**********************

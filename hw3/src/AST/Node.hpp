@@ -31,9 +31,6 @@ class Node
         
         
         // ************ Node Class Constructors ************************
-        
-        //Base Constructor
-        Node();
 
         Node(const int tokenLineNumber);
         
@@ -80,12 +77,19 @@ class Node
         std::vector<Node* > getChildernNodes() const;
         
         
-        void setIsNodeAnalyzed(const bool isNodeAnalyzed);
+        void setIsNodeAnalyzed();
         void setNodeType(const Node::Type nodeType);
         void setParentNode(Node* parentNode);
 
 
     protected:
+
+
+        //Keep track of Sibling Nodes
+        Node* m_siblingNode;  
+
+
+    private:
 
 
         //token data storage struct from scanType.hpp
@@ -94,11 +98,9 @@ class Node
         //Vector of current AST childern Nodes
         std::vector<Node* >m_childernNodes;
 
-        //Keep track of Sibling Nodes
-        Node* m_siblingNode;  
 
         //Node Type
-        Node::Type m_nodeType;
+        const Node::Type m_nodeType;
 
         //Parent Node
         Node* m_parentNode;

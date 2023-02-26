@@ -6,14 +6,14 @@
 
 // ****************** Constructor ******************************
 
-StatementNode::StatementNode(const int tokenLineNumber, const StatementNode::Type statementType): Node :: Node(tokenLineNumber, Node :: Type :: STATEMENT), m_statementType(statementType)
+StatementNode::StatementNode(const int tokenLineNumber, const StatementNode::Type statementType): Node::Node(tokenLineNumber, Node::Type::STATEMENT), m_statementType(statementType)
 {
 
 }
 
 
 // ****************** Getters ******************************
-const StatementNode::Type StatementNode::getStatementNodeType() const
+StatementNode::Type StatementNode::getStatementNodeType() const
 {
     return m_statementType;
 }
@@ -23,7 +23,7 @@ const StatementNode::Type StatementNode::getStatementNodeType() const
 //********************************************************************************
 
 //BreakNode Constructor
-Break::Break(const int tokenLineNumber) : StatementNode :: StatementNode(tokenLineNumber, StatementNode :: Type :: BREAK)
+Break::Break(const int tokenLineNumber) : StatementNode::StatementNode(tokenLineNumber, StatementNode::Type::BREAK)
 {
 
 }
@@ -41,7 +41,7 @@ std::string Break::printTokenString() const
 //********************************************************************************
 
 //CompoundNode Constructor
-Compound::Compound(const int tokenLineNumber) : StatementNode :: StatementNode(tokenLineNumber, StatementNode :: Type :: COMPOUND)
+Compound::Compound(const int tokenLineNumber) : StatementNode::StatementNode(tokenLineNumber, StatementNode::Type::COMPOUND)
 {
 
 }
@@ -58,7 +58,7 @@ std::string Compound::printTokenString() const
 
 
 //ForNode Constructor
-For::For(const int tokenLineNumber) : StatementNode :: StatementNode(tokenLineNumber, StatementNode :: Type :: FOR)
+For::For(const int tokenLineNumber) : StatementNode::StatementNode(tokenLineNumber, StatementNode::Type::FOR)
 {
 
 }
@@ -76,7 +76,7 @@ std::string For::printTokenString() const
 
 
 //IfNode Constructor
-If::If(const int tokenLineNumber) : StatementNode :: StatementNode(tokenLineNumber, StatementNode :: Type :: IF)
+If::If(const int tokenLineNumber) : StatementNode::StatementNode(tokenLineNumber, StatementNode::Type::IF)
 {
 
 }
@@ -94,7 +94,7 @@ std::string If::printTokenString() const
 
 
 //RangeNode Constructor
-Range::Range(const int tokenLineNumber) : StatementNode :: StatementNode(tokenLineNumber, StatementNode :: Type :: RANGE)
+Range::Range(const int tokenLineNumber) : StatementNode::StatementNode(tokenLineNumber, StatementNode::Type::RANGE)
 {
 
 }
@@ -112,7 +112,7 @@ std::string Range::printTokenString() const
 
 
 //ReturnNode Constructor
-Return::Return(const int tokenLineNumber) : StatementNode :: StatementNode(tokenLineNumber, StatementNode :: Type :: RETURN)
+Return::Return(const int tokenLineNumber) : StatementNode::StatementNode(tokenLineNumber, StatementNode::Type::RETURN)
 {
 
 }
@@ -130,7 +130,7 @@ std::string Return::printTokenString() const
 
 
 //WhileNode Constructor
-While::While(const int tokenLineNumber) : StatementNode :: StatementNode(tokenLineNumber, StatementNode :: Type :: WHILE)
+While::While(const int tokenLineNumber) : StatementNode::StatementNode(tokenLineNumber, StatementNode::Type::WHILE)
 {
 
 }

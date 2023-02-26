@@ -1,0 +1,41 @@
+1,3c1,3
+< .   .   .   .   Child: 0  Id: x of undefined type [line: 5]
+< .   .   .   .   Child: 0  Id: y of undefined type [line: 7]
+< .   .   .   .   Child: 0  Id: z of undefined type [line: 8]
+---
+> .   .   .   .   Child: 0  Id: x [line: 5]
+> .   .   .   .   Child: 0  Id: y [line: 7]
+> .   .   .   .   Child: 0  Id: z [line: 8]
+10,12c10,12
+< .   .   .   .   Child: 1  Id: x of undefined type [line: 5]
+< .   .   .   .   Child: 1  Id: x of undefined type [line: 7]
+< .   .   .   .   Child: 1  Id: x of undefined type [line: 8]
+---
+> .   .   .   .   Child: 1  Id: x [line: 5]
+> .   .   .   .   Child: 1  Id: x [line: 7]
+> .   .   .   .   Child: 1  Id: x [line: 8]
+16,22c16,23
+< .   .   .   Child: 2  Id: x of type int [line: 6]
+< .   .   .   Child: 2  Id: x of type int [line: 7]
+< .   .   .   Child: 2  Id: x of type int [line: 8]
+< .   .   .   .   Child: 2  Id: x of undefined type [line: 5]
+< Func: main returns type void [line: 1]
+< Number of errors: 0
+< Number of warnings: 2
+---
+> .   .   .   .   Child: 2  Id: x [line: 5]
+> .   .   .   Child: 2  Id: x [line: 6]
+> .   .   .   Child: 2  Id: x [line: 7]
+> .   .   .   Child: 2  Id: x [line: 8]
+> ERROR(LINKER): A function named 'main()' must be defined.
+> Func: ( returns type void [line: 1]
+> Number of errors: 1
+> Number of warnings: 5
+24c25
+< .   .   Sibling: 1  Var: z is array of type int [line: 3]
+---
+> .   .   Sibling: 1  Var: z of array of type int [line: 3]
+27a29,31
+> WARNING(6): Variable 'x' may be uninitialized when used here.
+> WARNING(7): Variable 'x' may be uninitialized when used here.
+> WARNING(8): Variable 'x' may be uninitialized when used here.

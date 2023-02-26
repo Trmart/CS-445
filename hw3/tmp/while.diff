@@ -1,0 +1,24 @@
+1,4c1,3
+< .   .   .   Child: 0  Id: x of type int [line: 5]
+< .   .   .   .   Child: 0  Id: x of type int [line: 7]
+< .   .   .   .   Child: 0  Id: x of type int [line: 7]
+< .   .   .   Child: 0  Op: > of type bool [line: 7]
+---
+> .   .   .   Child: 0  Id: x [line: 5]
+> .   .   .   .   Child: 0  Id: x [line: 7]
+> .   .   .   Child: 0  Op: > [line: 7]
+6,7c5
+< .   .   Child: 1  Assign: <= of type int [line: 5]
+< .   .   .   Child: 1  Assign: ++ of type int [line: 7]
+---
+> .   .   Child: 1  Assign: <= [line: 5]
+9,13c7,9
+< .   .   .   Child: 1  Const 0 of type int [line: 5]
+< .   .   .   .   Child: 1  Const 10 of type int [line: 7]
+< Func: main returns type void [line: 2]
+< Number of errors: 0
+< Number of warnings: 0
+---
+> .   .   .   Child: 1  Const 0 [line: 5]
+> .   .   .   .   Child: 1  Const 10 [line: 7]
+> Func: ( returns type void [line: 2]

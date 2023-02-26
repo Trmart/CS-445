@@ -1,0 +1,8 @@
+1,7d0
+< ERROR(16): Symbol 'x' is already declared at line 15.
+< ERROR(29): Symbol 'x' is already declared at line 28.
+< ERROR(6): Symbol 'x' is already declared at line 5.
+< Number of errors: 3
+< Number of warnings: 2
+< WARNING(10): The variable 'x' seems not to be used.
+< WARNING(15): The variable 'x' seems not to be used.

@@ -1,0 +1,9 @@
+ERROR(LINKER): A function named 'main()' must be defined.
+Number of errors: 1
+Number of warnings: 6
+WARNING(11): The variable 'c' seems not to be used.
+WARNING(15): The variable 'b' seems not to be used.
+WARNING(18): The variable 'c' seems not to be used.
+WARNING(4): The variable 'p' seems not to be used.
+WARNING(6): The variable 'a' seems not to be used.
+WARNING(8): The variable 'b' seems not to be used.

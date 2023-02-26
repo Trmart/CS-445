@@ -44,13 +44,11 @@ namespace EmitDiagnostics
 
 
 
-        protected:
+        private:
 
-            //set the number of errors
-            static void setErrorCount(int count);
             
             //the number of errors
-            static int m_errorCount;
+            inline static int m_errorCount;
 
     };
 
@@ -67,13 +65,11 @@ namespace EmitDiagnostics
             //get the number of warnings
             static int getWarningCount(); 
         
-        protected:
+        private:
             
-            //set the number of warnings
-            static void setWarningCount(int count);
 
             //the number of warnings
-            static int m_warningCount;
+            inline static int m_warningCount;
     };
 }
 

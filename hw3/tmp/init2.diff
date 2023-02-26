@@ -1,0 +1,37 @@
+1,11c1,24
+< ERROR(12): Symbol 'output' is not declared.
+< ERROR(13): Symbol 'output' is not declared.
+< ERROR(14): Symbol 'output' is not declared.
+< ERROR(15): Symbol 'outnl' is not declared.
+< ERROR(17): Symbol 'output' is not declared.
+< ERROR(18): Symbol 'output' is not declared.
+< ERROR(19): Symbol 'output' is not declared.
+< ERROR(20): Symbol 'outnl' is not declared.
+< Number of errors: 8
+< Number of warnings: 1
+< WARNING(13): Variable 'b' may be uninitialized when used here.
+---
+> .   .   Child: 0  Const 666 [line: 3]
+> .   .   .   .   .   Child: 0  Const 666 [line: 8]
+> .   .   .   .   .   Child: 0  Const 777 [line: 10]
+> .   .   .   Child: 0  Const 777 [line: 3]
+> .   .   .   .   Child: 0  Const 777 [line: 8]
+> .   .   .   .   Child: 0  Const 888 [line: 10]
+> .   .   .   Child: 0  Op: + [line: 10]
+> .   Child: 0  Op: + [line: 3]
+> .   .   .   Child: 0  Op: + [line: 8]
+> .   .   Child: 0  Var: b of array of type int [line: 7]
+> .   .   Child: 1  Call: output [line: 12]
+> .   Child: 1  Compound [line: 6]
+> .   .   .   .   .   Child: 1  Const 666 [line: 10]
+> .   .   .   Child: 1  Const 888 [line: 3]
+> .   .   .   .   .   Child: 1  Const 888 [line: 8]
+> .   .   .   .   Child: 1  Op: * [line: 10]
+> .   .   Child: 1  Op: * [line: 3]
+> .   .   .   .   Child: 1  Op: * [line: 8]
+> Sibling: 1  Var: x of type int [line: 3]
+> .   .   Sibling: 1  Var: y of type int [line: 8]
+> Sibling: 2  Func: ( returns type void [line: 5]
+> .   .   Sibling: 2  Var: c of static array of type int [line: 9]
+> .   .   Sibling: 3  Var: z of static type int [line: 10]
+> Var: a of array of type int [line: 2]

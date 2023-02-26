@@ -38,7 +38,8 @@ void EmitDiagnostics::Error::emitErrorCount()
 void EmitDiagnostics::Error::emitGenericError(const int lineNumber, const std::string errorMessage)
 {
     std::cout << "ERROR(" <<  lineNumber << "): " << errorMessage << std::endl;
-    setErrorCount(1);
+    m_errorCount++; 
+
 }
 
 /* 
@@ -50,7 +51,8 @@ void EmitDiagnostics::Error::emitGenericError(const int lineNumber, const std::s
 void EmitDiagnostics::Error::emitLinkerError(const std::string errorMessage)
 {
     std::cout << "ERROR(LINKER): " << errorMessage << std::endl;
-    setErrorCount(1);
+    m_errorCount++;
+
 }
 
 /*
@@ -63,7 +65,7 @@ void EmitDiagnostics::Error::emitLinkerError(const std::string errorMessage)
 void EmitDiagnostics::Error::emitArgListError(const std::string errorMessage)
 {
     std::cout << "ERROR(ARGLIST): " << errorMessage << std::endl;
-    setErrorCount(1);
+    m_errorCount++;
 }
 
 /*
@@ -75,16 +77,7 @@ void EmitDiagnostics::Error::emitUndefinedMainError()
     emitLinkerError("A function named 'main()' must be defined.");
 }
 
-/*
-@function setErrorCount()
-@param count the number of errors to be set
-@description set the number of errors
-*/
-void EmitDiagnostics::Error::setErrorCount(int count)
-{
-    //increment the number of errors
-    m_errorCount += count;
-}
+
 
 /*
 @function setErrorCount()
@@ -115,22 +108,12 @@ void EmitDiagnostics::Warning::emitWarningCount()
 @description emit a generic warning message and increment the number of warnings
 */
 
-void EmitDiagnostics::Warning::emitGenericWarnings(const int lineNumber, const char* message)
+void EmitDiagnostics::Warning::emitGenericWarnings(const int lineNumber, const std::string message)
 {
     std::cout << "WARNING(" << lineNumber << "): " << message << std::endl;
-    setWarningCount(1);
+    m_warningCount++;
 }
 
-/*
-@function setWarningCount()
-@param count the number of warnings to be set
-@description set the number of warnings
-*/
-void EmitDiagnostics::Warning::setWarningCount(int count)
-{
-    //increment the number of warnings
-    m_warningCount += count;
-}
 
 /*
 @function getWarningCount()

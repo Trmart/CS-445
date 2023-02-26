@@ -1,0 +1,8 @@
+.   .   .   Child: 0  Const false [line: 8]
+.   .   .   Child: 0  Id: x [line: 6]
+.   .   Child: 0  Var: x of type int [line: 4]
+.   .   Child: 1  Assign: <= [line: 6]
+.   Child: 1  Compound [line: 3]
+.   .   .   Child: 1  Const 0 [line: 6]
+Func: ( returns type void [line: 2]
+.   .   Sibling: 1  If [line: 8]

@@ -1,0 +1,29 @@
+0a1,17
+> .   .   .   .   Child: 0  Id: a [line: 5]
+> .   .   .   .   .   Child: 0  Id: a [line: 6]
+> .   .   .   .   .   .   Child: 0  Id: i [line: 9]
+> .   .   Child: 0  Var: a of array of type int [line: 3]
+> .   .   .   Child: 0  Var: i of type int [line: 5]
+> .   .   .   .   .   Child: 0  Var: i of type int [line: 7]
+> .   .   .   .   Child: 0  Var: j of type int [line: 6]
+> .   Child: 1  Compound [line: 2]
+> .   .   Child: 1  For [line: 5]
+> .   .   .   .   .   Child: 1  Id: i [line: 6]
+> .   .   .   .   Child: 1  Id: j [line: 5]
+> .   .   .   .   .   .   Child: 1  Id: j [line: 9]
+> .   .   .   .   .   Child: 1  Op: + [line: 9]
+> .   .   .   Child: 1  Range [line: 5]
+> .   .   .   .   Child: 1  Range [line: 6]
+> .   .   .   .   Child: 2  Compound [line: 6]
+> .   .   .   Child: 2  For [line: 6]
+2,3c19,23
+< Number of errors: 1
+< Number of warnings: 3
+---
+> ERROR(LINKER): A function named 'main()' must be defined.
+> Func: ( returns type void [line: 1]
+> Number of errors: 2
+> Number of warnings: 4
+> .   .   .   .   .   Sibling: 1  Var: j of type int [line: 8]
+6a27
+> WARNING(9): Variable 'j' may be uninitialized when used here.
