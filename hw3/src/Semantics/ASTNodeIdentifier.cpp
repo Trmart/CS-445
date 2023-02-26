@@ -186,6 +186,16 @@ bool isReturnNode(const Node* node)
     return (((StatementNode*)node)->getStatementNodeType() == StatementNode::Type::RETURN);
 }
 
+
+bool isReturnNode(const Node* node)
+{
+    if(!isStatementNode(node))
+    {
+        return false;
+    }
+    return (((StatementNode*)node)->getStatementNodeType() == StatementNode::Type::RETURN);
+}
+
 bool isStatementNode(const Node* node)
 {
     return (node != nullptr && node->getNodeType() == Node::Type::STATEMENT);

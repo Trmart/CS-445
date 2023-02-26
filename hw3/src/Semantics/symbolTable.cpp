@@ -160,12 +160,20 @@ void *SymbolTable::Scope::lookup(std::string sym)
 {
     if (symbols.find(sym) != symbols.end()) 
     {
-        if (debugFlg) printf("DEBUG(Scope): lookup in \"%s\" for the symbol \"%s\" and found it.\n", name.c_str(), sym.c_str());
+        if (debugFlg)
+        {
+            printf("DEBUG(Scope): lookup in \"%s\" for the symbol \"%s\" and found it.\n", name.c_str(), sym.c_str());
+            
+        } 
+        
         return symbols[sym];
     }
     else 
     {
-        if (debugFlg) printf("DEBUG(Scope): lookup in \"%s\" for the symbol \"%s\" and did NOT find it.\n", name.c_str(), sym.c_str());
+        if (debugFlg)
+        {
+            printf("DEBUG(Scope): lookup in \"%s\" for the symbol \"%s\" and did NOT find it.\n", name.c_str(), sym.c_str());
+        } 
         return NULL;
     }
 }
@@ -206,7 +214,8 @@ int SymbolTable::depth()
 void SymbolTable::print(void (*printData)(void *))
 {
     printf("===========  Symbol Table  ===========\n");
-    for (std::vector<Scope *>::iterator it=stack.begin(); it!=stack.end(); it++) {
+    for (std::vector<Scope *>::iterator it=stack.begin(); it!=stack.end(); it++) 
+    {
         (*it)->print(printData);
     }
     printf("===========  ============  ===========\n");
@@ -221,7 +230,10 @@ std::map<std::string , void *> SymbolTable::getSymbols()
 // Enter a scope
 void SymbolTable::enter(std::string name)                    
 {
-    if (debugFlg) printf("DEBUG(SymbolTable): enter scope \"%s\".\n", name.c_str());
+    if (debugFlg)
+    {
+        printf("DEBUG(SymbolTable): enter scope \"%s\".\n", name.c_str());
+    } 
     stack.push_back(new Scope(name));
 }
 
@@ -229,12 +241,17 @@ void SymbolTable::enter(std::string name)
 // Leave a scope (not allowed to leave global)
 void SymbolTable::leave()
 {
-    if (debugFlg) printf("DEBUG(SymbolTable): leave scope \"%s\".\n", (stack.back()->scopeName()).c_str());
-    if (stack.size()>1) {
+    if (debugFlg)
+    {
+        printf("DEBUG(SymbolTable): leave scope \"%s\".\n", (stack.back()->scopeName()).c_str());
+    } 
+    if (stack.size()>1) 
+    {
         delete stack.back();
         stack.pop_back();
     }
-    else {
+    else 
+    {
         printf("ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: %d.\n", (int)stack.size());
     }
 }
@@ -248,13 +265,15 @@ void * SymbolTable::lookup(std::string sym)
     std::string name;
 
     data = NULL;  // set even though the scope stack should never be empty
-    for (std::vector<Scope *>::reverse_iterator it=stack.rbegin(); it!=stack.rend(); it++) {
+    for (std::vector<Scope *>::reverse_iterator it=stack.rbegin(); it!=stack.rend(); it++) 
+    {
         data = (*it)->lookup(sym);
         name = (*it)->scopeName();
         if (data!=NULL) break;
     }
 
-    if (debugFlg) {
+    if (debugFlg) 
+    {
         printf("DEBUG(SymbolTable): lookup the symbol \"%s\" and ", sym.c_str());
         if (data) printf("found it in the scope named \"%s\".\n", name.c_str());
         else printf("did NOT find it!\n");
@@ -271,8 +290,11 @@ void * SymbolTable::lookupGlobal(std::string sym)
     void *data;
 
     data = stack[0]->lookup(sym);
-    if (debugFlg) printf("DEBUG(SymbolTable): lookup the symbol \"%s\" in the Globals and %s.\n", sym.c_str(),
-                         (data ? "found it" : "did NOT find it"));
+    if (debugFlg)
+    {
+        printf("DEBUG(SymTable): lookup the symbol \"%s\" in the Globals and %s.\n", sym.c_str(), (data ? "found it" : "did NOT find it"));
+
+    } 
 
     return data;
 }
@@ -282,10 +304,13 @@ void * SymbolTable::lookupGlobal(std::string sym)
 // Returns true if insert was successful and false if symbol already in the most recent scope
 bool SymbolTable::insert(std::string sym, void *ptr)
 {
-    if (debugFlg) {
-        printf("DEBUG(symbolTable): insert in scope \"%s\" the symbol \"%s\"",
-               (stack.back()->scopeName()).c_str(), sym.c_str());
-        if(ptr==NULL) printf(" WARNING: The inserted pointer is NULL!!");
+    if (debugFlg) 
+    {
+        printf("DEBUG(symbolTable): insert in scope \"%s\" the symbol \"%s\"", (stack.back()->scopeName()).c_str(), sym.c_str());
+        if(ptr==NULL) 
+        {
+            printf(" WARNING: The inserted pointer is NULL!!");
+        }
         printf("\n");
     }
 
@@ -297,9 +322,13 @@ bool SymbolTable::insert(std::string sym, void *ptr)
 // Returns true is insert was successful and false if symbol already in the global scope
 bool SymbolTable::insertGlobal(std::string sym, void *ptr)
 {
-    if (debugFlg) {
+    if (debugFlg) 
+    {
         printf("DEBUG(Scope): insert the global symbol \"%s\"", sym.c_str());
-        if(ptr==NULL) printf(" WARNING: The inserted pointer is NULL!!");
+        if(ptr==NULL)
+        {
+            printf(" WARNING: The inserted pointer is NULL!!");
+        }
         printf("\n");
     }
 

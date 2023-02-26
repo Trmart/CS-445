@@ -49,7 +49,6 @@ bool isUnaryNode(const Node* node); //returns true if node is a unary node
 
 bool isBreakNode(const Node* node); //returns true if node is a break node
 bool isCompoundNode(const Node* node); //returns true if node is a compound node
-bool isContinueNode(const Node* node); //returns true if node is a continue node
 bool isForNode(const Node* node); //returns true if node is a for node
 bool isIfNode(const Node* node); //returns true if node is an if node
 bool isReturnNode(const Node* node); //returns true if node is a return node
