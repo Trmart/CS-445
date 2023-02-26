@@ -47,12 +47,12 @@ void ExpressionNode::setNodeData(NodeData* nodeData)
 }
 
 // ****************** Getters ******************************
-const NodeData* ExpressionNode::getNodeData() const
+NodeData* ExpressionNode::getNodeData() const
 {
     return m_nodeData;
 }
 
-const ExpressionNode::Type ExpressionNode::getExpressionNodeType() const
+ExpressionNode::Type ExpressionNode::getExpressionNodeType() const
 {
     return m_declarationType;
 }

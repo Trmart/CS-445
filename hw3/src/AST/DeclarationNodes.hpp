@@ -40,10 +40,10 @@ class DeclarationNode : public Node
     void setShowErrors(const bool showErrors);
 
     // ****************** Getters ******************************
-    const std::string getName() const;
-    const NodeData* getNodeData() const;
-    const bool getShowErrors() const;
-    const DeclarationNode::Type getDeclarationNodeType() const;
+    std::string getName() const;
+    NodeData* getNodeData() const;
+    bool getShowErrors() const;
+    DeclarationNode::Type getDeclarationNodeType() const;
 
     protected:
         const std::string m_declarationName;

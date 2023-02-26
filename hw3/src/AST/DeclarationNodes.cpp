@@ -48,19 +48,19 @@ void DeclarationNode::setShowErrors(const bool showErrors)
 }
 
 // ****************** Getters ******************************
-const std::string DeclarationNode::getName() const
+std::string DeclarationNode::getName() const
 {
     return m_declarationName;
 }
-const NodeData* DeclarationNode::getNodeData() const
+NodeData* DeclarationNode::getNodeData() const
 {
     return m_nodeData;
 }
-const bool DeclarationNode::getShowErrors() const
+bool DeclarationNode::getShowErrors() const
 {
     return m_showErrors;
 }
-const DeclarationNode::Type DeclarationNode::getDeclarationNodeType() const
+DeclarationNode::Type DeclarationNode::getDeclarationNodeType() const
 {
     return m_declarationType;
 }
