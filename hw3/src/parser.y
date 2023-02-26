@@ -13,10 +13,11 @@ DESC: yacc parser for the calculator language
 Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
-#include "CompilerFlags.hpp"
 #include "scanType.hpp"
-#include "Semantics/Semantics.hpp"
+
 #include "Emit/EmitDiagnostics.hpp"
+#include "CompilerFlags.hpp"
+#include "Semantics/Semantics.hpp"
 #include "AST/AST.hpp"
 
 #include <iostream>

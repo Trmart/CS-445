@@ -14,11 +14,11 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 */
 
 // The order of includes is mandatory
-#include "CompilerFlags.hpp"
 #include "scanType.hpp"
-#include "AST/AST.hpp"
-#include "Semantics/Semantics.hpp"
 #include "Emit/EmitDiagnostics.hpp"
+#include "CompilerFlags.hpp"
+#include "Semantics/Semantics.hpp"
+#include "AST/AST.hpp"
 
 #include <string>
 #include <iostream>
