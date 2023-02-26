@@ -16,7 +16,8 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 #include "CompilerFlags.hpp"
 #include "scanType.hpp"
 #include "AST/AST.hpp"
-#include "Semantic/symbolTable.h"
+#include "Semantics/Semantics.hpp"
+#include "Emit/EmitDiagnostics.hpp"
 
 #include <iostream>
 #include <string>
@@ -32,7 +33,7 @@ extern int lineCount;
 extern int errorCount;
 
 // AST
-Node *root;
+Node* root;
 
 #define YYERROR_VERBOSE
 void yyerror(const char *msg)
@@ -45,9 +46,9 @@ void yyerror(const char *msg)
 
 %union 
 {
-    Primitive::Type type;
-    TokenData *tokenData;
-    Node *node;
+    NodeData::Type type;
+    TokenData* tokenData;
+    Node* node;
 }
 
 %token <tokenData> NUMCONST BOOLCONST CHARCONST STRINGCONST ID
@@ -140,44 +141,46 @@ varDeclInit             : varDeclId
                         }
                         | varDeclId COLON simpleExp
                         {
-                            $$ = $1;
+                            Var* var = (Var* )($1);
+                            var->setInitialized();
+                            $$ = var;
                             $$->addChildNode($3);
                         }
                         ;
 
 varDeclId               : ID
                         {
-                            $$ = new Var($1->tokenLineNumber, new Primitive(Primitive::Type::VOID), $1->tokenInformation);
+                            $$ = new Var($1->tokenLineNumber, $1->tokenInformation, new NodeData(NodeData::Type::UNDEFINED, false, false));
                         }
                         | ID LBRACK NUMCONST RBRACK
                         {
-                            $$ = new Var($1->tokenLineNumber, new Primitive(Primitive::Type::VOID, true), $1->tokenInformation);
+                            $$ = new Var($1->tokenLineNumber, $1->tokenInformation, new NodeData(NodeData::Type::UNDEFINED, true, false));
                         }
                         ;
 
 typeSpec                : INT
                         {
-                            $$ = Primitive::Type::INT;
+                            $$ = NodeData::Type::INT;
                         }
                         | BOOL
                         {
-                            $$ = Primitive::Type::BOOL;
+                            $$ = NodeData::Type::BOOL;
                         }
                         | CHAR
                         {
-                            $$ = Primitive::Type::CHAR;
+                            $$ = NodeData::Type::CHAR;
                         }
                         ;
 
 funDecl                 : typeSpec ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new Func($2->tokenLineNumber, new Primitive($1), $2->tokenInformation);
+                            $$ = new Func($2->tokenLineNumber, $2->tokenInformation, new NodeData($1, false, false);
                             $$->addChildNode($4);
                             $$->addChildNode($6);
                         }
                         | ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new Func($1->tokenLineNumber, new Primitive(Primitive::Type::VOID), $1->tokenInformation);
+                            $$ = new Func($1->tokenLineNumber, $2->tokenInformation, new NodeData(NodeData::Type::VOID, false, false), $1->tokenInformation);
                             $$->addChildNode($3);
                             $$->addChildNode($5);
                         }
@@ -207,7 +210,7 @@ parmList                : parmList SEMICOLON parmTypeList
 parmTypeList            : typeSpec parmIdList
                         {
                             $$ = $2;
-                            Parm *node = (Parm *)$$;
+                            Parm* node = (Parm* )$$;
                             node->setType($1);
                         }
                         ;
@@ -232,11 +235,11 @@ parmIdList              : parmIdList COMMA parmId
 
 parmId                  : ID
                         {
-                            $$ = new Parm($1->tokenLineNumber, new Primitive(Primitive::Type::VOID), $1->tokenInformation);
+                            $$ = new Parm($1->tokenLineNumber, $1->tokenInformation, new NodeData(NodeData::Type::UNDEFINED, false, false));
                         }
                         | ID LBRACK RBRACK
                         {
-                            $$ = new Parm($1->tokenLineNumber, new Primitive(Primitive::Type::VOID, true), $1->tokenInformation);
+                            $$ = new Parm($1->tokenLineNumber, $1->tokenInformation, new NodeData(NodeData::Type::UNDEFINED, true, false));
                         }
                         ;
 

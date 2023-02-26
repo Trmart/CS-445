@@ -17,6 +17,8 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 #include "CompilerFlags.hpp"
 #include "scanType.hpp"
 #include "AST/AST.hpp"
+#include "Semantics/Semantics.hpp"
+#include "Emit/EmitDiagnostics.hpp"
 
 #include <string>
 #include <iostream>
