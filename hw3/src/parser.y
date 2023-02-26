@@ -376,7 +376,8 @@ iterStmtUnmatched       : WHILE simpleExp DO stmtUnmatched
                         | FOR ID ASGN iterRange DO stmtUnmatched
                         {
                             $$ = new For($1->tokenLineNumber);
-                            Var *node = new Var($2->tokenLineNumber, new Primitive(Primitive::Type::INT), $2->tokenInformation);
+                            Var* node = new Var($2->tokenLineNumber, $2->tokenInformation, new NodeData(NodeData::Type::INT, false, false));
+                            node->setInitialized();
                             $$->addChildNode(node);
                             $$->addChildNode($4);
                             $$->addChildNode($6);
@@ -392,7 +393,7 @@ iterStmtMatched         : WHILE simpleExp DO stmtMatched
                         | FOR ID ASGN iterRange DO stmtMatched
                         {
                             $$ = new For($1->tokenLineNumber);
-                            Var *node = new Var($2->tokenLineNumber, new Primitive(Primitive::Type::INT), $2->tokenInformation);
+                            Var *node = new Var($2->tokenLineNumber, $2->tokenInformation, new NodeData(NodeData::Type::INT, false, false));
                             $$->addChildNode(node);
                             $$->addChildNode($4);
                             $$->addChildNode($6);
@@ -708,9 +709,6 @@ constant                : NUMCONST
 
 int main(int argc, char *argv[])
 {
-    //initialize the number of errors and warnings to 0
-    int numErrors = 0;
-    int numWarnings = 0;
 
     //create the compiler flags object. This will parse the command line arguments
     CompilerFlags compilerFlags(argc, argv);
@@ -730,67 +728,74 @@ int main(int argc, char *argv[])
         throw std::runtime_error("Cannot open file: \'" + fileName + "\'");
         
         //print the number of errors and warnings
-        std::cout << "Number of errors: " << numErrors << std::endl;
-        std::cout << "Number of warnings: " << numWarnings << std::endl;
+        EmitDiagnostics::Error::emitArgListError("source file \"" + filename + "\" could not be opened. Terminating compilation."); 
 
+        EmitDiagnostics::Warning::emitWarningCount();
+
+        EmitDiagnostics::Error::emitErrorCount();
+
+        exit(1);
     }
 
     //parse the input
     yyparse();
 
-    if(numErrors == 0)
+
+
+    //if the the -p flag was passed, print the AST
+    if(compilerFlags.getPrintASTFlag())
     {
-        //if the the -p flag was passed, print the AST
-        if(compilerFlags.getPrintASTFlag())
+        //if the root is null, throw an error
+        if (root == nullptr)
         {
-            //if the root is null, throw an error
-            if (root == nullptr)
-            {
-                throw std::runtime_error("Cannot print root: nullptr");
-            }
-
-            //print the AST
-            root->printAST();
+            throw std::runtime_error("Cannot print root: nullptr");
         }
 
-        //create the symbol table
-        symbolTable = new SymbolTable();
-
-        //create the semantics analyzer
-        Semantics analyzer = Semantics(&symbolTable);
-        
-        //perform semantic analysis
-        analyzer.analyze(root);
-
-        //if the -D flag was passed, print the symbol table
-        if(compilerFlags.getPrintSymbolTableFlag())
-        {
-            //if the root is null, throw an error
-            if (root == nullptr)
-            {
-                throw std::runtime_error("Cannot print root: nullptr");
-            }
-        }
-
-        //if the -P flag was passed, print the AST with types
-        if(compilerFlags.getPrintASTWithTypesFlag())
-        {
-            //if the root is null, throw an error
-            if (root == nullptr)
-            {
-                throw std::runtime_error("Cannot print root: nullptr");
-            }
-
-            //print the AST with types
-            root->printASTWithTypes();
-        }
-
-        //code generation will eventually go here
+        //print the AST
+        root->printAST();
     }
 
+    //create the symbol table
+    SymbolTable symbolTable = SymbolTable();
+
+    //get symbol table debug flag
+    symbolTable.debug(compilerFlags.getSymbolTableFlag());
+
+    //create the semantics analyzer
+    Semantics analyzer = Semantics(&symbolTable);
+    
+    //perform semantic analysis
+    analyzer.analyze(root);
+
+    //if the -D flag was passed, print the symbol table
+    // if(compilerFlags.getSymbolTableFlag())
+    // {
+    //     //if the root is null, throw an error
+    //     if (root == nullptr)
+    //     {
+    //         throw std::runtime_error("Cannot print root: nullptr");
+    //     }
+
+    // }
+
+    //if the -P flag was passed, print the AST with types
+    if(compilerFlags.getPrintASTWithTypesFlag())
+    {
+        //if the root is null, throw an error
+        if (root == nullptr)
+        {
+            throw std::runtime_error("Cannot print root: nullptr");
+        }
+
+        //print the AST with types
+        root->printAST();
+    }
+
+    //code generation will eventually go here
+
     //print the number of errors and warnings
-    std::cout << "Number of errors: " << numErrors << std::endl;
-    std::cout << "Number of warnings: " << numWarnings << std::endl;
+    EmitDiagnostics::Warning::emitWarningCount();
+    EmitDiagnostics::Error::emitErrorCount();
 
     //delete the tree root. Free the memory. 
     delete root;
