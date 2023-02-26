@@ -394,6 +394,7 @@ iterStmtMatched         : WHILE simpleExp DO stmtMatched
                         {
                             $$ = new For($1->tokenLineNumber);
                             Var *node = new Var($2->tokenLineNumber, $2->tokenInformation, new NodeData(NodeData::Type::INT, false, false));
+                            node->setInitialized();
                             $$->addChildNode(node);
                             $$->addChildNode($4);
                             $$->addChildNode($6);
@@ -748,7 +749,7 @@ int main(int argc, char *argv[])
         //if the root is null, throw an error
         if (root == nullptr)
         {
-            throw std::runtime_error("Cannot print root: nullptr");
+            throw std::runtime_error("main(): Cannot print root: nullptr");
         }
 
         //print the AST
@@ -784,7 +785,7 @@ int main(int argc, char *argv[])
         //if the root is null, throw an error
         if (root == nullptr)
         {
-            throw std::runtime_error("Cannot print root: nullptr");
+            throw std::runtime_error("main(): Cannot print root: nullptr");
         }
 
         //print the AST with types

@@ -67,7 +67,41 @@ ExpressionNode::Type ExpressionNode::getExpressionNodeType() const
 //AssignmentNode Constructor
 Asgn :: Asgn(const int tokenLineNumber, const Type assignmentType) : ExpressionNode::ExpressionNode{tokenLineNumber, ExpressionNode::Type::ASSIGN, new NodeData(NodeData::Type::UNDEFINED, false, false)}, m_assignmentType{assignmentType}
 {
-
+    switch (m_assignmentType)
+    {
+        case Asgn::Type::ASGN:
+                        {
+                            m_nodeData->setType(NodeData::Type::INT);
+                        }
+                        break;
+        
+        case Asgn::Type::ADDASS:
+                        {
+                            m_nodeData->setType(NodeData::Type::INT);
+                        }
+                        break;
+        case Asgn::Type::SUBASS:
+                        {
+                            m_nodeData->setType(NodeData::Type::INT);
+                        }
+                        break;
+        case Asgn::Type::DIVASS:
+                        {
+                            m_nodeData->setType(NodeData::Type::INT);
+                        }
+                        break;
+        case Asgn::Type::MULASS:
+                        {
+                            m_nodeData->setType(NodeData::Type::INT);
+                        }
+                        break;
+        
+        default:
+        {
+            throw std::runtime_error("Asgn::Asgn() - Unknown type");
+        }
+        break;
+    }
 }
 
 std::string Asgn::getSymbol() const
@@ -161,9 +195,9 @@ Binary :: Binary(const int tokenLineNumber, const Type binaryType) : ExpressionN
                             break;
         
         case Binary::Type::MOD:
-                        {
-                            m_nodeData->setType(NodeData::Type::INT);
-                        }
+                            {
+                                m_nodeData->setType(NodeData::Type::INT);
+                            }
                         break;
         
         case Binary::Type::EQ:
@@ -302,7 +336,7 @@ std::string Binary::getSymbol() const
         
         default:
             {
-                throw std::runtime_error("ERROR. Could not determine Binary::Type");
+                throw std::runtime_error("ERROR. getSymbol(): Could not determine Binary::Type");
             }
             break;
         }
@@ -355,31 +389,28 @@ Const :: Const(int tokenLineNumber, const Type constantType, const std::string c
     {
         case Const::Type::INT:
                             {
-                                m_nodeData->setType(NodeData::Type::INT);
                                 m_intValue = std::stoi(constantValue);
+                                m_nodeData->setType(NodeData::Type::INT);
                             }
                             break;
         
         case Const::Type::BOOL:
                             {
-                                m_nodeData->setType(NodeData::Type::BOOL);
                                 m_boolValue = (constantValue == "true" ? true : false); 
+                                m_nodeData->setType(NodeData::Type::BOOL);
                             }
                             break;
         
         case Const::Type::STRING:
                             {
-                                m_nodeData->setType(NodeData::Type::CHAR);
                                 m_stringValue = m_tokenFormatter.parseCharacters(m_tokenFormatter.deleteLeftmostAndRightmostCharacters(constantValue));
+                                m_nodeData->setType(NodeData::Type::CHAR);
                                 m_nodeData->setIsArray(true);
-
                             }
                             break;
         
         case Const::Type::CHAR:
                             {
-                                m_nodeData->setType(NodeData::Type::CHAR);
-                                
                                 //create new temp string and concatenate the first and last character of the constantValue string
                                 std::string tempString = m_tokenFormatter.deleteLeftmostAndRightmostCharacters(constantValue);
                                 
@@ -391,12 +422,14 @@ Const :: Const(int tokenLineNumber, const Type constantType, const std::string c
                                     //throw error flag
                                     m_isCharLengthGreaterThanOne = true;
                                 }
+
+                                m_nodeData->setType(NodeData::Type::CHAR);
                             }
                             break;
         
         default:
             {
-                throw std::runtime_error("ERROR. Could not determine Const::Type");
+                throw std::runtime_error("ERROR. Const(): Could not determine Const::Type");
             }
             break;
     }
@@ -421,7 +454,7 @@ std::string Const::printTokenString() const
         case Const::Type::BOOL:
                                 {
 
-                                    if(m_boolValue == true)
+                                    if(m_boolValue)
                                     {
                                         tokenOutputString += "true";
                                     }
@@ -442,7 +475,8 @@ std::string Const::printTokenString() const
         
         case Const::Type::STRING:
                                 {
-                                    tokenOutputString += m_stringValue ;
+                                    tokenOutputString += "is array \"" + m_stringValue + "\"";
+
                                 }
                                 break;
     }
@@ -536,7 +570,7 @@ Unary :: Unary(int tokenLineNumber, const Type unaryType) : ExpressionNode::Expr
                                 
         default:
             {
-                throw std::runtime_error("ERROR. Could not determine Unary::Type");
+                throw std::runtime_error("ERROR. Unary(): Could not determine Unary::Type");
             }
             break;
     }
@@ -550,12 +584,12 @@ std::string Unary::getSymbol() const
     {
         case Unary::Type::CHSIGN:
                                 {
-                                    symbol = "-";
+                                    symbol = "chsign";
                                 }
                                 break;
         case Unary::Type::NOT:
                                 {
-                                    symbol = "!";
+                                    symbol = "not";
                                 }
                                 break;
         case Unary::Type::QUESTION:
@@ -571,7 +605,7 @@ std::string Unary::getSymbol() const
                                 
         default:
             {
-                throw std::runtime_error("ERROR. Could not determine Unary::Type");
+                throw std::runtime_error("ERROR. Unary:getSymbol() Could not determine Unary::Type");
             }
             break;
     }
@@ -592,7 +626,7 @@ Unary::Type Unary::getUnaryType() const
 //********************************************************************************
 
 //UnaryAssignmentNode Constructor
-UnaryAsgn :: UnaryAsgn(const int tokenLineNumber, const Type unaryAssignmentType) : ExpressionNode::ExpressionNode{tokenLineNumber, ExpressionNode::Type::UNARYASSIGN, new NodeData(NodeData::Type::UNDEFINED, false, false)}, m_unaryAssignmentType{unaryAssignmentType}
+UnaryAsgn :: UnaryAsgn(const int tokenLineNumber, const Type unaryAssignmentType) : ExpressionNode::ExpressionNode{tokenLineNumber, ExpressionNode::Type::UNARYASSIGN, new NodeData(NodeData::Type::INT, false, false)}, m_unaryAssignmentType{unaryAssignmentType}
 {
 
 }
@@ -618,7 +652,7 @@ std::string UnaryAsgn::getSymbol() const
         
         default:
             {
-                throw std::runtime_error("ERROR. Could not determine UnaryAsgn::Type");
+                throw std::runtime_error("ERROR. Unary:Asgn:getSymbol() Could not determine UnaryAsgn::Type");
             }
             break;
     }

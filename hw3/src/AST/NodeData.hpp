@@ -26,7 +26,7 @@ class NodeData
         enum class Type { UNDEFINED, INT, BOOL, CHAR, STRING, VOID };
 
         // ************ NodeData Class Constructor ************************
-        NodeData(const NodeData::Type nodeDataType, bool isArray, bool isStatic);
+        NodeData(NodeData::Type nodeDataType, bool isArray, bool isStatic);
 
         // ****************** NodeData Printers  ******************************
         std::string printTokenString() const;
@@ -60,7 +60,7 @@ class NodeData
         //is Static
         bool m_isStatic = false;
 
-        NodeData* m_next = nullptr;
+        NodeData* m_next; //pointer to next node data
 
         std::string m_copyString;
 

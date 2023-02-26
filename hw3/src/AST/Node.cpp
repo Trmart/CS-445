@@ -64,7 +64,7 @@ std::string Node ::printTokenStringWithType() const
 void Node :: printASTNode(const bool showNodeTypes) const
 {
     //check to see if we want to show the node types
-    if(showNodeTypes == true)
+    if(showNodeTypes)
     {
         std:: cout << printTokenStringWithType();
     }
@@ -100,7 +100,7 @@ void Node :: printAST(const bool showNodeTypes) const
             printOutputTabs(numTabs); 
 
             //print current child node
-            std :: cout << "Child: " + std::to_string(i) << "  "; 
+            std :: cout << "Child: " + i << "  "; 
             
             //init temp sibling count to how current node sibling count. 
             int tempSiblingCount = numSiblingNodes; 

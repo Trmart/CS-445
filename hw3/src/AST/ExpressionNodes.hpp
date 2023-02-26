@@ -73,8 +73,7 @@ class Asgn : public ExpressionNode
             ADDASS,
             SUBASS,
             MULASS,
-            DIVASS,
-            NONE
+            DIVASS
         };
         
         Asgn(const int tokenLineNumber, const Asgn::Type assignmentType);
@@ -116,8 +115,7 @@ class Binary : public ExpressionNode
             GEQ,
             EQ,
             NEQ,
-            INDEX,
-            NONE
+            INDEX
         };
 
 

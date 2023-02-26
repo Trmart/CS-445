@@ -104,10 +104,9 @@ std::string Parm::printTokenString() const
     {
         return "Parm: " + m_declarationName + " of array of type " + m_nodeData->printTokenString();
     }
-    else
-    {
-        return "Parm: " + m_declarationName + " of type " + m_nodeData->printTokenString();
-    }
+    
+    return "Parm: " + m_declarationName + " of type " + m_nodeData->printTokenString();
+    
 }
 
 //setUsed
@@ -150,10 +149,9 @@ std::string Var::printTokenString() const
     {
         return "Var: " + m_declarationName + " of static type " + m_nodeData->printTokenString();
     }
-    else
-    {
-        return "Var: " + m_declarationName + " of type " + m_nodeData->printTokenString();
-    }
+
+    return "Var: " + m_declarationName + " of type " + m_nodeData->printTokenString();
+
 }
 
 //***********************setters***********************

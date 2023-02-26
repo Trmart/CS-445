@@ -14,13 +14,13 @@ DESC: NodeData class definitions for AST nodes.
 #include "NodeData.hpp"
 
 // ************ NodeData Class Constructor ************************
-NodeData::NodeData(const NodeData::Type nodeDataType, bool isArray, bool isStatic) :  m_isArray(isArray), m_isStatic(isStatic)
+NodeData::NodeData(NodeData::Type nodeDataType, bool isArray, bool isStatic) :  m_isArray(isArray), m_isStatic(isStatic)
 {
     //set next to null
     m_next = nullptr;
    
     //check if array
-    if(isArray == true)
+    if(isArray)
     {
         //create new PrimitiveType
         m_next = new NodeData(nodeDataType,false,false);
@@ -51,37 +51,37 @@ std::string NodeData::convertTypeToString(NodeData::Type type)
 
     switch (type)
     {
-        case Type::INT:
+        case NodeData::Type::INT:
                     {
                         tokenOutputString = "int";
                     }
                     break;
 
-        case Type::BOOL:
+        case NodeData::Type::BOOL:
                     {
                         tokenOutputString = "bool";
                     }
                     break;
 
-        case Type::CHAR:
+        case NodeData::Type::CHAR:
                     {
                         tokenOutputString = "char";
                     }
                     break;
 
-        case Type::STRING:
+        case NodeData::Type::STRING:
                         {
                             tokenOutputString = "string";
                         }
                         break;
 
-        case Type::UNDEFINED:
+        case NodeData::Type::UNDEFINED:
                         {
                             tokenOutputString = "undefined";
                         }
                         break;
     
-        case Type::VOID:
+        case NodeData::Type::VOID:
                 {
                     tokenOutputString = "void";
                 }

@@ -37,7 +37,7 @@ class DeclarationNode : public Node
 
     // ****************** Setters ******************************
     void setType(const NodeData::Type type);
-    void setShowErrors(const bool showErrors);
+    void setShowErrors(bool showErrors);
 
     // ****************** Getters ******************************
     std::string getName() const;
