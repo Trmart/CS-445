@@ -1,0 +1,100 @@
+.   .   .   Child:   Const 3 [line: 7]
+.   .   .   Child:   Id: a [line: 8]
+.   .   .   Child:   Id: g [line: 43]
+.   .   .   Child:   Id: q [line: 46]
+.   .   .   Child:   Id: s [line: 47]
+.   .   .   Child:   Id: u [line: 48]
+.   .   .   .   Child:   Id: v [line: 48]
+.   .   .   Child:   Id: x [line: 59]
+.   .   .   Child:   Id: y [line: 42]
+.   .   .   Child:   Id: z [line: 44]
+.   Child:   Parm: x of type int [line: 3]
+.   Child:   Parm: y of type int [line: 37]
+.   .   Child:   Var: a of type int [line: 5]
+.   .   .   Child:   Var: c of type int [line: 12]
+.   .   .   .   Child:   Var: IWouldNotEatItWithAGoat of type int [line: 19]
+.   .   Child:   Var: z of type int [line: 39]
+ERROR(14): Symbol 'b' is not declared.
+ERROR(25): Symbol 'b' is not declared.
+ERROR(26): Symbol 'c' is not declared.
+ERROR(30): Symbol 'b' is not declared.
+ERROR(31): Symbol 'c' is not declared.
+ERROR(41): Symbol 'x' is not declared.
+ERROR(45): Symbol 'p' is not declared.
+ERROR(46): Symbol 'q' is not declared.
+ERROR(46): Symbol 'r' is not declared.
+ERROR(47): Symbol 's' is not declared.
+ERROR(47): Symbol 't' is not declared.
+ERROR(48): Symbol 'cow' is not declared.
+ERROR(48): Symbol 'u' is not declared.
+ERROR(48): Symbol 'v' is not declared.
+ERROR(49): Symbol 'abraxsis' is not declared.
+ERROR(50): Symbol 'a' is not declared.
+ERROR(55): Symbol 'g' is already declared at line 2.
+ERROR(57): Symbol 'g' is already declared at line 2.
+ERROR(59): Symbol 'x' is not declared.
+ERROR(63): Symbol '(' is already declared at line 62.
+ERROR(7): Symbol 'bat' is not declared.
+ERROR(8): 'or' requires operands of type bool but lhs is of type int.
+ERROR(8): 'or' requires operands of type bool but rhs is of type int.
+ERROR(LINKER): A function named 'main()' must be defined.
+.   .   hild:   Call: bat [line: 7]
+.   .   .   hild:   Call: cow [line: 48]
+.   hild:   Compound [line: 38]
+.   hild:   Compound [line: 4]
+.   hild:   Compound [line: 58]
+.   hild:   Compound [line: 62]
+.   hild:   Compound [line: 63]
+.   .   .   hild:   Id: a [line: 13]
+.   .   .   hild:   Id: a [line: 29]
+.   .   .   hild:   Id: a [line: 8]
+.   .   .   .   hild:   Id: c [line: 20]
+.   .   .   hild:   Id: r [line: 46]
+.   .   hild:   Id: x [line: 41]
+.   .   hild:   Return [line: 59]
+Number of errors: 24
+Number of warnings: 5
+.   .   Sibling: 10  Id: x [line: 34]
+.   .   Sibling: 10  Id: z [line: 51]
+.   .   Sibling: 11  Id: g [line: 52]
+.   .   Sibling: 1  Call: ant [line: 42]
+Sibling: 1  Func: ant returns type int [line: 3]
+.   .   .   .   Sibling: 1  Id: a [line: 21]
+.   .   .   Sibling: 1  Id: b [line: 14]
+.   .   .   Sibling: 1  Id: b [line: 30]
+.   .   .   Sibling: 1  Id: t [line: 47]
+.   .   Sibling: 1  Op: or [line: 8]
+.   .   Sibling: 1  Var: bat of type int [line: 40]
+.   .   Sibling: 2  Call: ant [line: 43]
+Sibling: 2  Func: bat returns type int [line: 37]
+.   .   .   Sibling: 2  Id: c [line: 15]
+.   .   .   Sibling: 2  Id: c [line: 31]
+.   .   Sibling: 2  Id: x [line: 9]
+.   .   Sibling: 3  Call: ant [line: 44]
+.   .   Sibling: 3  Id: g [line: 10]
+.   .   .   Sibling: 3  Id: g [line: 16]
+.   .   .   Sibling: 3  Id: x [line: 32]
+Sibling: 3  Var: g of type int [line: 55]
+.   .   Sibling: 4  Compound [line: 11]
+Sibling: 4  Func: g returns type int [line: 57]
+.   .   Sibling: 4  Id: p [line: 45]
+.   .   .   Sibling: 4  Id: x [line: 17]
+.   .   .   Sibling: 5  Compound [line: 18]
+Sibling: 5  Func: ( returns type void [line: 62]
+.   .   Sibling: 5  Id: a [line: 24]
+.   .   Sibling: 5  Op: + [line: 46]
+.   .   Sibling: 6  Call: ant [line: 47]
+Sibling: 6  Func: ( returns type void [line: 63]
+.   .   Sibling: 6  Id: b [line: 25]
+.   .   Sibling: 7  Assign: <= [line: 48]
+.   .   Sibling: 7  Id: c [line: 26]
+.   .   Sibling: 8  Id: abraxsis [line: 49]
+.   .   Sibling: 8  Id: x [line: 27]
+.   .   Sibling: 9  Compound [line: 28]
+.   .   Sibling: 9  Id: a [line: 50]
+Var: g of type int [line: 2]
+WARNING(15): Variable 'c' may be uninitialized when used here.
+WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
+WARNING(40): The variable 'bat' seems not to be used.
+WARNING(44): Variable 'z' may be uninitialized when used here.
+WARNING(8): Variable 'a' may be uninitialized when used here.

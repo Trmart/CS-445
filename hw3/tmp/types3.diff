@@ -1,31 +1,31 @@
-0a1,16
-> .   .   .   Child: 0  Id: arwen [line: 26]
-> .   .   .   Child: 0  Id: fred [line: 13]
-> .   Child: 0  Parm: a of type int [line: 5]
-> .   Child: 0  Parm: a of type int [line: 9]
-> .   Child: 0  Parm: eowyn of type int [line: 24]
-> .   Child: 0  Parm: linda of type int [line: 18]
-> .   .   Child: 0  Var: a of type int [line: 11]
-> .   .   Child: 0  Var: linda of type int [line: 20]
-> .   .   Child: 1  Call: a [line: 12]
-> .   Child: 1  Compound [line: 10]
-> .   Child: 1  Compound [line: 19]
-> .   Child: 1  Compound [line: 25]
-> .   Child: 1  Compound [line: 6]
-> .   .   .   Child: 1  Const 4 [line: 13]
-> .   .   .   Child: 1  Const 4 [line: 26]
-> .   .   Child: 1  Op: + [line: 26]
-4a21
+0a1,8
+> .   .   .   Child:   Id: arwen [line: 26]
+> .   .   .   Child:   Id: fred [line: 13]
+> .   Child:   Parm: a of type int [line: 5]
+> .   Child:   Parm: a of type int [line: 9]
+> .   Child:   Parm: eowyn of type int [line: 24]
+> .   Child:   Parm: linda of type int [line: 18]
+> .   .   Child:   Var: a of type int [line: 11]
+> .   .   Child:   Var: linda of type int [line: 20]
+4a13
 > ERROR(18): Symbol '(' is already declared at line 5.
-6,7c23,24
+6,7c15,16
 < ERROR(26): Cannot use function 'arwen' as a variable.
 < ERROR(5): Symbol 'lund' is already declared at line 3.
 ---
 > ERROR(24): Symbol '(' is already declared at line 5.
 > ERROR(26): Symbol 'arwen' is not declared.
-10c27
+10c19,27
 < Number of errors: 9
 ---
+> .   .   hild:   Call: a [line: 12]
+> .   hild:   Compound [line: 10]
+> .   hild:   Compound [line: 19]
+> .   hild:   Compound [line: 25]
+> .   hild:   Compound [line: 6]
+> .   .   .   hild:   Const 4 [line: 13]
+> .   .   .   hild:   Const 4 [line: 26]
+> .   .   hild:   Op: + [line: 26]
 > Number of errors: 10
 11a29,37
 > Sibling: 1  Func: ( returns type void [line: 5]

@@ -1,7 +1,7 @@
-.   .   Child: 0  Var: a of type int [line: 4]
-.   Child: 1  Compound [line: 3]
+.   .   Child:   Var: a of type int [line: 4]
 ERROR(LINKER): A function named 'main()' must be defined.
 Func: ( returns type void [line: 2]
+.   hild:   Compound [line: 3]
 Number of errors: 1
 Number of warnings: 3
 .   .   Sibling: 1  Var: b of type bool [line: 5]

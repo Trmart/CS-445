@@ -1,12 +1,9 @@
-1,3c1,3
+1,11c1,12
 < .   .   .   Child: 0  Const 555 of type int [line: 6]
 < .   .   .   .   Child: 0  Const 666 of type int [line: 6]
 < .   .   .   .   .   Child: 0  Id: x of type int [line: 6]
----
-> .   .   .   Child: 0  Const 555 [line: 6]
-> .   .   .   .   Child: 0  Const 666 [line: 6]
-> .   .   .   .   .   Child: 0  Id: x [line: 6]
-6,11c6,12
+< .   .   Child: 0  Var: x of type int [line: 4]
+< .   Child: 1  Compound [line: 3]
 < .   .   .   .   .   Child: 1  Const 777 of type int [line: 6]
 < .   .   Child: 1  Op: > of type bool [line: 6]
 < .   .   .   .   Child: 1  Op: * of type int [line: 6]
@@ -14,10 +11,15 @@
 < Func: main returns type void [line: 2]
 < Number of errors: 0
 ---
-> .   .   .   .   .   Child: 1  Const 777 [line: 6]
-> .   .   .   .   Child: 1  Op: * [line: 6]
-> .   .   .   Child: 1  Op: + [line: 6]
-> .   .   Child: 1  Op: > [line: 6]
+> .   .   .   Child:   Const 555 [line: 6]
+> .   .   .   .   Child:   Const 666 [line: 6]
+> .   .   .   .   .   Child:   Id: x [line: 6]
+> .   .   Child:   Var: x of type int [line: 4]
 > ERROR(LINKER): A function named 'main()' must be defined.
 > Func: ( returns type void [line: 2]
+> .   hild:   Compound [line: 3]
+> .   .   .   .   .   hild:   Const 777 [line: 6]
+> .   .   .   .   hild:   Op: * [line: 6]
+> .   .   .   hild:   Op: + [line: 6]
+> .   .   hild:   Op: > [line: 6]
 > Number of errors: 1

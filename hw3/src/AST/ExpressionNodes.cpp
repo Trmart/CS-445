@@ -198,7 +198,7 @@ Binary :: Binary(const int tokenLineNumber, const Type binaryType) : ExpressionN
                             {
                                 m_nodeData->setType(NodeData::Type::INT);
                             }
-                        break;
+                            break;
         
         case Binary::Type::EQ:
                             {
@@ -235,10 +235,25 @@ Binary :: Binary(const int tokenLineNumber, const Type binaryType) : ExpressionN
                                 m_nodeData->setType(NodeData::Type::BOOL);
                             }
                             break;
-        
+        case Binary::Type::INDEX:
+                            {
+                                //ignore
+                            }
+                            break;
+
+        case Binary::Type::AND:
+                            {
+                                m_nodeData->setType(NodeData::Type::BOOL);
+                            }
+                            break; 
+        case Binary::Type::OR:
+                            {
+                                m_nodeData->setType(NodeData::Type::BOOL);
+                            }
+                            break; 
         default:
             {
-                throw std::runtime_error("ERROR. Could not determine Binary::Type");
+                throw std::runtime_error("ERROR. Binary::Binary() -  Could not determine Binary::Type");
             }
             break;
     }
@@ -608,7 +623,9 @@ std::string Unary::getSymbol() const
                 throw std::runtime_error("ERROR. Unary:getSymbol() Could not determine Unary::Type");
             }
             break;
+
     }
+    return symbol;
 }
 //UnaryNode printTokenString
 std::string Unary::printTokenString() const
@@ -656,6 +673,8 @@ std::string UnaryAsgn::getSymbol() const
             }
             break;
     }
+
+    return symbol; 
 }
 
 //UnaryAssignmentNode printTokenString

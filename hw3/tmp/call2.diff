@@ -1,11 +1,71 @@
-1,10d0
-< ERROR(10): Symbol 'output' is not declared.
-< ERROR(12): Symbol 'output' is not declared.
-< ERROR(17): Symbol 'output' is not declared.
-< ERROR(19): Symbol 'output' is not declared.
-< ERROR(29): Symbol 'output' is not declared.
-< ERROR(30): Symbol 'outnl' is not declared.
-< ERROR(3): Symbol 'output' is not declared.
-< ERROR(5): Symbol 'outnl' is not declared.
+0a1,23
+> .   .   .   .   Child:   Id: w [line: 27]
+> .   .   .   Child:   Id: w [line: 28]
+> .   .   .   .   Child:   Id: w [line: 29]
+> .   .   .   .   Child:   Id: x [line: 17]
+> .   .   .   Child:   Id: x [line: 18]
+> .   .   .   .   Child:   Id: x [line: 19]
+> .   .   .   .   Child:   Id: y [line: 10]
+> .   .   .   Child:   Id: y [line: 11]
+> .   .   .   .   Child:   Id: y [line: 12]
+> .   .   .   .   Child:   Id: z [line: 3]
+> .   .   .   .   Child:   Id: z [line: 4]
+> .   .   .   Child:   Op: [ [line: 10]
+> .   .   .   Child:   Op: [ [line: 12]
+> .   .   .   Child:   Op: [ [line: 17]
+> .   .   .   Child:   Op: [ [line: 19]
+> .   .   .   Child:   Op: [ [line: 27]
+> .   .   .   Child:   Op: [ [line: 29]
+> .   .   .   Child:   Op: [ [line: 3]
+> .   .   .   Child:   Op: [ [line: 4]
+> .   Child:   Parm: x of array of type int [line: 16]
+> .   Child:   Parm: y of array of type int [line: 9]
+> .   Child:   Parm: z of array of type int [line: 2]
+> .   .   Child:   Var: w of array of type int [line: 25]
+1a25
+> ERROR(11): Symbol 'three' is not declared.
+2a27
+> ERROR(16): Symbol '(' is already declared at line 2.
+3a29
+> ERROR(18): Symbol 'two' is not declared.
+4a31,32
+> ERROR(23): Symbol '(' is already declared at line 2.
+> ERROR(28): Symbol 'one' is not declared.
+9c37,58
 < Number of errors: 8
-< Number of warnings: 0
+---
+> ERROR(9): Symbol '(' is already declared at line 2.
+> ERROR(LINKER): A function named 'main()' must be defined.
+> Func: ( returns type void [line: 2]
+> .   .   hild:   Assign: <= [line: 27]
+> .   .   hild:   Call: output [line: 10]
+> .   .   hild:   Call: output [line: 17]
+> .   .   hild:   Call: output [line: 3]
+> .   hild:   Compound [line: 16]
+> .   hild:   Compound [line: 2]
+> .   hild:   Compound [line: 24]
+> .   hild:   Compound [line: 9]
+> .   .   .   hild:   Const 42 [line: 27]
+> .   .   .   hild:   Const 666 [line: 4]
+> .   .   .   .   hild:   Const 7 [line: 10]
+> .   .   .   .   hild:   Const 7 [line: 12]
+> .   .   .   .   hild:   Const 7 [line: 17]
+> .   .   .   .   hild:   Const 7 [line: 19]
+> .   .   .   .   hild:   Const 7 [line: 27]
+> .   .   .   .   hild:   Const 7 [line: 29]
+> .   .   .   .   hild:   Const 7 [line: 3]
+> .   .   .   .   hild:   Const 7 [line: 4]
+> Number of errors: 15
+10a60,71
+> .   .   Sibling: 1  Assign: <= [line: 4]
+> .   .   Sibling: 1  Call: one [line: 28]
+> .   .   Sibling: 1  Call: three [line: 11]
+> .   .   Sibling: 1  Call: two [line: 18]
+> Sibling: 1  Func: ( returns type void [line: 9]
+> .   .   Sibling: 2  Call: outnl [line: 5]
+> .   .   Sibling: 2  Call: output [line: 12]
+> .   .   Sibling: 2  Call: output [line: 19]
+> .   .   Sibling: 2  Call: output [line: 29]
+> Sibling: 2  Func: ( returns type void [line: 16]
+> .   .   Sibling: 3  Call: outnl [line: 30]
+> Sibling: 3  Func: ( returns type void [line: 23]

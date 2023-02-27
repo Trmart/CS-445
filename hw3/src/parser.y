@@ -18,6 +18,7 @@ Based off CS445 - Calculator Example Program by Robert Heckendorn
 #include "Emit/EmitDiagnostics.hpp"
 #include "CompilerFlags.hpp"
 #include "Semantics/Semantics.hpp"
+#include "Semantics/symbolTable.hpp"
 #include "AST/AST.hpp"
 
 #include <iostream>

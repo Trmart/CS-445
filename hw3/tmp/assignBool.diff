@@ -1,15 +1,84 @@
-1,14d0
-< ERROR(10): Symbol 'outputb' is not declared.
-< ERROR(12): Symbol 'outputb' is not declared.
-< ERROR(14): Symbol 'outputb' is not declared.
-< ERROR(16): Symbol 'outputb' is not declared.
-< ERROR(17): Symbol 'outnl' is not declared.
-< ERROR(20): Symbol 'outputb' is not declared.
-< ERROR(22): Symbol 'outputb' is not declared.
-< ERROR(24): Symbol 'outputb' is not declared.
-< ERROR(26): Symbol 'outputb' is not declared.
-< ERROR(27): Symbol 'outnl' is not declared.
+0a1,28
+> .   .   .   Child:   Id: gx [line: 10]
+> .   .   .   Child:   Id: gx [line: 9]
+> .   .   .   .   Child:   Id: gy [line: 11]
+> .   .   .   .   Child:   Id: gy [line: 12]
+> .   .   .   Child:   Id: px [line: 19]
+> .   .   .   Child:   Id: px [line: 20]
+> .   .   .   .   Child:   Id: py [line: 21]
+> .   .   .   .   Child:   Id: py [line: 22]
+> .   .   .   Child:   Id: sx [line: 23]
+> .   .   .   Child:   Id: sx [line: 24]
+> .   .   .   .   Child:   Id: sy [line: 25]
+> .   .   .   .   Child:   Id: sy [line: 26]
+> .   .   .   Child:   Id: x [line: 13]
+> .   .   .   Child:   Id: x [line: 14]
+> .   .   .   .   Child:   Id: y [line: 15]
+> .   .   .   .   Child:   Id: y [line: 16]
+> .   .   .   Child:   Id: zx [line: 34]
+> .   .   .   Child:   Op: [ [line: 11]
+> .   .   .   Child:   Op: [ [line: 12]
+> .   .   .   Child:   Op: [ [line: 15]
+> .   .   .   Child:   Op: [ [line: 16]
+> .   .   .   Child:   Op: [ [line: 21]
+> .   .   .   Child:   Op: [ [line: 22]
+> .   .   .   Child:   Op: [ [line: 25]
+> .   .   .   Child:   Op: [ [line: 26]
+> .   Child:   Parm: px of type bool [line: 4]
+> .   .   Child:   Var: x of type bool [line: 6]
+> .   .   Child:   Var: zx of type bool [line: 33]
+11c39,62
 < Number of errors: 10
-< Number of warnings: 2
-< WARNING(34): Variable 'zx' may be uninitialized when used here.
-< WARNING(34): Variable 'zy' may be uninitialized when used here.
+---
+> ERROR(31): Symbol '(' is already declared at line 4.
+> ERROR(34): Symbol 'esperanza' is not declared.
+> ERROR(LINKER): A function named 'main()' must be defined.
+> .   .   hild:   Assign: <= [line: 9]
+> .   .   hild:   Call: esperanza [line: 34]
+> .   hild:   Compound [line: 32]
+> .   hild:   Compound [line: 5]
+> .   .   .   .   hild:   Const 9 [line: 11]
+> .   .   .   .   hild:   Const 9 [line: 12]
+> .   .   .   .   hild:   Const 9 [line: 15]
+> .   .   .   .   hild:   Const 9 [line: 16]
+> .   .   .   .   hild:   Const 9 [line: 21]
+> .   .   .   .   hild:   Const 9 [line: 22]
+> .   .   .   .   hild:   Const 9 [line: 25]
+> .   .   .   .   hild:   Const 9 [line: 26]
+> .   .   .   hild:   Const true [line: 11]
+> .   .   .   hild:   Const true [line: 13]
+> .   .   .   hild:   Const true [line: 15]
+> .   .   .   hild:   Const true [line: 19]
+> .   .   .   hild:   Const true [line: 21]
+> .   .   .   hild:   Const true [line: 23]
+> .   .   .   hild:   Const true [line: 25]
+> .   .   .   hild:   Const true [line: 9]
+> Number of errors: 13
+12a64,90
+> .   .   Sibling: 10  Call: outputb [line: 20]
+> .   .   Sibling: 11  Assign: <= [line: 21]
+> .   .   Sibling: 12  Call: outputb [line: 22]
+> .   .   Sibling: 13  Assign: <= [line: 23]
+> .   .   Sibling: 14  Call: outputb [line: 24]
+> .   .   Sibling: 15  Assign: <= [line: 25]
+> .   .   Sibling: 16  Call: outputb [line: 26]
+> .   .   Sibling: 17  Call: outnl [line: 27]
+> .   .   Sibling: 1  Call: outputb [line: 10]
+> .   .   .   Sibling: 1  Id: zy [line: 34]
+> .   Sibling: 1  Parm: py of array of type bool [line: 4]
+> Sibling: 1  Var: gy of array of type bool [line: 2]
+> .   .   Sibling: 1  Var: y of array of type bool [line: 6]
+> .   .   Sibling: 1  Var: zy of array of type bool [line: 33]
+> .   .   Sibling: 2  Assign: <= [line: 11]
+> Sibling: 2  Func: ( returns type void [line: 4]
+> .   .   Sibling: 2  Var: sx of static type bool [line: 7]
+> .   .   Sibling: 3  Call: outputb [line: 12]
+> Sibling: 3  Func: ( returns type void [line: 31]
+> .   .   Sibling: 3  Var: sy of static array of type bool [line: 7]
+> .   .   Sibling: 4  Assign: <= [line: 13]
+> .   .   Sibling: 5  Call: outputb [line: 14]
+> .   .   Sibling: 6  Assign: <= [line: 15]
+> .   .   Sibling: 7  Call: outputb [line: 16]
+> .   .   Sibling: 8  Call: outnl [line: 17]
+> .   .   Sibling: 9  Assign: <= [line: 19]
+> Var: gx of type bool [line: 2]

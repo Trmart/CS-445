@@ -1,15 +1,15 @@
-0a1,9
-> .   Child: 0  Parm: p of array of type int [line: 2]
-> .   .   Child: 0  Var: a of array of type int [line: 4]
-> .   .   .   .   Child: 0  Var: b of array of type int [line: 13]
-> .   .   .   Child: 0  Var: b of array of type int [line: 6]
-> .   .   .   .   Child: 0  Var: c of array of type int [line: 16]
-> .   .   .   Child: 0  Var: c of array of type int [line: 9]
-> .   .   .   Child: 1  Compound [line: 12]
-> .   Child: 1  Compound [line: 3]
-> .   .   Child: 1  Compound [line: 5]
-1a11
+0a1,6
+> .   Child:   Parm: p of array of type int [line: 2]
+> .   .   Child:   Var: a of array of type int [line: 4]
+> .   .   .   .   Child:   Var: b of array of type int [line: 13]
+> .   .   .   Child:   Var: b of array of type int [line: 6]
+> .   .   .   .   Child:   Var: c of array of type int [line: 16]
+> .   .   .   Child:   Var: c of array of type int [line: 9]
+1a8,11
 > Func: ( returns type void [line: 2]
+> .   .   .   hild:   Compound [line: 12]
+> .   hild:   Compound [line: 3]
+> .   .   hild:   Compound [line: 5]
 3a14,16
 > .   .   .   Sibling: 1  Compound [line: 15]
 > .   .   Sibling: 1  Compound [line: 8]

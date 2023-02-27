@@ -1,22 +1,30 @@
-1,3c1,3
+1,12c1,14
 < .   .   .   .   Child: 0  Const 1 of type int [line: 12]
 < .   .   .   Child: 0  Const true of type bool [line: 11]
 < .   .   .   Child: 0  Const true of type bool [line: 9]
----
-> .   .   .   .   Child: 0  Const 1 [line: 12]
-> .   .   .   Child: 0  Const true [line: 11]
-> .   .   .   Child: 0  Const true [line: 9]
-8c8
+< .   .   .   Child: 0  Var: x of type int [line: 12]
+< .   .   Child: 0  Var: x of type int [line: 6]
+< .   Child: 1  Compound [line: 2]
+< .   Child: 1  Compound [line: 5]
 < .   .   .   .   Child: 1  Const 10 of type int [line: 12]
----
-> .   .   .   .   Child: 1  Const 10 [line: 12]
-11,12c11,14
+< .   .   Child: 1  If [line: 9]
+< .   .   .   Child: 1  Range [line: 12]
 < Func: main returns type void [line: 2]
 < Number of errors: 0
 ---
+> .   .   .   .   Child:   Const 1 [line: 12]
+> .   .   .   Child:   Const true [line: 11]
+> .   .   .   Child:   Const true [line: 9]
+> .   .   .   Child:   Var: x of type int [line: 12]
+> .   .   Child:   Var: x of type int [line: 6]
 > ERROR(4): Symbol '(' is already declared at line 2.
 > ERROR(LINKER): A function named 'main()' must be defined.
 > Func: ( returns type void [line: 2]
+> .   hild:   Compound [line: 2]
+> .   hild:   Compound [line: 5]
+> .   .   .   .   hild:   Const 10 [line: 12]
+> .   .   hild:   If [line: 9]
+> .   .   .   hild:   Range [line: 12]
 > Number of errors: 2
 14c16
 < Sibling: 1  Func: dogs returns type void [line: 4]

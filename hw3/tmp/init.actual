@@ -1,12 +1,12 @@
-.   Child: 0  Const 666 [line: 4]
-.   .   .   Child: 0  Const 777 [line: 9]
-.   .   .   Child: 0  Const 888 [line: 11]
-.   .   .   Child: 0  Id: z [line: 13]
-.   .   Child: 0  Var: b of array of type int [line: 8]
-.   .   Child: 1  Assign: <= [line: 13]
-.   Child: 1  Compound [line: 7]
-.   .   .   Child: 1  Const 999 [line: 13]
+.   Child:   Const 666 [line: 4]
+.   .   .   Child:   Const 777 [line: 9]
+.   .   .   Child:   Const 888 [line: 11]
+.   .   .   Child:   Id: z [line: 13]
+.   .   Child:   Var: b of array of type int [line: 8]
 ERROR(LINKER): A function named 'main()' must be defined.
+.   .   hild:   Assign: <= [line: 13]
+.   hild:   Compound [line: 7]
+.   .   .   hild:   Const 999 [line: 13]
 Number of errors: 1
 Number of warnings: 3
 Sibling: 1  Var: x of type int [line: 4]

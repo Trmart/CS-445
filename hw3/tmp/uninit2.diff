@@ -1,4 +1,4 @@
-1,60d0
+1,39c1,41
 < .   .   .   .   Child: 0  Id: aa of type int [line: 8]
 < .   .   .   Child: 0  Id: a of type int [line: 6]
 < .   .   .   Child: 0  Id: a of type int [line: 7]
@@ -38,13 +38,61 @@
 < .   .   .   Child: 1  Op: [ of type int [line: 9]
 < Func: main returns type void [line: 1]
 < Number of errors: 0
-< Number of warnings: 5
+---
+> .   .   .   .   Child:   Id: aa [line: 8]
+> .   .   .   Child:   Id: a [line: 6]
+> .   .   .   Child:   Id: a [line: 7]
+> .   .   .   Child:   Id: a [line: 8]
+> .   .   .   Child:   Id: a [line: 9]
+> .   .   .   .   Child:   Id: bb [line: 9]
+> .   .   .   .   Child:   Id: cc [line: 10]
+> .   .   .   .   Child:   Id: cc [line: 11]
+> .   .   .   Child:   Id: cc [line: 12]
+> .   .   .   .   Child:   Id: cc [line: 13]
+> .   .   .   .   .   Child:   Id: cc [line: 9]
+> .   .   .   .   .   Child:   Id: c [line: 11]
+> .   .   .   .   Child:   Id: dd [line: 12]
+> .   .   .   .   .   Child:   Id: ee [line: 13]
+> .   .   .   Child:   Op: [ [line: 10]
+> .   .   .   Child:   Op: [ [line: 11]
+> .   .   .   Child:   Op: [ [line: 13]
+> .   .   Child:   Var: a of type int [line: 3]
+> ERROR(10): Array index is the unindexed array 'cc'.
+> ERROR(LINKER): A function named 'main()' must be defined.
+> Func: ( returns type void [line: 1]
+> .   .   hild:   Assign: <= [line: 6]
+> .   hild:   Compound [line: 2]
+> .   .   .   hild:   Const 284 [line: 13]
+> .   .   .   .   hild:   Const 3 [line: 12]
+> .   .   .   .   .   hild:   Const 3 [line: 13]
+> .   .   .   .   hild:   Const 3 [line: 8]
+> .   .   .   .   .   hild:   Const 3 [line: 9]
+> .   .   .   hild:   Id: a [line: 10]
+> .   .   .   hild:   Id: a [line: 11]
+> .   .   .   hild:   Id: b [line: 6]
+> .   .   .   hild:   Id: b [line: 7]
+> .   .   .   .   hild:   Id: c [line: 10]
+> .   .   .   .   .   hild:   Id: d [line: 11]
+> .   .   .   .   hild:   Op: + [line: 11]
+> .   .   .   hild:   Op: [ [line: 12]
+> .   .   .   .   hild:   Op: [ [line: 13]
+> .   .   .   hild:   Op: [ [line: 8]
+> .   .   .   .   hild:   Op: [ [line: 9]
+> .   .   .   hild:   Op: [ [line: 9]
+> Number of errors: 2
+41c43
 < .   .   Sibling: 1  Assign: <= of type int [line: 7]
-< .   .   Sibling: 1  Var: b of type int [line: 3]
+---
+> .   .   Sibling: 1  Assign: <= [line: 7]
+43c45
 < .   .   Sibling: 2  Assign: <= of type int [line: 8]
-< .   .   Sibling: 2  Var: c of type int [line: 3]
+---
+> .   .   Sibling: 2  Assign: <= [line: 8]
+45c47
 < .   .   Sibling: 3  Assign: <= of type int [line: 9]
-< .   .   Sibling: 3  Var: d of type int [line: 3]
+---
+> .   .   Sibling: 3  Assign: <= [line: 9]
+47,55c49,57
 < .   .   Sibling: 4  Assign: <= of type int [line: 10]
 < .   .   Sibling: 4  Var: aa is array of type int [line: 4]
 < .   .   Sibling: 5  Assign: <= of type int [line: 11]
@@ -54,8 +102,13 @@
 < .   .   Sibling: 7  Assign: <= of type int [line: 13]
 < .   .   Sibling: 7  Var: dd is array of type int [line: 4]
 < .   .   Sibling: 8  Var: ee is array of type int [line: 4]
-< WARNING(12): Variable 'dd' may be uninitialized when used here.
-< WARNING(6): Variable 'b' may be uninitialized when used here.
-< WARNING(8): Variable 'aa' may be uninitialized when used here.
-< WARNING(9): Variable 'bb' may be uninitialized when used here.
-< WARNING(9): Variable 'cc' may be uninitialized when used here.
+---
+> .   .   Sibling: 4  Assign: <= [line: 10]
+> .   .   Sibling: 4  Var: aa of array of type int [line: 4]
+> .   .   Sibling: 5  Assign: <= [line: 11]
+> .   .   Sibling: 5  Var: bb of array of type int [line: 4]
+> .   .   Sibling: 6  Op: [ [line: 12]
+> .   .   Sibling: 6  Var: cc of array of type int [line: 4]
+> .   .   Sibling: 7  Assign: <= [line: 13]
+> .   .   Sibling: 7  Var: dd of array of type int [line: 4]
+> .   .   Sibling: 8  Var: ee of array of type int [line: 4]

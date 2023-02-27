@@ -17,9 +17,6 @@ CC = g++ -std=c++17 -g
 
 SRCS = $(BIN).y $(BIN).l
 
-# CC_SRCS = */*.cpp */*/*.cpp
-# HDRS = *.hpp */*.hpp */*/*.hpp
-
 CC_SRCS = TokenFormatter.cpp AST/*.cpp CompilerFlags.cpp ourgetopt/ourgetopt.cpp Emit/*.cpp Semantics/*.cpp
 HDRS = TokenFormatter.hpp scanType.hpp AST/*.hpp CompilerFlags.hpp ourgetopt/ourgetopt.h Emit/*.hpp Semantics/*.hpp
 
@@ -35,7 +32,7 @@ $(BIN).tab.h $(BIN).tab.c : $(BIN).y
 	bison -v -t -d $(BIN).y
 
 clean :
-	rm -f *~ $(OBJS) $(BIN) lex.yy.c $(BIN).tab.h $(BIN).tab.c $(BIN).output test.out
+	rm -f *~ $(OBJS) $(BIN) lex.yy.c $(BIN).tab.h $(BIN).tab.c $(BIN).output test.out c-
 	
 
 tar : $(HDR) $(SRCS) makefile

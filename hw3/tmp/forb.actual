@@ -1,31 +1,28 @@
-.   .   .   .   Child: 0  Id: x [line: 5]
-.   .   .   .   Child: 0  Id: y [line: 7]
-.   .   .   .   Child: 0  Id: z [line: 8]
-.   .   .   Child: 0  Var: x of type int [line: 4]
-.   .   .   Child: 0  Var: x of type int [line: 7]
-.   .   .   Child: 0  Var: x of type int [line: 8]
-.   .   Child: 0  Var: y of type int [line: 3]
-.   Child: 1  Compound [line: 2]
-.   .   Child: 1  For [line: 4]
-.   .   .   .   Child: 1  Id: x [line: 5]
-.   .   .   .   Child: 1  Id: x [line: 7]
-.   .   .   .   Child: 1  Id: x [line: 8]
-.   .   .   Child: 1  Range [line: 5]
-.   .   .   Child: 1  Range [line: 7]
-.   .   .   Child: 1  Range [line: 8]
-.   .   .   .   Child: 2  Id: x [line: 5]
-.   .   .   Child: 2  Id: x [line: 6]
-.   .   .   Child: 2  Id: x [line: 7]
-.   .   .   Child: 2  Id: x [line: 8]
+.   .   .   .   Child:   Id: x [line: 5]
+.   .   .   .   Child:   Id: y [line: 7]
+.   .   .   .   Child:   Id: z [line: 8]
+.   .   .   Child:   Var: x of type int [line: 4]
+.   .   .   Child:   Var: x of type int [line: 7]
+.   .   .   Child:   Var: x of type int [line: 8]
+.   .   Child:   Var: y of type int [line: 3]
 ERROR(LINKER): A function named 'main()' must be defined.
 Func: ( returns type void [line: 1]
+.   hild:   Compound [line: 2]
+.   .   hild:   For [line: 4]
+.   .   .   .   hild:   Id: x [line: 5]
+.   .   .   .   hild:   Id: x [line: 7]
+.   .   .   .   hild:   Id: x [line: 8]
+.   .   .   hild:   Range [line: 5]
+.   .   .   hild:   Range [line: 7]
+.   .   .   hild:   Range [line: 8]
+.   .   .   .   ild:   Id: x [line: 5]
+.   .   .   ild:   Id: x [line: 6]
+.   .   .   ild:   Id: x [line: 7]
+.   .   .   ild:   Id: x [line: 8]
 Number of errors: 1
-Number of warnings: 5
+Number of warnings: 2
 .   .   Sibling: 1  For [line: 7]
 .   .   Sibling: 1  Var: z of array of type int [line: 3]
 .   .   Sibling: 2  For [line: 8]
 WARNING(3): The variable 'y' seems not to be used.
 WARNING(3): The variable 'z' seems not to be used.
-WARNING(6): Variable 'x' may be uninitialized when used here.
-WARNING(7): Variable 'x' may be uninitialized when used here.
-WARNING(8): Variable 'x' may be uninitialized when used here.

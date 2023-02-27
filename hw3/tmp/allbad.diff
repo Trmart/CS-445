@@ -1,65 +1,285 @@
-1,64d0
-< ERROR(102): '<=' requires operands of the same type but lhs is type char and rhs is type bool.
+0a1,98
+> .   .   .   Child:   Assign: <= [line: 17]
+> .   .   .   Child:   Call: ant [line: 103]
+> .   .   .   .   Child:   Call: ant [line: 107]
+> .   .   .   Child:   Call: dog [line: 105]
+> .   .   .   .   Child:   Const 0 [line: 53]
+> .   .   .   Child:   Const 111 [line: 2]
+> .   .   .   Child:   Const 1818 [line: 22]
+> .   .   .   .   Child:   Const 1 [line: 51]
+> .   .   .   Child:   Const 2020 [line: 24]
+> .   .   .   .   Child:   Const 3 [line: 52]
+> .   .   .   Child:   Const 676 [line: 101]
+> .   .   .   .   Child:   Const 999 [line: 14]
+> .   .   .   Child:   Const false [line: 19]
+> .   .   .   Child:   Id: aa [line: 42]
+> .   .   .   .   .   Child:   Id: aa [line: 44]
+> .   .   .   Child:   Id: aa [line: 45]
+> .   .   .   Child:   Id: aa [line: 57]
+> .   .   .   Child:   Id: aa [line: 60]
+> .   .   .   Child:   Id: aa [line: 63]
+> .   .   .   Child:   Id: aa [line: 67]
+> .   .   .   .   Child:   Id: a [line: 11]
+> .   .   .   .   Child:   Id: a [line: 12]
+> .   .   .   .   .   Child:   Id: a [line: 13]
+> .   .   .   .   Child:   Id: a [line: 13]
+> .   .   .   Child:   Id: a [line: 21]
+> .   .   .   Child:   Id: a [line: 23]
+> .   .   .   Child:   Id: a [line: 25]
+> .   .   .   Child:   Id: a [line: 27]
+> .   .   .   Child:   Id: a [line: 28]
+> .   .   .   Child:   Id: a [line: 29]
+> .   .   .   Child:   Id: a [line: 30]
+> .   .   .   Child:   Id: a [line: 32]
+> .   .   .   Child:   Id: a [line: 34]
+> .   .   .   .   .   Child:   Id: a [line: 54]
+> .   .   .   Child:   Id: a [line: 7]
+> .   .   .   .   Child:   Id: ba [line: 43]
+> .   .   .   Child:   Id: ba [line: 49]
+> .   .   .   Child:   Id: ba [line: 58]
+> .   .   .   Child:   Id: ba [line: 61]
+> .   .   .   Child:   Id: bbb [line: 104]
+> .   .   .   Child:   Id: bbb [line: 98]
+> .   .   .   Child:   Id: bbb [line: 99]
+> .   .   .   .   .   .   Child:   Id: b [line: 15]
+> .   .   .   .   .   Child:   Id: b [line: 15]
+> .   .   .   Child:   Id: b [line: 15]
+> .   .   .   .   .   .   Child:   Id: b [line: 16]
+> .   .   .   .   .   Child:   Id: b [line: 16]
+> .   .   .   Child:   Id: b [line: 16]
+> .   .   .   .   Child:   Id: b [line: 17]
+> .   .   .   Child:   Id: b [line: 33]
+> .   .   .   Child:   Id: b [line: 8]
+> .   .   .   Child:   Id: b [line: 82]
+> .   .   .   .   Child:   Id: b [line: 87]
+> .   .   .   .   Child:   Id: ca [line: 44]
+> .   .   .   Child:   Id: ca [line: 59]
+> .   .   .   Child:   Id: ca [line: 62]
+> .   .   .   Child:   Id: ca [line: 65]
+> .   .   .   Child:   Id: cat [line: 46]
+> .   .   .   Child:   Id: cat [line: 47]
+> .   .   .   .   Child:   Id: ccc [line: 102]
+> .   .   .   .   .   Child:   Id: ccc [line: 104]
+> .   .   .   Child:   Id: ccc [line: 96]
+> .   .   .   Child:   Id: ccc [line: 97]
+> .   .   .   .   Child:   Id: c [line: 85]
+> .   .   .   .   Child:   Id: c [line: 86]
+> .   .   .   Child:   Id: c [line: 9]
+> .   .   .   .   Child:   Id: i [line: 71]
+> .   .   .   .   .   Child:   Id: i [line: 73]
+> .   .   .   .   Child:   Id: z [line: 51]
+> .   .   .   .   Child:   Id: z [line: 52]
+> .   .   .   .   .   Child:   Op: and [line: 15]
+> .   .   .   Child:   Op: [ [line: 102]
+> .   .   .   .   Child:   Op: [ [line: 104]
+> .   .   .   Child:   Op: + [line: 107]
+> .   .   .   Child:   Op: > [line: 11]
+> .   .   .   Child:   Op: < [line: 12]
+> .   .   .   .   Child:   Op: !< [line: 13]
+> .   .   .   Child:   Op: !> [line: 13]
+> .   .   .   Child:   Op: = [line: 14]
+> .   .   .   Child:   Op: [ [line: 43]
+> .   .   .   Child:   Op: [ [line: 44]
+> .   .   .   Child:   Op: = [line: 71]
+> .   .   .   .   Child:   Op: not [line: 15]
+> .   .   .   .   Child:   Op: not [line: 16]
+> .   .   .   .   .   Child:   Op: or [line: 16]
+> .   Child:   Parm: a of type bool [line: 4]
+> .   Child:   Parm: a of type int [line: 79]
+> .   Child:   Parm: i of type int [line: 70]
+> .   .   Child:   Var: a of type char [line: 39]
+> .   .   Child:   Var: a of type int [line: 81]
+> .   .   .   Child:   Var: a of type int [line: 84]
+> .   .   Child:   Var: bbb of static type bool [line: 93]
+> .   .   Child:   Var: b of type int [line: 5]
+> .   .   .   .   Child:   Var: i of type int [line: 72]
+> .   .   .   Child:   Var: z of type int [line: 51]
+> .   .   .   Child:   Var: z of type int [line: 52]
+> .   .   .   Child:   Var: z of type int [line: 53]
+> ERROR(101): Symbol 'bat' is not declared.
+2,3c100,101
 < ERROR(105): '+' requires operands of type int but lhs is of type void.
 < ERROR(105): '+' requires operands of type int but rhs is of type bool.
-< ERROR(107): '+' requires operands of type int but lhs is of type char.
-< ERROR(110): Symbol 'mane' is already declared at line 91.
-< ERROR(11): '>' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(12): '<' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(13): '!<' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(13): '!>' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(14): '=' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(15): 'and' requires operands of type bool but lhs is of type int.
-< ERROR(15): Unary 'not' requires an operand of type bool but was given type int.
-< ERROR(16): 'or' requires operands of type bool but lhs is of type int.
-< ERROR(16): Unary 'not' requires an operand of type bool but was given type int.
-< ERROR(17): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(21): '+' requires operands of type int but lhs is of type bool.
-< ERROR(22): '-' requires operands of type int but rhs is of type bool.
-< ERROR(23): '*' requires operands of type int but lhs is of type bool.
-< ERROR(24): '/' requires operands of type int but rhs is of type bool.
-< ERROR(25): '%' requires operands of type int but lhs is of type bool.
-< ERROR(27): '+=' requires operands of type int but lhs is of type bool.
-< ERROR(28): '-=' requires operands of type int but lhs is of type bool.
-< ERROR(29): '*=' requires operands of type int but lhs is of type bool.
-< ERROR(30): '/=' requires operands of type int but lhs is of type bool.
-< ERROR(32): Unary 'chsign' requires an operand of type int but was given type bool.
-< ERROR(33): Unary 'not' requires an operand of type bool but was given type int.
-< ERROR(34): Unary '?' requires an operand of type int but was given type bool.
-< ERROR(43): Array 'ba' should be indexed by type int but got type char.
-< ERROR(43): '<=' requires operands of the same type but lhs is type char and rhs is type int.
-< ERROR(44): Array 'ca' should be indexed by type int but got type bool.
-< ERROR(44): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(45): Array 'aa' should be indexed by type int but got type bool.
-< ERROR(45): Array index is the unindexed array 'aa'.
-< ERROR(46): Cannot index nonarray 'cat'.
-< ERROR(46): Cannot use function 'cat' as a variable.
-< ERROR(47): Cannot use function 'cat' as a variable.
-< ERROR(54): '<=' requires operands of the same type but lhs is type char and rhs is type int.
-< ERROR(65): '<=' requires operands of the same type but lhs is type int and rhs is type char.
-< ERROR(67): Cannot return an array.
-< ERROR(79): Symbol 'a' is already declared at line 79.
-< ERROR(7): '<=' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(81): Symbol 'a' is already declared at line 79.
-< ERROR(82): Symbol 'b' is not declared.
-< ERROR(85): Symbol 'c' is not declared.
-< ERROR(85): Symbol 'c' is not declared.
-< ERROR(86): Symbol 'c' is not declared.
-< ERROR(8): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(96): The operation '?' does not work with arrays.
-< ERROR(96): Unary '?' requires an operand of type int but was given type char.
-< ERROR(97): '/' requires operands of type int but lhs is of type char.
-< ERROR(97): '/' requires operands of type int but rhs is of type char.
-< ERROR(97): The operation '/' does not work with arrays.
-< ERROR(98): The operation 'sizeof' only works with arrays.
-< ERROR(99): 'bbb' is a simple variable and cannot be called.
-< ERROR(9): '<=' requires operands of the same type but lhs is type int and rhs is type char.
-< ERROR(LINKER): A function named 'main()' must be defined.
+---
+> ERROR(103): Symbol 'bat' is not declared.
+> ERROR(105): Symbol 'dog' is not declared.
+28a127
+> ERROR(43): Array index is the unindexed array 'ba'.
+39a139
+> ERROR(70): Symbol '(' is already declared at line 4.
+40a141
+> ERROR(79): Symbol '(' is already declared at line 4.
+57c158,256
 < Number of errors: 56
-< Number of warnings: 6
-< WARNING(42): Variable 'aa' may be uninitialized when used here.
-< WARNING(43): Variable 'b' may be uninitialized when used here.
-< WARNING(44): Variable 'c' may be uninitialized when used here.
-< WARNING(73): Variable 'i' may be uninitialized when used here.
-< WARNING(84): The variable 'a' seems not to be used.
-< WARNING(86): Variable 'b' may be uninitialized when used here.
+---
+> Func: ant returns type char [line: 2]
+> .   .   .   .   hild:   Assign: <= [line: 54]
+> .   .   hild:   Assign: <= [line: 7]
+> .   .   .   .   hild:   Assign: <= [line: 73]
+> .   .   hild:   Assign: <= [line: 82]
+> .   .   .   hild:   Assign: <= [line: 85]
+> .   .   .   hild:   Break [line: 19]
+> .   .   .   hild:   Call: cat [line: 102]
+> .   .   .   hild:   Call: cat [line: 105]
+> .   hild:   Compound [line: 2]
+> .   hild:   Compound [line: 38]
+> .   hild:   Compound [line: 4]
+> .   hild:   Compound [line: 70]
+> .   .   .   hild:   Compound [line: 71]
+> .   hild:   Compound [line: 80]
+> .   hild:   Compound [line: 92]
+> .   .   .   hild:   Const 1010 [line: 14]
+> .   .   .   .   hild:   Const 10 [line: 51]
+> .   .   .   .   hild:   Const 10 [line: 53]
+> .   .   .   .   .   hild:   Const 1111 [line: 15]
+> .   .   .   .   .   hild:   Const 1313 [line: 16]
+> .   .   .   hild:   Const 1616 [line: 17]
+> .   .   .   hild:   Const 1717 [line: 21]
+> .   .   .   hild:   Const 1919 [line: 23]
+> .   .   .   hild:   Const 1 [line: 27]
+> .   .   .   .   .   hild:   Const 1 [line: 44]
+> .   .   .   .   hild:   Const 201 [line: 52]
+> .   .   .   hild:   Const 2121 [line: 25]
+> .   .   .   .   hild:   Const 222 [line: 11]
+> .   .   .   hild:   Const 222 [line: 7]
+> .   .   .   .   .   hild:   Const 2 [line: 104]
+> .   .   .   hild:   Const 2 [line: 28]
+> .   .   .   hild:   Const 2 [line: 42]
+> .   .   .   hild:   Const 333 [line: 11]
+> .   .   .   .   hild:   Const 333 [line: 12]
+> .   .   .   .   hild:   Const 3 [line: 102]
+> .   .   .   hild:   Const 3 [line: 29]
+> .   .   .   hild:   Const 3 [line: 46]
+> .   .   .   .   hild:   Const 3 [line: 71]
+> .   .   .   hild:   Const 444 [line: 12]
+> .   .   .   hild:   Const 4 [line: 30]
+> .   .   .   .   hild:   Const 666 [line: 13]
+> .   .   .   .   .   hild:   Const 777 [line: 13]
+> .   .   .   .   hild:   Const 807 [line: 107]
+> .   .   .   .   hild:   Const 888 [line: 13]
+> .   .   .   hild:   Const is array "dogs are great" [line: 65]
+> .   .   .   .   hild:   Const 'r' [line: 104]
+> .   .   .   .   .   .   hild:   Const true [line: 15]
+> .   .   .   .   .   .   hild:   Const true [line: 16]
+> .   .   .   .   hild:   Const true [line: 17]
+> .   .   .   hild:   Const true [line: 8]
+> .   .   .   hild:   Const 'z' [line: 9]
+> .   .   .   hild:   Id: aa [line: 45]
+> .   .   .   hild:   Id: aa [line: 57]
+> .   .   .   hild:   Id: aa [line: 60]
+> .   .   .   hild:   Id: aa [line: 63]
+> .   .   .   .   hild:   Id: a [line: 14]
+> .   .   .   hild:   Id: a [line: 22]
+> .   .   .   hild:   Id: a [line: 24]
+> .   .   .   .   hild:   Id: a [line: 43]
+> .   .   .   hild:   Id: a [line: 82]
+> .   .   .   hild:   Id: ba [line: 58]
+> .   .   .   hild:   Id: ba [line: 61]
+> .   .   .   hild:   Id: b [line: 43]
+> .   .   .   .   hild:   Id: b [line: 86]
+> .   .   .   .   hild:   Id: b [line: 87]
+> .   .   .   hild:   Id: ca [line: 59]
+> .   .   .   hild:   Id: ca [line: 62]
+> .   .   .   hild:   Id: ccc [line: 97]
+> .   .   .   hild:   Id: c [line: 44]
+> .   .   .   .   hild:   Id: c [line: 85]
+> .   .   .   .   .   hild:   Id: i [line: 73]
+> .   .   .   .   hild:   Id: z [line: 51]
+> .   .   .   .   hild:   Id: z [line: 52]
+> .   .   .   .   .   hild:   Id: z [line: 54]
+> .   .   .   hild:   If [line: 13]
+> .   .   .   hild:   If [line: 15]
+> .   .   .   hild:   If [line: 16]
+> .   .   hild:   If [line: 71]
+> .   .   .   hild:   Op: != [line: 104]
+> .   .   hild:   Op: [ [line: 42]
+> .   .   .   .   hild:   Op: [ [line: 44]
+> .   .   hild:   Op: ? [line: 96]
+> .   .   .   hild:   Range [line: 51]
+> .   .   .   hild:   Range [line: 52]
+> .   .   .   hild:   Range [line: 53]
+> .   .   hild:   Return [line: 2]
+> .   .   .   .   hild:   While [line: 15]
+> .   .   .   .   hild:   While [line: 16]
+> .   .   .   ild:   Assign: <= [line: 52]
+> .   .   .   ild:   Compound [line: 53]
+> .   .   .   .   ild:   Const 11 [line: 52]
+> .   .   .   .   ild:   Const 1212 [line: 15]
+> .   .   .   .   ild:   Const 1414 [line: 16]
+> .   .   .   ild:   Const 1515 [line: 16]
+> .   .   .   ild:   Const 555 [line: 12]
+> .   .   .   .   ild:   Const 555 [line: 13]
+> .   .   .   ild:   Op: + [line: 51]
+> Number of errors: 60
+58a258,328
+> .   .   Sibling: 10  Assign: <= [line: 57]
+> .   .   Sibling: 10  Return [line: 107]
+> .   .   Sibling: 10  While [line: 19]
+> .   .   Sibling: 11  Op: + [line: 21]
+> .   .   Sibling: 11  Op: = [line: 58]
+> .   .   Sibling: 12  Op: - [line: 22]
+> .   .   Sibling: 12  Op: != [line: 59]
+> .   .   Sibling: 13  Op: * [line: 23]
+> .   .   Sibling: 13  Op: > [line: 60]
+> .   .   Sibling: 14  Op: / [line: 24]
+> .   .   Sibling: 14  Op: !< [line: 61]
+> .   .   Sibling: 15  Op: % [line: 25]
+> .   .   Sibling: 15  Op: < [line: 62]
+> .   .   Sibling: 16  Assign: += [line: 27]
+> .   .   Sibling: 16  Op: !> [line: 63]
+> .   .   Sibling: 17  Assign: -= [line: 28]
+> .   .   Sibling: 17  Assign: <= [line: 65]
+> .   .   Sibling: 18  Assign: *= [line: 29]
+> .   .   Sibling: 18  Return [line: 67]
+> .   .   Sibling: 19  Assign: /= [line: 30]
+> .   .   Sibling: 1  Assign: <= [line: 43]
+> .   .   Sibling: 1  Assign: <= [line: 8]
+> .   .   .   Sibling: 1  Assign: <= [line: 86]
+> .   .   .   Sibling: 1  Call: cat [line: 103]
+> .   .   Sibling: 1  Compound [line: 83]
+> .   .   .   Sibling: 1  Const 'g' [line: 101]
+> Sibling: 1  Func: ( returns type void [line: 4]
+> .   .   Sibling: 1  Op: / [line: 97]
+> .   Sibling: 1  Parm: a of type int [line: 79]
+> .   Sibling: 1  Parm: c of type int [line: 4]
+> .   .   .   .   Sibling: 1  Return [line: 74]
+> .   .   Sibling: 1  Var: b of type int [line: 39]
+> .   .   .   Sibling: 1  Var: b of type int [line: 84]
+> .   .   Sibling: 1  Var: ccc of static array of type char [line: 94]
+> .   .   Sibling: 20  Op: chsign [line: 32]
+> .   .   Sibling: 21  Op: not [line: 33]
+> .   .   Sibling: 22  Op: ? [line: 34]
+> .   .   Sibling: 2  Assign: <= [line: 44]
+> .   .   .   Sibling: 2  Assign: <= [line: 87]
+> .   .   Sibling: 2  Assign: <= [line: 9]
+> Sibling: 2  Func: cat returns type bool [line: 37]
+> .   .   Sibling: 2  Op: sizeof [line: 98]
+> .   .   Sibling: 2  Var: c of type bool [line: 39]
+> .   .   Sibling: 3  Call: bbb [line: 99]
+> Sibling: 3  Func: ( returns type void [line: 70]
+> .   .   Sibling: 3  If [line: 11]
+> .   .   Sibling: 3  Op: [ [line: 45]
+> .   .   Sibling: 3  Var: aa of array of type bool [line: 40]
+> .   .   Sibling: 4  Call: ant [line: 100]
+> Sibling: 4  Func: ( returns type void [line: 79]
+> .   .   Sibling: 4  If [line: 12]
+> .   .   Sibling: 4  Op: [ [line: 46]
+> .   .   Sibling: 4  Var: ba of array of type char [line: 40]
+> .   .   Sibling: 5  Call: bat [line: 101]
+> .   .   Sibling: 5  Call: cat [line: 47]
+> Sibling: 5  Func: mane returns type int [line: 91]
+> .   .   Sibling: 5  If [line: 13]
+> .   .   Sibling: 5  Var: ca of array of type int [line: 40]
+> .   .   Sibling: 6  Assign: <= [line: 102]
+> .   .   Sibling: 6  Op: sizeof [line: 49]
+> Sibling: 6  Var: mane of type int [line: 110]
+> .   .   Sibling: 6  While [line: 14]
+> .   .   Sibling: 7  Call: bat [line: 103]
+> .   .   Sibling: 7  For [line: 51]
+> .   .   Sibling: 7  If [line: 15]
+> .   .   Sibling: 8  Assign: <= [line: 104]
+> .   .   Sibling: 8  For [line: 52]
+> .   .   Sibling: 8  If [line: 16]
+> .   .   Sibling: 9  For [line: 53]
+> .   .   Sibling: 9  If [line: 17]
+> .   .   Sibling: 9  Op: + [line: 105]

@@ -1,15 +1,15 @@
-0a1,6
-> .   .   .   Child: 0  Const 111 [line: 4]
-> .   .   .   Child: 0  Const false [line: 6]
-> .   .   .   Child: 0  Const true [line: 5]
-> .   .   .   Child: 0  Const 'x' [line: 7]
-> .   .   Child: 1  Call: output [line: 4]
-> .   Child: 1  Compound [line: 3]
-6c12,14
+0a1,4
+> .   .   .   Child:   Const 111 [line: 4]
+> .   .   .   Child:   Const false [line: 6]
+> .   .   .   Child:   Const true [line: 5]
+> .   .   .   Child:   Const 'x' [line: 7]
+6c10,14
 < Number of errors: 5
 ---
 > ERROR(LINKER): A function named 'main()' must be defined.
 > Func: ( returns type void [line: 2]
+> .   .   hild:   Call: output [line: 4]
+> .   hild:   Compound [line: 3]
 > Number of errors: 6
 7a16,19
 > .   .   Sibling: 1  Call: outputb [line: 5]

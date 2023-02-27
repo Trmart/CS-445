@@ -1,29 +1,71 @@
-.   .   .   .   Child: 0  Const 4 [line: 8]
-.   .   .   .   Child: 0  Id: g [line: 7]
-.   .   .   Child: 0  Id: i [line: 7]
-.   .   .   Child: 0  Id: i [line: 8]
-.   .   .   Child: 0  Id: z [line: 5]
-.   .   .   Child: 0  Id: z [line: 6]
-.   Child: 0  Parm: x of type int [line: 1]
-.   .   Child: 0  Var: z of type int [line: 3]
-.   .   Child: 1  Assign: <= [line: 5]
-.   Child: 1  Compound [line: 2]
-.   .   .   .   Child: 1  Const 3 [line: 7]
-.   .   .   .   Child: 1  Id: h [line: 8]
-.   .   .   Child: 1  Id: i [line: 5]
-.   .   .   Child: 1  Id: i [line: 6]
-.   .   .   Child: 1  Op: + [line: 7]
-.   .   .   Child: 1  Op: + [line: 8]
+.   .   .   .   Child:   Const 4 [line: 8]
+.   .   .   .   .   .   .   .   .   Child:   Id: g [line: 15]
+.   .   .   .   Child:   Id: g [line: 7]
+.   .   .   Child:   Id: i [line: 7]
+.   .   .   Child:   Id: i [line: 8]
+.   .   .   Child:   Id: j [line: 9]
+.   .   .   Child:   Id: k [line: 10]
+.   .   .   Child:   Id: main [line: 14]
+.   .   .   Child:   Id: m [line: 12]
+.   .   .   Child:   Id: z [line: 5]
+.   .   .   Child:   Id: z [line: 6]
+.   .   .   .   .   .   .   .   Child:   Op: + [line: 15]
+.   .   .   .   .   .   .   Child:   Op: + [line: 15]
+.   .   .   .   .   .   Child:   Op: + [line: 15]
+.   .   .   .   .   Child:   Op: + [line: 15]
+.   .   .   .   Child:   Op: + [line: 15]
+.   .   .   Child:   Op: + [line: 15]
+.   Child:   Parm: x of type int [line: 1]
+.   .   Child:   Var: z of type int [line: 3]
+ERROR(10): Symbol 'main' is not declared.
+ERROR(13): Symbol 'dog' is not declared.
+ERROR(14): Symbol 'main' is not declared.
+ERROR(3): Symbol 'z' is already declared at line 3.
+ERROR(3): Symbol 'z' is already declared at line 3.
+ERROR(LINKER): A function named 'main()' must be defined.
 Func: ( returns type void [line: 1]
+.   .   hild:   Assign: <= [line: 5]
+.   hild:   Compound [line: 2]
+.   .   .   hild:   Const 3 [line: 14]
+.   .   .   .   hild:   Const 3 [line: 7]
+.   .   .   .   .   .   .   .   .   hild:   Id: h [line: 15]
+.   .   .   .   hild:   Id: h [line: 8]
+.   .   .   .   .   .   .   .   hild:   Id: i [line: 15]
+.   .   .   hild:   Id: i [line: 5]
+.   .   .   hild:   Id: i [line: 6]
+.   .   .   .   .   .   .   hild:   Id: j [line: 15]
+.   .   .   .   .   .   hild:   Id: k [line: 15]
+.   .   .   .   .   hild:   Id: l [line: 15]
+.   .   .   .   hild:   Id: m [line: 15]
+.   .   .   hild:   Id: z [line: 15]
+.   .   .   hild:   Op: + [line: 7]
+.   .   .   hild:   Op: + [line: 8]
+Number of errors: 6
+Number of warnings: 8
+.   .   Sibling: 10  Op: + [line: 15]
 .   .   Sibling: 1  Assign: <= [line: 6]
 .   .   Sibling: 1  Var: g of type int [line: 3]
 .   .   Sibling: 2  Assign: <= [line: 7]
 .   .   Sibling: 2  Var: h of type int [line: 3]
 .   .   Sibling: 3  Assign: <= [line: 8]
 .   .   Sibling: 3  Var: i of type int [line: 3]
+.   .   Sibling: 4  Assign: ++ [line: 9]
 .   .   Sibling: 4  Var: j of type int [line: 3]
+.   .   Sibling: 5  Call: main [line: 10]
 .   .   Sibling: 5  Var: k of type int [line: 3]
+.   .   Sibling: 6  Id: l [line: 11]
 .   .   Sibling: 6  Var: l of type int [line: 3]
+.   .   Sibling: 7  Op: chsign [line: 12]
 .   .   Sibling: 7  Var: m of type int [line: 3]
+.   .   Sibling: 8  Call: dog [line: 13]
 .   .   Sibling: 8  Var: z of type int [line: 3]
+.   .   Sibling: 9  Assign: <= [line: 14]
 .   .   Sibling: 9  Var: z of type int [line: 3]
+WARNING(10): Variable 'k' may be uninitialized when used here.
+WARNING(11): Variable 'l' may be uninitialized when used here.
+WARNING(12): Variable 'm' may be uninitialized when used here.
+WARNING(1): The variable 'x' seems not to be used.
+WARNING(5): Variable 'i' may be uninitialized when used here.
+WARNING(7): Variable 'g' may be uninitialized when used here.
+WARNING(8): Variable 'h' may be uninitialized when used here.
+WARNING(9): Variable 'j' may be uninitialized when used here.

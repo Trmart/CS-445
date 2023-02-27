@@ -1,14 +1,14 @@
-.   Child: 0  Parm: p of array of type int [line: 2]
-.   .   Child: 0  Var: a of array of type int [line: 4]
-.   .   .   .   Child: 0  Var: b of array of type int [line: 13]
-.   .   .   Child: 0  Var: b of array of type int [line: 6]
-.   .   .   .   Child: 0  Var: c of array of type int [line: 16]
-.   .   .   Child: 0  Var: c of array of type int [line: 9]
-.   .   .   Child: 1  Compound [line: 12]
-.   Child: 1  Compound [line: 3]
-.   .   Child: 1  Compound [line: 5]
+.   Child:   Parm: p of array of type int [line: 2]
+.   .   Child:   Var: a of array of type int [line: 4]
+.   .   .   .   Child:   Var: b of array of type int [line: 13]
+.   .   .   Child:   Var: b of array of type int [line: 6]
+.   .   .   .   Child:   Var: c of array of type int [line: 16]
+.   .   .   Child:   Var: c of array of type int [line: 9]
 ERROR(LINKER): A function named 'main()' must be defined.
 Func: ( returns type void [line: 2]
+.   .   .   hild:   Compound [line: 12]
+.   hild:   Compound [line: 3]
+.   .   hild:   Compound [line: 5]
 Number of errors: 1
 Number of warnings: 6
 .   .   .   Sibling: 1  Compound [line: 15]

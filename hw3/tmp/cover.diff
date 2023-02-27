@@ -1,23 +1,140 @@
-1,22d0
-< ERROR(19): Unary '--' requires an operand of type int but was given type char.
-< ERROR(20): Unary '?' requires an operand of type int but was given type char.
-< ERROR(22): Cannot index nonarray 'e'.
-< ERROR(22): Cannot index nonarray 'e'.
-< ERROR(22): '+' requires operands of type int but lhs is of type bool.
-< ERROR(22): '+' requires operands of type int but rhs is of type bool.
-< ERROR(23): Array 'e' should be indexed by type int but got type bool.
-< ERROR(23): Cannot index nonarray 'e'.
-< ERROR(23): Cannot index nonarray 'e'.
-< ERROR(26): 'and' requires operands of type bool but lhs is of type int.
-< ERROR(26): 'and' requires operands of type bool but rhs is of type int.
+0a1,47
+> .   .   .   Child:   Const 101 [line: 39]
+> .   .   .   .   Child:   Const 1 [line: 31]
+> .   .   .   .   Child:   Const 1 [line: 7]
+> .   .   .   .   .   .   .   .   Child:   Const 2 [line: 26]
+> .   Child:   Const 451 [line: 2]
+> .   .   .   Child:   Const 6 [line: 4]
+> .   .   .   .   .   .   .   .   .   .   Child:   Const false [line: 15]
+> .   .   .   .   .   .   .   .   .   Child:   Const false [line: 15]
+> .   .   .   .   .   .   .   Child:   Const true [line: 11]
+> .   .   .   .   .   .   .   .   Child:   Const true [line: 15]
+> .   .   .   .   .   .   .   Child:   Id: a [line: 12]
+> .   .   .   .   .   .   .   Child:   Id: a [line: 13]
+> .   .   .   .   .   .   .   Child:   Id: a [line: 14]
+> .   .   .   .   .   .   .   .   .   .   Child:   Id: a [line: 16]
+> .   .   .   .   .   .   .   .   Child:   Id: a [line: 26]
+> .   .   .   .   .   .   .   .   Child:   Id: b [line: 12]
+> .   .   .   .   .   .   .   .   Child:   Id: b [line: 13]
+> .   .   .   .   .   .   .   Child:   Id: b [line: 16]
+> .   .   .   .   .   .   .   Child:   Id: b [line: 17]
+> .   .   .   .   .   .   .   .   Child:   Id: b [line: 18]
+> .   .   .   .   .   .   .   .   .   Child:   Id: c [line: 11]
+> .   .   .   .   .   .   .   Child:   Id: c [line: 19]
+> .   .   .   .   .   .   .   Child:   Id: c [line: 20]
+> .   .   .   .   .   .   .   Child:   Id: c [line: 24]
+> .   .   .   .   .   .   .   Child:   Id: d [line: 25]
+> .   .   .   .   .   .   .   Child:   Id: e [line: 15]
+> .   .   .   .   .   .   .   .   Child:   Id: e [line: 22]
+> .   .   .   .   .   .   .   .   Child:   Id: e [line: 22]
+> .   .   .   .   .   .   .   .   Child:   Id: e [line: 23]
+> .   .   .   .   .   .   .   Child:   Id: e [line: 23]
+> .   .   .   .   .   .   .   .   Child:   Id: f [line: 21]
+> .   .   .   .   .   .   Child:   Id: x [line: 8]
+> .   .   .   .   .   .   .   .   Child:   Id: x [line: 9]
+> .   .   .   .   .   .   .   Child:   Op: chsign [line: 18]
+> .   .   .   .   .   .   .   .   Child:   Op: = [line: 11]
+> .   .   .   .   .   .   .   .   .   Child:   Op: * [line: 16]
+> .   .   .   .   .   .   .   .   Child:   Op: / [line: 16]
+> .   .   .   .   .   .   .   Child:   Op: [ [line: 22]
+> .   .   .   .   .   .   .   Child:   Op: + [line: 26]
+> .   .   .   .   .   Child:   Op: > [line: 8]
+> .   .   .   .   .   .   .   Child:   Op: < [line: 9]
+> .   .   .   .   .   .   .   Child:   Op: sizeof [line: 21]
+> .   Child:   Parm: a of type int [line: 6]
+> .   .   Child:   Var: a of type int [line: 35]
+> .   .   .   Child:   Var: i of type int [line: 31]
+> .   .   .   .   Child:   Var: x of type int [line: 31]
+> .   .   .   Child:   Var: x of type int [line: 7]
+12c59,107
 < Number of errors: 11
-< Number of warnings: 9
-< WARNING(31): The variable 'i' seems not to be used.
-< WARNING(31): The variable 'x' seems not to be used.
-< WARNING(35): The variable 'a' seems not to be used.
-< WARNING(36): The variable 'c' seems not to be used.
-< WARNING(38): The variable 'g' seems not to be used.
-< WARNING(39): Variable 'b' may be uninitialized when used here.
-< WARNING(39): Variable 'd' may be uninitialized when used here.
-< WARNING(39): Variable 'e' may be uninitialized when used here.
-< WARNING(39): Variable 'f' may be uninitialized when used here.
+---
+> ERROR(34): Symbol '(' is already declared at line 6.
+> ERROR(39): Symbol 'fred' is not declared.
+> ERROR(LINKER): A function named 'main()' must be defined.
+> .   .   .   .   .   .   .   hild:   Assign: += [line: 12]
+> .   .   .   .   .   .   .   hild:   Assign: /= [line: 13]
+> .   .   hild:   Call: fred [line: 39]
+> .   hild:   Compound [line: 34]
+> .   hild:   Compound [line: 4]
+> .   hild:   Compound [line: 6]
+> .   .   .   .   .   hild:   Compound [line: 8]
+> .   .   .   .   .   .   .   .   hild:   Const 0 [line: 23]
+> .   .   .   .   hild:   Const 107 [line: 31]
+> .   .   .   .   hild:   Const 10 [line: 7]
+> .   .   .   .   .   .   .   .   hild:   Const 13 [line: 16]
+> .   .   .   .   .   .   .   .   hild:   Const 3 [line: 12]
+> .   .   .   .   .   .   hild:   Const 3 [line: 8]
+> .   .   .   .   .   .   .   .   hild:   Const 4 [line: 13]
+> .   .   .   .   .   .   .   .   .   hild:   Const 5 [line: 16]
+> .   .   .   .   .   .   .   .   hild:   Const 5 [line: 22]
+> .   .   .   .   .   .   .   .   hild:   Const 5 [line: 9]
+> .   .   .   .   .   .   .   .   hild:   Const 666 [line: 11]
+> .   .   .   .   .   .   .   .   hild:   Const 6 [line: 22]
+> .   .   .   .   .   .   .   .   .   hild:   Const 'a' [line: 11]
+> .   .   .   .   .   .   .   hild:   Const is array "horses" [line: 25]
+> .   .   .   .   .   .   .   hild:   Const 'x' [line: 24]
+> .   .   hild:   For [line: 7]
+> .   .   .   .   .   .   .   .   hild:   Id: a [line: 26]
+> .   .   .   .   .   .   .   .   hild:   Id: a [line: 26]
+> .   .   .   .   .   .   .   .   .   .   hild:   Id: b [line: 16]
+> .   .   .   .   .   .   .   hild:   If [line: 11]
+> .   .   .   .   .   .   hild:   If [line: 9]
+> .   .   .   .   .   .   .   .   hild:   Op: and [line: 15]
+> .   .   .   .   .   .   .   hild:   Op: % [line: 16]
+> .   .   .   .   .   .   .   hild:   Op: [ [line: 22]
+> .   .   .   .   .   .   .   hild:   Op: [ [line: 23]
+> .   .   .   .   .   .   .   hild:   Op: * [line: 26]
+> .   .   .   .   .   .   .   .   .   hild:   Op: not [line: 15]
+> .   .   .   .   .   .   .   hild:   Op: or [line: 15]
+> .   .   .   hild:   Range [line: 31]
+> .   .   .   hild:   Range [line: 7]
+> .   .   hild:   Return [line: 4]
+> .   .   .   .   .   .   .   hild:   Return [line: 9]
+> .   .   .   .   hild:   While [line: 8]
+> .   .   .   .   .   .   .   ild:   Break [line: 10]
+> .   .   .   ild:   Compound [line: 31]
+> .   .   .   ild:   Compound [line: 7]
+> .   .   .   .   ild:   Const 3 [line: 7]
+> .   .   .   .   .   .   .   .   ild:   Const 777 [line: 11]
+> Number of errors: 14
+13a109,147
+> .   .   .   .   .   .   Sibling: 10  Op: ? [line: 20]
+> .   .   .   .   .   .   Sibling: 11  Op: ? [line: 21]
+> .   .   .   .   .   .   Sibling: 12  Op: + [line: 22]
+> .   .   .   .   .   .   Sibling: 13  Op: [ [line: 23]
+> .   .   .   .   .   .   Sibling: 14  Assign: <= [line: 24]
+> .   .   .   .   .   .   Sibling: 15  Assign: <= [line: 25]
+> .   .   .   .   .   .   Sibling: 16  Op: and [line: 26]
+> .   .   .   .   .   .   Sibling: 17  Call: carbon [line: 27]
+> .   .   .   .   .   .   Sibling: 18  Return [line: 28]
+> .   .   Sibling: 1  For [line: 31]
+> Sibling: 1  Func: carbon returns type int [line: 4]
+> .   .   .   Sibling: 1  Id: b [line: 39]
+> .   .   .   .   .   .   Sibling: 1  If [line: 11]
+> .   Sibling: 1  Parm: b of type int [line: 6]
+> .   .   Sibling: 1  Var: b of array of type int [line: 35]
+> .   .   .   .   .   .   Sibling: 2  Assign: <= [line: 12]
+> .   .   .   Sibling: 2  Const 'q' [line: 39]
+> Sibling: 2  Func: ( returns type void [line: 6]
+> .   Sibling: 2  Parm: c of type char [line: 6]
+> .   .   Sibling: 2  Var: c of type char [line: 36]
+> .   .   .   .   .   .   Sibling: 3  Assign: *= [line: 13]
+> Sibling: 3  Func: ( returns type void [line: 34]
+> .   .   .   Sibling: 3  Id: d [line: 39]
+> .   Sibling: 3  Parm: d of array of type char [line: 6]
+> .   .   Sibling: 3  Var: d of array of type char [line: 36]
+> .   .   .   .   .   .   Sibling: 4  Assign: ++ [line: 14]
+> .   .   .   Sibling: 4  Id: e [line: 39]
+> .   Sibling: 4  Parm: e of type bool [line: 6]
+> .   .   Sibling: 4  Var: e of type bool [line: 37]
+> .   .   .   .   .   .   Sibling: 5  Assign: <= [line: 15]
+> .   .   .   Sibling: 5  Id: f [line: 39]
+> .   Sibling: 5  Parm: f of array of type bool [line: 6]
+> .   .   Sibling: 5  Var: f of array of type bool [line: 37]
+> .   .   .   .   .   .   Sibling: 6  Assign: -= [line: 16]
+> .   .   Sibling: 6  Var: g of static type int [line: 38]
+> .   .   .   .   .   .   Sibling: 7  Assign: -- [line: 17]
+> .   .   .   .   .   .   Sibling: 8  Op: chsign [line: 18]
+> .   .   .   .   .   .   Sibling: 9  Assign: -- [line: 19]
+> Var: fahrenheit of type int [line: 2]

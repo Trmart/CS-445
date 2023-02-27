@@ -1,15 +1,84 @@
-1,14d0
-< ERROR(10): Symbol 'outputc' is not declared.
-< ERROR(12): Symbol 'outputc' is not declared.
-< ERROR(14): Symbol 'outputc' is not declared.
-< ERROR(16): Symbol 'outputc' is not declared.
-< ERROR(17): Symbol 'outnl' is not declared.
-< ERROR(19): Symbol 'outputc' is not declared.
-< ERROR(21): Symbol 'outputc' is not declared.
-< ERROR(23): Symbol 'outputc' is not declared.
-< ERROR(25): Symbol 'outputc' is not declared.
-< ERROR(26): Symbol 'outnl' is not declared.
+0a1,28
+> .   .   .   Child:   Id: gx [line: 10]
+> .   .   .   Child:   Id: gx [line: 9]
+> .   .   .   .   Child:   Id: gy [line: 11]
+> .   .   .   .   Child:   Id: gy [line: 12]
+> .   .   .   Child:   Id: px [line: 18]
+> .   .   .   Child:   Id: px [line: 19]
+> .   .   .   .   Child:   Id: py [line: 20]
+> .   .   .   .   Child:   Id: py [line: 21]
+> .   .   .   Child:   Id: sx [line: 22]
+> .   .   .   Child:   Id: sx [line: 23]
+> .   .   .   .   Child:   Id: sy [line: 24]
+> .   .   .   .   Child:   Id: sy [line: 25]
+> .   .   .   Child:   Id: x [line: 13]
+> .   .   .   Child:   Id: x [line: 14]
+> .   .   .   .   Child:   Id: y [line: 15]
+> .   .   .   .   Child:   Id: y [line: 16]
+> .   .   .   Child:   Id: zx [line: 33]
+> .   .   .   Child:   Op: [ [line: 11]
+> .   .   .   Child:   Op: [ [line: 12]
+> .   .   .   Child:   Op: [ [line: 15]
+> .   .   .   Child:   Op: [ [line: 16]
+> .   .   .   Child:   Op: [ [line: 20]
+> .   .   .   Child:   Op: [ [line: 21]
+> .   .   .   Child:   Op: [ [line: 24]
+> .   .   .   Child:   Op: [ [line: 25]
+> .   Child:   Parm: px of type char [line: 4]
+> .   .   Child:   Var: x of type char [line: 6]
+> .   .   Child:   Var: zx of type char [line: 32]
+11c39,62
 < Number of errors: 10
-< Number of warnings: 2
-< WARNING(33): Variable 'zx' may be uninitialized when used here.
-< WARNING(33): Variable 'zy' may be uninitialized when used here.
+---
+> ERROR(30): Symbol '(' is already declared at line 4.
+> ERROR(33): Symbol 'esperanza' is not declared.
+> ERROR(LINKER): A function named 'main()' must be defined.
+> .   .   hild:   Assign: <= [line: 9]
+> .   .   hild:   Call: esperanza [line: 33]
+> .   hild:   Compound [line: 31]
+> .   hild:   Compound [line: 5]
+> .   .   .   .   hild:   Const 9 [line: 11]
+> .   .   .   .   hild:   Const 9 [line: 12]
+> .   .   .   .   hild:   Const 9 [line: 15]
+> .   .   .   .   hild:   Const 9 [line: 16]
+> .   .   .   .   hild:   Const 9 [line: 20]
+> .   .   .   .   hild:   Const 9 [line: 21]
+> .   .   .   .   hild:   Const 9 [line: 24]
+> .   .   .   .   hild:   Const 9 [line: 25]
+> .   .   .   hild:   Const 'a' [line: 9]
+> .   .   .   hild:   Const 'b' [line: 11]
+> .   .   .   hild:   Const 'c' [line: 13]
+> .   .   .   hild:   Const 'd' [line: 15]
+> .   .   .   hild:   Const 'e' [line: 18]
+> .   .   .   hild:   Const 'f' [line: 20]
+> .   .   .   hild:   Const 'f' [line: 22]
+> .   .   .   hild:   Const 'h' [line: 24]
+> Number of errors: 13
+12a64,90
+> .   .   Sibling: 10  Call: outputc [line: 19]
+> .   .   Sibling: 11  Assign: <= [line: 20]
+> .   .   Sibling: 12  Call: outputc [line: 21]
+> .   .   Sibling: 13  Assign: <= [line: 22]
+> .   .   Sibling: 14  Call: outputc [line: 23]
+> .   .   Sibling: 15  Assign: <= [line: 24]
+> .   .   Sibling: 16  Call: outputc [line: 25]
+> .   .   Sibling: 17  Call: outnl [line: 26]
+> .   .   Sibling: 1  Call: outputc [line: 10]
+> .   .   .   Sibling: 1  Id: zy [line: 33]
+> .   Sibling: 1  Parm: py of array of type char [line: 4]
+> Sibling: 1  Var: gy of array of type char [line: 2]
+> .   .   Sibling: 1  Var: y of array of type char [line: 6]
+> .   .   Sibling: 1  Var: zy of array of type char [line: 32]
+> .   .   Sibling: 2  Assign: <= [line: 11]
+> Sibling: 2  Func: ( returns type void [line: 4]
+> .   .   Sibling: 2  Var: sx of static type char [line: 7]
+> .   .   Sibling: 3  Call: outputc [line: 12]
+> Sibling: 3  Func: ( returns type void [line: 30]
+> .   .   Sibling: 3  Var: sy of static array of type char [line: 7]
+> .   .   Sibling: 4  Assign: <= [line: 13]
+> .   .   Sibling: 5  Call: outputc [line: 14]
+> .   .   Sibling: 6  Assign: <= [line: 15]
+> .   .   Sibling: 7  Call: outputc [line: 16]
+> .   .   Sibling: 8  Call: outnl [line: 17]
+> .   .   Sibling: 9  Assign: <= [line: 18]
+> Var: gx of type char [line: 2]

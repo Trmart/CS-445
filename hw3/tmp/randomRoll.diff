@@ -1,8 +1,44 @@
-1,7d0
-< ERROR(11): Symbol 'outputb' is not declared.
-< ERROR(13): Symbol 'outputb' is not declared.
-< ERROR(14): Symbol 'outnl' is not declared.
-< ERROR(16): Symbol 'outputb' is not declared.
-< ERROR(17): Symbol 'outnl' is not declared.
+0a1,16
+> .   .   .   .   .   Child:   Const 2300 [line: 13]
+> .   .   .   .   .   Child:   Const 3 [line: 16]
+> .   .   .   .   .   .   Child:   Const 6 [line: 8]
+> .   .   .   Child:   Const true [line: 11]
+> .   .   .   Child:   Id: i [line: 6]
+> .   .   .   .   Child:   Id: i [line: 7]
+> .   .   .   .   .   Child:   Id: i [line: 9]
+> .   .   .   .   .   Child:   Id: sum [line: 13]
+> .   .   .   .   Child:   Id: sum [line: 6]
+> .   .   .   .   .   Child:   Id: sum [line: 8]
+> .   .   .   Child:   Op: and [line: 13]
+> .   .   .   .   Child:   Op: < [line: 13]
+> .   .   .   .   Child:   Op: ? [line: 16]
+> .   .   .   Child:   Op: < [line: 16]
+> .   .   .   Child:   Op: < [line: 7]
+> .   .   Child:   Var: i of type int [line: 4]
+6c22,36
 < Number of errors: 5
-< Number of warnings: 0
+---
+> ERROR(LINKER): A function named 'main()' must be defined.
+> Func: ( returns type void [line: 2]
+> .   .   .   hild:   Assign: <= [line: 6]
+> .   .   hild:   Assign: <= [line: 6]
+> .   .   .   .   hild:   Assign: += [line: 8]
+> .   hild:   Compound [line: 3]
+> .   .   .   hild:   Compound [line: 7]
+> .   .   .   .   hild:   Const 0 [line: 6]
+> .   .   .   .   hild:   Const 1000 [line: 7]
+> .   .   .   .   .   hild:   Const 2700 [line: 13]
+> .   .   .   .   hild:   Const 3 [line: 16]
+> .   .   .   .   .   hild:   Id: sum [line: 13]
+> .   .   .   .   hild:   Op: < [line: 13]
+> .   .   .   .   .   hild:   Op: ? [line: 8]
+> Number of errors: 6
+7a38,45
+> .   .   .   .   Sibling: 1  Assign: ++ [line: 9]
+> .   .   Sibling: 1  Var: sum of type int [line: 4]
+> .   .   Sibling: 1  While [line: 7]
+> .   .   Sibling: 2  Call: outputb [line: 11]
+> .   .   Sibling: 3  Call: outputb [line: 13]
+> .   .   Sibling: 4  Call: outnl [line: 14]
+> .   .   Sibling: 5  Call: outputb [line: 16]
+> .   .   Sibling: 6  Call: outnl [line: 17]

@@ -1,15 +1,15 @@
-.   .   .   Child: 0  Const 111 [line: 4]
-.   .   .   Child: 0  Id: x [line: 6]
-.   .   .   Child: 0  Id: x [line: 7]
-.   .   .   Child: 0  Id: x [line: 8]
-.   .   Child: 0  Var: x of static type int [line: 4]
-.   .   Child: 1  Call: output [line: 6]
-.   Child: 1  Compound [line: 3]
-.   .   .   Child: 1  Const 222 [line: 7]
+.   .   .   Child:   Const 111 [line: 4]
+.   .   .   Child:   Id: x [line: 6]
+.   .   .   Child:   Id: x [line: 7]
+.   .   .   Child:   Id: x [line: 8]
+.   .   Child:   Var: x of static type int [line: 4]
 ERROR(6): Symbol 'output' is not declared.
 ERROR(8): Symbol 'output' is not declared.
 ERROR(LINKER): A function named 'main()' must be defined.
 Func: ( returns type void [line: 2]
+.   .   hild:   Call: output [line: 6]
+.   hild:   Compound [line: 3]
+.   .   .   hild:   Const 222 [line: 7]
 Number of errors: 3
 Number of warnings: 0
 .   .   Sibling: 1  Assign: <= [line: 7]
