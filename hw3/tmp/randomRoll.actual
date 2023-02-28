@@ -26,15 +26,11 @@
 .   .   .   .   .   Child: 1  Id: sum [line: 13]
 .   .   .   .   Child: 1  Op: < [line: 13]
 .   .   .   .   .   Child: 1  Op: ? [line: 8]
-ERROR(11): Symbol 'outputb' is not declared.
-ERROR(13): Symbol 'outputb' is not declared.
-ERROR(14): Symbol 'outnl' is not declared.
-ERROR(16): Symbol 'outputb' is not declared.
-ERROR(17): Symbol 'outnl' is not declared.
-ERROR(LINKER): A function named 'main()' must be defined.
-Func: ( returns type void [line: 2]
-Number of errors: 6
-Number of warnings: 0
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+Func: main returns type void [line: 2]
+Number of errors: 0
+Number of warnings: 4
 .   .   .   .   Sibling: 1  Assign: ++ [line: 9]
 .   .   Sibling: 1  Var: sum of type int [line: 4]
 .   .   Sibling: 1  While [line: 7]
@@ -43,3 +39,7 @@ Number of warnings: 0
 .   .   Sibling: 4  Call: outnl [line: 14]
 .   .   Sibling: 5  Call: outputb [line: 16]
 .   .   Sibling: 6  Call: outnl [line: 17]
+WARNING(4): The variable 'i' seems not to be used.
+WARNING(4): The variable 'i' seems not to be used.
+WARNING(4): The variable 'sum' seems not to be used.
+WARNING(4): The variable 'sum' seems not to be used.

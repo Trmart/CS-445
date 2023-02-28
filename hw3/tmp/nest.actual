@@ -101,59 +101,19 @@
 .   .   .   Child: 1  Const 7 [line: 38]
 .   .   .   Child: 1  Const 8 [line: 39]
 .   .   .   Child: 1  Const 9 [line: 40]
-ERROR(100): Symbol 'output' is not declared.
-ERROR(101): Symbol 'output' is not declared.
-ERROR(102): Symbol 'outnl' is not declared.
-ERROR(104): Symbol 'agamemnon' is not declared.
-ERROR(106): Symbol 'output' is not declared.
-ERROR(107): Symbol 'output' is not declared.
-ERROR(108): Symbol 'output' is not declared.
-ERROR(109): Symbol 'output' is not declared.
-ERROR(110): Symbol 'output' is not declared.
-ERROR(111): Symbol 'outnl' is not declared.
-ERROR(18): Symbol 'output' is not declared.
-ERROR(19): Symbol 'output' is not declared.
-ERROR(20): Symbol 'output' is not declared.
-ERROR(21): Symbol 'output' is not declared.
-ERROR(22): Symbol 'output' is not declared.
-ERROR(23): Symbol 'outnl' is not declared.
-ERROR(31): Symbol '(' is already declared at line 7.
-ERROR(43): Symbol 'output' is not declared.
-ERROR(44): Symbol 'output' is not declared.
-ERROR(45): Symbol 'output' is not declared.
-ERROR(46): Symbol 'output' is not declared.
-ERROR(47): Symbol 'output' is not declared.
-ERROR(48): Symbol 'outnl' is not declared.
-ERROR(58): Symbol 'output' is not declared.
-ERROR(59): Symbol 'output' is not declared.
-ERROR(60): Symbol 'output' is not declared.
-ERROR(61): Symbol 'output' is not declared.
-ERROR(62): Symbol 'output' is not declared.
-ERROR(63): Symbol 'outnl' is not declared.
-ERROR(70): Symbol 'output' is not declared.
-ERROR(71): Symbol 'output' is not declared.
-ERROR(72): Symbol 'output' is not declared.
-ERROR(73): Symbol 'output' is not declared.
-ERROR(74): Symbol 'output' is not declared.
-ERROR(75): Symbol 'outnl' is not declared.
-ERROR(77): Symbol 'output' is not declared.
-ERROR(78): Symbol 'output' is not declared.
-ERROR(79): Symbol 'output' is not declared.
-ERROR(80): Symbol 'output' is not declared.
-ERROR(81): Symbol 'output' is not declared.
-ERROR(82): Symbol 'outnl' is not declared.
-ERROR(89): Symbol 'output' is not declared.
-ERROR(90): Symbol 'output' is not declared.
-ERROR(91): Symbol 'output' is not declared.
-ERROR(92): Symbol 'output' is not declared.
-ERROR(93): Symbol 'output' is not declared.
-ERROR(94): Symbol 'outnl' is not declared.
-ERROR(97): Symbol 'output' is not declared.
-ERROR(98): Symbol 'output' is not declared.
-ERROR(99): Symbol 'output' is not declared.
-ERROR(LINKER): A function named 'main()' must be defined.
-Number of errors: 51
-Number of warnings: 0
+ERROR(11): Symbol 'x' is already declared at line 3.
+ERROR(33): Symbol 'a' is already declared at line 9.
+ERROR(34): Symbol 'b' is already declared at line 10.
+ERROR(35): Symbol 'z' is already declared at line 5.
+ERROR(50): Symbol 'a' is already declared at line 9.
+ERROR(51): Symbol 'b' is already declared at line 10.
+ERROR(52): Symbol 'z' is already declared at line 5.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+Number of errors: 7
+Number of warnings: 20
 .   .   Sibling: 10  Assign: <= [line: 24]
 .   .   .   Sibling: 10  Assign: <= [line: 66]
 .   .   .   .   Sibling: 10  Assign: <= [line: 88]
@@ -212,12 +172,12 @@ Sibling: 2  Var: z of type int [line: 5]
 .   .   Sibling: 3  Assign: <= [line: 40]
 .   .   .   Sibling: 3  Call: output [line: 58]
 .   .   .   .   Sibling: 3  Call: output [line: 80]
-Sibling: 3  Func: ( returns type void [line: 7]
+Sibling: 3  Func: agamemnon returns type void [line: 7]
 .   .   Sibling: 4  Assign: <= [line: 41]
 .   .   Sibling: 4  Call: output [line: 18]
 .   .   .   Sibling: 4  Call: output [line: 59]
 .   .   .   .   Sibling: 4  Call: output [line: 81]
-Sibling: 4  Func: ( returns type void [line: 31]
+Sibling: 4  Func: main returns type void [line: 31]
 .   .   .   .   Sibling: 5  Call: outnl [line: 82]
 .   .   Sibling: 5  Call: output [line: 19]
 .   .   Sibling: 5  Call: output [line: 43]
@@ -239,3 +199,23 @@ Sibling: 4  Func: ( returns type void [line: 31]
 .   .   Sibling: 9  Call: outnl [line: 23]
 .   .   Sibling: 9  Call: output [line: 47]
 Var: x of type int [line: 3]
+WARNING(10): The variable 'b' seems not to be used.
+WARNING(10): The variable 'b' seems not to be used.
+WARNING(10): The variable 'b' seems not to be used.
+WARNING(10): The variable 'b' seems not to be used.
+WARNING(3): The variable 'x' seems not to be used.
+WARNING(3): The variable 'x' seems not to be used.
+WARNING(3): The variable 'x' seems not to be used.
+WARNING(3): The variable 'x' seems not to be used.
+WARNING(4): The variable 'y' seems not to be used.
+WARNING(4): The variable 'y' seems not to be used.
+WARNING(4): The variable 'y' seems not to be used.
+WARNING(4): The variable 'y' seems not to be used.
+WARNING(5): The variable 'z' seems not to be used.
+WARNING(5): The variable 'z' seems not to be used.
+WARNING(5): The variable 'z' seems not to be used.
+WARNING(5): The variable 'z' seems not to be used.
+WARNING(9): The variable 'a' seems not to be used.
+WARNING(9): The variable 'a' seems not to be used.
+WARNING(9): The variable 'a' seems not to be used.
+WARNING(9): The variable 'a' seems not to be used.

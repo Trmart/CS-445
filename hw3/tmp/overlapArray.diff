@@ -1,4 +1,11 @@
-0a1,9
+1,6c1,23
+< ERROR(LINKER): A function named 'main()' must be defined.
+< Number of errors: 1
+< Number of warnings: 6
+< WARNING(13): The variable 'b' seems not to be used.
+< WARNING(16): The variable 'c' seems not to be used.
+< WARNING(2): The variable 'p' seems not to be used.
+---
 > .   Child: 0  Parm: p of array of type int [line: 2]
 > .   .   Child: 0  Var: a of array of type int [line: 4]
 > .   .   .   .   Child: 0  Var: b of array of type int [line: 13]
@@ -8,9 +15,33 @@
 > .   .   .   Child: 1  Compound [line: 12]
 > .   Child: 1  Compound [line: 3]
 > .   .   Child: 1  Compound [line: 5]
-1a11
-> Func: ( returns type void [line: 2]
-3a14,16
+> ERROR(13): Symbol 'b' is already declared at line 6.
+> ERROR(16): Symbol 'c' is already declared at line 9.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Func: main returns type void [line: 2]
+> Number of errors: 2
+> Number of warnings: 17
 > .   .   .   Sibling: 1  Compound [line: 15]
 > .   .   Sibling: 1  Compound [line: 8]
 > .   .   Sibling: 2  Compound [line: 11]
+7a25,34
+> WARNING(4): The variable 'a' seems not to be used.
+> WARNING(4): The variable 'a' seems not to be used.
+> WARNING(4): The variable 'a' seems not to be used.
+> WARNING(4): The variable 'a' seems not to be used.
+> WARNING(4): The variable 'a' seems not to be used.
+> WARNING(6): The variable 'b' seems not to be used.
+> WARNING(6): The variable 'b' seems not to be used.
+> WARNING(6): The variable 'b' seems not to be used.
+> WARNING(6): The variable 'b' seems not to be used.
+> WARNING(6): The variable 'b' seems not to be used.
+8a36,39
+> WARNING(9): The variable 'c' seems not to be used.
+> WARNING(9): The variable 'c' seems not to be used.
+> WARNING(9): The variable 'c' seems not to be used.
+> WARNING(9): The variable 'c' seems not to be used.

@@ -1,4 +1,32 @@
-0a1,213
+1,27c1,244
+< ERROR(10): Symbol 'output' is not declared.
+< ERROR(11): Symbol 'outnl' is not declared.
+< ERROR(12): Symbol 'output' is not declared.
+< ERROR(13): Symbol 'output' is not declared.
+< ERROR(14): Symbol 'outnl' is not declared.
+< ERROR(15): Symbol 'output' is not declared.
+< ERROR(16): Symbol 'output' is not declared.
+< ERROR(17): Symbol 'outnl' is not declared.
+< ERROR(18): Symbol 'output' is not declared.
+< ERROR(19): Symbol 'output' is not declared.
+< ERROR(20): Symbol 'output' is not declared.
+< ERROR(21): Symbol 'outnl' is not declared.
+< ERROR(22): Symbol 'outputb' is not declared.
+< ERROR(23): Symbol 'outputb' is not declared.
+< ERROR(24): Symbol 'outnl' is not declared.
+< ERROR(25): Symbol 'outputb' is not declared.
+< ERROR(26): Symbol 'outputb' is not declared.
+< ERROR(27): Symbol 'outnl' is not declared.
+< ERROR(28): Symbol 'outputb' is not declared.
+< ERROR(29): Symbol 'outputb' is not declared.
+< ERROR(30): Symbol 'outnl' is not declared.
+< ERROR(31): Symbol 'outputb' is not declared.
+< ERROR(32): Symbol 'outnl' is not declared.
+< ERROR(8): Symbol 'output' is not declared.
+< ERROR(9): Symbol 'output' is not declared.
+< Number of errors: 25
+< Number of warnings: 0
+---
 > .   .   .   Child: 0  Assign: <= [line: 31]
 > .   .   .   .   .   Child: 0  Call: ident [line: 12]
 > .   .   .   .   .   Child: 0  Call: ident [line: 13]
@@ -212,13 +240,11 @@
 > .   .   .   .   .   Child: 1  Op: != [line: 31]
 > .   .   .   .   Child: 1  Op: or [line: 31]
 > .   .   Child: 1  Return [line: 2]
-26c239,241
-< Number of errors: 25
----
-> ERROR(LINKER): A function named 'main()' must be defined.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: ident returns type int [line: 2]
-> Number of errors: 26
-27a243,267
+> Number of errors: 0
+> Number of warnings: 1
 > .   .   Sibling: 10  Call: output [line: 18]
 > .   .   Sibling: 11  Call: output [line: 19]
 > .   .   Sibling: 12  Call: output [line: 20]
@@ -230,7 +256,7 @@
 > .   .   Sibling: 18  Call: outputb [line: 26]
 > .   .   Sibling: 19  Call: outnl [line: 27]
 > .   .   Sibling: 1  Call: output [line: 9]
-> Sibling: 1  Func: ( returns type void [line: 4]
+> Sibling: 1  Func: main returns type void [line: 4]
 > .   .   Sibling: 20  Call: outputb [line: 28]
 > .   .   Sibling: 21  Call: outputb [line: 29]
 > .   .   Sibling: 22  Call: outnl [line: 30]
@@ -244,3 +270,4 @@
 > .   .   Sibling: 7  Call: output [line: 15]
 > .   .   Sibling: 8  Call: output [line: 16]
 > .   .   Sibling: 9  Call: outnl [line: 17]
+> WARNING(6): The variable 'x' seems not to be used.

@@ -4,10 +4,7 @@
 ---
 > .   .   .   Child: 0  Const true [line: 4]
 > .   .   .   .   .   Child: 0  Const true [line: 5]
-9,10c9,11
-< Func: main returns type void [line: 2]
-< Number of errors: 0
----
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Func: ( returns type void [line: 2]
-> Number of errors: 1
+8a9,11
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.

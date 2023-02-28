@@ -46,21 +46,10 @@
 .   .   .   .   Child: 1  Const 9 [line: 21]
 .   .   .   .   Child: 1  Const 9 [line: 24]
 .   .   .   .   Child: 1  Const 9 [line: 25]
-ERROR(10): Symbol 'output' is not declared.
-ERROR(12): Symbol 'output' is not declared.
-ERROR(14): Symbol 'output' is not declared.
-ERROR(16): Symbol 'output' is not declared.
-ERROR(17): Symbol 'outnl' is not declared.
-ERROR(19): Symbol 'output' is not declared.
-ERROR(21): Symbol 'output' is not declared.
-ERROR(23): Symbol 'output' is not declared.
-ERROR(25): Symbol 'output' is not declared.
-ERROR(26): Symbol 'outnl' is not declared.
-ERROR(30): Symbol '(' is already declared at line 4.
-ERROR(33): Symbol 'esperanza' is not declared.
-ERROR(LINKER): A function named 'main()' must be defined.
-Number of errors: 13
-Number of warnings: 2
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+Number of errors: 0
+Number of warnings: 14
 .   .   Sibling: 10  Call: output [line: 19]
 .   .   Sibling: 11  Assign: <= [line: 20]
 .   .   Sibling: 12  Call: output [line: 21]
@@ -76,10 +65,10 @@ Sibling: 1  Var: gy of array of type int [line: 2]
 .   .   Sibling: 1  Var: y of array of type int [line: 6]
 .   .   Sibling: 1  Var: zy of array of type int [line: 32]
 .   .   Sibling: 2  Assign: <= [line: 11]
-Sibling: 2  Func: ( returns type void [line: 4]
+Sibling: 2  Func: esperanza returns type void [line: 4]
 .   .   Sibling: 2  Var: sx of static type int [line: 7]
 .   .   Sibling: 3  Call: output [line: 12]
-Sibling: 3  Func: ( returns type void [line: 30]
+Sibling: 3  Func: main returns type void [line: 30]
 .   .   Sibling: 3  Var: sy of static array of type int [line: 7]
 .   .   Sibling: 4  Assign: <= [line: 13]
 .   .   Sibling: 5  Call: output [line: 14]
@@ -88,5 +77,17 @@ Sibling: 3  Func: ( returns type void [line: 30]
 .   .   Sibling: 8  Call: outnl [line: 17]
 .   .   Sibling: 9  Assign: <= [line: 18]
 Var: gx of type int [line: 2]
-WARNING(33): Variable 'zx' may be uninitialized when used here.
-WARNING(33): Variable 'zy' may be uninitialized when used here.
+WARNING(2): The variable 'gx' seems not to be used.
+WARNING(2): The variable 'gx' seems not to be used.
+WARNING(2): The variable 'gy' seems not to be used.
+WARNING(2): The variable 'gy' seems not to be used.
+WARNING(32): The variable 'zx' seems not to be used.
+WARNING(32): The variable 'zy' seems not to be used.
+WARNING(6): The variable 'x' seems not to be used.
+WARNING(6): The variable 'x' seems not to be used.
+WARNING(6): The variable 'y' seems not to be used.
+WARNING(6): The variable 'y' seems not to be used.
+WARNING(7): The variable 'sx' seems not to be used.
+WARNING(7): The variable 'sx' seems not to be used.
+WARNING(7): The variable 'sy' seems not to be used.
+WARNING(7): The variable 'sy' seems not to be used.

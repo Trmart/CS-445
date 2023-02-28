@@ -47,16 +47,28 @@
 .   .   .   .   .   Child: 2  Id: x [line: 7]
 .   .   .   .   Child: 2  If [line: 8]
 .   .   .   .   .   Child: 2  Op: * [line: 14]
-ERROR(LINKER): A function named 'main()' must be defined.
-Func: ( returns type void [line: 2]
-Number of errors: 1
+ERROR(14): Symbol 'x' is already declared at line 4.
+ERROR(16): Symbol 'x' is already declared at line 4.
+ERROR(19): Symbol 'x' is already declared at line 4.
+ERROR(20): Symbol 'x' is already declared at line 4.
+ERROR(7): Symbol 'x' is already declared at line 4.
+ERROR(9): Symbol 'x' is already declared at line 4.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+Func: main returns type void [line: 2]
+Number of errors: 6
 Number of warnings: 7
 .   .   Sibling: 1  If [line: 13]
 .   .   Sibling: 2  If [line: 18]
-WARNING(14): The variable 'x' seems not to be used.
-WARNING(16): The variable 'x' seems not to be used.
-WARNING(19): The variable 'x' seems not to be used.
-WARNING(20): The variable 'x' seems not to be used.
 WARNING(4): The variable 'x' seems not to be used.
-WARNING(7): The variable 'x' seems not to be used.
-WARNING(9): The variable 'x' seems not to be used.
+WARNING(4): The variable 'x' seems not to be used.
+WARNING(4): The variable 'x' seems not to be used.
+WARNING(4): The variable 'x' seems not to be used.
+WARNING(4): The variable 'x' seems not to be used.
+WARNING(4): The variable 'x' seems not to be used.
+WARNING(4): The variable 'x' seems not to be used.

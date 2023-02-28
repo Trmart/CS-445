@@ -12,20 +12,24 @@
 > .   .   .   Child: 0  Id: z [line: 13]
 > .   .   Child: 0  Var: b of array of type int [line: 8]
 > .   .   Child: 1  Assign: <= [line: 13]
-8,9c8,10
+8c8,9
 < .   .   .   Child: 1  Const 999 of type int [line: 13]
-< Number of errors: 0
 ---
 > .   .   .   Child: 1  Const 999 [line: 13]
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Number of errors: 1
-13,16c14,17
-< Sibling: 2  Func: main returns type void [line: 6]
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+10c11
+< Number of warnings: 3
+---
+> Number of warnings: 6
+14,16c15,17
 < .   .   Sibling: 2  Var: c is array of type int [line: 10]
 < .   .   Sibling: 3  Var: z of type int [line: 11]
 < Var: a is array of type int [line: 3]
 ---
-> Sibling: 2  Func: ( returns type void [line: 6]
 > .   .   Sibling: 2  Var: c of static array of type int [line: 10]
 > .   .   Sibling: 3  Var: z of static type int [line: 11]
 > Var: a of array of type int [line: 3]
+17a19,21
+> WARNING(11): The variable 'z' seems not to be used.
+> WARNING(3): The variable 'a' seems not to be used.
+> WARNING(4): The variable 'x' seems not to be used.

@@ -1,4 +1,7 @@
-0a1,36
+1,2c1,35
+< ERROR(13): Symbol 'dog' is not declared.
+< ERROR(14): Cannot use function 'main' as a variable.
+---
 > .   .   .   .   Child: 0  Const 4 [line: 8]
 > .   .   .   .   .   .   .   .   .   Child: 0  Id: g [line: 15]
 > .   .   .   .   Child: 0  Id: g [line: 7]
@@ -34,17 +37,23 @@
 > .   .   .   Child: 1  Id: z [line: 15]
 > .   .   .   Child: 1  Op: + [line: 7]
 > .   .   .   Child: 1  Op: + [line: 8]
-> ERROR(10): Symbol 'main' is not declared.
-2c38
-< ERROR(14): Cannot use function 'main' as a variable.
----
-> ERROR(14): Symbol 'main' is not declared.
-6c42,43
+5,6c38,40
+< ERROR(LINKER): A function named 'main()' must be defined.
 < Number of errors: 5
 ---
-> Func: ( returns type void [line: 1]
-> Number of errors: 6
-7a45,63
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Func: main returns type void [line: 1]
+> Number of errors: 2
+8,15c42,68
+< WARNING(10): Variable 'k' may be uninitialized when used here.
+< WARNING(11): Variable 'l' may be uninitialized when used here.
+< WARNING(12): Variable 'm' may be uninitialized when used here.
+< WARNING(1): The variable 'x' seems not to be used.
+< WARNING(5): Variable 'i' may be uninitialized when used here.
+< WARNING(7): Variable 'g' may be uninitialized when used here.
+< WARNING(8): Variable 'h' may be uninitialized when used here.
+< WARNING(9): Variable 'j' may be uninitialized when used here.
+---
 > .   .   Sibling: 10  Op: + [line: 15]
 > .   .   Sibling: 1  Assign: <= [line: 6]
 > .   .   Sibling: 1  Var: g of type int [line: 3]
@@ -64,3 +73,11 @@
 > .   .   Sibling: 8  Var: z of type int [line: 3]
 > .   .   Sibling: 9  Assign: <= [line: 14]
 > .   .   Sibling: 9  Var: z of type int [line: 3]
+> WARNING(3): The variable 'g' seems not to be used.
+> WARNING(3): The variable 'h' seems not to be used.
+> WARNING(3): The variable 'i' seems not to be used.
+> WARNING(3): The variable 'j' seems not to be used.
+> WARNING(3): The variable 'k' seems not to be used.
+> WARNING(3): The variable 'l' seems not to be used.
+> WARNING(3): The variable 'm' seems not to be used.
+> WARNING(3): The variable 'z' seems not to be used.

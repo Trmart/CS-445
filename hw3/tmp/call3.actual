@@ -49,19 +49,13 @@
 .   .   .   .   Child: 1  Const 7 [line: 35]
 .   .   .   .   Child: 1  Const 7 [line: 4]
 .   .   .   .   Child: 1  Const 7 [line: 7]
-ERROR(12): Symbol 'output' is not declared.
-ERROR(14): Symbol 'output' is not declared.
-ERROR(21): Symbol 'output' is not declared.
-ERROR(23): Symbol 'output' is not declared.
-ERROR(34): Symbol 'output' is not declared.
-ERROR(35): Symbol 'output' is not declared.
-ERROR(36): Symbol 'outnl' is not declared.
-ERROR(3): Symbol 'output' is not declared.
-ERROR(5): Symbol 'outnl' is not declared.
-ERROR(LINKER): A function named 'main()' must be defined.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: three returns type int [line: 2]
-Number of errors: 10
-Number of warnings: 0
+Number of errors: 0
+Number of warnings: 1
 .   .   Sibling: 1  Assign: <= [line: 4]
 .   .   Sibling: 1  Call: output [line: 34]
 .   .   Sibling: 1  Call: three [line: 13]
@@ -73,7 +67,8 @@ Sibling: 1  Func: two returns type int [line: 11]
 .   .   Sibling: 2  Call: output [line: 35]
 Sibling: 2  Func: one returns type int [line: 20]
 .   .   Sibling: 3  Call: outnl [line: 36]
-Sibling: 3  Func: ( returns type void [line: 29]
+Sibling: 3  Func: main returns type void [line: 29]
 .   .   Sibling: 3  Return [line: 16]
 .   .   Sibling: 3  Return [line: 25]
 .   .   Sibling: 3  Return [line: 7]
+WARNING(31): The variable 'w' seems not to be used.

@@ -182,7 +182,7 @@ funDecl                 : typeSpec ID LPAREN parms RPAREN compoundStmt
                         }
                         | ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new Func($1->tokenLineNumber, $2->tokenInformation, new NodeData(NodeData::Type::VOID, false, false));
+                            $$ = new Func($1->tokenLineNumber, $1->tokenInformation, new NodeData(NodeData::Type::VOID, false, false));
                             $$->addChildNode($3);
                             $$->addChildNode($5);
                         }
@@ -759,7 +759,7 @@ int main(int argc, char *argv[])
     }
 
     //create the symbol table
-    /* SymbolTable symbolTable = SymbolTable();
+    SymbolTable symbolTable = SymbolTable();
 
     //get symbol table debug flag
     symbolTable.debug(compilerFlags.getSymbolTableFlag());
@@ -768,7 +768,7 @@ int main(int argc, char *argv[])
     Semantics semanticAnalyzer = Semantics(&symbolTable);
     
     //perform semantic analysis
-    semanticAnalyzer.semanticAnalysis(root); */
+    semanticAnalyzer.semanticAnalysis(root);
 
     //if the -D flag was passed, print the symbol table
     // if(compilerFlags.getSymbolTableFlag())

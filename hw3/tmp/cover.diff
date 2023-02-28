@@ -1,4 +1,18 @@
-0a1,92
+1,13c1,148
+< ERROR(19): Unary '--' requires an operand of type int but was given type char.
+< ERROR(20): Unary '?' requires an operand of type int but was given type char.
+< ERROR(22): Cannot index nonarray 'e'.
+< ERROR(22): Cannot index nonarray 'e'.
+< ERROR(22): '+' requires operands of type int but lhs is of type bool.
+< ERROR(22): '+' requires operands of type int but rhs is of type bool.
+< ERROR(23): Array 'e' should be indexed by type int but got type bool.
+< ERROR(23): Cannot index nonarray 'e'.
+< ERROR(23): Cannot index nonarray 'e'.
+< ERROR(26): 'and' requires operands of type bool but lhs is of type int.
+< ERROR(26): 'and' requires operands of type bool but rhs is of type int.
+< Number of errors: 11
+< Number of warnings: 9
+---
 > .   .   .   Child: 0  Const 101 [line: 39]
 > .   .   .   .   Child: 0  Const 1 [line: 31]
 > .   .   .   .   Child: 0  Const 1 [line: 7]
@@ -91,14 +105,15 @@
 > .   .   .   Child: 2  Compound [line: 7]
 > .   .   .   .   Child: 2  Const 3 [line: 7]
 > .   .   .   .   .   .   .   .   Child: 2  Const 777 [line: 11]
-12c104,107
-< Number of errors: 11
----
-> ERROR(34): Symbol '(' is already declared at line 6.
-> ERROR(39): Symbol 'fred' is not declared.
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Number of errors: 14
-13a109,147
+> ERROR(31): Symbol 'x' is already declared at line 7.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Number of errors: 1
+> Number of warnings: 21
 > .   .   .   .   .   .   Sibling: 10  Op: ? [line: 20]
 > .   .   .   .   .   .   Sibling: 11  Op: ? [line: 21]
 > .   .   .   .   .   .   Sibling: 12  Op: + [line: 22]
@@ -116,11 +131,11 @@
 > .   .   Sibling: 1  Var: b of array of type int [line: 35]
 > .   .   .   .   .   .   Sibling: 2  Assign: <= [line: 12]
 > .   .   .   Sibling: 2  Const 'q' [line: 39]
-> Sibling: 2  Func: ( returns type void [line: 6]
+> Sibling: 2  Func: fred returns type void [line: 6]
 > .   Sibling: 2  Parm: c of type char [line: 6]
 > .   .   Sibling: 2  Var: c of type char [line: 36]
 > .   .   .   .   .   .   Sibling: 3  Assign: *= [line: 13]
-> Sibling: 3  Func: ( returns type void [line: 34]
+> Sibling: 3  Func: main returns type void [line: 34]
 > .   .   .   Sibling: 3  Id: d [line: 39]
 > .   Sibling: 3  Parm: d of array of type char [line: 6]
 > .   .   Sibling: 3  Var: d of array of type char [line: 36]
@@ -138,3 +153,30 @@
 > .   .   .   .   .   .   Sibling: 8  Op: chsign [line: 18]
 > .   .   .   .   .   .   Sibling: 9  Assign: -- [line: 19]
 > Var: fahrenheit of type int [line: 2]
+> WARNING(2): The variable 'fahrenheit' seems not to be used.
+> WARNING(2): The variable 'fahrenheit' seems not to be used.
+> WARNING(2): The variable 'fahrenheit' seems not to be used.
+> WARNING(2): The variable 'fahrenheit' seems not to be used.
+> WARNING(2): The variable 'fahrenheit' seems not to be used.
+> WARNING(2): The variable 'fahrenheit' seems not to be used.
+> WARNING(31): The variable 'i' seems not to be used.
+> WARNING(31): The variable 'i' seems not to be used.
+15d149
+< WARNING(31): The variable 'x' seems not to be used.
+16a151
+> WARNING(35): The variable 'b' seems not to be used.
+17a153,155
+> WARNING(36): The variable 'd' seems not to be used.
+> WARNING(37): The variable 'e' seems not to be used.
+> WARNING(37): The variable 'f' seems not to be used.
+19,22c157,161
+< WARNING(39): Variable 'b' may be uninitialized when used here.
+< WARNING(39): Variable 'd' may be uninitialized when used here.
+< WARNING(39): Variable 'e' may be uninitialized when used here.
+< WARNING(39): Variable 'f' may be uninitialized when used here.
+---
+> WARNING(7): The variable 'x' seems not to be used.
+> WARNING(7): The variable 'x' seems not to be used.
+> WARNING(7): The variable 'x' seems not to be used.
+> WARNING(7): The variable 'x' seems not to be used.
+> WARNING(7): The variable 'x' seems not to be used.

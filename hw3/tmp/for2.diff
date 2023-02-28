@@ -1,4 +1,4 @@
-0a1,17
+0a1,18
 > .   .   .   .   Child: 0  Id: a [line: 5]
 > .   .   .   .   .   Child: 0  Id: a [line: 6]
 > .   .   .   .   .   .   Child: 0  Id: i [line: 9]
@@ -16,11 +16,26 @@
 > .   .   .   .   Child: 1  Range [line: 6]
 > .   .   .   .   Child: 2  Compound [line: 6]
 > .   .   .   Child: 2  For [line: 6]
-2c19,21
+> ERROR(7): Symbol 'i' is already declared at line 5.
+2,3c20,26
 < Number of errors: 1
+< Number of warnings: 3
 ---
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Func: ( returns type void [line: 1]
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Func: main returns type void [line: 1]
 > Number of errors: 2
-3a23
+> Number of warnings: 9
 > .   .   .   .   .   Sibling: 1  Var: j of type int [line: 8]
+4a28,31
+> WARNING(3): The variable 'a' seems not to be used.
+> WARNING(3): The variable 'a' seems not to be used.
+> WARNING(5): The variable 'i' seems not to be used.
+> WARNING(5): The variable 'i' seems not to be used.
+6c33,35
+< WARNING(9): Variable 'i' may be uninitialized when used here.
+---
+> WARNING(6): The variable 'j' seems not to be used.
+> WARNING(6): The variable 'j' seems not to be used.
+> WARNING(6): The variable 'j' seems not to be used.

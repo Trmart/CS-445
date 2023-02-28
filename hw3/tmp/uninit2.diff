@@ -38,7 +38,7 @@
 < .   .   Child: 1  Assign: <= of type int [line: 6]
 ---
 > .   .   Child: 1  Assign: <= [line: 6]
-21,39c21,41
+21,37c21,38
 < .   .   .   Child: 1  Const 284 of type int [line: 13]
 < .   .   .   .   Child: 1  Const 3 of type int [line: 12]
 < .   .   .   .   .   Child: 1  Const 3 of type int [line: 13]
@@ -56,8 +56,6 @@
 < .   .   .   Child: 1  Op: [ of type int [line: 8]
 < .   .   .   .   Child: 1  Op: [ of type int [line: 9]
 < .   .   .   Child: 1  Op: [ of type int [line: 9]
-< Func: main returns type void [line: 1]
-< Number of errors: 0
 ---
 > .   .   .   Child: 1  Const 284 [line: 13]
 > .   .   .   .   Child: 1  Const 3 [line: 12]
@@ -76,23 +74,22 @@
 > .   .   .   Child: 1  Op: [ [line: 8]
 > .   .   .   .   Child: 1  Op: [ [line: 9]
 > .   .   .   Child: 1  Op: [ [line: 9]
-> ERROR(10): Array index is the unindexed array 'cc'.
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Func: ( returns type void [line: 1]
-> Number of errors: 2
-41c43
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+40,41c41,42
+< Number of warnings: 5
 < .   .   Sibling: 1  Assign: <= of type int [line: 7]
 ---
+> Number of warnings: 9
 > .   .   Sibling: 1  Assign: <= [line: 7]
-43c45
+43c44
 < .   .   Sibling: 2  Assign: <= of type int [line: 8]
 ---
 > .   .   Sibling: 2  Assign: <= [line: 8]
-45c47
+45c46
 < .   .   Sibling: 3  Assign: <= of type int [line: 9]
 ---
 > .   .   Sibling: 3  Assign: <= [line: 9]
-47,55c49,57
+47,60c48,65
 < .   .   Sibling: 4  Assign: <= of type int [line: 10]
 < .   .   Sibling: 4  Var: aa is array of type int [line: 4]
 < .   .   Sibling: 5  Assign: <= of type int [line: 11]
@@ -102,6 +99,11 @@
 < .   .   Sibling: 7  Assign: <= of type int [line: 13]
 < .   .   Sibling: 7  Var: dd is array of type int [line: 4]
 < .   .   Sibling: 8  Var: ee is array of type int [line: 4]
+< WARNING(12): Variable 'dd' may be uninitialized when used here.
+< WARNING(6): Variable 'b' may be uninitialized when used here.
+< WARNING(8): Variable 'aa' may be uninitialized when used here.
+< WARNING(9): Variable 'bb' may be uninitialized when used here.
+< WARNING(9): Variable 'cc' may be uninitialized when used here.
 ---
 > .   .   Sibling: 4  Assign: <= [line: 10]
 > .   .   Sibling: 4  Var: aa of array of type int [line: 4]
@@ -112,3 +114,12 @@
 > .   .   Sibling: 7  Assign: <= [line: 13]
 > .   .   Sibling: 7  Var: dd of array of type int [line: 4]
 > .   .   Sibling: 8  Var: ee of array of type int [line: 4]
+> WARNING(3): The variable 'a' seems not to be used.
+> WARNING(3): The variable 'b' seems not to be used.
+> WARNING(3): The variable 'c' seems not to be used.
+> WARNING(3): The variable 'd' seems not to be used.
+> WARNING(4): The variable 'aa' seems not to be used.
+> WARNING(4): The variable 'bb' seems not to be used.
+> WARNING(4): The variable 'cc' seems not to be used.
+> WARNING(4): The variable 'dd' seems not to be used.
+> WARNING(4): The variable 'ee' seems not to be used.

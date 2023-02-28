@@ -39,33 +39,23 @@
 .   .   .   .   Child: 1  Const 7 [line: 29]
 .   .   .   .   Child: 1  Const 7 [line: 3]
 .   .   .   .   Child: 1  Const 7 [line: 4]
-ERROR(10): Symbol 'output' is not declared.
-ERROR(11): Symbol 'three' is not declared.
-ERROR(12): Symbol 'output' is not declared.
-ERROR(16): Symbol '(' is already declared at line 2.
-ERROR(17): Symbol 'output' is not declared.
-ERROR(18): Symbol 'two' is not declared.
-ERROR(19): Symbol 'output' is not declared.
-ERROR(23): Symbol '(' is already declared at line 2.
-ERROR(28): Symbol 'one' is not declared.
-ERROR(29): Symbol 'output' is not declared.
-ERROR(30): Symbol 'outnl' is not declared.
-ERROR(3): Symbol 'output' is not declared.
-ERROR(5): Symbol 'outnl' is not declared.
-ERROR(9): Symbol '(' is already declared at line 2.
-ERROR(LINKER): A function named 'main()' must be defined.
-Func: ( returns type void [line: 2]
-Number of errors: 15
-Number of warnings: 0
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+Func: three returns type void [line: 2]
+Number of errors: 0
+Number of warnings: 1
 .   .   Sibling: 1  Assign: <= [line: 4]
 .   .   Sibling: 1  Call: one [line: 28]
 .   .   Sibling: 1  Call: three [line: 11]
 .   .   Sibling: 1  Call: two [line: 18]
-Sibling: 1  Func: ( returns type void [line: 9]
+Sibling: 1  Func: two returns type void [line: 9]
 .   .   Sibling: 2  Call: outnl [line: 5]
 .   .   Sibling: 2  Call: output [line: 12]
 .   .   Sibling: 2  Call: output [line: 19]
 .   .   Sibling: 2  Call: output [line: 29]
-Sibling: 2  Func: ( returns type void [line: 16]
+Sibling: 2  Func: one returns type void [line: 16]
 .   .   Sibling: 3  Call: outnl [line: 30]
-Sibling: 3  Func: ( returns type void [line: 23]
+Sibling: 3  Func: main returns type void [line: 23]
+WARNING(25): The variable 'w' seems not to be used.

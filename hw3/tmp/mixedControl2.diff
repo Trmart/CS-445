@@ -38,10 +38,5 @@
 > .   .   .   Child: 2  Const 666 [line: 19]
 > .   .   .   .   .   Child: 2  Const 666 [line: 8]
 > .   .   .   Child: 2  Const 777 [line: 9]
-27,28c27,29
-< Func: main returns type void [line: 2]
-< Number of errors: 0
----
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Func: ( returns type void [line: 2]
-> Number of errors: 1
+26a27
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.

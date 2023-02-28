@@ -15,12 +15,21 @@
 .   .   .   .   Child: 1  Range [line: 6]
 .   .   .   .   Child: 2  Compound [line: 6]
 .   .   .   Child: 2  For [line: 6]
+ERROR(7): Symbol 'i' is already declared at line 5.
 ERROR(8): Symbol 'j' is already declared at line 6.
-ERROR(LINKER): A function named 'main()' must be defined.
-Func: ( returns type void [line: 1]
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+Func: main returns type void [line: 1]
 Number of errors: 2
-Number of warnings: 3
+Number of warnings: 9
 .   .   .   .   .   Sibling: 1  Var: j of type int [line: 8]
 WARNING(3): The variable 'a' seems not to be used.
+WARNING(3): The variable 'a' seems not to be used.
+WARNING(3): The variable 'a' seems not to be used.
 WARNING(5): The variable 'i' seems not to be used.
-WARNING(9): Variable 'i' may be uninitialized when used here.
+WARNING(5): The variable 'i' seems not to be used.
+WARNING(5): The variable 'i' seems not to be used.
+WARNING(6): The variable 'j' seems not to be used.
+WARNING(6): The variable 'j' seems not to be used.
+WARNING(6): The variable 'j' seems not to be used.

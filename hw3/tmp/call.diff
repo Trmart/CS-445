@@ -1,4 +1,15 @@
-0a1,81
+1,10c1,158
+< ERROR(13): Symbol 'output' is not declared.
+< ERROR(14): Symbol 'outputb' is not declared.
+< ERROR(15): Symbol 'outputc' is not declared.
+< ERROR(16): Symbol 'outnl' is not declared.
+< ERROR(4): Symbol 'output' is not declared.
+< ERROR(5): Symbol 'outputb' is not declared.
+< ERROR(6): Symbol 'outputc' is not declared.
+< ERROR(7): Symbol 'outnl' is not declared.
+< Number of errors: 8
+< Number of warnings: 0
+---
 > .   .   .   Child: 0  Const 666 [line: 45]
 > .   .   .   Child: 0  Const 777 [line: 46]
 > .   .   .   .   Child: 0  Id: a [line: 13]
@@ -79,28 +90,19 @@
 > .   .   .   .   Child: 1  Const true [line: 61]
 > .   .   .   Child: 1  Const 'z' [line: 26]
 > .   .   .   Child: 1  Const 'z' [line: 44]
-> ERROR(11): Symbol '(' is already declared at line 2.
-4a86,92
-> ERROR(20): Symbol '(' is already declared at line 2.
-> ERROR(27): Symbol 'sioux' is not declared.
-> ERROR(36): Symbol '(' is already declared at line 2.
-> ERROR(45): Symbol 'cheyenne' is not declared.
-> ERROR(46): Symbol 'cheyenne' is not declared.
-> ERROR(47): Symbol 'sioux' is not declared.
-> ERROR(48): Symbol 'comanche' is not declared.
-5a94,95
-> ERROR(53): Symbol 'sioux' is not declared.
-> ERROR(54): Symbol 'comanche' is not declared.
-6a97,98
-> ERROR(64): Symbol 'sioux' is not declared.
-> ERROR(65): Symbol 'comanche' is not declared.
-9c101,103
-< Number of errors: 8
----
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Func: ( returns type void [line: 2]
-> Number of errors: 21
-10a105,155
+> ERROR(39): Symbol 'b' is already declared at line 22.
+> ERROR(40): Symbol 'c' is already declared at line 23.
+> ERROR(57): Symbol 'ga' is already declared at line 32.
+> ERROR(58): Symbol 'gb' is already declared at line 33.
+> ERROR(59): Symbol 'gc' is already declared at line 34.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Func: cheyenne returns type void [line: 2]
+> Number of errors: 5
+> Number of warnings: 14
 > .   .   Sibling: 10  Call: sioux [line: 53]
 > .   .   Sibling: 11  Call: comanche [line: 54]
 > .   .   Sibling: 12  Compound [line: 56]
@@ -111,7 +113,7 @@
 > .   .   Sibling: 1  Call: outputb [line: 5]
 > .   .   .   Sibling: 1  Const false [line: 46]
 > .   .   .   Sibling: 1  Const true [line: 45]
-> Sibling: 1  Func: ( returns type void [line: 11]
+> Sibling: 1  Func: sioux returns type void [line: 11]
 > .   .   .   Sibling: 1  Id: b [line: 27]
 > .   .   .   Sibling: 1  Id: b [line: 47]
 > .   .   .   Sibling: 1  Id: gb [line: 53]
@@ -128,7 +130,7 @@
 > .   .   Sibling: 2  Call: sioux [line: 27]
 > .   .   .   Sibling: 2  Const 'c' [line: 45]
 > .   .   .   Sibling: 2  Const 'd' [line: 46]
-> Sibling: 2  Func: ( returns type void [line: 20]
+> Sibling: 2  Func: comanche returns type void [line: 20]
 > .   .   .   Sibling: 2  Id: c [line: 27]
 > .   .   .   Sibling: 2  Id: c [line: 47]
 > .   .   .   Sibling: 2  Id: gc [line: 53]
@@ -148,7 +150,21 @@
 > .   .   Sibling: 5  Call: sioux [line: 47]
 > Sibling: 5  Var: gc of array of type char [line: 34]
 > .   .   Sibling: 6  Call: comanche [line: 48]
-> Sibling: 6  Func: ( returns type void [line: 36]
+> Sibling: 6  Func: main returns type void [line: 36]
 > .   .   Sibling: 7  Assign: <= [line: 50]
 > .   .   Sibling: 8  Assign: <= [line: 51]
 > .   .   Sibling: 9  Assign: <= [line: 52]
+> WARNING(22): The variable 'b' seems not to be used.
+> WARNING(22): The variable 'b' seems not to be used.
+> WARNING(22): The variable 'b' seems not to be used.
+> WARNING(23): The variable 'c' seems not to be used.
+> WARNING(23): The variable 'c' seems not to be used.
+> WARNING(23): The variable 'c' seems not to be used.
+> WARNING(32): The variable 'ga' seems not to be used.
+> WARNING(32): The variable 'ga' seems not to be used.
+> WARNING(33): The variable 'gb' seems not to be used.
+> WARNING(33): The variable 'gb' seems not to be used.
+> WARNING(34): The variable 'gc' seems not to be used.
+> WARNING(34): The variable 'gc' seems not to be used.
+> WARNING(38): The variable 'a' seems not to be used.
+> WARNING(38): The variable 'a' seems not to be used.

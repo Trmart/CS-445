@@ -1,4 +1,21 @@
-0a1,30
+1,16c1,30
+< ERROR(14): Symbol 'b' is not declared.
+< ERROR(25): Symbol 'b' is not declared.
+< ERROR(26): Symbol 'c' is not declared.
+< ERROR(30): Symbol 'b' is not declared.
+< ERROR(31): Symbol 'c' is not declared.
+< ERROR(41): Symbol 'x' is not declared.
+< ERROR(45): Symbol 'p' is not declared.
+< ERROR(46): Symbol 'q' is not declared.
+< ERROR(46): Symbol 'r' is not declared.
+< ERROR(47): Symbol 's' is not declared.
+< ERROR(47): Symbol 't' is not declared.
+< ERROR(48): Symbol 'cow' is not declared.
+< ERROR(48): Symbol 'u' is not declared.
+< ERROR(48): Symbol 'v' is not declared.
+< ERROR(49): Symbol 'abraxsis' is not declared.
+< ERROR(50): Symbol 'a' is not declared.
+---
 > .   .   .   Child: 0  Const 3 [line: 7]
 > .   .   .   Child: 0  Id: a [line: 8]
 > .   .   .   Child: 0  Id: g [line: 43]
@@ -29,16 +46,29 @@
 > .   .   .   Child: 1  Id: r [line: 46]
 > .   .   Child: 1  Id: x [line: 41]
 > .   .   Child: 1  Return [line: 59]
-20,21c50
+18,28c32,88
+< ERROR(57): Symbol 'g' is already declared at line 2.
+< ERROR(59): Symbol 'x' is not declared.
 < ERROR(62): Symbol 'g' is already declared at line 2.
 < ERROR(63): Symbol 'ant' is already declared at line 3.
----
-> ERROR(63): Symbol '(' is already declared at line 62.
-26c55
+< ERROR(7): Symbol 'bat' is not declared.
+< ERROR(8): 'or' requires operands of type bool but lhs is of type int.
+< ERROR(8): 'or' requires operands of type bool but rhs is of type int.
+< ERROR(LINKER): A function named 'main()' must be defined.
 < Number of errors: 25
+< Number of warnings: 5
+< WARNING(15): Variable 'c' may be uninitialized when used here.
 ---
-> Number of errors: 24
-27a57,95
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Number of errors: 1
+> Number of warnings: 40
 > .   .   Sibling: 10  Id: x [line: 34]
 > .   .   Sibling: 10  Id: z [line: 51]
 > .   .   Sibling: 11  Id: g [line: 52]
@@ -65,11 +95,11 @@
 > .   .   Sibling: 4  Id: p [line: 45]
 > .   .   .   Sibling: 4  Id: x [line: 17]
 > .   .   .   Sibling: 5  Compound [line: 18]
-> Sibling: 5  Func: ( returns type void [line: 62]
+> Sibling: 5  Func: g returns type void [line: 62]
 > .   .   Sibling: 5  Id: a [line: 24]
 > .   .   Sibling: 5  Op: + [line: 46]
 > .   .   Sibling: 6  Call: ant [line: 47]
-> Sibling: 6  Func: ( returns type void [line: 63]
+> Sibling: 6  Func: ant returns type void [line: 63]
 > .   .   Sibling: 6  Id: b [line: 25]
 > .   .   Sibling: 7  Assign: <= [line: 48]
 > .   .   Sibling: 7  Id: c [line: 26]
@@ -78,3 +108,46 @@
 > .   .   Sibling: 9  Compound [line: 28]
 > .   .   Sibling: 9  Id: a [line: 50]
 > Var: g of type int [line: 2]
+> WARNING(12): The variable 'c' seems not to be used.
+> WARNING(12): The variable 'c' seems not to be used.
+> WARNING(12): The variable 'c' seems not to be used.
+> WARNING(12): The variable 'c' seems not to be used.
+> WARNING(12): The variable 'c' seems not to be used.
+> WARNING(12): The variable 'c' seems not to be used.
+> WARNING(12): The variable 'c' seems not to be used.
+> WARNING(12): The variable 'c' seems not to be used.
+29a90,111
+> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
+> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
+> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
+> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
+> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
+> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
+> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
+> WARNING(2): The variable 'g' seems not to be used.
+> WARNING(2): The variable 'g' seems not to be used.
+> WARNING(2): The variable 'g' seems not to be used.
+> WARNING(2): The variable 'g' seems not to be used.
+> WARNING(2): The variable 'g' seems not to be used.
+> WARNING(2): The variable 'g' seems not to be used.
+> WARNING(2): The variable 'g' seems not to be used.
+> WARNING(2): The variable 'g' seems not to be used.
+> WARNING(39): The variable 'z' seems not to be used.
+> WARNING(39): The variable 'z' seems not to be used.
+> WARNING(39): The variable 'z' seems not to be used.
+> WARNING(39): The variable 'z' seems not to be used.
+> WARNING(40): The variable 'bat' seems not to be used.
+> WARNING(40): The variable 'bat' seems not to be used.
+> WARNING(40): The variable 'bat' seems not to be used.
+31,32c113,120
+< WARNING(44): Variable 'z' may be uninitialized when used here.
+< WARNING(8): Variable 'a' may be uninitialized when used here.
+---
+> WARNING(5): The variable 'a' seems not to be used.
+> WARNING(5): The variable 'a' seems not to be used.
+> WARNING(5): The variable 'a' seems not to be used.
+> WARNING(5): The variable 'a' seems not to be used.
+> WARNING(5): The variable 'a' seems not to be used.
+> WARNING(5): The variable 'a' seems not to be used.
+> WARNING(5): The variable 'a' seems not to be used.
+> WARNING(5): The variable 'a' seems not to be used.

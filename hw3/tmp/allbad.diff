@@ -1,4 +1,69 @@
-0a1,195
+1,64c1,356
+< ERROR(102): '<=' requires operands of the same type but lhs is type char and rhs is type bool.
+< ERROR(105): '+' requires operands of type int but lhs is of type void.
+< ERROR(105): '+' requires operands of type int but rhs is of type bool.
+< ERROR(107): '+' requires operands of type int but lhs is of type char.
+< ERROR(110): Symbol 'mane' is already declared at line 91.
+< ERROR(11): '>' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(12): '<' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(13): '!<' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(13): '!>' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(14): '=' requires operands of the same type but lhs is type int and rhs is type bool.
+< ERROR(15): 'and' requires operands of type bool but lhs is of type int.
+< ERROR(15): Unary 'not' requires an operand of type bool but was given type int.
+< ERROR(16): 'or' requires operands of type bool but lhs is of type int.
+< ERROR(16): Unary 'not' requires an operand of type bool but was given type int.
+< ERROR(17): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
+< ERROR(21): '+' requires operands of type int but lhs is of type bool.
+< ERROR(22): '-' requires operands of type int but rhs is of type bool.
+< ERROR(23): '*' requires operands of type int but lhs is of type bool.
+< ERROR(24): '/' requires operands of type int but rhs is of type bool.
+< ERROR(25): '%' requires operands of type int but lhs is of type bool.
+< ERROR(27): '+=' requires operands of type int but lhs is of type bool.
+< ERROR(28): '-=' requires operands of type int but lhs is of type bool.
+< ERROR(29): '*=' requires operands of type int but lhs is of type bool.
+< ERROR(30): '/=' requires operands of type int but lhs is of type bool.
+< ERROR(32): Unary 'chsign' requires an operand of type int but was given type bool.
+< ERROR(33): Unary 'not' requires an operand of type bool but was given type int.
+< ERROR(34): Unary '?' requires an operand of type int but was given type bool.
+< ERROR(43): Array 'ba' should be indexed by type int but got type char.
+< ERROR(43): '<=' requires operands of the same type but lhs is type char and rhs is type int.
+< ERROR(44): Array 'ca' should be indexed by type int but got type bool.
+< ERROR(44): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
+< ERROR(45): Array 'aa' should be indexed by type int but got type bool.
+< ERROR(45): Array index is the unindexed array 'aa'.
+< ERROR(46): Cannot index nonarray 'cat'.
+< ERROR(46): Cannot use function 'cat' as a variable.
+< ERROR(47): Cannot use function 'cat' as a variable.
+< ERROR(54): '<=' requires operands of the same type but lhs is type char and rhs is type int.
+< ERROR(65): '<=' requires operands of the same type but lhs is type int and rhs is type char.
+< ERROR(67): Cannot return an array.
+< ERROR(79): Symbol 'a' is already declared at line 79.
+< ERROR(7): '<=' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(81): Symbol 'a' is already declared at line 79.
+< ERROR(82): Symbol 'b' is not declared.
+< ERROR(85): Symbol 'c' is not declared.
+< ERROR(85): Symbol 'c' is not declared.
+< ERROR(86): Symbol 'c' is not declared.
+< ERROR(8): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
+< ERROR(96): The operation '?' does not work with arrays.
+< ERROR(96): Unary '?' requires an operand of type int but was given type char.
+< ERROR(97): '/' requires operands of type int but lhs is of type char.
+< ERROR(97): '/' requires operands of type int but rhs is of type char.
+< ERROR(97): The operation '/' does not work with arrays.
+< ERROR(98): The operation 'sizeof' only works with arrays.
+< ERROR(99): 'bbb' is a simple variable and cannot be called.
+< ERROR(9): '<=' requires operands of the same type but lhs is type int and rhs is type char.
+< ERROR(LINKER): A function named 'main()' must be defined.
+< Number of errors: 56
+< Number of warnings: 6
+< WARNING(42): Variable 'aa' may be uninitialized when used here.
+< WARNING(43): Variable 'b' may be uninitialized when used here.
+< WARNING(44): Variable 'c' may be uninitialized when used here.
+< WARNING(73): Variable 'i' may be uninitialized when used here.
+< WARNING(84): The variable 'a' seems not to be used.
+< WARNING(86): Variable 'b' may be uninitialized when used here.
+---
 > .   .   .   Child: 0  Assign: <= [line: 17]
 > .   .   .   Child: 0  Call: ant [line: 103]
 > .   .   .   .   Child: 0  Call: ant [line: 107]
@@ -193,25 +258,26 @@
 > .   .   .   Child: 2  Const 555 [line: 12]
 > .   .   .   .   Child: 2  Const 555 [line: 13]
 > .   .   .   Child: 2  Op: + [line: 51]
-> ERROR(101): Symbol 'bat' is not declared.
-2,3c197,198
-< ERROR(105): '+' requires operands of type int but lhs is of type void.
-< ERROR(105): '+' requires operands of type int but rhs is of type bool.
----
-> ERROR(103): Symbol 'bat' is not declared.
-> ERROR(105): Symbol 'dog' is not declared.
-28a224
-> ERROR(43): Array index is the unindexed array 'ba'.
-39a236
-> ERROR(70): Symbol '(' is already declared at line 4.
-40a238
-> ERROR(79): Symbol '(' is already declared at line 4.
-57c255,256
-< Number of errors: 56
----
+> ERROR(39): Symbol 'b' is already declared at line 5.
+> ERROR(52): Symbol 'z' is already declared at line 51.
+> ERROR(53): Symbol 'z' is already declared at line 51.
+> ERROR(81): Symbol 'a' is already declared at line 39.
+> ERROR(84): Symbol 'a' is already declared at line 39.
+> ERROR(84): Symbol 'b' is already declared at line 5.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: ant returns type char [line: 2]
-> Number of errors: 60
-58a258,328
+> Number of errors: 6
+> Number of warnings: 71
 > .   .   Sibling: 10  Assign: <= [line: 57]
 > .   .   Sibling: 10  Return [line: 107]
 > .   .   Sibling: 10  While [line: 19]
@@ -238,7 +304,7 @@
 > .   .   .   Sibling: 1  Call: cat [line: 103]
 > .   .   Sibling: 1  Compound [line: 83]
 > .   .   .   Sibling: 1  Const 'g' [line: 101]
-> Sibling: 1  Func: ( returns type void [line: 4]
+> Sibling: 1  Func: bat returns type void [line: 4]
 > .   .   Sibling: 1  Op: / [line: 97]
 > .   Sibling: 1  Parm: a of type int [line: 79]
 > .   Sibling: 1  Parm: c of type int [line: 4]
@@ -256,12 +322,12 @@
 > .   .   Sibling: 2  Op: sizeof [line: 98]
 > .   .   Sibling: 2  Var: c of type bool [line: 39]
 > .   .   Sibling: 3  Call: bbb [line: 99]
-> Sibling: 3  Func: ( returns type void [line: 70]
+> Sibling: 3  Func: dog returns type void [line: 70]
 > .   .   Sibling: 3  If [line: 11]
 > .   .   Sibling: 3  Op: [ [line: 45]
 > .   .   Sibling: 3  Var: aa of array of type bool [line: 40]
 > .   .   Sibling: 4  Call: ant [line: 100]
-> Sibling: 4  Func: ( returns type void [line: 79]
+> Sibling: 4  Func: elk returns type void [line: 79]
 > .   .   Sibling: 4  If [line: 12]
 > .   .   Sibling: 4  Op: [ [line: 46]
 > .   .   Sibling: 4  Var: ba of array of type char [line: 40]
@@ -283,3 +349,74 @@
 > .   .   Sibling: 9  For [line: 53]
 > .   .   Sibling: 9  If [line: 17]
 > .   .   Sibling: 9  Op: + [line: 105]
+> WARNING(39): The variable 'a' seems not to be used.
+> WARNING(39): The variable 'a' seems not to be used.
+> WARNING(39): The variable 'a' seems not to be used.
+> WARNING(39): The variable 'a' seems not to be used.
+> WARNING(39): The variable 'a' seems not to be used.
+> WARNING(39): The variable 'a' seems not to be used.
+> WARNING(39): The variable 'a' seems not to be used.
+> WARNING(39): The variable 'a' seems not to be used.
+> WARNING(39): The variable 'a' seems not to be used.
+> WARNING(39): The variable 'c' seems not to be used.
+> WARNING(39): The variable 'c' seems not to be used.
+> WARNING(39): The variable 'c' seems not to be used.
+> WARNING(39): The variable 'c' seems not to be used.
+> WARNING(39): The variable 'c' seems not to be used.
+> WARNING(39): The variable 'c' seems not to be used.
+> WARNING(39): The variable 'c' seems not to be used.
+> WARNING(39): The variable 'c' seems not to be used.
+> WARNING(39): The variable 'c' seems not to be used.
+> WARNING(40): The variable 'aa' seems not to be used.
+> WARNING(40): The variable 'aa' seems not to be used.
+> WARNING(40): The variable 'aa' seems not to be used.
+> WARNING(40): The variable 'aa' seems not to be used.
+> WARNING(40): The variable 'aa' seems not to be used.
+> WARNING(40): The variable 'aa' seems not to be used.
+> WARNING(40): The variable 'aa' seems not to be used.
+> WARNING(40): The variable 'aa' seems not to be used.
+> WARNING(40): The variable 'aa' seems not to be used.
+> WARNING(40): The variable 'ba' seems not to be used.
+> WARNING(40): The variable 'ba' seems not to be used.
+> WARNING(40): The variable 'ba' seems not to be used.
+> WARNING(40): The variable 'ba' seems not to be used.
+> WARNING(40): The variable 'ba' seems not to be used.
+> WARNING(40): The variable 'ba' seems not to be used.
+> WARNING(40): The variable 'ba' seems not to be used.
+> WARNING(40): The variable 'ba' seems not to be used.
+> WARNING(40): The variable 'ba' seems not to be used.
+> WARNING(40): The variable 'ca' seems not to be used.
+> WARNING(40): The variable 'ca' seems not to be used.
+> WARNING(40): The variable 'ca' seems not to be used.
+> WARNING(40): The variable 'ca' seems not to be used.
+> WARNING(40): The variable 'ca' seems not to be used.
+> WARNING(40): The variable 'ca' seems not to be used.
+> WARNING(40): The variable 'ca' seems not to be used.
+> WARNING(40): The variable 'ca' seems not to be used.
+> WARNING(40): The variable 'ca' seems not to be used.
+> WARNING(51): The variable 'z' seems not to be used.
+> WARNING(51): The variable 'z' seems not to be used.
+> WARNING(51): The variable 'z' seems not to be used.
+> WARNING(51): The variable 'z' seems not to be used.
+> WARNING(51): The variable 'z' seems not to be used.
+> WARNING(51): The variable 'z' seems not to be used.
+> WARNING(51): The variable 'z' seems not to be used.
+> WARNING(51): The variable 'z' seems not to be used.
+> WARNING(51): The variable 'z' seems not to be used.
+> WARNING(5): The variable 'b' seems not to be used.
+> WARNING(5): The variable 'b' seems not to be used.
+> WARNING(5): The variable 'b' seems not to be used.
+> WARNING(5): The variable 'b' seems not to be used.
+> WARNING(5): The variable 'b' seems not to be used.
+> WARNING(5): The variable 'b' seems not to be used.
+> WARNING(5): The variable 'b' seems not to be used.
+> WARNING(5): The variable 'b' seems not to be used.
+> WARNING(5): The variable 'b' seems not to be used.
+> WARNING(5): The variable 'b' seems not to be used.
+> WARNING(72): The variable 'i' seems not to be used.
+> WARNING(72): The variable 'i' seems not to be used.
+> WARNING(72): The variable 'i' seems not to be used.
+> WARNING(72): The variable 'i' seems not to be used.
+> WARNING(72): The variable 'i' seems not to be used.
+> WARNING(93): The variable 'bbb' seems not to be used.
+> WARNING(94): The variable 'ccc' seems not to be used.

@@ -1,4 +1,30 @@
-0a1,77
+1,25c1,121
+< ERROR(12): Cannot index nonarray 'bb'.
+< ERROR(12): Symbol 'bb' is not declared.
+< ERROR(13): Cannot index nonarray 'bb'.
+< ERROR(13): Symbol 'bb' is not declared.
+< ERROR(14): Cannot index nonarray 'bb'.
+< ERROR(14): Symbol 'bb' is not declared.
+< ERROR(16): Cannot index nonarray 'cc'.
+< ERROR(16): Symbol 'cc' is not declared.
+< ERROR(17): Cannot index nonarray 'cc'.
+< ERROR(17): Symbol 'cc' is not declared.
+< ERROR(20): Cannot index nonarray 'a'.
+< ERROR(20): Symbol 'a' is not declared.
+< ERROR(20): Symbol 'output' is not declared.
+< ERROR(21): Symbol 'outnl' is not declared.
+< ERROR(23): Cannot index nonarray 'b'.
+< ERROR(23): Symbol 'b' is not declared.
+< ERROR(23): Symbol 'outputb' is not declared.
+< ERROR(24): Symbol 'outnl' is not declared.
+< ERROR(26): Cannot index nonarray 'c'.
+< ERROR(26): Symbol 'c' is not declared.
+< ERROR(26): Symbol 'outputc' is not declared.
+< ERROR(27): Symbol 'outnl' is not declared.
+< ERROR(29): Symbol 'output' is not declared.
+< Number of errors: 23
+< Number of warnings: 1
+---
 > .   .   .   .   Child: 0  Const 0 [line: 20]
 > .   .   .   .   Child: 0  Const 0 [line: 23]
 > .   .   .   .   Child: 0  Const 0 [line: 26]
@@ -76,13 +102,18 @@
 > .   .   .   .   Child: 2  Call: output [line: 29]
 > .   .   .   .   .   Child: 2  Const 2 [line: 29]
 > .   .   .   Child: 2  For [line: 29]
-24c101,103
-< Number of errors: 23
----
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Func: ( returns type void [line: 2]
-> Number of errors: 24
-25a105,121
+> ERROR(23): Symbol 'i' is already declared at line 20.
+> ERROR(26): Symbol 'i' is already declared at line 20.
+> ERROR(29): Symbol 'i' is already declared at line 20.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Func: main returns type void [line: 2]
+> Number of errors: 3
+> Number of warnings: 27
 > .   .   Sibling: 10  Call: outnl [line: 21]
 > .   .   Sibling: 11  For [line: 23]
 > .   .   Sibling: 12  Call: outnl [line: 24]
@@ -100,3 +131,30 @@
 > .   .   Sibling: 7  Assign: <= [line: 17]
 > .   .   Sibling: 8  Assign: <= [line: 18]
 > .   .   Sibling: 9  For [line: 20]
+> WARNING(20): The variable 'i' seems not to be used.
+> WARNING(20): The variable 'i' seems not to be used.
+> WARNING(20): The variable 'i' seems not to be used.
+> WARNING(20): The variable 'i' seems not to be used.
+> WARNING(20): The variable 'i' seems not to be used.
+> WARNING(20): The variable 'i' seems not to be used.
+> WARNING(29): The variable 'j' seems not to be used.
+> WARNING(29): The variable 'j' seems not to be used.
+> WARNING(29): The variable 'j' seems not to be used.
+> WARNING(4): The variable 'aa' seems not to be used.
+> WARNING(4): The variable 'aa' seems not to be used.
+> WARNING(4): The variable 'aa' seems not to be used.
+> WARNING(4): The variable 'aa' seems not to be used.
+> WARNING(4): The variable 'aa' seems not to be used.
+> WARNING(4): The variable 'aa' seems not to be used.
+26a123,133
+> WARNING(5): The variable 'ba' seems not to be used.
+> WARNING(5): The variable 'ba' seems not to be used.
+> WARNING(5): The variable 'ba' seems not to be used.
+> WARNING(5): The variable 'ba' seems not to be used.
+> WARNING(5): The variable 'ba' seems not to be used.
+> WARNING(6): The variable 'ca' seems not to be used.
+> WARNING(6): The variable 'ca' seems not to be used.
+> WARNING(6): The variable 'ca' seems not to be used.
+> WARNING(6): The variable 'ca' seems not to be used.
+> WARNING(6): The variable 'ca' seems not to be used.
+> WARNING(6): The variable 'ca' seems not to be used.

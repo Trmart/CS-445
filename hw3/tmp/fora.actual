@@ -21,10 +21,20 @@
 .   .   .   .   Child: 2  Const 3 [line: 5]
 .   .   .   Child: 2  Const 666 [line: 7]
 .   .   .   .   Child: 2  Id: i [line: 7]
-ERROR(LINKER): A function named 'main()' must be defined.
-Func: ( returns type void [line: 1]
+ERROR(7): Symbol 'i' is already declared at line 3.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+Func: main returns type void [line: 1]
 Number of errors: 1
-Number of warnings: 1
+Number of warnings: 7
 .   .   Sibling: 1  For [line: 5]
 .   .   Sibling: 2  For [line: 7]
-WARNING(7): The variable 'i' seems not to be used.
+WARNING(3): The variable 'i' seems not to be used.
+WARNING(3): The variable 'i' seems not to be used.
+WARNING(3): The variable 'i' seems not to be used.
+WARNING(3): The variable 'i' seems not to be used.
+WARNING(5): The variable 'j' seems not to be used.
+WARNING(5): The variable 'j' seems not to be used.
+WARNING(5): The variable 'j' seems not to be used.

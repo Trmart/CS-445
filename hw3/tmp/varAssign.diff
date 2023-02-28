@@ -1,4 +1,29 @@
-0a1,109
+1,24c1,177
+< ERROR(13): Symbol 'output' is not declared.
+< ERROR(15): Symbol 'output' is not declared.
+< ERROR(17): Symbol 'output' is not declared.
+< ERROR(18): Symbol 'outnl' is not declared.
+< ERROR(22): Symbol 'output' is not declared.
+< ERROR(24): Symbol 'output' is not declared.
+< ERROR(26): Symbol 'output' is not declared.
+< ERROR(27): Symbol 'outnl' is not declared.
+< ERROR(31): Symbol 'output' is not declared.
+< ERROR(34): Symbol 'output' is not declared.
+< ERROR(37): Symbol 'output' is not declared.
+< ERROR(38): Symbol 'outnl' is not declared.
+< ERROR(42): Symbol 'output' is not declared.
+< ERROR(44): Symbol 'output' is not declared.
+< ERROR(46): Symbol 'output' is not declared.
+< ERROR(47): Symbol 'outnl' is not declared.
+< ERROR(58): Symbol 'output' is not declared.
+< ERROR(59): Symbol 'output' is not declared.
+< ERROR(60): Symbol 'outnl' is not declared.
+< ERROR(65): Symbol 'output' is not declared.
+< ERROR(66): Symbol 'output' is not declared.
+< ERROR(67): Symbol 'outnl' is not declared.
+< Number of errors: 22
+< Number of warnings: 0
+---
 > .   .   .   Child: 0  Id: gx [line: 14]
 > .   .   .   Child: 0  Id: gx [line: 15]
 > .   .   .   Child: 0  Id: gx [line: 7]
@@ -108,16 +133,10 @@
 > .   .   .   Child: 1  Op: sizeof [line: 25]
 > .   .   .   Child: 1  Op: sizeof [line: 36]
 > .   .   .   Child: 1  Op: sizeof [line: 45]
-16a126
-> ERROR(51): Symbol '(' is already declared at line 3.
-19a130
-> ERROR(62): Symbol 'esperanza' is not declared.
-23c134,135
-< Number of errors: 22
----
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Number of errors: 25
-24a137,186
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Number of errors: 0
+> Number of warnings: 14
 > .   .   Sibling: 10  Assign: <= [line: 21]
 > .   .   Sibling: 11  Call: output [line: 22]
 > .   .   Sibling: 12  Assign: <= [line: 23]
@@ -147,14 +166,14 @@
 > .   .   Sibling: 29  Call: output [line: 44]
 > .   .   Sibling: 2  Assign: <= [line: 9]
 > .   .   Sibling: 2  Call: output [line: 58]
-> Sibling: 2  Func: ( returns type void [line: 3]
+> Sibling: 2  Func: esperanza returns type void [line: 3]
 > .   .   Sibling: 2  Var: sx of static type int [line: 6]
 > .   .   Sibling: 30  Assign: <= [line: 45]
 > .   .   Sibling: 31  Call: output [line: 46]
 > .   .   Sibling: 32  Call: outnl [line: 47]
 > .   .   Sibling: 3  Assign: <= [line: 12]
 > .   .   Sibling: 3  Call: output [line: 59]
-> Sibling: 3  Func: ( returns type void [line: 51]
+> Sibling: 3  Func: main returns type void [line: 51]
 > .   .   Sibling: 3  Var: sy of static array of type int [line: 6]
 > .   .   Sibling: 4  Call: outnl [line: 60]
 > .   .   Sibling: 4  Call: output [line: 13]
@@ -168,3 +187,17 @@
 > .   .   Sibling: 8  Call: output [line: 17]
 > .   .   Sibling: 9  Call: outnl [line: 18]
 > Var: gx of type int [line: 2]
+> WARNING(2): The variable 'gx' seems not to be used.
+> WARNING(2): The variable 'gx' seems not to be used.
+> WARNING(2): The variable 'gy' seems not to be used.
+> WARNING(2): The variable 'gy' seems not to be used.
+> WARNING(53): The variable 'zx' seems not to be used.
+> WARNING(53): The variable 'zy' seems not to be used.
+> WARNING(5): The variable 'x' seems not to be used.
+> WARNING(5): The variable 'x' seems not to be used.
+> WARNING(5): The variable 'y' seems not to be used.
+> WARNING(5): The variable 'y' seems not to be used.
+> WARNING(6): The variable 'sx' seems not to be used.
+> WARNING(6): The variable 'sx' seems not to be used.
+> WARNING(6): The variable 'sy' seems not to be used.
+> WARNING(6): The variable 'sy' seems not to be used.

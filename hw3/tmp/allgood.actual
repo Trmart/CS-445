@@ -174,13 +174,21 @@
 .   .   .   Child: 2  Op: and [line: 48]
 .   .   .   Child: 2  Op: + [line: 47]
 .   .   .   .   Child: 2  Op: % [line: 49]
-ERROR(41): Array index is the unindexed array 'ba'.
-ERROR(67): Symbol '(' is already declared at line 2.
-ERROR(80): Symbol 'bat' is not declared.
-ERROR(82): Symbol 'bat' is not declared.
+ERROR(37): Symbol 'b' is already declared at line 3.
+ERROR(48): Symbol 'z' is already declared at line 47.
+ERROR(49): Symbol 'z' is already declared at line 47.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: ant returns type int [line: 1]
-Number of errors: 4
-Number of warnings: 5
+Number of errors: 3
+Number of warnings: 55
 .   .   Sibling: 10  Op: != [line: 56]
 .   .   Sibling: 10  While [line: 17]
 .   .   Sibling: 11  Op: + [line: 19]
@@ -204,7 +212,7 @@ Number of warnings: 5
 .   .   Sibling: 1  Call: bat [line: 80]
 .   .   .   Sibling: 1  Call: cat [line: 82]
 .   .   .   Sibling: 1  Const 'g' [line: 80]
-Sibling: 1  Func: ( returns type void [line: 2]
+Sibling: 1  Func: bat returns type void [line: 2]
 .   Sibling: 1  Parm: c of type char [line: 2]
 .   .   Sibling: 1  Var: b of type bool [line: 37]
 .   .   Sibling: 1  Var: ccc of static array of type char [line: 77]
@@ -217,7 +225,7 @@ Sibling: 1  Func: ( returns type void [line: 2]
 Sibling: 2  Func: cat returns type char [line: 35]
 .   .   Sibling: 2  Var: c of type char [line: 37]
 .   .   Sibling: 3  Call: bat [line: 82]
-Sibling: 3  Func: ( returns type void [line: 67]
+Sibling: 3  Func: dog returns type void [line: 67]
 .   .   Sibling: 3  If [line: 9]
 .   .   Sibling: 3  Op: sizeof [line: 44]
 .   .   Sibling: 3  Var: aa of array of type int [line: 38]
@@ -238,8 +246,58 @@ Sibling: 4  Func: main returns type int [line: 74]
 .   .   Sibling: 8  If [line: 14]
 .   .   Sibling: 9  If [line: 15]
 .   .   Sibling: 9  Op: = [line: 55]
-WARNING(40): Variable 'aa' may be uninitialized when used here.
-WARNING(41): Variable 'b' may be uninitialized when used here.
-WARNING(42): Variable 'c' may be uninitialized when used here.
-WARNING(48): The variable 'z' seems not to be used.
-WARNING(70): Variable 'i' may be uninitialized when used here.
+WARNING(37): The variable 'a' seems not to be used.
+WARNING(37): The variable 'a' seems not to be used.
+WARNING(37): The variable 'a' seems not to be used.
+WARNING(37): The variable 'a' seems not to be used.
+WARNING(37): The variable 'a' seems not to be used.
+WARNING(37): The variable 'a' seems not to be used.
+WARNING(37): The variable 'a' seems not to be used.
+WARNING(37): The variable 'c' seems not to be used.
+WARNING(37): The variable 'c' seems not to be used.
+WARNING(37): The variable 'c' seems not to be used.
+WARNING(37): The variable 'c' seems not to be used.
+WARNING(37): The variable 'c' seems not to be used.
+WARNING(37): The variable 'c' seems not to be used.
+WARNING(37): The variable 'c' seems not to be used.
+WARNING(38): The variable 'aa' seems not to be used.
+WARNING(38): The variable 'aa' seems not to be used.
+WARNING(38): The variable 'aa' seems not to be used.
+WARNING(38): The variable 'aa' seems not to be used.
+WARNING(38): The variable 'aa' seems not to be used.
+WARNING(38): The variable 'aa' seems not to be used.
+WARNING(38): The variable 'aa' seems not to be used.
+WARNING(38): The variable 'ba' seems not to be used.
+WARNING(38): The variable 'ba' seems not to be used.
+WARNING(38): The variable 'ba' seems not to be used.
+WARNING(38): The variable 'ba' seems not to be used.
+WARNING(38): The variable 'ba' seems not to be used.
+WARNING(38): The variable 'ba' seems not to be used.
+WARNING(38): The variable 'ba' seems not to be used.
+WARNING(38): The variable 'ca' seems not to be used.
+WARNING(38): The variable 'ca' seems not to be used.
+WARNING(38): The variable 'ca' seems not to be used.
+WARNING(38): The variable 'ca' seems not to be used.
+WARNING(38): The variable 'ca' seems not to be used.
+WARNING(38): The variable 'ca' seems not to be used.
+WARNING(38): The variable 'ca' seems not to be used.
+WARNING(3): The variable 'b' seems not to be used.
+WARNING(3): The variable 'b' seems not to be used.
+WARNING(3): The variable 'b' seems not to be used.
+WARNING(3): The variable 'b' seems not to be used.
+WARNING(3): The variable 'b' seems not to be used.
+WARNING(3): The variable 'b' seems not to be used.
+WARNING(3): The variable 'b' seems not to be used.
+WARNING(3): The variable 'b' seems not to be used.
+WARNING(47): The variable 'z' seems not to be used.
+WARNING(47): The variable 'z' seems not to be used.
+WARNING(47): The variable 'z' seems not to be used.
+WARNING(47): The variable 'z' seems not to be used.
+WARNING(47): The variable 'z' seems not to be used.
+WARNING(47): The variable 'z' seems not to be used.
+WARNING(47): The variable 'z' seems not to be used.
+WARNING(69): The variable 'i' seems not to be used.
+WARNING(69): The variable 'i' seems not to be used.
+WARNING(69): The variable 'i' seems not to be used.
+WARNING(76): The variable 'bbb' seems not to be used.
+WARNING(77): The variable 'ccc' seems not to be used.

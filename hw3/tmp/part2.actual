@@ -41,27 +41,23 @@
 .   .   Child: 1  If [line: 4]
 .   .   Child: 1  Return [line: 10]
 .   .   Child: 1  Return [line: 15]
-ERROR(18): Symbol '(' is already declared at line 8.
-ERROR(20): Symbol 'x' is already declared at line 18.
-ERROR(28): Symbol '(' is already declared at line 8.
-ERROR(32): Symbol '(' is already declared at line 8.
-ERROR(35): '+' requires operands of type int but lhs is of type char.
-ERROR(42): Symbol 'zebu' is not declared.
-ERROR(47): '+' requires operands of type int but lhs is of type char.
-ERROR(47): Unary 'chsign' requires an operand of type int but was given type bool.
-ERROR(50): Symbol 'elk' is not declared.
-ERROR(51): Symbol 'elk' is not declared.
-ERROR(5): Cannot return an array.
-ERROR(LINKER): A function named 'main()' must be defined.
+ERROR(36): Symbol 'z' is already declared at line 3.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: ant returns type int [line: 1]
-Number of errors: 12
-Number of warnings: 4
+Number of errors: 1
+Number of warnings: 13
 .   .   Sibling: 10  Call: elk [line: 51]
 .   .   Sibling: 1  Assign: <= [line: 23]
 .   .   .   .   Sibling: 1  Const 3 [line: 51]
 .   .   .   Sibling: 1  Const 'b' [line: 46]
 .   .   .   Sibling: 1  Const 'b' [line: 47]
-Sibling: 1  Func: ( returns type void [line: 8]
+Sibling: 1  Func: bat returns type void [line: 8]
 .   Sibling: 1  Parm: y of type int [line: 18]
 .   .   Sibling: 1  Return [line: 5]
 .   .   Sibling: 1  Var: d of type char [line: 35]
@@ -71,18 +67,27 @@ Sibling: 2  Func: cat returns type int [line: 13]
 .   .   .   Sibling: 2  Op: + [line: 47]
 .   .   Sibling: 2  Var: z of array of type int [line: 36]
 .   .   Sibling: 3  Call: zebu [line: 42]
-Sibling: 3  Func: ( returns type void [line: 18]
+Sibling: 3  Func: dog returns type void [line: 18]
 .   .   .   Sibling: 3  Op: chsign [line: 47]
 .   .   Sibling: 4  Call: dog [line: 44]
 Sibling: 4  Func: dog returns type char [line: 26]
 .   .   Sibling: 5  Call: dog [line: 45]
-Sibling: 5  Func: ( returns type void [line: 28]
+Sibling: 5  Func: elk returns type void [line: 28]
 .   .   Sibling: 6  Call: dog [line: 46]
-Sibling: 6  Func: ( returns type void [line: 32]
+Sibling: 6  Func: main returns type void [line: 32]
 .   .   Sibling: 7  Call: dog [line: 47]
 .   .   Sibling: 8  Call: dog [line: 49]
 .   .   Sibling: 9  Call: elk [line: 50]
-WARNING(28): The variable 'z' seems not to be used.
+WARNING(20): The variable 'x' seems not to be used.
+WARNING(20): The variable 'x' seems not to be used.
+WARNING(20): The variable 'x' seems not to be used.
+WARNING(20): The variable 'x' seems not to be used.
+WARNING(34): The variable 'c' seems not to be used.
 WARNING(35): The variable 'd' seems not to be used.
-WARNING(49): Variable 'z' may be uninitialized when used here.
-WARNING(4): Variable 'z' may be uninitialized when used here.
+WARNING(3): The variable 'z' seems not to be used.
+WARNING(3): The variable 'z' seems not to be used.
+WARNING(3): The variable 'z' seems not to be used.
+WARNING(3): The variable 'z' seems not to be used.
+WARNING(3): The variable 'z' seems not to be used.
+WARNING(3): The variable 'z' seems not to be used.
+WARNING(3): The variable 'z' seems not to be used.

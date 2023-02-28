@@ -1,4 +1,14 @@
-0a1,78
+1,9c1,123
+< ERROR(16): Symbol 'x' is already declared at line 15.
+< ERROR(29): Symbol 'x' is already declared at line 28.
+< ERROR(5): Symbol 'x' is already declared at line 5.
+< ERROR(6): Symbol 'x' is already declared at line 5.
+< ERROR(LINKER): A function named 'main()' must be defined.
+< Number of errors: 5
+< Number of warnings: 2
+< WARNING(10): The variable 'x' seems not to be used.
+< WARNING(15): The variable 'x' seems not to be used.
+---
 > .   .   .   Child: 0  Const true [line: 36]
 > .   .   .   Child: 0  Const true [line: 46]
 > .   .   .   .   Child: 0  Id: x [line: 12]
@@ -75,24 +85,50 @@
 > .   .   Child: 1  While [line: 46]
 > .   .   .   .   Child: 2  Compound [line: 40]
 > .   .   .   .   Child: 2  Compound [line: 48]
-> ERROR(10): Symbol '(' is already declared at line 5.
-> ERROR(15): Symbol '(' is already declared at line 5.
-1a80,81
-> ERROR(22): Symbol '(' is already declared at line 5.
-> ERROR(28): Symbol '(' is already declared at line 5.
-2a83,84
-> ERROR(35): Symbol '(' is already declared at line 5.
-> ERROR(45): Symbol '(' is already declared at line 5.
-6c88,89
-< Number of errors: 5
----
-> Func: ( returns type void [line: 5]
-> Number of errors: 11
-7a91,97
-> Sibling: 1  Func: ( returns type void [line: 10]
+> ERROR(11): Symbol 'x' is already declared at line 6.
+> ERROR(16): Symbol 'x' is already declared at line 6.
+> ERROR(18): Symbol 'x' is already declared at line 6.
+> ERROR(24): Symbol 'x' is already declared at line 6.
+> ERROR(29): Symbol 'x' is already declared at line 6.
+> ERROR(31): Symbol 'x' is already declared at line 6.
+> ERROR(38): Symbol 'x' is already declared at line 6.
+> ERROR(41): Symbol 'x' is already declared at line 6.
+> ERROR(49): Symbol 'x' is already declared at line 6.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Func: ant returns type void [line: 5]
+> Number of errors: 9
+> Number of warnings: 14
+> Sibling: 1  Func: bat returns type void [line: 10]
 > .   Sibling: 1  Parm: x of type int [line: 5]
-> Sibling: 2  Func: ( returns type void [line: 15]
-> Sibling: 3  Func: ( returns type void [line: 22]
-> Sibling: 4  Func: ( returns type void [line: 28]
-> Sibling: 5  Func: ( returns type void [line: 35]
-> Sibling: 6  Func: ( returns type void [line: 45]
+> Sibling: 2  Func: cat returns type void [line: 15]
+> Sibling: 3  Func: dog returns type void [line: 22]
+> Sibling: 4  Func: elk returns type void [line: 28]
+> Sibling: 5  Func: fox returns type void [line: 35]
+> Sibling: 6  Func: gnu returns type void [line: 45]
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.
+> WARNING(6): The variable 'x' seems not to be used.

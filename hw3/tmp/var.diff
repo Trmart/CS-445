@@ -1,4 +1,10 @@
-0a1,16
+1,5c1,43
+< ERROR(LINKER): A function named 'main()' must be defined.
+< Number of errors: 1
+< Number of warnings: 2
+< WARNING(12): Variable 'x' may be uninitialized when used here.
+< WARNING(13): Variable 'y' may be uninitialized when used here.
+---
 > .   .   .   Child: 0  Id: gy [line: 10]
 > .   .   .   Child: 0  Id: gy [line: 9]
 > .   .   .   Child: 0  Id: py [line: 17]
@@ -15,14 +21,16 @@
 > .   .   .   Child: 1  Const 9 [line: 21]
 > .   .   .   Child: 1  Const 9 [line: 9]
 > .   .   Child: 1  Id: gx [line: 8]
-3a20,37
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Number of errors: 0
+> Number of warnings: 6
 > .   .   Sibling: 10  Op: [ [line: 21]
 > .   .   Sibling: 11  Op: sizeof [line: 22]
 > .   .   Sibling: 1  Op: [ [line: 9]
 > .   Sibling: 1  Parm: py of array of type int [line: 3]
 > Sibling: 1  Var: gy of array of type int [line: 2]
 > .   .   Sibling: 1  Var: y of array of type int [line: 5]
-> Sibling: 2  Func: ( returns type void [line: 3]
+> Sibling: 2  Func: main returns type void [line: 3]
 > .   .   Sibling: 2  Op: sizeof [line: 10]
 > .   .   Sibling: 2  Var: sx of static type int [line: 6]
 > .   .   Sibling: 3  Id: x [line: 12]
@@ -34,3 +42,9 @@
 > .   .   Sibling: 8  Op: sizeof [line: 18]
 > .   .   Sibling: 9  Id: sx [line: 20]
 > Var: gx of type int [line: 2]
+> WARNING(2): The variable 'gx' seems not to be used.
+> WARNING(2): The variable 'gy' seems not to be used.
+> WARNING(5): The variable 'x' seems not to be used.
+> WARNING(5): The variable 'y' seems not to be used.
+> WARNING(6): The variable 'sx' seems not to be used.
+> WARNING(6): The variable 'sy' seems not to be used.

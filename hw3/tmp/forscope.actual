@@ -99,13 +99,40 @@
 .   .   .   Child: 2  If [line: 23]
 .   .   .   Child: 2  While [line: 36]
 .   .   .   Child: 2  While [line: 45]
-ERROR(16): Symbol 'x' is already declared at line 15.
-ERROR(29): Symbol 'x' is already declared at line 28.
+ERROR(10): Symbol 'x' is already declared at line 5.
+ERROR(11): Symbol 'x' is already declared at line 5.
+ERROR(15): Symbol 'x' is already declared at line 5.
+ERROR(16): Symbol 'x' is already declared at line 5.
+ERROR(18): Symbol 'x' is already declared at line 5.
+ERROR(22): Symbol 'x' is already declared at line 5.
+ERROR(24): Symbol 'x' is already declared at line 5.
+ERROR(28): Symbol 'x' is already declared at line 5.
+ERROR(29): Symbol 'x' is already declared at line 5.
+ERROR(31): Symbol 'x' is already declared at line 5.
+ERROR(35): Symbol 'x' is already declared at line 5.
+ERROR(38): Symbol 'x' is already declared at line 5.
+ERROR(41): Symbol 'x' is already declared at line 5.
+ERROR(44): Symbol 'x' is already declared at line 5.
+ERROR(48): Symbol 'x' is already declared at line 5.
 ERROR(6): Symbol 'x' is already declared at line 5.
-ERROR(LINKER): A function named 'main()' must be defined.
-Func: ( returns type void [line: 1]
-Number of errors: 4
-Number of warnings: 2
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+Func: main returns type void [line: 1]
+Number of errors: 16
+Number of warnings: 30
 .   .   Sibling: 1  For [line: 5]
 .   .   Sibling: 2  For [line: 10]
 .   .   Sibling: 3  For [line: 15]
@@ -113,5 +140,33 @@ Number of warnings: 2
 .   .   Sibling: 5  For [line: 28]
 .   .   Sibling: 6  For [line: 35]
 .   .   Sibling: 7  For [line: 44]
-WARNING(10): The variable 'x' seems not to be used.
-WARNING(15): The variable 'x' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(2): The variable 'values' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.
+WARNING(5): The variable 'x' seems not to be used.

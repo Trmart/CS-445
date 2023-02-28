@@ -1,17 +1,21 @@
-0a1,6
+1,6c1,9
+< ERROR(4): Symbol 'output' is not declared.
+< ERROR(5): Symbol 'outputb' is not declared.
+< ERROR(6): Symbol 'outputb' is not declared.
+< ERROR(7): Symbol 'outputc' is not declared.
+< ERROR(8): Symbol 'outnl' is not declared.
+< Number of errors: 5
+---
 > .   .   .   Child: 0  Const 111 [line: 4]
 > .   .   .   Child: 0  Const false [line: 6]
 > .   .   .   Child: 0  Const true [line: 5]
 > .   .   .   Child: 0  Const 'x' [line: 7]
 > .   .   Child: 1  Call: output [line: 4]
 > .   Child: 1  Compound [line: 3]
-6c12,14
-< Number of errors: 5
----
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Func: ( returns type void [line: 2]
-> Number of errors: 6
-7a16,19
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Func: main returns type void [line: 2]
+> Number of errors: 0
+7a11,14
 > .   .   Sibling: 1  Call: outputb [line: 5]
 > .   .   Sibling: 2  Call: outputb [line: 6]
 > .   .   Sibling: 3  Call: outputc [line: 7]

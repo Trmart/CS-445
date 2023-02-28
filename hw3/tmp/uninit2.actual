@@ -35,11 +35,10 @@
 .   .   .   Child: 1  Op: [ [line: 8]
 .   .   .   .   Child: 1  Op: [ [line: 9]
 .   .   .   Child: 1  Op: [ [line: 9]
-ERROR(10): Array index is the unindexed array 'cc'.
-ERROR(LINKER): A function named 'main()' must be defined.
-Func: ( returns type void [line: 1]
-Number of errors: 2
-Number of warnings: 5
+ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+Func: main returns type void [line: 1]
+Number of errors: 0
+Number of warnings: 9
 .   .   Sibling: 1  Assign: <= [line: 7]
 .   .   Sibling: 1  Var: b of type int [line: 3]
 .   .   Sibling: 2  Assign: <= [line: 8]
@@ -55,8 +54,12 @@ Number of warnings: 5
 .   .   Sibling: 7  Assign: <= [line: 13]
 .   .   Sibling: 7  Var: dd of array of type int [line: 4]
 .   .   Sibling: 8  Var: ee of array of type int [line: 4]
-WARNING(12): Variable 'dd' may be uninitialized when used here.
-WARNING(6): Variable 'b' may be uninitialized when used here.
-WARNING(8): Variable 'aa' may be uninitialized when used here.
-WARNING(9): Variable 'bb' may be uninitialized when used here.
-WARNING(9): Variable 'cc' may be uninitialized when used here.
+WARNING(3): The variable 'a' seems not to be used.
+WARNING(3): The variable 'b' seems not to be used.
+WARNING(3): The variable 'c' seems not to be used.
+WARNING(3): The variable 'd' seems not to be used.
+WARNING(4): The variable 'aa' seems not to be used.
+WARNING(4): The variable 'bb' seems not to be used.
+WARNING(4): The variable 'cc' seems not to be used.
+WARNING(4): The variable 'dd' seems not to be used.
+WARNING(4): The variable 'ee' seems not to be used.

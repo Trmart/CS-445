@@ -292,7 +292,7 @@
 > .   .   .   .   Child: 1  Op: [ [line: 42]
 > .   .   .   .   Child: 1  Op: * [line: 49]
 > .   .   .   Child: 1  Op: != [line: 83]
-168,176c168,180
+168,176c168,188
 < .   .   .   .   Child: 2  Const 1212 of type int [line: 13]
 < .   .   .   .   Child: 2  Const 1414 of type int [line: 14]
 < .   .   .   Child: 2  Const 1515 of type int [line: 14]
@@ -312,19 +312,27 @@
 > .   .   .   Child: 2  Op: and [line: 48]
 > .   .   .   Child: 2  Op: + [line: 47]
 > .   .   .   .   Child: 2  Op: % [line: 49]
-> ERROR(41): Array index is the unindexed array 'ba'.
-> ERROR(67): Symbol '(' is already declared at line 2.
-> ERROR(80): Symbol 'bat' is not declared.
-> ERROR(82): Symbol 'bat' is not declared.
-178c182
+> ERROR(37): Symbol 'b' is already declared at line 3.
+> ERROR(48): Symbol 'z' is already declared at line 47.
+> ERROR(49): Symbol 'z' is already declared at line 47.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+178,180c190,192
 < Number of errors: 0
----
-> Number of errors: 4
-180c184
+< Number of warnings: 5
 < .   .   Sibling: 10  Op: != of type bool [line: 56]
 ---
+> Number of errors: 3
+> Number of warnings: 55
 > .   .   Sibling: 10  Op: != [line: 56]
-182,192c186,196
+182,192c194,204
 < .   .   Sibling: 11  Op: > of type bool [line: 57]
 < .   .   Sibling: 11  Op: + of type int [line: 19]
 < .   .   Sibling: 12  Op: !< of type bool [line: 58]
@@ -348,7 +356,7 @@
 > .   .   Sibling: 15  Assign: <= [line: 62]
 > .   .   Sibling: 15  Op: % [line: 23]
 > .   .   Sibling: 16  Assign: += [line: 25]
-194,203c198,207
+194,202c206,214
 < .   .   Sibling: 17  Assign: -= of type int [line: 26]
 < .   .   Sibling: 18  Assign: *= of type int [line: 27]
 < .   .   Sibling: 19  Assign: /= of type int [line: 28]
@@ -358,7 +366,6 @@
 < .   .   Sibling: 1  Call: bat of type void [line: 80]
 < .   .   .   Sibling: 1  Call: cat of type char [line: 82]
 < .   .   .   Sibling: 1  Const 'g' of type char [line: 80]
-< Sibling: 1  Func: bat returns type void [line: 2]
 ---
 > .   .   Sibling: 17  Assign: -= [line: 26]
 > .   .   Sibling: 18  Assign: *= [line: 27]
@@ -369,8 +376,7 @@
 > .   .   Sibling: 1  Call: bat [line: 80]
 > .   .   .   Sibling: 1  Call: cat [line: 82]
 > .   .   .   Sibling: 1  Const 'g' [line: 80]
-> Sibling: 1  Func: ( returns type void [line: 2]
-206,212c210,216
+206,212c218,224
 < .   .   Sibling: 1  Var: ccc is array of type char [line: 77]
 < .   .   Sibling: 20  Op: chsign of type int [line: 30]
 < .   .   Sibling: 21  Op: not of type bool [line: 31]
@@ -386,13 +392,11 @@
 > .   .   Sibling: 2  Assign: <= [line: 42]
 > .   .   Sibling: 2  Assign: <= [line: 7]
 > .   .   Sibling: 2  Call: cat [line: 81]
-215,216c219,220
+215c227
 < .   .   Sibling: 3  Call: bat of type void [line: 82]
-< Sibling: 3  Func: dog returns type void [line: 67]
 ---
 > .   .   Sibling: 3  Call: bat [line: 82]
-> Sibling: 3  Func: ( returns type void [line: 67]
-218,220c222,224
+218,220c230,232
 < .   .   Sibling: 3  Op: sizeof of type int [line: 44]
 < .   .   Sibling: 3  Var: aa is array of type int [line: 38]
 < .   .   Sibling: 4  Assign: <= of type bool [line: 83]
@@ -400,21 +404,81 @@
 > .   .   Sibling: 3  Op: sizeof [line: 44]
 > .   .   Sibling: 3  Var: aa of array of type int [line: 38]
 > .   .   Sibling: 4  Assign: <= [line: 83]
-223,224c227,228
+223,224c235,236
 < .   .   Sibling: 4  Op: ? of type int [line: 45]
 < .   .   Sibling: 4  Var: ba is array of type bool [line: 38]
 ---
 > .   .   Sibling: 4  Op: ? [line: 45]
 > .   .   Sibling: 4  Var: ba of array of type bool [line: 38]
-228c232
+228c240
 < .   .   Sibling: 5  Var: ca is array of type char [line: 38]
 ---
 > .   .   Sibling: 5  Var: ca of array of type char [line: 38]
-233c237
+233c245
 < .   .   Sibling: 8  Assign: <= of type int [line: 54]
 ---
 > .   .   Sibling: 8  Assign: <= [line: 54]
-236c240
+236,241c248,303
 < .   .   Sibling: 9  Op: = of type bool [line: 55]
+< WARNING(40): Variable 'aa' may be uninitialized when used here.
+< WARNING(41): Variable 'b' may be uninitialized when used here.
+< WARNING(42): Variable 'c' may be uninitialized when used here.
+< WARNING(48): The variable 'z' seems not to be used.
+< WARNING(70): Variable 'i' may be uninitialized when used here.
 ---
 > .   .   Sibling: 9  Op: = [line: 55]
+> WARNING(37): The variable 'a' seems not to be used.
+> WARNING(37): The variable 'a' seems not to be used.
+> WARNING(37): The variable 'a' seems not to be used.
+> WARNING(37): The variable 'a' seems not to be used.
+> WARNING(37): The variable 'a' seems not to be used.
+> WARNING(37): The variable 'a' seems not to be used.
+> WARNING(37): The variable 'a' seems not to be used.
+> WARNING(37): The variable 'c' seems not to be used.
+> WARNING(37): The variable 'c' seems not to be used.
+> WARNING(37): The variable 'c' seems not to be used.
+> WARNING(37): The variable 'c' seems not to be used.
+> WARNING(37): The variable 'c' seems not to be used.
+> WARNING(37): The variable 'c' seems not to be used.
+> WARNING(37): The variable 'c' seems not to be used.
+> WARNING(38): The variable 'aa' seems not to be used.
+> WARNING(38): The variable 'aa' seems not to be used.
+> WARNING(38): The variable 'aa' seems not to be used.
+> WARNING(38): The variable 'aa' seems not to be used.
+> WARNING(38): The variable 'aa' seems not to be used.
+> WARNING(38): The variable 'aa' seems not to be used.
+> WARNING(38): The variable 'aa' seems not to be used.
+> WARNING(38): The variable 'ba' seems not to be used.
+> WARNING(38): The variable 'ba' seems not to be used.
+> WARNING(38): The variable 'ba' seems not to be used.
+> WARNING(38): The variable 'ba' seems not to be used.
+> WARNING(38): The variable 'ba' seems not to be used.
+> WARNING(38): The variable 'ba' seems not to be used.
+> WARNING(38): The variable 'ba' seems not to be used.
+> WARNING(38): The variable 'ca' seems not to be used.
+> WARNING(38): The variable 'ca' seems not to be used.
+> WARNING(38): The variable 'ca' seems not to be used.
+> WARNING(38): The variable 'ca' seems not to be used.
+> WARNING(38): The variable 'ca' seems not to be used.
+> WARNING(38): The variable 'ca' seems not to be used.
+> WARNING(38): The variable 'ca' seems not to be used.
+> WARNING(3): The variable 'b' seems not to be used.
+> WARNING(3): The variable 'b' seems not to be used.
+> WARNING(3): The variable 'b' seems not to be used.
+> WARNING(3): The variable 'b' seems not to be used.
+> WARNING(3): The variable 'b' seems not to be used.
+> WARNING(3): The variable 'b' seems not to be used.
+> WARNING(3): The variable 'b' seems not to be used.
+> WARNING(3): The variable 'b' seems not to be used.
+> WARNING(47): The variable 'z' seems not to be used.
+> WARNING(47): The variable 'z' seems not to be used.
+> WARNING(47): The variable 'z' seems not to be used.
+> WARNING(47): The variable 'z' seems not to be used.
+> WARNING(47): The variable 'z' seems not to be used.
+> WARNING(47): The variable 'z' seems not to be used.
+> WARNING(47): The variable 'z' seems not to be used.
+> WARNING(69): The variable 'i' seems not to be used.
+> WARNING(69): The variable 'i' seems not to be used.
+> WARNING(69): The variable 'i' seems not to be used.
+> WARNING(76): The variable 'bbb' seems not to be used.
+> WARNING(77): The variable 'ccc' seems not to be used.

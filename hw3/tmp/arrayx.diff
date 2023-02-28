@@ -1,4 +1,11 @@
-0a1,30
+1,6c1,53
+< ERROR(10): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
+< ERROR(11): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
+< ERROR(12): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
+< Number of errors: 3
+< Number of warnings: 2
+< WARNING(19): Variable 'd' may be uninitialized when used here.
+---
 > .   .   .   Child: 0  Const 666 [line: 8]
 > .   .   .   Child: 0  Const true [line: 6]
 > .   .   .   Child: 0  Const 'x' [line: 7]
@@ -29,13 +36,10 @@
 > .   .   .   Child: 1  Id: d [line: 19]
 > .   .   .   Child: 1  Id: i [line: 15]
 > .   .   .   Child: 1  Op: [ [line: 17]
-4c34,36
-< Number of errors: 3
----
-> ERROR(LINKER): A function named 'main()' must be defined.
-> Func: ( returns type void [line: 1]
-> Number of errors: 4
-5a38,54
+> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
+> Func: main returns type void [line: 1]
+> Number of errors: 0
+> Number of warnings: 9
 > .   .   Sibling: 1  Assign: <= [line: 11]
 > .   .   Sibling: 1  Var: d of type int [line: 2]
 > .   .   Sibling: 2  Assign: <= [line: 12]
@@ -53,3 +57,12 @@
 > .   .   Sibling: 8  Assign: <= [line: 18]
 > .   .   Sibling: 8  Var: ii of array of type int [line: 8]
 > .   .   Sibling: 9  Assign: <= [line: 19]
+> WARNING(2): The variable 'a' seems not to be used.
+> WARNING(2): The variable 'd' seems not to be used.
+7a55,60
+> WARNING(3): The variable 'b' seems not to be used.
+> WARNING(4): The variable 'c' seems not to be used.
+> WARNING(5): The variable 'i' seems not to be used.
+> WARNING(6): The variable 'bb' seems not to be used.
+> WARNING(7): The variable 'cc' seems not to be used.
+> WARNING(8): The variable 'ii' seems not to be used.
