@@ -1,22 +1,22 @@
-.   Child:   Const 111 [line: 2]
-.   .   .   Child:   Const 222 [line: 5]
-.   .   .   Child:   Const 333 [line: 6]
-.   .   .   Child:   Const true [line: 7]
-.   .   .   Child:   Const 'Z' [line: 8]
-.   .   .   Child:   Id: b [line: 13]
-.   .   .   Child:   Id: c [line: 14]
-.   .   .   Child:   Id: x [line: 10]
-.   .   .   Child:   Id: y [line: 11]
-.   .   .   Child:   Id: z [line: 12]
-.   .   Child:   Var: y of type int [line: 5]
+.   Child: 0  Const 111 [line: 2]
+.   .   .   Child: 0  Const 222 [line: 5]
+.   .   .   Child: 0  Const 333 [line: 6]
+.   .   .   Child: 0  Const true [line: 7]
+.   .   .   Child: 0  Const 'Z' [line: 8]
+.   .   .   Child: 0  Id: b [line: 13]
+.   .   .   Child: 0  Id: c [line: 14]
+.   .   .   Child: 0  Id: x [line: 10]
+.   .   .   Child: 0  Id: y [line: 11]
+.   .   .   Child: 0  Id: z [line: 12]
+.   .   Child: 0  Var: y of type int [line: 5]
+.   .   Child: 1  Call: output [line: 10]
+.   Child: 1  Compound [line: 4]
 ERROR(10): Symbol 'output' is not declared.
 ERROR(11): Symbol 'output' is not declared.
 ERROR(12): Symbol 'output' is not declared.
 ERROR(13): Symbol 'outputb' is not declared.
 ERROR(14): Symbol 'outputc' is not declared.
 ERROR(LINKER): A function named 'main()' must be defined.
-.   .   hild:   Call: output [line: 10]
-.   hild:   Compound [line: 4]
 Number of errors: 6
 Number of warnings: 0
 .   .   Sibling: 1  Call: output [line: 11]

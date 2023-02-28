@@ -1,0 +1,10 @@
+## C-S23
+main()
+ begin 
+    while true do  begin 
+        666;
+        break;
+        777;
+        break;
+     end 
+ end 

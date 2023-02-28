@@ -29,7 +29,7 @@ class Semantics
         Semantics(SymbolTable* symbolTable);
 
         // Semantic Analysis
-        void analyze(Node* node);
+        void semanticAnalysis(Node* node);
 
 
     private:
@@ -38,51 +38,51 @@ class Semantics
         void analyzeAST(Node *node);
         
         //*********************Declaration Nodes**********************
-        void analyzeDeclarationNode(const DeclarationNode* declaration);
-        void analyzeFunctionNode(const Func* func);
-        void analyzeParmNode(const Parm* parm);
-        void analyzeVariableNode(Var* var);
+        void analyzeDeclarationNodeSemantics(const DeclarationNode* declaration);
+        void analyzeFunctionNodeSemantics(const Func* function);
+        void analyzeParmNodeSemantics(const Parm* parameter);
+        void analyzeVariableNodeSemantics(Var* var);
         
         //*********************Expression Nodes**********************
-        void analyzeAssignmentNode(const Asgn* asgn);
-        void analyzeBinaryNode(const Binary* binary) const;
-        void analyzeCallNode(const Call* call) const;
-        void analyzeExpressionNode(ExpressionNode* expression);
-        void analyzeIdentifierNode(const Id* id) const;
-        void analyzeUnaryNode(const Unary* unary) const;
-        void analyzeUnaryAsssignmentNode(const UnaryAsgn* unaryAsgn) const;
+        void analyzeAssignmentNodeSemantics(const Asgn* assignment);
+        void analyzeBinaryNodeSemantics(const Binary* binary) const;
+        void analyzeCallNodeSemantics(const Call* call) const;
+        void analyzeExpressionNodeSemantics(ExpressionNode* expression);
+        void analyzeIdentifierNodeSemantics(const Id* identifier) const;
+        void analyzeUnaryNodeSemantics(const Unary* unary) const;
+        void analyzeUnaryAsssignmentNodeSemantics(const UnaryAsgn* unaryAssignment) const;
         
         //*********************Statement Nodes**********************
-        void analyzeCompoundNode(const Compound* compound) const;
-        void analyzeForNode() const;
-        void analyzeReturnNode(const Return* returnNode) const;
-        void analyzeStatementNode(const StatementNode* statement) const;
+        void analyzeCompoundNodeSemantics(const Compound* compound) const;
+        void analyzeForNodeSemantics() const;
+        void analyzeReturnNodeSemantics(const Return* returnNode) const;
+        void analyzeStatementNodeSemantics(const StatementNode* statement) const;
 
 
         //********************Symbol Checkers**********************
         void checkIndex(const Binary* binary) const;
-        void checkOperandsOfSameType(ExpressionNode* expression) const;
-        void checkOperandsOfType(ExpressionNode* expression, const NodeData::Type type) const;
+        void checkSameTypeOperands(ExpressionNode* expression) const;
+        void checkOperands(ExpressionNode* expression, const NodeData::Type type) const;
         void checkUnaryOperands(const Unary* unary) const;
-        void checkUnaryAsgnOperands(const UnaryAsgn* unaryAsgn) const;
+        void checkUnaryAssignmentOperands(const UnaryAsgn* unaryAssignment) const;
 
 
         //********************Helper Functions**********************
         bool isMainFunc(const Func* func) const;
         bool isDeclared(const Id* id) const;
         bool hasIndexAncestor(const ExpressionNode* expression) const;
-        bool hasAsgnAncestor(const ExpressionNode* expression) const;
-        bool expOperandsExist(const ExpressionNode* expression) const;
-        bool lhsExists(const ExpressionNode* expression) const;
-        std::string getExpSym(const ExpressionNode* expression) const;
-        NodeData* setAndGetExpData(const ExpressionNode* expression) const;
+        bool hasAssignmentAncestor(const ExpressionNode* expression) const;
+        bool expressionOperandsExist(const ExpressionNode* expression) const;
+        bool leftHandSideExists(const ExpressionNode* expression) const;
+        std::string getExpressionSymbol(const ExpressionNode* expression) const;
+        NodeData* setAndGetExpressionNodeData(const ExpressionNode* expression) const;
 
 
 
         //********************Symbol Table Functions**********************
         void leaveScope();
-        bool addToSymTable(const DeclarationNode* declaration, const bool global=false);
-        DeclarationNode* getFromSymTable(const std::string name) const;
+        bool addToSymbolTable(const DeclarationNode* declaration, const bool global=false);
+        DeclarationNode* getFromSymbolTable(const std::string name) const;
 
 
         //********************Data Members**********************

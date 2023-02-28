@@ -1,13 +1,13 @@
-.   Child:   Parm: p of type int [line: 4]
-.   .   Child:   Var: a of static type int [line: 6]
-.   .   .   .   Child:   Var: b of static type int [line: 15]
-.   .   .   Child:   Var: b of static type int [line: 8]
-.   .   .   Child:   Var: c of static type int [line: 11]
-.   .   .   .   Child:   Var: c of static type int [line: 18]
+.   Child: 0  Parm: p of type int [line: 4]
+.   .   Child: 0  Var: a of static type int [line: 6]
+.   .   .   .   Child: 0  Var: b of static type int [line: 15]
+.   .   .   Child: 0  Var: b of static type int [line: 8]
+.   .   .   Child: 0  Var: c of static type int [line: 11]
+.   .   .   .   Child: 0  Var: c of static type int [line: 18]
+.   .   .   Child: 1  Compound [line: 14]
+.   Child: 1  Compound [line: 5]
+.   .   Child: 1  Compound [line: 7]
 ERROR(LINKER): A function named 'main()' must be defined.
-.   .   .   hild:   Compound [line: 14]
-.   hild:   Compound [line: 5]
-.   .   hild:   Compound [line: 7]
 Number of errors: 1
 Number of warnings: 6
 .   .   Sibling: 1  Compound [line: 10]

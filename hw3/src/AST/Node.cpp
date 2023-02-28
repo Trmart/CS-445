@@ -81,8 +81,9 @@ void Node :: printAST(const bool showNodeTypes) const
 
     static int numTabs = 0; 
 
-    printASTNode(showNodeTypes); 
 
+    printASTNode(showNodeTypes);
+    
     std::cout << " [line: " << m_tokenLineNumber << "]" << std::endl;
 
     //increment number of tabs. default is 1
@@ -100,7 +101,7 @@ void Node :: printAST(const bool showNodeTypes) const
             printOutputTabs(numTabs); 
 
             //print current child node
-            std :: cout << "Child: " + i << "  "; 
+            std :: cout << "Child: " << i << "  "; 
             
             //init temp sibling count to how current node sibling count. 
             int tempSiblingCount = numSiblingNodes; 

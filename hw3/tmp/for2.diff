@@ -1,26 +1,26 @@
-0a1,7
-> .   .   .   .   Child:   Id: a [line: 5]
-> .   .   .   .   .   Child:   Id: a [line: 6]
-> .   .   .   .   .   .   Child:   Id: i [line: 9]
-> .   .   Child:   Var: a of array of type int [line: 3]
-> .   .   .   Child:   Var: i of type int [line: 5]
-> .   .   .   .   .   Child:   Var: i of type int [line: 7]
-> .   .   .   .   Child:   Var: j of type int [line: 6]
-2c9,21
+0a1,17
+> .   .   .   .   Child: 0  Id: a [line: 5]
+> .   .   .   .   .   Child: 0  Id: a [line: 6]
+> .   .   .   .   .   .   Child: 0  Id: i [line: 9]
+> .   .   Child: 0  Var: a of array of type int [line: 3]
+> .   .   .   Child: 0  Var: i of type int [line: 5]
+> .   .   .   .   .   Child: 0  Var: i of type int [line: 7]
+> .   .   .   .   Child: 0  Var: j of type int [line: 6]
+> .   Child: 1  Compound [line: 2]
+> .   .   Child: 1  For [line: 5]
+> .   .   .   .   .   Child: 1  Id: i [line: 6]
+> .   .   .   .   Child: 1  Id: j [line: 5]
+> .   .   .   .   .   .   Child: 1  Id: j [line: 9]
+> .   .   .   .   .   Child: 1  Op: + [line: 9]
+> .   .   .   Child: 1  Range [line: 5]
+> .   .   .   .   Child: 1  Range [line: 6]
+> .   .   .   .   Child: 2  Compound [line: 6]
+> .   .   .   Child: 2  For [line: 6]
+2c19,21
 < Number of errors: 1
 ---
 > ERROR(LINKER): A function named 'main()' must be defined.
 > Func: ( returns type void [line: 1]
-> .   hild:   Compound [line: 2]
-> .   .   hild:   For [line: 5]
-> .   .   .   .   .   hild:   Id: i [line: 6]
-> .   .   .   .   hild:   Id: j [line: 5]
-> .   .   .   .   .   .   hild:   Id: j [line: 9]
-> .   .   .   .   .   hild:   Op: + [line: 9]
-> .   .   .   hild:   Range [line: 5]
-> .   .   .   .   hild:   Range [line: 6]
-> .   .   .   .   ild:   Compound [line: 6]
-> .   .   .   ild:   For [line: 6]
 > Number of errors: 2
 3a23
 > .   .   .   .   .   Sibling: 1  Var: j of type int [line: 8]

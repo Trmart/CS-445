@@ -1,46 +1,46 @@
-0a1,20
-> .   .   .   Child:   Call: dory [line: 19]
-> .   .   .   Child:   Call: dory [line: 21]
-> .   .   .   Child:   Call: dory [line: 22]
-> .   .   .   Child:   Call: ella [line: 16]
-> .   .   .   Child:   Call: ella [line: 18]
-> .   .   .   Child:   Call: ella [line: 20]
-> .   .   .   Child:   Call: lyra [line: 23]
-> .   .   .   .   Child:   Const 3 [line: 16]
-> .   .   .   Child:   Const 6 [line: 3]
-> .   .   .   .   Child:   Const 7 [line: 20]
-> .   .   .   .   Child:   Const 8 [line: 27]
-> .   .   .   .   Child:   Const 9 [line: 18]
-> .   .   .   Child:   Id: x [line: 26]
-> .   .   .   Child:   Id: x [line: 27]
-> .   .   .   Child:   Id: x [line: 8]
-> .   Child:   Parm: x of type int [line: 6]
-> .   .   Child:   Var: x of type int [line: 13]
+0a1,28
+> .   .   .   Child: 0  Call: dory [line: 19]
+> .   .   .   Child: 0  Call: dory [line: 21]
+> .   .   .   Child: 0  Call: dory [line: 22]
+> .   .   .   Child: 0  Call: ella [line: 16]
+> .   .   .   Child: 0  Call: ella [line: 18]
+> .   .   .   Child: 0  Call: ella [line: 20]
+> .   .   .   Child: 0  Call: lyra [line: 23]
+> .   .   .   .   Child: 0  Const 3 [line: 16]
+> .   .   .   Child: 0  Const 6 [line: 3]
+> .   .   .   .   Child: 0  Const 7 [line: 20]
+> .   .   .   .   Child: 0  Const 8 [line: 27]
+> .   .   .   .   Child: 0  Const 9 [line: 18]
+> .   .   .   Child: 0  Id: x [line: 26]
+> .   .   .   Child: 0  Id: x [line: 27]
+> .   .   .   Child: 0  Id: x [line: 8]
+> .   Child: 0  Parm: x of type int [line: 6]
+> .   .   Child: 0  Var: x of type int [line: 13]
+> .   .   .   Child: 1  Call: dory [line: 26]
+> .   .   .   Child: 1  Call: ella [line: 27]
+> .   .   Child: 1  Call: fred [line: 15]
+> .   Child: 1  Compound [line: 12]
+> .   Child: 1  Compound [line: 2]
+> .   Child: 1  Compound [line: 7]
+> .   .   Child: 1  Return [line: 3]
+> .   .   Child: 1  Return [line: 8]
 > ERROR(11): Symbol '(' is already declared at line 6.
 > ERROR(15): Symbol 'fred' is not declared.
 > ERROR(16): Symbol 'ella' is not declared.
-1a22,25
+1a30,33
 > ERROR(18): Symbol 'ella' is not declared.
 > ERROR(18): Symbol 'ella' is not declared.
 > ERROR(19): Symbol 'ella' is not declared.
 > ERROR(20): Symbol 'ella' is not declared.
-4c28,29
+4c36,37
 < ERROR(27): '<=' requires operands of the same type but lhs is type int and rhs is type void.
 ---
 > ERROR(27): '<=' requires operands of the same type but lhs is type int and rhs is type undefined.
 > ERROR(27): Symbol 'ella' is not declared.
-6c31,40
+6c39,40
 < Number of errors: 5
 ---
 > Func: dory returns type int [line: 1]
-> .   .   .   hild:   Call: dory [line: 26]
-> .   .   .   hild:   Call: ella [line: 27]
-> .   .   hild:   Call: fred [line: 15]
-> .   hild:   Compound [line: 12]
-> .   hild:   Compound [line: 2]
-> .   hild:   Compound [line: 7]
-> .   .   hild:   Return [line: 3]
-> .   .   hild:   Return [line: 8]
 > Number of errors: 13
 7a42,52
 > .   .   Sibling: 1  Call: lyra [line: 16]

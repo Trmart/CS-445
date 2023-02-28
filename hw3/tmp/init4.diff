@@ -1,24 +1,21 @@
-1,9c1,6
+1,5c1,5
 < .   .   .   .   Child: 0  Const 23 of type int [line: 3]
 < .   .   .   .   Child: 0  Const 6 of type int [line: 5]
 < .   .   .   Child: 0  Id: x of type int [line: 4]
 < .   .   .   Child: 0  Op: * of type int [line: 3]
 < .   .   .   Child: 0  Op: ? of type int [line: 5]
-< .   .   Child: 0  Var: x of type int [line: 3]
-< .   Child: 1  Compound [line: 2]
+---
+> .   .   .   .   Child: 0  Const 23 [line: 3]
+> .   .   .   .   Child: 0  Const 6 [line: 5]
+> .   .   .   Child: 0  Id: x [line: 4]
+> .   .   .   Child: 0  Op: * [line: 3]
+> .   .   .   Child: 0  Op: ? [line: 5]
+8,9c8,9
 < .   .   Child: 1  Const 333 of type int [line: 6]
 < .   .   .   .   Child: 1  Const 3 of type int [line: 3]
 ---
-> .   .   .   .   Child:   Const 23 [line: 3]
-> .   .   .   .   Child:   Const 6 [line: 5]
-> .   .   .   Child:   Id: x [line: 4]
-> .   .   .   Child:   Op: * [line: 3]
-> .   .   .   Child:   Op: ? [line: 5]
-> .   .   Child:   Var: x of type int [line: 3]
-10a8,10
-> .   hild:   Compound [line: 2]
-> .   .   hild:   Const 333 [line: 6]
-> .   .   .   .   hild:   Const 3 [line: 3]
+> .   .   Child: 1  Const 333 [line: 6]
+> .   .   .   .   Child: 1  Const 3 [line: 3]
 13c13
 < .   .   Sibling: 1  Const 'z' of type char [line: 7]
 ---

@@ -1,60 +1,60 @@
-0a1,23
-> .   .   .   .   Child:   Id: w [line: 27]
-> .   .   .   Child:   Id: w [line: 28]
-> .   .   .   .   Child:   Id: w [line: 29]
-> .   .   .   .   Child:   Id: x [line: 17]
-> .   .   .   Child:   Id: x [line: 18]
-> .   .   .   .   Child:   Id: x [line: 19]
-> .   .   .   .   Child:   Id: y [line: 10]
-> .   .   .   Child:   Id: y [line: 11]
-> .   .   .   .   Child:   Id: y [line: 12]
-> .   .   .   .   Child:   Id: z [line: 3]
-> .   .   .   .   Child:   Id: z [line: 4]
-> .   .   .   Child:   Op: [ [line: 10]
-> .   .   .   Child:   Op: [ [line: 12]
-> .   .   .   Child:   Op: [ [line: 17]
-> .   .   .   Child:   Op: [ [line: 19]
-> .   .   .   Child:   Op: [ [line: 27]
-> .   .   .   Child:   Op: [ [line: 29]
-> .   .   .   Child:   Op: [ [line: 3]
-> .   .   .   Child:   Op: [ [line: 4]
-> .   Child:   Parm: x of array of type int [line: 16]
-> .   Child:   Parm: y of array of type int [line: 9]
-> .   Child:   Parm: z of array of type int [line: 2]
-> .   .   Child:   Var: w of array of type int [line: 25]
-1a25
+0a1,41
+> .   .   .   .   Child: 0  Id: w [line: 27]
+> .   .   .   Child: 0  Id: w [line: 28]
+> .   .   .   .   Child: 0  Id: w [line: 29]
+> .   .   .   .   Child: 0  Id: x [line: 17]
+> .   .   .   Child: 0  Id: x [line: 18]
+> .   .   .   .   Child: 0  Id: x [line: 19]
+> .   .   .   .   Child: 0  Id: y [line: 10]
+> .   .   .   Child: 0  Id: y [line: 11]
+> .   .   .   .   Child: 0  Id: y [line: 12]
+> .   .   .   .   Child: 0  Id: z [line: 3]
+> .   .   .   .   Child: 0  Id: z [line: 4]
+> .   .   .   Child: 0  Op: [ [line: 10]
+> .   .   .   Child: 0  Op: [ [line: 12]
+> .   .   .   Child: 0  Op: [ [line: 17]
+> .   .   .   Child: 0  Op: [ [line: 19]
+> .   .   .   Child: 0  Op: [ [line: 27]
+> .   .   .   Child: 0  Op: [ [line: 29]
+> .   .   .   Child: 0  Op: [ [line: 3]
+> .   .   .   Child: 0  Op: [ [line: 4]
+> .   Child: 0  Parm: x of array of type int [line: 16]
+> .   Child: 0  Parm: y of array of type int [line: 9]
+> .   Child: 0  Parm: z of array of type int [line: 2]
+> .   .   Child: 0  Var: w of array of type int [line: 25]
+> .   .   Child: 1  Assign: <= [line: 27]
+> .   .   Child: 1  Call: output [line: 10]
+> .   .   Child: 1  Call: output [line: 17]
+> .   .   Child: 1  Call: output [line: 3]
+> .   Child: 1  Compound [line: 16]
+> .   Child: 1  Compound [line: 2]
+> .   Child: 1  Compound [line: 24]
+> .   Child: 1  Compound [line: 9]
+> .   .   .   Child: 1  Const 42 [line: 27]
+> .   .   .   Child: 1  Const 666 [line: 4]
+> .   .   .   .   Child: 1  Const 7 [line: 10]
+> .   .   .   .   Child: 1  Const 7 [line: 12]
+> .   .   .   .   Child: 1  Const 7 [line: 17]
+> .   .   .   .   Child: 1  Const 7 [line: 19]
+> .   .   .   .   Child: 1  Const 7 [line: 27]
+> .   .   .   .   Child: 1  Const 7 [line: 29]
+> .   .   .   .   Child: 1  Const 7 [line: 3]
+> .   .   .   .   Child: 1  Const 7 [line: 4]
+1a43
 > ERROR(11): Symbol 'three' is not declared.
-2a27
+2a45
 > ERROR(16): Symbol '(' is already declared at line 2.
-3a29
+3a47
 > ERROR(18): Symbol 'two' is not declared.
-4a31,32
+4a49,50
 > ERROR(23): Symbol '(' is already declared at line 2.
 > ERROR(28): Symbol 'one' is not declared.
-9c37,58
+9c55,58
 < Number of errors: 8
 ---
 > ERROR(9): Symbol '(' is already declared at line 2.
 > ERROR(LINKER): A function named 'main()' must be defined.
 > Func: ( returns type void [line: 2]
-> .   .   hild:   Assign: <= [line: 27]
-> .   .   hild:   Call: output [line: 10]
-> .   .   hild:   Call: output [line: 17]
-> .   .   hild:   Call: output [line: 3]
-> .   hild:   Compound [line: 16]
-> .   hild:   Compound [line: 2]
-> .   hild:   Compound [line: 24]
-> .   hild:   Compound [line: 9]
-> .   .   .   hild:   Const 42 [line: 27]
-> .   .   .   hild:   Const 666 [line: 4]
-> .   .   .   .   hild:   Const 7 [line: 10]
-> .   .   .   .   hild:   Const 7 [line: 12]
-> .   .   .   .   hild:   Const 7 [line: 17]
-> .   .   .   .   hild:   Const 7 [line: 19]
-> .   .   .   .   hild:   Const 7 [line: 27]
-> .   .   .   .   hild:   Const 7 [line: 29]
-> .   .   .   .   hild:   Const 7 [line: 3]
-> .   .   .   .   hild:   Const 7 [line: 4]
 > Number of errors: 15
 10a60,71
 > .   .   Sibling: 1  Assign: <= [line: 4]

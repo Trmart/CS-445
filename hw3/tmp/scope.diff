@@ -1,42 +1,42 @@
-0a1,16
-> .   .   .   Child:   Const 3 [line: 7]
-> .   .   .   Child:   Id: a [line: 8]
-> .   .   .   Child:   Id: g [line: 43]
-> .   .   .   Child:   Id: q [line: 46]
-> .   .   .   Child:   Id: s [line: 47]
-> .   .   .   Child:   Id: u [line: 48]
-> .   .   .   .   Child:   Id: v [line: 48]
-> .   .   .   Child:   Id: x [line: 59]
-> .   .   .   Child:   Id: y [line: 42]
-> .   .   .   Child:   Id: z [line: 44]
-> .   Child:   Parm: x of type int [line: 3]
-> .   Child:   Parm: y of type int [line: 37]
-> .   .   Child:   Var: a of type int [line: 5]
-> .   .   .   Child:   Var: c of type int [line: 12]
-> .   .   .   .   Child:   Var: IWouldNotEatItWithAGoat of type int [line: 19]
-> .   .   Child:   Var: z of type int [line: 39]
-20,21c36
+0a1,30
+> .   .   .   Child: 0  Const 3 [line: 7]
+> .   .   .   Child: 0  Id: a [line: 8]
+> .   .   .   Child: 0  Id: g [line: 43]
+> .   .   .   Child: 0  Id: q [line: 46]
+> .   .   .   Child: 0  Id: s [line: 47]
+> .   .   .   Child: 0  Id: u [line: 48]
+> .   .   .   .   Child: 0  Id: v [line: 48]
+> .   .   .   Child: 0  Id: x [line: 59]
+> .   .   .   Child: 0  Id: y [line: 42]
+> .   .   .   Child: 0  Id: z [line: 44]
+> .   Child: 0  Parm: x of type int [line: 3]
+> .   Child: 0  Parm: y of type int [line: 37]
+> .   .   Child: 0  Var: a of type int [line: 5]
+> .   .   .   Child: 0  Var: c of type int [line: 12]
+> .   .   .   .   Child: 0  Var: IWouldNotEatItWithAGoat of type int [line: 19]
+> .   .   Child: 0  Var: z of type int [line: 39]
+> .   .   Child: 1  Call: bat [line: 7]
+> .   .   .   Child: 1  Call: cow [line: 48]
+> .   Child: 1  Compound [line: 38]
+> .   Child: 1  Compound [line: 4]
+> .   Child: 1  Compound [line: 58]
+> .   Child: 1  Compound [line: 62]
+> .   Child: 1  Compound [line: 63]
+> .   .   .   Child: 1  Id: a [line: 13]
+> .   .   .   Child: 1  Id: a [line: 29]
+> .   .   .   Child: 1  Id: a [line: 8]
+> .   .   .   .   Child: 1  Id: c [line: 20]
+> .   .   .   Child: 1  Id: r [line: 46]
+> .   .   Child: 1  Id: x [line: 41]
+> .   .   Child: 1  Return [line: 59]
+20,21c50
 < ERROR(62): Symbol 'g' is already declared at line 2.
 < ERROR(63): Symbol 'ant' is already declared at line 3.
 ---
 > ERROR(63): Symbol '(' is already declared at line 62.
-26c41,55
+26c55
 < Number of errors: 25
 ---
-> .   .   hild:   Call: bat [line: 7]
-> .   .   .   hild:   Call: cow [line: 48]
-> .   hild:   Compound [line: 38]
-> .   hild:   Compound [line: 4]
-> .   hild:   Compound [line: 58]
-> .   hild:   Compound [line: 62]
-> .   hild:   Compound [line: 63]
-> .   .   .   hild:   Id: a [line: 13]
-> .   .   .   hild:   Id: a [line: 29]
-> .   .   .   hild:   Id: a [line: 8]
-> .   .   .   .   hild:   Id: c [line: 20]
-> .   .   .   hild:   Id: r [line: 46]
-> .   .   hild:   Id: x [line: 41]
-> .   .   hild:   Return [line: 59]
 > Number of errors: 24
 27a57,95
 > .   .   Sibling: 10  Id: x [line: 34]

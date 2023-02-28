@@ -1,37 +1,25 @@
-1,17c1,18
+1,4c1,4
 < .   .   .   .   .   Child: 0  Const 1 of type int [line: 5]
 < .   .   .   Child: 0  Const true of type bool [line: 5]
 < .   .   .   .   .   .   Child: 0  Id: x of type int [line: 5]
 < .   .   .   .   .   Child: 0  Op: > of type bool [line: 5]
-< .   .   Child: 0  Var: x of type int [line: 4]
-< .   .   .   .   Child: 0  Var: x of type int [line: 5]
-< .   .   .   .   .   Child: 1  Break [line: 5]
-< .   Child: 1  Compound [line: 3]
+---
+> .   .   .   .   .   Child: 0  Const 1 [line: 5]
+> .   .   .   Child: 0  Const true [line: 5]
+> .   .   .   .   .   .   Child: 0  Id: x [line: 5]
+> .   .   .   .   .   Child: 0  Op: > [line: 5]
+9c9
 < .   .   .   .   .   .   Child: 1  Const 1 of type int [line: 5]
-< .   .   .   Child: 1  For [line: 5]
+---
+> .   .   .   .   .   .   Child: 1  Const 1 [line: 5]
+11c11
 < .   .   .   .   .   Child: 1  Id: x of undefined type [line: 5]
-< .   .   .   .   Child: 1  Range [line: 5]
-< .   .   Child: 1  While [line: 5]
-< .   .   .   .   .   Child: 2  Break [line: 5]
-< .   .   .   .   Child: 2  If [line: 5]
+---
+> .   .   .   .   .   Child: 1  Id: x [line: 5]
+16,17c16,18
 < Func: main returns type void [line: 2]
 < Number of errors: 0
 ---
-> .   .   .   .   .   Child:   Const 1 [line: 5]
-> .   .   .   Child:   Const true [line: 5]
-> .   .   .   .   .   .   Child:   Id: x [line: 5]
-> .   .   .   .   .   Child:   Op: > [line: 5]
-> .   .   Child:   Var: x of type int [line: 4]
-> .   .   .   .   Child:   Var: x of type int [line: 5]
 > ERROR(LINKER): A function named 'main()' must be defined.
 > Func: ( returns type void [line: 2]
-> .   .   .   .   .   hild:   Break [line: 5]
-> .   hild:   Compound [line: 3]
-> .   .   .   .   .   .   hild:   Const 1 [line: 5]
-> .   .   .   hild:   For [line: 5]
-> .   .   .   .   .   hild:   Id: x [line: 5]
-> .   .   .   .   hild:   Range [line: 5]
-> .   .   hild:   While [line: 5]
-> .   .   .   .   .   ild:   Break [line: 5]
-> .   .   .   .   ild:   If [line: 5]
 > Number of errors: 1
