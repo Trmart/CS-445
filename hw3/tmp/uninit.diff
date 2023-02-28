@@ -2,7 +2,7 @@
 < ERROR(13): Symbol 'dog' is not declared.
 < ERROR(14): Cannot use function 'main' as a variable.
 ---
-> .   .   .   .   Child: 0  Const 4 [line: 8]
+> .   .   .   .   Child: 0  Const 4 of type int [line: 8]
 > .   .   .   .   .   .   .   .   .   Child: 0  Id: g [line: 15]
 > .   .   .   .   Child: 0  Id: g [line: 7]
 > .   .   .   Child: 0  Id: i [line: 7]
@@ -23,8 +23,8 @@
 > .   .   Child: 0  Var: z of type int [line: 3]
 > .   .   Child: 1  Assign: <= [line: 5]
 > .   Child: 1  Compound [line: 2]
-> .   .   .   Child: 1  Const 3 [line: 14]
-> .   .   .   .   Child: 1  Const 3 [line: 7]
+> .   .   .   Child: 1  Const 3 of type int [line: 14]
+> .   .   .   .   Child: 1  Const 3 of type int [line: 7]
 > .   .   .   .   .   .   .   .   .   Child: 1  Id: h [line: 15]
 > .   .   .   .   Child: 1  Id: h [line: 8]
 > .   .   .   .   .   .   .   .   Child: 1  Id: i [line: 15]

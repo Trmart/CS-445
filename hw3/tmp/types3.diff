@@ -27,8 +27,8 @@
 > .   Child: 1  Compound [line: 19]
 > .   Child: 1  Compound [line: 25]
 > .   Child: 1  Compound [line: 6]
-> .   .   .   Child: 1  Const 4 [line: 13]
-> .   .   .   Child: 1  Const 4 [line: 26]
+> .   .   .   Child: 1  Const 4 of type int [line: 13]
+> .   .   .   Child: 1  Const 4 of type int [line: 26]
 > .   .   Child: 1  Op: + [line: 26]
 > Number of errors: 0
 > Number of warnings: 12

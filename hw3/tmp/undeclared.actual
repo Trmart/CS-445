@@ -8,7 +8,7 @@
 .   Child: 0  Parm: x of type int [line: 1]
 .   .   Child: 1  Assign: <= [line: 3]
 .   Child: 1  Compound [line: 2]
-.   .   .   .   Child: 1  Const 3 [line: 5]
+.   .   .   .   Child: 1  Const 3 of type int [line: 5]
 .   .   .   Child: 1  Id: i [line: 3]
 .   .   .   Child: 1  Id: i [line: 4]
 .   .   .   Child: 1  Op: + [line: 5]

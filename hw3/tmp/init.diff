@@ -1,21 +1,11 @@
-1,6c1,6
-< .   Child: 0  Const 666 of type int [line: 4]
-< .   .   .   Child: 0  Const 777 of type int [line: 9]
-< .   .   .   Child: 0  Const 888 of type int [line: 11]
+4,6c4,6
 < .   .   .   Child: 0  Id: z of type int [line: 13]
 < .   .   Child: 0  Var: b is array of type int [line: 8]
 < .   .   Child: 1  Assign: <= of type int [line: 13]
 ---
-> .   Child: 0  Const 666 [line: 4]
-> .   .   .   Child: 0  Const 777 [line: 9]
-> .   .   .   Child: 0  Const 888 [line: 11]
 > .   .   .   Child: 0  Id: z [line: 13]
 > .   .   Child: 0  Var: b of array of type int [line: 8]
 > .   .   Child: 1  Assign: <= [line: 13]
-8c8
-< .   .   .   Child: 1  Const 999 of type int [line: 13]
----
-> .   .   .   Child: 1  Const 999 [line: 13]
 10c10
 < Number of warnings: 3
 ---

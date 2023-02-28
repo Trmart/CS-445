@@ -1,40 +1,24 @@
-1,5c1,5
-< .   .   .   .   Child: 0  Const 1 of type int [line: 3]
-< .   .   .   .   Child: 0  Const 2 of type int [line: 5]
+3,5c3,5
 < .   .   .   .   Child: 0  Id: i of type int [line: 3]
 < .   .   .   .   Child: 0  Id: i of undefined type [line: 7]
 < .   .   .   .   Child: 0  Id: j of type int [line: 5]
 ---
-> .   .   .   .   Child: 0  Const 1 [line: 3]
-> .   .   .   .   Child: 0  Const 2 [line: 5]
 > .   .   .   .   Child: 0  Id: i [line: 3]
 > .   .   .   .   Child: 0  Id: i [line: 7]
 > .   .   .   .   Child: 0  Id: j [line: 5]
-10,13c10,13
-< .   .   .   .   Child: 1  Const 11 of type int [line: 3]
-< .   .   .   .   Child: 1  Const 22 of type int [line: 5]
-< .   .   .   .   Child: 1  Const 3 of type int [line: 3]
-< .   .   .   .   Child: 1  Const 7 of type int [line: 5]
----
-> .   .   .   .   Child: 1  Const 11 [line: 3]
-> .   .   .   .   Child: 1  Const 22 [line: 5]
-> .   .   .   .   Child: 1  Const 3 [line: 3]
-> .   .   .   .   Child: 1  Const 7 [line: 5]
 15c15
 < .   .   .   .   Child: 1  Id: i of undefined type [line: 7]
 ---
 > .   .   .   .   Child: 1  Id: i [line: 7]
-19,23c19,24
+19,20c19,20
 < .   .   .   Child: 2  Assign: <= of type int [line: 3]
 < .   .   .   Child: 2  Assign: <= of type int [line: 5]
-< .   .   .   .   Child: 2  Const 3 of type int [line: 5]
-< .   .   .   Child: 2  Const 666 of type int [line: 7]
-< .   .   .   .   Child: 2  Id: i of undefined type [line: 7]
 ---
 > .   .   .   Child: 2  Assign: <= [line: 3]
 > .   .   .   Child: 2  Assign: <= [line: 5]
-> .   .   .   .   Child: 2  Const 3 [line: 5]
-> .   .   .   Child: 2  Const 666 [line: 7]
+23c23,24
+< .   .   .   .   Child: 2  Id: i of undefined type [line: 7]
+---
 > .   .   .   .   Child: 2  Id: i [line: 7]
 > ERROR(7): Symbol 'i' is already declared at line 3.
 25,26c26,27

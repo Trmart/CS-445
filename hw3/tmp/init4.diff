@@ -1,21 +1,11 @@
-1,5c1,5
-< .   .   .   .   Child: 0  Const 23 of type int [line: 3]
-< .   .   .   .   Child: 0  Const 6 of type int [line: 5]
+3,5c3,5
 < .   .   .   Child: 0  Id: x of type int [line: 4]
 < .   .   .   Child: 0  Op: * of type int [line: 3]
 < .   .   .   Child: 0  Op: ? of type int [line: 5]
 ---
-> .   .   .   .   Child: 0  Const 23 [line: 3]
-> .   .   .   .   Child: 0  Const 6 [line: 5]
 > .   .   .   Child: 0  Id: x [line: 4]
 > .   .   .   Child: 0  Op: * [line: 3]
 > .   .   .   Child: 0  Op: ? [line: 5]
-8,9c8,9
-< .   .   Child: 1  Const 333 of type int [line: 6]
-< .   .   .   .   Child: 1  Const 3 of type int [line: 3]
----
-> .   .   Child: 1  Const 333 [line: 6]
-> .   .   .   .   Child: 1  Const 3 [line: 3]
 12,13c12,13
 < Number of warnings: 2
 < .   .   Sibling: 1  Const 'z' of type char [line: 7]

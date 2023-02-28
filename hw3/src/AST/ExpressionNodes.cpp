@@ -461,7 +461,7 @@ std::string Const::printTokenString() const
     {
         case Const::Type::INT:
                                 {
-                                    tokenOutputString += std::to_string(m_intValue);
+                                    tokenOutputString += std::to_string(m_intValue) + " of type int";
                                 }
                                 break;
         

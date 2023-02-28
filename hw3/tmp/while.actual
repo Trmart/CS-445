@@ -6,8 +6,8 @@
 .   .   Child: 1  Assign: <= [line: 5]
 .   .   .   Child: 1  Assign: ++ [line: 7]
 .   Child: 1  Compound [line: 3]
-.   .   .   Child: 1  Const 0 [line: 5]
-.   .   .   .   Child: 1  Const 10 [line: 7]
+.   .   .   Child: 1  Const 0 of type int [line: 5]
+.   .   .   .   Child: 1  Const 10 of type int [line: 7]
 Func: main returns type void [line: 2]
 Number of errors: 0
 Number of warnings: 1

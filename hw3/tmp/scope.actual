@@ -1,4 +1,4 @@
-.   .   .   Child: 0  Const 3 [line: 7]
+.   .   .   Child: 0  Const 3 of type int [line: 7]
 .   .   .   Child: 0  Id: a [line: 8]
 .   .   .   Child: 0  Id: g [line: 43]
 .   .   .   Child: 0  Id: q [line: 46]

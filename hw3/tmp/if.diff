@@ -20,13 +20,9 @@
 > .   .   .   Child: 1  Assign: ++ [line: 10]
 > .   .   Child: 1  Assign: <= [line: 6]
 > .   .   .   Child: 1  Assign: ++ [line: 8]
-13,15c13,15
-< .   .   .   Child: 1  Const 0 of type int [line: 6]
-< .   .   .   .   Child: 1  Const 10 of type int [line: 10]
+15c15
 < .   .   .   Child: 2  Assign: -- of type int [line: 11]
 ---
-> .   .   .   Child: 1  Const 0 [line: 6]
-> .   .   .   .   Child: 1  Const 10 [line: 10]
 > .   .   .   Child: 2  Assign: -- [line: 11]
 18c18
 < Number of warnings: 0

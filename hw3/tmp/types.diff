@@ -70,8 +70,8 @@
 < ERROR(79): '>' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(79): '>' requires operands of the same type but lhs is type int and rhs is type bool.
 ---
-> .   .   .   Child: 0  Const 1 [line: 82]
-> .   .   .   Child: 0  Const 1 [line: 97]
+> .   .   .   Child: 0  Const 1 of type int [line: 82]
+> .   .   .   Child: 0  Const 1 of type int [line: 97]
 > .   .   .   Child: 0  Const true of type bool [line: 114]
 > .   .   .   Child: 0  Id: a [line: 112]
 > .   .   .   Child: 0  Id: ba [line: 108]
@@ -194,9 +194,9 @@
 > .   .   .   Child: 1  Assign: <= [line: 99]
 > .   .   .   Child: 1  Call: main [line: 107]
 > .   Child: 1  Compound [line: 3]
-> .   .   .   Child: 1  Const 3 [line: 104]
-> .   .   .   Child: 1  Const 4 [line: 105]
-> .   .   .   Child: 1  Const 5 [line: 106]
+> .   .   .   Child: 1  Const 3 of type int [line: 104]
+> .   .   .   Child: 1  Const 4 of type int [line: 105]
+> .   .   .   Child: 1  Const 5 of type int [line: 106]
 > .   .   .   Child: 1  Const 's' [line: 109]
 > .   .   .   Child: 1  Id: ba [line: 108]
 > .   .   .   Child: 1  Id: ba [line: 38]
