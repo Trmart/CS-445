@@ -11,7 +11,6 @@
 .   .   Child: 0  Var: y of type int [line: 5]
 .   .   Child: 1  Call: output [line: 10]
 .   Child: 1  Compound [line: 4]
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Number of errors: 0
 Number of warnings: 5
 .   .   Sibling: 1  Call: output [line: 11]

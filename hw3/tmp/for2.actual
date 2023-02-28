@@ -17,9 +17,6 @@
 .   .   .   Child: 2  For [line: 6]
 ERROR(7): Symbol 'i' is already declared at line 5.
 ERROR(8): Symbol 'j' is already declared at line 6.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: main returns type void [line: 1]
 Number of errors: 2
 Number of warnings: 9

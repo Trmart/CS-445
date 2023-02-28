@@ -56,21 +56,19 @@
 > .   .   .   .   Child: 2  Id: y [line: 18]
 > .   .   .   .   Child: 2  Id: y [line: 8]
 > .   .   .   Child: 2  Id: z [line: 19]
-33a34
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-37c38
+37c37
 < .   .   Sibling: 1  Const 111 of type int [line: 9]
 ---
 > .   .   Sibling: 1  Const 111 [line: 9]
-41c42
+41c41
 < .   .   Sibling: 3  Const 222 of type int [line: 12]
 ---
 > .   .   Sibling: 3  Const 222 [line: 12]
-43c44
+43c43
 < .   .   Sibling: 5  Const 333 of type int [line: 16]
 ---
 > .   .   Sibling: 5  Const 333 [line: 16]
-45,47c46,48
+45,47c45,47
 < WARNING(11): Variable 'z' may be uninitialized when used here.
 < WARNING(6): Variable 'x' may be uninitialized when used here.
 < WARNING(8): Variable 'y' may be uninitialized when used here.

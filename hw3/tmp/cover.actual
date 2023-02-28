@@ -91,12 +91,6 @@
 .   .   .   .   Child: 2  Const 3 [line: 7]
 .   .   .   .   .   .   .   .   Child: 2  Const 777 [line: 11]
 ERROR(31): Symbol 'x' is already declared at line 7.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Number of errors: 1
 Number of warnings: 21
 .   .   .   .   .   .   Sibling: 10  Op: ? [line: 20]

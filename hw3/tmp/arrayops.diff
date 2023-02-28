@@ -1,4 +1,4 @@
-1,38c1,191
+1,38c1,190
 < ERROR(13): '<=' requires both operands be arrays or not but lhs is not an array and rhs is an array.
 < ERROR(14): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
 < ERROR(18): The operation 'chsign' does not work with arrays.
@@ -159,7 +159,6 @@
 > .   .   .   Child: 1  Op: [ [line: 46]
 > .   .   .   Child: 1  Op: [ [line: 47]
 > .   .   .   Child: 1  Op: [ [line: 48]
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: main returns type void [line: 2]
 > Number of errors: 0
 > Number of warnings: 6

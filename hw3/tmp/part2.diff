@@ -1,4 +1,4 @@
-1,10c1,85
+1,10c1,78
 < ERROR(20): Symbol 'x' is already declared at line 18.
 < ERROR(26): Symbol 'dog' is already declared at line 18.
 < ERROR(35): '+' requires operands of type int but lhs is of type char.
@@ -54,13 +54,6 @@
 > .   .   Child: 1  Return [line: 10]
 > .   .   Child: 1  Return [line: 15]
 > ERROR(36): Symbol 'z' is already declared at line 3.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: ant returns type int [line: 1]
 > Number of errors: 1
 > Number of warnings: 13
@@ -95,7 +88,7 @@
 > WARNING(20): The variable 'x' seems not to be used.
 > WARNING(20): The variable 'x' seems not to be used.
 > WARNING(34): The variable 'c' seems not to be used.
-12,13c87,93
+12,13c80,86
 < WARNING(49): Variable 'z' may be uninitialized when used here.
 < WARNING(4): Variable 'z' may be uninitialized when used here.
 ---

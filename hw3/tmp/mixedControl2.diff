@@ -38,5 +38,3 @@
 > .   .   .   Child: 2  Const 666 [line: 19]
 > .   .   .   .   .   Child: 2  Const 666 [line: 8]
 > .   .   .   Child: 2  Const 777 [line: 9]
-26a27
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.

@@ -1,4 +1,4 @@
-1,14c1,24
+1,14c1,23
 < ERROR(3): Symbol 'i' is not declared.
 < ERROR(3): Symbol 'z' is not declared.
 < ERROR(4): Symbol 'i' is not declared.
@@ -28,7 +28,6 @@
 > .   .   .   Child: 1  Id: i [line: 3]
 > .   .   .   Child: 1  Id: i [line: 4]
 > .   .   .   Child: 1  Op: + [line: 5]
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: main returns type void [line: 1]
 > Number of errors: 0
 > Number of warnings: 0

@@ -7,7 +7,6 @@
 .   .   .   .   Child: 1  Op: * [line: 6]
 .   .   .   Child: 1  Op: + [line: 6]
 .   .   Child: 1  Op: > [line: 6]
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: main returns type void [line: 2]
 Number of errors: 0
 Number of warnings: 1

@@ -37,14 +37,13 @@
 > .   .   .   Child: 1  Id: z [line: 15]
 > .   .   .   Child: 1  Op: + [line: 7]
 > .   .   .   Child: 1  Op: + [line: 8]
-5,6c38,40
+5,6c38,39
 < ERROR(LINKER): A function named 'main()' must be defined.
 < Number of errors: 5
 ---
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: main returns type void [line: 1]
 > Number of errors: 2
-8,15c42,68
+8,15c41,67
 < WARNING(10): Variable 'k' may be uninitialized when used here.
 < WARNING(11): Variable 'l' may be uninitialized when used here.
 < WARNING(12): Variable 'm' may be uninitialized when used here.

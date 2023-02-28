@@ -29,14 +29,6 @@
 .   .   Child: 1  Id: x [line: 41]
 .   .   Child: 1  Return [line: 59]
 ERROR(55): Symbol 'g' is already declared at line 2.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Number of errors: 1
 Number of warnings: 40
 .   .   Sibling: 10  Id: x [line: 34]

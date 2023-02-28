@@ -1,4 +1,4 @@
-1,25c1,121
+1,25c1,115
 < ERROR(12): Cannot index nonarray 'bb'.
 < ERROR(12): Symbol 'bb' is not declared.
 < ERROR(13): Cannot index nonarray 'bb'.
@@ -105,12 +105,6 @@
 > ERROR(23): Symbol 'i' is already declared at line 20.
 > ERROR(26): Symbol 'i' is already declared at line 20.
 > ERROR(29): Symbol 'i' is already declared at line 20.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: main returns type void [line: 2]
 > Number of errors: 3
 > Number of warnings: 27
@@ -146,7 +140,7 @@
 > WARNING(4): The variable 'aa' seems not to be used.
 > WARNING(4): The variable 'aa' seems not to be used.
 > WARNING(4): The variable 'aa' seems not to be used.
-26a123,133
+26a117,127
 > WARNING(5): The variable 'ba' seems not to be used.
 > WARNING(5): The variable 'ba' seems not to be used.
 > WARNING(5): The variable 'ba' seems not to be used.

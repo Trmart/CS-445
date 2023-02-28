@@ -6,10 +6,7 @@
 < .   .   .   .   Child: 1  Const 666 of type int [line: 5]
 ---
 > .   .   .   .   Child: 1  Const 666 [line: 5]
-5a6,7
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-10c12
+10c10
 < .   .   .   .   Sibling: 2  Const 777 of type int [line: 7]
 ---
 > .   .   .   .   Sibling: 2  Const 777 [line: 7]

@@ -46,7 +46,7 @@
 > .   .   .   Child: 1  Id: r [line: 46]
 > .   .   Child: 1  Id: x [line: 41]
 > .   .   Child: 1  Return [line: 59]
-18,28c32,88
+18,28c32,80
 < ERROR(57): Symbol 'g' is already declared at line 2.
 < ERROR(59): Symbol 'x' is not declared.
 < ERROR(62): Symbol 'g' is already declared at line 2.
@@ -59,14 +59,6 @@
 < Number of warnings: 5
 < WARNING(15): Variable 'c' may be uninitialized when used here.
 ---
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Number of errors: 1
 > Number of warnings: 40
 > .   .   Sibling: 10  Id: x [line: 34]
@@ -116,7 +108,7 @@
 > WARNING(12): The variable 'c' seems not to be used.
 > WARNING(12): The variable 'c' seems not to be used.
 > WARNING(12): The variable 'c' seems not to be used.
-29a90,111
+29a82,103
 > WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
 > WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
 > WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
@@ -139,7 +131,7 @@
 > WARNING(40): The variable 'bat' seems not to be used.
 > WARNING(40): The variable 'bat' seems not to be used.
 > WARNING(40): The variable 'bat' seems not to be used.
-31,32c113,120
+31,32c105,112
 < WARNING(44): Variable 'z' may be uninitialized when used here.
 < WARNING(8): Variable 'a' may be uninitialized when used here.
 ---

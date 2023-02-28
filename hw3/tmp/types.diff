@@ -287,13 +287,12 @@
 > .   .   .   Child: 2  Assign: <= [line: 89]
 > .   .   .   Child: 2  Assign: <= [line: 92]
 > .   .   .   Child: 2  Assign: <= [line: 95]
-73c220,222
+73c220,221
 < Number of errors: 72
 ---
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: main returns type int [line: 2]
 > Number of errors: 2
-74a224,308
+74a223,307
 > .   .   Sibling: 10  Assign: <= [line: 24]
 > .   .   Sibling: 11  Assign: <= [line: 25]
 > .   .   Sibling: 12  Op: = [line: 27]
@@ -379,7 +378,7 @@
 > .   .   Sibling: 7  Var: pumpkin of type bool [line: 10]
 > .   .   Sibling: 8  Assign: <= [line: 22]
 > .   .   Sibling: 9  Assign: <= [line: 23]
-76,79c310,313
+76,79c309,312
 < WARNING(12): Variable 'i' may be uninitialized when used here.
 < WARNING(13): Variable 'b' may be uninitialized when used here.
 < WARNING(37): Variable 'ia' may be uninitialized when used here.

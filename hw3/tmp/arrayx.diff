@@ -1,4 +1,4 @@
-1,6c1,53
+1,6c1,52
 < ERROR(10): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
 < ERROR(11): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
 < ERROR(12): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
@@ -36,7 +36,6 @@
 > .   .   .   Child: 1  Id: d [line: 19]
 > .   .   .   Child: 1  Id: i [line: 15]
 > .   .   .   Child: 1  Op: [ [line: 17]
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: main returns type void [line: 1]
 > Number of errors: 0
 > Number of warnings: 9
@@ -59,7 +58,7 @@
 > .   .   Sibling: 9  Assign: <= [line: 19]
 > WARNING(2): The variable 'a' seems not to be used.
 > WARNING(2): The variable 'd' seems not to be used.
-7a55,60
+7a54,59
 > WARNING(3): The variable 'b' seems not to be used.
 > WARNING(4): The variable 'c' seems not to be used.
 > WARNING(5): The variable 'i' seems not to be used.

@@ -4,7 +4,3 @@
 ---
 > .   .   .   Child: 0  Const true [line: 4]
 > .   .   .   .   .   Child: 0  Const true [line: 5]
-8a9,11
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.

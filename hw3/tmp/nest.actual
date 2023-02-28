@@ -108,10 +108,6 @@ ERROR(35): Symbol 'z' is already declared at line 5.
 ERROR(50): Symbol 'a' is already declared at line 9.
 ERROR(51): Symbol 'b' is already declared at line 10.
 ERROR(52): Symbol 'z' is already declared at line 5.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Number of errors: 7
 Number of warnings: 20
 .   .   Sibling: 10  Assign: <= [line: 24]

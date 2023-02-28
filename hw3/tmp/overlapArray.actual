@@ -9,12 +9,6 @@
 .   .   Child: 1  Compound [line: 5]
 ERROR(13): Symbol 'b' is already declared at line 6.
 ERROR(16): Symbol 'c' is already declared at line 9.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: main returns type void [line: 2]
 Number of errors: 2
 Number of warnings: 17

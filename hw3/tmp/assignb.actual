@@ -17,7 +17,6 @@
 .   .   .   Child: 1  Id: b [line: 10]
 .   .   .   Child: 1  Id: x [line: 7]
 .   .   .   Child: 1  Op: != [line: 12]
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: main returns type void [line: 1]
 Number of errors: 0
 Number of warnings: 6

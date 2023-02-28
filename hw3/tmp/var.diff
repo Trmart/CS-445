@@ -1,4 +1,4 @@
-1,5c1,43
+1,5c1,42
 < ERROR(LINKER): A function named 'main()' must be defined.
 < Number of errors: 1
 < Number of warnings: 2
@@ -21,7 +21,6 @@
 > .   .   .   Child: 1  Const 9 [line: 21]
 > .   .   .   Child: 1  Const 9 [line: 9]
 > .   .   Child: 1  Id: gx [line: 8]
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Number of errors: 0
 > Number of warnings: 6
 > .   .   Sibling: 10  Op: [ [line: 21]

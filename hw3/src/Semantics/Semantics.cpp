@@ -548,6 +548,11 @@ void Semantics::leaveScope()
 
     }
 
+    if(m_symbolTable->depth() <= 1)
+    {
+        //dont leavescope if we are at the global scope
+        return;
+    }
     //leave the scope. call symbol table's leave function
     m_symbolTable->leave();
 }

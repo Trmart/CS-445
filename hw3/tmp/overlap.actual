@@ -9,12 +9,6 @@
 .   .   Child: 1  Compound [line: 7]
 ERROR(15): Symbol 'b' is already declared at line 8.
 ERROR(18): Symbol 'c' is already declared at line 11.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Number of errors: 2
 Number of warnings: 23
 .   .   Sibling: 1  Compound [line: 10]

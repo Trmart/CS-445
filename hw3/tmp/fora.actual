@@ -22,10 +22,6 @@
 .   .   .   Child: 2  Const 666 [line: 7]
 .   .   .   .   Child: 2  Id: i [line: 7]
 ERROR(7): Symbol 'i' is already declared at line 3.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: main returns type void [line: 1]
 Number of errors: 1
 Number of warnings: 7

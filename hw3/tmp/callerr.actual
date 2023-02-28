@@ -23,9 +23,6 @@
 .   Child: 1  Compound [line: 7]
 .   .   Child: 1  Return [line: 3]
 .   .   Child: 1  Return [line: 8]
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: dory returns type int [line: 1]
 Number of errors: 0
 Number of warnings: 1

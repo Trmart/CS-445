@@ -19,10 +19,6 @@
 .   .   .   Child: 2  Id: x [line: 8]
 ERROR(7): Symbol 'x' is already declared at line 4.
 ERROR(8): Symbol 'x' is already declared at line 4.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: main returns type void [line: 1]
 Number of errors: 2
 Number of warnings: 12

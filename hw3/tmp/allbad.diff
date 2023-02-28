@@ -1,4 +1,4 @@
-1,64c1,356
+1,64c1,345
 < ERROR(102): '<=' requires operands of the same type but lhs is type char and rhs is type bool.
 < ERROR(105): '+' requires operands of type int but lhs is of type void.
 < ERROR(105): '+' requires operands of type int but rhs is of type bool.
@@ -264,17 +264,6 @@
 > ERROR(81): Symbol 'a' is already declared at line 39.
 > ERROR(84): Symbol 'a' is already declared at line 39.
 > ERROR(84): Symbol 'b' is already declared at line 5.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: ant returns type char [line: 2]
 > Number of errors: 6
 > Number of warnings: 71

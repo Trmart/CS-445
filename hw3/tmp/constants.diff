@@ -1,4 +1,4 @@
-1,6c1,9
+1,6c1,8
 < ERROR(4): Symbol 'output' is not declared.
 < ERROR(5): Symbol 'outputb' is not declared.
 < ERROR(6): Symbol 'outputb' is not declared.
@@ -12,10 +12,9 @@
 > .   .   .   Child: 0  Const 'x' [line: 7]
 > .   .   Child: 1  Call: output [line: 4]
 > .   Child: 1  Compound [line: 3]
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: main returns type void [line: 2]
 > Number of errors: 0
-7a11,14
+7a10,13
 > .   .   Sibling: 1  Call: outputb [line: 5]
 > .   .   Sibling: 2  Call: outputb [line: 6]
 > .   .   Sibling: 3  Call: outputc [line: 7]

@@ -10,19 +10,15 @@
 < .   .   .   .   Child: 1  Const 10 of type int [line: 12]
 ---
 > .   .   .   .   Child: 1  Const 10 [line: 12]
-10a11,15
+10a11
 > ERROR(12): Symbol 'x' is already declared at line 6.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-12,13c17,18
+12,13c13,14
 < Number of errors: 0
 < Number of warnings: 2
 ---
 > Number of errors: 1
 > Number of warnings: 3
-18c23,24
+18c19,20
 < WARNING(12): The variable 'x' seems not to be used.
 ---
 > WARNING(6): The variable 'x' seems not to be used.

@@ -325,8 +325,6 @@
 .   .   .   .   Child: 2  While [line: 31]
 .   .   .   .   Child: 2  While [line: 32]
 .   .   .   .   Child: 2  While [line: 33]
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: main returns type int [line: 2]
 Number of errors: 0
 Number of warnings: 16

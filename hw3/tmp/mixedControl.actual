@@ -47,7 +47,6 @@
 .   .   .   .   Child: 2  Id: z [line: 30]
 .   .   .   Child: 2  If [line: 26]
 .   .   .   Child: 2  While [line: 11]
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: main returns type void [line: 2]
 Number of errors: 0
 Number of warnings: 3

@@ -1,4 +1,4 @@
-1,10c1,158
+1,10c1,153
 < ERROR(13): Symbol 'output' is not declared.
 < ERROR(14): Symbol 'outputb' is not declared.
 < ERROR(15): Symbol 'outputc' is not declared.
@@ -95,11 +95,6 @@
 > ERROR(57): Symbol 'ga' is already declared at line 32.
 > ERROR(58): Symbol 'gb' is already declared at line 33.
 > ERROR(59): Symbol 'gc' is already declared at line 34.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Func: cheyenne returns type void [line: 2]
 > Number of errors: 5
 > Number of warnings: 14

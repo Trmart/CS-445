@@ -1,4 +1,4 @@
-1,13c1,148
+1,13c1,142
 < ERROR(19): Unary '--' requires an operand of type int but was given type char.
 < ERROR(20): Unary '?' requires an operand of type int but was given type char.
 < ERROR(22): Cannot index nonarray 'e'.
@@ -106,12 +106,6 @@
 > .   .   .   .   Child: 2  Const 3 [line: 7]
 > .   .   .   .   .   .   .   .   Child: 2  Const 777 [line: 11]
 > ERROR(31): Symbol 'x' is already declared at line 7.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Number of errors: 1
 > Number of warnings: 21
 > .   .   .   .   .   .   Sibling: 10  Op: ? [line: 20]
@@ -161,15 +155,15 @@
 > WARNING(2): The variable 'fahrenheit' seems not to be used.
 > WARNING(31): The variable 'i' seems not to be used.
 > WARNING(31): The variable 'i' seems not to be used.
-15d149
+15d143
 < WARNING(31): The variable 'x' seems not to be used.
-16a151
+16a145
 > WARNING(35): The variable 'b' seems not to be used.
-17a153,155
+17a147,149
 > WARNING(36): The variable 'd' seems not to be used.
 > WARNING(37): The variable 'e' seems not to be used.
 > WARNING(37): The variable 'f' seems not to be used.
-19,22c157,161
+19,22c151,155
 < WARNING(39): Variable 'b' may be uninitialized when used here.
 < WARNING(39): Variable 'd' may be uninitialized when used here.
 < WARNING(39): Variable 'e' may be uninitialized when used here.

@@ -217,7 +217,6 @@
 .   .   .   Child: 2  Assign: <= [line: 95]
 ERROR(8): Symbol 'c' is already declared at line 8.
 ERROR(9): Symbol 'i' is already declared at line 4.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: main returns type int [line: 2]
 Number of errors: 2
 Number of warnings: 6

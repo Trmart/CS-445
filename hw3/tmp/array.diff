@@ -1,4 +1,4 @@
-1,6c1,24
+1,6c1,23
 < ERROR(11): Symbol 'output' is not declared.
 < ERROR(12): Symbol 'output' is not declared.
 < ERROR(13): Symbol 'output' is not declared.
@@ -17,7 +17,6 @@
 > .   Child: 1  Compound [line: 5]
 > .   .   .   Child: 1  Const 22 [line: 9]
 > .   .   Child: 1  Op: [ [line: 9]
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Number of errors: 0
 > Number of warnings: 3
 > .   .   Sibling: 1  Const 999 [line: 10]

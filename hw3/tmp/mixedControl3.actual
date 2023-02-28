@@ -53,13 +53,6 @@ ERROR(19): Symbol 'x' is already declared at line 4.
 ERROR(20): Symbol 'x' is already declared at line 4.
 ERROR(7): Symbol 'x' is already declared at line 4.
 ERROR(9): Symbol 'x' is already declared at line 4.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 Func: main returns type void [line: 2]
 Number of errors: 6
 Number of warnings: 7

@@ -14,7 +14,7 @@
 > .   .   .   .   Child: 1  Id: x [line: 5]
 > .   .   .   .   Child: 1  Id: x [line: 7]
 > .   .   .   .   Child: 1  Id: x [line: 8]
-16,19c16,25
+16,19c16,21
 < .   .   .   Child: 2  Id: x of type int [line: 6]
 < .   .   .   Child: 2  Id: x of type int [line: 7]
 < .   .   .   Child: 2  Id: x of type int [line: 8]
@@ -26,28 +26,24 @@
 > .   .   .   Child: 2  Id: x [line: 8]
 > ERROR(7): Symbol 'x' is already declared at line 4.
 > ERROR(8): Symbol 'x' is already declared at line 4.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-21,22c27,28
+21,22c23,24
 < Number of errors: 0
 < Number of warnings: 2
 ---
 > Number of errors: 2
 > Number of warnings: 12
-24c30
+24c26
 < .   .   Sibling: 1  Var: z is array of type int [line: 3]
 ---
 > .   .   Sibling: 1  Var: z of array of type int [line: 3]
-26a33,38
+26a29,34
 > WARNING(3): The variable 'y' seems not to be used.
 > WARNING(3): The variable 'y' seems not to be used.
 > WARNING(3): The variable 'y' seems not to be used.
 > WARNING(3): The variable 'z' seems not to be used.
 > WARNING(3): The variable 'z' seems not to be used.
 > WARNING(3): The variable 'z' seems not to be used.
-27a40,43
+27a36,39
 > WARNING(4): The variable 'x' seems not to be used.
 > WARNING(4): The variable 'x' seems not to be used.
 > WARNING(4): The variable 'x' seems not to be used.

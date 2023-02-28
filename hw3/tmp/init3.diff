@@ -1,4 +1,4 @@
-1,7c1,30
+1,7c1,29
 < ERROR(10): Symbol 'output' is not declared.
 < ERROR(11): Symbol 'output' is not declared.
 < ERROR(12): Symbol 'output' is not declared.
@@ -20,7 +20,6 @@
 > .   .   Child: 0  Var: y of type int [line: 5]
 > .   .   Child: 1  Call: output [line: 10]
 > .   Child: 1  Compound [line: 4]
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
 > Number of errors: 0
 > Number of warnings: 5
 > .   .   Sibling: 1  Call: output [line: 11]

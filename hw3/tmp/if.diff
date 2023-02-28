@@ -22,7 +22,7 @@
 > .   .   .   Child: 1  Assign: ++ [line: 10]
 > .   .   Child: 1  Assign: <= [line: 6]
 > .   .   .   Child: 1  Assign: ++ [line: 8]
-13,15c13,16
+13,15c13,15
 < .   .   .   Child: 1  Const 0 of type int [line: 6]
 < .   .   .   .   Child: 1  Const 10 of type int [line: 10]
 < .   .   .   Child: 2  Assign: -- of type int [line: 11]
@@ -30,10 +30,9 @@
 > .   .   .   Child: 1  Const 0 [line: 6]
 > .   .   .   .   Child: 1  Const 10 [line: 10]
 > .   .   .   Child: 2  Assign: -- [line: 11]
-> ERROR(SymbolTable): You cannot leave global scope.  Number of scopes: 1.
-18c19
+18c18
 < Number of warnings: 0
 ---
 > Number of warnings: 1
-20a22
+20a21
 > WARNING(4): The variable 'x' seems not to be used.
