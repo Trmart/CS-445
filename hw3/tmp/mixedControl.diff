@@ -1,25 +1,15 @@
-10,19c10,19
+10,14c10,14
 < .   .   .   .   Child: 0  Id: x of type int [line: 18]
 < .   .   .   .   Child: 0  Id: x of type int [line: 24]
 < .   .   .   .   Child: 0  Id: x of type int [line: 6]
 < .   .   .   .   Child: 0  Id: y of type int [line: 10]
 < .   .   .   .   Child: 0  Id: y of type int [line: 13]
-< .   .   .   Child: 0  Op: !< of type bool [line: 10]
-< .   .   .   Child: 0  Op: !< of type bool [line: 13]
-< .   .   .   Child: 0  Op: !< of type bool [line: 18]
-< .   .   .   Child: 0  Op: !< of type bool [line: 24]
-< .   .   .   Child: 0  Op: !< of type bool [line: 6]
 ---
 > .   .   .   .   Child: 0  Id: x [line: 18]
 > .   .   .   .   Child: 0  Id: x [line: 24]
 > .   .   .   .   Child: 0  Id: x [line: 6]
 > .   .   .   .   Child: 0  Id: y [line: 10]
 > .   .   .   .   Child: 0  Id: y [line: 13]
-> .   .   .   Child: 0  Op: !< [line: 10]
-> .   .   .   Child: 0  Op: !< [line: 13]
-> .   .   .   Child: 0  Op: !< [line: 18]
-> .   .   .   Child: 0  Op: !< [line: 24]
-> .   .   .   Child: 0  Op: !< [line: 6]
 27,34c27,34
 < .   .   .   .   .   Child: 1  Id: x of type int [line: 20]
 < .   .   .   .   .   .   Child: 1  Id: x of type int [line: 28]

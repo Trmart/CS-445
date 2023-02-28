@@ -1,7 +1,7 @@
 .   .   .   Child: 0  Id: x [line: 5]
 .   .   .   .   Child: 0  Id: x [line: 7]
 .   .   .   .   Child: 0  Id: x [line: 7]
-.   .   .   Child: 0  Op: > [line: 7]
+.   .   .   Child: 0  Op: > of type bool [line: 7]
 .   .   Child: 0  Var: x of type int [line: 4]
 .   .   Child: 1  Assign: <= [line: 5]
 .   .   .   Child: 1  Assign: ++ [line: 7]

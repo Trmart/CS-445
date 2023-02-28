@@ -7,8 +7,8 @@
 > .   .   .   .   .   Child: 0  Id: cc [line: 12]
 > .   .   .   Child: 0  Id: x [line: 7]
 > .   .   .   Child: 0  Id: x [line: 8]
-> .   .   .   Child: 0  Op: [ [line: 10]
-> .   .   .   .   Child: 0  Op: [ [line: 12]
+> .   .   .   Child: 0  Op: [ of type undefined [line: 10]
+> .   .   .   .   Child: 0  Op: [ of type undefined [line: 12]
 > .   .   Child: 0  Var: aa of array of type int [line: 3]
 > .   .   Child: 1  Assign: <= [line: 7]
 > .   Child: 1  Compound [line: 2]
@@ -19,7 +19,7 @@
 > .   .   .   .   Child: 1  Id: a [line: 10]
 > .   .   .   Child: 1  Id: b [line: 10]
 > .   .   .   Child: 1  Id: x [line: 7]
-> .   .   .   Child: 1  Op: != [line: 12]
+> .   .   .   Child: 1  Op: != of type bool [line: 12]
 4,7c22,38
 < Number of errors: 3
 < Number of warnings: 4
@@ -31,7 +31,7 @@
 > Number of warnings: 6
 > .   .   Sibling: 1  Assign: <= [line: 8]
 > .   .   Sibling: 1  Var: a of type int [line: 3]
-> .   .   Sibling: 2  Op: [ [line: 9]
+> .   .   Sibling: 2  Op: [ of type undefined [line: 9]
 > .   .   Sibling: 2  Var: bb of array of type bool [line: 4]
 > .   .   Sibling: 3  Assign: <= [line: 10]
 > .   .   Sibling: 3  Var: b of type bool [line: 4]

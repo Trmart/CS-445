@@ -14,7 +14,7 @@
 > .   .   .   .   Child: 1  Const 3 of type int [line: 5]
 > .   .   .   Child: 1  Id: i [line: 3]
 > .   .   .   Child: 1  Id: i [line: 4]
-> .   .   .   Child: 1  Op: + [line: 5]
+> .   .   .   Child: 1  Op: + of type int [line: 5]
 3d15
 < ERROR(4): Symbol 'i' is not declared.
 6,14c18,26

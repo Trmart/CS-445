@@ -1,15 +1,7 @@
-2,3c2,3
-< .   .   .   .   Child: 0  Op: * of type int [line: 6]
-< .   .   .   Child: 0  Op: + of type int [line: 6]
----
-> .   .   .   .   Child: 0  Op: * [line: 6]
-> .   .   .   Child: 0  Op: + [line: 6]
-8,9c8,9
+8c8
 < .   .   .   .   Child: 1  Id: x of type int [line: 6]
-< .   .   Child: 1  Op: > of type bool [line: 6]
 ---
 > .   .   .   .   Child: 1  Id: x [line: 6]
-> .   .   Child: 1  Op: > [line: 6]
 13c13
 < WARNING(6): Variable 'x' may be uninitialized when used here.
 ---

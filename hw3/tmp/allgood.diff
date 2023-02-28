@@ -6,7 +6,7 @@
 > .   .   .   Child: 0  Assign: <= [line: 15]
 > .   .   .   Child: 0  Call: ant [line: 82]
 > .   .   .   .   Child: 0  Call: ant [line: 85]
-15,78c15,78
+15,63c15,63
 < .   .   .   Child: 0  Const is array "cows" of type char [line: 77]
 < .   .   .   Child: 0  Const 'm' of type char [line: 64]
 < .   .   .   Child: 0  Id: aa of type int [line: 40]
@@ -56,21 +56,6 @@
 < .   .   .   .   .   Child: 0  Id: i of type int [line: 70]
 < .   .   .   .   Child: 0  Id: z of type int [line: 47]
 < .   .   .   .   .   Child: 0  Id: z of type int [line: 51]
-< .   .   .   .   .   Child: 0  Op: and of type bool [line: 13]
-< .   .   .   .   Child: 0  Op: not of type bool [line: 13]
-< .   .   .   .   Child: 0  Op: not of type bool [line: 14]
-< .   .   .   Child: 0  Op: < of type bool [line: 10]
-< .   .   .   .   Child: 0  Op: !< of type bool [line: 11]
-< .   .   .   Child: 0  Op: !> of type bool [line: 11]
-< .   .   .   Child: 0  Op: = of type bool [line: 12]
-< .   .   .   Child: 0  Op: [ of type bool [line: 41]
-< .   .   .   Child: 0  Op: = of type bool [line: 68]
-< .   .   .   Child: 0  Op: > of type bool [line: 9]
-< .   .   .   Child: 0  Op: [ of type char [line: 42]
-< .   .   .   .   Child: 0  Op: [ of type char [line: 83]
-< .   .   .   Child: 0  Op: + of type int [line: 85]
-< .   .   .   .   Child: 0  Op: + of undefined type [line: 49]
-< .   .   .   .   .   Child: 0  Op: or of type bool [line: 14]
 ---
 > .   .   .   Child: 0  Const is array "cows" [line: 77]
 > .   .   .   Child: 0  Const 'm' [line: 64]
@@ -121,21 +106,25 @@
 > .   .   .   .   .   Child: 0  Id: i [line: 70]
 > .   .   .   .   Child: 0  Id: z [line: 47]
 > .   .   .   .   .   Child: 0  Id: z [line: 51]
-> .   .   .   .   .   Child: 0  Op: and [line: 13]
-> .   .   .   Child: 0  Op: < [line: 10]
-> .   .   .   .   Child: 0  Op: !< [line: 11]
-> .   .   .   Child: 0  Op: !> [line: 11]
-> .   .   .   Child: 0  Op: = [line: 12]
-> .   .   .   Child: 0  Op: [ [line: 41]
-> .   .   .   Child: 0  Op: [ [line: 42]
-> .   .   .   .   Child: 0  Op: + [line: 49]
-> .   .   .   Child: 0  Op: = [line: 68]
-> .   .   .   .   Child: 0  Op: [ [line: 83]
-> .   .   .   Child: 0  Op: + [line: 85]
-> .   .   .   Child: 0  Op: > [line: 9]
+65,66c65,66
+< .   .   .   .   Child: 0  Op: not of type bool [line: 13]
+< .   .   .   .   Child: 0  Op: not of type bool [line: 14]
+---
 > .   .   .   .   Child: 0  Op: not [line: 13]
 > .   .   .   .   Child: 0  Op: not [line: 14]
-> .   .   .   .   .   Child: 0  Op: or [line: 14]
+71d70
+< .   .   .   Child: 0  Op: [ of type bool [line: 41]
+74,75c73
+< .   .   .   Child: 0  Op: [ of type char [line: 42]
+< .   .   .   .   Child: 0  Op: [ of type char [line: 83]
+---
+> .   .   .   .   Child: 0  Op: + of type int [line: 49]
+77c75,77
+< .   .   .   .   Child: 0  Op: + of undefined type [line: 49]
+---
+> .   .   .   Child: 0  Op: [ of type undefined [line: 41]
+> .   .   .   Child: 0  Op: [ of type undefined [line: 42]
+> .   .   .   .   Child: 0  Op: [ of type undefined [line: 83]
 82c82
 < .   .   Child: 0  Var: bbb of type bool [line: 76]
 ---
@@ -202,26 +191,22 @@
 > .   .   .   .   .   Child: 1  Id: i [line: 70]
 > .   .   .   .   Child: 1  Id: z [line: 47]
 > .   .   .   .   .   Child: 1  Id: z [line: 50]
-157,160c157,160
-< .   .   .   Child: 1  Op: != of type bool [line: 83]
+158,160c158,160
 < .   .   Child: 1  Op: [ of type int [line: 40]
 < .   .   .   .   Child: 1  Op: [ of type int [line: 42]
 < .   .   .   .   Child: 1  Op: * of undefined type [line: 49]
 ---
-> .   .   Child: 1  Op: [ [line: 40]
-> .   .   .   .   Child: 1  Op: [ [line: 42]
-> .   .   .   .   Child: 1  Op: * [line: 49]
-> .   .   .   Child: 1  Op: != [line: 83]
-173,176c173,183
+> .   .   .   .   Child: 1  Op: * of type int [line: 49]
+> .   .   Child: 1  Op: [ of type undefined [line: 40]
+> .   .   .   .   Child: 1  Op: [ of type undefined [line: 42]
+173c173
 < .   .   .   .   Child: 2  Id: aa of undefined type [line: 48]
-< .   .   .   Child: 2  Op: and of type bool [line: 48]
-< .   .   .   Child: 2  Op: + of type int [line: 47]
-< .   .   .   .   Child: 2  Op: % of undefined type [line: 49]
 ---
 > .   .   .   .   Child: 2  Id: aa [line: 48]
-> .   .   .   Child: 2  Op: and [line: 48]
-> .   .   .   Child: 2  Op: + [line: 47]
-> .   .   .   .   Child: 2  Op: % [line: 49]
+176c176,183
+< .   .   .   .   Child: 2  Op: % of undefined type [line: 49]
+---
+> .   .   .   .   Child: 2  Op: % of type int [line: 49]
 > ERROR(25): Symbol 'a' is not declared.
 > ERROR(26): Symbol 'a' is not declared.
 > ERROR(27): Symbol 'a' is not declared.
@@ -229,37 +214,19 @@
 > ERROR(37): Symbol 'b' is already declared at line 3.
 > ERROR(5): Symbol 'a' is not declared.
 > ERROR(7): Symbol 'c' is not declared.
-178,180c185,187
+178,179c185,186
 < Number of errors: 0
 < Number of warnings: 5
-< .   .   Sibling: 10  Op: != of type bool [line: 56]
 ---
 > Number of errors: 7
 > Number of warnings: 12
-> .   .   Sibling: 10  Op: != [line: 56]
-182,192c189,199
-< .   .   Sibling: 11  Op: > of type bool [line: 57]
-< .   .   Sibling: 11  Op: + of type int [line: 19]
-< .   .   Sibling: 12  Op: !< of type bool [line: 58]
-< .   .   Sibling: 12  Op: - of type int [line: 20]
-< .   .   Sibling: 13  Op: < of type bool [line: 59]
-< .   .   Sibling: 13  Op: * of type int [line: 21]
-< .   .   Sibling: 14  Op: !> of type bool [line: 60]
-< .   .   Sibling: 14  Op: / of type int [line: 22]
+190c197
 < .   .   Sibling: 15  Assign: <= of type char [line: 62]
-< .   .   Sibling: 15  Op: % of type int [line: 23]
+---
+> .   .   Sibling: 15  Assign: <= [line: 62]
+192c199
 < .   .   Sibling: 16  Assign: += of type int [line: 25]
 ---
-> .   .   Sibling: 11  Op: + [line: 19]
-> .   .   Sibling: 11  Op: > [line: 57]
-> .   .   Sibling: 12  Op: - [line: 20]
-> .   .   Sibling: 12  Op: !< [line: 58]
-> .   .   Sibling: 13  Op: * [line: 21]
-> .   .   Sibling: 13  Op: < [line: 59]
-> .   .   Sibling: 14  Op: / [line: 22]
-> .   .   Sibling: 14  Op: !> [line: 60]
-> .   .   Sibling: 15  Assign: <= [line: 62]
-> .   .   Sibling: 15  Op: % [line: 23]
 > .   .   Sibling: 16  Assign: += [line: 25]
 194,202c201,209
 < .   .   Sibling: 17  Assign: -= of type int [line: 26]
@@ -323,13 +290,11 @@
 < .   .   Sibling: 8  Assign: <= of type int [line: 54]
 ---
 > .   .   Sibling: 8  Assign: <= [line: 54]
-236,239c243,250
-< .   .   Sibling: 9  Op: = of type bool [line: 55]
+237,239c244,250
 < WARNING(40): Variable 'aa' may be uninitialized when used here.
 < WARNING(41): Variable 'b' may be uninitialized when used here.
 < WARNING(42): Variable 'c' may be uninitialized when used here.
 ---
-> .   .   Sibling: 9  Op: = [line: 55]
 > WARNING(37): The variable 'a' seems not to be used.
 > WARNING(37): The variable 'c' seems not to be used.
 > WARNING(38): The variable 'aa' seems not to be used.

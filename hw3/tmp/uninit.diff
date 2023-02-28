@@ -13,12 +13,12 @@
 > .   .   .   Child: 0  Id: m [line: 12]
 > .   .   .   Child: 0  Id: z [line: 5]
 > .   .   .   Child: 0  Id: z [line: 6]
-> .   .   .   .   .   .   .   .   Child: 0  Op: + [line: 15]
-> .   .   .   .   .   .   .   Child: 0  Op: + [line: 15]
-> .   .   .   .   .   .   Child: 0  Op: + [line: 15]
-> .   .   .   .   .   Child: 0  Op: + [line: 15]
-> .   .   .   .   Child: 0  Op: + [line: 15]
-> .   .   .   Child: 0  Op: + [line: 15]
+> .   .   .   .   .   .   .   .   Child: 0  Op: + of type int [line: 15]
+> .   .   .   .   .   .   .   Child: 0  Op: + of type int [line: 15]
+> .   .   .   .   .   .   Child: 0  Op: + of type int [line: 15]
+> .   .   .   .   .   Child: 0  Op: + of type int [line: 15]
+> .   .   .   .   Child: 0  Op: + of type int [line: 15]
+> .   .   .   Child: 0  Op: + of type int [line: 15]
 > .   Child: 0  Parm: x of type int [line: 1]
 > .   .   Child: 0  Var: z of type int [line: 3]
 > .   .   Child: 1  Assign: <= [line: 5]
@@ -35,8 +35,8 @@
 > .   .   .   .   .   Child: 1  Id: l [line: 15]
 > .   .   .   .   Child: 1  Id: m [line: 15]
 > .   .   .   Child: 1  Id: z [line: 15]
-> .   .   .   Child: 1  Op: + [line: 7]
-> .   .   .   Child: 1  Op: + [line: 8]
+> .   .   .   Child: 1  Op: + of type int [line: 7]
+> .   .   .   Child: 1  Op: + of type int [line: 8]
 > ERROR(14): Symbol 'main' is not declared.
 5,6c39,40
 < ERROR(LINKER): A function named 'main()' must be defined.
@@ -54,7 +54,7 @@
 < WARNING(8): Variable 'h' may be uninitialized when used here.
 < WARNING(9): Variable 'j' may be uninitialized when used here.
 ---
-> .   .   Sibling: 10  Op: + [line: 15]
+> .   .   Sibling: 10  Op: + of type int [line: 15]
 > .   .   Sibling: 1  Assign: <= [line: 6]
 > .   .   Sibling: 1  Var: g of type int [line: 3]
 > .   .   Sibling: 2  Assign: <= [line: 7]

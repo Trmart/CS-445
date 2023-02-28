@@ -23,4 +23,4 @@
 49c49
 < .   .   .   .   .   Child: 2  Op: * of undefined type [line: 14]
 ---
-> .   .   .   .   .   Child: 2  Op: * [line: 14]
+> .   .   .   .   .   Child: 2  Op: * of type int [line: 14]

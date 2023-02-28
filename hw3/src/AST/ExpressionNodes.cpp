@@ -362,7 +362,7 @@ std::string Binary::getSymbol() const
 //BinaryNode printTokenString
 std::string Binary::printTokenString() const
 {
-    return "Op: " + getSymbol();
+    return "Op: " + getSymbol() + " of type " +  m_nodeData->convertTypeToString(m_nodeData->getType());
 }
 
 Binary::Type Binary::getBinaryType() const

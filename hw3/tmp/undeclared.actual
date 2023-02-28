@@ -11,7 +11,7 @@
 .   .   .   .   Child: 1  Const 3 of type int [line: 5]
 .   .   .   Child: 1  Id: i [line: 3]
 .   .   .   Child: 1  Id: i [line: 4]
-.   .   .   Child: 1  Op: + [line: 5]
+.   .   .   Child: 1  Op: + of type int [line: 5]
 ERROR(3): Symbol 'z' is not declared.
 ERROR(4): Symbol 'z' is not declared.
 ERROR(5): Symbol 'i' is not declared.

@@ -1,9 +1,7 @@
-3,4c3,4
+3c3
 < .   .   .   .   .   .   Child: 0  Id: x of type int [line: 5]
-< .   .   .   .   .   Child: 0  Op: > of type bool [line: 5]
 ---
 > .   .   .   .   .   .   Child: 0  Id: x [line: 5]
-> .   .   .   .   .   Child: 0  Op: > [line: 5]
 11c11
 < .   .   .   .   .   Child: 1  Id: x of undefined type [line: 5]
 ---

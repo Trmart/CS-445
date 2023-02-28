@@ -1,17 +1,15 @@
-2,7c2,7
+2,6c2,6
 < .   .   .   .   Child: 0  Id: x of type int [line: 10]
 < .   .   .   .   Child: 0  Id: x of type int [line: 10]
 < .   .   .   .   Child: 0  Id: x of type int [line: 11]
 < .   .   .   Child: 0  Id: x of type int [line: 6]
 < .   .   .   .   Child: 0  Id: x of type int [line: 8]
-< .   .   .   Child: 0  Op: < of type bool [line: 10]
 ---
 > .   .   .   .   Child: 0  Id: x [line: 10]
 > .   .   .   .   Child: 0  Id: x [line: 10]
 > .   .   .   .   Child: 0  Id: x [line: 11]
 > .   .   .   Child: 0  Id: x [line: 6]
 > .   .   .   .   Child: 0  Id: x [line: 8]
-> .   .   .   Child: 0  Op: < [line: 10]
 9,11c9,11
 < .   .   .   Child: 1  Assign: ++ of type int [line: 10]
 < .   .   Child: 1  Assign: <= of type int [line: 6]

@@ -36,7 +36,7 @@
 > .   .   .   Child: 1  Id: c [line: 15]
 > .   .   .   Child: 1  Id: c [line: 19]
 > .   .   .   Child: 1  Id: c [line: 9]
-> .   .   Child: 1  Op: < [line: 7]
+> .   .   Child: 1  Op: < of type bool [line: 7]
 > Func: main returns type void [line: 1]
 > Number of errors: 0
 12,14c31,46
@@ -44,19 +44,19 @@
 < WARNING(8): Variable 'b' may be uninitialized when used here.
 < WARNING(9): Variable 'c' may be uninitialized when used here.
 ---
-> .   .   Sibling: 10  Op: < [line: 18]
-> .   .   Sibling: 11  Op: < [line: 19]
-> .   .   Sibling: 1  Op: < [line: 8]
+> .   .   Sibling: 10  Op: < of type bool [line: 18]
+> .   .   Sibling: 11  Op: < of type bool [line: 19]
+> .   .   Sibling: 1  Op: < of type bool [line: 8]
 > .   .   Sibling: 1  Var: b of type bool [line: 4]
-> .   .   Sibling: 2  Op: < [line: 9]
+> .   .   Sibling: 2  Op: < of type bool [line: 9]
 > .   .   Sibling: 2  Var: c of type char [line: 5]
-> .   .   Sibling: 3  Op: < [line: 10]
-> .   .   Sibling: 4  Op: < [line: 11]
-> .   .   Sibling: 5  Op: < [line: 12]
-> .   .   Sibling: 6  Op: < [line: 13]
-> .   .   Sibling: 7  Op: < [line: 14]
-> .   .   Sibling: 8  Op: < [line: 15]
-> .   .   Sibling: 9  Op: < [line: 17]
+> .   .   Sibling: 3  Op: < of type bool [line: 10]
+> .   .   Sibling: 4  Op: < of type bool [line: 11]
+> .   .   Sibling: 5  Op: < of type bool [line: 12]
+> .   .   Sibling: 6  Op: < of type bool [line: 13]
+> .   .   Sibling: 7  Op: < of type bool [line: 14]
+> .   .   Sibling: 8  Op: < of type bool [line: 15]
+> .   .   Sibling: 9  Op: < of type bool [line: 17]
 > WARNING(3): The variable 'a' seems not to be used.
 > WARNING(4): The variable 'b' seems not to be used.
 > WARNING(5): The variable 'c' seems not to be used.
