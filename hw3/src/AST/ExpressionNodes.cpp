@@ -471,11 +471,11 @@ std::string Const::printTokenString() const
 
                                     if(m_boolValue)
                                     {
-                                        tokenOutputString += "true";
+                                        tokenOutputString += "true of type bool";
                                     }
                                     else
                                     {
-                                        tokenOutputString += "false";
+                                        tokenOutputString += "false of type bool";
                                     }
                                 }
                                 break;

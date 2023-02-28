@@ -1,5 +1,4 @@
-1,7c1,7
-< .   .   .   Child: 0  Const false of type bool [line: 8]
+2,7c2,7
 < .   .   .   .   Child: 0  Id: x of type int [line: 10]
 < .   .   .   .   Child: 0  Id: x of type int [line: 10]
 < .   .   .   .   Child: 0  Id: x of type int [line: 11]
@@ -7,7 +6,6 @@
 < .   .   .   .   Child: 0  Id: x of type int [line: 8]
 < .   .   .   Child: 0  Op: < of type bool [line: 10]
 ---
-> .   .   .   Child: 0  Const false [line: 8]
 > .   .   .   .   Child: 0  Id: x [line: 10]
 > .   .   .   .   Child: 0  Id: x [line: 10]
 > .   .   .   .   Child: 0  Id: x [line: 11]

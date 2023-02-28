@@ -1,4 +1,4 @@
-.   .   .   Child: 0  Const true [line: 4]
+.   .   .   Child: 0  Const true of type bool [line: 4]
 .   Child: 1  Compound [line: 3]
 .   .   .   Child: 1  Compound [line: 4]
 .   .   .   .   Child: 1  Const 666 [line: 5]

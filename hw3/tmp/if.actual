@@ -1,4 +1,4 @@
-.   .   .   Child: 0  Const false [line: 8]
+.   .   .   Child: 0  Const false of type bool [line: 8]
 .   .   .   .   Child: 0  Id: x [line: 10]
 .   .   .   .   Child: 0  Id: x [line: 10]
 .   .   .   .   Child: 0  Id: x [line: 11]

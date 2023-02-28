@@ -7,8 +7,8 @@
 < Number of errors: 5
 ---
 > .   .   .   Child: 0  Const 111 [line: 4]
-> .   .   .   Child: 0  Const false [line: 6]
-> .   .   .   Child: 0  Const true [line: 5]
+> .   .   .   Child: 0  Const false of type bool [line: 6]
+> .   .   .   Child: 0  Const true of type bool [line: 5]
 > .   .   .   Child: 0  Const 'x' [line: 7]
 > .   .   Child: 1  Call: output [line: 4]
 > .   Child: 1  Compound [line: 3]

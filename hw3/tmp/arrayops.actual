@@ -79,7 +79,7 @@
 .   .   .   Child: 1  Const 'a' [line: 50]
 .   .   .   Child: 1  Const 'b' [line: 51]
 .   .   .   Child: 1  Const 'c' [line: 52]
-.   .   .   .   Child: 1  Const true [line: 9]
+.   .   .   .   Child: 1  Const true of type bool [line: 9]
 .   .   .   Child: 1  Id: aa [line: 13]
 .   .   .   Child: 1  Id: aa [line: 15]
 .   .   .   Child: 1  Id: aa [line: 22]

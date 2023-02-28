@@ -1,6 +1,0 @@
-1,2c1,2
-< .   .   .   Child: 0  Const true of type bool [line: 4]
-< .   .   .   .   .   Child: 0  Const true of type bool [line: 5]
----
-> .   .   .   Child: 0  Const true [line: 4]
-> .   .   .   .   .   Child: 0  Const true [line: 5]

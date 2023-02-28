@@ -22,9 +22,5 @@
 ---
 > Number of warnings: 3
 > .   .   Sibling: 1  Const 'z' [line: 7]
-15c15
-< .   .   Sibling: 2  Const true of type bool [line: 8]
----
-> .   .   Sibling: 2  Const true [line: 8]
 16a17
 > WARNING(3): The variable 'x' seems not to be used.

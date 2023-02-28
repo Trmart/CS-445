@@ -1,7 +1,3 @@
-1c1
-< .   .   .   Child: 0  Const true of type bool [line: 4]
----
-> .   .   .   Child: 0  Const true [line: 4]
 4c4
 < .   .   .   .   Child: 1  Const 666 of type int [line: 5]
 ---

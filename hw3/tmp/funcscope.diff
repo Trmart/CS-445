@@ -9,8 +9,8 @@
 < WARNING(10): The variable 'x' seems not to be used.
 < WARNING(15): The variable 'x' seems not to be used.
 ---
-> .   .   .   Child: 0  Const true [line: 36]
-> .   .   .   Child: 0  Const true [line: 46]
+> .   .   .   Child: 0  Const true of type bool [line: 36]
+> .   .   .   Child: 0  Const true of type bool [line: 46]
 > .   .   .   .   Child: 0  Id: x [line: 12]
 > .   .   .   .   Child: 0  Id: x [line: 19]
 > .   .   .   .   Child: 0  Id: x [line: 23]

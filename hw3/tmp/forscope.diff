@@ -2,8 +2,8 @@
 < ERROR(16): Symbol 'x' is already declared at line 15.
 < ERROR(29): Symbol 'x' is already declared at line 28.
 ---
-> .   .   .   .   Child: 0  Const true [line: 36]
-> .   .   .   .   Child: 0  Const true [line: 45]
+> .   .   .   .   Child: 0  Const true of type bool [line: 36]
+> .   .   .   .   Child: 0  Const true of type bool [line: 45]
 > .   .   .   .   Child: 0  Id: values [line: 10]
 > .   .   .   .   Child: 0  Id: values [line: 15]
 > .   .   .   .   Child: 0  Id: values [line: 22]

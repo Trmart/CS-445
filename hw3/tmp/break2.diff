@@ -6,8 +6,8 @@
 < Number of errors: 4
 < Number of warnings: 0
 ---
-> .   .   .   Child: 0  Const true [line: 7]
-> .   .   .   .   .   Child: 0  Const true [line: 8]
+> .   .   .   Child: 0  Const true of type bool [line: 7]
+> .   .   .   .   .   Child: 0  Const true of type bool [line: 8]
 > .   .   .   .   .   .   .   Child: 0  Id: i [line: 10]
 > .   .   .   .   .   .   .   .   Child: 0  Id: i [line: 11]
 > .   .   .   .   .   .   Child: 0  Id: i [line: 14]

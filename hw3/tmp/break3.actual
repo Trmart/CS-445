@@ -1,5 +1,5 @@
 .   .   .   .   .   Child: 0  Const 1 [line: 5]
-.   .   .   Child: 0  Const true [line: 5]
+.   .   .   Child: 0  Const true of type bool [line: 5]
 .   .   .   .   .   .   Child: 0  Id: x [line: 5]
 .   .   .   .   .   Child: 0  Op: > [line: 5]
 .   .   Child: 0  Var: x of type int [line: 4]
