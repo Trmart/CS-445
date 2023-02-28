@@ -22,7 +22,7 @@
 .   .   .   .   Child: 1  While [line: 8]
 Func: main returns type void [line: 2]
 Number of errors: 0
-Number of warnings: 3
+Number of warnings: 1
 .   .   .   .   .   .   Sibling: 1  Call: output [line: 10]
 .   .   .   .   Sibling: 1  If [line: 14]
 .   .   Sibling: 1  While [line: 7]
@@ -30,6 +30,4 @@ Number of warnings: 3
 .   .   .   .   .   .   Sibling: 2  If [line: 11]
 .   .   .   .   .   .   Sibling: 3  Call: outnl [line: 12]
 .   .   Sibling: 3  Call: outnl [line: 17]
-WARNING(4): The variable 'i' seems not to be used.
-WARNING(4): The variable 'i' seems not to be used.
 WARNING(4): The variable 'i' seems not to be used.

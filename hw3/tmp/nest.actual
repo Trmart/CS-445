@@ -109,7 +109,7 @@ ERROR(50): Symbol 'a' is already declared at line 9.
 ERROR(51): Symbol 'b' is already declared at line 10.
 ERROR(52): Symbol 'z' is already declared at line 5.
 Number of errors: 7
-Number of warnings: 20
+Number of warnings: 5
 .   .   Sibling: 10  Assign: <= [line: 24]
 .   .   .   Sibling: 10  Assign: <= [line: 66]
 .   .   .   .   Sibling: 10  Assign: <= [line: 88]
@@ -196,22 +196,7 @@ Sibling: 4  Func: main returns type void [line: 31]
 .   .   Sibling: 9  Call: output [line: 47]
 Var: x of type int [line: 3]
 WARNING(10): The variable 'b' seems not to be used.
-WARNING(10): The variable 'b' seems not to be used.
-WARNING(10): The variable 'b' seems not to be used.
-WARNING(10): The variable 'b' seems not to be used.
-WARNING(3): The variable 'x' seems not to be used.
-WARNING(3): The variable 'x' seems not to be used.
-WARNING(3): The variable 'x' seems not to be used.
 WARNING(3): The variable 'x' seems not to be used.
 WARNING(4): The variable 'y' seems not to be used.
-WARNING(4): The variable 'y' seems not to be used.
-WARNING(4): The variable 'y' seems not to be used.
-WARNING(4): The variable 'y' seems not to be used.
 WARNING(5): The variable 'z' seems not to be used.
-WARNING(5): The variable 'z' seems not to be used.
-WARNING(5): The variable 'z' seems not to be used.
-WARNING(5): The variable 'z' seems not to be used.
-WARNING(9): The variable 'a' seems not to be used.
-WARNING(9): The variable 'a' seems not to be used.
-WARNING(9): The variable 'a' seems not to be used.
 WARNING(9): The variable 'a' seems not to be used.

@@ -1,4 +1,4 @@
-1,25c1,115
+1,25c1,103
 < ERROR(12): Cannot index nonarray 'bb'.
 < ERROR(12): Symbol 'bb' is not declared.
 < ERROR(13): Cannot index nonarray 'bb'.
@@ -102,12 +102,9 @@
 > .   .   .   .   Child: 2  Call: output [line: 29]
 > .   .   .   .   .   Child: 2  Const 2 of type int [line: 29]
 > .   .   .   Child: 2  For [line: 29]
-> ERROR(23): Symbol 'i' is already declared at line 20.
-> ERROR(26): Symbol 'i' is already declared at line 20.
-> ERROR(29): Symbol 'i' is already declared at line 20.
 > Func: main returns type void [line: 2]
-> Number of errors: 3
-> Number of warnings: 27
+> Number of errors: 0
+> Number of warnings: 8
 > .   .   Sibling: 10  Call: outnl [line: 21]
 > .   .   Sibling: 11  For [line: 23]
 > .   .   Sibling: 12  Call: outnl [line: 24]
@@ -126,29 +123,10 @@
 > .   .   Sibling: 8  Assign: <= [line: 18]
 > .   .   Sibling: 9  For [line: 20]
 > WARNING(20): The variable 'i' seems not to be used.
-> WARNING(20): The variable 'i' seems not to be used.
-> WARNING(20): The variable 'i' seems not to be used.
-> WARNING(20): The variable 'i' seems not to be used.
-> WARNING(20): The variable 'i' seems not to be used.
-> WARNING(20): The variable 'i' seems not to be used.
-> WARNING(29): The variable 'j' seems not to be used.
-> WARNING(29): The variable 'j' seems not to be used.
+> WARNING(23): The variable 'i' seems not to be used.
+> WARNING(26): The variable 'i' seems not to be used.
+> WARNING(29): The variable 'i' seems not to be used.
 > WARNING(29): The variable 'j' seems not to be used.
 > WARNING(4): The variable 'aa' seems not to be used.
-> WARNING(4): The variable 'aa' seems not to be used.
-> WARNING(4): The variable 'aa' seems not to be used.
-> WARNING(4): The variable 'aa' seems not to be used.
-> WARNING(4): The variable 'aa' seems not to be used.
-> WARNING(4): The variable 'aa' seems not to be used.
-26a117,127
-> WARNING(5): The variable 'ba' seems not to be used.
-> WARNING(5): The variable 'ba' seems not to be used.
-> WARNING(5): The variable 'ba' seems not to be used.
-> WARNING(5): The variable 'ba' seems not to be used.
-> WARNING(5): The variable 'ba' seems not to be used.
-> WARNING(6): The variable 'ca' seems not to be used.
-> WARNING(6): The variable 'ca' seems not to be used.
-> WARNING(6): The variable 'ca' seems not to be used.
-> WARNING(6): The variable 'ca' seems not to be used.
-> WARNING(6): The variable 'ca' seems not to be used.
+26a105
 > WARNING(6): The variable 'ca' seems not to be used.

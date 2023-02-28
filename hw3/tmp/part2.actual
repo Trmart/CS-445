@@ -41,10 +41,11 @@
 .   .   Child: 1  If [line: 4]
 .   .   Child: 1  Return [line: 10]
 .   .   Child: 1  Return [line: 15]
+ERROR(23): Symbol 'y' is not declared.
 ERROR(36): Symbol 'z' is already declared at line 3.
 Func: ant returns type int [line: 1]
-Number of errors: 1
-Number of warnings: 13
+Number of errors: 2
+Number of warnings: 4
 .   .   Sibling: 10  Call: elk [line: 51]
 .   .   Sibling: 1  Assign: <= [line: 23]
 .   .   .   .   Sibling: 1  Const 3 of type int [line: 51]
@@ -72,15 +73,6 @@ Sibling: 6  Func: main returns type void [line: 32]
 .   .   Sibling: 8  Call: dog [line: 49]
 .   .   Sibling: 9  Call: elk [line: 50]
 WARNING(20): The variable 'x' seems not to be used.
-WARNING(20): The variable 'x' seems not to be used.
-WARNING(20): The variable 'x' seems not to be used.
-WARNING(20): The variable 'x' seems not to be used.
 WARNING(34): The variable 'c' seems not to be used.
 WARNING(35): The variable 'd' seems not to be used.
-WARNING(3): The variable 'z' seems not to be used.
-WARNING(3): The variable 'z' seems not to be used.
-WARNING(3): The variable 'z' seems not to be used.
-WARNING(3): The variable 'z' seems not to be used.
-WARNING(3): The variable 'z' seems not to be used.
-WARNING(3): The variable 'z' seems not to be used.
 WARNING(3): The variable 'z' seems not to be used.

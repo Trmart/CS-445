@@ -19,23 +19,7 @@
 > ERROR(16): Symbol 'c' is already declared at line 9.
 > Func: main returns type void [line: 2]
 > Number of errors: 2
-> Number of warnings: 17
+> Number of warnings: 3
 > .   .   .   Sibling: 1  Compound [line: 15]
 > .   .   Sibling: 1  Compound [line: 8]
 > .   .   Sibling: 2  Compound [line: 11]
-7a19,28
-> WARNING(4): The variable 'a' seems not to be used.
-> WARNING(4): The variable 'a' seems not to be used.
-> WARNING(4): The variable 'a' seems not to be used.
-> WARNING(4): The variable 'a' seems not to be used.
-> WARNING(4): The variable 'a' seems not to be used.
-> WARNING(6): The variable 'b' seems not to be used.
-> WARNING(6): The variable 'b' seems not to be used.
-> WARNING(6): The variable 'b' seems not to be used.
-> WARNING(6): The variable 'b' seems not to be used.
-> WARNING(6): The variable 'b' seems not to be used.
-8a30,33
-> WARNING(9): The variable 'c' seems not to be used.
-> WARNING(9): The variable 'c' seems not to be used.
-> WARNING(9): The variable 'c' seems not to be used.
-> WARNING(9): The variable 'c' seems not to be used.

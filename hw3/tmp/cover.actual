@@ -90,9 +90,16 @@
 .   .   .   Child: 2  Compound [line: 7]
 .   .   .   .   Child: 2  Const 3 of type int [line: 7]
 .   .   .   .   .   .   .   .   Child: 2  Const 777 of type int [line: 11]
-ERROR(31): Symbol 'x' is already declared at line 7.
-Number of errors: 1
-Number of warnings: 21
+ERROR(12): Symbol 'a' is not declared.
+ERROR(12): Symbol 'b' is not declared.
+ERROR(13): Symbol 'a' is not declared.
+ERROR(13): Symbol 'b' is not declared.
+ERROR(15): Symbol 'e' is not declared.
+ERROR(16): Symbol 'b' is not declared.
+ERROR(24): Symbol 'c' is not declared.
+ERROR(25): Symbol 'd' is not declared.
+Number of errors: 8
+Number of warnings: 11
 .   .   .   .   .   .   Sibling: 10  Op: ? [line: 20]
 .   .   .   .   .   .   Sibling: 11  Op: ? [line: 21]
 .   .   .   .   .   .   Sibling: 12  Op: + [line: 22]
@@ -133,14 +140,8 @@ Sibling: 3  Func: main returns type void [line: 34]
 .   .   .   .   .   .   Sibling: 9  Assign: -- [line: 19]
 Var: fahrenheit of type int [line: 2]
 WARNING(2): The variable 'fahrenheit' seems not to be used.
-WARNING(2): The variable 'fahrenheit' seems not to be used.
-WARNING(2): The variable 'fahrenheit' seems not to be used.
-WARNING(2): The variable 'fahrenheit' seems not to be used.
-WARNING(2): The variable 'fahrenheit' seems not to be used.
-WARNING(2): The variable 'fahrenheit' seems not to be used.
 WARNING(31): The variable 'i' seems not to be used.
-WARNING(31): The variable 'i' seems not to be used.
-WARNING(31): The variable 'i' seems not to be used.
+WARNING(31): The variable 'x' seems not to be used.
 WARNING(35): The variable 'a' seems not to be used.
 WARNING(35): The variable 'b' seems not to be used.
 WARNING(36): The variable 'c' seems not to be used.
@@ -148,8 +149,4 @@ WARNING(36): The variable 'd' seems not to be used.
 WARNING(37): The variable 'e' seems not to be used.
 WARNING(37): The variable 'f' seems not to be used.
 WARNING(38): The variable 'g' seems not to be used.
-WARNING(7): The variable 'x' seems not to be used.
-WARNING(7): The variable 'x' seems not to be used.
-WARNING(7): The variable 'x' seems not to be used.
-WARNING(7): The variable 'x' seems not to be used.
 WARNING(7): The variable 'x' seems not to be used.

@@ -114,10 +114,19 @@ void Parm::setUsed()
 {
     m_isUsed = true;
 }
+void Parm::setHasNotBeenUsed()
+{
+    m_hasNotBeenUsed = false;
+}
 
 bool Parm::getIsUsed() const
 {
     return m_isUsed;
+}
+
+bool Parm::getHasNotBeenUsed() const
+{
+    return m_hasNotBeenUsed;
 }
 
 //******************************************************
@@ -129,6 +138,8 @@ Var::Var(const int tokenLineNumber,  const std::string variableName, NodeData* v
 {
 
 }
+
+
 
 //printTokenString
 std::string Var::printTokenString() const
@@ -179,6 +190,11 @@ void Var::setUsed()
     m_isUsed = true;
 }
 
+void Var::setHasNotBeenUsed()
+{
+    m_hasNotBeenUsed = true;
+}
+
 //***********************getters***********************
 
 bool Var::getIsInitialized() const
@@ -189,4 +205,9 @@ bool Var::getIsInitialized() const
 bool Var::getIsUsed() const
 {
     return m_isUsed;
+}
+
+bool Var::getHasNotBeenUsed() const
+{
+    return m_hasNotBeenUsed;
 }

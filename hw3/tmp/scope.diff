@@ -1,4 +1,4 @@
-1,16c1,30
+1,12c1,30
 < ERROR(14): Symbol 'b' is not declared.
 < ERROR(25): Symbol 'b' is not declared.
 < ERROR(26): Symbol 'c' is not declared.
@@ -11,10 +11,6 @@
 < ERROR(47): Symbol 's' is not declared.
 < ERROR(47): Symbol 't' is not declared.
 < ERROR(48): Symbol 'cow' is not declared.
-< ERROR(48): Symbol 'u' is not declared.
-< ERROR(48): Symbol 'v' is not declared.
-< ERROR(49): Symbol 'abraxsis' is not declared.
-< ERROR(50): Symbol 'a' is not declared.
 ---
 > .   .   .   Child: 0  Const 3 of type int [line: 7]
 > .   .   .   Child: 0  Id: a [line: 8]
@@ -46,7 +42,11 @@
 > .   .   .   Child: 1  Id: r [line: 46]
 > .   .   Child: 1  Id: x [line: 41]
 > .   .   Child: 1  Return [line: 59]
-18,28c32,80
+14,16d31
+< ERROR(48): Symbol 'v' is not declared.
+< ERROR(49): Symbol 'abraxsis' is not declared.
+< ERROR(50): Symbol 'a' is not declared.
+18,28c33,74
 < ERROR(57): Symbol 'g' is already declared at line 2.
 < ERROR(59): Symbol 'x' is not declared.
 < ERROR(62): Symbol 'g' is already declared at line 2.
@@ -59,8 +59,8 @@
 < Number of warnings: 5
 < WARNING(15): Variable 'c' may be uninitialized when used here.
 ---
-> Number of errors: 1
-> Number of warnings: 40
+> Number of errors: 2
+> Number of warnings: 6
 > .   .   Sibling: 10  Id: x [line: 34]
 > .   .   Sibling: 10  Id: z [line: 51]
 > .   .   Sibling: 11  Id: g [line: 52]
@@ -101,45 +101,11 @@
 > .   .   Sibling: 9  Id: a [line: 50]
 > Var: g of type int [line: 2]
 > WARNING(12): The variable 'c' seems not to be used.
-> WARNING(12): The variable 'c' seems not to be used.
-> WARNING(12): The variable 'c' seems not to be used.
-> WARNING(12): The variable 'c' seems not to be used.
-> WARNING(12): The variable 'c' seems not to be used.
-> WARNING(12): The variable 'c' seems not to be used.
-> WARNING(12): The variable 'c' seems not to be used.
-> WARNING(12): The variable 'c' seems not to be used.
-29a82,103
-> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-> WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-> WARNING(2): The variable 'g' seems not to be used.
-> WARNING(2): The variable 'g' seems not to be used.
-> WARNING(2): The variable 'g' seems not to be used.
-> WARNING(2): The variable 'g' seems not to be used.
-> WARNING(2): The variable 'g' seems not to be used.
-> WARNING(2): The variable 'g' seems not to be used.
-> WARNING(2): The variable 'g' seems not to be used.
+29a76,77
 > WARNING(2): The variable 'g' seems not to be used.
 > WARNING(39): The variable 'z' seems not to be used.
-> WARNING(39): The variable 'z' seems not to be used.
-> WARNING(39): The variable 'z' seems not to be used.
-> WARNING(39): The variable 'z' seems not to be used.
-> WARNING(40): The variable 'bat' seems not to be used.
-> WARNING(40): The variable 'bat' seems not to be used.
-> WARNING(40): The variable 'bat' seems not to be used.
-31,32c105,112
+31,32c79
 < WARNING(44): Variable 'z' may be uninitialized when used here.
 < WARNING(8): Variable 'a' may be uninitialized when used here.
 ---
-> WARNING(5): The variable 'a' seems not to be used.
-> WARNING(5): The variable 'a' seems not to be used.
-> WARNING(5): The variable 'a' seems not to be used.
-> WARNING(5): The variable 'a' seems not to be used.
-> WARNING(5): The variable 'a' seems not to be used.
-> WARNING(5): The variable 'a' seems not to be used.
-> WARNING(5): The variable 'a' seems not to be used.
 > WARNING(5): The variable 'a' seems not to be used.

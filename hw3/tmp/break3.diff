@@ -8,12 +8,9 @@
 < .   .   .   .   .   Child: 1  Id: x of undefined type [line: 5]
 ---
 > .   .   .   .   .   Child: 1  Id: x [line: 5]
-15a16
-> ERROR(5): Symbol 'x' is already declared at line 4.
-17,18c18,20
-< Number of errors: 0
+18c18
 < Number of warnings: 1
 ---
-> Number of errors: 1
 > Number of warnings: 2
-> WARNING(4): The variable 'x' seems not to be used.
+19a20
+> WARNING(5): The variable 'x' seems not to be used.

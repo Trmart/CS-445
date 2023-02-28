@@ -174,12 +174,16 @@
 .   .   .   Child: 2  Op: and [line: 48]
 .   .   .   Child: 2  Op: + [line: 47]
 .   .   .   .   Child: 2  Op: % [line: 49]
+ERROR(25): Symbol 'a' is not declared.
+ERROR(26): Symbol 'a' is not declared.
+ERROR(27): Symbol 'a' is not declared.
+ERROR(28): Symbol 'a' is not declared.
 ERROR(37): Symbol 'b' is already declared at line 3.
-ERROR(48): Symbol 'z' is already declared at line 47.
-ERROR(49): Symbol 'z' is already declared at line 47.
+ERROR(5): Symbol 'a' is not declared.
+ERROR(7): Symbol 'c' is not declared.
 Func: ant returns type int [line: 1]
-Number of errors: 3
-Number of warnings: 55
+Number of errors: 7
+Number of warnings: 12
 .   .   Sibling: 10  Op: != [line: 56]
 .   .   Sibling: 10  While [line: 17]
 .   .   Sibling: 11  Op: + [line: 19]
@@ -238,57 +242,14 @@ Sibling: 4  Func: main returns type int [line: 74]
 .   .   Sibling: 9  If [line: 15]
 .   .   Sibling: 9  Op: = [line: 55]
 WARNING(37): The variable 'a' seems not to be used.
-WARNING(37): The variable 'a' seems not to be used.
-WARNING(37): The variable 'a' seems not to be used.
-WARNING(37): The variable 'a' seems not to be used.
-WARNING(37): The variable 'a' seems not to be used.
-WARNING(37): The variable 'a' seems not to be used.
-WARNING(37): The variable 'a' seems not to be used.
-WARNING(37): The variable 'c' seems not to be used.
-WARNING(37): The variable 'c' seems not to be used.
-WARNING(37): The variable 'c' seems not to be used.
-WARNING(37): The variable 'c' seems not to be used.
-WARNING(37): The variable 'c' seems not to be used.
-WARNING(37): The variable 'c' seems not to be used.
 WARNING(37): The variable 'c' seems not to be used.
 WARNING(38): The variable 'aa' seems not to be used.
-WARNING(38): The variable 'aa' seems not to be used.
-WARNING(38): The variable 'aa' seems not to be used.
-WARNING(38): The variable 'aa' seems not to be used.
-WARNING(38): The variable 'aa' seems not to be used.
-WARNING(38): The variable 'aa' seems not to be used.
-WARNING(38): The variable 'aa' seems not to be used.
-WARNING(38): The variable 'ba' seems not to be used.
-WARNING(38): The variable 'ba' seems not to be used.
-WARNING(38): The variable 'ba' seems not to be used.
-WARNING(38): The variable 'ba' seems not to be used.
-WARNING(38): The variable 'ba' seems not to be used.
-WARNING(38): The variable 'ba' seems not to be used.
 WARNING(38): The variable 'ba' seems not to be used.
 WARNING(38): The variable 'ca' seems not to be used.
-WARNING(38): The variable 'ca' seems not to be used.
-WARNING(38): The variable 'ca' seems not to be used.
-WARNING(38): The variable 'ca' seems not to be used.
-WARNING(38): The variable 'ca' seems not to be used.
-WARNING(38): The variable 'ca' seems not to be used.
-WARNING(38): The variable 'ca' seems not to be used.
-WARNING(3): The variable 'b' seems not to be used.
-WARNING(3): The variable 'b' seems not to be used.
-WARNING(3): The variable 'b' seems not to be used.
-WARNING(3): The variable 'b' seems not to be used.
-WARNING(3): The variable 'b' seems not to be used.
-WARNING(3): The variable 'b' seems not to be used.
-WARNING(3): The variable 'b' seems not to be used.
 WARNING(3): The variable 'b' seems not to be used.
 WARNING(47): The variable 'z' seems not to be used.
-WARNING(47): The variable 'z' seems not to be used.
-WARNING(47): The variable 'z' seems not to be used.
-WARNING(47): The variable 'z' seems not to be used.
-WARNING(47): The variable 'z' seems not to be used.
-WARNING(47): The variable 'z' seems not to be used.
-WARNING(47): The variable 'z' seems not to be used.
-WARNING(69): The variable 'i' seems not to be used.
-WARNING(69): The variable 'i' seems not to be used.
+WARNING(48): The variable 'z' seems not to be used.
+WARNING(49): The variable 'z' seems not to be used.
 WARNING(69): The variable 'i' seems not to be used.
 WARNING(76): The variable 'bbb' seems not to be used.
 WARNING(77): The variable 'ccc' seems not to be used.

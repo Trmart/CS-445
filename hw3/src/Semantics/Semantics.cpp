@@ -208,6 +208,11 @@ void Semantics::analyzeVariableNodeSemantics(Var* variable)
         throw std::runtime_error("ERROR. Semantics::analyzeVariableNodeSemantics() - Node is not of Variable Type");
     }
 
+    // Global vars are always initialized
+    if (m_symbolTable->depth() == 1 || variable->getNodeData()->getIsStatic())
+    {
+        variable->setInitialized();
+    }
 
     
     //add to symbol table
@@ -221,7 +226,110 @@ void Semantics::analyzeVariableNodeSemantics(Var* variable)
 
 void Semantics::analyzeAssignmentNodeSemantics(const Asgn* assignment)
 {
+    //check if unary assignment is not nullptr
+    if(assignment == nullptr)
+    {
+        throw std::runtime_error("ERROR. Semantics::checkUnaryAssignmentOperands() - nullptr Unary Assignment Node");
+    }
+    
+    //check 
+    if(!isAssignmentNode(assignment))
+    {
+        throw std::runtime_error("ERROR. Semantics::checkUnaryAssignmentOperands() - Node is not of Unary Assignment Type");
+    }
 
+
+    //check if left operand is declared
+    std::vector<Node*> childrenNodes = assignment->getChildernNodes();
+
+    //get left and right operands (childern Nodes)
+    Node* leftHandSideNode = (Node* )(childrenNodes[0]);
+    Node* righttHandSideNode = (Node* )(childrenNodes[1]);
+
+    //analyze the right hand side
+    analyzeAST(righttHandSideNode);
+
+    setAndGetExpressionNodeData(assignment);
+
+    //check if left hand side is an identifier
+    if(isIdentifierNode(leftHandSideNode))
+    {
+        Id* leftHandSideIdentifier = (Id* )(leftHandSideNode);
+        Var* previousDeclaration = (Var* )(getFromSymbolTable(leftHandSideIdentifier->getIdentifierName())); 
+        
+
+        //check if the previous declaration is a variable
+        if(isVariableNode(previousDeclaration))
+        {
+            //mark the variable as initialized
+            previousDeclaration->setInitialized();
+        }
+        else
+        {
+            //ERROR(7): Symbol 'x' is not declared.
+            EmitDiagnostics::Error::emitGenericError(leftHandSideIdentifier->getTokenLineNumber(), "Symbol '"+ leftHandSideIdentifier->getIdentifierName() + "' is not declared."); 
+        }
+    }
+
+
+    //the left hand side is not an identifier
+    else
+    {
+        Binary* leftHandSideBinary = (Binary* )(childrenNodes[0]);
+
+        Id* arrayIdentifier = (Id* )(leftHandSideBinary->getChildernNodes()[0]);
+
+        Var* previousDeclaration = (Var* )(getFromSymbolTable(arrayIdentifier->getIdentifierName()));
+        
+        //check if node is not null
+        if(isVariableNode(previousDeclaration))
+        {
+            //if node is not null, set initialized to true
+            previousDeclaration->setInitialized();
+        }
+
+    }
+
+    //switch assignment type
+
+    switch (assignment->getAssignmentType())
+    {
+        case Asgn::Type::ASGN:
+                                {
+                                    //check if left and right operands are valid
+                                    // checkSameTypeOperands((ExpressionNode*)(assignment));
+                                }
+                                break;
+        case Asgn::Type::ADDASS:
+                                {
+                                    //check if left and right operands are valid
+                                    // checkOperands((ExpressionNode*)(assignment), NodeData::Type::INT);
+                                }
+                                break;
+        case Asgn::Type::SUBASS:
+                                {
+                                    //check if left and right operands are valid
+                                    // checkOperands((ExpressionNode*)(assignment), NodeData::Type::INT);
+                                }
+                                break;
+        case Asgn::Type::MULASS:
+                                {
+                                    //check if left and right operands are valid
+                                    // checkOperands((ExpressionNode*)(assignment), NodeData::Type::INT);
+                                }
+                                break;
+        case Asgn::Type::DIVASS:
+                                {
+                                    //check if left and right operands are valid
+                                    // checkOperands((ExpressionNode*)(assignment), NodeData::Type::INT);
+                                }
+                                break;
+        default:
+            {
+                throw std::runtime_error("ERROR. Semantics::analyzeAssignmentNodeSemantics() - Invalid Assignment Node Type");
+            }
+            break;
+    }
 }
 
 
@@ -336,7 +444,8 @@ void Semantics::analyzeCompoundNodeSemantics(const Compound* compound) const
 
 void Semantics::analyzeForNodeSemantics() const
 {
-
+    //enter for into symbol table
+    m_symbolTable->enter("For Loop");
 }
 
 
@@ -427,13 +536,153 @@ void Semantics::checkIndex(const Binary* binary) const
 
 void Semantics::checkSameTypeOperands(ExpressionNode* expression) const
 {
+    // if (!isExpressionNode(expression))
+    // {
+    //     throw std::runtime_error("Semantics::checkOperandsOfSameType() - Invalid Exp");
+    // }
+    // if (!expressionOperandsExist(expression))
+    // {
+    //     throw std::runtime_error("Semantics::checkOperandsOfSameType() - LHS and RHS Exp operands must exist");
+    // }
 
+    // //get teh symbol of the expression
+    // std::string sym = getExpressionSymbol(expression);
+
+    // //get the children of the expression
+    // std::vector<Node* > childrenNodes = expression->getChildernNodes();
+    
+    // //cast the children to expression nodes. set lhs and rhs
+    // ExpressionNode* leftHandSideExpression = (ExpressionNode *)(childrenNodes[0]);
+    // ExpressionNode* rightHandSideExpression = (ExpressionNode *)(childrenNodes[1]);
+    
+    // NodeData* leftHandSideData = setAndGetExpressionNodeData(leftHandSideExpression);
+    // NodeData* rightHandSideData = setAndGetExpressionNodeData(rightHandSideExpression);
+
+    // // Ignore cases where the LHS has no type
+    // if (leftHandSideData->getType() == NodeData::Type::UNDEFINED)
+    // {
+    //     expression->getNodeData()->setType(NodeData::Type::UNDEFINED);
+    //     return;
+    // }
+
+
+    // // Both sides must be the same type
+    // if (leftHandSideData->getType() != rightHandSideData->getType())
+    // {
+    //     EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires operands of the same type but lhs is type " + leftHandSideData->printTokenString() + " and rhs is type " + rightHandSideData->printTokenString() + ".");
+    // }
+
+    // // Both sides must be arrays or both must not be arrays
+    // if (leftHandSideData->getIsArray() && !rightHandSideData->getIsArray())
+    // {
+    //     EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires both operands be arrays or not but lhs is an array and rhs is not an array.");
+    // }
+    // else if (!leftHandSideData->getIsArray() && rightHandSideData->getIsArray())
+    // {
+    //     EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + sym + "' requires both operands be arrays or not but lhs is not an array and rhs is an array.");
+    // }
+
+
+    // //if both nodes are identifiers
+    // if (isIdentifierNode(leftHandSideExpression) && isIdentifierNode(rightHandSideExpression))
+    // {
+    //     //cast the nodes to identifiers
+    //     Id* leftHandSideIdentifier = (Id *)leftHandSideExpression;
+    //     Id* rightHandSideIdentifier = (Id *)rightHandSideExpression;
+
+    //     //if the identifiers are not the same
+    //     if (leftHandSideIdentifier->getIdentifierName() != rightHandSideIdentifier->getIdentifierName())
+    //     {
+    //         //cast the nodes to declarations
+    //         DeclarationNode* prevLhsDecl = (DeclarationNode *)(getFromSymbolTable(leftHandSideIdentifier->getIdentifierName()));
+    //         DeclarationNode* prevRhsDecl = (DeclarationNode *)(getFromSymbolTable(rightHandSideIdentifier->getIdentifierName()));
+            
+    //         if ((isVariableNode(prevLhsDecl)) && (isVariableNode(prevRhsDecl)))
+    //         {
+    //             if (rightHandSideData->getCopyString() != leftHandSideIdentifier->getIdentifierName())
+    //             {
+    //                 leftHandSideData->setCopyString(rightHandSideIdentifier->getIdentifierName());
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 
 void Semantics::checkOperands(ExpressionNode* expression, const NodeData::Type type) const
 {
+    // //check if the node is an expression node
+    // if(!isExpressionNode(expression))
+    // {
+    //     throw std::runtime_error("ERROR. Semantics::checkOperands() - Node is not of Expression Type");
+    // }
 
+    // //check if operands exist
+    // if(!expressionOperandsExist(expression))
+    // {
+    //     throw std::runtime_error("ERROR. Semantics::checkOperands() - Operands do not exist");
+    // }
+
+    // //get teh operand symbol
+    // std::string symbol = getExpressionSymbol(expression);
+
+    // //convert symbol type to string
+    // std::string typeString = NodeData::convertTypeToString(type);
+
+    // std::vector<Node *> childrenNodes = expression->getChildernNodes();
+    
+    // ExpressionNode* leftHandSideExpression = (ExpressionNode *)(childrenNodes[0]);
+    // ExpressionNode* righttHandSideExpression = (ExpressionNode *)(childrenNodes[1]);
+    
+    // NodeData* leftHandSideData = setAndGetExpressionNodeData(leftHandSideExpression);
+    // NodeData* rightHandSideData = setAndGetExpressionNodeData(righttHandSideExpression);
+
+    // // Ignore cases where the LHS or RHS has no type
+    // if (leftHandSideData->getType() == NodeData::Type::UNDEFINED || rightHandSideData->getType() == NodeData::Type::UNDEFINED)
+    // {
+    //     expression->getNodeData()->setType(NodeData::Type::UNDEFINED);
+    //     return;
+    // }
+
+    // if (leftHandSideData->getType() != type)
+    // {
+    //     EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + symbol + "' requires operands of type " + typeString + " but lhs is of type " + leftHandSideData->printTokenString() + ".");
+    // }
+
+    // if (rightHandSideData->getType() != type)
+    // {
+    //     EmitDiagnostics::Error::emitGenericError(expression->getTokenLineNumber(), "'" + symbol + "' requires operands of type " + typeString + " but rhs is of type " + rightHandSideData->printTokenString() + ".");
+    // }
+
+    // // If it is a binary operation, we want the operands to be only the passed type (not an array of that type)
+    // if (isBinaryNode(expression))
+    // {
+    //     Binary *binary = (Binary *)expression;
+        
+    //     if (isIdentifierNode(leftHandSideExpression))
+    //     {
+    //         Id *leftHandSideIdentifier = (Id *)leftHandSideExpression;
+
+    //         DeclarationNode *prevDeclaration = (DeclarationNode *)(getFromSymbolTable(leftHandSideIdentifier->getIdentifierName()));
+    //         if ((prevDeclaration != nullptr && prevDeclaration->getNodeData()->getIsArray()) || leftHandSideIdentifier->getIsArray())
+    //         {
+    //             EmitDiagnostics::Error::emitGenericError(binary->getTokenLineNumber(), "The operation '" + binary->getSymbol() + "' does not work with arrays.");
+    //             return;
+    //         }
+    //     }
+    //     if (isIdentifierNode(righttHandSideExpression))
+    //     {
+    //         Id *rightHandSideIdentifier = (Id *)righttHandSideExpression;
+
+    //         DeclarationNode *prevDeclaration = (DeclarationNode *)(getFromSymbolTable(rightHandSideIdentifier->getIdentifierName()));
+            
+    //         if ((prevDeclaration != nullptr && prevDeclaration->getNodeData()->getIsArray()) || rightHandSideIdentifier->getIsArray())
+    //         {
+    //             EmitDiagnostics::Error::emitGenericError(binary->getTokenLineNumber(), "The operation '" + binary->getSymbol() + "' does not work with arrays.");
+    //             return;
+    //         }
+    //     }
+    // }
 }
 
 
@@ -478,7 +727,30 @@ bool Semantics::hasAssignmentAncestor(const ExpressionNode* expression) const
 
 bool Semantics::expressionOperandsExist(const ExpressionNode* expression) const
 {
+    //check if the node is an expression node
+    if(!isExpressionNode(expression))
+    {
+        throw std::runtime_error("ERROR. Semantics::expressionOperandsExist() - Node is not of Expression Type");
+    }
 
+
+    //retrieve the childern nodes
+    std::vector<Node* > childernNodes = expression->getChildernNodes();
+
+    //check if an operand exists
+    if(childernNodes.size() < 2 || childernNodes[0] == nullptr || childernNodes[1] == nullptr)
+    {
+        return false;
+    }
+
+    //check if the childern nodes are expression nodes
+    if(!isExpressionNode(childernNodes[0]) || !isExpressionNode(childernNodes[1]))
+    {
+        return false;
+    }
+
+    //return true if operands exist
+    return true; 
 }
 
 
@@ -496,7 +768,58 @@ std::string Semantics::getExpressionSymbol(const ExpressionNode* expression) con
 
 NodeData* Semantics::setAndGetExpressionNodeData(const ExpressionNode* expression) const
 {
+    // if (!isExpressionNode(expression))
+    // {
+    //     throw std::runtime_error("Semantics::setAndGetExpData() - Invalid Exp");
+    // }
 
+    // switch (expression->getExpressionNodeType())
+    // {
+    //     case ExpressionNode::Type::ASSIGN:
+    //                                     {
+    //                                         Asgn* asgn = (Asgn *)expression;
+    //                                         ExpressionNode* leftHandSideExpression = (ExpressionNode *)(expression->getChildernNodes()[0]);
+    //                                         asgn->setNodeData(setAndGetExpressionNodeData(leftHandSideExpression));
+    //                                     }
+    //                                     break;
+    //     case ExpressionNode::Type::BINARY:
+    //                                     {
+    //                                         Binary *binary = (Binary *)expression;
+                                            
+    //                                         if(binary->getBinaryType() == Binary::Type::INDEX)
+    //                                         {
+    //                                             Id *arrayIdentifier = (Id *)(binary->getChildernNodes()[0]);
+    //                                             binary->setNodeData(new NodeData(setAndGetExpressionNodeData(arrayIdentifier)->getType(), false, false));
+    //                                         }
+    //                                     }
+    //                                     break;
+    //     case ExpressionNode::Type::CALL:
+    //                                 {
+    //                                     Call *call = (Call *)expression;
+                                        
+    //                                     DeclarationNode* prevDeclaration = getFromSymbolTable(call->getFunctionCallName());
+                                        
+    //                                     if(prevDeclaration != nullptr && !isVariableNode(prevDeclaration))
+    //                                     {
+    //                                         call->setNodeData(prevDeclaration->getNodeData());
+    //                                     }
+    //                                 }
+    //                                 break;
+    //     case ExpressionNode::Type::IDENTIFIER:
+    //                                     {
+    //                                         Id *identifier = (Id *)expression;
+                                            
+    //                                         DeclarationNode *prevDeclaration = getFromSymbolTable(identifier->getIdentifierName());
+                                            
+    //                                         if (prevDeclaration != nullptr && !isFunctionNode(prevDeclaration))
+    //                                         {
+    //                                             identifier->setNodeData(prevDeclaration->getNodeData());
+    //                                         }
+    //                                     }
+    //                                     break;
+    // }
+
+    // return expression->getNodeData();
 }
 
 
@@ -528,9 +851,10 @@ void Semantics::leaveScope()
             //cast to a variable node 
             Var* variable = (Var*)declaration;
 
-            if(variable->getIsUsed() == false)
+            if(variable->getIsUsed() == false && variable->getHasNotBeenUsed() == false)
             {
                 EmitDiagnostics::Warning::emitGenericWarnings(variable->getTokenLineNumber(), "The variable '" + variable->getName() + "' seems not to be used.");
+                variable->setHasNotBeenUsed();
             }
         }
         
@@ -540,9 +864,11 @@ void Semantics::leaveScope()
             //cast to a parameter node
             Parm* parameter = (Parm*)declaration;
 
-            if(parameter->getIsUsed() == false)
+            if(parameter->getIsUsed() == false && parameter->getHasNotBeenUsed() == false)
             {
+                
                 EmitDiagnostics::Warning::emitGenericWarnings(parameter->getTokenLineNumber(), "The variable '" + parameter->getName() + "' seems not to be used.");
+                parameter->setHasNotBeenUsed();
             }
         }
 

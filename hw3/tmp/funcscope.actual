@@ -85,7 +85,7 @@ ERROR(41): Symbol 'x' is already declared at line 6.
 ERROR(49): Symbol 'x' is already declared at line 6.
 Func: ant returns type void [line: 5]
 Number of errors: 9
-Number of warnings: 14
+Number of warnings: 1
 Sibling: 1  Func: bat returns type void [line: 10]
 .   Sibling: 1  Parm: x of type int [line: 5]
 Sibling: 2  Func: cat returns type void [line: 15]
@@ -93,17 +93,4 @@ Sibling: 3  Func: dog returns type void [line: 22]
 Sibling: 4  Func: elk returns type void [line: 28]
 Sibling: 5  Func: fox returns type void [line: 35]
 Sibling: 6  Func: gnu returns type void [line: 45]
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
 WARNING(6): The variable 'x' seems not to be used.

@@ -80,14 +80,17 @@ class Parm : public DeclarationNode
 
         //getters 
         bool getIsUsed() const;
+        bool getHasNotBeenUsed() const;
         
         //setters
         void setUsed();
+        void setHasNotBeenUsed();
     
 
     protected:
 
         bool m_isUsed = false;
+        bool m_hasNotBeenUsed = false;
 };
 
 
@@ -105,16 +108,20 @@ class Var : public DeclarationNode
         void setStatic();
         void setInitialized();
         void setUsed();
+        void setHasNotBeenUsed();
+
 
         //getters                           
         bool getIsUsed() const;
         bool getIsInitialized() const;
+        bool getHasNotBeenUsed() const;
     
 
     private:
 
         bool  m_isUsed = false;
         bool  m_isInitialized = false;
+        bool m_hasNotBeenUsed = false;
 }; 
 
 

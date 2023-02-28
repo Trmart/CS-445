@@ -85,8 +85,10 @@
 .   .   .   Child: 1  Op: [ [line: 20]
 .   .   .   Child: 1  Op: [ [line: 28]
 .   .   .   Child: 1  Op: [ [line: 36]
-Number of errors: 0
-Number of warnings: 14
+ERROR(24): Symbol 'px' is not declared.
+ERROR(25): Symbol 'px' is not declared.
+Number of errors: 2
+Number of warnings: 8
 .   .   Sibling: 10  Assign: <= [line: 19]
 .   .   Sibling: 11  Assign: <= [line: 20]
 .   .   Sibling: 12  Call: output [line: 21]
@@ -128,16 +130,10 @@ Sibling: 3  Func: main returns type void [line: 41]
 .   .   Sibling: 9  Call: output [line: 18]
 Var: gx of type int [line: 2]
 WARNING(2): The variable 'gx' seems not to be used.
-WARNING(2): The variable 'gx' seems not to be used.
-WARNING(2): The variable 'gy' seems not to be used.
 WARNING(2): The variable 'gy' seems not to be used.
 WARNING(42): The variable 'lx' seems not to be used.
 WARNING(42): The variable 'ly' seems not to be used.
 WARNING(5): The variable 'x' seems not to be used.
-WARNING(5): The variable 'x' seems not to be used.
-WARNING(5): The variable 'y' seems not to be used.
 WARNING(5): The variable 'y' seems not to be used.
 WARNING(6): The variable 'sx' seems not to be used.
-WARNING(6): The variable 'sx' seems not to be used.
-WARNING(6): The variable 'sy' seems not to be used.
 WARNING(6): The variable 'sy' seems not to be used.

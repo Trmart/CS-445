@@ -1,4 +1,4 @@
-1,64c1,345
+1,64c1,290
 < ERROR(102): '<=' requires operands of the same type but lhs is type char and rhs is type bool.
 < ERROR(105): '+' requires operands of type int but lhs is of type void.
 < ERROR(105): '+' requires operands of type int but rhs is of type bool.
@@ -258,15 +258,19 @@
 > .   .   .   Child: 2  Const 555 of type int [line: 12]
 > .   .   .   .   Child: 2  Const 555 of type int [line: 13]
 > .   .   .   Child: 2  Op: + [line: 51]
+> ERROR(27): Symbol 'a' is not declared.
+> ERROR(28): Symbol 'a' is not declared.
+> ERROR(29): Symbol 'a' is not declared.
+> ERROR(30): Symbol 'a' is not declared.
 > ERROR(39): Symbol 'b' is already declared at line 5.
-> ERROR(52): Symbol 'z' is already declared at line 51.
-> ERROR(53): Symbol 'z' is already declared at line 51.
+> ERROR(7): Symbol 'a' is not declared.
 > ERROR(81): Symbol 'a' is already declared at line 39.
 > ERROR(84): Symbol 'a' is already declared at line 39.
 > ERROR(84): Symbol 'b' is already declared at line 5.
+> ERROR(9): Symbol 'c' is not declared.
 > Func: ant returns type char [line: 2]
-> Number of errors: 6
-> Number of warnings: 71
+> Number of errors: 10
+> Number of warnings: 12
 > .   .   Sibling: 10  Assign: <= [line: 57]
 > .   .   Sibling: 10  Return [line: 107]
 > .   .   Sibling: 10  While [line: 19]
@@ -339,73 +343,14 @@
 > .   .   Sibling: 9  If [line: 17]
 > .   .   Sibling: 9  Op: + [line: 105]
 > WARNING(39): The variable 'a' seems not to be used.
-> WARNING(39): The variable 'a' seems not to be used.
-> WARNING(39): The variable 'a' seems not to be used.
-> WARNING(39): The variable 'a' seems not to be used.
-> WARNING(39): The variable 'a' seems not to be used.
-> WARNING(39): The variable 'a' seems not to be used.
-> WARNING(39): The variable 'a' seems not to be used.
-> WARNING(39): The variable 'a' seems not to be used.
-> WARNING(39): The variable 'a' seems not to be used.
-> WARNING(39): The variable 'c' seems not to be used.
-> WARNING(39): The variable 'c' seems not to be used.
-> WARNING(39): The variable 'c' seems not to be used.
-> WARNING(39): The variable 'c' seems not to be used.
-> WARNING(39): The variable 'c' seems not to be used.
-> WARNING(39): The variable 'c' seems not to be used.
-> WARNING(39): The variable 'c' seems not to be used.
-> WARNING(39): The variable 'c' seems not to be used.
 > WARNING(39): The variable 'c' seems not to be used.
 > WARNING(40): The variable 'aa' seems not to be used.
-> WARNING(40): The variable 'aa' seems not to be used.
-> WARNING(40): The variable 'aa' seems not to be used.
-> WARNING(40): The variable 'aa' seems not to be used.
-> WARNING(40): The variable 'aa' seems not to be used.
-> WARNING(40): The variable 'aa' seems not to be used.
-> WARNING(40): The variable 'aa' seems not to be used.
-> WARNING(40): The variable 'aa' seems not to be used.
-> WARNING(40): The variable 'aa' seems not to be used.
-> WARNING(40): The variable 'ba' seems not to be used.
-> WARNING(40): The variable 'ba' seems not to be used.
-> WARNING(40): The variable 'ba' seems not to be used.
-> WARNING(40): The variable 'ba' seems not to be used.
-> WARNING(40): The variable 'ba' seems not to be used.
-> WARNING(40): The variable 'ba' seems not to be used.
-> WARNING(40): The variable 'ba' seems not to be used.
-> WARNING(40): The variable 'ba' seems not to be used.
 > WARNING(40): The variable 'ba' seems not to be used.
 > WARNING(40): The variable 'ca' seems not to be used.
-> WARNING(40): The variable 'ca' seems not to be used.
-> WARNING(40): The variable 'ca' seems not to be used.
-> WARNING(40): The variable 'ca' seems not to be used.
-> WARNING(40): The variable 'ca' seems not to be used.
-> WARNING(40): The variable 'ca' seems not to be used.
-> WARNING(40): The variable 'ca' seems not to be used.
-> WARNING(40): The variable 'ca' seems not to be used.
-> WARNING(40): The variable 'ca' seems not to be used.
 > WARNING(51): The variable 'z' seems not to be used.
-> WARNING(51): The variable 'z' seems not to be used.
-> WARNING(51): The variable 'z' seems not to be used.
-> WARNING(51): The variable 'z' seems not to be used.
-> WARNING(51): The variable 'z' seems not to be used.
-> WARNING(51): The variable 'z' seems not to be used.
-> WARNING(51): The variable 'z' seems not to be used.
-> WARNING(51): The variable 'z' seems not to be used.
-> WARNING(51): The variable 'z' seems not to be used.
+> WARNING(52): The variable 'z' seems not to be used.
+> WARNING(53): The variable 'z' seems not to be used.
 > WARNING(5): The variable 'b' seems not to be used.
-> WARNING(5): The variable 'b' seems not to be used.
-> WARNING(5): The variable 'b' seems not to be used.
-> WARNING(5): The variable 'b' seems not to be used.
-> WARNING(5): The variable 'b' seems not to be used.
-> WARNING(5): The variable 'b' seems not to be used.
-> WARNING(5): The variable 'b' seems not to be used.
-> WARNING(5): The variable 'b' seems not to be used.
-> WARNING(5): The variable 'b' seems not to be used.
-> WARNING(5): The variable 'b' seems not to be used.
-> WARNING(72): The variable 'i' seems not to be used.
-> WARNING(72): The variable 'i' seems not to be used.
-> WARNING(72): The variable 'i' seems not to be used.
-> WARNING(72): The variable 'i' seems not to be used.
 > WARNING(72): The variable 'i' seems not to be used.
 > WARNING(93): The variable 'bbb' seems not to be used.
 > WARNING(94): The variable 'ccc' seems not to be used.

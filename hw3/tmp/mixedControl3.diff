@@ -20,32 +20,7 @@
 < .   .   .   .   .   Child: 2  Id: x of undefined type [line: 7]
 ---
 > .   .   .   .   .   Child: 2  Id: x [line: 7]
-49c49,55
+49c49
 < .   .   .   .   .   Child: 2  Op: * of undefined type [line: 14]
 ---
 > .   .   .   .   .   Child: 2  Op: * [line: 14]
-> ERROR(14): Symbol 'x' is already declared at line 4.
-> ERROR(16): Symbol 'x' is already declared at line 4.
-> ERROR(19): Symbol 'x' is already declared at line 4.
-> ERROR(20): Symbol 'x' is already declared at line 4.
-> ERROR(7): Symbol 'x' is already declared at line 4.
-> ERROR(9): Symbol 'x' is already declared at line 4.
-51c57
-< Number of errors: 0
----
-> Number of errors: 6
-55,58d60
-< WARNING(14): The variable 'x' seems not to be used.
-< WARNING(16): The variable 'x' seems not to be used.
-< WARNING(19): The variable 'x' seems not to be used.
-< WARNING(20): The variable 'x' seems not to be used.
-60,61c62,67
-< WARNING(7): The variable 'x' seems not to be used.
-< WARNING(9): The variable 'x' seems not to be used.
----
-> WARNING(4): The variable 'x' seems not to be used.
-> WARNING(4): The variable 'x' seems not to be used.
-> WARNING(4): The variable 'x' seems not to be used.
-> WARNING(4): The variable 'x' seems not to be used.
-> WARNING(4): The variable 'x' seems not to be used.
-> WARNING(4): The variable 'x' seems not to be used.

@@ -1,4 +1,4 @@
-1,10c1,153
+1,10c1,145
 < ERROR(13): Symbol 'output' is not declared.
 < ERROR(14): Symbol 'outputb' is not declared.
 < ERROR(15): Symbol 'outputc' is not declared.
@@ -97,7 +97,7 @@
 > ERROR(59): Symbol 'gc' is already declared at line 34.
 > Func: cheyenne returns type void [line: 2]
 > Number of errors: 5
-> Number of warnings: 14
+> Number of warnings: 6
 > .   .   Sibling: 10  Call: sioux [line: 53]
 > .   .   Sibling: 11  Call: comanche [line: 54]
 > .   .   Sibling: 12  Compound [line: 56]
@@ -150,16 +150,8 @@
 > .   .   Sibling: 8  Assign: <= [line: 51]
 > .   .   Sibling: 9  Assign: <= [line: 52]
 > WARNING(22): The variable 'b' seems not to be used.
-> WARNING(22): The variable 'b' seems not to be used.
-> WARNING(22): The variable 'b' seems not to be used.
-> WARNING(23): The variable 'c' seems not to be used.
-> WARNING(23): The variable 'c' seems not to be used.
 > WARNING(23): The variable 'c' seems not to be used.
 > WARNING(32): The variable 'ga' seems not to be used.
-> WARNING(32): The variable 'ga' seems not to be used.
-> WARNING(33): The variable 'gb' seems not to be used.
 > WARNING(33): The variable 'gb' seems not to be used.
 > WARNING(34): The variable 'gc' seems not to be used.
-> WARNING(34): The variable 'gc' seems not to be used.
-> WARNING(38): The variable 'a' seems not to be used.
 > WARNING(38): The variable 'a' seems not to be used.

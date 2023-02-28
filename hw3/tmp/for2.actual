@@ -15,18 +15,12 @@
 .   .   .   .   Child: 1  Range [line: 6]
 .   .   .   .   Child: 2  Compound [line: 6]
 .   .   .   Child: 2  For [line: 6]
-ERROR(7): Symbol 'i' is already declared at line 5.
 ERROR(8): Symbol 'j' is already declared at line 6.
 Func: main returns type void [line: 1]
-Number of errors: 2
-Number of warnings: 9
+Number of errors: 1
+Number of warnings: 4
 .   .   .   .   .   Sibling: 1  Var: j of type int [line: 8]
 WARNING(3): The variable 'a' seems not to be used.
-WARNING(3): The variable 'a' seems not to be used.
-WARNING(3): The variable 'a' seems not to be used.
-WARNING(5): The variable 'i' seems not to be used.
-WARNING(5): The variable 'i' seems not to be used.
 WARNING(5): The variable 'i' seems not to be used.
 WARNING(6): The variable 'j' seems not to be used.
-WARNING(6): The variable 'j' seems not to be used.
-WARNING(6): The variable 'j' seems not to be used.
+WARNING(7): The variable 'i' seems not to be used.

@@ -1,4 +1,4 @@
-0a1,18
+0a1,17
 > .   .   .   .   Child: 0  Id: a [line: 5]
 > .   .   .   .   .   Child: 0  Id: a [line: 6]
 > .   .   .   .   .   .   Child: 0  Id: i [line: 9]
@@ -16,23 +16,15 @@
 > .   .   .   .   Child: 1  Range [line: 6]
 > .   .   .   .   Child: 2  Compound [line: 6]
 > .   .   .   Child: 2  For [line: 6]
-> ERROR(7): Symbol 'i' is already declared at line 5.
-2,3c20,23
-< Number of errors: 1
+1a19
+> Func: main returns type void [line: 1]
+3c21,22
 < Number of warnings: 3
 ---
-> Func: main returns type void [line: 1]
-> Number of errors: 2
-> Number of warnings: 9
+> Number of warnings: 4
 > .   .   .   .   .   Sibling: 1  Var: j of type int [line: 8]
-4a25,28
-> WARNING(3): The variable 'a' seems not to be used.
-> WARNING(3): The variable 'a' seems not to be used.
-> WARNING(5): The variable 'i' seems not to be used.
-> WARNING(5): The variable 'i' seems not to be used.
-6c30,32
+6c25,26
 < WARNING(9): Variable 'i' may be uninitialized when used here.
 ---
 > WARNING(6): The variable 'j' seems not to be used.
-> WARNING(6): The variable 'j' seems not to be used.
-> WARNING(6): The variable 'j' seems not to be used.
+> WARNING(7): The variable 'i' seems not to be used.

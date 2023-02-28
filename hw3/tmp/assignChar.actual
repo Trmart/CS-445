@@ -46,8 +46,9 @@
 .   .   .   Child: 1  Const 'f' [line: 20]
 .   .   .   Child: 1  Const 'f' [line: 22]
 .   .   .   Child: 1  Const 'h' [line: 24]
-Number of errors: 0
-Number of warnings: 14
+ERROR(18): Symbol 'px' is not declared.
+Number of errors: 1
+Number of warnings: 8
 .   .   Sibling: 10  Call: outputc [line: 19]
 .   .   Sibling: 11  Assign: <= [line: 20]
 .   .   Sibling: 12  Call: outputc [line: 21]
@@ -76,16 +77,10 @@ Sibling: 3  Func: main returns type void [line: 30]
 .   .   Sibling: 9  Assign: <= [line: 18]
 Var: gx of type char [line: 2]
 WARNING(2): The variable 'gx' seems not to be used.
-WARNING(2): The variable 'gx' seems not to be used.
-WARNING(2): The variable 'gy' seems not to be used.
 WARNING(2): The variable 'gy' seems not to be used.
 WARNING(32): The variable 'zx' seems not to be used.
 WARNING(32): The variable 'zy' seems not to be used.
 WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'x' seems not to be used.
-WARNING(6): The variable 'y' seems not to be used.
 WARNING(6): The variable 'y' seems not to be used.
 WARNING(7): The variable 'sx' seems not to be used.
-WARNING(7): The variable 'sx' seems not to be used.
-WARNING(7): The variable 'sy' seems not to be used.
 WARNING(7): The variable 'sy' seems not to be used.

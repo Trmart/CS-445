@@ -15,7 +15,7 @@
 .   .   .   Child: 1  Const 4 of type int [line: 26]
 .   .   Child: 1  Op: + [line: 26]
 Number of errors: 0
-Number of warnings: 12
+Number of warnings: 5
 Sibling: 1  Func: lund returns type void [line: 5]
 .   .   Sibling: 1  Op: + [line: 13]
 .   Sibling: 1  Parm: a of type int [line: 9]
@@ -26,14 +26,7 @@ Sibling: 5  Var: galadriel of type int [line: 23]
 Sibling: 6  Func: arwen returns type void [line: 24]
 Var: lund of type int [line: 3]
 WARNING(11): The variable 'a' seems not to be used.
-WARNING(11): The variable 'a' seems not to be used.
-WARNING(11): The variable 'a' seems not to be used.
 WARNING(16): The variable 'fred' seems not to be used.
-WARNING(16): The variable 'fred' seems not to be used.
-WARNING(20): The variable 'linda' seems not to be used.
 WARNING(20): The variable 'linda' seems not to be used.
 WARNING(23): The variable 'galadriel' seems not to be used.
-WARNING(3): The variable 'lund' seems not to be used.
-WARNING(3): The variable 'lund' seems not to be used.
-WARNING(3): The variable 'lund' seems not to be used.
 WARNING(3): The variable 'lund' seems not to be used.

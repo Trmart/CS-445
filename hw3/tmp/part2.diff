@@ -1,4 +1,4 @@
-1,10c1,78
+1,8c1,47
 < ERROR(20): Symbol 'x' is already declared at line 18.
 < ERROR(26): Symbol 'dog' is already declared at line 18.
 < ERROR(35): '+' requires operands of type int but lhs is of type char.
@@ -7,8 +7,6 @@
 < ERROR(47): Unary 'chsign' requires an operand of type int but was given type bool.
 < ERROR(5): Cannot return an array.
 < Number of errors: 7
-< Number of warnings: 4
-< WARNING(28): The variable 'z' seems not to be used.
 ---
 > .   .   .   Child: 0  Call: dog [line: 51]
 > .   .   .   Child: 0  Const 1184 of type int [line: 39]
@@ -53,10 +51,13 @@
 > .   .   Child: 1  If [line: 4]
 > .   .   Child: 1  Return [line: 10]
 > .   .   Child: 1  Return [line: 15]
+> ERROR(23): Symbol 'y' is not declared.
 > ERROR(36): Symbol 'z' is already declared at line 3.
 > Func: ant returns type int [line: 1]
-> Number of errors: 1
-> Number of warnings: 13
+> Number of errors: 2
+10c49,76
+< WARNING(28): The variable 'z' seems not to be used.
+---
 > .   .   Sibling: 10  Call: elk [line: 51]
 > .   .   Sibling: 1  Assign: <= [line: 23]
 > .   .   .   .   Sibling: 1  Const 3 of type int [line: 51]
@@ -84,18 +85,9 @@
 > .   .   Sibling: 8  Call: dog [line: 49]
 > .   .   Sibling: 9  Call: elk [line: 50]
 > WARNING(20): The variable 'x' seems not to be used.
-> WARNING(20): The variable 'x' seems not to be used.
-> WARNING(20): The variable 'x' seems not to be used.
-> WARNING(20): The variable 'x' seems not to be used.
 > WARNING(34): The variable 'c' seems not to be used.
-12,13c80,86
+12,13c78
 < WARNING(49): Variable 'z' may be uninitialized when used here.
 < WARNING(4): Variable 'z' may be uninitialized when used here.
 ---
-> WARNING(3): The variable 'z' seems not to be used.
-> WARNING(3): The variable 'z' seems not to be used.
-> WARNING(3): The variable 'z' seems not to be used.
-> WARNING(3): The variable 'z' seems not to be used.
-> WARNING(3): The variable 'z' seems not to be used.
-> WARNING(3): The variable 'z' seems not to be used.
 > WARNING(3): The variable 'z' seems not to be used.

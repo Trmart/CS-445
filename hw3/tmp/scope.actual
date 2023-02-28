@@ -28,9 +28,10 @@
 .   .   .   Child: 1  Id: r [line: 46]
 .   .   Child: 1  Id: x [line: 41]
 .   .   Child: 1  Return [line: 59]
+ERROR(48): Symbol 'u' is not declared.
 ERROR(55): Symbol 'g' is already declared at line 2.
-Number of errors: 1
-Number of warnings: 40
+Number of errors: 2
+Number of warnings: 6
 .   .   Sibling: 10  Id: x [line: 34]
 .   .   Sibling: 10  Id: z [line: 51]
 .   .   Sibling: 11  Id: g [line: 52]
@@ -71,42 +72,8 @@ Sibling: 6  Func: ant returns type void [line: 63]
 .   .   Sibling: 9  Id: a [line: 50]
 Var: g of type int [line: 2]
 WARNING(12): The variable 'c' seems not to be used.
-WARNING(12): The variable 'c' seems not to be used.
-WARNING(12): The variable 'c' seems not to be used.
-WARNING(12): The variable 'c' seems not to be used.
-WARNING(12): The variable 'c' seems not to be used.
-WARNING(12): The variable 'c' seems not to be used.
-WARNING(12): The variable 'c' seems not to be used.
-WARNING(12): The variable 'c' seems not to be used.
 WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-WARNING(19): The variable 'IWouldNotEatItWithAGoat' seems not to be used.
-WARNING(2): The variable 'g' seems not to be used.
-WARNING(2): The variable 'g' seems not to be used.
-WARNING(2): The variable 'g' seems not to be used.
-WARNING(2): The variable 'g' seems not to be used.
-WARNING(2): The variable 'g' seems not to be used.
-WARNING(2): The variable 'g' seems not to be used.
-WARNING(2): The variable 'g' seems not to be used.
 WARNING(2): The variable 'g' seems not to be used.
 WARNING(39): The variable 'z' seems not to be used.
-WARNING(39): The variable 'z' seems not to be used.
-WARNING(39): The variable 'z' seems not to be used.
-WARNING(39): The variable 'z' seems not to be used.
 WARNING(40): The variable 'bat' seems not to be used.
-WARNING(40): The variable 'bat' seems not to be used.
-WARNING(40): The variable 'bat' seems not to be used.
-WARNING(40): The variable 'bat' seems not to be used.
-WARNING(5): The variable 'a' seems not to be used.
-WARNING(5): The variable 'a' seems not to be used.
-WARNING(5): The variable 'a' seems not to be used.
-WARNING(5): The variable 'a' seems not to be used.
-WARNING(5): The variable 'a' seems not to be used.
-WARNING(5): The variable 'a' seems not to be used.
-WARNING(5): The variable 'a' seems not to be used.
 WARNING(5): The variable 'a' seems not to be used.
