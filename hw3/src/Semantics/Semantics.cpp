@@ -15,12 +15,16 @@ DESC: Semantics Class Definitions.  For semantic analysis of AST
 
 
 
+//currenty working. Doesn't seem to have an errors. 3/1/23
+
 Semantics::Semantics(SymbolTable* symbolTable) : m_symbolTable{symbolTable}
 {
 
 }
 
 // Semantic Analysis
+//currenty working. Doesn't seem to have an errors. 3/1/23
+
 void Semantics::semanticAnalysis(Node* node)
 {
     //call the unction to analyze the AST
@@ -40,6 +44,8 @@ void Semantics::semanticAnalysis(Node* node)
 
 
 //********************Analyzers**********************
+
+//currenty working. Doesn't seem to have an errors. 3/1/23
 void Semantics::analyzeAST(Node *node)
 {
     //check if node is nullptr
@@ -139,16 +145,11 @@ void Semantics::analyzeDeclarationNodeSemantics(const DeclarationNode* declarati
 {
 
     //check to make sure declaration is not nullptr
-    if(declaration == nullptr)
+    if(!isDeclarationNode(declaration))
     {
-        throw std::runtime_error("ERROR. Semantics::analyzeDeclarationNodeSemantics() - nullptr Declaration Node");
+        throw std::runtime_error("ERROR. Semantics::analyzeDeclarationNodeSemantics() - nullptr Declaration Node or Node is not of Declaration Type");
     }
 
-    //check if node is of declaration type
-    if(declaration->getNodeType() != Node::Type::DECLARATION)
-    {
-        throw std::runtime_error("ERROR. Semantics::analyzeDeclarationNodeSemantics() - Node is not of Declaration Type");
-    }
 
     //switch on declaration node type
     switch (declaration->getDeclarationNodeType())
@@ -421,7 +422,11 @@ void Semantics::analyzeExpressionNodeSemantics(ExpressionNode* expression)
 
 void Semantics::analyzeIdentifierNodeSemantics(const Id* identifier) const
 {
-
+    //check to make sure identifier is not nullptr and that it is an identifier node
+    if(!isIdentifierNode(identifier))
+    {
+        throw std::runtime_error("ERROR. Semantics::analyzeIdentifierNodeSemantics() - nullptr Identifier Node");
+    }
 }
 
 
@@ -445,6 +450,7 @@ void Semantics::analyzeCompoundNodeSemantics(const Compound* compound) const
 }
 
 
+//seems to be working properly. No errors currently present. 3/1/23
 void Semantics::analyzeForNodeSemantics() const
 {
     //enter for into symbol table
@@ -537,7 +543,7 @@ void Semantics::checkIndex(const Binary* binary) const
 }
 
 //possibly have an error with this function
-//get a seg fault and a string length runtime error when its called
+//get a seg fault and a string length runtime error when its called 3/1/23
 void Semantics::checkSameTypeOperands(ExpressionNode* expression) const
 {
     // if (!isExpressionNode(expression))
@@ -614,7 +620,7 @@ void Semantics::checkSameTypeOperands(ExpressionNode* expression) const
 
 
 //possibly have an error with this function
-//get a seg fault and a string length runtime error when its called
+//get a seg fault and a string length runtime error when its called 3/1/23
 void Semantics::checkOperands(ExpressionNode* expression, const NodeData::Type type) const
 {
     // //check if the node is an expression node
@@ -773,7 +779,7 @@ std::string Semantics::getExpressionSymbol(const ExpressionNode* expression) con
 
 
 //possibly have an error with this function
-//get a seg fault and a string length runtime error when its called
+//get a seg fault and a string length runtime error when its called 3/1/23
 NodeData* Semantics::setAndGetExpressionNodeData(const ExpressionNode* expression) const
 {
     // if (!isExpressionNode(expression))
