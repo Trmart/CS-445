@@ -5,11 +5,11 @@
 < .   .   .   Child: 0  Id: x of type int [line: 6]
 < .   .   .   .   Child: 0  Id: x of type int [line: 8]
 ---
-> .   .   .   .   Child: 0  Id: x [line: 10]
-> .   .   .   .   Child: 0  Id: x [line: 10]
-> .   .   .   .   Child: 0  Id: x [line: 11]
-> .   .   .   Child: 0  Id: x [line: 6]
-> .   .   .   .   Child: 0  Id: x [line: 8]
+> .   .   .   .   Child: 0  Id: x of type undefined [line: 10]
+> .   .   .   .   Child: 0  Id: x of type undefined [line: 10]
+> .   .   .   .   Child: 0  Id: x of type undefined [line: 11]
+> .   .   .   Child: 0  Id: x of type undefined [line: 6]
+> .   .   .   .   Child: 0  Id: x of type undefined [line: 8]
 9,11c9,11
 < .   .   .   Child: 1  Assign: ++ of type int [line: 10]
 < .   .   Child: 1  Assign: <= of type int [line: 6]

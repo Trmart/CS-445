@@ -1,6 +1,6 @@
 .   .   .   Child: 0  Const 555 of type int [line: 6]
 .   .   .   .   Child: 0  Const 666 of type int [line: 6]
-.   .   .   .   .   Child: 0  Id: x [line: 6]
+.   .   .   .   .   Child: 0  Id: x of type undefined [line: 6]
 .   .   Child: 0  Var: x of type int [line: 4]
 .   Child: 1  Compound [line: 3]
 .   .   .   .   .   Child: 1  Const 777 of type int [line: 6]

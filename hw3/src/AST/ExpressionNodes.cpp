@@ -526,7 +526,8 @@ Id :: Id(const int tokenLineNumber,std:: string identifierName, bool isArray) : 
 //IdentifierNode printTokenString
 std::string Id::printTokenString() const
 {
-    return "Id: " + m_identifierName;
+    // return "Id: " + m_identifierName;
+    return "Id: " + m_identifierName + " of type " +  m_nodeData->convertTypeToString(m_nodeData->getType());
 }
 
 std::string Id::printTokenStringWithType() const

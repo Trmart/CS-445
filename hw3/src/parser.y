@@ -791,7 +791,7 @@ int main(int argc, char *argv[])
         }
 
         //print the AST with types
-        root->printAST();
+        root->printAST(true);
     }
 
     //code generation will eventually go here

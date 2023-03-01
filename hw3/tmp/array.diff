@@ -6,10 +6,10 @@
 < Number of warnings: 1
 < WARNING(12): Variable 'b' may be uninitialized when used here.
 ---
-> .   .   .   .   Child: 0  Id: a [line: 11]
-> .   .   .   .   Child: 0  Id: b [line: 12]
-> .   .   .   .   Child: 0  Id: c [line: 13]
-> .   .   .   Child: 0  Id: c [line: 9]
+> .   .   .   .   Child: 0  Id: a of type undefined [line: 11]
+> .   .   .   .   Child: 0  Id: b of type undefined [line: 12]
+> .   .   .   .   Child: 0  Id: c of type undefined [line: 13]
+> .   .   .   Child: 0  Id: c of type undefined [line: 9]
 > .   .   .   Child: 0  Op: sizeof [line: 11]
 > .   .   .   Child: 0  Op: sizeof [line: 12]
 > .   .   .   Child: 0  Op: sizeof [line: 13]

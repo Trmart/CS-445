@@ -3,9 +3,9 @@
 < .   .   .   .   Child: 0  Id: x of type int [line: 7]
 < .   .   .   .   Child: 0  Id: x of type int [line: 7]
 ---
-> .   .   .   Child: 0  Id: x [line: 5]
-> .   .   .   .   Child: 0  Id: x [line: 7]
-> .   .   .   .   Child: 0  Id: x [line: 7]
+> .   .   .   Child: 0  Id: x of type undefined [line: 5]
+> .   .   .   .   Child: 0  Id: x of type undefined [line: 7]
+> .   .   .   .   Child: 0  Id: x of type undefined [line: 7]
 6,7c6,7
 < .   .   Child: 1  Assign: <= of type int [line: 5]
 < .   .   .   Child: 1  Assign: ++ of type int [line: 7]

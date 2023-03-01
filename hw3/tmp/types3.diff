@@ -14,8 +14,8 @@
 < WARNING(24): The variable 'eowyn' seems not to be used.
 < WARNING(5): The variable 'a' seems not to be used.
 ---
-> .   .   .   Child: 0  Id: arwen [line: 26]
-> .   .   .   Child: 0  Id: fred [line: 13]
+> .   .   .   Child: 0  Id: arwen of type undefined [line: 26]
+> .   .   .   Child: 0  Id: fred of type undefined [line: 13]
 > .   Child: 0  Parm: a of type int [line: 5]
 > .   Child: 0  Parm: a of type int [line: 9]
 > .   Child: 0  Parm: eowyn of type int [line: 24]

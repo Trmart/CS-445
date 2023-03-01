@@ -3,23 +3,23 @@
 < .   .   .   .   .   .   Child: 0  Id: x of undefined type [line: 20]
 < .   .   .   .   .   Child: 0  Id: x of undefined type [line: 7]
 ---
-> .   .   .   .   .   .   Child: 0  Id: x [line: 14]
-> .   .   .   .   .   .   Child: 0  Id: x [line: 20]
-> .   .   .   .   .   Child: 0  Id: x [line: 7]
+> .   .   .   .   .   .   Child: 0  Id: x of type undefined [line: 14]
+> .   .   .   .   .   .   Child: 0  Id: x of type undefined [line: 20]
+> .   .   .   .   .   Child: 0  Id: x of type undefined [line: 7]
 27,30c27,30
 < .   .   .   .   .   .   Child: 1  Id: x of undefined type [line: 14]
 < .   .   .   .   .   Child: 1  Id: x of undefined type [line: 16]
 < .   .   .   .   .   Child: 1  Id: x of undefined type [line: 7]
 < .   .   .   .   .   .   .   Child: 1  Id: x of undefined type [line: 9]
 ---
-> .   .   .   .   .   .   Child: 1  Id: x [line: 14]
-> .   .   .   .   .   Child: 1  Id: x [line: 16]
-> .   .   .   .   .   Child: 1  Id: x [line: 7]
-> .   .   .   .   .   .   .   Child: 1  Id: x [line: 9]
+> .   .   .   .   .   .   Child: 1  Id: x of type undefined [line: 14]
+> .   .   .   .   .   Child: 1  Id: x of type undefined [line: 16]
+> .   .   .   .   .   Child: 1  Id: x of type undefined [line: 7]
+> .   .   .   .   .   .   .   Child: 1  Id: x of type undefined [line: 9]
 47c47
 < .   .   .   .   .   Child: 2  Id: x of undefined type [line: 7]
 ---
-> .   .   .   .   .   Child: 2  Id: x [line: 7]
+> .   .   .   .   .   Child: 2  Id: x of type undefined [line: 7]
 49c49
 < .   .   .   .   .   Child: 2  Op: * of undefined type [line: 14]
 ---

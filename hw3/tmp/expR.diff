@@ -1,7 +1,7 @@
 3c3
 < .   .   .   .   .   Child: 0  Id: x of type int [line: 6]
 ---
-> .   .   .   .   .   Child: 0  Id: x [line: 6]
+> .   .   .   .   .   Child: 0  Id: x of type undefined [line: 6]
 13c13
 < WARNING(6): Variable 'x' may be uninitialized when used here.
 ---

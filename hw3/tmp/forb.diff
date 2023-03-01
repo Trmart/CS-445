@@ -3,27 +3,27 @@
 < .   .   .   .   Child: 0  Id: y of undefined type [line: 7]
 < .   .   .   .   Child: 0  Id: z of undefined type [line: 8]
 ---
-> .   .   .   .   Child: 0  Id: x [line: 5]
-> .   .   .   .   Child: 0  Id: y [line: 7]
-> .   .   .   .   Child: 0  Id: z [line: 8]
+> .   .   .   .   Child: 0  Id: x of type undefined [line: 5]
+> .   .   .   .   Child: 0  Id: y of type undefined [line: 7]
+> .   .   .   .   Child: 0  Id: z of type undefined [line: 8]
 10,12c10,12
 < .   .   .   .   Child: 1  Id: x of undefined type [line: 5]
 < .   .   .   .   Child: 1  Id: x of undefined type [line: 7]
 < .   .   .   .   Child: 1  Id: x of undefined type [line: 8]
 ---
-> .   .   .   .   Child: 1  Id: x [line: 5]
-> .   .   .   .   Child: 1  Id: x [line: 7]
-> .   .   .   .   Child: 1  Id: x [line: 8]
+> .   .   .   .   Child: 1  Id: x of type undefined [line: 5]
+> .   .   .   .   Child: 1  Id: x of type undefined [line: 7]
+> .   .   .   .   Child: 1  Id: x of type undefined [line: 8]
 16,19c16,19
 < .   .   .   Child: 2  Id: x of type int [line: 6]
 < .   .   .   Child: 2  Id: x of type int [line: 7]
 < .   .   .   Child: 2  Id: x of type int [line: 8]
 < .   .   .   .   Child: 2  Id: x of undefined type [line: 5]
 ---
-> .   .   .   .   Child: 2  Id: x [line: 5]
-> .   .   .   Child: 2  Id: x [line: 6]
-> .   .   .   Child: 2  Id: x [line: 7]
-> .   .   .   Child: 2  Id: x [line: 8]
+> .   .   .   .   Child: 2  Id: x of type undefined [line: 5]
+> .   .   .   Child: 2  Id: x of type undefined [line: 6]
+> .   .   .   Child: 2  Id: x of type undefined [line: 7]
+> .   .   .   Child: 2  Id: x of type undefined [line: 8]
 22c22
 < Number of warnings: 2
 ---

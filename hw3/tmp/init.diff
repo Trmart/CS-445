@@ -3,7 +3,7 @@
 < .   .   Child: 0  Var: b is array of type int [line: 8]
 < .   .   Child: 1  Assign: <= of type int [line: 13]
 ---
-> .   .   .   Child: 0  Id: z [line: 13]
+> .   .   .   Child: 0  Id: z of type undefined [line: 13]
 > .   .   Child: 0  Var: b of array of type int [line: 8]
 > .   .   Child: 1  Assign: <= [line: 13]
 10c10
