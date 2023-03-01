@@ -224,6 +224,9 @@ void Semantics::analyzeVariableNodeSemantics(Var* variable)
 //*********************Expression Nodes**********************
 
 
+//seems to work up until checkOperands or CheckSameTypeOperands is called
+//must have an error with one or both of these functions
+//get a seg fault and a string length runtime error
 void Semantics::analyzeAssignmentNodeSemantics(const Asgn* assignment)
 {
     //check if unary assignment is not nullptr
@@ -533,7 +536,8 @@ void Semantics::checkIndex(const Binary* binary) const
 
 }
 
-
+//possibly have an error with this function
+//get a seg fault and a string length runtime error when its called
 void Semantics::checkSameTypeOperands(ExpressionNode* expression) const
 {
     // if (!isExpressionNode(expression))
@@ -609,6 +613,8 @@ void Semantics::checkSameTypeOperands(ExpressionNode* expression) const
 }
 
 
+//possibly have an error with this function
+//get a seg fault and a string length runtime error when its called
 void Semantics::checkOperands(ExpressionNode* expression, const NodeData::Type type) const
 {
     // //check if the node is an expression node
@@ -766,6 +772,8 @@ std::string Semantics::getExpressionSymbol(const ExpressionNode* expression) con
 }
 
 
+//possibly have an error with this function
+//get a seg fault and a string length runtime error when its called
 NodeData* Semantics::setAndGetExpressionNodeData(const ExpressionNode* expression) const
 {
     // if (!isExpressionNode(expression))
@@ -827,6 +835,8 @@ NodeData* Semantics::setAndGetExpressionNodeData(const ExpressionNode* expressio
 //********************Symbol Table Functions**********************
 
 
+//currenty working. Doesn't seem to have an errors. 3/1/23
+
 void Semantics::leaveScope()
 {
     //get the symbols from symbol table
@@ -884,6 +894,9 @@ void Semantics::leaveScope()
 }
 
 
+
+//currenty working. Doesn't seem to have an errors. 3/1/23
+
 bool Semantics::addToSymbolTable(const DeclarationNode* declaration, const bool global)
 {
     if (!isDeclarationNode(declaration))
@@ -916,6 +929,9 @@ bool Semantics::addToSymbolTable(const DeclarationNode* declaration, const bool 
     return inserted;
 }
 
+
+
+//currenty working. Doesn't seem to have an errors. 3/1/23
 
 DeclarationNode* Semantics::getFromSymbolTable(const std::string name) const
 {
