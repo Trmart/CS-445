@@ -1,4 +1,4 @@
-1,2c1,36
+1,2c1,37
 < ERROR(13): Symbol 'dog' is not declared.
 < ERROR(14): Cannot use function 'main' as a variable.
 ---
@@ -38,13 +38,14 @@
 > .   .   .   Child: 1  Op: + of type int [line: 7]
 > .   .   .   Child: 1  Op: + of type int [line: 8]
 > ERROR(14): Symbol 'main' is not declared.
-5,6c39,40
+> ERROR(14): Symbol 'main' is not declared.
+5,6c40,41
 < ERROR(LINKER): A function named 'main()' must be defined.
 < Number of errors: 5
 ---
 > Func: main returns type void [line: 1]
-> Number of errors: 3
-8,15c42,68
+> Number of errors: 4
+8,15c43,69
 < WARNING(10): Variable 'k' may be uninitialized when used here.
 < WARNING(11): Variable 'l' may be uninitialized when used here.
 < WARNING(12): Variable 'm' may be uninitialized when used here.

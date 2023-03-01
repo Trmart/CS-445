@@ -47,7 +47,11 @@
 .   .   .   Child: 1  Const true of type bool [line: 25]
 .   .   .   Child: 1  Const true of type bool [line: 9]
 ERROR(19): Symbol 'px' is not declared.
-Number of errors: 1
+ERROR(19): Symbol 'px' is not declared.
+ERROR(20): Symbol 'px' is not declared.
+ERROR(21): Symbol 'py' is not declared.
+ERROR(22): Symbol 'py' is not declared.
+Number of errors: 5
 Number of warnings: 8
 .   .   Sibling: 10  Call: outputb [line: 20]
 .   .   Sibling: 11  Assign: <= [line: 21]

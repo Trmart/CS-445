@@ -140,7 +140,7 @@ void Semantics::analyzeAST(Node *node)
 
 //*********************Declaration Nodes**********************
 
-
+//currenty working. Doesn't seem to have an errors. 3/1/23
 void Semantics::analyzeDeclarationNodeSemantics(const DeclarationNode* declaration)
 {
 
@@ -194,16 +194,10 @@ void Semantics::analyzeParmNodeSemantics(const Parm* parameter)
 
 }
 
-
+//currenty working. Doesn't seem to have an errors. 3/1/23
 void Semantics::analyzeVariableNodeSemantics(Var* variable)
 {
-    //check if variable is nullptr
-    if(variable == nullptr)
-    {
-        throw std::runtime_error("ERROR. Semantics::analyzeVariableNodeSemantics() - nullptr Variable Node");
-    }
-
-    //check if node is of variable type
+    //check if variable is nullptr and if node is of variable type
     if(!isVariableNode(variable))
     {
         throw std::runtime_error("ERROR. Semantics::analyzeVariableNodeSemantics() - Node is not of Variable Type");
@@ -230,16 +224,11 @@ void Semantics::analyzeVariableNodeSemantics(Var* variable)
 //get a seg fault and a string length runtime error
 void Semantics::analyzeAssignmentNodeSemantics(const Asgn* assignment)
 {
-    //check if unary assignment is not nullptr
-    if(assignment == nullptr)
-    {
-        throw std::runtime_error("ERROR. Semantics::checkUnaryAssignmentOperands() - nullptr Unary Assignment Node");
-    }
-    
-    //check 
+    //check if node is a nullptr and if node is of assignment type
+
     if(!isAssignmentNode(assignment))
     {
-        throw std::runtime_error("ERROR. Semantics::checkUnaryAssignmentOperands() - Node is not of Unary Assignment Type");
+        throw std::runtime_error("ERROR. Semantics::checkUnaryAssignmentOperands() - Node is not of Assignment Type OR Node is nullptr");
     }
 
 
@@ -427,6 +416,63 @@ void Semantics::analyzeIdentifierNodeSemantics(const Id* identifier) const
     {
         throw std::runtime_error("ERROR. Semantics::analyzeIdentifierNodeSemantics() - nullptr Identifier Node");
     }
+
+    setAndGetExpressionNodeData(identifier);
+
+    //cast to declaration node
+    //and get the declaration node from the symbol table
+    DeclarationNode* previousDeclaration = (DeclarationNode* )(getFromSymbolTable(identifier->getIdentifierName()));
+    
+    //check if previous declaration is not null
+    if(previousDeclaration == nullptr)
+    {
+        //ERROR(7): Symbol 'x' is not declared.
+        EmitDiagnostics::Error::emitGenericError(identifier->getTokenLineNumber(), "Symbol '"+ identifier->getIdentifierName() + "' is not declared."); 
+        return;
+    }
+
+    //check if previous declaration is a function node
+    if(isFunctionNode(previousDeclaration))
+    {
+        //throw error
+        EmitDiagnostics::Error::emitGenericError(identifier->getTokenLineNumber(), "Cannot use function '" + identifier->getIdentifierName() + "' as a variable.");
+
+    }
+    
+    
+    //check if previous declaration is a variable node
+    if(isVariableNode(previousDeclaration))
+    {
+        //cast to variable node
+        Var* previousDeclarationVariable = (Var* )(previousDeclaration);
+
+        //set the varibale node to initialized
+        previousDeclarationVariable->setInitialized();
+
+        // Don't warn if the uninitialized id is an array index (see hw4/test/lhs.c-)
+        if (!previousDeclarationVariable->getIsInitialized() && previousDeclarationVariable->getShowErrors())
+        {
+            if (!hasIndexAncestor((ExpressionNode* )identifier) || identifier->getIsArray())
+            {
+                if (!hasAssignmentAncestor((ExpressionNode* )identifier))
+                {
+                    EmitDiagnostics::Warning::emitGenericWarnings(identifier->getTokenLineNumber(), "Variable '" + identifier->getIdentifierName() + "' may be uninitialized when used here.");
+                    previousDeclarationVariable->setShowErrors(false);
+                }
+            }
+        }
+    }
+
+    //check if previous declaration is a parameter node
+    if(isParameterNode(previousDeclaration))
+    {
+        //cast to parameter node
+        Parm* previousDeclarationParameter = (Parm* )(previousDeclaration);
+
+        //set the parameter node to initialized
+        previousDeclarationParameter->setUsed();
+    }
+    
 }
 
 
@@ -782,58 +828,58 @@ std::string Semantics::getExpressionSymbol(const ExpressionNode* expression) con
 //get a seg fault and a string length runtime error when its called 3/1/23
 NodeData* Semantics::setAndGetExpressionNodeData(const ExpressionNode* expression) const
 {
-    // if (!isExpressionNode(expression))
-    // {
-    //     throw std::runtime_error("Semantics::setAndGetExpData() - Invalid Exp");
-    // }
+    if (!isExpressionNode(expression))
+    {
+        throw std::runtime_error("Semantics::setAndGetExpData() - Invalid Exp");
+    }
 
-    // switch (expression->getExpressionNodeType())
-    // {
-    //     case ExpressionNode::Type::ASSIGN:
-    //                                     {
-    //                                         Asgn* asgn = (Asgn *)expression;
-    //                                         ExpressionNode* leftHandSideExpression = (ExpressionNode *)(expression->getChildernNodes()[0]);
-    //                                         asgn->setNodeData(setAndGetExpressionNodeData(leftHandSideExpression));
-    //                                     }
-    //                                     break;
-    //     case ExpressionNode::Type::BINARY:
-    //                                     {
-    //                                         Binary *binary = (Binary *)expression;
+    switch (expression->getExpressionNodeType())
+    {
+        case ExpressionNode::Type::ASSIGN:
+                                        {
+                                            Asgn* asgn = (Asgn *)expression;
+                                            ExpressionNode* leftHandSideExpression = (ExpressionNode *)(expression->getChildernNodes()[0]);
+                                            asgn->setNodeData(setAndGetExpressionNodeData(leftHandSideExpression));
+                                        }
+                                        break;
+        case ExpressionNode::Type::BINARY:
+                                        {
+                                            Binary *binary = (Binary *)expression;
                                             
-    //                                         if(binary->getBinaryType() == Binary::Type::INDEX)
-    //                                         {
-    //                                             Id *arrayIdentifier = (Id *)(binary->getChildernNodes()[0]);
-    //                                             binary->setNodeData(new NodeData(setAndGetExpressionNodeData(arrayIdentifier)->getType(), false, false));
-    //                                         }
-    //                                     }
-    //                                     break;
-    //     case ExpressionNode::Type::CALL:
-    //                                 {
-    //                                     Call *call = (Call *)expression;
+                                            if(binary->getBinaryType() == Binary::Type::INDEX)
+                                            {
+                                                Id *arrayIdentifier = (Id *)(binary->getChildernNodes()[0]);
+                                                binary->setNodeData(new NodeData(setAndGetExpressionNodeData(arrayIdentifier)->getType(), false, false));
+                                            }
+                                        }
+                                        break;
+        case ExpressionNode::Type::CALL:
+                                    {
+                                        Call *call = (Call *)expression;
                                         
-    //                                     DeclarationNode* prevDeclaration = getFromSymbolTable(call->getFunctionCallName());
+                                        DeclarationNode* prevDeclaration = getFromSymbolTable(call->getFunctionCallName());
                                         
-    //                                     if(prevDeclaration != nullptr && !isVariableNode(prevDeclaration))
-    //                                     {
-    //                                         call->setNodeData(prevDeclaration->getNodeData());
-    //                                     }
-    //                                 }
-    //                                 break;
-    //     case ExpressionNode::Type::IDENTIFIER:
-    //                                     {
-    //                                         Id *identifier = (Id *)expression;
+                                        if(prevDeclaration != nullptr && !isVariableNode(prevDeclaration))
+                                        {
+                                            call->setNodeData(prevDeclaration->getNodeData());
+                                        }
+                                    }
+                                    break;
+        case ExpressionNode::Type::IDENTIFIER:
+                                        {
+                                            Id *identifier = (Id *)expression;
                                             
-    //                                         DeclarationNode *prevDeclaration = getFromSymbolTable(identifier->getIdentifierName());
+                                            DeclarationNode *prevDeclaration = getFromSymbolTable(identifier->getIdentifierName());
                                             
-    //                                         if (prevDeclaration != nullptr && !isFunctionNode(prevDeclaration))
-    //                                         {
-    //                                             identifier->setNodeData(prevDeclaration->getNodeData());
-    //                                         }
-    //                                     }
-    //                                     break;
-    // }
+                                            if (prevDeclaration != nullptr && !isFunctionNode(prevDeclaration))
+                                            {
+                                                identifier->setNodeData(prevDeclaration->getNodeData());
+                                            }
+                                        }
+                                        break;
+    }
 
-    // return expression->getNodeData();
+    return expression->getNodeData();
 }
 
 

@@ -108,8 +108,19 @@
 .   .   .   Child: 1  Op: sizeof [line: 36]
 .   .   .   Child: 1  Op: sizeof [line: 45]
 ERROR(30): Symbol 'px' is not declared.
+ERROR(30): Symbol 'px' is not declared.
+ERROR(30): Symbol 'px' is not declared.
+ERROR(31): Symbol 'px' is not declared.
 ERROR(32): Symbol 'px' is not declared.
-Number of errors: 2
+ERROR(32): Symbol 'px' is not declared.
+ERROR(33): Symbol 'py' is not declared.
+ERROR(33): Symbol 'py' is not declared.
+ERROR(34): Symbol 'py' is not declared.
+ERROR(35): Symbol 'py' is not declared.
+ERROR(36): Symbol 'py' is not declared.
+ERROR(36): Symbol 'py' is not declared.
+ERROR(37): Symbol 'py' is not declared.
+Number of errors: 13
 Number of warnings: 8
 .   .   Sibling: 10  Assign: <= [line: 21]
 .   .   Sibling: 11  Call: output [line: 22]

@@ -1,4 +1,4 @@
-1,14c1,86
+1,14c1,90
 < ERROR(10): Symbol 'output' is not declared.
 < ERROR(12): Symbol 'output' is not declared.
 < ERROR(14): Symbol 'output' is not declared.
@@ -63,7 +63,11 @@
 > .   .   .   .   Child: 1  Const 9 of type int [line: 24]
 > .   .   .   .   Child: 1  Const 9 of type int [line: 25]
 > ERROR(18): Symbol 'px' is not declared.
-> Number of errors: 1
+> ERROR(18): Symbol 'px' is not declared.
+> ERROR(19): Symbol 'px' is not declared.
+> ERROR(20): Symbol 'py' is not declared.
+> ERROR(21): Symbol 'py' is not declared.
+> Number of errors: 5
 > Number of warnings: 8
 > .   .   Sibling: 10  Call: output [line: 19]
 > .   .   Sibling: 11  Assign: <= [line: 20]

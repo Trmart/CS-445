@@ -34,10 +34,11 @@
 .   .   .   Child: 1  Op: + of type int [line: 7]
 .   .   .   Child: 1  Op: + of type int [line: 8]
 ERROR(14): Symbol 'main' is not declared.
+ERROR(14): Symbol 'main' is not declared.
 ERROR(3): Symbol 'z' is already declared at line 3.
 ERROR(3): Symbol 'z' is already declared at line 3.
 Func: main returns type void [line: 1]
-Number of errors: 3
+Number of errors: 4
 Number of warnings: 8
 .   .   Sibling: 10  Op: + of type int [line: 15]
 .   .   Sibling: 1  Assign: <= [line: 6]

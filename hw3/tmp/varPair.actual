@@ -86,8 +86,16 @@
 .   .   .   Child: 1  Op: [ of type undefined [line: 28]
 .   .   .   Child: 1  Op: [ of type undefined [line: 36]
 ERROR(24): Symbol 'px' is not declared.
+ERROR(24): Symbol 'px' is not declared.
 ERROR(25): Symbol 'px' is not declared.
-Number of errors: 2
+ERROR(25): Symbol 'px' is not declared.
+ERROR(25): Symbol 'px' is not declared.
+ERROR(26): Symbol 'px' is not declared.
+ERROR(27): Symbol 'py' is not declared.
+ERROR(28): Symbol 'py' is not declared.
+ERROR(28): Symbol 'py' is not declared.
+ERROR(29): Symbol 'py' is not declared.
+Number of errors: 10
 Number of warnings: 8
 .   .   Sibling: 10  Assign: <= [line: 19]
 .   .   Sibling: 11  Assign: <= [line: 20]

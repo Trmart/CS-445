@@ -1,6 +1,4 @@
-1c1,14
-< ERROR(3): Symbol 'i' is not declared.
----
+0a1,14
 > .   .   .   .   Child: 0  Id: i of type undefined [line: 5]
 > .   .   .   Child: 0  Id: i of type undefined [line: 5]
 > .   .   .   Child: 0  Id: j of type undefined [line: 6]
@@ -15,21 +13,19 @@
 > .   .   .   Child: 1  Id: i of type undefined [line: 3]
 > .   .   .   Child: 1  Id: i of type undefined [line: 4]
 > .   .   .   Child: 1  Op: + of type int [line: 5]
-3d15
-< ERROR(4): Symbol 'i' is not declared.
-6,14c18,26
-< ERROR(5): Symbol 'i' is not declared.
-< ERROR(6): Symbol 'j' is not declared.
-< ERROR(7): Symbol 'l' is not declared.
-< ERROR(8): Symbol 'm' is not declared.
-< ERROR(9): Symbol 'k' is not declared.
+2a17
+> ERROR(3): Symbol 'z' is not declared.
+4a20,21
+> ERROR(4): Symbol 'z' is not declared.
+> ERROR(5): Symbol 'i' is not declared.
+11,14c28,36
 < ERROR(LINKER): A function named 'main()' must be defined.
 < Number of errors: 11
 < Number of warnings: 1
 < WARNING(1): The variable 'x' seems not to be used.
 ---
 > Func: main returns type void [line: 1]
-> Number of errors: 3
+> Number of errors: 13
 > Number of warnings: 0
 > .   .   Sibling: 1  Assign: <= [line: 4]
 > .   .   Sibling: 2  Assign: <= [line: 5]

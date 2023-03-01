@@ -174,15 +174,34 @@
 .   .   .   Child: 2  Op: and of type bool [line: 48]
 .   .   .   Child: 2  Op: + of type int [line: 47]
 .   .   .   .   Child: 2  Op: % of type int [line: 49]
+ERROR(10): Symbol 'a' is not declared.
+ERROR(11): Symbol 'a' is not declared.
+ERROR(11): Symbol 'a' is not declared.
+ERROR(12): Symbol 'a' is not declared.
+ERROR(19): Symbol 'a' is not declared.
+ERROR(20): Symbol 'a' is not declared.
+ERROR(21): Symbol 'a' is not declared.
+ERROR(22): Symbol 'a' is not declared.
+ERROR(23): Symbol 'a' is not declared.
+ERROR(25): Symbol 'a' is not declared.
 ERROR(25): Symbol 'a' is not declared.
 ERROR(26): Symbol 'a' is not declared.
+ERROR(26): Symbol 'a' is not declared.
+ERROR(27): Symbol 'a' is not declared.
 ERROR(27): Symbol 'a' is not declared.
 ERROR(28): Symbol 'a' is not declared.
+ERROR(28): Symbol 'a' is not declared.
+ERROR(30): Symbol 'a' is not declared.
+ERROR(32): Symbol 'a' is not declared.
 ERROR(37): Symbol 'b' is already declared at line 3.
 ERROR(5): Symbol 'a' is not declared.
+ERROR(5): Symbol 'a' is not declared.
+ERROR(68): Symbol 'i' is not declared.
 ERROR(7): Symbol 'c' is not declared.
+ERROR(7): Symbol 'c' is not declared.
+ERROR(9): Symbol 'a' is not declared.
 Func: ant returns type int [line: 1]
-Number of errors: 7
+Number of errors: 26
 Number of warnings: 12
 .   .   Sibling: 10  Op: != of type bool [line: 56]
 .   .   Sibling: 10  While [line: 17]

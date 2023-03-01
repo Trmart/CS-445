@@ -1,74 +1,7 @@
-1,70c1,217
+1,3c1,217
 < ERROR(103): 'b' is a simple variable and cannot be called.
 < ERROR(104): Cannot index nonarray 'b'.
 < ERROR(105): Cannot index nonarray 'x'.
-< ERROR(105): Symbol 'x' is not declared.
-< ERROR(106): Cannot index nonarray 'main'.
-< ERROR(106): Cannot use function 'main' as a variable.
-< ERROR(107): Cannot index nonarray 'main'.
-< ERROR(107): Cannot use function 'main' as a variable.
-< ERROR(108): Array 'ba' should be indexed by type int but got type bool.
-< ERROR(108): Array index is the unindexed array 'ba'.
-< ERROR(109): Array 'ba' should be indexed by type int but got type char.
-< ERROR(110): Cannot use function 'main' as a variable.
-< ERROR(111): The operation '+' does not work with arrays.
-< ERROR(112): Symbol 'a' is not declared.
-< ERROR(113): The operation 'sizeof' only works with arrays.
-< ERROR(114): Unary 'chsign' requires an operand of type int but was given type bool.
-< ERROR(116): Cannot return an array.
-< ERROR(13): '+' requires operands of type int but rhs is of type bool.
-< ERROR(14): '+' requires operands of type int but lhs is of type bool.
-< ERROR(15): '+' requires operands of type int but lhs is of type bool.
-< ERROR(15): '+' requires operands of type int but rhs is of type bool.
-< ERROR(17): 'and' requires operands of type bool but lhs is of type int.
-< ERROR(17): 'and' requires operands of type bool but rhs is of type int.
-< ERROR(18): 'and' requires operands of type bool but lhs is of type int.
-< ERROR(19): 'and' requires operands of type bool but rhs is of type int.
-< ERROR(23): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(24): '<=' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(28): '=' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(29): '=' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(33): '!=' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(34): '!=' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(37): The operation '+' does not work with arrays.
-< ERROR(38): '+' requires operands of type int but rhs is of type bool.
-< ERROR(38): The operation '+' does not work with arrays.
-< ERROR(39): '+' requires operands of type int but lhs is of type bool.
-< ERROR(39): The operation '+' does not work with arrays.
-< ERROR(40): '+' requires operands of type int but lhs is of type bool.
-< ERROR(40): '+' requires operands of type int but rhs is of type bool.
-< ERROR(40): The operation '+' does not work with arrays.
-< ERROR(42): 'and' requires operands of type bool but lhs is of type int.
-< ERROR(42): 'and' requires operands of type bool but rhs is of type int.
-< ERROR(42): The operation 'and' does not work with arrays.
-< ERROR(43): 'and' requires operands of type bool but lhs is of type int.
-< ERROR(43): The operation 'and' does not work with arrays.
-< ERROR(44): 'and' requires operands of type bool but rhs is of type int.
-< ERROR(44): The operation 'and' does not work with arrays.
-< ERROR(45): The operation 'and' does not work with arrays.
-< ERROR(48): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(49): '<=' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(53): '=' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(54): '=' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(57): '+' requires operands of type int but lhs is of type bool.
-< ERROR(58): '+' requires operands of type int but rhs is of type bool.
-< ERROR(59): '+' requires operands of type int but rhs is of type bool.
-< ERROR(61): 'or' requires operands of type bool but lhs is of type int.
-< ERROR(62): 'or' requires operands of type bool but rhs is of type int.
-< ERROR(63): 'or' requires operands of type bool but rhs is of type int.
-< ERROR(66): Unary 'not' requires an operand of type bool but was given type int.
-< ERROR(67): The operation 'not' does not work with arrays.
-< ERROR(68): The operation 'not' does not work with arrays.
-< ERROR(68): Unary 'not' requires an operand of type bool but was given type int.
-< ERROR(70): Unary 'chsign' requires an operand of type int but was given type bool.
-< ERROR(72): The operation 'chsign' does not work with arrays.
-< ERROR(72): Unary 'chsign' requires an operand of type int but was given type bool.
-< ERROR(73): The operation 'chsign' does not work with arrays.
-< ERROR(76): '>' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(77): '>' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(78): '>' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(79): '>' requires operands of the same type but lhs is type bool and rhs is type int.
-< ERROR(79): '>' requires operands of the same type but lhs is type int and rhs is type bool.
 ---
 > .   .   .   Child: 0  Const 1 of type int [line: 82]
 > .   .   .   Child: 0  Const 1 of type int [line: 97]
@@ -287,12 +220,83 @@
 > .   .   .   Child: 2  Assign: <= [line: 89]
 > .   .   .   Child: 2  Assign: <= [line: 92]
 > .   .   .   Child: 2  Assign: <= [line: 95]
-73c220,221
+5,13c219,221
+< ERROR(106): Cannot index nonarray 'main'.
+< ERROR(106): Cannot use function 'main' as a variable.
+< ERROR(107): Cannot index nonarray 'main'.
+< ERROR(107): Cannot use function 'main' as a variable.
+< ERROR(108): Array 'ba' should be indexed by type int but got type bool.
+< ERROR(108): Array index is the unindexed array 'ba'.
+< ERROR(109): Array 'ba' should be indexed by type int but got type char.
+< ERROR(110): Cannot use function 'main' as a variable.
+< ERROR(111): The operation '+' does not work with arrays.
+---
+> ERROR(106): Symbol 'main' is not declared.
+> ERROR(107): Symbol 'main' is not declared.
+> ERROR(110): Symbol 'main' is not declared.
+15,70d222
+< ERROR(113): The operation 'sizeof' only works with arrays.
+< ERROR(114): Unary 'chsign' requires an operand of type int but was given type bool.
+< ERROR(116): Cannot return an array.
+< ERROR(13): '+' requires operands of type int but rhs is of type bool.
+< ERROR(14): '+' requires operands of type int but lhs is of type bool.
+< ERROR(15): '+' requires operands of type int but lhs is of type bool.
+< ERROR(15): '+' requires operands of type int but rhs is of type bool.
+< ERROR(17): 'and' requires operands of type bool but lhs is of type int.
+< ERROR(17): 'and' requires operands of type bool but rhs is of type int.
+< ERROR(18): 'and' requires operands of type bool but lhs is of type int.
+< ERROR(19): 'and' requires operands of type bool but rhs is of type int.
+< ERROR(23): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
+< ERROR(24): '<=' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(28): '=' requires operands of the same type but lhs is type int and rhs is type bool.
+< ERROR(29): '=' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(33): '!=' requires operands of the same type but lhs is type int and rhs is type bool.
+< ERROR(34): '!=' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(37): The operation '+' does not work with arrays.
+< ERROR(38): '+' requires operands of type int but rhs is of type bool.
+< ERROR(38): The operation '+' does not work with arrays.
+< ERROR(39): '+' requires operands of type int but lhs is of type bool.
+< ERROR(39): The operation '+' does not work with arrays.
+< ERROR(40): '+' requires operands of type int but lhs is of type bool.
+< ERROR(40): '+' requires operands of type int but rhs is of type bool.
+< ERROR(40): The operation '+' does not work with arrays.
+< ERROR(42): 'and' requires operands of type bool but lhs is of type int.
+< ERROR(42): 'and' requires operands of type bool but rhs is of type int.
+< ERROR(42): The operation 'and' does not work with arrays.
+< ERROR(43): 'and' requires operands of type bool but lhs is of type int.
+< ERROR(43): The operation 'and' does not work with arrays.
+< ERROR(44): 'and' requires operands of type bool but rhs is of type int.
+< ERROR(44): The operation 'and' does not work with arrays.
+< ERROR(45): The operation 'and' does not work with arrays.
+< ERROR(48): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
+< ERROR(49): '<=' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(53): '=' requires operands of the same type but lhs is type int and rhs is type bool.
+< ERROR(54): '=' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(57): '+' requires operands of type int but lhs is of type bool.
+< ERROR(58): '+' requires operands of type int but rhs is of type bool.
+< ERROR(59): '+' requires operands of type int but rhs is of type bool.
+< ERROR(61): 'or' requires operands of type bool but lhs is of type int.
+< ERROR(62): 'or' requires operands of type bool but rhs is of type int.
+< ERROR(63): 'or' requires operands of type bool but rhs is of type int.
+< ERROR(66): Unary 'not' requires an operand of type bool but was given type int.
+< ERROR(67): The operation 'not' does not work with arrays.
+< ERROR(68): The operation 'not' does not work with arrays.
+< ERROR(68): Unary 'not' requires an operand of type bool but was given type int.
+< ERROR(70): Unary 'chsign' requires an operand of type int but was given type bool.
+< ERROR(72): The operation 'chsign' does not work with arrays.
+< ERROR(72): Unary 'chsign' requires an operand of type int but was given type bool.
+< ERROR(73): The operation 'chsign' does not work with arrays.
+< ERROR(76): '>' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(77): '>' requires operands of the same type but lhs is type int and rhs is type bool.
+< ERROR(78): '>' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(79): '>' requires operands of the same type but lhs is type bool and rhs is type int.
+< ERROR(79): '>' requires operands of the same type but lhs is type int and rhs is type bool.
+73c225,226
 < Number of errors: 72
 ---
 > Func: main returns type int [line: 2]
-> Number of errors: 2
-74a223,307
+> Number of errors: 7
+74a228,312
 > .   .   Sibling: 10  Assign: <= [line: 24]
 > .   .   Sibling: 11  Assign: <= [line: 25]
 > .   .   Sibling: 12  Op: = of type bool [line: 27]
@@ -378,7 +382,7 @@
 > .   .   Sibling: 7  Var: pumpkin of type bool [line: 10]
 > .   .   Sibling: 8  Assign: <= [line: 22]
 > .   .   Sibling: 9  Assign: <= [line: 23]
-76,79c309,312
+76,79c314,317
 < WARNING(12): Variable 'i' may be uninitialized when used here.
 < WARNING(13): Variable 'b' may be uninitialized when used here.
 < WARNING(37): Variable 'ia' may be uninitialized when used here.

@@ -1,29 +1,5 @@
-1,25c1,103
+1c1,77
 < ERROR(12): Cannot index nonarray 'bb'.
-< ERROR(12): Symbol 'bb' is not declared.
-< ERROR(13): Cannot index nonarray 'bb'.
-< ERROR(13): Symbol 'bb' is not declared.
-< ERROR(14): Cannot index nonarray 'bb'.
-< ERROR(14): Symbol 'bb' is not declared.
-< ERROR(16): Cannot index nonarray 'cc'.
-< ERROR(16): Symbol 'cc' is not declared.
-< ERROR(17): Cannot index nonarray 'cc'.
-< ERROR(17): Symbol 'cc' is not declared.
-< ERROR(20): Cannot index nonarray 'a'.
-< ERROR(20): Symbol 'a' is not declared.
-< ERROR(20): Symbol 'output' is not declared.
-< ERROR(21): Symbol 'outnl' is not declared.
-< ERROR(23): Cannot index nonarray 'b'.
-< ERROR(23): Symbol 'b' is not declared.
-< ERROR(23): Symbol 'outputb' is not declared.
-< ERROR(24): Symbol 'outnl' is not declared.
-< ERROR(26): Cannot index nonarray 'c'.
-< ERROR(26): Symbol 'c' is not declared.
-< ERROR(26): Symbol 'outputc' is not declared.
-< ERROR(27): Symbol 'outnl' is not declared.
-< ERROR(29): Symbol 'output' is not declared.
-< Number of errors: 23
-< Number of warnings: 1
 ---
 > .   .   .   .   Child: 0  Const 0 of type int [line: 20]
 > .   .   .   .   Child: 0  Const 0 of type int [line: 23]
@@ -102,8 +78,33 @@
 > .   .   .   .   Child: 2  Call: output [line: 29]
 > .   .   .   .   .   Child: 2  Const 2 of type int [line: 29]
 > .   .   .   Child: 2  For [line: 29]
+3d78
+< ERROR(13): Cannot index nonarray 'bb'.
+5d79
+< ERROR(14): Cannot index nonarray 'bb'.
+7d80
+< ERROR(16): Cannot index nonarray 'cc'.
+9d81
+< ERROR(17): Cannot index nonarray 'cc'.
+11d82
+< ERROR(20): Cannot index nonarray 'a'.
+13,15d83
+< ERROR(20): Symbol 'output' is not declared.
+< ERROR(21): Symbol 'outnl' is not declared.
+< ERROR(23): Cannot index nonarray 'b'.
+17,19d84
+< ERROR(23): Symbol 'outputb' is not declared.
+< ERROR(24): Symbol 'outnl' is not declared.
+< ERROR(26): Cannot index nonarray 'c'.
+21,25c86,111
+< ERROR(26): Symbol 'outputc' is not declared.
+< ERROR(27): Symbol 'outnl' is not declared.
+< ERROR(29): Symbol 'output' is not declared.
+< Number of errors: 23
+< Number of warnings: 1
+---
 > Func: main returns type void [line: 2]
-> Number of errors: 0
+> Number of errors: 8
 > Number of warnings: 8
 > .   .   Sibling: 10  Call: outnl [line: 21]
 > .   .   Sibling: 11  For [line: 23]
@@ -128,5 +129,5 @@
 > WARNING(29): The variable 'i' seems not to be used.
 > WARNING(29): The variable 'j' seems not to be used.
 > WARNING(4): The variable 'aa' seems not to be used.
-26a105
+26a113
 > WARNING(6): The variable 'ca' seems not to be used.

@@ -1,4 +1,4 @@
-1,10c1,57
+1,8c1,50
 < ERROR(10): Symbol 'output' is not declared.
 < ERROR(12): Symbol 'output' is not declared.
 < ERROR(17): Symbol 'output' is not declared.
@@ -7,8 +7,6 @@
 < ERROR(30): Symbol 'outnl' is not declared.
 < ERROR(3): Symbol 'output' is not declared.
 < ERROR(5): Symbol 'outnl' is not declared.
-< Number of errors: 8
-< Number of warnings: 0
 ---
 > .   .   .   .   Child: 0  Id: w of type undefined [line: 27]
 > .   .   .   Child: 0  Id: w of type undefined [line: 28]
@@ -51,8 +49,18 @@
 > .   .   .   .   Child: 1  Const 7 of type int [line: 29]
 > .   .   .   .   Child: 1  Const 7 of type int [line: 3]
 > .   .   .   .   Child: 1  Const 7 of type int [line: 4]
+> ERROR(10): Symbol 'y' is not declared.
+> ERROR(11): Symbol 'y' is not declared.
+> ERROR(12): Symbol 'y' is not declared.
+> ERROR(17): Symbol 'x' is not declared.
+> ERROR(18): Symbol 'x' is not declared.
+> ERROR(19): Symbol 'x' is not declared.
+> ERROR(3): Symbol 'z' is not declared.
+> ERROR(4): Symbol 'z' is not declared.
 > Func: three returns type void [line: 2]
-> Number of errors: 0
+10c52,65
+< Number of warnings: 0
+---
 > Number of warnings: 1
 > .   .   Sibling: 1  Assign: <= [line: 4]
 > .   .   Sibling: 1  Call: one [line: 28]

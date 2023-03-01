@@ -1,17 +1,4 @@
-1,12c1,30
-< ERROR(14): Symbol 'b' is not declared.
-< ERROR(25): Symbol 'b' is not declared.
-< ERROR(26): Symbol 'c' is not declared.
-< ERROR(30): Symbol 'b' is not declared.
-< ERROR(31): Symbol 'c' is not declared.
-< ERROR(41): Symbol 'x' is not declared.
-< ERROR(45): Symbol 'p' is not declared.
-< ERROR(46): Symbol 'q' is not declared.
-< ERROR(46): Symbol 'r' is not declared.
-< ERROR(47): Symbol 's' is not declared.
-< ERROR(47): Symbol 't' is not declared.
-< ERROR(48): Symbol 'cow' is not declared.
----
+0a1,30
 > .   .   .   Child: 0  Const 3 of type int [line: 7]
 > .   .   .   Child: 0  Id: a of type undefined [line: 8]
 > .   .   .   Child: 0  Id: g of type undefined [line: 43]
@@ -42,13 +29,28 @@
 > .   .   .   Child: 1  Id: r of type undefined [line: 46]
 > .   .   Child: 1  Id: x of type undefined [line: 41]
 > .   .   Child: 1  Return [line: 59]
-14,16d31
-< ERROR(48): Symbol 'v' is not declared.
-< ERROR(49): Symbol 'abraxsis' is not declared.
+1a32
+> ERROR(17): Symbol 'x' is not declared.
+3c34
+< ERROR(26): Symbol 'c' is not declared.
+---
+> ERROR(27): Symbol 'x' is not declared.
+5c36,37
+< ERROR(31): Symbol 'c' is not declared.
+---
+> ERROR(32): Symbol 'x' is not declared.
+> ERROR(34): Symbol 'x' is not declared.
+6a39
+> ERROR(42): Symbol 'y' is not declared.
+12c45
+< ERROR(48): Symbol 'cow' is not declared.
+---
+> ERROR(48): Symbol 'u' is not declared.
+16d48
 < ERROR(50): Symbol 'a' is not declared.
-18,28c33,74
+18d49
 < ERROR(57): Symbol 'g' is already declared at line 2.
-< ERROR(59): Symbol 'x' is not declared.
+20,28c51,93
 < ERROR(62): Symbol 'g' is already declared at line 2.
 < ERROR(63): Symbol 'ant' is already declared at line 3.
 < ERROR(7): Symbol 'bat' is not declared.
@@ -59,7 +61,8 @@
 < Number of warnings: 5
 < WARNING(15): Variable 'c' may be uninitialized when used here.
 ---
-> Number of errors: 2
+> ERROR(9): Symbol 'x' is not declared.
+> Number of errors: 21
 > Number of warnings: 6
 > .   .   Sibling: 10  Id: x of type undefined [line: 34]
 > .   .   Sibling: 10  Id: z of type undefined [line: 51]
@@ -101,10 +104,10 @@
 > .   .   Sibling: 9  Id: a of type undefined [line: 50]
 > Var: g of type int [line: 2]
 > WARNING(12): The variable 'c' seems not to be used.
-29a76,77
+29a95,96
 > WARNING(2): The variable 'g' seems not to be used.
 > WARNING(39): The variable 'z' seems not to be used.
-31,32c79
+31,32c98
 < WARNING(44): Variable 'z' may be uninitialized when used here.
 < WARNING(8): Variable 'a' may be uninitialized when used here.
 ---

@@ -1,4 +1,4 @@
-1,10c1,145
+1,10c1,152
 < ERROR(13): Symbol 'output' is not declared.
 < ERROR(14): Symbol 'outputb' is not declared.
 < ERROR(15): Symbol 'outputc' is not declared.
@@ -90,13 +90,20 @@
 > .   .   .   .   Child: 1  Const true of type bool [line: 61]
 > .   .   .   Child: 1  Const 'z' [line: 26]
 > .   .   .   Child: 1  Const 'z' [line: 44]
+> ERROR(13): Symbol 'a' is not declared.
+> ERROR(14): Symbol 'b' is not declared.
+> ERROR(15): Symbol 'c' is not declared.
+> ERROR(27): Symbol 'z' is not declared.
 > ERROR(39): Symbol 'b' is already declared at line 22.
 > ERROR(40): Symbol 'c' is already declared at line 23.
+> ERROR(4): Symbol 'a' is not declared.
 > ERROR(57): Symbol 'ga' is already declared at line 32.
 > ERROR(58): Symbol 'gb' is already declared at line 33.
 > ERROR(59): Symbol 'gc' is already declared at line 34.
+> ERROR(5): Symbol 'b' is not declared.
+> ERROR(6): Symbol 'c' is not declared.
 > Func: cheyenne returns type void [line: 2]
-> Number of errors: 5
+> Number of errors: 12
 > Number of warnings: 6
 > .   .   Sibling: 10  Call: sioux [line: 53]
 > .   .   Sibling: 11  Call: comanche [line: 54]

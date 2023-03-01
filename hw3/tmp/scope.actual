@@ -28,9 +28,28 @@
 .   .   .   Child: 1  Id: r of type undefined [line: 46]
 .   .   Child: 1  Id: x of type undefined [line: 41]
 .   .   Child: 1  Return [line: 59]
+ERROR(14): Symbol 'b' is not declared.
+ERROR(17): Symbol 'x' is not declared.
+ERROR(25): Symbol 'b' is not declared.
+ERROR(27): Symbol 'x' is not declared.
+ERROR(30): Symbol 'b' is not declared.
+ERROR(32): Symbol 'x' is not declared.
+ERROR(34): Symbol 'x' is not declared.
+ERROR(41): Symbol 'x' is not declared.
+ERROR(42): Symbol 'y' is not declared.
+ERROR(45): Symbol 'p' is not declared.
+ERROR(46): Symbol 'q' is not declared.
+ERROR(46): Symbol 'r' is not declared.
+ERROR(47): Symbol 's' is not declared.
+ERROR(47): Symbol 't' is not declared.
 ERROR(48): Symbol 'u' is not declared.
+ERROR(48): Symbol 'u' is not declared.
+ERROR(48): Symbol 'v' is not declared.
+ERROR(49): Symbol 'abraxsis' is not declared.
 ERROR(55): Symbol 'g' is already declared at line 2.
-Number of errors: 2
+ERROR(59): Symbol 'x' is not declared.
+ERROR(9): Symbol 'x' is not declared.
+Number of errors: 21
 Number of warnings: 6
 .   .   Sibling: 10  Id: x of type undefined [line: 34]
 .   .   Sibling: 10  Id: z of type undefined [line: 51]

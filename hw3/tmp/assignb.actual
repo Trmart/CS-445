@@ -18,9 +18,12 @@
 .   .   .   Child: 1  Id: x of type undefined [line: 7]
 .   .   .   Child: 1  Op: != of type bool [line: 12]
 ERROR(7): Symbol 'x' is not declared.
+ERROR(7): Symbol 'x' is not declared.
+ERROR(7): Symbol 'x' is not declared.
+ERROR(8): Symbol 'x' is not declared.
 ERROR(8): Symbol 'x' is not declared.
 Func: main returns type void [line: 1]
-Number of errors: 2
+Number of errors: 5
 Number of warnings: 6
 .   .   Sibling: 1  Assign: <= [line: 8]
 .   .   Sibling: 1  Var: a of type int [line: 3]

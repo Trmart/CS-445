@@ -1,4 +1,4 @@
-1,14c1,32
+1,14c1,34
 < ERROR(11): Symbol 'a' is already declared at line 9.
 < ERROR(12): 'a' is a simple variable and cannot be called.
 < ERROR(13): Cannot use function 'fred' as a variable.
@@ -30,7 +30,9 @@
 > .   .   .   Child: 1  Const 4 of type int [line: 13]
 > .   .   .   Child: 1  Const 4 of type int [line: 26]
 > .   .   Child: 1  Op: + of type int [line: 26]
-> Number of errors: 0
+> ERROR(13): Symbol 'fred' is not declared.
+> ERROR(26): Symbol 'arwen' is not declared.
+> Number of errors: 2
 > Number of warnings: 5
 > Sibling: 1  Func: lund returns type void [line: 5]
 > .   .   Sibling: 1  Op: + of type int [line: 13]

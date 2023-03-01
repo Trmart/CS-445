@@ -23,8 +23,9 @@
 .   Child: 1  Compound [line: 7]
 .   .   Child: 1  Return [line: 3]
 .   .   Child: 1  Return [line: 8]
+ERROR(8): Symbol 'x' is not declared.
 Func: dory returns type int [line: 1]
-Number of errors: 0
+Number of errors: 1
 Number of warnings: 1
 .   .   Sibling: 1  Call: lyra [line: 16]
 Sibling: 1  Func: ella returns type void [line: 6]

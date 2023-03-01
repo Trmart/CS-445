@@ -1,6 +1,4 @@
-1c1,19
-< ERROR(7): Symbol 'x' is not declared.
----
+0a1,19
 > .   .   .   Child: 0  Id: aa of type undefined [line: 9]
 > .   .   .   .   Child: 0  Id: bb of type undefined [line: 10]
 > .   .   .   Child: 0  Id: b of type undefined [line: 12]
@@ -20,14 +18,17 @@
 > .   .   .   Child: 1  Id: b of type undefined [line: 10]
 > .   .   .   Child: 1  Id: x of type undefined [line: 7]
 > .   .   .   Child: 1  Op: != of type bool [line: 12]
-4,7c22,38
+2a22,23
+> ERROR(7): Symbol 'x' is not declared.
+> ERROR(8): Symbol 'x' is not declared.
+4,7c25,41
 < Number of errors: 3
 < Number of warnings: 4
 < WARNING(10): Variable 'b' may be uninitialized when used here.
 < WARNING(12): Variable 'cc' may be uninitialized when used here.
 ---
 > Func: main returns type void [line: 1]
-> Number of errors: 2
+> Number of errors: 5
 > Number of warnings: 6
 > .   .   Sibling: 1  Assign: <= [line: 8]
 > .   .   Sibling: 1  Var: a of type int [line: 3]
@@ -43,5 +44,5 @@
 > WARNING(4): The variable 'bb' seems not to be used.
 > WARNING(4): The variable 'b' seems not to be used.
 > WARNING(5): The variable 'cc' seems not to be used.
-9d39
+9d42
 < WARNING(9): Variable 'aa' may be uninitialized when used here.

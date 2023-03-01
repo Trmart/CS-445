@@ -12,11 +12,21 @@
 .   .   .   Child: 1  Id: i of type undefined [line: 3]
 .   .   .   Child: 1  Id: i of type undefined [line: 4]
 .   .   .   Child: 1  Op: + of type int [line: 5]
+ERROR(3): Symbol 'i' is not declared.
 ERROR(3): Symbol 'z' is not declared.
+ERROR(3): Symbol 'z' is not declared.
+ERROR(4): Symbol 'i' is not declared.
+ERROR(4): Symbol 'z' is not declared.
 ERROR(4): Symbol 'z' is not declared.
 ERROR(5): Symbol 'i' is not declared.
+ERROR(5): Symbol 'i' is not declared.
+ERROR(5): Symbol 'i' is not declared.
+ERROR(6): Symbol 'j' is not declared.
+ERROR(7): Symbol 'l' is not declared.
+ERROR(8): Symbol 'm' is not declared.
+ERROR(9): Symbol 'k' is not declared.
 Func: main returns type void [line: 1]
-Number of errors: 3
+Number of errors: 13
 Number of warnings: 0
 .   .   Sibling: 1  Assign: <= [line: 4]
 .   .   Sibling: 2  Assign: <= [line: 5]

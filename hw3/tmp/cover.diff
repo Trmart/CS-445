@@ -1,4 +1,4 @@
-1,13c1,142
+1,13c1,166
 < ERROR(19): Unary '--' requires an operand of type int but was given type char.
 < ERROR(20): Unary '?' requires an operand of type int but was given type char.
 < ERROR(22): Cannot index nonarray 'e'.
@@ -105,15 +105,39 @@
 > .   .   .   Child: 2  Compound [line: 7]
 > .   .   .   .   Child: 2  Const 3 of type int [line: 7]
 > .   .   .   .   .   .   .   .   Child: 2  Const 777 of type int [line: 11]
+> ERROR(11): Symbol 'c' is not declared.
+> ERROR(12): Symbol 'a' is not declared.
 > ERROR(12): Symbol 'a' is not declared.
 > ERROR(12): Symbol 'b' is not declared.
+> ERROR(12): Symbol 'b' is not declared.
+> ERROR(13): Symbol 'a' is not declared.
 > ERROR(13): Symbol 'a' is not declared.
 > ERROR(13): Symbol 'b' is not declared.
+> ERROR(13): Symbol 'b' is not declared.
+> ERROR(14): Symbol 'a' is not declared.
 > ERROR(15): Symbol 'e' is not declared.
+> ERROR(15): Symbol 'e' is not declared.
+> ERROR(16): Symbol 'a' is not declared.
 > ERROR(16): Symbol 'b' is not declared.
+> ERROR(16): Symbol 'b' is not declared.
+> ERROR(16): Symbol 'b' is not declared.
+> ERROR(17): Symbol 'b' is not declared.
+> ERROR(18): Symbol 'b' is not declared.
+> ERROR(19): Symbol 'c' is not declared.
+> ERROR(20): Symbol 'c' is not declared.
+> ERROR(21): Symbol 'f' is not declared.
+> ERROR(22): Symbol 'e' is not declared.
+> ERROR(22): Symbol 'e' is not declared.
+> ERROR(23): Symbol 'e' is not declared.
+> ERROR(23): Symbol 'e' is not declared.
+> ERROR(24): Symbol 'c' is not declared.
 > ERROR(24): Symbol 'c' is not declared.
 > ERROR(25): Symbol 'd' is not declared.
-> Number of errors: 8
+> ERROR(25): Symbol 'd' is not declared.
+> ERROR(26): Symbol 'a' is not declared.
+> ERROR(26): Symbol 'a' is not declared.
+> ERROR(26): Symbol 'a' is not declared.
+> Number of errors: 32
 > Number of warnings: 11
 > .   .   .   .   .   .   Sibling: 10  Op: ? [line: 20]
 > .   .   .   .   .   .   Sibling: 11  Op: ? [line: 21]
@@ -155,13 +179,13 @@
 > .   .   .   .   .   .   Sibling: 9  Assign: -- [line: 19]
 > Var: fahrenheit of type int [line: 2]
 > WARNING(2): The variable 'fahrenheit' seems not to be used.
-16a146
+16a170
 > WARNING(35): The variable 'b' seems not to be used.
-17a148,150
+17a172,174
 > WARNING(36): The variable 'd' seems not to be used.
 > WARNING(37): The variable 'e' seems not to be used.
 > WARNING(37): The variable 'f' seems not to be used.
-19,22c152
+19,22c176
 < WARNING(39): Variable 'b' may be uninitialized when used here.
 < WARNING(39): Variable 'd' may be uninitialized when used here.
 < WARNING(39): Variable 'e' may be uninitialized when used here.

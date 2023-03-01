@@ -14,7 +14,10 @@
 .   .   .   Child: 1  Const 9 of type int [line: 21]
 .   .   .   Child: 1  Const 9 of type int [line: 9]
 .   .   Child: 1  Id: gx of type undefined [line: 8]
-Number of errors: 0
+ERROR(16): Symbol 'px' is not declared.
+ERROR(17): Symbol 'py' is not declared.
+ERROR(18): Symbol 'py' is not declared.
+Number of errors: 3
 Number of warnings: 6
 .   .   Sibling: 10  Op: [ of type undefined [line: 21]
 .   .   Sibling: 11  Op: sizeof [line: 22]

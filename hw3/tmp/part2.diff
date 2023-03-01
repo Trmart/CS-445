@@ -1,4 +1,4 @@
-1,8c1,47
+1,8c1,48
 < ERROR(20): Symbol 'x' is already declared at line 18.
 < ERROR(26): Symbol 'dog' is already declared at line 18.
 < ERROR(35): '+' requires operands of type int but lhs is of type char.
@@ -52,10 +52,11 @@
 > .   .   Child: 1  Return [line: 10]
 > .   .   Child: 1  Return [line: 15]
 > ERROR(23): Symbol 'y' is not declared.
+> ERROR(23): Symbol 'y' is not declared.
 > ERROR(36): Symbol 'z' is already declared at line 3.
 > Func: ant returns type int [line: 1]
-> Number of errors: 2
-10c49,76
+> Number of errors: 3
+10c50,77
 < WARNING(28): The variable 'z' seems not to be used.
 ---
 > .   .   Sibling: 10  Call: elk [line: 51]
@@ -86,7 +87,7 @@
 > .   .   Sibling: 9  Call: elk [line: 50]
 > WARNING(20): The variable 'x' seems not to be used.
 > WARNING(34): The variable 'c' seems not to be used.
-12,13c78
+12,13c79
 < WARNING(49): Variable 'z' may be uninitialized when used here.
 < WARNING(4): Variable 'z' may be uninitialized when used here.
 ---

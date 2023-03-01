@@ -50,7 +50,8 @@
 .   .   .   Child: 1  Op: + of type int [line: 17]
 .   .   .   .   Child: 1  Op: + of type int [line: 23]
 ERROR(11): Symbol 'x' is not declared.
-Number of errors: 1
+ERROR(11): Symbol 'x' is not declared.
+Number of errors: 2
 Number of warnings: 3
 .   .   Sibling: 10  Assign: <= [line: 24]
 .   .   Sibling: 11  Assign: <= [line: 25]
