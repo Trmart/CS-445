@@ -519,6 +519,42 @@ void Semantics::analyzeForNodeSemantics() const
 
 void Semantics::analyzeReturnNodeSemantics(const Return* returnNode) const
 {
+    //check to make sure return node is not nullptr and that it is a return node
+    if(!isReturnNode(returnNode))
+    {
+        throw std::runtime_error("ERROR. Semantics::analyzeReturnNodeSemantics() - nullptr Return Node");
+    }
+
+    //get the return node's childern
+    std::vector<Node* > returnChildren = returnNode->getChildernNodes();
+
+    //check to see if the return node has any children
+    if(returnChildren.size() > 0)
+    {
+        //grab the lhs return node child
+        ExpressionNode* lhsReturnChild = (ExpressionNode* )(returnChildren[0]);
+        
+        
+        //check to see if what the function is returning is a valid type
+        if(isIdentifierNode(lhsReturnChild))
+        {
+            //cast the lhs return node child to an identifier node
+            Id* lhsReturnChildIdentifier = (Id* )(lhsReturnChild);
+
+            //get the previous declaration of the identifier node
+            DeclarationNode* previousDeclaration = (DeclarationNode* )(getFromSymbolTable(lhsReturnChildIdentifier->getIdentifierName()));
+
+            //check to see if the previous declaration is an array
+            if(previousDeclaration->getNodeData()->getIsArray() || previousDeclaration == nullptr)
+            {
+                //throw error
+                EmitDiagnostics::Error::emitGenericError(lhsReturnChildIdentifier->getTokenLineNumber(), "Cannot return array '" + lhsReturnChildIdentifier->getIdentifierName() + "'.");
+            }
+        }
+        
+    }
+    
+
 
 }
 

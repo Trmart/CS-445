@@ -220,10 +220,11 @@ ERROR(106): Symbol 'main' is not declared.
 ERROR(107): Symbol 'main' is not declared.
 ERROR(110): Symbol 'main' is not declared.
 ERROR(112): Symbol 'a' is not declared.
+ERROR(116): Cannot return array 'ba'.
 ERROR(8): Symbol 'c' is already declared at line 8.
 ERROR(9): Symbol 'i' is already declared at line 4.
 Func: main returns type int [line: 2]
-Number of errors: 7
+Number of errors: 8
 Number of warnings: 6
 .   .   Sibling: 10  Assign: <= [line: 24]
 .   .   Sibling: 11  Assign: <= [line: 25]

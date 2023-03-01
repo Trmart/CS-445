@@ -234,7 +234,7 @@
 > ERROR(106): Symbol 'main' is not declared.
 > ERROR(107): Symbol 'main' is not declared.
 > ERROR(110): Symbol 'main' is not declared.
-15,70d222
+15,70c223
 < ERROR(113): The operation 'sizeof' only works with arrays.
 < ERROR(114): Unary 'chsign' requires an operand of type int but was given type bool.
 < ERROR(116): Cannot return an array.
@@ -291,12 +291,14 @@
 < ERROR(78): '>' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(79): '>' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(79): '>' requires operands of the same type but lhs is type int and rhs is type bool.
-73c225,226
+---
+> ERROR(116): Cannot return array 'ba'.
+73c226,227
 < Number of errors: 72
 ---
 > Func: main returns type int [line: 2]
-> Number of errors: 7
-74a228,312
+> Number of errors: 8
+74a229,313
 > .   .   Sibling: 10  Assign: <= [line: 24]
 > .   .   Sibling: 11  Assign: <= [line: 25]
 > .   .   Sibling: 12  Op: = of type bool [line: 27]
@@ -382,7 +384,7 @@
 > .   .   Sibling: 7  Var: pumpkin of type bool [line: 10]
 > .   .   Sibling: 8  Assign: <= [line: 22]
 > .   .   Sibling: 9  Assign: <= [line: 23]
-76,79c314,317
+76,79c315,318
 < WARNING(12): Variable 'i' may be uninitialized when used here.
 < WARNING(13): Variable 'b' may be uninitialized when used here.
 < WARNING(37): Variable 'ia' may be uninitialized when used here.

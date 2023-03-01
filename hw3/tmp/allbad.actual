@@ -215,6 +215,7 @@ ERROR(34): Symbol 'a' is not declared.
 ERROR(39): Symbol 'b' is already declared at line 5.
 ERROR(46): Symbol 'cat' is not declared.
 ERROR(47): Symbol 'cat' is not declared.
+ERROR(67): Cannot return array 'aa'.
 ERROR(71): Symbol 'i' is not declared.
 ERROR(7): Symbol 'a' is not declared.
 ERROR(7): Symbol 'a' is not declared.
@@ -222,7 +223,7 @@ ERROR(81): Symbol 'a' is already declared at line 39.
 ERROR(9): Symbol 'c' is not declared.
 ERROR(9): Symbol 'c' is not declared.
 Func: ant returns type char [line: 2]
-Number of errors: 29
+Number of errors: 30
 Number of warnings: 14
 .   .   Sibling: 10  Assign: <= [line: 57]
 .   .   Sibling: 10  Return [line: 107]

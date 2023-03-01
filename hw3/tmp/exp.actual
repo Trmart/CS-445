@@ -211,10 +211,7 @@
 .   .   .   .   .   Child: 1  Op: != of type bool [line: 31]
 .   .   .   .   Child: 1  Op: or of type bool [line: 31]
 .   .   Child: 1  Return [line: 2]
-ERROR(2): Symbol 'x' is not declared.
 Func: ident returns type int [line: 2]
-Number of errors: 1
-Number of warnings: 1
 .   .   Sibling: 10  Call: output [line: 18]
 .   .   Sibling: 11  Call: output [line: 19]
 .   .   Sibling: 12  Call: output [line: 20]
@@ -240,4 +237,3 @@ Sibling: 1  Func: main returns type void [line: 4]
 .   .   Sibling: 7  Call: output [line: 15]
 .   .   Sibling: 8  Call: output [line: 16]
 .   .   Sibling: 9  Call: outnl [line: 17]
-WARNING(6): The variable 'x' seems not to be used.

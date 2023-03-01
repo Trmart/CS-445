@@ -49,10 +49,7 @@ ERROR(48): Symbol 'u' is not declared.
 ERROR(48): Symbol 'v' is not declared.
 ERROR(49): Symbol 'abraxsis' is not declared.
 ERROR(55): Symbol 'g' is already declared at line 2.
-ERROR(59): Symbol 'x' is not declared.
 ERROR(9): Symbol 'x' is not declared.
-Number of errors: 23
-Number of warnings: 6
 .   .   Sibling: 10  Id: x of type undefined [line: 34]
 .   .   Sibling: 10  Id: z of type undefined [line: 51]
 .   .   Sibling: 11  Id: g of type undefined [line: 52]

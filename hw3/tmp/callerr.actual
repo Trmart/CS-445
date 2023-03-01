@@ -23,10 +23,7 @@
 .   Child: 1  Compound [line: 7]
 .   .   Child: 1  Return [line: 3]
 .   .   Child: 1  Return [line: 8]
-ERROR(8): Symbol 'x' is not declared.
 Func: dory returns type int [line: 1]
-Number of errors: 1
-Number of warnings: 1
 .   .   Sibling: 1  Call: lyra [line: 16]
 Sibling: 1  Func: ella returns type void [line: 6]
 .   .   Sibling: 2  Call: ella [line: 18]
@@ -38,4 +35,3 @@ Sibling: 2  Func: fred returns type void [line: 11]
 .   .   Sibling: 7  Call: dory [line: 23]
 .   .   Sibling: 8  Assign: <= [line: 26]
 .   .   Sibling: 9  Assign: <= [line: 27]
-WARNING(13): The variable 'x' seems not to be used.

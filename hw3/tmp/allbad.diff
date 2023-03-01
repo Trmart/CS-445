@@ -1,4 +1,4 @@
-1,62c1,307
+1,62c1,308
 < ERROR(102): '<=' requires operands of the same type but lhs is type char and rhs is type bool.
 < ERROR(105): '+' requires operands of type int but lhs is of type void.
 < ERROR(105): '+' requires operands of type int but rhs is of type bool.
@@ -279,6 +279,7 @@
 > ERROR(39): Symbol 'b' is already declared at line 5.
 > ERROR(46): Symbol 'cat' is not declared.
 > ERROR(47): Symbol 'cat' is not declared.
+> ERROR(67): Cannot return array 'aa'.
 > ERROR(71): Symbol 'i' is not declared.
 > ERROR(7): Symbol 'a' is not declared.
 > ERROR(7): Symbol 'a' is not declared.
@@ -286,7 +287,7 @@
 > ERROR(9): Symbol 'c' is not declared.
 > ERROR(9): Symbol 'c' is not declared.
 > Func: ant returns type char [line: 2]
-> Number of errors: 29
+> Number of errors: 30
 > Number of warnings: 14
 > .   .   Sibling: 10  Assign: <= [line: 57]
 > .   .   Sibling: 10  Return [line: 107]
@@ -369,7 +370,7 @@
 > WARNING(53): The variable 'z' seems not to be used.
 > WARNING(5): The variable 'b' seems not to be used.
 > WARNING(72): The variable 'i' seems not to be used.
-64c309,311
+64c310,312
 < WARNING(86): Variable 'b' may be uninitialized when used here.
 ---
 > WARNING(84): The variable 'b' seems not to be used.

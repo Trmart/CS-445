@@ -44,8 +44,9 @@
 ERROR(23): Symbol 'y' is not declared.
 ERROR(23): Symbol 'y' is not declared.
 ERROR(36): Symbol 'z' is already declared at line 3.
+ERROR(5): Cannot return array 'z'.
 Func: ant returns type int [line: 1]
-Number of errors: 3
+Number of errors: 4
 Number of warnings: 4
 .   .   Sibling: 10  Call: elk [line: 51]
 .   .   Sibling: 1  Assign: <= [line: 23]
