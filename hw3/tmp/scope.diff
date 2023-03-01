@@ -31,26 +31,22 @@
 > .   .   Child: 1  Return [line: 59]
 1a32
 > ERROR(17): Symbol 'x' is not declared.
-3c34
-< ERROR(26): Symbol 'c' is not declared.
----
+3a35
 > ERROR(27): Symbol 'x' is not declared.
-5c36,37
-< ERROR(31): Symbol 'c' is not declared.
----
+5a38,39
 > ERROR(32): Symbol 'x' is not declared.
 > ERROR(34): Symbol 'x' is not declared.
-6a39
+6a41
 > ERROR(42): Symbol 'y' is not declared.
-12c45
+12c47
 < ERROR(48): Symbol 'cow' is not declared.
 ---
 > ERROR(48): Symbol 'u' is not declared.
-16d48
+16d50
 < ERROR(50): Symbol 'a' is not declared.
-18d49
+18d51
 < ERROR(57): Symbol 'g' is already declared at line 2.
-20,28c51,93
+20,28c53,95
 < ERROR(62): Symbol 'g' is already declared at line 2.
 < ERROR(63): Symbol 'ant' is already declared at line 3.
 < ERROR(7): Symbol 'bat' is not declared.
@@ -62,7 +58,7 @@
 < WARNING(15): Variable 'c' may be uninitialized when used here.
 ---
 > ERROR(9): Symbol 'x' is not declared.
-> Number of errors: 21
+> Number of errors: 23
 > Number of warnings: 6
 > .   .   Sibling: 10  Id: x of type undefined [line: 34]
 > .   .   Sibling: 10  Id: z of type undefined [line: 51]
@@ -104,10 +100,10 @@
 > .   .   Sibling: 9  Id: a of type undefined [line: 50]
 > Var: g of type int [line: 2]
 > WARNING(12): The variable 'c' seems not to be used.
-29a95,96
+29a97,98
 > WARNING(2): The variable 'g' seems not to be used.
 > WARNING(39): The variable 'z' seems not to be used.
-31,32c98
+31,32c100
 < WARNING(44): Variable 'z' may be uninitialized when used here.
 < WARNING(8): Variable 'a' may be uninitialized when used here.
 ---

@@ -85,14 +85,11 @@ ERROR(27): Symbol 'z' is not declared.
 ERROR(39): Symbol 'b' is already declared at line 22.
 ERROR(40): Symbol 'c' is already declared at line 23.
 ERROR(4): Symbol 'a' is not declared.
-ERROR(57): Symbol 'ga' is already declared at line 32.
-ERROR(58): Symbol 'gb' is already declared at line 33.
-ERROR(59): Symbol 'gc' is already declared at line 34.
 ERROR(5): Symbol 'b' is not declared.
 ERROR(6): Symbol 'c' is not declared.
 Func: cheyenne returns type void [line: 2]
-Number of errors: 12
-Number of warnings: 6
+Number of errors: 9
+Number of warnings: 9
 .   .   Sibling: 10  Call: sioux [line: 53]
 .   .   Sibling: 11  Call: comanche [line: 54]
 .   .   Sibling: 12  Compound [line: 56]
@@ -150,3 +147,6 @@ WARNING(32): The variable 'ga' seems not to be used.
 WARNING(33): The variable 'gb' seems not to be used.
 WARNING(34): The variable 'gc' seems not to be used.
 WARNING(38): The variable 'a' seems not to be used.
+WARNING(57): The variable 'ga' seems not to be used.
+WARNING(58): The variable 'gb' seems not to be used.
+WARNING(59): The variable 'gc' seems not to be used.

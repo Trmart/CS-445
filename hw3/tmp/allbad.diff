@@ -1,4 +1,4 @@
-1,64c1,311
+1,62c1,307
 < ERROR(102): '<=' requires operands of the same type but lhs is type char and rhs is type bool.
 < ERROR(105): '+' requires operands of type int but lhs is of type void.
 < ERROR(105): '+' requires operands of type int but rhs is of type bool.
@@ -61,8 +61,6 @@
 < WARNING(43): Variable 'b' may be uninitialized when used here.
 < WARNING(44): Variable 'c' may be uninitialized when used here.
 < WARNING(73): Variable 'i' may be uninitialized when used here.
-< WARNING(84): The variable 'a' seems not to be used.
-< WARNING(86): Variable 'b' may be uninitialized when used here.
 ---
 > .   .   .   Child: 0  Assign: <= [line: 17]
 > .   .   .   Child: 0  Call: ant [line: 103]
@@ -285,13 +283,11 @@
 > ERROR(7): Symbol 'a' is not declared.
 > ERROR(7): Symbol 'a' is not declared.
 > ERROR(81): Symbol 'a' is already declared at line 39.
-> ERROR(84): Symbol 'a' is already declared at line 39.
-> ERROR(84): Symbol 'b' is already declared at line 5.
 > ERROR(9): Symbol 'c' is not declared.
 > ERROR(9): Symbol 'c' is not declared.
 > Func: ant returns type char [line: 2]
-> Number of errors: 31
-> Number of warnings: 12
+> Number of errors: 29
+> Number of warnings: 14
 > .   .   Sibling: 10  Assign: <= [line: 57]
 > .   .   Sibling: 10  Return [line: 107]
 > .   .   Sibling: 10  While [line: 19]
@@ -373,5 +369,9 @@
 > WARNING(53): The variable 'z' seems not to be used.
 > WARNING(5): The variable 'b' seems not to be used.
 > WARNING(72): The variable 'i' seems not to be used.
+64c309,311
+< WARNING(86): Variable 'b' may be uninitialized when used here.
+---
+> WARNING(84): The variable 'b' seems not to be used.
 > WARNING(93): The variable 'bbb' seems not to be used.
 > WARNING(94): The variable 'ccc' seems not to be used.

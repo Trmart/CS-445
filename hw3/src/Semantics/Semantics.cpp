@@ -409,6 +409,8 @@ void Semantics::analyzeExpressionNodeSemantics(ExpressionNode* expression)
 }
 
 
+
+//currenty working. Doesn't seem to have an errors. 3/1/23
 void Semantics::analyzeIdentifierNodeSemantics(const Id* identifier) const
 {
     //check to make sure identifier is not nullptr and that it is an identifier node
@@ -492,7 +494,18 @@ void Semantics::analyzeUnaryAsssignmentNodeSemantics(const UnaryAsgn* unaryAssig
 
 void Semantics::analyzeCompoundNodeSemantics(const Compound* compound) const
 {
+    //check to make sure compound is not nullptr and that it is a compound node
+    if(!isCompoundNode(compound))
+    {
+        throw std::runtime_error("ERROR. Semantics::analyzeCompoundNodeSemantics() - nullptr Compound Node");
+    }
 
+    //ignore compounds following a function or a for loop
+    if(!isFunctionNode(compound->getParentNode()) && !isForNode(compound->getParentNode()))
+    {
+        //enter compound into symbol table
+        m_symbolTable->enter("Compound Statement");
+    }
 }
 
 
@@ -770,16 +783,70 @@ bool Semantics::isDeclared(const Id* id) const
 
 }
 
-
+//seems to be working properly. No errors currently present. 3/1/23
 bool Semantics::hasIndexAncestor(const ExpressionNode* expression) const
 {
+    if (!isExpressionNode(expression))
+    {
+        throw std::runtime_error("Semantics::hasIndexAncestor() - Invalid Exp");
+    }
 
+    Node* lastParent = (Node *)expression;
+    Node* parent = expression->getParentNode();
+    
+    while (parent != nullptr)
+    {
+        if (isBinaryNode(parent))
+        {
+            Binary *binary = (Binary *)parent;
+            if (binary->getBinaryType() == Binary::Type::INDEX)
+            {
+                // On the right side
+                if (binary->getChildernNodes()[1] == lastParent)
+                {
+                    return true;
+                }
+            }
+        }
+        
+        lastParent = parent;
+        
+        parent = parent->getParentNode();
+    }
+    return false;
 }
 
-
+//seems to be working properly. No errors currently present. 3/1/23
 bool Semantics::hasAssignmentAncestor(const ExpressionNode* expression) const
 {
+    if(!isExpressionNode(expression))
+    {
+        throw std::runtime_error("Semantics::hasAsgnAncestor() - Invalid Exp");
+    }
 
+    Node *lastParent = (Node *)expression;
+    Node *parent = expression->getParentNode();
+    
+    while (parent != nullptr)
+    {
+        if (isAssignmentNode(parent))
+        {
+            Asgn *asgn = (Asgn *)parent;
+            if (asgn->getAssignmentType() == Asgn::Type::ASGN)
+            {
+                // On the left side
+                if (asgn->getChildernNodes()[0] == lastParent)
+                {
+                    return true;
+                }
+            }
+        }
+        
+        lastParent = parent;
+        
+        parent = parent->getParentNode();
+    }
+    return false;
 }
 
 

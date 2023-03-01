@@ -1,7 +1,6 @@
-1,3c1,19
+1,2c1,10
 < ERROR(LINKER): A function named 'main()' must be defined.
 < Number of errors: 1
-< Number of warnings: 6
 ---
 > .   Child: 0  Parm: p of type int [line: 4]
 > .   .   Child: 0  Var: a of static type int [line: 6]
@@ -12,19 +11,15 @@
 > .   .   .   Child: 1  Compound [line: 14]
 > .   Child: 1  Compound [line: 5]
 > .   .   Child: 1  Compound [line: 7]
-> ERROR(15): Symbol 'b' is already declared at line 8.
-> ERROR(18): Symbol 'c' is already declared at line 11.
-> Number of errors: 2
-> Number of warnings: 4
+> Number of errors: 0
+3a12,17
 > .   .   Sibling: 1  Compound [line: 10]
 > .   .   .   Sibling: 1  Compound [line: 17]
 > Sibling: 1  Func: main returns type void [line: 4]
 > .   .   Sibling: 2  Compound [line: 13]
 > Sibling: 2  Var: h of type int [line: 23]
 > Var: g of type int [line: 2]
-5,7c21
-< WARNING(15): The variable 'b' seems not to be used.
-< WARNING(18): The variable 'c' seems not to be used.
+7c21
 < WARNING(4): The variable 'p' seems not to be used.
 ---
 > WARNING(2): The variable 'g' seems not to be used.

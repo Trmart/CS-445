@@ -219,13 +219,11 @@ ERROR(71): Symbol 'i' is not declared.
 ERROR(7): Symbol 'a' is not declared.
 ERROR(7): Symbol 'a' is not declared.
 ERROR(81): Symbol 'a' is already declared at line 39.
-ERROR(84): Symbol 'a' is already declared at line 39.
-ERROR(84): Symbol 'b' is already declared at line 5.
 ERROR(9): Symbol 'c' is not declared.
 ERROR(9): Symbol 'c' is not declared.
 Func: ant returns type char [line: 2]
-Number of errors: 31
-Number of warnings: 12
+Number of errors: 29
+Number of warnings: 14
 .   .   Sibling: 10  Assign: <= [line: 57]
 .   .   Sibling: 10  Return [line: 107]
 .   .   Sibling: 10  While [line: 19]
@@ -307,5 +305,7 @@ WARNING(52): The variable 'z' seems not to be used.
 WARNING(53): The variable 'z' seems not to be used.
 WARNING(5): The variable 'b' seems not to be used.
 WARNING(72): The variable 'i' seems not to be used.
+WARNING(84): The variable 'a' seems not to be used.
+WARNING(84): The variable 'b' seems not to be used.
 WARNING(93): The variable 'bbb' seems not to be used.
 WARNING(94): The variable 'ccc' seems not to be used.

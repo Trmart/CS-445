@@ -31,8 +31,10 @@
 ERROR(14): Symbol 'b' is not declared.
 ERROR(17): Symbol 'x' is not declared.
 ERROR(25): Symbol 'b' is not declared.
+ERROR(26): Symbol 'c' is not declared.
 ERROR(27): Symbol 'x' is not declared.
 ERROR(30): Symbol 'b' is not declared.
+ERROR(31): Symbol 'c' is not declared.
 ERROR(32): Symbol 'x' is not declared.
 ERROR(34): Symbol 'x' is not declared.
 ERROR(41): Symbol 'x' is not declared.
@@ -49,7 +51,7 @@ ERROR(49): Symbol 'abraxsis' is not declared.
 ERROR(55): Symbol 'g' is already declared at line 2.
 ERROR(59): Symbol 'x' is not declared.
 ERROR(9): Symbol 'x' is not declared.
-Number of errors: 21
+Number of errors: 23
 Number of warnings: 6
 .   .   Sibling: 10  Id: x of type undefined [line: 34]
 .   .   Sibling: 10  Id: z of type undefined [line: 51]
