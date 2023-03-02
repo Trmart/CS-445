@@ -119,8 +119,14 @@
 .   .   .   Child: 1  Op: [ of type undefined [line: 46]
 .   .   .   Child: 1  Op: [ of type undefined [line: 47]
 .   .   .   Child: 1  Op: [ of type undefined [line: 48]
+ERROR(18): The operation 'chsign' does not work with arrays.
+ERROR(19): The operation 'chsign' does not work with arrays.
+ERROR(26): The operation 'sizeof' only works with arrays.
+ERROR(29): The operation '?' does not work with arrays.
+ERROR(31): The operation 'not' does not work with arrays.
+ERROR(33): The operation '++' does not work with arrays.
 Func: main returns type void [line: 2]
-Number of errors: 0
+Number of errors: 6
 Number of warnings: 6
 .   .   Sibling: 10  Op: [ of type undefined [line: 21]
 .   .   Sibling: 11  Op: [ of type undefined [line: 22]

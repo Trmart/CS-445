@@ -198,16 +198,16 @@
 > .   .   .   Child: 2  Const 555 of type int [line: 12]
 > .   .   .   .   Child: 2  Const 555 of type int [line: 13]
 > .   .   .   Child: 2  Op: + of type int [line: 51]
-6,34c196,199
+6,11d195
 < ERROR(11): '>' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(12): '<' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(13): '!<' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(13): '!>' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(14): '=' requires operands of the same type but lhs is type int and rhs is type bool.
 < ERROR(15): 'and' requires operands of type bool but lhs is of type int.
-< ERROR(15): Unary 'not' requires an operand of type bool but was given type int.
+13d196
 < ERROR(16): 'or' requires operands of type bool but lhs is of type int.
-< ERROR(16): Unary 'not' requires an operand of type bool but was given type int.
+15,24c198,201
 < ERROR(17): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
 < ERROR(21): '+' requires operands of type int but lhs is of type bool.
 < ERROR(22): '-' requires operands of type int but rhs is of type bool.
@@ -218,9 +218,12 @@
 < ERROR(28): '-=' requires operands of type int but lhs is of type bool.
 < ERROR(29): '*=' requires operands of type int but lhs is of type bool.
 < ERROR(30): '/=' requires operands of type int but lhs is of type bool.
-< ERROR(32): Unary 'chsign' requires an operand of type int but was given type bool.
-< ERROR(33): Unary 'not' requires an operand of type bool but was given type int.
-< ERROR(34): Unary '?' requires an operand of type int but was given type bool.
+---
+> ERROR(27): Symbol 'a' is not declared.
+> ERROR(28): Symbol 'a' is not declared.
+> ERROR(29): Symbol 'a' is not declared.
+> ERROR(30): Symbol 'a' is not declared.
+28,34d204
 < ERROR(43): Array 'ba' should be indexed by type int but got type char.
 < ERROR(43): '<=' requires operands of the same type but lhs is type char and rhs is type int.
 < ERROR(44): Array 'ca' should be indexed by type int but got type bool.
@@ -228,37 +231,30 @@
 < ERROR(45): Array 'aa' should be indexed by type int but got type bool.
 < ERROR(45): Array index is the unindexed array 'aa'.
 < ERROR(46): Cannot index nonarray 'cat'.
----
-> ERROR(27): Symbol 'a' is not declared.
-> ERROR(28): Symbol 'a' is not declared.
-> ERROR(29): Symbol 'a' is not declared.
-> ERROR(30): Symbol 'a' is not declared.
-37,39d201
+37,39d206
 < ERROR(54): '<=' requires operands of the same type but lhs is type char and rhs is type int.
 < ERROR(65): '<=' requires operands of the same type but lhs is type int and rhs is type char.
 < ERROR(67): Cannot return an array.
-41c203
+41c208
 < ERROR(7): '<=' requires operands of the same type but lhs is type bool and rhs is type int.
 ---
 > ERROR(7): Symbol 'a' is not declared.
-43a206,207
+43a211,212
 > ERROR(82): Symbol 'b' is not declared.
 > ERROR(85): Symbol 'c' is not declared.
-47,53c211
+47c216
 < ERROR(8): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
-< ERROR(96): The operation '?' does not work with arrays.
-< ERROR(96): Unary '?' requires an operand of type int but was given type char.
+---
+> ERROR(86): Symbol 'c' is not declared.
+50,52d218
 < ERROR(97): '/' requires operands of type int but lhs is of type char.
 < ERROR(97): '/' requires operands of type int but rhs is of type char.
 < ERROR(97): The operation '/' does not work with arrays.
-< ERROR(98): The operation 'sizeof' only works with arrays.
----
-> ERROR(86): Symbol 'c' is not declared.
-55c213
+55c221
 < ERROR(9): '<=' requires operands of the same type but lhs is type int and rhs is type char.
 ---
 > ERROR(9): Symbol 'c' is not declared.
-57,62c215,299
+57,62c223,307
 < Number of errors: 56
 < Number of warnings: 6
 < WARNING(42): Variable 'aa' may be uninitialized when used here.
@@ -267,7 +263,7 @@
 < WARNING(73): Variable 'i' may be uninitialized when used here.
 ---
 > Func: ant returns type char [line: 2]
-> Number of errors: 20
+> Number of errors: 28
 > Number of warnings: 14
 > .   .   Sibling: 10  Assign: <= [line: 57]
 > .   .   Sibling: 10  Return [line: 107]
@@ -351,7 +347,7 @@
 > WARNING(53): The variable 'z' seems not to be used.
 > WARNING(5): The variable 'b' seems not to be used.
 > WARNING(72): The variable 'i' seems not to be used.
-64c301,302
+64c309,310
 < WARNING(86): Variable 'b' may be uninitialized when used here.
 ---
 > WARNING(84): The variable 'b' seems not to be used.

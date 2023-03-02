@@ -96,9 +96,11 @@ ERROR(13): Symbol 'a' is not declared.
 ERROR(13): Symbol 'b' is not declared.
 ERROR(15): Symbol 'e' is not declared.
 ERROR(16): Symbol 'b' is not declared.
+ERROR(19): Unary '--' requires an operand of type int but was given type char.
+ERROR(20): Unary '?' requires an operand of type int but was given type char.
 ERROR(24): Symbol 'c' is not declared.
 ERROR(25): Symbol 'd' is not declared.
-Number of errors: 8
+Number of errors: 10
 Number of warnings: 10
 .   .   .   .   .   .   Sibling: 10  Op: ? of type int [line: 20]
 .   .   .   .   .   .   Sibling: 11  Op: ? of type int [line: 21]

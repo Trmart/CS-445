@@ -193,10 +193,15 @@
 .   .   .   .   Child: 2  Const 555 of type int [line: 13]
 .   .   .   Child: 2  Op: + of type int [line: 51]
 ERROR(110): Symbol 'mane' is already declared at line 91.
+ERROR(15): Unary 'not' requires an operand of type bool but was given type int.
+ERROR(16): Unary 'not' requires an operand of type bool but was given type int.
 ERROR(27): Symbol 'a' is not declared.
 ERROR(28): Symbol 'a' is not declared.
 ERROR(29): Symbol 'a' is not declared.
 ERROR(30): Symbol 'a' is not declared.
+ERROR(32): Unary 'chsign' requires an operand of type int but was given type bool.
+ERROR(33): Unary 'not' requires an operand of type bool but was given type int.
+ERROR(34): Unary '?' requires an operand of type int but was given type bool.
 ERROR(46): Cannot use function 'cat' as a variable.
 ERROR(47): Cannot use function 'cat' as a variable.
 ERROR(79): Symbol 'a' is already declared at line 79.
@@ -209,11 +214,14 @@ ERROR(85): Symbol 'c' is not declared.
 ERROR(85): Symbol 'c' is not declared.
 ERROR(86): Symbol 'c' is not declared.
 ERROR(86): Symbol 'c' is not declared.
+ERROR(96): The operation '?' does not work with arrays.
+ERROR(96): Unary '?' requires an operand of type int but was given type char.
+ERROR(98): The operation 'sizeof' only works with arrays.
 ERROR(99): 'bbb' is a simple variable and cannot be called.
 ERROR(9): Symbol 'c' is not declared.
 ERROR(LINKER): A function named 'main()' must be defined.
 Func: ant returns type char [line: 2]
-Number of errors: 20
+Number of errors: 28
 Number of warnings: 14
 .   .   Sibling: 10  Assign: <= [line: 57]
 .   .   Sibling: 10  Return [line: 107]

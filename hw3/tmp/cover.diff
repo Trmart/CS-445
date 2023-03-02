@@ -1,18 +1,4 @@
-1,13c1,141
-< ERROR(19): Unary '--' requires an operand of type int but was given type char.
-< ERROR(20): Unary '?' requires an operand of type int but was given type char.
-< ERROR(22): Cannot index nonarray 'e'.
-< ERROR(22): Cannot index nonarray 'e'.
-< ERROR(22): '+' requires operands of type int but lhs is of type bool.
-< ERROR(22): '+' requires operands of type int but rhs is of type bool.
-< ERROR(23): Array 'e' should be indexed by type int but got type bool.
-< ERROR(23): Cannot index nonarray 'e'.
-< ERROR(23): Cannot index nonarray 'e'.
-< ERROR(26): 'and' requires operands of type bool but lhs is of type int.
-< ERROR(26): 'and' requires operands of type bool but rhs is of type int.
-< Number of errors: 11
-< Number of warnings: 9
----
+0a1,98
 > .   .   .   Child: 0  Const 101 of type int [line: 39]
 > .   .   .   .   Child: 0  Const 1 of type int [line: 31]
 > .   .   .   .   Child: 0  Const 1 of type int [line: 7]
@@ -111,9 +97,22 @@
 > ERROR(13): Symbol 'b' is not declared.
 > ERROR(15): Symbol 'e' is not declared.
 > ERROR(16): Symbol 'b' is not declared.
+3,13c101,143
+< ERROR(22): Cannot index nonarray 'e'.
+< ERROR(22): Cannot index nonarray 'e'.
+< ERROR(22): '+' requires operands of type int but lhs is of type bool.
+< ERROR(22): '+' requires operands of type int but rhs is of type bool.
+< ERROR(23): Array 'e' should be indexed by type int but got type bool.
+< ERROR(23): Cannot index nonarray 'e'.
+< ERROR(23): Cannot index nonarray 'e'.
+< ERROR(26): 'and' requires operands of type bool but lhs is of type int.
+< ERROR(26): 'and' requires operands of type bool but rhs is of type int.
+< Number of errors: 11
+< Number of warnings: 9
+---
 > ERROR(24): Symbol 'c' is not declared.
 > ERROR(25): Symbol 'd' is not declared.
-> Number of errors: 8
+> Number of errors: 10
 > Number of warnings: 10
 > .   .   .   .   .   .   Sibling: 10  Op: ? of type int [line: 20]
 > .   .   .   .   .   .   Sibling: 11  Op: ? of type int [line: 21]
@@ -154,13 +153,13 @@
 > .   .   .   .   .   .   Sibling: 8  Op: chsign of type int [line: 18]
 > .   .   .   .   .   .   Sibling: 9  Assign: -- [line: 19]
 > Var: fahrenheit of type int [line: 2]
-16a145
+16a147
 > WARNING(35): The variable 'b' seems not to be used.
-17a147,149
+17a149,151
 > WARNING(36): The variable 'd' seems not to be used.
 > WARNING(37): The variable 'e' seems not to be used.
 > WARNING(37): The variable 'f' seems not to be used.
-19,22c151
+19,22c153
 < WARNING(39): Variable 'b' may be uninitialized when used here.
 < WARNING(39): Variable 'd' may be uninitialized when used here.
 < WARNING(39): Variable 'e' may be uninitialized when used here.

@@ -229,9 +229,7 @@
 < ERROR(109): Array 'ba' should be indexed by type int but got type char.
 13d222
 < ERROR(111): The operation '+' does not work with arrays.
-15,70d223
-< ERROR(113): The operation 'sizeof' only works with arrays.
-< ERROR(114): Unary 'chsign' requires an operand of type int but was given type bool.
+17,57d225
 < ERROR(116): Cannot return an array.
 < ERROR(13): '+' requires operands of type int but rhs is of type bool.
 < ERROR(14): '+' requires operands of type int but lhs is of type bool.
@@ -273,25 +271,18 @@
 < ERROR(61): 'or' requires operands of type bool but lhs is of type int.
 < ERROR(62): 'or' requires operands of type bool but rhs is of type int.
 < ERROR(63): 'or' requires operands of type bool but rhs is of type int.
-< ERROR(66): Unary 'not' requires an operand of type bool but was given type int.
-< ERROR(67): The operation 'not' does not work with arrays.
-< ERROR(68): The operation 'not' does not work with arrays.
-< ERROR(68): Unary 'not' requires an operand of type bool but was given type int.
-< ERROR(70): Unary 'chsign' requires an operand of type int but was given type bool.
-< ERROR(72): The operation 'chsign' does not work with arrays.
-< ERROR(72): Unary 'chsign' requires an operand of type int but was given type bool.
-< ERROR(73): The operation 'chsign' does not work with arrays.
+66,70d233
 < ERROR(76): '>' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(77): '>' requires operands of the same type but lhs is type int and rhs is type bool.
 < ERROR(78): '>' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(79): '>' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(79): '>' requires operands of the same type but lhs is type int and rhs is type bool.
-73,74c226,313
+73,74c236,323
 < Number of errors: 72
 < Number of warnings: 6
 ---
 > Func: main returns type int [line: 2]
-> Number of errors: 8
+> Number of errors: 18
 > Number of warnings: 5
 > .   .   Sibling: 10  Assign: <= [line: 24]
 > .   .   Sibling: 11  Assign: <= [line: 25]
@@ -378,7 +369,7 @@
 > .   .   Sibling: 7  Var: pumpkin of type bool [line: 10]
 > .   .   Sibling: 8  Assign: <= [line: 22]
 > .   .   Sibling: 9  Assign: <= [line: 23]
-76,79c315,317
+76,79c325,327
 < WARNING(12): Variable 'i' may be uninitialized when used here.
 < WARNING(13): Variable 'b' may be uninitialized when used here.
 < WARNING(37): Variable 'ia' may be uninitialized when used here.

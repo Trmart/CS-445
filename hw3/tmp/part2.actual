@@ -46,8 +46,9 @@ ERROR(22): Symbol 'x' is not declared.
 ERROR(23): Symbol 'y' is not declared.
 ERROR(26): Symbol 'dog' is already declared at line 18.
 ERROR(42): Symbol 'zebu' is not declared.
+ERROR(47): Unary 'chsign' requires an operand of type int but was given type bool.
 Func: ant returns type int [line: 1]
-Number of errors: 5
+Number of errors: 6
 Number of warnings: 5
 .   .   Sibling: 10  Call: elk [line: 51]
 .   .   Sibling: 1  Assign: <= [line: 23]

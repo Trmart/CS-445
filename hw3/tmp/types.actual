@@ -221,10 +221,20 @@ ERROR(106): Cannot use function 'main' as a variable.
 ERROR(107): Cannot use function 'main' as a variable.
 ERROR(110): Cannot use function 'main' as a variable.
 ERROR(112): Symbol 'a' is not declared.
+ERROR(113): The operation 'sizeof' only works with arrays.
+ERROR(114): Unary 'chsign' requires an operand of type int but was given type bool.
+ERROR(66): Unary 'not' requires an operand of type bool but was given type int.
+ERROR(67): The operation 'not' does not work with arrays.
+ERROR(68): The operation 'not' does not work with arrays.
+ERROR(68): Unary 'not' requires an operand of type bool but was given type int.
+ERROR(70): Unary 'chsign' requires an operand of type int but was given type bool.
+ERROR(72): The operation 'chsign' does not work with arrays.
+ERROR(72): Unary 'chsign' requires an operand of type int but was given type bool.
+ERROR(73): The operation 'chsign' does not work with arrays.
 ERROR(8): Symbol 'c' is already declared at line 8.
 ERROR(9): Symbol 'i' is already declared at line 4.
 Func: main returns type int [line: 2]
-Number of errors: 8
+Number of errors: 18
 Number of warnings: 5
 .   .   Sibling: 10  Assign: <= [line: 24]
 .   .   Sibling: 11  Assign: <= [line: 25]

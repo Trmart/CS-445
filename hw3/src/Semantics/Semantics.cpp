@@ -350,6 +350,7 @@ void Semantics::analyzeBinaryNodeSemantics(const Binary* binary) const
 
 }
 
+//currenty working. Doesn't seem to have an errors. 3/2/23
 
 void Semantics::analyzeCallNodeSemantics(const Call* call) const
 {
@@ -528,16 +529,29 @@ void Semantics::analyzeIdentifierNodeSemantics(const Id* identifier) const
     
 }
 
-
+//currenty working. Doesn't seem to have an errors. 3/2/23
 void Semantics::analyzeUnaryNodeSemantics(const Unary* unary) const
 {
+    if (!isUnaryNode(unary))
+    {
+        throw std::runtime_error("Semantics::analyzeUnary() - Invalid Unary");
+    }
 
+    setAndGetExpressionNodeData(unary);
+    checkUnaryOperands(unary);
 }
 
+//seems to be working properly. No errors currently present. 3/2/23
 
 void Semantics::analyzeUnaryAsssignmentNodeSemantics(const UnaryAsgn* unaryAssignment) const
 {
+    if (!isUnaryAssignmentNode(unaryAssignment))
+    {
+        throw std::runtime_error("Semantics::analyzeUnaryAsgn() - Invalid UnaryAsgn");
+    }
 
+    setAndGetExpressionNodeData(unaryAssignment);
+    checkUnaryAssignmentOperands(unaryAssignment);
 }
 
 //*********************Statement Nodes**********************
@@ -585,7 +599,8 @@ void Semantics::analyzeReturnNodeSemantics(const Return* returnNode) const
         //grab the lhs return node child
         ExpressionNode* lhsReturnChild = (ExpressionNode* )(returnChildren[0]);
         
-        
+        //after here is where the seg fault happens: 
+
         // //check to see if what the function is returning is a valid type
         // if(isIdentifierNode(lhsReturnChild))
         // {
@@ -843,16 +858,101 @@ void Semantics::checkOperands(ExpressionNode* expression, const NodeData::Type t
     // }
 }
 
-
+//currenty working. Doesn't seem to have an errors. 3/2/23
 void Semantics::checkUnaryOperands(const Unary* unary) const
 {
+    if (!isUnaryNode(unary))
+    {
+        throw std::runtime_error("Semantics::checkUnaryOperands() - Invalid Unary");
+    }
+    if (!leftHandSideExists((ExpressionNode *)unary))
+    {
+        throw std::runtime_error("Semantics::checkUnaryOperands() - LHS operand must exist");
+    }
 
+    std::vector<Node *> children = unary->getChildernNodes();
+    ExpressionNode* lhsExp = (ExpressionNode *)(children[0]);
+    NodeData *lhsData = setAndGetExpressionNodeData(lhsExp);
+
+    if (lhsData->getType() == NodeData::Type::UNDEFINED)
+    {
+        unary->getNodeData()->setType(NodeData::Type::UNDEFINED);
+        return;
+    }
+
+    switch (unary->getUnaryType())
+    {
+        case Unary::Type::CHSIGN:
+        case Unary::Type::QUESTION:
+            if (lhsData->getIsArray())
+            {
+                EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "The operation '" + unary->getSymbol() + "' does not work with arrays.");
+            }
+            if (lhsData->getType() != NodeData::Type::INT)
+            {
+                EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "Unary '" + unary->getSymbol() + "' requires an operand of type int but was given type " + lhsData->printTokenString() + ".");
+            }
+            break;
+        case Unary::Type::SIZEOF:
+            if (!lhsData->getIsArray())
+            {
+                EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "The operation 'sizeof' only works with arrays.");
+            }
+            break;
+        case Unary::Type::NOT:
+            if (lhsData->getType() != NodeData::Type::BOOL)
+            {
+                EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "Unary '" + unary->getSymbol() + "' requires an operand of type bool but was given type " + lhsData->printTokenString() + ".");
+            }
+            if (lhsData->getIsArray())
+            {
+                EmitDiagnostics::Error::emitGenericError(unary->getTokenLineNumber(), "The operation 'not' does not work with arrays.");
+            }
+            break;
+        default:
+            throw std::runtime_error("Semantics::checkUnaryOperands() - Unknown type");
+            break;
+    }
 }
 
-
+//seems to be working properly. No errors currently present. 3/2/23
 void Semantics::checkUnaryAssignmentOperands(const UnaryAsgn* unaryAssignment) const
 {
+    if (!isUnaryAssignmentNode(unaryAssignment))
+    {
+        throw std::runtime_error("Semantics::checkUnaryAsgnOperands() - Invalid UnaryAsgn");
+    }
+    if (!leftHandSideExists((ExpressionNode *)unaryAssignment))
+    {
+        throw std::runtime_error("Semantics::checkUnaryAsgnOperands() - LHS operand must exist");
+    }
 
+    std::vector<Node *> children = unaryAssignment->getChildernNodes();
+    ExpressionNode *lhsExp = (ExpressionNode *)(children[0]);
+    NodeData *lhsData = setAndGetExpressionNodeData(lhsExp);
+    if (lhsData->getType() == NodeData::Type::UNDEFINED)
+    {
+        unaryAssignment->getNodeData()->setType(NodeData::Type::UNDEFINED);
+        return;
+    }
+
+    switch (unaryAssignment->getUnaryAssignmentType())
+    {
+        case UnaryAsgn::Type::INC:
+        case UnaryAsgn::Type::DEC:
+            if (lhsData->getIsArray())
+            {
+                EmitDiagnostics::Error::emitGenericError(unaryAssignment->getTokenLineNumber(), "The operation '" + unaryAssignment->getSymbol() + "' does not work with arrays.");
+            }
+            if (lhsData->getType() != NodeData::Type::INT)
+            {
+                EmitDiagnostics::Error::emitGenericError(unaryAssignment->getTokenLineNumber(), "Unary '" + unaryAssignment->getSymbol() + "' requires an operand of type int but was given type " + lhsData->printTokenString() + ".");
+            }
+            break;
+        default:
+            throw std::runtime_error("Semantics::checkUnaryAsgnOperands() - Unknown type");
+            break;
+    }
 }
 
 
@@ -892,11 +992,6 @@ bool Semantics::isMainFunc(const Func* func) const
     return true;
 }
 
-
-bool Semantics::isDeclared(const Id* id) const
-{
-
-}
 
 //seems to be working properly. No errors currently present. 3/1/23
 bool Semantics::hasIndexAncestor(const ExpressionNode* expression) const
@@ -993,10 +1088,21 @@ bool Semantics::expressionOperandsExist(const ExpressionNode* expression) const
     return true; 
 }
 
-
+//currenty working. Doesn't seem to have an errors. 3/2/23
 bool Semantics::leftHandSideExists(const ExpressionNode* expression) const
 {
+    if (!isExpressionNode(expression))
+    {
+        throw std::runtime_error("Semantics::lhsExists() - Invalid Exp");
+    }
 
+    std::vector<Node *> children = expression->getChildernNodes();
+    ExpressionNode* lhsExp = (ExpressionNode *)(children[0]);
+    if (children.size() == 0 || lhsExp == nullptr)
+    {
+        return false;
+    }
+    return true;
 }
 
 
