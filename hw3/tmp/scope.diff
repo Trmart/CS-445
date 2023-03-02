@@ -29,35 +29,21 @@
 > .   .   .   Child: 1  Id: r of type undefined [line: 46]
 > .   .   Child: 1  Id: x of type undefined [line: 41]
 > .   .   Child: 1  Return [line: 59]
-1a32
-> ERROR(17): Symbol 'x' is not declared.
-3a35
-> ERROR(27): Symbol 'x' is not declared.
-5a38,39
-> ERROR(32): Symbol 'x' is not declared.
-> ERROR(34): Symbol 'x' is not declared.
-6a41
-> ERROR(42): Symbol 'y' is not declared.
-12c47
+12c42
 < ERROR(48): Symbol 'cow' is not declared.
 ---
 > ERROR(48): Symbol 'u' is not declared.
-16d50
-< ERROR(50): Symbol 'a' is not declared.
-18,28c52,92
-< ERROR(57): Symbol 'g' is already declared at line 2.
-< ERROR(59): Symbol 'x' is not declared.
-< ERROR(62): Symbol 'g' is already declared at line 2.
-< ERROR(63): Symbol 'ant' is already declared at line 3.
+22,24d51
 < ERROR(7): Symbol 'bat' is not declared.
 < ERROR(8): 'or' requires operands of type bool but lhs is of type int.
 < ERROR(8): 'or' requires operands of type bool but rhs is of type int.
-< ERROR(LINKER): A function named 'main()' must be defined.
+26c53
 < Number of errors: 25
-< Number of warnings: 5
+---
+> Number of errors: 22
+28c55,94
 < WARNING(15): Variable 'c' may be uninitialized when used here.
 ---
-> ERROR(9): Symbol 'x' is not declared.
 > .   .   Sibling: 10  Id: x of type undefined [line: 34]
 > .   .   Sibling: 10  Id: z of type undefined [line: 51]
 > .   .   Sibling: 11  Id: g of type undefined [line: 52]
@@ -98,10 +84,9 @@
 > .   .   Sibling: 9  Id: a of type undefined [line: 50]
 > Var: g of type int [line: 2]
 > WARNING(12): The variable 'c' seems not to be used.
-29a94,95
-> WARNING(2): The variable 'g' seems not to be used.
+29a96
 > WARNING(39): The variable 'z' seems not to be used.
-31,32c97
+31,32c98
 < WARNING(44): Variable 'z' may be uninitialized when used here.
 < WARNING(8): Variable 'a' may be uninitialized when used here.
 ---

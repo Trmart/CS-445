@@ -31,7 +31,7 @@
 .   .   .   .   .   .   .   .   Child: 0  Id: f of type undefined [line: 21]
 .   .   .   .   .   .   Child: 0  Id: x of type undefined [line: 8]
 .   .   .   .   .   .   .   .   Child: 0  Id: x of type undefined [line: 9]
-.   .   .   .   .   .   .   Child: 0  Op: chsign [line: 18]
+.   .   .   .   .   .   .   Child: 0  Op: chsign of type int [line: 18]
 .   .   .   .   .   .   .   .   Child: 0  Op: = of type bool [line: 11]
 .   .   .   .   .   Child: 0  Op: > of type bool [line: 8]
 .   .   .   .   .   .   .   Child: 0  Op: < of type bool [line: 9]
@@ -39,7 +39,7 @@
 .   .   .   .   .   .   .   .   Child: 0  Op: / of type int [line: 16]
 .   .   .   .   .   .   .   Child: 0  Op: + of type int [line: 26]
 .   .   .   .   .   .   .   Child: 0  Op: [ of type undefined [line: 22]
-.   .   .   .   .   .   .   Child: 0  Op: sizeof [line: 21]
+.   .   .   .   .   .   .   Child: 0  Op: sizeof of type int [line: 21]
 .   Child: 0  Parm: a of type int [line: 6]
 .   .   Child: 0  Var: a of type int [line: 35]
 .   .   .   Child: 0  Var: i of type int [line: 31]
@@ -64,9 +64,9 @@
 .   .   .   .   .   .   .   .   Child: 1  Const 5 of type int [line: 9]
 .   .   .   .   .   .   .   .   Child: 1  Const 666 of type int [line: 11]
 .   .   .   .   .   .   .   .   Child: 1  Const 6 of type int [line: 22]
-.   .   .   .   .   .   .   .   .   Child: 1  Const 'a' [line: 11]
+.   .   .   .   .   .   .   .   .   Child: 1  Const 'a' of type char [line: 11]
 .   .   .   .   .   .   .   Child: 1  Const is array "horses" [line: 25]
-.   .   .   .   .   .   .   Child: 1  Const 'x' [line: 24]
+.   .   .   .   .   .   .   Child: 1  Const 'x' of type char [line: 24]
 .   .   Child: 1  For [line: 7]
 .   .   .   .   .   .   .   .   Child: 1  Id: a of type undefined [line: 26]
 .   .   .   .   .   .   .   .   Child: 1  Id: a of type undefined [line: 26]
@@ -74,7 +74,7 @@
 .   .   .   .   .   .   .   Child: 1  If [line: 11]
 .   .   .   .   .   .   Child: 1  If [line: 9]
 .   .   .   .   .   .   .   .   Child: 1  Op: and of type bool [line: 15]
-.   .   .   .   .   .   .   .   .   Child: 1  Op: not [line: 15]
+.   .   .   .   .   .   .   .   .   Child: 1  Op: not of type bool [line: 15]
 .   .   .   .   .   .   .   Child: 1  Op: % of type int [line: 16]
 .   .   .   .   .   .   .   Child: 1  Op: * of type int [line: 26]
 .   .   .   .   .   .   .   Child: 1  Op: [ of type undefined [line: 22]
@@ -90,42 +90,18 @@
 .   .   .   Child: 2  Compound [line: 7]
 .   .   .   .   Child: 2  Const 3 of type int [line: 7]
 .   .   .   .   .   .   .   .   Child: 2  Const 777 of type int [line: 11]
-ERROR(11): Symbol 'c' is not declared.
-ERROR(12): Symbol 'a' is not declared.
 ERROR(12): Symbol 'a' is not declared.
 ERROR(12): Symbol 'b' is not declared.
-ERROR(12): Symbol 'b' is not declared.
-ERROR(13): Symbol 'a' is not declared.
 ERROR(13): Symbol 'a' is not declared.
 ERROR(13): Symbol 'b' is not declared.
-ERROR(13): Symbol 'b' is not declared.
-ERROR(14): Symbol 'a' is not declared.
 ERROR(15): Symbol 'e' is not declared.
-ERROR(15): Symbol 'e' is not declared.
-ERROR(16): Symbol 'a' is not declared.
 ERROR(16): Symbol 'b' is not declared.
-ERROR(16): Symbol 'b' is not declared.
-ERROR(16): Symbol 'b' is not declared.
-ERROR(17): Symbol 'b' is not declared.
-ERROR(18): Symbol 'b' is not declared.
-ERROR(19): Symbol 'c' is not declared.
-ERROR(20): Symbol 'c' is not declared.
-ERROR(21): Symbol 'f' is not declared.
-ERROR(22): Symbol 'e' is not declared.
-ERROR(22): Symbol 'e' is not declared.
-ERROR(23): Symbol 'e' is not declared.
-ERROR(23): Symbol 'e' is not declared.
-ERROR(24): Symbol 'c' is not declared.
 ERROR(24): Symbol 'c' is not declared.
 ERROR(25): Symbol 'd' is not declared.
-ERROR(25): Symbol 'd' is not declared.
-ERROR(26): Symbol 'a' is not declared.
-ERROR(26): Symbol 'a' is not declared.
-ERROR(26): Symbol 'a' is not declared.
-Number of errors: 32
-Number of warnings: 11
-.   .   .   .   .   .   Sibling: 10  Op: ? [line: 20]
-.   .   .   .   .   .   Sibling: 11  Op: ? [line: 21]
+Number of errors: 8
+Number of warnings: 10
+.   .   .   .   .   .   Sibling: 10  Op: ? of type int [line: 20]
+.   .   .   .   .   .   Sibling: 11  Op: ? of type int [line: 21]
 .   .   .   .   .   .   Sibling: 12  Op: + of type int [line: 22]
 .   .   .   .   .   .   Sibling: 13  Op: [ of type undefined [line: 23]
 .   .   .   .   .   .   Sibling: 14  Assign: <= [line: 24]
@@ -140,7 +116,7 @@ Sibling: 1  Func: carbon returns type int [line: 4]
 .   Sibling: 1  Parm: b of type int [line: 6]
 .   .   Sibling: 1  Var: b of array of type int [line: 35]
 .   .   .   .   .   .   Sibling: 2  Assign: <= [line: 12]
-.   .   .   Sibling: 2  Const 'q' [line: 39]
+.   .   .   Sibling: 2  Const 'q' of type char [line: 39]
 Sibling: 2  Func: fred returns type void [line: 6]
 .   Sibling: 2  Parm: c of type char [line: 6]
 .   .   Sibling: 2  Var: c of type char [line: 36]
@@ -160,10 +136,9 @@ Sibling: 3  Func: main returns type void [line: 34]
 .   .   .   .   .   .   Sibling: 6  Assign: -= [line: 16]
 .   .   Sibling: 6  Var: g of static type int [line: 38]
 .   .   .   .   .   .   Sibling: 7  Assign: -- [line: 17]
-.   .   .   .   .   .   Sibling: 8  Op: chsign [line: 18]
+.   .   .   .   .   .   Sibling: 8  Op: chsign of type int [line: 18]
 .   .   .   .   .   .   Sibling: 9  Assign: -- [line: 19]
 Var: fahrenheit of type int [line: 2]
-WARNING(2): The variable 'fahrenheit' seems not to be used.
 WARNING(31): The variable 'i' seems not to be used.
 WARNING(31): The variable 'x' seems not to be used.
 WARNING(35): The variable 'a' seems not to be used.

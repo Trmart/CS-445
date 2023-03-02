@@ -25,12 +25,14 @@ ERROR(6): Symbol 'j' is not declared.
 ERROR(7): Symbol 'l' is not declared.
 ERROR(8): Symbol 'm' is not declared.
 ERROR(9): Symbol 'k' is not declared.
+ERROR(LINKER): A function named 'main()' must be defined.
 Func: main returns type void [line: 1]
-Number of errors: 13
-Number of warnings: 0
+Number of errors: 14
+Number of warnings: 1
 .   .   Sibling: 1  Assign: <= [line: 4]
 .   .   Sibling: 2  Assign: <= [line: 5]
 .   .   Sibling: 3  Assign: ++ [line: 6]
 .   .   Sibling: 4  Id: l of type undefined [line: 7]
-.   .   Sibling: 5  Op: chsign [line: 8]
+.   .   Sibling: 5  Op: chsign of type int [line: 8]
 .   .   Sibling: 6  Call: main [line: 9]
+WARNING(1): The variable 'x' seems not to be used.

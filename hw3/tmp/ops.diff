@@ -1,4 +1,4 @@
-1,112c1,506
+1,112c1,504
 < ERROR(102): Symbol 'output' is not declared.
 < ERROR(103): Symbol 'output' is not declared.
 < ERROR(104): Symbol 'output' is not declared.
@@ -245,33 +245,18 @@
 > .   .   .   Child: 0  Op: and of type bool [line: 57]
 > .   .   .   Child: 0  Op: and of type bool [line: 58]
 > .   .   .   Child: 0  Op: and of type bool [line: 59]
-> .   .   .   Child: 0  Op: chsign [line: 83]
-> .   .   .   .   Child: 0  Op: chsign [line: 84]
-> .   .   .   Child: 0  Op: chsign [line: 84]
-> .   .   .   Child: 0  Op: chsign [line: 85]
-> .   .   .   Child: 0  Op: chsign [line: 86]
-> .   .   .   Child: 0  Op: chsign [line: 87]
-> .   .   .   .   Child: 0  Op: ? [line: 148]
-> .   .   .   .   Child: 0  Op: ? [line: 149]
-> .   .   .   .   Child: 0  Op: ? [line: 150]
-> .   .   .   .   Child: 0  Op: ? [line: 151]
-> .   .   .   .   Child: 0  Op: ? [line: 152]
-> .   .   .   .   Child: 0  Op: ? [line: 153]
-> .   .   .   .   Child: 0  Op: ? [line: 154]
-> .   .   .   .   Child: 0  Op: ? [line: 155]
-> .   .   .   .   Child: 0  Op: ? [line: 156]
-> .   .   .   .   Child: 0  Op: ? [line: 157]
-> .   .   .   .   Child: 0  Op: ? [line: 158]
-> .   .   .   .   Child: 0  Op: ? [line: 159]
-> .   .   .   .   Child: 0  Op: ? [line: 160]
-> .   .   .   .   Child: 0  Op: ? [line: 163]
-> .   .   .   .   Child: 0  Op: ? [line: 164]
-> .   .   .   Child: 0  Op: not [line: 68]
-> .   .   .   Child: 0  Op: not [line: 69]
-> .   .   .   Child: 0  Op: not [line: 70]
-> .   .   .   .   .   Child: 0  Op: not [line: 71]
-> .   .   .   .   Child: 0  Op: not [line: 71]
-> .   .   .   Child: 0  Op: not [line: 71]
+> .   .   .   Child: 0  Op: chsign of type int [line: 83]
+> .   .   .   .   Child: 0  Op: chsign of type int [line: 84]
+> .   .   .   Child: 0  Op: chsign of type int [line: 84]
+> .   .   .   Child: 0  Op: chsign of type int [line: 85]
+> .   .   .   Child: 0  Op: chsign of type int [line: 86]
+> .   .   .   Child: 0  Op: chsign of type int [line: 87]
+> .   .   .   Child: 0  Op: not of type bool [line: 68]
+> .   .   .   Child: 0  Op: not of type bool [line: 69]
+> .   .   .   Child: 0  Op: not of type bool [line: 70]
+> .   .   .   .   .   Child: 0  Op: not of type bool [line: 71]
+> .   .   .   .   Child: 0  Op: not of type bool [line: 71]
+> .   .   .   Child: 0  Op: not of type bool [line: 71]
 > .   .   .   Child: 0  Op: < of type bool [line: 148]
 > .   .   .   Child: 0  Op: < of type bool [line: 149]
 > .   .   .   Child: 0  Op: < of type bool [line: 150]
@@ -319,6 +304,21 @@
 > .   .   .   .   Child: 0  Op: / of type int [line: 139]
 > .   .   .   Child: 0  Op: / of type int [line: 139]
 > .   .   .   Child: 0  Op: / of type int [line: 140]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 148]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 149]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 150]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 151]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 152]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 153]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 154]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 155]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 156]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 157]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 158]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 159]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 160]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 163]
+> .   .   .   .   Child: 0  Op: ? of type int [line: 164]
 > .   .   .   Child: 0  Op: + of type int [line: 74]
 > .   .   .   Child: 0  Op: + of type int [line: 75]
 > .   .   .   Child: 0  Op: - of type int [line: 78]
@@ -480,7 +480,7 @@
 > .   .   .   .   Child: 1  Op: [ of type undefined [line: 91]
 > .   .   .   .   Child: 1  Op: [ of type undefined [line: 95]
 > Number of errors: 0
-> Number of warnings: 6
+> Number of warnings: 4
 > .   .   Sibling: 100  Call: outnl [line: 136]
 > .   .   Sibling: 101  Call: output [line: 138]
 > .   .   Sibling: 102  Call: output [line: 139]
@@ -615,6 +615,4 @@
 > WARNING(10): The variable 'b' seems not to be used.
 > WARNING(11): The variable 'c' seems not to be used.
 > WARNING(12): The variable 'z' seems not to be used.
-> WARNING(4): The variable 'y' seems not to be used.
-> WARNING(5): The variable 'x' seems not to be used.
 > WARNING(9): The variable 'a' seems not to be used.

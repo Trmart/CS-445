@@ -9,10 +9,10 @@
 .   .   .   .   Child: 0  Id: sum of type undefined [line: 6]
 .   .   .   .   .   Child: 0  Id: sum of type undefined [line: 8]
 .   .   .   Child: 0  Op: and of type bool [line: 13]
-.   .   .   .   Child: 0  Op: ? [line: 16]
 .   .   .   .   Child: 0  Op: < of type bool [line: 13]
 .   .   .   Child: 0  Op: < of type bool [line: 16]
 .   .   .   Child: 0  Op: < of type bool [line: 7]
+.   .   .   .   Child: 0  Op: ? of type int [line: 16]
 .   .   Child: 0  Var: i of type int [line: 4]
 .   .   .   Child: 1  Assign: <= [line: 6]
 .   .   Child: 1  Assign: <= [line: 6]
@@ -24,8 +24,8 @@
 .   .   .   .   .   Child: 1  Const 2700 of type int [line: 13]
 .   .   .   .   Child: 1  Const 3 of type int [line: 16]
 .   .   .   .   .   Child: 1  Id: sum of type undefined [line: 13]
-.   .   .   .   .   Child: 1  Op: ? [line: 8]
 .   .   .   .   Child: 1  Op: < of type bool [line: 13]
+.   .   .   .   .   Child: 1  Op: ? of type int [line: 8]
 Func: main returns type void [line: 2]
 Number of errors: 0
 Number of warnings: 2

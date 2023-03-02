@@ -39,16 +39,8 @@
 .   .   .   .   Child: 1  Const 7 of type int [line: 29]
 .   .   .   .   Child: 1  Const 7 of type int [line: 3]
 .   .   .   .   Child: 1  Const 7 of type int [line: 4]
-ERROR(10): Symbol 'y' is not declared.
-ERROR(11): Symbol 'y' is not declared.
-ERROR(12): Symbol 'y' is not declared.
-ERROR(17): Symbol 'x' is not declared.
-ERROR(18): Symbol 'x' is not declared.
-ERROR(19): Symbol 'x' is not declared.
-ERROR(3): Symbol 'z' is not declared.
-ERROR(4): Symbol 'z' is not declared.
 Func: three returns type void [line: 2]
-Number of errors: 8
+Number of errors: 0
 Number of warnings: 1
 .   .   Sibling: 1  Assign: <= [line: 4]
 .   .   Sibling: 1  Call: one [line: 28]

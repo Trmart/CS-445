@@ -33,13 +33,14 @@
 .   .   .   Child: 1  Id: z of type undefined [line: 15]
 .   .   .   Child: 1  Op: + of type int [line: 7]
 .   .   .   Child: 1  Op: + of type int [line: 8]
-ERROR(14): Symbol 'main' is not declared.
+ERROR(14): Cannot use function 'main' as a variable.
 ERROR(14): Symbol 'main' is not declared.
 ERROR(3): Symbol 'z' is already declared at line 3.
 ERROR(3): Symbol 'z' is already declared at line 3.
+ERROR(LINKER): A function named 'main()' must be defined.
 Func: main returns type void [line: 1]
-Number of errors: 4
-Number of warnings: 8
+Number of errors: 5
+Number of warnings: 9
 .   .   Sibling: 10  Op: + of type int [line: 15]
 .   .   Sibling: 1  Assign: <= [line: 6]
 .   .   Sibling: 1  Var: g of type int [line: 3]
@@ -53,12 +54,13 @@ Number of warnings: 8
 .   .   Sibling: 5  Var: k of type int [line: 3]
 .   .   Sibling: 6  Id: l of type undefined [line: 11]
 .   .   Sibling: 6  Var: l of type int [line: 3]
-.   .   Sibling: 7  Op: chsign [line: 12]
+.   .   Sibling: 7  Op: chsign of type int [line: 12]
 .   .   Sibling: 7  Var: m of type int [line: 3]
 .   .   Sibling: 8  Call: dog [line: 13]
 .   .   Sibling: 8  Var: z of type int [line: 3]
 .   .   Sibling: 9  Assign: <= [line: 14]
 .   .   Sibling: 9  Var: z of type int [line: 3]
+WARNING(1): The variable 'x' seems not to be used.
 WARNING(3): The variable 'g' seems not to be used.
 WARNING(3): The variable 'h' seems not to be used.
 WARNING(3): The variable 'i' seems not to be used.

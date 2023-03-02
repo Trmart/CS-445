@@ -9,7 +9,7 @@
 10c10
 < Number of warnings: 3
 ---
-> Number of warnings: 6
+> Number of warnings: 4
 14,16c14,16
 < .   .   Sibling: 2  Var: c is array of type int [line: 10]
 < .   .   Sibling: 3  Var: z of type int [line: 11]
@@ -18,7 +18,5 @@
 > .   .   Sibling: 2  Var: c of static array of type int [line: 10]
 > .   .   Sibling: 3  Var: z of static type int [line: 11]
 > Var: a of array of type int [line: 3]
-17a18,20
+17a18
 > WARNING(11): The variable 'z' seems not to be used.
-> WARNING(3): The variable 'a' seems not to be used.
-> WARNING(4): The variable 'x' seems not to be used.

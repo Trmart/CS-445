@@ -7,7 +7,8 @@
 .   .   .   Child: 1  Compound [line: 14]
 .   Child: 1  Compound [line: 5]
 .   .   Child: 1  Compound [line: 7]
-Number of errors: 0
+ERROR(LINKER): A function named 'main()' must be defined.
+Number of errors: 1
 Number of warnings: 6
 .   .   Sibling: 1  Compound [line: 10]
 .   .   .   Sibling: 1  Compound [line: 17]
@@ -18,6 +19,6 @@ Var: g of type int [line: 2]
 WARNING(11): The variable 'c' seems not to be used.
 WARNING(15): The variable 'b' seems not to be used.
 WARNING(18): The variable 'c' seems not to be used.
-WARNING(2): The variable 'g' seems not to be used.
+WARNING(4): The variable 'p' seems not to be used.
 WARNING(6): The variable 'a' seems not to be used.
 WARNING(8): The variable 'b' seems not to be used.

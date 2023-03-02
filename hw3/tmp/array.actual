@@ -2,15 +2,15 @@
 .   .   .   .   Child: 0  Id: b of type undefined [line: 12]
 .   .   .   .   Child: 0  Id: c of type undefined [line: 13]
 .   .   .   Child: 0  Id: c of type undefined [line: 9]
-.   .   .   Child: 0  Op: sizeof [line: 11]
-.   .   .   Child: 0  Op: sizeof [line: 12]
-.   .   .   Child: 0  Op: sizeof [line: 13]
+.   .   .   Child: 0  Op: sizeof of type int [line: 11]
+.   .   .   Child: 0  Op: sizeof of type int [line: 12]
+.   .   .   Child: 0  Op: sizeof of type int [line: 13]
 .   .   Child: 0  Var: b of array of type int [line: 6]
 .   Child: 1  Compound [line: 5]
 .   .   .   Child: 1  Const 22 of type int [line: 9]
 .   .   Child: 1  Op: [ of type undefined [line: 9]
 Number of errors: 0
-Number of warnings: 3
+Number of warnings: 2
 .   .   Sibling: 1  Const 999 of type int [line: 10]
 Sibling: 1  Func: main returns type void [line: 4]
 .   .   Sibling: 1  Var: c of static array of type int [line: 7]
@@ -18,6 +18,5 @@ Sibling: 1  Func: main returns type void [line: 4]
 .   .   Sibling: 3  Call: output [line: 12]
 .   .   Sibling: 4  Call: output [line: 13]
 Var: a of array of type int [line: 2]
-WARNING(2): The variable 'a' seems not to be used.
 WARNING(6): The variable 'b' seems not to be used.
 WARNING(7): The variable 'c' seems not to be used.

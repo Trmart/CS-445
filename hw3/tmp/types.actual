@@ -125,7 +125,7 @@
 .   .   .   Child: 1  Const 3 of type int [line: 104]
 .   .   .   Child: 1  Const 4 of type int [line: 105]
 .   .   .   Child: 1  Const 5 of type int [line: 106]
-.   .   .   Child: 1  Const 's' [line: 109]
+.   .   .   Child: 1  Const 's' of type char [line: 109]
 .   .   .   Child: 1  Id: ba of type undefined [line: 108]
 .   .   .   Child: 1  Id: ba of type undefined [line: 38]
 .   .   .   Child: 1  Id: ba of type undefined [line: 40]
@@ -216,15 +216,14 @@
 .   .   .   Child: 2  Assign: <= [line: 92]
 .   .   .   Child: 2  Assign: <= [line: 95]
 ERROR(105): Symbol 'x' is not declared.
-ERROR(106): Symbol 'main' is not declared.
-ERROR(107): Symbol 'main' is not declared.
-ERROR(110): Symbol 'main' is not declared.
+ERROR(106): Cannot use function 'main' as a variable.
+ERROR(107): Cannot use function 'main' as a variable.
+ERROR(110): Cannot use function 'main' as a variable.
 ERROR(112): Symbol 'a' is not declared.
-ERROR(116): Cannot return array 'ba'.
 ERROR(8): Symbol 'c' is already declared at line 8.
 ERROR(9): Symbol 'i' is already declared at line 4.
 Func: main returns type int [line: 2]
-Number of errors: 8
+Number of errors: 7
 Number of warnings: 6
 .   .   Sibling: 10  Assign: <= [line: 24]
 .   .   Sibling: 11  Assign: <= [line: 25]
@@ -264,14 +263,14 @@ Number of warnings: 6
 .   .   Sibling: 3  Var: ba of array of type bool [line: 7]
 .   .   Sibling: 40  Op: or of type bool [line: 62]
 .   .   Sibling: 41  Op: or of type bool [line: 63]
-.   .   Sibling: 42  Op: not [line: 65]
-.   .   Sibling: 43  Op: not [line: 66]
-.   .   Sibling: 44  Op: not [line: 67]
-.   .   Sibling: 45  Op: not [line: 68]
-.   .   Sibling: 46  Op: chsign [line: 70]
-.   .   Sibling: 47  Op: chsign [line: 71]
-.   .   Sibling: 48  Op: chsign [line: 72]
-.   .   Sibling: 49  Op: chsign [line: 73]
+.   .   Sibling: 42  Op: not of type bool [line: 65]
+.   .   Sibling: 43  Op: not of type bool [line: 66]
+.   .   Sibling: 44  Op: not of type bool [line: 67]
+.   .   Sibling: 45  Op: not of type bool [line: 68]
+.   .   Sibling: 46  Op: chsign of type int [line: 70]
+.   .   Sibling: 47  Op: chsign of type int [line: 71]
+.   .   Sibling: 48  Op: chsign of type int [line: 72]
+.   .   Sibling: 49  Op: chsign of type int [line: 73]
 .   .   Sibling: 4  Op: and of type bool [line: 17]
 .   .   Sibling: 4  Var: c of type char [line: 8]
 .   .   Sibling: 50  Op: or of type bool [line: 75]
@@ -303,9 +302,9 @@ Number of warnings: 6
 .   .   Sibling: 72  Op: [ of type undefined [line: 109]
 .   .   Sibling: 73  Assign: ++ [line: 110]
 .   .   Sibling: 74  Op: + of type int [line: 111]
-.   .   Sibling: 75  Op: sizeof [line: 112]
-.   .   Sibling: 76  Op: sizeof [line: 113]
-.   .   Sibling: 77  Op: chsign [line: 114]
+.   .   Sibling: 75  Op: sizeof of type int [line: 112]
+.   .   Sibling: 76  Op: sizeof of type int [line: 113]
+.   .   Sibling: 77  Op: chsign of type int [line: 114]
 .   .   Sibling: 78  Return [line: 116]
 .   .   Sibling: 7  Op: and of type bool [line: 20]
 .   .   Sibling: 7  Var: pumpkin of type bool [line: 10]

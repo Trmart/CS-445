@@ -1,11 +1,8 @@
-1,7c1,37
+1,4c1,25
 < ERROR(16): Symbol 'lyra' is not declared.
 < ERROR(22): Symbol 'lyra' is not declared.
 < ERROR(23): Symbol 'lyra' is not declared.
 < ERROR(27): '<=' requires operands of the same type but lhs is type int and rhs is type void.
-< ERROR(LINKER): A function named 'main()' must be defined.
-< Number of errors: 5
-< Number of warnings: 0
 ---
 > .   .   .   Child: 0  Call: dory [line: 19]
 > .   .   .   Child: 0  Call: dory [line: 21]
@@ -32,7 +29,13 @@
 > .   Child: 1  Compound [line: 7]
 > .   .   Child: 1  Return [line: 3]
 > .   .   Child: 1  Return [line: 8]
+6,7c27,41
+< Number of errors: 5
+< Number of warnings: 0
+---
 > Func: dory returns type int [line: 1]
+> Number of errors: 1
+> Number of warnings: 1
 > .   .   Sibling: 1  Call: lyra [line: 16]
 > Sibling: 1  Func: ella returns type void [line: 6]
 > .   .   Sibling: 2  Call: ella [line: 18]
@@ -44,3 +47,4 @@
 > .   .   Sibling: 7  Call: dory [line: 23]
 > .   .   Sibling: 8  Assign: <= [line: 26]
 > .   .   Sibling: 9  Assign: <= [line: 27]
+> WARNING(13): The variable 'x' seems not to be used.

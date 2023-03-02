@@ -14,10 +14,16 @@
 .   .   .   Child: 1  Const 4 of type int [line: 13]
 .   .   .   Child: 1  Const 4 of type int [line: 26]
 .   .   Child: 1  Op: + of type int [line: 26]
-ERROR(13): Symbol 'fred' is not declared.
-ERROR(26): Symbol 'arwen' is not declared.
-Number of errors: 2
-Number of warnings: 5
+ERROR(11): Symbol 'a' is already declared at line 9.
+ERROR(13): Cannot use function 'fred' as a variable.
+ERROR(16): Symbol 'fred' is already declared at line 9.
+ERROR(20): Symbol 'linda' is already declared at line 18.
+ERROR(26): Cannot use function 'arwen' as a variable.
+ERROR(5): Symbol 'lund' is already declared at line 3.
+ERROR(9): Symbol 'a' is already declared at line 9.
+ERROR(LINKER): A function named 'main()' must be defined.
+Number of errors: 8
+Number of warnings: 4
 Sibling: 1  Func: lund returns type void [line: 5]
 .   .   Sibling: 1  Op: + of type int [line: 13]
 .   Sibling: 1  Parm: a of type int [line: 9]
@@ -27,8 +33,7 @@ Sibling: 4  Func: linda returns type void [line: 18]
 Sibling: 5  Var: galadriel of type int [line: 23]
 Sibling: 6  Func: arwen returns type void [line: 24]
 Var: lund of type int [line: 3]
-WARNING(11): The variable 'a' seems not to be used.
-WARNING(16): The variable 'fred' seems not to be used.
-WARNING(20): The variable 'linda' seems not to be used.
-WARNING(23): The variable 'galadriel' seems not to be used.
-WARNING(3): The variable 'lund' seems not to be used.
+WARNING(18): The variable 'linda' seems not to be used.
+WARNING(24): The variable 'eowyn' seems not to be used.
+WARNING(5): The variable 'a' seems not to be used.
+WARNING(9): The variable 'a' seems not to be used.

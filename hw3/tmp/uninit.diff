@@ -1,6 +1,5 @@
-1,2c1,37
+1c1,35
 < ERROR(13): Symbol 'dog' is not declared.
-< ERROR(14): Cannot use function 'main' as a variable.
 ---
 > .   .   .   .   Child: 0  Const 4 of type int [line: 8]
 > .   .   .   .   .   .   .   .   .   Child: 0  Id: g of type undefined [line: 15]
@@ -37,24 +36,17 @@
 > .   .   .   Child: 1  Id: z of type undefined [line: 15]
 > .   .   .   Child: 1  Op: + of type int [line: 7]
 > .   .   .   Child: 1  Op: + of type int [line: 8]
+2a37
 > ERROR(14): Symbol 'main' is not declared.
-> ERROR(14): Symbol 'main' is not declared.
-5,6c40,41
-< ERROR(LINKER): A function named 'main()' must be defined.
-< Number of errors: 5
----
+5a41
 > Func: main returns type void [line: 1]
-> Number of errors: 4
-8,15c43,69
+7,10c43,62
+< Number of warnings: 8
 < WARNING(10): Variable 'k' may be uninitialized when used here.
 < WARNING(11): Variable 'l' may be uninitialized when used here.
 < WARNING(12): Variable 'm' may be uninitialized when used here.
-< WARNING(1): The variable 'x' seems not to be used.
-< WARNING(5): Variable 'i' may be uninitialized when used here.
-< WARNING(7): Variable 'g' may be uninitialized when used here.
-< WARNING(8): Variable 'h' may be uninitialized when used here.
-< WARNING(9): Variable 'j' may be uninitialized when used here.
 ---
+> Number of warnings: 9
 > .   .   Sibling: 10  Op: + of type int [line: 15]
 > .   .   Sibling: 1  Assign: <= [line: 6]
 > .   .   Sibling: 1  Var: g of type int [line: 3]
@@ -68,12 +60,18 @@
 > .   .   Sibling: 5  Var: k of type int [line: 3]
 > .   .   Sibling: 6  Id: l of type undefined [line: 11]
 > .   .   Sibling: 6  Var: l of type int [line: 3]
-> .   .   Sibling: 7  Op: chsign [line: 12]
+> .   .   Sibling: 7  Op: chsign of type int [line: 12]
 > .   .   Sibling: 7  Var: m of type int [line: 3]
 > .   .   Sibling: 8  Call: dog [line: 13]
 > .   .   Sibling: 8  Var: z of type int [line: 3]
 > .   .   Sibling: 9  Assign: <= [line: 14]
 > .   .   Sibling: 9  Var: z of type int [line: 3]
+12,15c64,71
+< WARNING(5): Variable 'i' may be uninitialized when used here.
+< WARNING(7): Variable 'g' may be uninitialized when used here.
+< WARNING(8): Variable 'h' may be uninitialized when used here.
+< WARNING(9): Variable 'j' may be uninitialized when used here.
+---
 > WARNING(3): The variable 'g' seems not to be used.
 > WARNING(3): The variable 'h' seems not to be used.
 > WARNING(3): The variable 'i' seems not to be used.

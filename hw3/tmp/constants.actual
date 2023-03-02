@@ -1,7 +1,7 @@
 .   .   .   Child: 0  Const 111 of type int [line: 4]
 .   .   .   Child: 0  Const false of type bool [line: 6]
 .   .   .   Child: 0  Const true of type bool [line: 5]
-.   .   .   Child: 0  Const 'x' [line: 7]
+.   .   .   Child: 0  Const 'x' of type char [line: 7]
 .   .   Child: 1  Call: output [line: 4]
 .   Child: 1  Compound [line: 3]
 Func: main returns type void [line: 2]

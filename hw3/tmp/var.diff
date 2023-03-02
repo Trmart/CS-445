@@ -1,10 +1,4 @@
-1,5c1,45
-< ERROR(LINKER): A function named 'main()' must be defined.
-< Number of errors: 1
-< Number of warnings: 2
-< WARNING(12): Variable 'x' may be uninitialized when used here.
-< WARNING(13): Variable 'y' may be uninitialized when used here.
----
+0a1,16
 > .   .   .   Child: 0  Id: gy of type undefined [line: 10]
 > .   .   .   Child: 0  Id: gy of type undefined [line: 9]
 > .   .   .   Child: 0  Id: py of type undefined [line: 17]
@@ -21,31 +15,30 @@
 > .   .   .   Child: 1  Const 9 of type int [line: 21]
 > .   .   .   Child: 1  Const 9 of type int [line: 9]
 > .   .   Child: 1  Id: gx of type undefined [line: 8]
-> ERROR(16): Symbol 'px' is not declared.
-> ERROR(17): Symbol 'py' is not declared.
-> ERROR(18): Symbol 'py' is not declared.
-> Number of errors: 3
-> Number of warnings: 6
+3,5c19,41
+< Number of warnings: 2
+< WARNING(12): Variable 'x' may be uninitialized when used here.
+< WARNING(13): Variable 'y' may be uninitialized when used here.
+---
+> Number of warnings: 4
 > .   .   Sibling: 10  Op: [ of type undefined [line: 21]
-> .   .   Sibling: 11  Op: sizeof [line: 22]
+> .   .   Sibling: 11  Op: sizeof of type int [line: 22]
 > .   .   Sibling: 1  Op: [ of type undefined [line: 9]
 > .   Sibling: 1  Parm: py of array of type int [line: 3]
 > Sibling: 1  Var: gy of array of type int [line: 2]
 > .   .   Sibling: 1  Var: y of array of type int [line: 5]
 > Sibling: 2  Func: main returns type void [line: 3]
-> .   .   Sibling: 2  Op: sizeof [line: 10]
+> .   .   Sibling: 2  Op: sizeof of type int [line: 10]
 > .   .   Sibling: 2  Var: sx of static type int [line: 6]
 > .   .   Sibling: 3  Id: x of type undefined [line: 12]
 > .   .   Sibling: 3  Var: sy of static array of type int [line: 6]
 > .   .   Sibling: 4  Op: [ of type undefined [line: 13]
-> .   .   Sibling: 5  Op: sizeof [line: 14]
+> .   .   Sibling: 5  Op: sizeof of type int [line: 14]
 > .   .   Sibling: 6  Id: px of type undefined [line: 16]
 > .   .   Sibling: 7  Op: [ of type undefined [line: 17]
-> .   .   Sibling: 8  Op: sizeof [line: 18]
+> .   .   Sibling: 8  Op: sizeof of type int [line: 18]
 > .   .   Sibling: 9  Id: sx of type undefined [line: 20]
 > Var: gx of type int [line: 2]
-> WARNING(2): The variable 'gx' seems not to be used.
-> WARNING(2): The variable 'gy' seems not to be used.
 > WARNING(5): The variable 'x' seems not to be used.
 > WARNING(5): The variable 'y' seems not to be used.
 > WARNING(6): The variable 'sx' seems not to be used.

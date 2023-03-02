@@ -483,7 +483,7 @@ std::string Const::printTokenString() const
         
         case Const::Type::CHAR:
                                 {
-                                    tokenOutputString += "'" + std::string(1, m_charValue) + "'";
+                                    tokenOutputString += "'" + std::string(1, m_charValue) + "' of type char";
                                 }
                                 break;
         
@@ -631,7 +631,7 @@ std::string Unary::getSymbol() const
 //UnaryNode printTokenString
 std::string Unary::printTokenString() const
 {
-    return "Op: " + getSymbol();
+    return "Op: " + getSymbol() + " of type " + m_nodeData->convertTypeToString(m_nodeData->getType());
 }
 
 Unary::Type Unary::getUnaryType() const

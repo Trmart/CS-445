@@ -1,4 +1,4 @@
-1,24c1,182
+1,24c1,169
 < ERROR(13): Symbol 'output' is not declared.
 < ERROR(15): Symbol 'output' is not declared.
 < ERROR(17): Symbol 'output' is not declared.
@@ -130,24 +130,13 @@
 > .   .   .   Child: 1  Id: x of type undefined [line: 23]
 > .   .   .   Child: 1  Op: [ of type undefined [line: 16]
 > .   .   .   Child: 1  Op: [ of type undefined [line: 33]
-> .   .   .   Child: 1  Op: sizeof [line: 25]
-> .   .   .   Child: 1  Op: sizeof [line: 36]
-> .   .   .   Child: 1  Op: sizeof [line: 45]
+> .   .   .   Child: 1  Op: sizeof of type int [line: 25]
+> .   .   .   Child: 1  Op: sizeof of type int [line: 36]
+> .   .   .   Child: 1  Op: sizeof of type int [line: 45]
 > ERROR(30): Symbol 'px' is not declared.
-> ERROR(30): Symbol 'px' is not declared.
-> ERROR(30): Symbol 'px' is not declared.
-> ERROR(31): Symbol 'px' is not declared.
 > ERROR(32): Symbol 'px' is not declared.
-> ERROR(32): Symbol 'px' is not declared.
-> ERROR(33): Symbol 'py' is not declared.
-> ERROR(33): Symbol 'py' is not declared.
-> ERROR(34): Symbol 'py' is not declared.
-> ERROR(35): Symbol 'py' is not declared.
-> ERROR(36): Symbol 'py' is not declared.
-> ERROR(36): Symbol 'py' is not declared.
-> ERROR(37): Symbol 'py' is not declared.
-> Number of errors: 13
-> Number of warnings: 8
+> Number of errors: 2
+> Number of warnings: 6
 > .   .   Sibling: 10  Assign: <= [line: 21]
 > .   .   Sibling: 11  Call: output [line: 22]
 > .   .   Sibling: 12  Assign: <= [line: 23]
@@ -198,8 +187,6 @@
 > .   .   Sibling: 8  Call: output [line: 17]
 > .   .   Sibling: 9  Call: outnl [line: 18]
 > Var: gx of type int [line: 2]
-> WARNING(2): The variable 'gx' seems not to be used.
-> WARNING(2): The variable 'gy' seems not to be used.
 > WARNING(53): The variable 'zx' seems not to be used.
 > WARNING(53): The variable 'zy' seems not to be used.
 > WARNING(5): The variable 'x' seems not to be used.

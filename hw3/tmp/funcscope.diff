@@ -1,14 +1,4 @@
-1,9c1,96
-< ERROR(16): Symbol 'x' is already declared at line 15.
-< ERROR(29): Symbol 'x' is already declared at line 28.
-< ERROR(5): Symbol 'x' is already declared at line 5.
-< ERROR(6): Symbol 'x' is already declared at line 5.
-< ERROR(LINKER): A function named 'main()' must be defined.
-< Number of errors: 5
-< Number of warnings: 2
-< WARNING(10): The variable 'x' seems not to be used.
-< WARNING(15): The variable 'x' seems not to be used.
----
+0a1,76
 > .   .   .   Child: 0  Const true of type bool [line: 36]
 > .   .   .   Child: 0  Const true of type bool [line: 46]
 > .   .   .   .   Child: 0  Id: x of type undefined [line: 12]
@@ -85,11 +75,15 @@
 > .   .   Child: 1  While [line: 46]
 > .   .   .   .   Child: 2  Compound [line: 40]
 > .   .   .   .   Child: 2  Compound [line: 48]
-> ERROR(16): Symbol 'x' is already declared at line 6.
-> ERROR(29): Symbol 'x' is already declared at line 6.
+4a81
+> ERROR(7): Symbol 'x' is not declared.
+6,7c83,92
+< Number of errors: 5
+< Number of warnings: 2
+---
 > Func: ant returns type void [line: 5]
-> Number of errors: 2
-> Number of warnings: 8
+> Number of errors: 6
+> Number of warnings: 9
 > Sibling: 1  Func: bat returns type void [line: 10]
 > .   Sibling: 1  Parm: x of type int [line: 5]
 > Sibling: 2  Func: cat returns type void [line: 15]
@@ -97,11 +91,12 @@
 > Sibling: 4  Func: elk returns type void [line: 28]
 > Sibling: 5  Func: fox returns type void [line: 35]
 > Sibling: 6  Func: gnu returns type void [line: 45]
+8a94
 > WARNING(11): The variable 'x' seems not to be used.
+9a96,101
 > WARNING(18): The variable 'x' seems not to be used.
 > WARNING(24): The variable 'x' seems not to be used.
 > WARNING(31): The variable 'x' seems not to be used.
 > WARNING(38): The variable 'x' seems not to be used.
 > WARNING(41): The variable 'x' seems not to be used.
 > WARNING(49): The variable 'x' seems not to be used.
-> WARNING(6): The variable 'x' seems not to be used.

@@ -86,17 +86,9 @@
 .   .   .   Child: 1  Op: [ of type undefined [line: 28]
 .   .   .   Child: 1  Op: [ of type undefined [line: 36]
 ERROR(24): Symbol 'px' is not declared.
-ERROR(24): Symbol 'px' is not declared.
 ERROR(25): Symbol 'px' is not declared.
-ERROR(25): Symbol 'px' is not declared.
-ERROR(25): Symbol 'px' is not declared.
-ERROR(26): Symbol 'px' is not declared.
-ERROR(27): Symbol 'py' is not declared.
-ERROR(28): Symbol 'py' is not declared.
-ERROR(28): Symbol 'py' is not declared.
-ERROR(29): Symbol 'py' is not declared.
-Number of errors: 10
-Number of warnings: 8
+Number of errors: 2
+Number of warnings: 6
 .   .   Sibling: 10  Assign: <= [line: 19]
 .   .   Sibling: 11  Assign: <= [line: 20]
 .   .   Sibling: 12  Call: output [line: 21]
@@ -137,8 +129,6 @@ Sibling: 3  Func: main returns type void [line: 41]
 .   .   Sibling: 8  Assign: <= [line: 17]
 .   .   Sibling: 9  Call: output [line: 18]
 Var: gx of type int [line: 2]
-WARNING(2): The variable 'gx' seems not to be used.
-WARNING(2): The variable 'gy' seems not to be used.
 WARNING(42): The variable 'lx' seems not to be used.
 WARNING(42): The variable 'ly' seems not to be used.
 WARNING(5): The variable 'x' seems not to be used.

@@ -38,21 +38,17 @@
 .   .   .   .   Child: 1  Const 9 of type int [line: 21]
 .   .   .   .   Child: 1  Const 9 of type int [line: 24]
 .   .   .   .   Child: 1  Const 9 of type int [line: 25]
-.   .   .   Child: 1  Const 'a' [line: 9]
-.   .   .   Child: 1  Const 'b' [line: 11]
-.   .   .   Child: 1  Const 'c' [line: 13]
-.   .   .   Child: 1  Const 'd' [line: 15]
-.   .   .   Child: 1  Const 'e' [line: 18]
-.   .   .   Child: 1  Const 'f' [line: 20]
-.   .   .   Child: 1  Const 'f' [line: 22]
-.   .   .   Child: 1  Const 'h' [line: 24]
+.   .   .   Child: 1  Const 'a' of type char [line: 9]
+.   .   .   Child: 1  Const 'b' of type char [line: 11]
+.   .   .   Child: 1  Const 'c' of type char [line: 13]
+.   .   .   Child: 1  Const 'd' of type char [line: 15]
+.   .   .   Child: 1  Const 'e' of type char [line: 18]
+.   .   .   Child: 1  Const 'f' of type char [line: 20]
+.   .   .   Child: 1  Const 'f' of type char [line: 22]
+.   .   .   Child: 1  Const 'h' of type char [line: 24]
 ERROR(18): Symbol 'px' is not declared.
-ERROR(18): Symbol 'px' is not declared.
-ERROR(19): Symbol 'px' is not declared.
-ERROR(20): Symbol 'py' is not declared.
-ERROR(21): Symbol 'py' is not declared.
-Number of errors: 5
-Number of warnings: 8
+Number of errors: 1
+Number of warnings: 6
 .   .   Sibling: 10  Call: outputc [line: 19]
 .   .   Sibling: 11  Assign: <= [line: 20]
 .   .   Sibling: 12  Call: outputc [line: 21]
@@ -80,8 +76,6 @@ Sibling: 3  Func: main returns type void [line: 30]
 .   .   Sibling: 8  Call: outnl [line: 17]
 .   .   Sibling: 9  Assign: <= [line: 18]
 Var: gx of type char [line: 2]
-WARNING(2): The variable 'gx' seems not to be used.
-WARNING(2): The variable 'gy' seems not to be used.
 WARNING(32): The variable 'zx' seems not to be used.
 WARNING(32): The variable 'zy' seems not to be used.
 WARNING(6): The variable 'x' seems not to be used.

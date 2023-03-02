@@ -1,11 +1,5 @@
-1,7c1,73
+1c1,52
 < ERROR(18): 'main' is a simple variable and cannot be called.
-< ERROR(2): Symbol 'main' is already declared at line 1.
-< ERROR(3): Symbol 'main' is already declared at line 1.
-< ERROR(9): 'main' is a simple variable and cannot be called.
-< ERROR(LINKER): A function named 'main()' must be defined.
-< Number of errors: 5
-< Number of warnings: 0
 ---
 > .   .   .   Child: 0  Assign: ++ [line: 14]
 > .   .   .   .   Child: 0  Assign: ++ [line: 17]
@@ -59,9 +53,14 @@
 > .   .   .   Child: 1  Op: + of type int [line: 17]
 > .   .   .   .   Child: 1  Op: + of type int [line: 23]
 > ERROR(11): Symbol 'x' is not declared.
-> ERROR(11): Symbol 'x' is not declared.
-> Number of errors: 2
-> Number of warnings: 3
+4d54
+< ERROR(9): 'main' is a simple variable and cannot be called.
+6,7c56,74
+< Number of errors: 5
+< Number of warnings: 0
+---
+> Number of errors: 4
+> Number of warnings: 2
 > .   .   Sibling: 10  Assign: <= [line: 24]
 > .   .   Sibling: 11  Assign: <= [line: 25]
 > .   .   Sibling: 1  Call: main [line: 9]
@@ -77,6 +76,5 @@
 > .   .   Sibling: 8  If [line: 21]
 > .   .   Sibling: 9  If [line: 23]
 > Var: main of type int [line: 1]
-> WARNING(1): The variable 'main' seems not to be used.
 > WARNING(5): The variable 'y' seems not to be used.
 > WARNING(6): The variable 'z' seems not to be used.

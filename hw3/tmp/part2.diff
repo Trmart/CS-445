@@ -1,23 +1,14 @@
-1,8c1,49
-< ERROR(20): Symbol 'x' is already declared at line 18.
-< ERROR(26): Symbol 'dog' is already declared at line 18.
-< ERROR(35): '+' requires operands of type int but lhs is of type char.
-< ERROR(42): Symbol 'zebu' is not declared.
-< ERROR(47): '+' requires operands of type int but lhs is of type char.
-< ERROR(47): Unary 'chsign' requires an operand of type int but was given type bool.
-< ERROR(5): Cannot return an array.
-< Number of errors: 7
----
+0a1,43
 > .   .   .   Child: 0  Call: dog [line: 51]
 > .   .   .   Child: 0  Const 1184 of type int [line: 39]
 > .   .   .   Child: 0  Const 13 of type int [line: 50]
 > .   .   .   Child: 0  Const 220 of type int [line: 40]
 > .   .   .   Child: 0  Const 3 of type int [line: 34]
 > .   .   .   Child: 0  Const 666 of type int [line: 10]
-> .   .   .   Child: 0  Const 'a' [line: 45]
-> .   .   .   Child: 0  Const 'a' [line: 46]
-> .   .   .   Child: 0  Const 'a' [line: 47]
-> .   .   .   .   Child: 0  Const 'c' [line: 47]
+> .   .   .   Child: 0  Const 'a' of type char [line: 45]
+> .   .   .   Child: 0  Const 'a' of type char [line: 46]
+> .   .   .   Child: 0  Const 'a' of type char [line: 47]
+> .   .   .   .   Child: 0  Const 'c' of type char [line: 47]
 > .   .   .   .   Child: 0  Const true of type bool [line: 47]
 > .   .   .   .   Child: 0  Const true of type bool [line: 51]
 > .   .   .   .   Child: 0  Id: c of type undefined [line: 35]
@@ -51,20 +42,26 @@
 > .   .   Child: 1  If [line: 4]
 > .   .   Child: 1  Return [line: 10]
 > .   .   Child: 1  Return [line: 15]
+1a45,46
+> ERROR(22): Symbol 'x' is not declared.
 > ERROR(23): Symbol 'y' is not declared.
-> ERROR(23): Symbol 'y' is not declared.
-> ERROR(36): Symbol 'z' is already declared at line 3.
-> ERROR(5): Cannot return array 'z'.
+3,9c48,76
+< ERROR(35): '+' requires operands of type int but lhs is of type char.
+< ERROR(42): Symbol 'zebu' is not declared.
+< ERROR(47): '+' requires operands of type int but lhs is of type char.
+< ERROR(47): Unary 'chsign' requires an operand of type int but was given type bool.
+< ERROR(5): Cannot return an array.
+< Number of errors: 7
+< Number of warnings: 4
+---
 > Func: ant returns type int [line: 1]
 > Number of errors: 4
-10c51,78
-< WARNING(28): The variable 'z' seems not to be used.
----
+> Number of warnings: 5
 > .   .   Sibling: 10  Call: elk [line: 51]
 > .   .   Sibling: 1  Assign: <= [line: 23]
 > .   .   .   .   Sibling: 1  Const 3 of type int [line: 51]
-> .   .   .   Sibling: 1  Const 'b' [line: 46]
-> .   .   .   Sibling: 1  Const 'b' [line: 47]
+> .   .   .   Sibling: 1  Const 'b' of type char [line: 46]
+> .   .   .   Sibling: 1  Const 'b' of type char [line: 47]
 > Sibling: 1  Func: bat returns type void [line: 8]
 > .   Sibling: 1  Parm: y of type int [line: 18]
 > .   .   Sibling: 1  Return [line: 5]
@@ -76,7 +73,7 @@
 > .   .   Sibling: 2  Var: z of array of type int [line: 36]
 > .   .   Sibling: 3  Call: zebu [line: 42]
 > Sibling: 3  Func: dog returns type void [line: 18]
-> .   .   .   Sibling: 3  Op: chsign [line: 47]
+> .   .   .   Sibling: 3  Op: chsign of type int [line: 47]
 > .   .   Sibling: 4  Call: dog [line: 44]
 > Sibling: 4  Func: dog returns type char [line: 26]
 > .   .   Sibling: 5  Call: dog [line: 45]
@@ -86,10 +83,11 @@
 > .   .   Sibling: 7  Call: dog [line: 47]
 > .   .   Sibling: 8  Call: dog [line: 49]
 > .   .   Sibling: 9  Call: elk [line: 50]
-> WARNING(20): The variable 'x' seems not to be used.
+10a78
 > WARNING(34): The variable 'c' seems not to be used.
-12,13c80
+12,13c80,81
 < WARNING(49): Variable 'z' may be uninitialized when used here.
 < WARNING(4): Variable 'z' may be uninitialized when used here.
 ---
+> WARNING(36): The variable 'z' seems not to be used.
 > WARNING(3): The variable 'z' seems not to be used.

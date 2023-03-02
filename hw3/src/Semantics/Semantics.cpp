@@ -34,10 +34,10 @@ void Semantics::semanticAnalysis(Node* node)
     //check if valid main exists and emit error if not
     //possible needed for hw4
     
-    // if(!m_validMainExists)
-    // {
-    //     EmitDiagnostics::Error::emitUndefinedMainError();
-    // }
+    if(!m_validMainExists)
+    {
+        EmitDiagnostics::Error::emitUndefinedMainError();
+    }
 }
 
 
@@ -182,16 +182,35 @@ void Semantics::analyzeDeclarationNodeSemantics(const DeclarationNode* declarati
     }
 }
 
+//currenty working. Doesn't seem to have an errors. 3/2/23
 
 void Semantics::analyzeFunctionNodeSemantics(const Func* function)
 {
+    if (!isFunctionNode(function))
+    {
+        throw std::runtime_error("Semantics::analyzeFunc() - Invalid Func");
+    }
 
+    addToSymbolTable(function);
+
+    if (isMainFunc(function))
+    {
+        m_validMainExists = true;
+    }
+
+    m_symbolTable->enter("Function: " + function->getName());
 }
 
+//currenty working. Doesn't seem to have an errors. 3/2/23
 
 void Semantics::analyzeParmNodeSemantics(const Parm* parameter)
 {
+    if (!isParameterNode(parameter))
+    {
+        throw std::runtime_error("Semantics::analyzeParm() - Invalid Parm");
+    }
 
+    addToSymbolTable(parameter);
 }
 
 //currenty working. Doesn't seem to have an errors. 3/1/23
@@ -491,7 +510,7 @@ void Semantics::analyzeUnaryAsssignmentNodeSemantics(const UnaryAsgn* unaryAssig
 
 //*********************Statement Nodes**********************
 
-
+//seems to be working properly. No errors currently present. 3/1/23
 void Semantics::analyzeCompoundNodeSemantics(const Compound* compound) const
 {
     //check to make sure compound is not nullptr and that it is a compound node
@@ -516,7 +535,7 @@ void Semantics::analyzeForNodeSemantics() const
     m_symbolTable->enter("For Loop");
 }
 
-
+// has a seg fault issue. 3/2/23
 void Semantics::analyzeReturnNodeSemantics(const Return* returnNode) const
 {
     //check to make sure return node is not nullptr and that it is a return node
@@ -535,22 +554,22 @@ void Semantics::analyzeReturnNodeSemantics(const Return* returnNode) const
         ExpressionNode* lhsReturnChild = (ExpressionNode* )(returnChildren[0]);
         
         
-        //check to see if what the function is returning is a valid type
-        if(isIdentifierNode(lhsReturnChild))
-        {
-            //cast the lhs return node child to an identifier node
-            Id* lhsReturnChildIdentifier = (Id* )(lhsReturnChild);
+        // //check to see if what the function is returning is a valid type
+        // if(isIdentifierNode(lhsReturnChild))
+        // {
+        //     //cast the lhs return node child to an identifier node
+        //     Id* lhsReturnChildIdentifier = (Id* )(lhsReturnChild);
 
-            //get the previous declaration of the identifier node
-            DeclarationNode* previousDeclaration = (DeclarationNode* )(getFromSymbolTable(lhsReturnChildIdentifier->getIdentifierName()));
+        //     //get the previous declaration of the identifier node
+        //     DeclarationNode* previousDeclaration = (DeclarationNode* )(getFromSymbolTable(lhsReturnChildIdentifier->getIdentifierName()));
 
-            //check to see if the previous declaration is an array
-            if(previousDeclaration->getNodeData()->getIsArray() || previousDeclaration == nullptr)
-            {
-                //throw error
-                EmitDiagnostics::Error::emitGenericError(lhsReturnChildIdentifier->getTokenLineNumber(), "Cannot return array '" + lhsReturnChildIdentifier->getIdentifierName() + "'.");
-            }
-        }
+        //     //check to see if the previous declaration is an array
+        //     if((previousDeclaration->getNodeData()->getIsArray() && previousDeclaration != nullptr)|| lhsReturnChildIdentifier->getIsArray())
+        //     {
+        //         //throw error
+        //         EmitDiagnostics::Error::emitGenericError(lhsReturnChildIdentifier->getTokenLineNumber(), "Cannot return array '" + lhsReturnChildIdentifier->getIdentifierName() + "'.");
+        //     }
+        // }
         
     }
     
@@ -558,7 +577,7 @@ void Semantics::analyzeReturnNodeSemantics(const Return* returnNode) const
 
 }
 
-
+//seems to be working properly. No errors currently present. 3/1/23
 void Semantics::analyzeStatementNodeSemantics(const StatementNode* statement) const
 {
         //check to make sure declaration is not nullptr
@@ -810,7 +829,35 @@ void Semantics::checkUnaryAssignmentOperands(const UnaryAsgn* unaryAssignment) c
 
 bool Semantics::isMainFunc(const Func* func) const
 {
+    if (!isFunctionNode(func))
+    {
+        throw std::runtime_error("Semantics::isMainFunc() - Invalid Func");
+    }
 
+    // Function name must be main and in global scope
+    if (func->getName() != "main" || m_symbolTable->depth() != 1)
+    {
+        return false;
+    }
+
+    // Get the function children
+    std::vector<Node *> funcChildren = func->getChildernNodes();
+
+    // There can't be any parms (children)
+    if (funcChildren[0] != nullptr)
+    {
+        return false;
+    }
+
+    // If main is previously defined as a variable
+    DeclarationNode *prevDeclaration  = getFromSymbolTable(func->getName());
+    
+    if (isVariableNode(prevDeclaration))
+    {
+        return false;
+    }
+
+    return true;
 }
 
 

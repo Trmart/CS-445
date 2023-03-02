@@ -12,7 +12,7 @@
 .   .   .   .   .   Child: 1  Const 2 of type int [line: 12]
 .   .   .   Child: 1  Const 2 of type int [line: 9]
 .   .   .   Child: 1  Const 3 of type int [line: 8]
-.   .   .   .   Child: 1  Const '4' [line: 12]
+.   .   .   .   Child: 1  Const '4' of type char [line: 12]
 .   .   .   .   Child: 1  Id: a of type undefined [line: 10]
 .   .   .   Child: 1  Id: b of type undefined [line: 10]
 .   .   .   Child: 1  Id: x of type undefined [line: 7]

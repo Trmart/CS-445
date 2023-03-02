@@ -1,7 +1,4 @@
-1,2c1,10
-< ERROR(LINKER): A function named 'main()' must be defined.
-< Number of errors: 1
----
+0a1,9
 > .   Child: 0  Parm: p of type int [line: 4]
 > .   .   Child: 0  Var: a of type int [line: 6]
 > .   .   .   .   Child: 0  Var: b of type int [line: 15]
@@ -11,15 +8,10 @@
 > .   .   .   Child: 1  Compound [line: 14]
 > .   Child: 1  Compound [line: 5]
 > .   .   Child: 1  Compound [line: 7]
-> Number of errors: 0
-3a12,17
+3a13,18
 > .   .   Sibling: 1  Compound [line: 10]
 > .   .   .   Sibling: 1  Compound [line: 17]
 > Sibling: 1  Func: main returns type void [line: 4]
 > .   .   Sibling: 2  Compound [line: 13]
 > Sibling: 2  Var: h of type int [line: 23]
 > Var: g of type int [line: 2]
-7c21
-< WARNING(4): The variable 'p' seems not to be used.
----
-> WARNING(2): The variable 'g' seems not to be used.
