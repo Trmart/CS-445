@@ -4,8 +4,13 @@
 .   .   .   Child: 0  Const 'x' of type char [line: 7]
 .   .   Child: 1  Call: output [line: 4]
 .   Child: 1  Compound [line: 3]
+ERROR(4): Symbol 'output' is not declared.
+ERROR(5): Symbol 'outputb' is not declared.
+ERROR(6): Symbol 'outputb' is not declared.
+ERROR(7): Symbol 'outputc' is not declared.
+ERROR(8): Symbol 'outnl' is not declared.
 Func: main returns type void [line: 2]
-Number of errors: 0
+Number of errors: 5
 Number of warnings: 0
 .   .   Sibling: 1  Call: outputb [line: 5]
 .   .   Sibling: 2  Call: outputb [line: 6]

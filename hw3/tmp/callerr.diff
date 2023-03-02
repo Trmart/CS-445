@@ -1,9 +1,4 @@
-1,4c1,25
-< ERROR(16): Symbol 'lyra' is not declared.
-< ERROR(22): Symbol 'lyra' is not declared.
-< ERROR(23): Symbol 'lyra' is not declared.
-< ERROR(27): '<=' requires operands of the same type but lhs is type int and rhs is type void.
----
+0a1,25
 > .   .   .   Child: 0  Call: dory [line: 19]
 > .   .   .   Child: 0  Call: dory [line: 21]
 > .   .   .   Child: 0  Call: dory [line: 22]
@@ -29,12 +24,14 @@
 > .   Child: 1  Compound [line: 7]
 > .   .   Child: 1  Return [line: 3]
 > .   .   Child: 1  Return [line: 8]
-6,7c27,41
+4d28
+< ERROR(27): '<=' requires operands of the same type but lhs is type int and rhs is type void.
+6,7c30,44
 < Number of errors: 5
 < Number of warnings: 0
 ---
 > Func: dory returns type int [line: 1]
-> Number of errors: 1
+> Number of errors: 4
 > Number of warnings: 1
 > .   .   Sibling: 1  Call: lyra [line: 16]
 > Sibling: 1  Func: ella returns type void [line: 6]

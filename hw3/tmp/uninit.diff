@@ -1,6 +1,4 @@
-1c1,35
-< ERROR(13): Symbol 'dog' is not declared.
----
+0a1,35
 > .   .   .   .   Child: 0  Const 4 of type int [line: 8]
 > .   .   .   .   .   .   .   .   .   Child: 0  Id: g of type undefined [line: 15]
 > .   .   .   .   Child: 0  Id: g of type undefined [line: 7]
@@ -36,16 +34,17 @@
 > .   .   .   Child: 1  Id: z of type undefined [line: 15]
 > .   .   .   Child: 1  Op: + of type int [line: 7]
 > .   .   .   Child: 1  Op: + of type int [line: 8]
-2a37
+2a38
 > ERROR(14): Symbol 'main' is not declared.
-5a41
-> Func: main returns type void [line: 1]
-7,10c43,62
+6,10c42,63
+< Number of errors: 5
 < Number of warnings: 8
 < WARNING(10): Variable 'k' may be uninitialized when used here.
 < WARNING(11): Variable 'l' may be uninitialized when used here.
 < WARNING(12): Variable 'm' may be uninitialized when used here.
 ---
+> Func: main returns type void [line: 1]
+> Number of errors: 6
 > Number of warnings: 9
 > .   .   Sibling: 10  Op: + of type int [line: 15]
 > .   .   Sibling: 1  Assign: <= [line: 6]
@@ -66,7 +65,7 @@
 > .   .   Sibling: 8  Var: z of type int [line: 3]
 > .   .   Sibling: 9  Assign: <= [line: 14]
 > .   .   Sibling: 9  Var: z of type int [line: 3]
-12,15c64,71
+12,15c65,72
 < WARNING(5): Variable 'i' may be uninitialized when used here.
 < WARNING(7): Variable 'g' may be uninitialized when used here.
 < WARNING(8): Variable 'h' may be uninitialized when used here.

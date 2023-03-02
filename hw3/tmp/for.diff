@@ -88,23 +88,16 @@
 < ERROR(17): Cannot index nonarray 'cc'.
 11d82
 < ERROR(20): Cannot index nonarray 'a'.
-13,15d83
-< ERROR(20): Symbol 'output' is not declared.
-< ERROR(21): Symbol 'outnl' is not declared.
+15d85
 < ERROR(23): Cannot index nonarray 'b'.
-17,19d84
-< ERROR(23): Symbol 'outputb' is not declared.
-< ERROR(24): Symbol 'outnl' is not declared.
+19d88
 < ERROR(26): Cannot index nonarray 'c'.
-21,25c86,111
-< ERROR(26): Symbol 'outputc' is not declared.
-< ERROR(27): Symbol 'outnl' is not declared.
-< ERROR(29): Symbol 'output' is not declared.
+24,25c93,118
 < Number of errors: 23
 < Number of warnings: 1
 ---
 > Func: main returns type void [line: 2]
-> Number of errors: 8
+> Number of errors: 15
 > Number of warnings: 8
 > .   .   Sibling: 10  Call: outnl [line: 21]
 > .   .   Sibling: 11  For [line: 23]
@@ -129,5 +122,5 @@
 > WARNING(29): The variable 'i' seems not to be used.
 > WARNING(29): The variable 'j' seems not to be used.
 > WARNING(4): The variable 'aa' seems not to be used.
-26a113
+26a120
 > WARNING(6): The variable 'ca' seems not to be used.

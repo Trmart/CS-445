@@ -15,6 +15,7 @@
 .   .   .   Child: 1  Const 4 of type int [line: 26]
 .   .   Child: 1  Op: + of type int [line: 26]
 ERROR(11): Symbol 'a' is already declared at line 9.
+ERROR(12): 'a' is a simple variable and cannot be called.
 ERROR(13): Cannot use function 'fred' as a variable.
 ERROR(16): Symbol 'fred' is already declared at line 9.
 ERROR(20): Symbol 'linda' is already declared at line 18.
@@ -22,8 +23,8 @@ ERROR(26): Cannot use function 'arwen' as a variable.
 ERROR(5): Symbol 'lund' is already declared at line 3.
 ERROR(9): Symbol 'a' is already declared at line 9.
 ERROR(LINKER): A function named 'main()' must be defined.
-Number of errors: 8
-Number of warnings: 4
+Number of errors: 9
+Number of warnings: 3
 Sibling: 1  Func: lund returns type void [line: 5]
 .   .   Sibling: 1  Op: + of type int [line: 13]
 .   Sibling: 1  Parm: a of type int [line: 9]
@@ -36,4 +37,3 @@ Var: lund of type int [line: 3]
 WARNING(18): The variable 'linda' seems not to be used.
 WARNING(24): The variable 'eowyn' seems not to be used.
 WARNING(5): The variable 'a' seems not to be used.
-WARNING(9): The variable 'a' seems not to be used.

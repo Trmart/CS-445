@@ -45,8 +45,9 @@ ERROR(20): Symbol 'x' is already declared at line 18.
 ERROR(22): Symbol 'x' is not declared.
 ERROR(23): Symbol 'y' is not declared.
 ERROR(26): Symbol 'dog' is already declared at line 18.
+ERROR(42): Symbol 'zebu' is not declared.
 Func: ant returns type int [line: 1]
-Number of errors: 4
+Number of errors: 5
 Number of warnings: 5
 .   .   Sibling: 10  Call: elk [line: 51]
 .   .   Sibling: 1  Assign: <= [line: 23]

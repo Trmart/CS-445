@@ -39,8 +39,16 @@
 .   .   .   .   Child: 1  Const 7 of type int [line: 29]
 .   .   .   .   Child: 1  Const 7 of type int [line: 3]
 .   .   .   .   Child: 1  Const 7 of type int [line: 4]
+ERROR(10): Symbol 'output' is not declared.
+ERROR(12): Symbol 'output' is not declared.
+ERROR(17): Symbol 'output' is not declared.
+ERROR(19): Symbol 'output' is not declared.
+ERROR(29): Symbol 'output' is not declared.
+ERROR(30): Symbol 'outnl' is not declared.
+ERROR(3): Symbol 'output' is not declared.
+ERROR(5): Symbol 'outnl' is not declared.
 Func: three returns type void [line: 2]
-Number of errors: 0
+Number of errors: 8
 Number of warnings: 1
 .   .   Sibling: 1  Assign: <= [line: 4]
 .   .   Sibling: 1  Call: one [line: 28]

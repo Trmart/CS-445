@@ -46,8 +46,18 @@
 .   .   .   Child: 1  Const 'f' of type char [line: 20]
 .   .   .   Child: 1  Const 'f' of type char [line: 22]
 .   .   .   Child: 1  Const 'h' of type char [line: 24]
+ERROR(10): Symbol 'outputc' is not declared.
+ERROR(12): Symbol 'outputc' is not declared.
+ERROR(14): Symbol 'outputc' is not declared.
+ERROR(16): Symbol 'outputc' is not declared.
+ERROR(17): Symbol 'outnl' is not declared.
 ERROR(18): Symbol 'px' is not declared.
-Number of errors: 1
+ERROR(19): Symbol 'outputc' is not declared.
+ERROR(21): Symbol 'outputc' is not declared.
+ERROR(23): Symbol 'outputc' is not declared.
+ERROR(25): Symbol 'outputc' is not declared.
+ERROR(26): Symbol 'outnl' is not declared.
+Number of errors: 11
 Number of warnings: 6
 .   .   Sibling: 10  Call: outputc [line: 19]
 .   .   Sibling: 11  Assign: <= [line: 20]

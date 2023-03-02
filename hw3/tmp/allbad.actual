@@ -209,11 +209,12 @@ ERROR(85): Symbol 'c' is not declared.
 ERROR(85): Symbol 'c' is not declared.
 ERROR(86): Symbol 'c' is not declared.
 ERROR(86): Symbol 'c' is not declared.
+ERROR(99): 'bbb' is a simple variable and cannot be called.
 ERROR(9): Symbol 'c' is not declared.
 ERROR(LINKER): A function named 'main()' must be defined.
 Func: ant returns type char [line: 2]
-Number of errors: 19
-Number of warnings: 15
+Number of errors: 20
+Number of warnings: 14
 .   .   Sibling: 10  Assign: <= [line: 57]
 .   .   Sibling: 10  Return [line: 107]
 .   .   Sibling: 10  While [line: 19]
@@ -298,5 +299,4 @@ WARNING(5): The variable 'b' seems not to be used.
 WARNING(72): The variable 'i' seems not to be used.
 WARNING(84): The variable 'a' seems not to be used.
 WARNING(84): The variable 'b' seems not to be used.
-WARNING(93): The variable 'bbb' seems not to be used.
 WARNING(94): The variable 'ccc' seems not to be used.

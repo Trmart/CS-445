@@ -11,7 +11,12 @@
 .   .   Child: 0  Var: y of type int [line: 5]
 .   .   Child: 1  Call: output [line: 10]
 .   Child: 1  Compound [line: 4]
-Number of errors: 0
+ERROR(10): Symbol 'output' is not declared.
+ERROR(11): Symbol 'output' is not declared.
+ERROR(12): Symbol 'output' is not declared.
+ERROR(13): Symbol 'outputb' is not declared.
+ERROR(14): Symbol 'outputc' is not declared.
+Number of errors: 5
 Number of warnings: 4
 .   .   Sibling: 1  Call: output [line: 11]
 Sibling: 1  Func: main returns type void [line: 4]

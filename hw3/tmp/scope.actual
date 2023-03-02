@@ -39,6 +39,7 @@ ERROR(46): Symbol 'q' is not declared.
 ERROR(46): Symbol 'r' is not declared.
 ERROR(47): Symbol 's' is not declared.
 ERROR(47): Symbol 't' is not declared.
+ERROR(48): Symbol 'cow' is not declared.
 ERROR(48): Symbol 'u' is not declared.
 ERROR(48): Symbol 'u' is not declared.
 ERROR(48): Symbol 'v' is not declared.
@@ -49,8 +50,9 @@ ERROR(57): Symbol 'g' is already declared at line 2.
 ERROR(59): Symbol 'x' is not declared.
 ERROR(62): Symbol 'g' is already declared at line 2.
 ERROR(63): Symbol 'ant' is already declared at line 3.
+ERROR(7): Symbol 'bat' is not declared.
 ERROR(LINKER): A function named 'main()' must be defined.
-Number of errors: 22
+Number of errors: 24
 Number of warnings: 5
 .   .   Sibling: 10  Id: x of type undefined [line: 34]
 .   .   Sibling: 10  Id: z of type undefined [line: 51]

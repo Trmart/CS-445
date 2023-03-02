@@ -1,19 +1,4 @@
-1,14c1,84
-< ERROR(10): Symbol 'output' is not declared.
-< ERROR(12): Symbol 'output' is not declared.
-< ERROR(14): Symbol 'output' is not declared.
-< ERROR(16): Symbol 'output' is not declared.
-< ERROR(17): Symbol 'outnl' is not declared.
-< ERROR(19): Symbol 'output' is not declared.
-< ERROR(21): Symbol 'output' is not declared.
-< ERROR(23): Symbol 'output' is not declared.
-< ERROR(25): Symbol 'output' is not declared.
-< ERROR(26): Symbol 'outnl' is not declared.
-< Number of errors: 10
-< Number of warnings: 2
-< WARNING(33): Variable 'zx' may be uninitialized when used here.
-< WARNING(33): Variable 'zy' may be uninitialized when used here.
----
+0a1,48
 > .   .   .   Child: 0  Id: gx of type undefined [line: 10]
 > .   .   .   Child: 0  Id: gx of type undefined [line: 9]
 > .   .   .   .   Child: 0  Id: gy of type undefined [line: 11]
@@ -62,8 +47,15 @@
 > .   .   .   .   Child: 1  Const 9 of type int [line: 21]
 > .   .   .   .   Child: 1  Const 9 of type int [line: 24]
 > .   .   .   .   Child: 1  Const 9 of type int [line: 25]
+5a54
 > ERROR(18): Symbol 'px' is not declared.
-> Number of errors: 1
+11,14c60,94
+< Number of errors: 10
+< Number of warnings: 2
+< WARNING(33): Variable 'zx' may be uninitialized when used here.
+< WARNING(33): Variable 'zy' may be uninitialized when used here.
+---
+> Number of errors: 11
 > Number of warnings: 6
 > .   .   Sibling: 10  Call: output [line: 19]
 > .   .   Sibling: 11  Assign: <= [line: 20]

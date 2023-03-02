@@ -1,16 +1,4 @@
-1,11c1,49
-< ERROR(12): Symbol 'output' is not declared.
-< ERROR(13): Symbol 'output' is not declared.
-< ERROR(14): Symbol 'output' is not declared.
-< ERROR(15): Symbol 'outnl' is not declared.
-< ERROR(17): Symbol 'output' is not declared.
-< ERROR(18): Symbol 'output' is not declared.
-< ERROR(19): Symbol 'output' is not declared.
-< ERROR(20): Symbol 'outnl' is not declared.
-< Number of errors: 8
-< Number of warnings: 1
-< WARNING(13): Variable 'b' may be uninitialized when used here.
----
+0a1,29
 > .   .   Child: 0  Const 666 of type int [line: 3]
 > .   .   .   .   .   Child: 0  Const 666 of type int [line: 8]
 > .   .   .   .   .   Child: 0  Const 777 of type int [line: 10]
@@ -40,7 +28,10 @@
 > .   .   .   .   Child: 1  Op: * of type int [line: 10]
 > .   .   Child: 1  Op: * of type int [line: 3]
 > .   .   .   .   Child: 1  Op: * of type int [line: 8]
-> Number of errors: 0
+10,11c39,57
+< Number of warnings: 1
+< WARNING(13): Variable 'b' may be uninitialized when used here.
+---
 > Number of warnings: 4
 > .   .   Sibling: 1  Call: output [line: 13]
 > Sibling: 1  Var: x of type int [line: 3]

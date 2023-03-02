@@ -46,8 +46,18 @@
 .   .   .   .   Child: 1  Const 9 of type int [line: 21]
 .   .   .   .   Child: 1  Const 9 of type int [line: 24]
 .   .   .   .   Child: 1  Const 9 of type int [line: 25]
+ERROR(10): Symbol 'output' is not declared.
+ERROR(12): Symbol 'output' is not declared.
+ERROR(14): Symbol 'output' is not declared.
+ERROR(16): Symbol 'output' is not declared.
+ERROR(17): Symbol 'outnl' is not declared.
 ERROR(18): Symbol 'px' is not declared.
-Number of errors: 1
+ERROR(19): Symbol 'output' is not declared.
+ERROR(21): Symbol 'output' is not declared.
+ERROR(23): Symbol 'output' is not declared.
+ERROR(25): Symbol 'output' is not declared.
+ERROR(26): Symbol 'outnl' is not declared.
+Number of errors: 11
 Number of warnings: 6
 .   .   Sibling: 10  Call: output [line: 19]
 .   .   Sibling: 11  Assign: <= [line: 20]

@@ -1,12 +1,4 @@
-1,7c1,28
-< ERROR(10): Symbol 'output' is not declared.
-< ERROR(11): Symbol 'output' is not declared.
-< ERROR(12): Symbol 'output' is not declared.
-< ERROR(13): Symbol 'outputb' is not declared.
-< ERROR(14): Symbol 'outputc' is not declared.
-< Number of errors: 5
-< Number of warnings: 0
----
+0a1,13
 > .   Child: 0  Const 111 of type int [line: 2]
 > .   .   .   Child: 0  Const 222 of type int [line: 5]
 > .   .   .   Child: 0  Const 333 of type int [line: 6]
@@ -20,7 +12,9 @@
 > .   .   Child: 0  Var: y of type int [line: 5]
 > .   .   Child: 1  Call: output [line: 10]
 > .   Child: 1  Compound [line: 4]
-> Number of errors: 0
+7c20,33
+< Number of warnings: 0
+---
 > Number of warnings: 4
 > .   .   Sibling: 1  Call: output [line: 11]
 > Sibling: 1  Func: main returns type void [line: 4]

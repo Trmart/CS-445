@@ -46,8 +46,18 @@
 .   .   .   Child: 1  Const true of type bool [line: 23]
 .   .   .   Child: 1  Const true of type bool [line: 25]
 .   .   .   Child: 1  Const true of type bool [line: 9]
+ERROR(10): Symbol 'outputb' is not declared.
+ERROR(12): Symbol 'outputb' is not declared.
+ERROR(14): Symbol 'outputb' is not declared.
+ERROR(16): Symbol 'outputb' is not declared.
+ERROR(17): Symbol 'outnl' is not declared.
 ERROR(19): Symbol 'px' is not declared.
-Number of errors: 1
+ERROR(20): Symbol 'outputb' is not declared.
+ERROR(22): Symbol 'outputb' is not declared.
+ERROR(24): Symbol 'outputb' is not declared.
+ERROR(26): Symbol 'outputb' is not declared.
+ERROR(27): Symbol 'outnl' is not declared.
+Number of errors: 11
 Number of warnings: 6
 .   .   Sibling: 10  Call: outputb [line: 20]
 .   .   Sibling: 11  Assign: <= [line: 21]

@@ -1,16 +1,4 @@
-1,11c1,70
-< ERROR(12): Symbol 'output' is not declared.
-< ERROR(14): Symbol 'output' is not declared.
-< ERROR(21): Symbol 'output' is not declared.
-< ERROR(23): Symbol 'output' is not declared.
-< ERROR(34): Symbol 'output' is not declared.
-< ERROR(35): Symbol 'output' is not declared.
-< ERROR(36): Symbol 'outnl' is not declared.
-< ERROR(3): Symbol 'output' is not declared.
-< ERROR(5): Symbol 'outnl' is not declared.
-< Number of errors: 9
-< Number of warnings: 0
----
+0a1,51
 > .   .   .   Child: 0  Call: one [line: 34]
 > .   .   .   .   Child: 0  Id: w of type undefined [line: 33]
 > .   .   .   .   Child: 0  Id: w of type undefined [line: 34]
@@ -62,8 +50,11 @@
 > .   .   .   .   Child: 1  Const 7 of type int [line: 35]
 > .   .   .   .   Child: 1  Const 7 of type int [line: 4]
 > .   .   .   .   Child: 1  Const 7 of type int [line: 7]
+9a61
 > Func: three returns type int [line: 2]
-> Number of errors: 0
+11c63,79
+< Number of warnings: 0
+---
 > Number of warnings: 1
 > .   .   Sibling: 1  Assign: <= [line: 4]
 > .   .   Sibling: 1  Call: output [line: 34]

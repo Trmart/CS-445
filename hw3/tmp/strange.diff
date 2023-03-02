@@ -1,6 +1,4 @@
-1c1,52
-< ERROR(18): 'main' is a simple variable and cannot be called.
----
+0a1,52
 > .   .   .   Child: 0  Assign: ++ [line: 14]
 > .   .   .   .   Child: 0  Assign: ++ [line: 17]
 > .   .   .   Child: 0  Assign: ++ [line: 18]
@@ -53,13 +51,11 @@
 > .   .   .   Child: 1  Op: + of type int [line: 17]
 > .   .   .   .   Child: 1  Op: + of type int [line: 23]
 > ERROR(11): Symbol 'x' is not declared.
-4d54
-< ERROR(9): 'main' is a simple variable and cannot be called.
-6,7c56,74
+6,7c58,76
 < Number of errors: 5
 < Number of warnings: 0
 ---
-> Number of errors: 4
+> Number of errors: 6
 > Number of warnings: 2
 > .   .   Sibling: 10  Assign: <= [line: 24]
 > .   .   Sibling: 11  Assign: <= [line: 25]

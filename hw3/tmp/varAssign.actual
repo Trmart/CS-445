@@ -107,9 +107,31 @@
 .   .   .   Child: 1  Op: sizeof of type int [line: 25]
 .   .   .   Child: 1  Op: sizeof of type int [line: 36]
 .   .   .   Child: 1  Op: sizeof of type int [line: 45]
+ERROR(13): Symbol 'output' is not declared.
+ERROR(15): Symbol 'output' is not declared.
+ERROR(17): Symbol 'output' is not declared.
+ERROR(18): Symbol 'outnl' is not declared.
+ERROR(22): Symbol 'output' is not declared.
+ERROR(24): Symbol 'output' is not declared.
+ERROR(26): Symbol 'output' is not declared.
+ERROR(27): Symbol 'outnl' is not declared.
 ERROR(30): Symbol 'px' is not declared.
+ERROR(31): Symbol 'output' is not declared.
 ERROR(32): Symbol 'px' is not declared.
-Number of errors: 2
+ERROR(34): Symbol 'output' is not declared.
+ERROR(37): Symbol 'output' is not declared.
+ERROR(38): Symbol 'outnl' is not declared.
+ERROR(42): Symbol 'output' is not declared.
+ERROR(44): Symbol 'output' is not declared.
+ERROR(46): Symbol 'output' is not declared.
+ERROR(47): Symbol 'outnl' is not declared.
+ERROR(58): Symbol 'output' is not declared.
+ERROR(59): Symbol 'output' is not declared.
+ERROR(60): Symbol 'outnl' is not declared.
+ERROR(65): Symbol 'output' is not declared.
+ERROR(66): Symbol 'output' is not declared.
+ERROR(67): Symbol 'outnl' is not declared.
+Number of errors: 24
 Number of warnings: 6
 .   .   Sibling: 10  Assign: <= [line: 21]
 .   .   Sibling: 11  Call: output [line: 22]

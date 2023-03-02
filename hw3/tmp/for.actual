@@ -81,10 +81,17 @@ ERROR(14): Symbol 'bb' is not declared.
 ERROR(16): Symbol 'cc' is not declared.
 ERROR(17): Symbol 'cc' is not declared.
 ERROR(20): Symbol 'a' is not declared.
+ERROR(20): Symbol 'output' is not declared.
+ERROR(21): Symbol 'outnl' is not declared.
 ERROR(23): Symbol 'b' is not declared.
+ERROR(23): Symbol 'outputb' is not declared.
+ERROR(24): Symbol 'outnl' is not declared.
 ERROR(26): Symbol 'c' is not declared.
+ERROR(26): Symbol 'outputc' is not declared.
+ERROR(27): Symbol 'outnl' is not declared.
+ERROR(29): Symbol 'output' is not declared.
 Func: main returns type void [line: 2]
-Number of errors: 8
+Number of errors: 15
 Number of warnings: 8
 .   .   Sibling: 10  Call: outnl [line: 21]
 .   .   Sibling: 11  For [line: 23]

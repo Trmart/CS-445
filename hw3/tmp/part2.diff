@@ -45,9 +45,9 @@
 1a45,46
 > ERROR(22): Symbol 'x' is not declared.
 > ERROR(23): Symbol 'y' is not declared.
-3,9c48,76
+3d47
 < ERROR(35): '+' requires operands of type int but lhs is of type char.
-< ERROR(42): Symbol 'zebu' is not declared.
+5,9c49,77
 < ERROR(47): '+' requires operands of type int but lhs is of type char.
 < ERROR(47): Unary 'chsign' requires an operand of type int but was given type bool.
 < ERROR(5): Cannot return an array.
@@ -55,7 +55,7 @@
 < Number of warnings: 4
 ---
 > Func: ant returns type int [line: 1]
-> Number of errors: 4
+> Number of errors: 5
 > Number of warnings: 5
 > .   .   Sibling: 10  Call: elk [line: 51]
 > .   .   Sibling: 1  Assign: <= [line: 23]
@@ -83,9 +83,9 @@
 > .   .   Sibling: 7  Call: dog [line: 47]
 > .   .   Sibling: 8  Call: dog [line: 49]
 > .   .   Sibling: 9  Call: elk [line: 50]
-10a78
+10a79
 > WARNING(34): The variable 'c' seems not to be used.
-12,13c80,81
+12,13c81,82
 < WARNING(49): Variable 'z' may be uninitialized when used here.
 < WARNING(4): Variable 'z' may be uninitialized when used here.
 ---

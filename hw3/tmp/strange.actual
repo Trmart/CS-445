@@ -50,10 +50,12 @@
 .   .   .   Child: 1  Op: + of type int [line: 17]
 .   .   .   .   Child: 1  Op: + of type int [line: 23]
 ERROR(11): Symbol 'x' is not declared.
+ERROR(18): 'main' is a simple variable and cannot be called.
 ERROR(2): Symbol 'main' is already declared at line 1.
 ERROR(3): Symbol 'main' is already declared at line 1.
+ERROR(9): 'main' is a simple variable and cannot be called.
 ERROR(LINKER): A function named 'main()' must be defined.
-Number of errors: 4
+Number of errors: 6
 Number of warnings: 2
 .   .   Sibling: 10  Assign: <= [line: 24]
 .   .   Sibling: 11  Assign: <= [line: 25]

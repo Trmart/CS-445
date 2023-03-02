@@ -29,19 +29,16 @@
 > .   .   .   Child: 1  Id: r of type undefined [line: 46]
 > .   .   Child: 1  Id: x of type undefined [line: 41]
 > .   .   Child: 1  Return [line: 59]
-12c42
-< ERROR(48): Symbol 'cow' is not declared.
----
+13a44
 > ERROR(48): Symbol 'u' is not declared.
-22,24d51
-< ERROR(7): Symbol 'bat' is not declared.
+23,24d53
 < ERROR(8): 'or' requires operands of type bool but lhs is of type int.
 < ERROR(8): 'or' requires operands of type bool but rhs is of type int.
-26c53
+26c55
 < Number of errors: 25
 ---
-> Number of errors: 22
-28c55,94
+> Number of errors: 24
+28c57,96
 < WARNING(15): Variable 'c' may be uninitialized when used here.
 ---
 > .   .   Sibling: 10  Id: x of type undefined [line: 34]
@@ -84,9 +81,9 @@
 > .   .   Sibling: 9  Id: a of type undefined [line: 50]
 > Var: g of type int [line: 2]
 > WARNING(12): The variable 'c' seems not to be used.
-29a96
+29a98
 > WARNING(39): The variable 'z' seems not to be used.
-31,32c98
+31,32c100
 < WARNING(44): Variable 'z' may be uninitialized when used here.
 < WARNING(8): Variable 'a' may be uninitialized when used here.
 ---

@@ -215,6 +215,7 @@
 .   .   .   Child: 2  Assign: <= [line: 89]
 .   .   .   Child: 2  Assign: <= [line: 92]
 .   .   .   Child: 2  Assign: <= [line: 95]
+ERROR(103): 'b' is a simple variable and cannot be called.
 ERROR(105): Symbol 'x' is not declared.
 ERROR(106): Cannot use function 'main' as a variable.
 ERROR(107): Cannot use function 'main' as a variable.
@@ -223,8 +224,8 @@ ERROR(112): Symbol 'a' is not declared.
 ERROR(8): Symbol 'c' is already declared at line 8.
 ERROR(9): Symbol 'i' is already declared at line 4.
 Func: main returns type int [line: 2]
-Number of errors: 7
-Number of warnings: 6
+Number of errors: 8
+Number of warnings: 5
 .   .   Sibling: 10  Assign: <= [line: 24]
 .   .   Sibling: 11  Assign: <= [line: 25]
 .   .   Sibling: 12  Op: = of type bool [line: 27]
@@ -312,7 +313,6 @@ Number of warnings: 6
 .   .   Sibling: 9  Assign: <= [line: 23]
 WARNING(10): The variable 'pumpkin' seems not to be used.
 WARNING(4): The variable 'i' seems not to be used.
-WARNING(5): The variable 'b' seems not to be used.
 WARNING(6): The variable 'ia' seems not to be used.
 WARNING(7): The variable 'ba' seems not to be used.
 WARNING(8): The variable 'c' seems not to be used.

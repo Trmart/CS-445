@@ -353,7 +353,39 @@ void Semantics::analyzeBinaryNodeSemantics(const Binary* binary) const
 
 void Semantics::analyzeCallNodeSemantics(const Call* call) const
 {
+    if (!isCallNode(call))
+    {
+        throw std::runtime_error("Semantics::analyzeCall() - Invalid Call Node");
+    }
 
+    setAndGetExpressionNodeData(call);
+
+    DeclarationNode* prevDecl = (DeclarationNode *)(getFromSymbolTable(call->getFunctionCallName()));
+
+    // If the function name is not in the symbol table
+    if (prevDecl == nullptr)
+    {
+        EmitDiagnostics::Error::emitGenericError(call->getTokenLineNumber(), "Symbol '" + call->getFunctionCallName() + "' is not declared.");
+        return;
+    }
+
+    // If the function name is not associated with a function
+    if (!isFunctionNode(prevDecl))
+    {
+        EmitDiagnostics::Error::emitGenericError(call->getTokenLineNumber(), "'" + call->getFunctionCallName() + "' is a simple variable and cannot be called.");
+        
+        if (isVariableNode(prevDecl))
+        {
+            Var *var = (Var *)prevDecl;
+            var->setUsed();
+        }
+        else if (isParameterNode(prevDecl))
+        {
+            Parm *parm = (Parm *)prevDecl;
+            parm->setUsed();
+        }
+        return;
+    }
 }
 
 

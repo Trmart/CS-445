@@ -85,9 +85,21 @@
 .   .   .   Child: 1  Op: [ of type undefined [line: 20]
 .   .   .   Child: 1  Op: [ of type undefined [line: 28]
 .   .   .   Child: 1  Op: [ of type undefined [line: 36]
+ERROR(10): Symbol 'output' is not declared.
+ERROR(13): Symbol 'output' is not declared.
+ERROR(14): Symbol 'outnl' is not declared.
+ERROR(18): Symbol 'output' is not declared.
+ERROR(21): Symbol 'output' is not declared.
+ERROR(22): Symbol 'outnl' is not declared.
 ERROR(24): Symbol 'px' is not declared.
 ERROR(25): Symbol 'px' is not declared.
-Number of errors: 2
+ERROR(26): Symbol 'output' is not declared.
+ERROR(29): Symbol 'output' is not declared.
+ERROR(30): Symbol 'outnl' is not declared.
+ERROR(34): Symbol 'output' is not declared.
+ERROR(37): Symbol 'output' is not declared.
+ERROR(38): Symbol 'outnl' is not declared.
+Number of errors: 14
 Number of warnings: 6
 .   .   Sibling: 10  Assign: <= [line: 19]
 .   .   Sibling: 11  Assign: <= [line: 20]

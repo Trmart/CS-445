@@ -244,7 +244,7 @@
 43a206,207
 > ERROR(82): Symbol 'b' is not declared.
 > ERROR(85): Symbol 'c' is not declared.
-47,55c211,212
+47,53c211
 < ERROR(8): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
 < ERROR(96): The operation '?' does not work with arrays.
 < ERROR(96): Unary '?' requires an operand of type int but was given type char.
@@ -252,12 +252,13 @@
 < ERROR(97): '/' requires operands of type int but rhs is of type char.
 < ERROR(97): The operation '/' does not work with arrays.
 < ERROR(98): The operation 'sizeof' only works with arrays.
-< ERROR(99): 'bbb' is a simple variable and cannot be called.
-< ERROR(9): '<=' requires operands of the same type but lhs is type int and rhs is type char.
 ---
 > ERROR(86): Symbol 'c' is not declared.
+55c213
+< ERROR(9): '<=' requires operands of the same type but lhs is type int and rhs is type char.
+---
 > ERROR(9): Symbol 'c' is not declared.
-57,62c214,298
+57,62c215,299
 < Number of errors: 56
 < Number of warnings: 6
 < WARNING(42): Variable 'aa' may be uninitialized when used here.
@@ -266,8 +267,8 @@
 < WARNING(73): Variable 'i' may be uninitialized when used here.
 ---
 > Func: ant returns type char [line: 2]
-> Number of errors: 19
-> Number of warnings: 15
+> Number of errors: 20
+> Number of warnings: 14
 > .   .   Sibling: 10  Assign: <= [line: 57]
 > .   .   Sibling: 10  Return [line: 107]
 > .   .   Sibling: 10  While [line: 19]
@@ -350,9 +351,8 @@
 > WARNING(53): The variable 'z' seems not to be used.
 > WARNING(5): The variable 'b' seems not to be used.
 > WARNING(72): The variable 'i' seems not to be used.
-64c300,302
+64c301,302
 < WARNING(86): Variable 'b' may be uninitialized when used here.
 ---
 > WARNING(84): The variable 'b' seems not to be used.
-> WARNING(93): The variable 'bbb' seems not to be used.
 > WARNING(94): The variable 'ccc' seems not to be used.

@@ -1,8 +1,4 @@
-1,3c1,217
-< ERROR(103): 'b' is a simple variable and cannot be called.
-< ERROR(104): Cannot index nonarray 'b'.
-< ERROR(105): Cannot index nonarray 'x'.
----
+0a1,217
 > .   .   .   Child: 0  Const 1 of type int [line: 82]
 > .   .   .   Child: 0  Const 1 of type int [line: 97]
 > .   .   .   Child: 0  Const true of type bool [line: 114]
@@ -220,17 +216,20 @@
 > .   .   .   Child: 2  Assign: <= [line: 89]
 > .   .   .   Child: 2  Assign: <= [line: 92]
 > .   .   .   Child: 2  Assign: <= [line: 95]
-5d218
+2,3d218
+< ERROR(104): Cannot index nonarray 'b'.
+< ERROR(105): Cannot index nonarray 'x'.
+5d219
 < ERROR(106): Cannot index nonarray 'main'.
-7d219
+7d220
 < ERROR(107): Cannot index nonarray 'main'.
-9,11d220
+9,11d221
 < ERROR(108): Array 'ba' should be indexed by type int but got type bool.
 < ERROR(108): Array index is the unindexed array 'ba'.
 < ERROR(109): Array 'ba' should be indexed by type int but got type char.
-13d221
+13d222
 < ERROR(111): The operation '+' does not work with arrays.
-15,70d222
+15,70d223
 < ERROR(113): The operation 'sizeof' only works with arrays.
 < ERROR(114): Unary 'chsign' requires an operand of type int but was given type bool.
 < ERROR(116): Cannot return an array.
@@ -287,12 +286,13 @@
 < ERROR(78): '>' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(79): '>' requires operands of the same type but lhs is type bool and rhs is type int.
 < ERROR(79): '>' requires operands of the same type but lhs is type int and rhs is type bool.
-73c225,226
+73,74c226,313
 < Number of errors: 72
+< Number of warnings: 6
 ---
 > Func: main returns type int [line: 2]
-> Number of errors: 7
-74a228,312
+> Number of errors: 8
+> Number of warnings: 5
 > .   .   Sibling: 10  Assign: <= [line: 24]
 > .   .   Sibling: 11  Assign: <= [line: 25]
 > .   .   Sibling: 12  Op: = of type bool [line: 27]
@@ -378,13 +378,12 @@
 > .   .   Sibling: 7  Var: pumpkin of type bool [line: 10]
 > .   .   Sibling: 8  Assign: <= [line: 22]
 > .   .   Sibling: 9  Assign: <= [line: 23]
-76,79c314,317
+76,79c315,317
 < WARNING(12): Variable 'i' may be uninitialized when used here.
 < WARNING(13): Variable 'b' may be uninitialized when used here.
 < WARNING(37): Variable 'ia' may be uninitialized when used here.
 < WARNING(38): Variable 'ba' may be uninitialized when used here.
 ---
 > WARNING(4): The variable 'i' seems not to be used.
-> WARNING(5): The variable 'b' seems not to be used.
 > WARNING(6): The variable 'ia' seems not to be used.
 > WARNING(7): The variable 'ba' seems not to be used.
