@@ -50,7 +50,7 @@ class Semantics
         void analyzeExpressionNodeSemantics(ExpressionNode* expression);
         void analyzeIdentifierNodeSemantics(const Id* identifier) const;
         void analyzeUnaryNodeSemantics(const Unary* unary) const;
-        void analyzeUnaryAsssignmentNodeSemantics(const UnaryAsgn* unaryAssignment) const;
+        void analyzeUnaryAssignmentNodeSemantics(const UnaryAsgn* unaryAssignment) const;
         
         //*********************Statement Nodes**********************
         void analyzeCompoundNodeSemantics(const Compound* compound) const;

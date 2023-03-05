@@ -309,7 +309,7 @@ void Semantics::analyzeAssignmentNodeSemantics(const Asgn* assignment)
         case Asgn::Type::ASGN:
                                 {
                                     //check if left and right operands are valid
-                                    // checkSameTypeOperands((ExpressionNode*)(assignment));
+                                    checkSameTypeOperands((ExpressionNode*)(assignment));
                                 }
                                 break;
         case Asgn::Type::ADDASS:
@@ -448,7 +448,7 @@ void Semantics::analyzeExpressionNodeSemantics(ExpressionNode* expression)
         case ExpressionNode::Type::UNARYASSIGN:
                                         {
                                             const UnaryAsgn* unaryAssignment = (const UnaryAsgn*)expression;
-                                            analyzeUnaryAsssignmentNodeSemantics(unaryAssignment);
+                                            analyzeUnaryAssignmentNodeSemantics(unaryAssignment);
                                         }
                                         break;
 
@@ -543,7 +543,7 @@ void Semantics::analyzeUnaryNodeSemantics(const Unary* unary) const
 
 //seems to be working properly. No errors currently present. 3/2/23
 
-void Semantics::analyzeUnaryAsssignmentNodeSemantics(const UnaryAsgn* unaryAssignment) const
+void Semantics::analyzeUnaryAssignmentNodeSemantics(const UnaryAsgn* unaryAssignment) const
 {
     if (!isUnaryAssignmentNode(unaryAssignment))
     {
@@ -722,7 +722,7 @@ void Semantics::checkSameTypeOperands(ExpressionNode* expression) const
     // //get the children of the expression
     // std::vector<Node* > childrenNodes = expression->getChildernNodes();
     
-    // //cast the children to expression nodes. set lhs and rhs
+    //cast the children to expression nodes. set lhs and rhs
     // ExpressionNode* leftHandSideExpression = (ExpressionNode *)(childrenNodes[0]);
     // ExpressionNode* rightHandSideExpression = (ExpressionNode *)(childrenNodes[1]);
     

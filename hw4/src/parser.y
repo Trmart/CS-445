@@ -3,23 +3,22 @@
 Taylor Martin
 CS-445 Compiler Design
 University Of Idaho
-HW3
+HW4
 Dr. Wilder
-2/26/2023
+DUE: 3/12/2023
 
-FILE: parser.y
-DESC: yacc parser for the calculator language
-
-Based off CS445 - Calculator Example Program by Robert Heckendorn
+FILE: CompilerFlags.cpp
+DESC: Class functions definitions to detect and hold c- compiler flags
 */
+
 
 #include "scanType.hpp"
 
-#include "Emit/EmitDiagnostics.hpp"
+#include "EmitDiagnostics.hpp"
 #include "CompilerFlags.hpp"
-#include "Semantics/Semantics.hpp"
-#include "Semantics/symbolTable.hpp"
-#include "AST/AST.hpp"
+#include "Semantics.hpp"
+#include "symbolTable.hpp"
+#include "AST.hpp"
 
 #include <iostream>
 #include <string>
