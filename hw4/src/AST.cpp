@@ -10,8 +10,8 @@ FILE: CompilerFlags.cpp
 DESC: Class functions definitions to detect and hold c- compiler flags
 */
 
-#include "AST.h"
-#include "scanType.h"
+#include "AST.hpp"
+#include "scanType.hpp"
 #include "parser.tab.h"
 
 #include <stdio.h>
@@ -21,147 +21,274 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 
 int WSC = 0;
 
-//function adds a sibling
-TreeNode *addSibling(TreeNode *t, TreeNode *s){
-      if (t!=NULL) {
-        TreeNode *tmp;
+//Setters
+void Node::setExpType(ExpressionType type)
+{
+    m_expType = type;
+}
+
+
+void Node::setIsArray(bool isArray)
+{
+    m_isArray = isArray;
+}
+
+
+void Node::setIsStatic(bool isStat)
+{
+    m_isStatic = isStat;
+}
+
+
+void Node::setIsGlobal(bool isGlobal)
+{
+    m_isGlobal = isGlobal;
+}
+
+
+void Node::setIsInit(bool isInit)
+{
+    m_isInit = isInit;
+}
+
+
+void Node::setWarningReported(bool isReported)
+{
+    m_warningReported = isReported;
+}
+
+
+void Node::setWasUsed(bool isUsed)
+{
+    m_wasUsed = isUsed;
+}
+
+
+void Node::setIsDeclared(bool isDeclared)
+{
+    m_isDeclared = isDeclared;
+}
+
+
+void Node::setDeclErr(bool isError)
+{
+    m_declErr = isError;
+}
+
+
+void Node::setWasUsedErr(bool isError)
+{
+    m_wasUsedErr = isError;
+}
+
+
+void Node::setIsIndexed(bool isIndexed)
+{
+    m_isIndexed = isIndexed;
+}
+
+
+void Node::setIsIO(bool isIO)
+{
+    m_isIO = isIO;
+}
+
+void Node::addSiblingNode(Node* left, Node* sibling)
+{
+    if(current != nullptr) 
+    {
+        Node* temp = current;
         
-        tmp = t;
-        while (tmp->sibling!=NULL) tmp = tmp->sibling;
-        tmp->sibling = s;
-        return t;
-    }
-    return s;
+        while (temp->m_sibling != nullptr) 
+        {
+            temp = temp->m_sibling;
+        }
 
-    if(t == NULL){
-        return s;   
+
+        temp->m_sibling = sibling;
+
+        return current;
     }
-    else if(s == NULL){
-        return t;
+    return sibling;
+
+    if(current == nullptr)
+    {
+        return sibling;   
+    }
+    else if(sibling == nullptr)
+    {
+        return current;
     }
 }
 
-// Function Passes the type attributes down the sibling list.
-void setType(TreeNode *t, ExpType type){
 
-    while (t != NULL) {
-        t->expType = type;
-        t = t->sibling;
+void Node::setType(Node* node, ExpressionType type)
+{
+    while(node != nullptr)
+    {
+        node->setExpType(type);
+        node = node->m_sibling;
     }
-
 }
-/* Function newDeclNode creates a new declaration
- * node for syntax tree construction
- */
-TreeNode *newDeclNode(DeclKind kind, TokenData* token){
-    TreeNode *t = (TreeNode *) malloc(sizeof(TreeNode));
-    int i;
-    if( t==NULL){
-        printf("Out of memory error at line %d\n", token->lineno);
+
+
+Node* Node::newDeclNode(DeclarationType declType, TokenData* tokenData)
+{
+    Node* node = new Node();
+
+    if(node == nullptr)
+    {
+        std::cout << "Out of memory error at line " << tokenData->m_lineNumber << std::endl;
     }
-    else{
-        for(i=0; i<MAXCHILDREN; i++){
-            t->child[i] = NULL;
-            t->sibling = NULL;
-            t->nodekind = DeclK;
-            t->subkind.decl = kind;
-            t->lineno = token->lineno;
-            t->expType = Void;
-            t->attr.name = strdup(token->tokenstr);
+    else
+    {
+        for (int i = 0; i < MAXCHILDREN; i++)
+        {
+            node->m_childernNodes[i] = nullptr;
+            node->m_siblingNode = nullptr;
+            node->m_nodeType = DECLARATION;
+            node->setNodeType(declType);
+            node->setLineNum(tokenData->m_lineNumber);
+            node->setExpType(VOID);
+            node->nodeAttributes.name = tokenData->tokenContent;
         }
     }
 
-    return t;
+    return node;
+
 }
 
-/* Function newStmtNode creates a new statement
- * node for syntax tree construction
- */
-TreeNode *newStmtNode(StmtKind kind, TokenData *token){
-    TreeNode *t = (TreeNode *) malloc(sizeof(TreeNode));
-    int i;
-    if( t==NULL){
-        printf("Out of memory error at line %d\n", token->lineno);
+
+Node* Node::newStmtNode(StatementType stmtType, TokenData* tokenData)
+{
+    Node* node = new Node();
+
+    if(node == nullptr)
+    {
+        std::cout << "Out of memory error at line " << tokenData->m_lineNumber << std::endl;
     }
-    else{
-        for(i=0; i<MAXCHILDREN; i++){
-            t->child[i] = NULL;
-            t->sibling = NULL;
-            t->nodekind = StmtK;
-            t->subkind.stmt = kind;
-            t->lineno = token->lineno;
-            t->expType = Void;
-            t->attr.name = strdup(token->tokenstr);
+    else
+    {
+        for (int i = 0; i < MAXCHILDREN; i++)
+        {
+            node->m_childernNodes[i] = nullptr;
+            node->m_siblingNode = nullptr;
+            node->m_nodeType = DECLARATION;
+            node->setNodeType(stmtType);
+            node->setLineNum(tokenData->m_lineNumber);
+            node->setExpType(VOID);
+            node->nodeAttributes.name = tokenData->tokenContent;
         }
     }
 
-    return t;
+    return node;
+
 }
 
-/* Function newExpNode creates a new expression 
- * node for syntax tree construction
- */
-TreeNode *newExpNode(ExpKind kind, TokenData *token){
-    TreeNode *t = (TreeNode *) malloc(sizeof(TreeNode));
-    int i;
-    if( t==NULL){
-        printf("Out of memory error at line %d\n", token->lineno);
-    }  
-    else{
-        for(i=0; i<MAXCHILDREN; i++){
-            t->child[i] = NULL;
-            t->sibling = NULL;
-            t->nodekind = ExpK;
-            t->subkind.exp = kind;
-            t->lineno = token->lineno;
-            t->expType = Void;
+
+Node* Node::newExpNode(ExpressionType expType, TokenData* tokenData)
+{
+    Node* node = new Node();
+
+    if(node == nullptr)
+    {
+        std::cout << "Out of memory error at line " << tokenData->m_lineNumber << std::endl;
+    }
+    else
+    {
+        for (int i = 0; i < MAXCHILDREN; i++)
+        {
+            node->m_childernNodes[i] = nullptr;
+            node->m_siblingNode = nullptr;
+            node->m_nodeType = DECLARATION;
+            node->setNodeType(expType);
+            node->setLineNum(tokenData->m_lineNumber);
+            node->setExpType(VOID);
+            node->nodeAttributes.name = tokenData->tokenContent;
         }
     }
 
-    return t;
+    return node;
+
+}
+
+
+//function for setting up IO functions since we can't take in any tokenData
+Node* Node::newDeclNodeIO(DeclarationType decltype)
+{
+    Node* node = new Node();
+
+    for(int i = 0; i<MAXCHILDREN; i++)
+    {
+        node->m_childernNodes[i] = nullptr;
+        node->m_siblingNode = nullptr;
+        node->m_nodeType = DECLARATION;
+        node->nodeData.declaration = decltype;
+        node->setExpType(VOID);
+    }
+
+    return node;
+}
+
+//Print the Formatting Output Tabs for the Correct AST Output 
+void printOutputTabs(const int numTabs)
+{
+    for(int i = 0; i < numTabs; i++)
+    {
+        std::cout << ".   "; 
+    }
 }
 
 //prints expected type in grammar, eliminates use of more if statements. 
-void printExp(ExpType t){
+void printExpression(ExpressionType expType)
+{
 
-    switch(t){
+    switch(expType)
+    {
 
-        case Void:
-            printf("void");
-            break;
+        case ReturnType::VOID:
+                        {
+                            std::cout << "void";
+                        }
+                        break;
 
-        case Integer:
-            printf("int");
-            break;
 
-        case Char:
-            printf("char");
-            break;
+        case ReturnType::INT:
+                        {
+                            std::cout << "int";
+                        }
+                        break;
 
-        case CharInt:
-            printf("CharInt");
-            break;
+        case ReturnType::CHAR:
+                            {
+                                std::cout << "char";
+                            }
 
-        case Boolean:
-            printf("bool");
-            break;
+                            break;
 
-        case Equal:
-            printf("Equal");
-            break;
+        case ReturnType::BOOLEAN:
+                            {
+                                std::cout << "bool";
+                            }
+                            break;
 
-        case UndefinedType:
-            printf("undefined type");
-            break;
+        case ReturnType::UNDEFINED:
+                                {
+                                    std::cout << "undefined";
+                                }
+                                break;
 
         default:
-            printf("exprType not found\n");
-            break;
+            {
+                std::cout << "ERROR: Expression Type Not Found"<< std::endl;
+            }
+            break; 
     }
 }
 
 //function to print tree, uses recursion
-void printTree(TreeNode *tree, int nsiblings, bool alltype){
+void printAST(Node* node, int nsiblings, bool alltype)
+{
     int i;
     bool ALLTYPE = alltype;
 
@@ -456,26 +583,3 @@ void printTree(TreeNode *tree, int nsiblings, bool alltype){
     }
 }
 
-//Function to print white spaces
-void printWhiteSpace(int WS){
-    int i;
-    for(i = 0; i < WS; i++){
-        printf(".   ");
-    }
-}
-
-//function for setting up IO functions since we can't take in any tokenData
-TreeNode *newDeclNodeIO(DeclKind kind){
-    TreeNode *t = (TreeNode *)malloc(sizeof(TreeNode));
-    int i;
-
-    for(i = 0; i<MAXCHILDREN; i++){
-        t->child[i] = NULL;
-        t->sibling = NULL;
-        t->nodekind = DeclK;
-        t->subkind.decl = kind;
-        t->expType = Void;
-    }
-
-    return t;
-}
