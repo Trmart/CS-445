@@ -49,7 +49,7 @@ class Node
         // Statement Types
         enum StatementType
         {
-            NULLTYPE, 
+            NULLSTMT, 
             IF, 
             WHILE, 
             FOR, 
@@ -116,7 +116,7 @@ class Node
         
         
         //printers
-        void printAST(Node *tree, int numSiblings, bool alltype);
+        void printAST(Node *tree, int numSiblings, bool isShowingType);
         void printOutputTabs(const int numtabs);
         void printExpression(ExpressionType expType);
 
@@ -182,7 +182,7 @@ class Node
         //is the variable declared
         bool m_isDeclared;
 
-        int lineNumber; //line number of the node
+        int m_lineNumber; //line number of the node
         
 
 

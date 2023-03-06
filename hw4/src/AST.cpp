@@ -190,6 +190,8 @@ Node* Node::newExpNode(ExpressionType expType, TokenData* tokenData)
 {
     Node* node = new Node();
 
+    int numTabs = 0;
+
     if(node == nullptr)
     {
         std::cout << "Out of memory error at line " << tokenData->m_lineNumber << std::endl;
@@ -287,102 +289,196 @@ void printExpression(ExpressionType expType)
 }
 
 //function to print tree, uses recursion
-void printAST(Node* node, int nsiblings, bool alltype)
+void printAST(Node* node, int numSiblings, bool isShowingType)
 {
-    int i;
-    bool ALLTYPE = alltype;
 
-    if(tree==NULL){
-        printf("Unable to print tree\n");
+    if(node==nullptr)
+    {
+        std::cout << "PrintAST() ERROR: Node is Null. Cannot Print AST" << std::endl;
+        exit(1);
     }
-    while(tree != NULL){
-            
-        if(tree->nodekind == DeclK){
 
-            switch(tree->subkind.decl){
-
-                case VarK:
-                    if(tree->isArray == true){
-                        printf("Var: %s is array of type ", tree->attr.name);
-                        printExp(tree->expType);
-                        printf(" [line: %d]\n", tree->lineno);
+    while(node != nullptr)
+    {
+        switch(node->getNodeType())
+        {
+            case NodeType::DECLARATION:
+            {
+                switch(node->nodeData.declaration)
+                {
+                    case DeclarationType::VAR:
+                    {
+                        std::cout << "Var: " << node->nodeAttributes.name << " of type ";
+                        printExpression(node->getExpType());
+                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
                     }
-                    else if(!ALLTYPE){
-                        if(tree->isStatic == true){
-                        printf("Var: %s of static type ", tree->attr.name);
-                        printExp(tree->expType);
-                        printf(" [line: %d]\n", tree->lineno);
+                    break;
+
+                    case DeclarationType::FUNC:
+                    {
+                        std::cout << "Func: " << node->nodeAttributes.name << " returns type ";
+                        printExpression(node->getExpType());
+                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                    }
+                    break;
+
+                    case DeclarationType::PARAM:
+                    {
+                        if(node->getIsArray())
+                        {
+                            std::cout << "Param: " << node->nodeAttributes.name << " is array of type ";
+                            printExpression(node->getExpType());
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
+                        else
+                        {
+                            std::cout << "Param: " << node->nodeAttributes.name << " of type ";
+                            printExpression(node->getExpType());
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
                         }
                     }
-                    else{
-                        printf("Var: %s of type ", tree->attr.name);
-                        printExp(tree->expType);
-                        printf(" [line: %d]\n", tree->lineno);
+                    break;
+
+                    default:
+                    {
+                        std::cout << "PrintAST() ERROR: Declaration Type Not Found" << std::endl;
+                        exit(1);
+                    }
+                    break;
+                }
+            }
+            break;
+
+            case NodeType::STATEMENT:
+            {
+                switch(node->nodeData.statement)
+                {
+                    case StatementType::IF:
+                    {
+                        std::cout << "If [line: " << node->getLineNum() << "]" << std::endl;
                     }
                     break;
 
-                case FuncK:
-                    printf("Func: %s returns type ", tree->attr.name);
-                    printExp(tree->expType);
-                        printf(" [line: %d]\n", tree->lineno);
+                    case StatementType::WHILE:
+                    {
+                        std::cout << "While [line: " << node->getLineNum()  << "]" << std::endl;
+                    }
                     break;
 
-                case ParamK:
-                    if(tree->isArray){
-                        printf("Parm: %s is array of type ", tree->attr.name);
-                        printExp(tree->expType);
-                        printf(" [line: %d]\n", tree->lineno);
-                    }
-                    else{
-                        printf("Parm: %s of type ", tree->attr.name);
-                        printExp(tree->expType);
-                        printf(" [line: %d]\n", tree->lineno);
+                    case StatementType::RETURN:
+                    {
+                        std::cout << "Return [line: " << node->getLineNum()  << "]" << std::endl;
                     }
                     break;
-                
-                default:
-                printf("Unknown Decl Kind Line:%d\n", tree->lineno);
+
+                    case StatementType::COMPOUND:
+                    {
+                        std::cout << "Compound [line: " << node->getLineNum() << "]" << std::endl;
+                    }
+                    break; 
+
+                    case StatementType::RANGE:
+                    {
+                        std::cout << "Range [line: " << node->getLineNum() << "]" << std::endl;
+                    }
+                    break; 
+
+                    case StatementType::BREAK:
+                    {
+                        std::cout << "Break [line: " << node->getLineNum() << "]" << std::endl;
+                    }
+                    break; 
+
+                    case StatementType::FOR:
+                    {
+                        std::cout << "For [line: " << node->getLineNum() << "]" << std::endl;
+                    }
+                    break;
+
+                    case StatementType::NULLSTMT:
+                    {
+                        std::cout << "Null [line: " << node->getLineNum() << "]" << std::endl;
+                    }
+                    break;
+
+                    default:
+                    {
+                        std::cout << "PrintAST() ERROR: Statement Type Not Found" << std::endl;
+                        exit(1);
+                    }
+                    break;
+                }
+            }
+            break; 
+
+
+            case NodeType::EXPRESSION:
+            {
+                switch(node->nodeData.expression)
+                {
+                    case ExpressionType::OP:
+                    {
+                        std::cout << "Op: " << node->nodeAttributes.name << " of type ";
+                        printExpression(node->getExpType());
+                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                    }
+                    break;
+
+                    case ExpressionType::CONST:
+                    {
+                        std::cout << "Const: " << node->nodeAttributes.name << " of type ";
+                        printExpression(node->getExpType());
+                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                    }
+                    break;
+
+                    case ExpressionType::CALL:
+                    {
+                        std::cout << "Call: " << node->nodeAttributes.name << " of type ";
+                        printExpression(node->getExpType());
+                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                    }
+                    break;
+
+                    case ExpressionType::ID:
+                    {
+                        std::cout << "Id: " << node->nodeAttributes.name << " of type ";
+                        printExpression(node->getExpType());
+                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                    }
+                    break;
+
+                    default:
+                    {
+                        std::cout << "PrintAST() ERROR: Expression Type Not Found" << std::endl;
+                        exit(1);
+                    }
+                    break;
+                }
+            }
+
+        for(int i = 0; i < MAXCHILDREN; i++)
+        {
+            if(tree->child[i] != nullptr)
+            {
+                numTabs++;
+                printOutputTabs(numTabs);
+                std::cout << "Child: " << i << " ";
+                printAST(tree->child[i], 0, isShowingType);
+                numTabs--;
             }
         }
 
-        else if(tree->nodekind == StmtK){
-            switch(tree->subkind.stmt){
-                
-                case NullK:
-                    printf("NULL [line: %d]\n", tree->lineno);
-                break;
+        if(tree->sibling != nullptr)
+        {
+            numSiblings++;
+            printOutputTabs(numTabs);
+            std::cout << "Sibling: " << numSiblings << " ";
+        }
 
-                case IfK:
-                    printf("If [line: %d]\n", tree->lineno);
-                break;
-
-                case WhileK:
-                    printf("While [line: %d]\n", tree->lineno);
-                break;
-
-                case ForK:
-                    printf("For [line: %d]\n", tree->lineno);
-                break;
-
-                case BreakK:
-                    printf("Break [line: %d]\n", tree->lineno);
-                break;
-
-                case CompoundK:
-                    printf("Compound [line: %d]\n", tree->lineno);
-                break;
-
-                case ReturnK:
-                    printf("Return [line: %d]\n", tree->lineno);
-                break;
-
-                case RangeK:
-                    printf("Range [line: %d]\n", tree->lineno);
-                break;
-
-                default:
-                break;
-            }
+        tree = tree->sibling;
+    }
+}
         }
         //Added statments for the -P option.
         else if(tree->nodekind == ExpK){
