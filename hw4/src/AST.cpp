@@ -564,20 +564,69 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                             std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
                         }
 
+                        else if(node->getExpType() == ReturnType::CHAR)
+                        {
+                            std::cout << "Const '" << node->m_tokenData->charValue << "'";; 
+
+                            if(isShowingType)
+                            {
+                                std::cout << " of type char";
+                            }
+                            
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
+
+                        else
+                        {
+                            std::cout << "Const: " << node->nodeAttributes.intVal; 
+
+                            if(isShowingType)
+                            {
+                                std::cout << " of type int";
+                            }
+                            
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
+
                     }
                     break;
 
                     case ExpressionType::CALL:
                     {
+                        std::cout << "Call: " << node->nodeAttributes.name; 
 
+                        if(isShowingType)
+                        {
+                            std::cout << " of type " << node->printExpression(node->getExpType());
+                        }
+                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
                     }
                     break;
 
                     case ExpressionType::ID:
                     {
+                        std::cout << "Id: " << node->nodeAttributes.name; 
 
+                        if(isShowingType)
+                        {
+                            if(node->getExpType() == ReturnType::UNDEFINED || node->getExpType() == ReturnType::VOID
+                            {
+                                std::cout << " of undefined type";
+                            }
+
+                            else
+                            {
+                                std::cout << " of type " << node->printExpression(node->getExpType());
+                            }
+                        }
+                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
                     }
                     break;
+
+                    case ExpressionType::INIT:
+                    {
+                        //do nothing. init not analyzed
+                    }
 
                     default:
                     {

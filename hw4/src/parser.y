@@ -103,21 +103,21 @@ decl                    : varDecl
 varDecl                 : typeSpec varDeclList SEMICOLON
                         {
                             $$ = $2;
-                            setType($$, $1);
+                            setSiblingsType($$, $1);
                         }
                         ;
 
 scopedVarDecl           : STATIC typeSpec varDeclList SEMICOLON
                         {
                             $$ = $3;
-                            setType($$, $2);
+                            setSiblingsType($$, $2);
                             //$$->isStatic = true;
                             setStatic();
                         }
                         | typeSpec varDeclList SEMICOLON
                         {
                             $$ = $2;
-                            setType($$, $1);
+                            setSiblingsType($$, $1);
                         }
                         ;
 
@@ -138,7 +138,7 @@ varDeclInit             : varDeclId
                         | varDeclId COLON simpleExp
                         {
                             $$ = $1; 
-                            $1->child[0] = $3;
+                            $1->m_childNodes[0] = $3;
                         }
                         ;
 
@@ -159,29 +159,32 @@ varDeclId               : ID
 
 typeSpec                : INT
                         {
-                            $$ = NodeData::Type::INT;
+                            $$ = ReturnType::INT;
                         }
                         | BOOL
                         {
-                            $$ = NodeData::Type::BOOL;
+                            $$ = ReturnType::BOOL;
                         }
                         | CHAR
                         {
-                            $$ = NodeData::Type::CHAR;
+                            $$ = ReturnType::CHAR;
                         }
                         ;
 
 funDecl                 : typeSpec ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new Func($2->tokenLineNumber, $2->tokenInformation, new NodeData($1, false, false));
-                            $$->addChildNode($4);
-                            $$->addChildNode($6);
+                            $$ = newDeclNode(DeclarationType::FUNCTION, $2);
+                            $$->nodeAttributes.name = $2->tokenContent;
+                            $$->m_childNodes[0] = $4;
+                            $$->m_childNodes[1] = $6;
+                            $$->setExpType($1);
                         }
                         | ID LPAREN parms RPAREN compoundStmt
                         {
-                            $$ = new Func($1->tokenLineNumber, $1->tokenInformation, new NodeData(NodeData::Type::VOID, false, false));
-                            $$->addChildNode($3);
-                            $$->addChildNode($5);
+                            $$ = newDeclNode(DeclarationType::FUNCTION, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->m_childNodes[0] = $3;
+                            $$->m_childNodes[1] = $5;
                         }
                         ;
 
@@ -197,8 +200,7 @@ parms                   : parmList
 
 parmList                : parmList SEMICOLON parmTypeList
                         {
-                            $$ = $1;
-                            $$->addSiblingNode($3);
+                            $$->addSiblingNode($1, $3)
                         }
                         | parmTypeList
                         {
@@ -209,22 +211,14 @@ parmList                : parmList SEMICOLON parmTypeList
 parmTypeList            : typeSpec parmIdList
                         {
                             $$ = $2;
-                            Parm* node = (Parm* )$$;
-                            node->setType($1);
+                            setSiblingsType($$, $1);
                         }
                         ;
 
 parmIdList              : parmIdList COMMA parmId
                         {
-                            if ($1 == nullptr)
-                            {
-                                $$ = $3;
-                            }
-                            else
-                            {
-                                $$ = $1;
-                                $$->addSiblingNode($3);
-                            }
+                            $$ = addSiblingNode($1, $3);
+                            
                         }
                         | parmId
                         {
@@ -234,11 +228,14 @@ parmIdList              : parmIdList COMMA parmId
 
 parmId                  : ID
                         {
-                            $$ = new Parm($1->tokenLineNumber, $1->tokenInformation, new NodeData(NodeData::Type::UNDEFINED, false, false));
+                            $$ = newDeclNode(DeclarationType::PARAMETER, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | ID LBRACK RBRACK
                         {
-                            $$ = new Parm($1->tokenLineNumber, $1->tokenInformation, new NodeData(NodeData::Type::UNDEFINED, true, false));
+                            $$ = newDeclNode(DeclarationType::PARAMETER, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->isArray = true;
                         }
                         ;
 
@@ -300,23 +297,15 @@ expStmt                 : exp SEMICOLON
 
 compoundStmt            : T_BEGIN localDecls stmtList T_END
                         {
-                            $$ = new Compound($1->tokenLineNumber);
-                            $$->addChildNode($2);
-                            $$->addChildNode($3);
+                            $$ = newStmtNode(StatementType::COMPOUND, $1);
+                            $$->m_childNodes[0] = $2;
+                            $$->m_childNodes[1] = $3;
                         }
                         ;
 
 localDecls              : localDecls scopedVarDecl
                         {
-                            if ($1 == nullptr)
-                            {
-                                $$ = $2;
-                            }
-                            else
-                            {
-                                $$ = $1;
-                                $$->addSiblingNode($2);
-                            }
+                            $$ = addSiblingNode($1, $2);
                         }
                         |
                         {
@@ -326,15 +315,7 @@ localDecls              : localDecls scopedVarDecl
 
 stmtList                : stmtList stmt
                         {
-                            if ($1 == nullptr)
-                            {
-                                $$ = $2;
-                            }
-                            else
-                            {
-                                $$ = $1;
-                                $$->addSiblingNode($2);
-                            }
+                            $$ = addSiblingNode($1, $2);
                         }
                         |
                         {
@@ -344,109 +325,118 @@ stmtList                : stmtList stmt
 
 selectStmtUnmatched     : IF simpleExp THEN stmt
                         {
-                            $$ = new If($1->tokenLineNumber);
-                            $$->addChildNode($2);
-                            $$->addChildNode($4);
+                            $$ = newStmtNode(StatementType::IF, $1);
+                            $$->m_childNodes[0] = $2;
+                            $$->m_childNodes[1] = $4;
                         }
                         | IF simpleExp THEN stmtMatched ELSE stmtUnmatched
                         {
-                            $$ = new If($1->tokenLineNumber);
-                            $$->addChildNode($2);
-                            $$->addChildNode($4);
-                            $$->addChildNode($6);
+                            $$ = newStmtNode(StatementType::IF, $1);
+                            $$->m_childNodes[0] = $2;
+                            $$->m_childNodes[1] = $4;
+                            $$->m_childNodes[2] = $6;
                         }
                         ;
 
 selectStmtMatched       : IF simpleExp THEN stmtMatched ELSE stmtMatched
                         {
-                            $$ = new If($1->tokenLineNumber);
-                            $$->addChildNode($2);
-                            $$->addChildNode($4);
-                            $$->addChildNode($6);
+                            $$ = newStmtNode(StatementType::IF, $1);
+                            $$->m_childNodes[0] = $2;
+                            $$->m_childNodes[1] = $4;
+                            $$->m_childNodes[2] = $6;
                         }
                         ;
 
 iterStmtUnmatched       : WHILE simpleExp DO stmtUnmatched
                         {
-                            $$ = new While($1->tokenLineNumber);
-                            $$->addChildNode($2);
-                            $$->addChildNode($4);
+                            $$ = newStmtNode(StatementType::WHILE, $1);
+                            $$->m_childNodes[0] = $2;
+                            $$->m_childNodes[1] = $4;
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | FOR ID ASGN iterRange DO stmtUnmatched
                         {
-                            $$ = new For($1->tokenLineNumber);
-                            Var* node = new Var($2->tokenLineNumber, $2->tokenInformation, new NodeData(NodeData::Type::INT, false, false));
-                            node->setInitialized();
-                            $$->addChildNode(node);
-                            $$->addChildNode($4);
-                            $$->addChildNode($6);
+                            $$ = newStmtNode(StatementType::FOR, $1);
+                            $$->m_childNodes[0] = newDeclNode(DeclarationType::VARIABLE, $2);
+                            $$->m_childNodes[0]->setExpType(ReturnType::INT); 
+                            $$->nodeAttributes.name = $3->tokenContent;
+                            $$->m_childNodes[1] = $4;
+                            $$->m_childNodes[2] = $6;
                         }
                         ;
 
 iterStmtMatched         : WHILE simpleExp DO stmtMatched
                         {
-                            $$ = new While($1->tokenLineNumber);
-                            $$->addChildNode($2);
-                            $$->addChildNode($4);
+                            $$ = newStmtNode(StatementType::WHILE, $1);
+                            $$->m_childNodes[0] = $2;
+                            $$->m_childNodes[1] = $4;
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | FOR ID ASGN iterRange DO stmtMatched
                         {
-                            $$ = new For($1->tokenLineNumber);
-                            Var *node = new Var($2->tokenLineNumber, $2->tokenInformation, new NodeData(NodeData::Type::INT, false, false));
-                            node->setInitialized();
-                            $$->addChildNode(node);
-                            $$->addChildNode($4);
-                            $$->addChildNode($6);
+                            $$ = newStmtNode(StatementType::FOR, $1);
+                            $$->m_childNodes[0] = $2;
+                            $$->m_childNodes[1] = $4;
+                            $$->m_childNodes[2] = $6;
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         ;
 
 iterRange               : simpleExp TO simpleExp
                         {
-                            $$ = new Range($1->getTokenLineNumber());
-                            $$->addChildNode($1);
-                            $$->addChildNode($3);
+                            $$ = newStmtNode(StatementType::RANGE, $1);
+                            $$->m_childNodes[0] = $1;
+                            $$->m_childNodes[1] = $3;
                         }
                         | simpleExp TO simpleExp BY simpleExp
                         {
-                            $$ = new Range($1->getTokenLineNumber());
-                            $$->addChildNode($1);
-                            $$->addChildNode($3);
-                            $$->addChildNode($5);
+                            $$ = newStmtNode(StatementType::RANGE, $1);
+                            $$->m_childNodes[0] = $1;
+                            $$->m_childNodes[1] = $3;
+                            $$->m_childNodes[2] = $5;
                         }
                         ;
 
 returnStmt              : RETURN SEMICOLON
                         {
-                            $$ = new Return($1->tokenLineNumber);
+                            $$ = newStmtNode(StatementType::RETURN, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | RETURN exp SEMICOLON
                         {
-                            $$ = new Return($1->tokenLineNumber);
-                            $$->addChildNode($2);
+                            $$ = newStmtNode(StatementType::RETURN, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->m_childNodes[0] = $2;
+                            $$->setExpType($2->getExpType());
                         }
                         ;
 
 breakStmt               : BREAK SEMICOLON
                         {
-                            $$ = new Break($1->tokenLineNumber);
+                            $$ = newStmtNode(StatementType::BREAK, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         ;
 
 exp                     : mutable assignop exp
                         {
                             $$ = $2;
-                            $$->addChildNode($1);
-                            $$->addChildNode($3);
+                            $$->m_childNodes[0] = $1;
+                            $$->m_childNodes[1] = $3;
                         }
                         | mutable INC
                         {
-                            $$ = new UnaryAsgn($1->getTokenLineNumber(), UnaryAsgn::Type::INC);
-                            $$->addChildNode($1);
+                            $$ = newExpNode(ExpressionType::ASSIGN, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->m_childNodes[0] = $1;
+                            $$->setExpType(ReturnType::INT);
                         }
                         | mutable DEC
                         {
-                            $$ = new UnaryAsgn($1->getTokenLineNumber(), UnaryAsgn::Type::DEC);
-                            $$->addChildNode($1);
+                            $$ = newExpNode(ExpressionType::ASSIGN, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->m_childNodes[0] = $1;
+                            $$->setExpType(ReturnType::INT);
                         }
                         | simpleExp
                         {
@@ -456,31 +446,38 @@ exp                     : mutable assignop exp
 
 assignop                : ASGN
                         {
-                            $$ = new Asgn($1->tokenLineNumber, Asgn::Type::ASGN);
+                           $$ = newExprNode(ExpressionType::ASSIGN, $1);
+                           $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | ADDASGN
                         {
-                            $$ = new Asgn($1->tokenLineNumber, Asgn::Type::ADDASS);
+                            $$ = newExprNode(ExpressionType::ASSIGN, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | SUBASGN
                         {
-                            $$ = new Asgn($1->tokenLineNumber, Asgn::Type::SUBASS);
+                            $$ = newExprNode(ExpressionType::ASSIGN, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | MULASGN
                         {
-                            $$ = new Asgn($1->tokenLineNumber, Asgn::Type::MULASS);
+                            $$ = newExprNode(ExpressionType::ASSIGN, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | DIVASGN
                         {
-                            $$ = new Asgn($1->tokenLineNumber, Asgn::Type::DIVASS);
+                            $$ = newExprNode(ExpressionType::ASSIGN, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         ;
 
 simpleExp               : simpleExp OR andExp
                         {
-                            $$ = new Binary($1->getTokenLineNumber(), Binary::Type::OR);
-                            $$->addChildNode($1);
-                            $$->addChildNode($3);
+                            $$ = newExpNode(ExpressionType::OP, $2);
+                            $$->m_childNodes[0] = $1;
+                            $$->m_childNodes[1] = $3;
+                            $$->nodeAttributes.name = $2->tokenContent;
+                            $$->setExpType(ReturnType::BOOL);
                         }
                         | andExp
                         {
@@ -490,9 +487,11 @@ simpleExp               : simpleExp OR andExp
 
 andExp                  : andExp AND unaryRelExp
                         {
-                            $$ = new Binary($1->getTokenLineNumber(), Binary::Type::AND);
-                            $$->addChildNode($1);
-                            $$->addChildNode($3);
+                            $$ = newExpNode(ExpressionType::OP, $2);
+                            $$->m_childNodes[0] = $1;
+                            $$->m_childNodes[1] = $3;
+                            $$->nodeAttributes.name = $2->tokenContent;
+                            $$->setExpType(ReturnType::BOOL);
                         }
                         | unaryRelExp
                         {
@@ -502,8 +501,10 @@ andExp                  : andExp AND unaryRelExp
 
 unaryRelExp             : NOT unaryRelExp
                         {
-                            $$ = new Unary($1->tokenLineNumber, Unary::Type::NOT);
-                            $$->addChildNode($2);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->m_childNodes[0] = $2;
+                            $$->nodeAttributes.name = $2->tokenContent;
+                            $$->setExpType(ReturnType::BOOL);
                         }
                         | relExp
                         {
@@ -514,8 +515,8 @@ unaryRelExp             : NOT unaryRelExp
 relExp                  : sumExp relOp sumExp
                         {
                             $$ = $2;
-                            $$->addChildNode($1);
-                            $$->addChildNode($3);
+                            $$->m_childNodes[0] = $1;
+                            $$->m_childNodes[1] = $3;
                         }
                         | sumExp
                         {
@@ -525,35 +526,47 @@ relExp                  : sumExp relOp sumExp
 
 relOp                   : LT
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::LT);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::BOOL);
                         }
                         | LEQ
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::LEQ);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::BOOL);
                         }
                         | GT
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::GT);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::BOOL);
                         }
                         | GEQ
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::GEQ);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::BOOL);
                         }
                         | EQ
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::EQ);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::BOOL);
                         }
                         | NEQ
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::NEQ);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::BOOL);
                         }
                         ;
 
 sumExp                  : sumExp sumOp mulExp
                         {
                             $$ = $2;
-                            $$->addChildNode($1);
-                            $$->addChildNode($3);
+                            $$->m_childNodes[0] = $1;
+                            $$->m_childNodes[1] = $3;
                         }
                         | mulExp
                         {
@@ -563,19 +576,23 @@ sumExp                  : sumExp sumOp mulExp
 
 sumOp                   : ADD
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::ADD);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::INT);
                         }
                         | SUB
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::SUB);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::INT);
                         }
                         ;
 
 mulExp                  : mulExp mulOp unaryExp
                         {
                             $$ = $2;
-                            $$->addChildNode($1);
-                            $$->addChildNode($3);
+                            $$->m_childNodes[0] = $1;
+                            $$->m_childNodes[1] = $3;
                         }
                         | unaryExp
                         {
@@ -585,22 +602,28 @@ mulExp                  : mulExp mulOp unaryExp
 
 mulOp                   : MUL
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::MUL);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::INT);
                         }
                         | DIV
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::DIV);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::INT);
                         }
                         | MOD
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::MOD);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::INT);
                         }
                         ;
 
 unaryExp                : unaryOp unaryExp
                         {
                             $$ = $1;
-                            $$->addChildNode($2);
+                            $$->m_childNodes[0] = $2;
                         }
                         | factor
                         {
@@ -610,15 +633,21 @@ unaryExp                : unaryOp unaryExp
 
 unaryOp                 : SUB
                         {
-                            $$ = new Unary($1->tokenLineNumber, Unary::Type::CHSIGN);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::INT);
                         }
                         | MUL
                         {
-                            $$ = new Unary($1->tokenLineNumber, Unary::Type::SIZEOF);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::INT);
                         }
                         | QUESTION
                         {
-                            $$ = new Unary($1->tokenLineNumber, Unary::Type::QUESTION);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::INT);
                         }
                         ;
 
@@ -634,14 +663,17 @@ factor                  : mutable
 
 mutable                 : ID
                         {
-                            $$ = new Id($1->tokenLineNumber, $1->tokenInformation);
+                            $$ = newExpNode(ExpressionType::OP, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | ID LBRACK exp RBRACK
                         {
-                            $$ = new Binary($1->tokenLineNumber, Binary::Type::INDEX);
-                            Id *node = new Id($1->tokenLineNumber, $1->tokenInformation, true);
-                            $$->addChildNode(node);
-                            $$->addChildNode($3);
+                            $$ = newExpNode(ExpressionType::OP, $2);
+                            $$->nodeAttributes.name = $2->tokenContent;
+                            $$->m_childNodes[0] = newExpNode(ExpressionType::IDENTIFIER, $1);
+                            $$->m_childNodes[0]->nodeAttributes.name = $1->tokenContent;
+                            $$->m_childNodes[0]->setIsArray(true); 
+                            $$->m_childNodes[1] = $3;
                         }
                         ;
 
@@ -661,8 +693,9 @@ immutable               : LPAREN exp RPAREN
 
 call                    : ID LPAREN args RPAREN
                         {
-                            $$ = new Call($1->tokenLineNumber, $1->tokenInformation);
-                            $$->addChildNode($3);
+                            $$ = newExpNode(ExpressionType::CALL, $1);
+                            $$->m_childNodes[0] = $3;
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         ;
 
@@ -678,8 +711,7 @@ args                    : argList
 
 argList                 : argList COMMA exp
                         {
-                            $$ = $1;
-                            $$->addSiblingNode($3);
+                            $$ = addSiblingNode($1, $3);
                         }
                         | exp
                         {
@@ -689,19 +721,30 @@ argList                 : argList COMMA exp
 
 constant                : NUMCONST
                         {
-                            $$ = new Const($1->tokenLineNumber, Const::Type::INT, $1->tokenInformation);
+                            $$ = newExpNode(ExpressionType::CONSTANT, $1);
+                            $$->nodeAttributes.intVal = $1->numValue;
+                            $$->setExpType(ReturnType::INT);
                         }
                         | BOOLCONST
                         {
-                            $$ = new Const($1->tokenLineNumber, Const::Type::BOOL, $1->tokenInformation);
+                            $$ = newExpNode(ExpressionType::CONSTANT, $1);
+                            $$->nodeAttributes.intVal = $1->numValue;
+                            $$->setExpType(ReturnType::BOOL);
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | CHARCONST
                         {
-                            $$ = new Const($1->tokenLineNumber, Const::Type::CHAR, $1->tokenInformation);
+                            $$ = newExpNode(ExpressionType::CONSTANT, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->setExpType(ReturnType::CHAR);
+                            $$->m_tokenData = $1;
                         }
                         | STRINGCONST
                         {
-                            $$ = new Const($1->tokenLineNumber, Const::Type::STRING, $1->tokenInformation);
+                            $$ = newExpNode(ExpressionType::CONSTANT, $1);
+                            $$->nodeAttributes.stringVal = $1->stringValue;
+                            $$->setExpType(ReturnType::CHARINT);
+                            $$->setIsArray(true);
                         }
                         ;
 
