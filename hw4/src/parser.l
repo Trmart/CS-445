@@ -84,37 +84,6 @@ static int setValue(int lineNumber, int tokenClass,  char *svalue)
                         }
                     }
                     break; 
-
-            // WrdLength = strlen(svalue);
-
-            //  // if str length is 3 assign it to svalue first index. 
-            // if(WrdLength == 3){
-            //     yylval.tokenData->charValue = svalue[1];
-            // }
-
-            // if(WrdLength > 3){
-			
-            //     // check for \ escape (92), n is (110), 0 is (48). 
-            //     if(svalue[1] == 92 && svalue[2] != 110 && svalue[2] != 48){
-            //         yylval.tokenData->charValue = svalue[2];
-            //     }
-               
-			//     else if(svalue[1] == 92 && svalue[2] != 110 && svalue[2] == 48){
-            //         yylval.tokenData->charValue = '\0';
-            //     }
-				
-            //     else if(svalue[1] == 92 && svalue[2] == 110 && svalue[2] != 48){
-            //         yylval.tokenData->charValue = '\n';
-            //     }
-                            
-            //     else if(svalue[1] != 92){
-            //          printf("WARNING(%d): character is %d characters long and not a single character: \'%s\'. The first char will be used.\n", line, (WrdLength-2), svalue);
-            //          yylval.tokenData->charValue = svalue[1];
-            //     }
-            // }
-
-            // yylval.tokenData->tokenString = strdup("CHARCONST");
-            // break;
             
         case STRINGCONST:
                     {
@@ -122,23 +91,6 @@ static int setValue(int lineNumber, int tokenClass,  char *svalue)
 
                     }
                     break; 
-
-            // // use simple for loop to parse for \n newline
-            // for(i = 0; i <= strlen(svalue); i++){
-  		    //     if(svalue[1] == 92 && svalue[2] == 110 && svalue[2] != 48){
-
-  			//         svalue[2] = '\n';       
- 		    //     }
-    
-	        // }
-            
-            // removeChar(svalue, '\\');
-
-            // yylval.tokenData->tokenString = strdup("STRINGCONST");
-            // yylval.tokenData->stringValue = strdup(svalue);
-            // yylval.tokenData->stringLength = StrLength(svalue);
-          
-            // break;
       
         case GEQ:
             {
@@ -263,74 +215,3 @@ static int setValue(int lineNumber, int tokenClass,  char *svalue)
 . { std::cout << "ERROR(" << lineCount << "): Invalid or misplaced input character: '" << yytext[0] << "'. Character Ignored." << std::endl; errorCount++; }  // Any error-causing inputs
 
 %%
-
-
-
-
-
-/* [ \t]+
-"##".*
-\n                                  {line++;}
-
-
-"int"                               {return setValue(line, INT, yytext);}
-"if"                                {return setValue(line, IF, yytext);}
-"or"                                {return setValue(line, OR, yytext);}
-"not"                               {return setValue(line, NOT, yytext);}
-"by"                                {return setValue(line, BY, yytext);}
-"else"                              {return setValue(line, ELSE, yytext);}
-"then"                              {return setValue(line, THEN, yytext);}
-"for"                               {return setValue(line, FOR, yytext);}
-"break"                             {return setValue(line, BREAK, yytext);}
-"return"                            {return setValue(line, RETURN, yytext);}
-"bool"                              {return setValue(line, BOOL, yytext);}
-"char"                              {return setValue(line, CHAR, yytext);}
-"static"                            {return setValue(line, STATIC, yytext);}
-"and"                               {return setValue(line, AND, yytext);}
-"begin"                             {return setValue(line, BEGN, yytext);}
-"end"                               {return setValue(line, FINISH, yytext);}
-"do"                                {return setValue(line, DO, yytext);}
-"while"                             {return setValue(line, WHILE, yytext);}
-"to"                                {return setValue(line, TO, yytext);}
-"true"                              {return setValue(line, BOOLCONST, yytext);}
-"false"                             {return setValue(line, BOOLCONST, yytext);}
-"step"                              {return setValue(line, BY, yytext);}
-
-\'(\\.|[^\n\'])*\'                  {return setValue(line, CHARCONST, yytext);}
-\"(\\.|[^\\\n\"])*\"                {return setValue(line, STRINGCONST, yytext);} 
-
-[a-zA-Z]([a-zA-Z]|[0-9])*           {return setValue(line, ID, yytext);}
-[0-9]+                              {return setValue(line, NUMCONST, yytext);}
-
-"+="                                {return setValue(line, ADDASGN, yytext);}
-"--"                                {return setValue(line, DEC, yytext);}
-"<="                                {return setValue(line, ASGN, yytext);}
-".."                                {return setValue(line, TO, yytext);}
-"++"                                {return setValue(line, INC, yytext);}
-"!<"                                {return setValue(line, GEQ, yytext);}
-"!>"                                {return setValue(line, LEQ, yytext);}
-"!="                                {return setValue(line, NEQ, yytext);}
-"-="                                {return setValue(line, SUBASS, yytext);}
-"/="                                {return setValue(line, DIVASS, yytext);}
-"*="                                {return setValue(line, MULASS, yytext);}
-
-"?"                                 {return setValue(line, QUESTION, yytext);}
-"<"                                 {return setValue(line, LESS, yytext);}
-">"                                 {return setValue(line, GREAT, yytext);}
-"+"                                 {return setValue(line, PLUS, yytext);}
-"="                                 {return setValue(line, EQUAL, yytext);}
-"*"                                 {return setValue(line, MULT, yytext);}
-"/"                                 {return setValue(line, DIV, yytext);}
-"%"                                 {return setValue(line, MOD, yytext);}
-","                                 {return setValue(line, COMMA, yytext);}
-"["                                 {return setValue(line, OBRACKET, yytext);}
-"]"                                 {return setValue(line, CBRACKET, yytext);}
-"-"                                 {return setValue(line, MINUS, yytext);}
-":"                                 {return setValue(line, COLON, yytext);}
-";"                                 {return setValue(line, SEMICOLON, yytext);}
-"("                                 {return setValue(line, OPAREN, yytext);}
-")"                                 {return setValue(line, CPAREN, yytext);}
-
-.                                   {printf("ERROR(%d): Invalid or misplaced input character: \'%c\'. Character Ignored.\n", line, yytext[0]); numErrors++;}
-
-%% */ 

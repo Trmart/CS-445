@@ -10,10 +10,10 @@ FILE: CompilerFlags.cpp
 DESC: Class functions definitions to detect and hold c- compiler flags
 */
 
-#include "IOroutines.hpp"
+#include "IOinit.hpp"
 #include "symbolTable.hpp"
-#include "AST.h"
-#include "scanType.h"
+#include "AST.hpp"
+#include "scanType.hpp"
 #include "Semantics.hpp"
 
 #include <stdio.h>
@@ -26,8 +26,8 @@ void setupIO()
 {
 
     //vars for IO nodes and dummy parameters
-    TreeNode* newIONode; 
-    TreeNode* dummyParam;
+    Node* newIONode; 
+    Node* dummyParam;
 
     //each node to set up
     /*
@@ -43,15 +43,15 @@ void setupIO()
    //set up each section of new nodes as arrays
    std::string IONameArr[] = {"output", "outputb", "outputc", "input", "inputb", "inputc", "outnl"};
 
-   ExpType IOexpType[] = {Void, Void, Void, Integer, Boolean, Char, Void};
-   ExpType IOParamExpType[] = {Integer, Boolean, Char, Void, Void, Void, Void};
+   Node::ReturnType IOexpType[] = {Node::ReturnType::VOID, Node::ReturnType::VOID, Node::ReturnType::VOID, Node::ReturnType::INTEGER, Node::ReturnType::BOOL, Node::ReturnType::CHAR, Node::ReturnType::VOID};
+   Node::ReturnType IOParamExpType[] = {Node::ReturnType::INTEGER, Node::ReturnType::BOOL, Node::ReturnType::CHAR, Node::ReturnType::VOID, Node::ReturnType::VOID, Node::ReturnType::VOID, Node::ReturnType::VOID};
 
    //set up nodes
 
    for(int i = 0; i < 7; i++){
 
-       newIONode = newDeclNodeIO(FuncK);
-       newIONode->attr.name = strdup(IONameArr[i].c_str());
+       newIONode = newDeclNodeIO(Node::DeclarationType::FUNCTION);
+       newIONode->nodeAttributes.name = strdup(IONameArr[i].c_str());
        newIONode->lineno = -1;
        newIONode->expType = IOexpType[i];
 

@@ -19,25 +19,23 @@ Based off Dr.Heckendorns Calculator example
 
 struct TokenData
 {
+    // token string for printing
+    std::string tokenString; 
+    // index into the identifier table
+    int identifierIndex;
+    //token line number
+    int tokenLineNumber;         
+    // token content, whats in the token
+    std::string tokenContent;    
     
-    // char *tokenStrprint; 
-    // int idIndex;
-    // int lineno;         // what line did this token occur on?
-    // char *tokenstr;    
-    // char cvalue;         
-    // int nvalue;          
-    // char *stringvalue;       
-    // int strlength;
-
-    std::string tokenString; // token string
-    int identifierIndex; // index into the identifier table
-    int tokenLineNumber;         //token line number occurance
-    std::string tokenContent;    //token content
-    char charValue;          
-    int numValue;          
-    std::string stringValue;       
+    //char value
+    char charValue;
+    //number value          
+    int numValue;    
+    //string value      
+    std::string stringValue; 
+    //string length      
     int stringLength;
-
 };
 
 #endif

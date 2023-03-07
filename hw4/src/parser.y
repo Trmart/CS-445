@@ -760,7 +760,7 @@ int main(int argc, char *argv[])
     yydebug = compilerFlags.getDebugFlag();
 
     //get the file name from the compiler flags object
-    std::string fileName = compilerFlags.getFile();
+    std::string fileName = argv[argc - 1];
 
     //if the compiler flags object has an error, print the error and exit
     if (argc > 1 && !(yyin = fopen(fileName.c_str(), "r")))
@@ -786,7 +786,7 @@ int main(int argc, char *argv[])
 
 
     //if the the -p flag was passed, print the AST
-    if(compilerFlags.getPrintASTFlag())
+    if(compilerFlags.getPrintASTFlag() && !compilerFlags.getPrintASTWithTypesFlag())
     {
         //if the root is null, throw an error
         if (root == nullptr)
@@ -794,47 +794,33 @@ int main(int argc, char *argv[])
             throw std::runtime_error("main(): Cannot print root: nullptr");
         }
 
-        //print the AST
-        root->printAST();
+        //print the AST without types
+        printAST(root, 0, false);
     }
+    else if(compilerFlags.getPrintASTFlag() && compilerFlags.getPrintASTWithTypesFlag())
+    {
+        //if the root is null, throw an error
+        if (root == nullptr)
+        {
+            throw std::runtime_error("main(): Cannot print root: nullptr");
+        }
 
-    //create the symbol table
-    SymbolTable symbolTable = SymbolTable();
-
-    //get symbol table debug flag
-    symbolTable.debug(compilerFlags.getSymbolTableFlag());
-
-    //create the semantics analyzer
-    Semantics semanticAnalyzer = Semantics(&symbolTable);
+        //setupIO();
+        //create the semantics analyzer
+        Semantics semanticAnalyzer = Semantics();
     
-    //perform semantic analysis
-    semanticAnalyzer.semanticAnalysis(root);
+        //perform semantic analysis
+        //semanticAnalyzer.semanticAnalysis(root);
 
-    //if the -D flag was passed, print the symbol table
-    // if(compilerFlags.getSymbolTableFlag())
-    // {
-    //     //if the root is null, throw an error
-    //     if (root == nullptr)
-    //     {
-    //         throw std::runtime_error("Cannot print root: nullptr");
-    //     }
+        //code generation will eventually go here
 
-    // }
-
-    //if the -P flag was passed, print the AST with types
-    if(compilerFlags.getPrintASTWithTypesFlag())
-    {
-        //if the root is null, throw an error
-        if (root == nullptr)
+        if(EmitDiagnostics::Error::getErrorCount() < 1)
         {
-            throw std::runtime_error("main(): Cannot print root: nullptr");
+            //print the AST with types
+            printAST(root, 0, true);
         }
-
-        //print the AST with types
-        root->printAST(true);
     }
 
-    //code generation will eventually go here
 
     //print the number of errors and warnings
     EmitDiagnostics::Warning::emitWarningCount();
