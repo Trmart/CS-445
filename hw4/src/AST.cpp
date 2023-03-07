@@ -22,6 +22,22 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 int WSC = 0;
 
 //Setters
+
+void Node::setNodeType(NodeType type)
+{
+    m_nodeType = type;
+}
+
+
+void Node::setSiblingsType(Node* node, ExpressionType type)
+{
+    while(node != nullptr)
+    {
+        node->setExpType(type);
+        node = node->m_sibling;
+    }
+}
+
 void Node::setExpType(ExpressionType type)
 {
     m_expType = type;
@@ -122,14 +138,6 @@ void Node::addSiblingNode(Node* left, Node* sibling)
 }
 
 
-void Node::setType(Node* node, ExpressionType type)
-{
-    while(node != nullptr)
-    {
-        node->setExpType(type);
-        node = node->m_sibling;
-    }
-}
 
 
 Node* Node::newDeclNode(DeclarationType declType, TokenData* tokenData)
@@ -146,8 +154,8 @@ Node* Node::newDeclNode(DeclarationType declType, TokenData* tokenData)
         {
             node->m_childernNodes[i] = nullptr;
             node->m_siblingNode = nullptr;
-            node->m_nodeType = DECLARATION;
-            node->setNodeType(declType);
+            node->setNodeType(DECLARATION);
+            node->nodeSubType.declaration = declType;
             node->setLineNum(tokenData->m_lineNumber);
             node->setExpType(VOID);
             node->nodeAttributes.name = tokenData->tokenContent;
@@ -173,8 +181,8 @@ Node* Node::newStmtNode(StatementType stmtType, TokenData* tokenData)
         {
             node->m_childernNodes[i] = nullptr;
             node->m_siblingNode = nullptr;
-            node->m_nodeType = DECLARATION;
-            node->setNodeType(stmtType);
+            node->setNodeType(STATEMENT);
+            node->nodeSubType.statement = stmtType;
             node->setLineNum(tokenData->m_lineNumber);
             node->setExpType(VOID);
             node->nodeAttributes.name = tokenData->tokenContent;
@@ -202,9 +210,9 @@ Node* Node::newExpNode(ExpressionType expType, TokenData* tokenData)
         {
             node->m_childernNodes[i] = nullptr;
             node->m_siblingNode = nullptr;
-            node->m_nodeType = DECLARATION;
-            node->setNodeType(expType);
+            node->setNodeType(EXPRESSION);
             node->setLineNum(tokenData->m_lineNumber);
+            node->nodeSubType.expression = expType;
             node->setExpType(VOID);
             node->nodeAttributes.name = tokenData->tokenContent;
         }
@@ -224,8 +232,8 @@ Node* Node::newDeclNodeIO(DeclarationType decltype)
     {
         node->m_childernNodes[i] = nullptr;
         node->m_siblingNode = nullptr;
-        node->m_nodeType = DECLARATION;
-        node->nodeData.declaration = decltype;
+        node->setNodeType(DECLARATION);
+        node->nodeSubType.declaration = decltype;
         node->setExpType(VOID);
     }
 
@@ -304,13 +312,32 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
         {
             case NodeType::DECLARATION:
             {
-                switch(node->nodeData.declaration)
+                switch(node->nodeSubType.declaration)
                 {
                     case DeclarationType::VAR:
                     {
-                        std::cout << "Var: " << node->nodeAttributes.name << " of type ";
-                        printExpression(node->getExpType());
-                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+
+                        if(node->getIsArray())
+                        {
+                            std::cout << "Var: " << node->nodeAttributes.name << " is array of type ";
+                            printExpression(node->getExpType());
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
+
+                        else if(!isShowingType)
+                        {
+                            if(node->getIsStatic())
+                            {
+                                std::cout << "Var: " << node->nodeAttributes.name << " of static type "<<  node->printExpression(node->getExpType()) <<" [line: " << node->getLineNum() << "]" << std::endl;
+                            }
+                        }
+
+                        else
+                        {
+                            std::cout << "Var: " << node->nodeAttributes.name << " of type ";
+                            printExpression(node->getExpType());
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
                     }
                     break;
 
@@ -342,7 +369,6 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                     default:
                     {
                         std::cout << "PrintAST() ERROR: Declaration Type Not Found" << std::endl;
-                        exit(1);
                     }
                     break;
                 }
@@ -351,7 +377,7 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
 
             case NodeType::STATEMENT:
             {
-                switch(node->nodeData.statement)
+                switch(node->nodeSubType.statement)
                 {
                     case StatementType::IF:
                     {
@@ -404,7 +430,6 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                     default:
                     {
                         std::cout << "PrintAST() ERROR: Statement Type Not Found" << std::endl;
-                        exit(1);
                     }
                     break;
                 }
@@ -418,44 +443,156 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                 {
                     case ExpressionType::OP:
                     {
-                        std::cout << "Op: " << node->nodeAttributes.name << " of type ";
-                        printExpression(node->getExpType());
-                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        if(node->m_childernNodes[1] != nullptr && node->nodeAttributes.name != "=")
+                        {
+                            std::cout << "Op: " << node->nodeAttributes.name; 
+                            if(node->getExpType() == ReturnType::UNDEFINED)
+                            {
+
+                                if(isShowingType)
+                                {
+                                    std::cout << " of undefined type"; 
+                                }
+                            }
+                            else
+                            {
+                                if(isShowingType)
+                                {
+                                    std::cout << " of type bool";
+                                }
+                            }
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
+
+                        else if(node->m_childernNodes[1] == nullptr && node->nodeAttributes.name != "-")
+                        {
+                            std::cout << "Op: chsign";
+                            
+                            if(isShowingType)
+                            {
+                                if(node->getExpType() == ReturnType::UNDEFINED)
+                                {
+                                    std::cout << " of undefined type"; 
+                                }
+                                else
+                                {
+                                    std::cout << " of type " << node->printExpression(node->getExpType());
+                                }
+                            }
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
+
+                        else if(node->m_childernNodes[1] == nullptr && node->nodeAttributes.name != "*")
+                        {
+                            std::cout << "Op: sizeof" << node->nodeAttributes.name; 
+                            
+                            if(isShowingType)
+                            {
+                                if(node->getExpType() == ReturnType::UNDEFINED || !node->getIsArray())
+                                {
+                                    std::cout << " of undefined type"; 
+                                }
+                                else
+                                {
+                                    std::cout << " of type " << node->printExpression(node->getExpType());
+                                }
+                            }
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
+
+                        else if(node->nodeAttributes.name != "%")
+                        {
+                            std::cout << "Op: " << node->nodeAttributes.name; 
+                            
+                            if(isShowingType)
+                            {
+                                if(node->getExpType() == ReturnType::UNDEFINED)
+                                {
+                                    std::cout << " of undefined type"; 
+                                }
+                                else
+                                {
+                                    std::cout << " of type " << node->printExpression(node->getExpType());
+                                }
+                            }
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
+
+                        else
+                        {
+                            std::cout << "Op: " << node->nodeAttributes.name; 
+                            
+                            if(isShowingType)
+                            {
+                                if(node->getExpType() == ReturnType::UNDEFINED)
+                                {
+                                    std::cout << " of undefined type"; 
+                                }
+                                else
+                                {
+                                    std::cout << " of type " << node->printExpression(node->getExpType());
+                                }
+                            }
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
                     }
                     break;
 
                     case ExpressionType::CONST:
                     {
-                        std::cout << "Const: " << node->nodeAttributes.name << " of type ";
-                        printExpression(node->getExpType());
-                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        if(node->getExpType() == ReturnType::BOOL)
+                        {
+                            std::cout << "Const: " << node->nodeAttributes.name; 
+
+                            if(isShowingType)
+                            {
+                                std::cout << " of type bool";
+                            }
+                            
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
+
+                        else if(node->getExpType() == ReturnType::CHARINT)
+                        {
+                            std::cout << "Const is array  " << node->nodeAttributes.name; 
+
+                            if(isShowingType)
+                            {
+                                std::cout << " of type char";
+                            }
+                            
+                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        }
+
                     }
                     break;
 
                     case ExpressionType::CALL:
                     {
-                        std::cout << "Call: " << node->nodeAttributes.name << " of type ";
-                        printExpression(node->getExpType());
-                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+
                     }
                     break;
 
                     case ExpressionType::ID:
                     {
-                        std::cout << "Id: " << node->nodeAttributes.name << " of type ";
-                        printExpression(node->getExpType());
-                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+
                     }
                     break;
 
                     default:
                     {
                         std::cout << "PrintAST() ERROR: Expression Type Not Found" << std::endl;
-                        exit(1);
                     }
                     break;
                 }
             }
+            break; 
+
+            default:
+            {
+                std::cout << "PrintAST() ERROR: Node Type Not Found on line " << node->getLineNum() << std::endl;
+            }
+        }
 
         for(int i = 0; i < MAXCHILDREN; i++)
         {
@@ -479,203 +616,3 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
         tree = tree->sibling;
     }
 }
-        }
-        //Added statments for the -P option.
-        else if(tree->nodekind == ExpK){
-
-            switch(tree->subkind.exp){
-                
-                case OpK:
-
-                if(tree->child[1] != NULL && !strcmp(tree->attr.name, "=")){
-                    printf("Op: %s", tree->attr.name);
-                    if(tree->expType == UndefinedType){
-                       
-                        if(ALLTYPE){
-                            printf(" of undefined type");
-                        }
-                    }
-                    else{
-                        
-                        if(ALLTYPE){
-                            printf(" of type bool");
-                            //printExp(tree->expType);
-                        }
-                    }
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-                                                
-                else if(tree->child[1] == NULL && !strcmp(tree->attr.name, "-")){
-                    
-                    printf("Op: chsign");
-                    if(ALLTYPE){
-                        if(tree->expType == UndefinedType){
-                            printf(" of undefined type");
-                        }
-                        else{
-                            printf(" of type ");
-                            printExp(tree->expType);
-                        }
-                    }
-                    printf(" [line: %d]\n", tree->lineno);
-                    
-                }
-
-                else if(tree->child[1] == NULL && !strcmp(tree->attr.name, "*")){
-                    printf("Op: sizeof");
-                    if(ALLTYPE){
-                        if(tree->expType == UndefinedType || !tree->child[0]->isArray){
-                            printf(" of undefined type");
-                        }
-                        else{
-                            printf(" of type ");
-                            printExp(tree->expType);
-                        }
-                    }
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-
-                else if(!strcmp(tree->attr.name, "%")){
-                    printf("Op: %s", tree->attr.name);
-                    if(ALLTYPE){
-                        if(tree->expType == UndefinedType){
-                            printf(" of undefined type");
-                        }
-                        else{
-                            printf(" of type ");
-                            printExp(tree->expType);
-                        }
-                    }
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-
-                else{
-                    printf("Op: %s", tree->attr.name);
-                    if(ALLTYPE){
-                        if(tree->expType == UndefinedType){
-                            printf(" of undefined type");
-                        }
-                        
-                        else{
-                            printf(" of type ");
-                            printExp(tree->expType);
-                        }
-                    }
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-                break;
-                case ConstantK:
-
-                if(tree->expType == Boolean){
-                    printf("Const %s", tree->attr.name);
-
-                    if(ALLTYPE){
-                        printf(" of type bool");
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-
-                else if(tree->expType == CharInt){
-                    printf("Const is array ");
-                    printf("%s", tree->attr.name);
-
-                    if(ALLTYPE){
-                        printf(" of type char");
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-
-                else if(tree->expType == Char){
-                    printf("Const \'%c\'", tree->thisTokenData->cvalue);
-
-                    if(ALLTYPE){
-                        printf(" of type char");
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-
-                else{
-                    printf("Const %d", tree->attr.value);
-
-                    if(ALLTYPE){
-                        printf(" of type int");
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-                break;
-
-                case AssignK:
-                    printf("Assign: %s", tree->attr.name);
-                    
-                    if(ALLTYPE){
-                        printf(" of type ");
-                        printExp(tree->expType);
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                break;
- 
-                case IdK:
-                    printf("Id: %s", tree->attr.name);
-
-                    if(ALLTYPE){
-                        if(tree->expType == UndefinedType || tree->expType == Void){
-                            printf(" of undefined type");
-                        }
-                        else{
-                            printf(" of type ");
-                            printExp(tree->expType);
-                        }
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                break;
-
-                case InitK:
-                break;
-
-                case CallK:
-                     printf("Call: %s", tree->attr.name);
-                    
-                    if(ALLTYPE){
-                        printf(" of type ");
-                        printExp(tree->expType);
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                break;
-
-                default:
-                    printf("ERROR %i ", CallK);
-                    printf("Unknown ExpNode subkind Line: %d\n", tree->lineno);
-                break;
-            }
-        }
-
-        else{
-            printf("Unknown node type: %d Line: %d\n", tree->nodekind, tree->lineno);
-        }
-        
-        for(i=0; i< MAXCHILDREN; i++){
-            if(tree->child[i] != NULL){
-                WSC++;
-                printWhiteSpace(WSC);
-                printf("Child: %d  ", i);
-                printTree(tree->child[i], 0, ALLTYPE);
-                WSC--;
-            }
-        }
-
-        if(tree->sibling != NULL){
-            nsiblings++;
-            printWhiteSpace(WSC);
-            printf("Sibling: %d  ", nsiblings);
-        }
-        tree = tree->sibling;
-    }
-}
-

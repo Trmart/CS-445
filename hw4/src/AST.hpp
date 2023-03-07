@@ -18,7 +18,6 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include <vector>
 
 #define MAXCHILDREN 3
 
@@ -85,10 +84,10 @@ class Node
         //What type of scope is the variable in? (decided during typing)
         enum VariableType
         {
-            None, Local, Global, Parameter, LocalStatic
+            NONE, LOCAL, GLOBAL, PARAMETER, LOCAL_STATIC
         };
 
-        union nodeData
+        union nodeSubType 
         {
             DeclarationType declaration; 
             StatementType statement; 
@@ -108,7 +107,7 @@ class Node
 
         //Node Functions
         void addSiblingNode(Node* sibling, Node* newSibling);
-        void setType(Node *t, ExpType type);
+        void setSiblingsType(Node* node, ExpressionType expType);
         Node* newDeclNode(DeclarationType type, TokenData* token);
         Node* newStmtNode(StmtKind type, TokenData* token);
         Node* newExpNode(ExpressionType type, TokenData* token); 
@@ -162,10 +161,13 @@ class Node
         Node* m_siblingNode;
         
         //child nodes
-        std::vector<Node*> m_childernNodes[MAXCHILDREN];
+        Node* m_childernNodes[MAXCHILDREN];
 
         //Node Type
         NodeType m_nodeType;
+
+        //Token Data
+        TokenData* m_tokenData; 
         
         // is this an array
         bool m_isArray;
