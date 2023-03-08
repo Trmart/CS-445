@@ -14,10 +14,8 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 #define AST_H
 
 #include "scanType.hpp"
-#include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
+#include <string>
 
 #define MAXCHILDREN 3
 
@@ -63,7 +61,7 @@ enum ExpressionType
     CALL
 };
 
-//ReturnType is used for function return type checking (ExpType)
+//ParmType is used for function return type checking 
 enum ParmType 
 {
     VOID, 
@@ -87,21 +85,6 @@ typedef int OpKind;
 
 struct Node
 {
-
-    //Node Functions
-    Node* addSiblingNode(Node* sibling, Node* newSibling);
-    void setSiblingsType(Node* node, ExpressionType expType);
-    Node* newDeclNode(DeclarationType type, TokenData* token);
-    Node* newStmtNode(StatementType type, TokenData* token);
-    Node* newExpNode(ExpressionType type, TokenData* token); 
-    Node* newDeclNodeIO(DeclarationType type);
-    
-    
-    //printers
-    void printAST(Node *tree, int numSiblings, bool isShowingType);
-    void printOutputTabs(const int numtabs);
-    void printParameterType(ParmType parmType);
-
 
     union
     {
@@ -149,8 +132,8 @@ struct Node
     bool m_isUsed;
     //is the variable declared
     bool m_isDeclared;
-
-    int m_lineNumber; //line number of the node
+    //line number of the node
+    int m_lineNumber; 
     
 
 
@@ -164,5 +147,20 @@ struct Node
     bool m_isIO; 
 
 }; 
+
+
+//Node Utility Functions
+Node* addSiblingNode(Node* sibling, Node* newSibling);
+void setSiblingsType(Node* node, ExpressionType expType);
+Node* newDeclNode(DeclarationType type, TokenData* token);
+Node* newStmtNode(StatementType type, TokenData* token);
+Node* newExpNode(ExpressionType type, TokenData* token); 
+Node* newDeclNodeIO(DeclarationType type);
+
+
+//printers
+void printAST(Node *tree, int numSiblings, bool isShowingType);
+void printOutputTabs(const int numtabs);
+void printParameterType(ParmType parmType);
 
 #endif

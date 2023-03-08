@@ -111,8 +111,7 @@ scopedVarDecl           : STATIC typeSpec varDeclList SEMICOLON
                         {
                             $$ = $3;
                             setSiblingsType($$, $2);
-                            //$$->isStatic = true;
-                            setStatic();
+                            $$->m_isStatic = true;
                         }
                         | typeSpec varDeclList SEMICOLON
                         {
@@ -144,30 +143,30 @@ varDeclInit             : varDeclId
 
 varDeclId               : ID
                         {
-                            $$ = newDeclNode(VarK, $1);
-                            $$->attr.name = $1->tokenContent;
+                            $$ = newDeclNode(DeclarationType::VARIABLE, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | ID LBRACK NUMCONST RBRACK
                         {
-                            $$ = newDeclNode(VarK, $1);
-                            $$->attr.name = $1->tokenContent;
-                            $$->isArray = true;
-                            $$->expType = Undefined;
-                            $1->thisTokenData = $1; 
+                            $$ = newDeclNode(DeclarationType::VARIABLE, $1);
+                            $$->nodeAttributes.name = $1->tokenContent;
+                            $$->m_isArray = true;
+                            $$->m_parmType = ParmType::UNDEFINED;
+                            $1->m_tokenData = $1; 
                         }
                         ;
 
 typeSpec                : INT
                         {
-                            $$ = ReturnType::INT;
+                            $$ = ParmType::INTEGER;
                         }
                         | BOOL
                         {
-                            $$ = ReturnType::BOOL;
+                            $$ = ParmType::BOOL;
                         }
                         | CHAR
                         {
-                            $$ = ReturnType::CHAR;
+                            $$ = ParmType::CHAR;
                         }
                         ;
 
@@ -177,7 +176,7 @@ funDecl                 : typeSpec ID LPAREN parms RPAREN compoundStmt
                             $$->nodeAttributes.name = $2->tokenContent;
                             $$->m_childNodes[0] = $4;
                             $$->m_childNodes[1] = $6;
-                            $$->setExpType($1);
+                            $$->m_parmType = $1;
                         }
                         | ID LPAREN parms RPAREN compoundStmt
                         {
@@ -235,7 +234,7 @@ parmId                  : ID
                         {
                             $$ = newDeclNode(DeclarationType::PARAMETER, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->isArray = true;
+                            $$->m_isArray = true;
                         }
                         ;
 
@@ -358,7 +357,7 @@ iterStmtUnmatched       : WHILE simpleExp DO stmtUnmatched
                         {
                             $$ = newStmtNode(StatementType::FOR, $1);
                             $$->m_childNodes[0] = newDeclNode(DeclarationType::VARIABLE, $2);
-                            $$->m_childNodes[0]->setExpType(ReturnType::INT); 
+                            $$->m_childNodes[0]->m_parmType = ParmType::INTEGER; 
                             $$->nodeAttributes.name = $3->tokenContent;
                             $$->m_childNodes[1] = $4;
                             $$->m_childNodes[2] = $6;
@@ -407,7 +406,7 @@ returnStmt              : RETURN SEMICOLON
                             $$ = newStmtNode(StatementType::RETURN, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
                             $$->m_childNodes[0] = $2;
-                            $$->setExpType($2->getExpType());
+                            $$->m_parmType = $2->m_parmType;
                         }
                         ;
 
@@ -429,14 +428,14 @@ exp                     : mutable assignop exp
                             $$ = newExpNode(ExpressionType::ASSIGN, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
                             $$->m_childNodes[0] = $1;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         | mutable DEC
                         {
                             $$ = newExpNode(ExpressionType::ASSIGN, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
                             $$->m_childNodes[0] = $1;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         | simpleExp
                         {
@@ -446,27 +445,27 @@ exp                     : mutable assignop exp
 
 assignop                : ASGN
                         {
-                           $$ = newExprNode(ExpressionType::ASSIGN, $1);
+                           $$ = newExpNode(ExpressionType::ASSIGN, $1);
                            $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | ADDASGN
                         {
-                            $$ = newExprNode(ExpressionType::ASSIGN, $1);
+                            $$ = newExpNode(ExpressionType::ASSIGN, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | SUBASGN
                         {
-                            $$ = newExprNode(ExpressionType::ASSIGN, $1);
+                            $$ = newExpNode(ExpressionType::ASSIGN, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | MULASGN
                         {
-                            $$ = newExprNode(ExpressionType::ASSIGN, $1);
+                            $$ = newExpNode(ExpressionType::ASSIGN, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | DIVASGN
                         {
-                            $$ = newExprNode(ExpressionType::ASSIGN, $1);
+                            $$ = newExpNode(ExpressionType::ASSIGN, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
                         }
                         ;
@@ -477,7 +476,7 @@ simpleExp               : simpleExp OR andExp
                             $$->m_childNodes[0] = $1;
                             $$->m_childNodes[1] = $3;
                             $$->nodeAttributes.name = $2->tokenContent;
-                            $$->setExpType(ReturnType::BOOL);
+                            $$->m_parmType = ParmType::BOOL;
                         }
                         | andExp
                         {
@@ -491,7 +490,7 @@ andExp                  : andExp AND unaryRelExp
                             $$->m_childNodes[0] = $1;
                             $$->m_childNodes[1] = $3;
                             $$->nodeAttributes.name = $2->tokenContent;
-                            $$->setExpType(ReturnType::BOOL);
+                            $$->m_parmType = ParmType::BOOL;
                         }
                         | unaryRelExp
                         {
@@ -504,7 +503,7 @@ unaryRelExp             : NOT unaryRelExp
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->m_childNodes[0] = $2;
                             $$->nodeAttributes.name = $2->tokenContent;
-                            $$->setExpType(ReturnType::BOOL);
+                            $$->m_parmType = ParmType::BOOL;
                         }
                         | relExp
                         {
@@ -528,37 +527,37 @@ relOp                   : LT
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::BOOL);
+                            $$->m_parmType = ParmType::BOOL;
                         }
                         | LEQ
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::BOOL);
+                            $$->m_parmType = ParmType::BOOL;
                         }
                         | GT
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::BOOL);
+                            $$->m_parmType = ParmType::BOOL;
                         }
                         | GEQ
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::BOOL);
+                            $$->m_parmType = ParmType::BOOL;
                         }
                         | EQ
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::BOOL);
+                            $$->m_parmType = ParmType::BOOL;
                         }
                         | NEQ
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::BOOL);
+                            $$->m_parmType = ParmType::BOOL;
                         }
                         ;
 
@@ -578,13 +577,13 @@ sumOp                   : ADD
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         | SUB
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         ;
 
@@ -604,19 +603,19 @@ mulOp                   : MUL
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         | DIV
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         | MOD
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         ;
 
@@ -635,19 +634,19 @@ unaryOp                 : SUB
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         | MUL
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         | QUESTION
                         {
                             $$ = newExpNode(ExpressionType::OP, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         ;
 
@@ -672,7 +671,7 @@ mutable                 : ID
                             $$->nodeAttributes.name = $2->tokenContent;
                             $$->m_childNodes[0] = newExpNode(ExpressionType::IDENTIFIER, $1);
                             $$->m_childNodes[0]->nodeAttributes.name = $1->tokenContent;
-                            $$->m_childNodes[0]->setIsArray(true); 
+                            $$->m_childNodes[0]->m_isArray = true;; 
                             $$->m_childNodes[1] = $3;
                         }
                         ;
@@ -723,28 +722,28 @@ constant                : NUMCONST
                         {
                             $$ = newExpNode(ExpressionType::CONSTANT, $1);
                             $$->nodeAttributes.intVal = $1->numValue;
-                            $$->setExpType(ReturnType::INT);
+                            $$->m_parmType = ParmType::INTEGER;
                         }
                         | BOOLCONST
                         {
                             $$ = newExpNode(ExpressionType::CONSTANT, $1);
                             $$->nodeAttributes.intVal = $1->numValue;
-                            $$->setExpType(ReturnType::BOOL);
+                            $$->m_parmType = ParmType::BOOL;
                             $$->nodeAttributes.name = $1->tokenContent;
                         }
                         | CHARCONST
                         {
                             $$ = newExpNode(ExpressionType::CONSTANT, $1);
                             $$->nodeAttributes.name = $1->tokenContent;
-                            $$->setExpType(ReturnType::CHAR);
+                            $$->m_parmType = ParmType::CHAR;
                             $$->m_tokenData = $1;
                         }
                         | STRINGCONST
                         {
                             $$ = newExpNode(ExpressionType::CONSTANT, $1);
                             $$->nodeAttributes.stringVal = $1->stringValue;
-                            $$->setExpType(ReturnType::CHARINT);
-                            $$->setIsArray(true);
+                            $$->m_parmType = ParmType::CHARINT;
+                            $$->m_isArray = true;
                         }
                         ;
 

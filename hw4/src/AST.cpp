@@ -14,15 +14,10 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 #include "scanType.hpp"
 // #include "parser.tab.h"
 #include <iostream>
-#include <string>
-// #include <stdio.h>
 #include <stdlib.h>
-// #include <string.h>
-// #include <ctype.h>
+
 
 int numTabs = 0;
-
-//Setters
 
 
 Node* addSiblingNode(Node* leftSibling, Node* rightSibling)
