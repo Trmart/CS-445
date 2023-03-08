@@ -13,16 +13,15 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 
 
 #include "scanType.hpp"
-
+#include "AST.hpp"
 #include "EmitDiagnostics.hpp"
 #include "CompilerFlags.hpp"
 #include "Semantics.hpp"
 #include "symbolTable.hpp"
-#include "AST.hpp"
+#include "IOinit.hpp"
 
 #include <iostream>
 #include <string>
-#include <stdio.h>
 
 // From yacc
 extern int yylex();
@@ -47,7 +46,7 @@ void yyerror(const char *msg)
 
 %union 
 {
-    NodeData::Type type;
+    ParmType type;
     TokenData* tokenData;
     Node* node;
 }

@@ -16,21 +16,33 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 #include "AST.hpp"
 #include "symbolTable.hpp"
 #include "scanType.hpp"
+#include <iostream>
+#include <string>
 
-SymbolTable returnSymbolTable();
-void check(Node *t, int& nErrors, int& nWarnings);
-void semanticAnalysis(Node *t, int& errors, int& warnings);
+//analyzers
+void analyze(Node* node, int& nErrors, int& nWarnings);
+void semanticAnalysis(Node* node, int& errors, int& warnings);
+void analyzeDecl(Node* node, int& nErrors, int& nWarnings);
+void analyzeStmt(Node* node, int& nErrors, int& nWarnings);
+void analyzeExp(Node* node, int& nErrors, int& nWarnings);
+void analyzeNestedAssign(Node* child);
+void analyzeNestedOperators(Node* node, Node* child);
+
+
+//getters
+void getReturnType(const std::string str, bool isBinary, ExpressionType &childReturnType);
+SymbolTable getSymbolTable();
+void getExpTypes(const std::string str, bool isBinary, bool &unaryErrors, ExpressionType &left, ExpressionType &right, ExpressionType &rightT);
+
+
+//helper functions
 void Warninit(std::string, void*);
-void errorsArray(Node *t);
-void checkDecl(Node *t, int& nErrors, int& nWarnings);
-void checkStmt(Node *t, int& nErrors, int& nWarnings);
-void checkExp(Node *t, int& nErrors, int& nWarnings);
-void getExpTypes(const char* string, bool isBinary, bool &unaryErrors, Node::ExpressionType &left, Node::ExpressionType &right, Node::ExpressionType &rightT);
-char* ExpTypetwo(Node::ExpressionType type);
-void printError(int errCode, int linenum, int explaineno, char* s1, char* s2, char* s3, int i);
-void parameterErrors(Node *funcFound, Node *t, Node *ffParm, Node *tParm, int paramCount);
-void checkNestAssK(Node *c1);
-void getReturnType(const char* string, bool isBinary, Node::ExpressionType &childReturnType);
-void checkNestOpsInit(Node *t, Node* child);
+void errorsArray(Node* node);
+std::string ConvertParmToString(ParmType type);
+void parameterErrors(Node *funcFound, Node* node, Node* funcParm, Node* nodeParm, int paramCount);
+
+
+//printers
+//void printError(int errCode, int linenum, int explaineno, char* s1, char* s2, char* s3, int i);
 
 #endif

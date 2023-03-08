@@ -16,17 +16,9 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 #include <vector>
 #include <algorithm>
 #include "Semantics.hpp"
+#include "EmitDiagnostics.hpp"
 
 #define MAXCHILDREN 3
-
-using namespace std;
-
-struct symErrors {
-    int lineno;
-    char* errorMsg;
-};
-
-vector<symErrors> errBuffer;
 
 
 char Buffer[256]; 
@@ -46,34 +38,33 @@ int functionLine;
 
 char *functionName;
 
-TreeNode *curFunc = NULL;
+Node* curFunc = nullptr;
 
-ExpType functionReturnType;
-ExpType actualReturnType;
+ParmType functionReturnType;
+ParmType actualReturnType;
 SymbolTable symbolTable;
 
-//function returns symbol table
-SymbolTable returnSymbolTable() {
+//function retrives symbol table
+SymbolTable getSymbolTable() 
+{
     return symbolTable;
 }
 
-//function prints error messages. 
-void PrintErrorss(){
-    for(int i = 0; i < errBuffer.size(); i++){
-        printf("%s", errBuffer[i].errorMsg);
-    }
-}
-
 //Function checks each node. 
-void check(TreeNode *t, int& nErrors, int& nWarnings){
+void analyze(Node* node, int& nErrors, int& nWarnings)
+{
 
-    if(t == NULL){
+    if(node == NULL)
+    {
         return;
     }
-    switch(t->nodekind){
-        case DeclK:
-            checkDecl(t, nErrors, nWarnings);
-            break;
+    switch(node->m_nodeType)
+    {
+        case DECLARATION:
+                    {
+                        analyzeDecl(node, nErrors, nWarnings);
+                    }
+                    break;
 
         case StmtK:
             checkStmt(t, nErrors, nWarnings);
@@ -1221,25 +1212,57 @@ void getExpTypes(const char* strng, bool isBinary, bool &unaryErrors, ExpType &l
 }
 
 
-char* ExpTypetwo(ExpType type){
-    switch(type){
+std::string ConvertParmToString(ParmType type)
+{
+    switch(type)
+    {
        
-        case Void:
-            return strdup("void");
-        case Integer:
-            return strdup("int");
-        case Boolean:
-            return strdup("bool");
-        case Char:
-            return strdup("char");
-        case CharInt:
-            return strdup("CharInt");
-        case Equal:
-            return strdup("Equal");
-        case UndefinedType:
-            return strdup("undefined type");
+        case ParmType::VOID:
+        {
+            return "void";
+        }
+        break;
+
+        case ParmType::INTEGER:
+        {
+            return "int";
+        }
+        break;
+
+        case ParmType::BOOL:
+        {
+            return "bool";
+        }
+        break;
+
+        case ParmType::CHAR:
+        {
+            return "char";
+        }
+        break;
+
+        case ParmType::CHARINT:
+        {
+            return "CharInt";
+        }
+        break;
+
+        case ParmType::EQUAL:
+        {
+            return "Equal";
+        }
+
+        case ParmType::UNDEFINED:
+        {
+            return "undefined type";
+        }
+        break; 
+
         default:
-            return strdup("expType not found\n");
+        {
+            return "ParmType not found\n";
+        }
+        break; 
     }
 }
 
@@ -1303,256 +1326,108 @@ void getReturnType(const char* strng, bool isBinary, ExpType &rightT){
 
 }
 
-//prints all errors based on the error code.
-void printError(int errCode, int lineno, int reasonNum, char* s1, char* s2, char* s3, int i){
 
-    if(errCode > 16 && errCode < 22){
-        nWarnings++;
-    }
-    else{
-        nErrors++;
-    }
+void analyzeNestedOperators(Node* node, Node* child)
+{
 
-    
-    switch(errCode){
+    if(child->m_childernNodes[0] != nullptr && child->m_childernNodes[1] != nullptr)
+    {
 
-        case 0: 
-            sprintf(Buffer, "ERROR(%d): Symbol '%s' is already declared at line %d.\n", lineno, s1, reasonNum);
-            break;
+        if(child->m_childernNodes[0]->nodeSubType.expression == ExpressionType::OP)
+        {
 
-        case 1:
-            sprintf(Buffer, "ERROR(%d): Symbol '%s' is not declared.\n", lineno, s1);
-            break;
-
-        case 2: 
-            sprintf(Buffer, "ERROR(%d): '%s' requires operands of the same type but lhs is type %s and rhs is type %s.\n", lineno, s1, s2, s3);
-            break;
-
-        case 3:
-            sprintf(Buffer, "ERROR(%d): '%s' requires operands of type %s but lhs is of type %s.\n", lineno, s1, s2, s3);
-            break;
-
-        case 4:
-            sprintf(Buffer, "ERROR(%d): '%s' requires operands of type %s but rhs is of type %s.\n", lineno, s1, s2, s3);
-            break;
-
-        case 5: 
-            sprintf(Buffer, "ERROR(%d): '%s' requires both operands be arrays or not but lhs is an array and rhs is not an array.\n", lineno, s1);
-            break;
-
-        case 6:
-            sprintf(Buffer, "ERROR(%d): '%s' requires both operands be arrays or not but lhs is not an array and rhs is an array.\n", lineno, s1);
-            break;
-
-        case 7: 
-            sprintf(Buffer, "ERROR(%d): The operation '%s' does not work with arrays.\n", lineno, s1);
-            break;
-
-        case 8: 
-            sprintf(Buffer, "ERROR(%d): The operation '%s' only works with arrays.\n", lineno, s1);
-            break;
-
-        case 9:
-            sprintf(Buffer, "ERROR(%d): Unary '%s' requires an operand of type %s but was given type %s.\n", lineno, s1, s2, s3);
-            break;
-
-        case 10: 
-            sprintf(Buffer, "ERROR(%d): Cannot return an array.\n", lineno);
-            break;
-
-        case 11: 
-            sprintf(Buffer, "ERROR(%d): '%s' is a simple variable and cannot be called.\n", lineno, s1);
-            break;
-
-        case 12:
-            sprintf(Buffer, "ERROR(%d): Cannot use function '%s' as a variable.\n", lineno, s1);
-            break;
-
-        case 13:
-            sprintf(Buffer, "ERROR(%d): Array index is the unindexed array '%s'.\n", lineno, s1);
-            break;
-
-        case 14: 
-            sprintf(Buffer, "ERROR(%d): Array '%s' should be indexed by type int but got type %s.\n", lineno, s1, s2);
-            break;
-
-        case 15: 
-            sprintf(Buffer, "ERROR(%d): Cannot index nonarray '%s'.\n", lineno, s1);
-            break;
-
-        case 16: 
-            sprintf(Buffer, "ERROR(LINKER): A function named 'main' with no parameters must be defined.\n");
-            break;
-
-        case 17: 
-            sprintf(Buffer, "WARNING(%d): The variable '%s' seems not to be used.\n", lineno, s1);
-            break;
-
-        case 18:
-            sprintf(Buffer, "WARNING(%d): Variable '%s' may be uninitialized when used here.\n", lineno, s1);
-            break;
-
-        case 19: 
-            sprintf(Buffer, "WARNING(%d): Expecting to return type %s but function '%s' has no return statement.\n", lineno, s1, s2);
-            break;
-
-        case 20:
-            sprintf(Buffer, "WARNING(%d): The function '%s' seems not to be used.\n", lineno, s1);
-            break;
-
-        case 21:
-            sprintf(Buffer, "WARNING(%d): The parameter '%s' seems not to be used.\n", lineno, s1);
-            break;
-
-        case 22: 
-            sprintf(Buffer, "ERROR(%d): Cannot have a break statement outside of loop.\n", lineno);
-            break;
-
-        case 23:
-            sprintf(Buffer, "ERROR(%d): Cannot use array as test condition in %s statement.\n", lineno, s1);
-            break;
-
-        case 24:
-            sprintf(Buffer, "ERROR(%d): Cannot use array in position %d in range of for statement.\n", lineno, i);
-            break;
-
-        case 25:
-            sprintf(Buffer, "ERROR(%d): Expecting type %s in parameter %d of call to '%s' declared on line %d but got type %s.\n", lineno, s2, i, s1, reasonNum, s3);
-            break;
-
-        case 26:
-            sprintf(Buffer, "ERROR(%d): Expecting type %s in position %d in range of for statement but got type %s.\n", lineno, s1, i, s2);
-            break;
-
-        case 27:
-            sprintf(Buffer, "ERROR(%d): Expecting Boolean test condition in %s statement but got type %s.\n", lineno, s1, s2);
-            break;
-
-        case 28:
-            sprintf(Buffer, "ERROR(%d): Expecting array in parameter %d of call to '%s' declared on line %d.\n", lineno, i, s1, reasonNum);
-            break;
-
-        case 29:
-            sprintf(Buffer, "ERROR(%d): Function '%s' at line %d is expecting no return value, but return has a value.\n", lineno, s1, reasonNum);
-            break;
-
-        case 30:
-            sprintf(Buffer, "ERROR(%d): Function '%s' at line %d is expecting to return type %s but return has no value.\n", lineno, s1, reasonNum, s2);
-            break;
-
-        case 31:
-            sprintf(Buffer, "ERROR(%d): Function '%s' at line %d is expecting to return type %s but returns type %s.\n", lineno, s1, reasonNum, s2, s3);
-            break;
-
-        case 32:
-            sprintf(Buffer, "ERROR(%d): Initializer for variable '%s' is not a constant expression.\n", lineno, s1);
-            break;
-
-        case 33:
-            sprintf(Buffer, "ERROR(%d): Initializer for variable '%s' of type %s is of type %s\n", lineno, s1, s2, s3);
-            break;
-
-        case 34:
-            sprintf(Buffer, "ERROR(%d): Initializer for variable '%s' requires both operands be arrays or not but variable is not an array and rhs is an array.\n", lineno, s1);
-            break;
-
-        case 35:
-            sprintf(Buffer, "ERROR(%d): Initializer for variable '%s' requires both operands be arrays or not but variable is an array and rhs is not an array.\n", lineno, s1);
-            break;
-        
-        case 36:
-            sprintf(Buffer, "ERROR(%d): Not expecting array in parameter %d of call to '%s' declared on line %d.\n", lineno, i, s1, reasonNum);
-            break;
-
-        case 37:
-            sprintf(Buffer, "ERROR(%d): Too few parameters passed for function '%s' declared on line %d.\n", lineno, s1, reasonNum);
-            break;
-
-        case 38:
-            sprintf(Buffer, "ERROR(%d): Too many parameters passed for function '%s' declared on line %d.\n", lineno, s1, reasonNum);
-    }
-
-    symErrors all;
-    all.lineno = lineno;
-    all.errorMsg = strdup(Buffer);
-    errBuffer.push_back(all);
-}
-
-
-void checkNestOpsInit(TreeNode *t, TreeNode *child){
-
-    if(child->child[0] != NULL && child->child[1] != NULL){
-
-        if(child->child[0]->subkind.exp == OpK){
-
-            checkNestOpsInit(t, child->child[0]);
+            analyzeNestedOperators(node, child->m_childernNodes[0]);
         }
 
-        if(child->child[1]->subkind.exp == OpK){
-            checkNestOpsInit(t, child->child[1]);
+        if(child->m_childernNodes[1]->nodeSubType.expression == ExpressionType::OP)
+        {
+            analyzeNestedOperators(node, child->m_childernNodes[1]);
         }
 
-        else if(child->child[0]->subkind.exp == IdK || child->child[1]->subkind.exp == IdK){
-            printError(32, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+        else if(child->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER || child->m_childernNodes[1]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+        {
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodeAttributes.name + "is not a constant expression.");
+            //printError(32, node->lineno, 0, node->nodeAttributes.name, nullptr, nullptr, 0);
         }
     }
 
-    else if(child->child[0] != NULL && child->child[1] == NULL){
+    else if(child->m_childernNodes[0] != nullptr && child->m_childernNodes[1] == nullptr)
+    {
   
-        if(strcmp(child->attr.name, "not")){
-        printError(32, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+        if(child->nodeAttributes.name == "not")
+        {
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodeAttributes.name + "is not a constant expression.");
+            //printError(32, node->lineno, 0, node->nodeAttributes.name, nullptr, nullptr, 0);
         }
     }
 }
 
-void checkNestAssK(TreeNode *c1){
-
-    if(c1->child[0] != NULL){
-        c1->child[0]->isInit = true;
+void analyzeNestedAssign(Node* child)
+{
+    if(child->m_childernNodes[0] != nullptr)
+    {
+        child->m_childernNodes[0]->m_isInit = true;
     }
 }
- 
-
-void parameterErrors(TreeNode *funcFound, TreeNode *t, TreeNode *ffParm, TreeNode *tParm, int paramCount){
+//Node *funcFound, Node *t, TreeNode *ffParm, TreeNode *tParm, int paramCount
+//Node *funcFound, Node* node, Node* funcParm, Node* nodeParm, int paramCount
+void parameterErrors(Node* funcFound, Node* node, Node* funcParm, Node* nodeParm, int paramCount)
+{
     
 
-    if(ffParm->sibling == NULL && tParm->sibling != NULL){
-        printError(38, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
+    if(funcParm->m_siblingNode == nullptr && nodeParm->m_siblingNode != nullptr)
+    {
+        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too many parameters passed for function '" + funcFound->nodeAttributes.name + "' declared on line " + funcFound->m_lineNumber + ".");
+        //printError(38, t->lineno, funcFound->lineno, node->attr.name, nullptr, NULL, 0);
     }
 
-    else if(ffParm->sibling != NULL && tParm->sibling == NULL){
-        printError(37, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
+    else if(funcParm->m_siblingNode != nullptr && nodeParm->m_siblingNode == nullptr)
+    {
+        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too few parameters passed for function '" + funcFound->nodeAttributes.name + "' declared on line " + funcFound->m_lineNumber + ".");
+        //printError(37, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
     }
   
-    if(tParm->expType != UndefinedType){
+    if(nodeParm->m_parmType != ParmType::UNDEFINED)
+    {
         
-        if(ffParm->expType != tParm->expType && !tParm->declErr && !funcFound->isIO){
-      
-            printError(25, t->lineno, funcFound->lineno, funcFound->attr.name, ExpTypetwo(ffParm->expType), ExpTypetwo(tParm->expType), paramCount);
+        if(funcParm->m_parmType != nodeParm->m_parmType && !nodeParm->m_isDeclError && !funcFound->m_isIO)
+        {
+            //msg << "Expecting type " << Data::typeToString(funcParmType) << " in parameter " << parmCount << " of call to '" << func->getName() << "' declared on line " << func->getLineNum() <<" but got type " << Data::typeToString(callParmType) << ".";
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting type " + funcFound->nodeAttributes.name + " in parameter " + paramCount + ExpTypetwo(funcParm->m_parmType) + " of call to '" + ExpTypetwo(nodeParm->m_parmType) + "' declared on line" + node->m_lineNumber + "but got type" + ExpTypetwo(nodeParm->m_parmType) + ".");
+            //printError(25, t->lineno, funcFound->lineno, funcFound->attr.name, ExpTypetwo(funcParm->expType), ExpTypetwo(nodeParm->expType), paramCount);
 
-            if(!ffParm->isArray && tParm->isArray){
-                printError(36, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+            if(!funcParm->m_isArray && nodeParm->m_isArray)
+            {
+                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Not expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
+                //printError(36, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
             }
  
-            else if(ffParm->isArray && !tParm->isArray){
-                printError(28, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+            else if(funcParm->m_isArray && !nodeParm->m_isArray)
+            {
+                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
+                //printError(28, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
             }
         }
    
-        else if(!ffParm->isArray && tParm->isArray){
-            printError(36, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+        else if(!funcParm->m_isArray && nodeParm->m_isArray)
+        {
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Not expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
+            //printError(36, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
         }
        
-        else if(ffParm->isArray && !tParm->isArray){
-            printError(28, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+        else if(funcParm->m_isArray && !nodeParm->m_isArray)
+        {
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
+            //printError(28, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
         }
        
     }
 
     paramCount++;
 
-    if(ffParm->sibling != NULL && tParm->sibling != NULL){
-    parameterErrors(funcFound, t, ffParm->sibling, tParm->sibling, paramCount);
+    if(funcParm->m_siblingNode != nullptr && nodeParm->m_siblingNode != nullptr)
+    {
+        parameterErrors(funcFound, node, funcParm->m_siblingNode, nodeParm->m_siblingNode, paramCount);
     }
 
 }
