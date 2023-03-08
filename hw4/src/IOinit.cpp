@@ -17,7 +17,7 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 #include "Semantics.hpp"
 
 #include <stdio.h>
-#include <string.h>
+#include <string>
 #include <iostream>
 
 extern SymbolTable symbolTable;
@@ -43,38 +43,41 @@ void setupIO()
    //set up each section of new nodes as arrays
    std::string IONameArr[] = {"output", "outputb", "outputc", "input", "inputb", "inputc", "outnl"};
 
-   Node::ReturnType IOexpType[] = {Node::ReturnType::VOID, Node::ReturnType::VOID, Node::ReturnType::VOID, Node::ReturnType::INTEGER, Node::ReturnType::BOOL, Node::ReturnType::CHAR, Node::ReturnType::VOID};
-   Node::ReturnType IOParamExpType[] = {Node::ReturnType::INTEGER, Node::ReturnType::BOOL, Node::ReturnType::CHAR, Node::ReturnType::VOID, Node::ReturnType::VOID, Node::ReturnType::VOID, Node::ReturnType::VOID};
+   ParmType IOexpType[] = {ParmType::VOID, ParmType::VOID, ParmType::VOID, ParmType::INTEGER, ParmType::BOOL, ParmType::CHAR, ParmType::VOID};
+   ParmType IOParamExpType[] = {ParmType::INTEGER, ParmType::BOOL, ParmType::CHAR, ParmType::VOID, ParmType::VOID, ParmType::VOID, ParmType::VOID};
 
    //set up nodes
 
-   for(int i = 0; i < 7; i++){
+   for(int i = 0; i < 7; i++)
+   {
 
-       newIONode = newDeclNodeIO(Node::DeclarationType::FUNCTION);
-       newIONode->nodeAttributes.name = strdup(IONameArr[i].c_str());
-       newIONode->lineno = -1;
-       newIONode->expType = IOexpType[i];
+       newIONode = newDeclNodeIO(); 
+       newIONode->nodeAttributes.name= IONameArr[i];
+       newIONode->m_lineNumber = -1;
+       newIONode->m_parmType = IOexpType[i];
 
        //avoid warnings
-       newIONode->isDeclared = true;
-       newIONode->isInit = true;
-       newIONode->wasUsed = true;
-       newIONode->isIO = true;
+       newIONode->m_isDeclared = true;
+       newIONode->m_isInitialized = true;
+       newIONode->m_isUsed = true;
+       newIONode->m_isIO = true;
 
        //insert into symbolTable
-       symbolTable.insert(newIONode->attr.name, (TreeNode*) newIONode);
+       symbolTable.insert(newIONode->nodeAttributes.name, (Node *) newIONode);
 
 
        //set up parameters if not void
-       if(IOParamExpType[i] != Void){
-           dummyParam = newDeclNodeIO(ParamK);
-           dummyParam->attr.name = strdup("dummy");
-           dummyParam->lineno = -1;
-           dummyParam->expType - IOParamExpType[i];
-           newIONode->child[0] = dummyParam;
+       if(IOParamExpType[i] != VOID)
+       {
+           dummyParam = newDeclNodeIO(PARAMETER);
+           dummyParam->nodeAttributes.name = strdup("dummy");
+           dummyParam->m_lineNumber = -1;
+           dummyParam->m_parmType - IOParamExpType[i];
+           newIONode->m_childernNodes[0] = dummyParam;
        }
-       else{
-           newIONode->child[0] = NULL;
+       else
+       {
+           newIONode->m_childernNodes[0] = nullptr;
        }
    }
    

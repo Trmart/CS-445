@@ -12,141 +12,65 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 
 #include "AST.hpp"
 #include "scanType.hpp"
-#include "parser.tab.h"
-
-#include <stdio.h>
+// #include "parser.tab.h"
+#include <iostream>
+#include <string>
+// #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+// #include <string.h>
+// #include <ctype.h>
 
-int WSC = 0;
+int numTabs = 0;
 
 //Setters
 
-void Node::setNodeType(NodeType type)
+
+Node* addSiblingNode(Node* leftSibling, Node* rightSibling)
 {
-    m_nodeType = type;
+    if(leftSibling != nullptr) 
+    {
+        Node* temp = leftSibling;
+        
+        while (temp->m_siblingNode != nullptr) 
+        {
+            temp = temp->m_siblingNode;
+        }
+
+
+        temp->m_siblingNode = rightSibling;
+
+        return leftSibling;
+    }
+    return rightSibling;
+
+    if(leftSibling == nullptr)
+    {
+        return rightSibling;   
+    }
+    else if(leftSibling == nullptr)
+    {
+        return rightSibling;
+    }
 }
 
-
-void Node::setSiblingsType(Node* node, ExpressionType type)
+void setSiblingsType(Node* node, ExpressionType expType)
 {
     while(node != nullptr)
     {
-        node->setExpType(type);
-        node = node->m_sibling;
-    }
-}
-
-void Node::setExpType(ExpressionType type)
-{
-    m_expType = type;
-}
-
-
-void Node::setIsArray(bool isArray)
-{
-    m_isArray = isArray;
-}
-
-
-void Node::setIsStatic(bool isStat)
-{
-    m_isStatic = isStat;
-}
-
-
-void Node::setIsGlobal(bool isGlobal)
-{
-    m_isGlobal = isGlobal;
-}
-
-
-void Node::setIsInit(bool isInit)
-{
-    m_isInit = isInit;
-}
-
-
-void Node::setWarningReported(bool isReported)
-{
-    m_warningReported = isReported;
-}
-
-
-void Node::setWasUsed(bool isUsed)
-{
-    m_wasUsed = isUsed;
-}
-
-
-void Node::setIsDeclared(bool isDeclared)
-{
-    m_isDeclared = isDeclared;
-}
-
-
-void Node::setDeclErr(bool isError)
-{
-    m_declErr = isError;
-}
-
-
-void Node::setWasUsedErr(bool isError)
-{
-    m_wasUsedErr = isError;
-}
-
-
-void Node::setIsIndexed(bool isIndexed)
-{
-    m_isIndexed = isIndexed;
-}
-
-
-void Node::setIsIO(bool isIO)
-{
-    m_isIO = isIO;
-}
-
-void Node::addSiblingNode(Node* left, Node* sibling)
-{
-    if(current != nullptr) 
-    {
-        Node* temp = current;
-        
-        while (temp->m_sibling != nullptr) 
-        {
-            temp = temp->m_sibling;
-        }
-
-
-        temp->m_sibling = sibling;
-
-        return current;
-    }
-    return sibling;
-
-    if(current == nullptr)
-    {
-        return sibling;   
-    }
-    else if(sibling == nullptr)
-    {
-        return current;
+        node->nodeSubType.expression = expType;
+        node = node->m_siblingNode;
     }
 }
 
 
 
-
-Node* Node::newDeclNode(DeclarationType declType, TokenData* tokenData)
+Node* newDeclNode(DeclarationType declType, TokenData* tokenData)
 {
-    Node* node = new Node();
+    Node* node = (Node*)malloc(sizeof(Node));
 
     if(node == nullptr)
     {
-        std::cout << "Out of memory error at line " << tokenData->m_lineNumber << std::endl;
+        std::cout << "Out of memory error at line " << tokenData->tokenLineNumber << std::endl;
     }
     else
     {
@@ -154,10 +78,10 @@ Node* Node::newDeclNode(DeclarationType declType, TokenData* tokenData)
         {
             node->m_childernNodes[i] = nullptr;
             node->m_siblingNode = nullptr;
-            node->setNodeType(DECLARATION);
+            node->m_nodeType = DECLARATION;
             node->nodeSubType.declaration = declType;
-            node->setLineNum(tokenData->m_lineNumber);
-            node->setExpType(VOID);
+            node->m_lineNumber = tokenData->tokenLineNumber;
+            node->m_parmType = VOID;
             node->nodeAttributes.name = tokenData->tokenContent;
         }
     }
@@ -167,13 +91,14 @@ Node* Node::newDeclNode(DeclarationType declType, TokenData* tokenData)
 }
 
 
-Node* Node::newStmtNode(StatementType stmtType, TokenData* tokenData)
+Node* newStmtNode(StatementType stmtType, TokenData* tokenData)
 {
-    Node* node = new Node();
+    Node* node = (Node*)malloc(sizeof(Node));
+
 
     if(node == nullptr)
     {
-        std::cout << "Out of memory error at line " << tokenData->m_lineNumber << std::endl;
+        std::cout << "Out of memory error at line " << tokenData->tokenLineNumber << std::endl;
     }
     else
     {
@@ -181,10 +106,10 @@ Node* Node::newStmtNode(StatementType stmtType, TokenData* tokenData)
         {
             node->m_childernNodes[i] = nullptr;
             node->m_siblingNode = nullptr;
-            node->setNodeType(STATEMENT);
+            node->m_nodeType = STATEMENT;
             node->nodeSubType.statement = stmtType;
-            node->setLineNum(tokenData->m_lineNumber);
-            node->setExpType(VOID);
+            node->m_lineNumber = tokenData->tokenLineNumber;
+            node->m_parmType = VOID;
             node->nodeAttributes.name = tokenData->tokenContent;
         }
     }
@@ -194,15 +119,16 @@ Node* Node::newStmtNode(StatementType stmtType, TokenData* tokenData)
 }
 
 
-Node* Node::newExpNode(ExpressionType expType, TokenData* tokenData)
+Node* newExpNode(ExpressionType expType, TokenData* tokenData)
 {
-    Node* node = new Node();
+    Node* node = (Node*)malloc(sizeof(Node));
+
 
     int numTabs = 0;
 
     if(node == nullptr)
     {
-        std::cout << "Out of memory error at line " << tokenData->m_lineNumber << std::endl;
+        std::cout << "Out of memory error at line " << tokenData->tokenLineNumber << std::endl;
     }
     else
     {
@@ -210,10 +136,10 @@ Node* Node::newExpNode(ExpressionType expType, TokenData* tokenData)
         {
             node->m_childernNodes[i] = nullptr;
             node->m_siblingNode = nullptr;
-            node->setNodeType(EXPRESSION);
-            node->setLineNum(tokenData->m_lineNumber);
+            node->m_nodeType = EXPRESSION;
+            node->m_lineNumber = tokenData->tokenLineNumber;
             node->nodeSubType.expression = expType;
-            node->setExpType(VOID);
+            node->m_parmType = VOID;
             node->nodeAttributes.name = tokenData->tokenContent;
         }
     }
@@ -224,17 +150,18 @@ Node* Node::newExpNode(ExpressionType expType, TokenData* tokenData)
 
 
 //function for setting up IO functions since we can't take in any tokenData
-Node* Node::newDeclNodeIO(DeclarationType decltype)
+Node* newDeclNodeIO(DeclarationType type)
 {
-    Node* node = new Node();
+    Node* node = (Node*)malloc(sizeof(Node));
 
-    for(int i = 0; i<MAXCHILDREN; i++)
+
+    for(int i = 0; i < MAXCHILDREN; i++)
     {
         node->m_childernNodes[i] = nullptr;
         node->m_siblingNode = nullptr;
-        node->setNodeType(DECLARATION);
-        node->nodeSubType.declaration = decltype;
-        node->setExpType(VOID);
+        node->m_nodeType = DECLARATION;
+        node->nodeSubType.declaration = type;
+        node->m_parmType = VOID;
     }
 
     return node;
@@ -250,39 +177,39 @@ void printOutputTabs(const int numTabs)
 }
 
 //prints expected type in grammar, eliminates use of more if statements. 
-void printExpression(ExpressionType expType)
+void printParameterType(ParmType parmType)
 {
 
-    switch(expType)
+    switch(parmType)
     {
 
-        case ReturnType::VOID:
+        case ParmType::VOID:
                         {
                             std::cout << "void";
                         }
                         break;
 
 
-        case ReturnType::INT:
+        case ParmType::INTEGER:
                         {
                             std::cout << "int";
                         }
                         break;
 
-        case ReturnType::CHAR:
+        case ParmType::CHAR:
                             {
                                 std::cout << "char";
                             }
 
                             break;
 
-        case ReturnType::BOOLEAN:
+        case ParmType::BOOL:
                             {
                                 std::cout << "bool";
                             }
                             break;
 
-        case ReturnType::UNDEFINED:
+        case ParmType::UNDEFINED:
                                 {
                                     std::cout << "undefined";
                                 }
@@ -308,60 +235,62 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
 
     while(node != nullptr)
     {
-        switch(node->getNodeType())
+        switch(node->m_nodeType)
         {
             case NodeType::DECLARATION:
             {
                 switch(node->nodeSubType.declaration)
                 {
-                    case DeclarationType::VAR:
+                    case DeclarationType::VARIABLE:
                     {
 
-                        if(node->getIsArray())
+                        if(node->m_isArray)
                         {
                             std::cout << "Var: " << node->nodeAttributes.name << " is array of type ";
-                            printExpression(node->getExpType());
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            printParameterType(node->m_parmType);
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
 
                         else if(!isShowingType)
                         {
-                            if(node->getIsStatic())
+                            if(node->m_isStatic)
                             {
-                                std::cout << "Var: " << node->nodeAttributes.name << " of static type "<<  node->printExpression(node->getExpType()) <<" [line: " << node->getLineNum() << "]" << std::endl;
+                                std::cout << "Var: " << node->nodeAttributes.name << " of static type ";
+                                printParameterType(node->m_parmType);
+                                std::cout << " [line: " << node->m_lineNumber<< "]" << std::endl;
                             }
                         }
 
                         else
                         {
                             std::cout << "Var: " << node->nodeAttributes.name << " of type ";
-                            printExpression(node->getExpType());
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            printParameterType(node->m_parmType);
+                            std::cout << " [line: " << node->m_lineNumber<< "]" << std::endl;
                         }
                     }
                     break;
 
-                    case DeclarationType::FUNC:
+                    case DeclarationType::FUNCTION:
                     {
                         std::cout << "Func: " << node->nodeAttributes.name << " returns type ";
-                        printExpression(node->getExpType());
-                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        printParameterType(node->m_parmType);
+                        std::cout << " [line: " << node->m_lineNumber<< "]" << std::endl;
                     }
                     break;
 
-                    case DeclarationType::PARAM:
+                    case DeclarationType::PARAMETER:
                     {
-                        if(node->getIsArray())
+                        if(node->m_isArray)
                         {
                             std::cout << "Param: " << node->nodeAttributes.name << " is array of type ";
-                            printExpression(node->getExpType());
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            printParameterType(node->m_parmType);
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
                         else
                         {
                             std::cout << "Param: " << node->nodeAttributes.name << " of type ";
-                            printExpression(node->getExpType());
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            printParameterType(node->m_parmType);
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
                     }
                     break;
@@ -381,49 +310,49 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                 {
                     case StatementType::IF:
                     {
-                        std::cout << "If [line: " << node->getLineNum() << "]" << std::endl;
+                        std::cout << "If [line: " << node->m_lineNumber << "]" << std::endl;
                     }
                     break;
 
                     case StatementType::WHILE:
                     {
-                        std::cout << "While [line: " << node->getLineNum()  << "]" << std::endl;
+                        std::cout << "While [line: " << node->m_lineNumber  << "]" << std::endl;
                     }
                     break;
 
                     case StatementType::RETURN:
                     {
-                        std::cout << "Return [line: " << node->getLineNum()  << "]" << std::endl;
+                        std::cout << "Return [line: " << node->m_lineNumber  << "]" << std::endl;
                     }
                     break;
 
                     case StatementType::COMPOUND:
                     {
-                        std::cout << "Compound [line: " << node->getLineNum() << "]" << std::endl;
+                        std::cout << "Compound [line: " << node->m_lineNumber << "]" << std::endl;
                     }
                     break; 
 
                     case StatementType::RANGE:
                     {
-                        std::cout << "Range [line: " << node->getLineNum() << "]" << std::endl;
+                        std::cout << "Range [line: " << node->m_lineNumber << "]" << std::endl;
                     }
                     break; 
 
                     case StatementType::BREAK:
                     {
-                        std::cout << "Break [line: " << node->getLineNum() << "]" << std::endl;
+                        std::cout << "Break [line: " << node->m_lineNumber << "]" << std::endl;
                     }
                     break; 
 
                     case StatementType::FOR:
                     {
-                        std::cout << "For [line: " << node->getLineNum() << "]" << std::endl;
+                        std::cout << "For [line: " << node->m_lineNumber << "]" << std::endl;
                     }
                     break;
 
                     case StatementType::NULLSTMT:
                     {
-                        std::cout << "Null [line: " << node->getLineNum() << "]" << std::endl;
+                        std::cout << "Null [line: " << node->m_lineNumber << "]" << std::endl;
                     }
                     break;
 
@@ -439,14 +368,14 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
 
             case NodeType::EXPRESSION:
             {
-                switch(node->nodeData.expression)
+                switch(node->nodeSubType.expression)
                 {
                     case ExpressionType::OP:
                     {
                         if(node->m_childernNodes[1] != nullptr && node->nodeAttributes.name != "=")
                         {
                             std::cout << "Op: " << node->nodeAttributes.name; 
-                            if(node->getExpType() == ReturnType::UNDEFINED)
+                            if(node->m_parmType == ParmType::UNDEFINED)
                             {
 
                                 if(isShowingType)
@@ -461,7 +390,7 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                                     std::cout << " of type bool";
                                 }
                             }
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
 
                         else if(node->m_childernNodes[1] == nullptr && node->nodeAttributes.name != "-")
@@ -470,16 +399,17 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                             
                             if(isShowingType)
                             {
-                                if(node->getExpType() == ReturnType::UNDEFINED)
+                                if(node->m_parmType == ParmType::UNDEFINED)
                                 {
                                     std::cout << " of undefined type"; 
                                 }
                                 else
                                 {
-                                    std::cout << " of type " << node->printExpression(node->getExpType());
+                                    std::cout << " of type "; 
+                                    printParameterType(node->m_parmType);
                                 }
                             }
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
 
                         else if(node->m_childernNodes[1] == nullptr && node->nodeAttributes.name != "*")
@@ -488,16 +418,17 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                             
                             if(isShowingType)
                             {
-                                if(node->getExpType() == ReturnType::UNDEFINED || !node->getIsArray())
+                                if(node->m_parmType== ParmType::UNDEFINED || !node->m_isArray)
                                 {
                                     std::cout << " of undefined type"; 
                                 }
                                 else
                                 {
-                                    std::cout << " of type " << node->printExpression(node->getExpType());
+                                    std::cout << " of type "; 
+                                    printParameterType(node->m_parmType);
                                 }
                             }
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
 
                         else if(node->nodeAttributes.name != "%")
@@ -506,16 +437,17 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                             
                             if(isShowingType)
                             {
-                                if(node->getExpType() == ReturnType::UNDEFINED)
+                                if(node->m_parmType == ParmType::UNDEFINED)
                                 {
                                     std::cout << " of undefined type"; 
                                 }
                                 else
                                 {
-                                    std::cout << " of type " << node->printExpression(node->getExpType());
+                                    std::cout << " of type "; 
+                                    printParameterType(node->m_parmType);
                                 }
                             }
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
 
                         else
@@ -524,23 +456,24 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                             
                             if(isShowingType)
                             {
-                                if(node->getExpType() == ReturnType::UNDEFINED)
+                                if(node->m_parmType== ParmType::UNDEFINED)
                                 {
                                     std::cout << " of undefined type"; 
                                 }
                                 else
                                 {
-                                    std::cout << " of type " << node->printExpression(node->getExpType());
+                                    std::cout << " of type ";
+                                    printParameterType(node->m_parmType);
                                 }
                             }
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
                     }
                     break;
 
-                    case ExpressionType::CONST:
+                    case ExpressionType::CONSTANT:
                     {
-                        if(node->getExpType() == ReturnType::BOOL)
+                        if(node->m_parmType == ParmType::BOOL)
                         {
                             std::cout << "Const: " << node->nodeAttributes.name; 
 
@@ -549,10 +482,10 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                                 std::cout << " of type bool";
                             }
                             
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
 
-                        else if(node->getExpType() == ReturnType::CHARINT)
+                        else if(node->m_parmType == ParmType::CHARINT)
                         {
                             std::cout << "Const is array  " << node->nodeAttributes.name; 
 
@@ -561,10 +494,10 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                                 std::cout << " of type char";
                             }
                             
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
 
-                        else if(node->getExpType() == ReturnType::CHAR)
+                        else if(node->m_parmType == ParmType::CHAR)
                         {
                             std::cout << "Const '" << node->m_tokenData->charValue << "'";; 
 
@@ -573,7 +506,7 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                                 std::cout << " of type char";
                             }
                             
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                         }
 
                         else
@@ -585,7 +518,7 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
                                 std::cout << " of type int";
                             }
                             
-                            std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                            std::cout << " [line: " << node->m_lineNumber<< "]" << std::endl;
                         }
 
                     }
@@ -597,29 +530,31 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
 
                         if(isShowingType)
                         {
-                            std::cout << " of type " << node->printExpression(node->getExpType());
+                            std::cout << " of type "; 
+                            printParameterType(node->m_parmType);
                         }
-                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                     }
                     break;
 
-                    case ExpressionType::ID:
+                    case ExpressionType::IDENTIFIER:
                     {
                         std::cout << "Id: " << node->nodeAttributes.name; 
 
                         if(isShowingType)
                         {
-                            if(node->getExpType() == ReturnType::UNDEFINED || node->getExpType() == ReturnType::VOID
+                            if(node->m_parmType == ParmType::UNDEFINED || node->m_parmType == ParmType::VOID)
                             {
                                 std::cout << " of undefined type";
                             }
 
                             else
                             {
-                                std::cout << " of type " << node->printExpression(node->getExpType());
+                                std::cout << " of type "; 
+                                printParameterType(node->m_parmType);
                             }
                         }
-                        std::cout << " [line: " << node->getLineNum() << "]" << std::endl;
+                        std::cout << " [line: " << node->m_lineNumber << "]" << std::endl;
                     }
                     break;
 
@@ -639,29 +574,29 @@ void printAST(Node* node, int numSiblings, bool isShowingType)
 
             default:
             {
-                std::cout << "PrintAST() ERROR: Node Type Not Found on line " << node->getLineNum() << std::endl;
+                std::cout << "PrintAST() ERROR: Node Type Not Found on line " << node->m_lineNumber << std::endl;
             }
         }
 
         for(int i = 0; i < MAXCHILDREN; i++)
         {
-            if(tree->child[i] != nullptr)
+            if(node->m_childernNodes[i] != nullptr)
             {
                 numTabs++;
                 printOutputTabs(numTabs);
                 std::cout << "Child: " << i << " ";
-                printAST(tree->child[i], 0, isShowingType);
+                printAST(node->m_childernNodes[i], 0, isShowingType);
                 numTabs--;
             }
         }
 
-        if(tree->sibling != nullptr)
+        if(node->m_siblingNode != nullptr)
         {
             numSiblings++;
             printOutputTabs(numTabs);
             std::cout << "Sibling: " << numSiblings << " ";
         }
 
-        tree = tree->sibling;
+        node = node->m_siblingNode;
     }
 }
