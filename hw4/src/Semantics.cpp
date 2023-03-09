@@ -437,7 +437,8 @@ void analyzeParam(Node* node, int& nErrors, int& nWarnings)
 }
 //Function analyzes statement nodes
 
-void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
+void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
+{
 
     switch(node->nodeSubType.statement)
     {
@@ -587,6 +588,8 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
 
                 else if(node->m_childernNodes[0]->m_isArray)
                 {
+                    //Cannot return an array.
+                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Cannot return an array.");
                     // printError(10, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
                 }
 
@@ -597,6 +600,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
 
                         if(node->m_childernNodes[0]->nodeAttributes.name == "[")
                         {
+                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Cannot return an array.");
                             // printError(10, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
                         }
                     }
@@ -604,6 +608,8 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
             
                 if(functionReturnType == ParmType::VOID)
                 {
+                    //Function '%s' at line %d is expecting no return value, but return has a value.
+                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Function '" + curFunc->nodeAttributes.name + "' at line " + std::to_string(functionLine) + " is expecting no return value, but return has a value.");
                     // printError(29, returnm_lineNumber, functionLine, functionName, NULL, NULL, 0);
                 }
 
@@ -612,6 +618,8 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
 
                     if(!(functionReturnType == ParmType::CHAR && actualReturnType == ParmType::CHARINT))
                     {
+                        //Function '%s' at line %d is expecting to return type %s but returns type %s.
+                        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Function '" + curFunc->nodeAttributes.name + "' at line " + std::to_string(functionLine) + " is expecting to return type " + ConvertParmToString(functionReturnType) + " but returns type " + ConvertParmToString(actualReturnType) + ".");
                         // printError(31, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
                     }
                 }
@@ -621,6 +629,8 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
                     
                     if(!(functionReturnType == ParmType::CHAR && actualReturnType == ParmType::CHARINT))
                     {
+                        //Function '%s' at line %d is expecting to return type %s but returns type %s.
+                        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Function '" + curFunc->nodeAttributes.name + "' at line " + std::to_string(functionLine) + " is expecting to return type " + ConvertParmToString(functionReturnType) + " but returns type " + ConvertParmToString(actualReturnType) + ".");
                         // printError(31, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
                     }
                 }
@@ -631,6 +641,8 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
 
                 if(functionReturnType != ParmType::VOID)
                 {
+                    //Function '%s' at line %d is expecting to return type %s but return has no value.
+                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Function '" + curFunc->nodeAttributes.name + "' at line " + std::to_string(functionLine) + " is expecting to return type " + ConvertParmToString(functionReturnType) + " but return has no value.");
                     // printError(30, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), NULL, 0);
                 }
             }
@@ -642,6 +654,8 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
         {
             if(!loop)
             {
+                //Cannot have a break statement outside of loop.
+                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Cannot have a break statement outside of loop.");
                 // printError(22, node->m_lineNumber, 0, NULL, NULL, NULL, 0);
             }
 
@@ -672,6 +686,8 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
                                 Node* valFound = (Node *)symbolTable.lookup(node->m_childernNodes[0]->nodeAttributes.name);
                                 if(valFound == nullptr)
                                 {
+                                    //Symbol '%s' is not declared.
+                                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Symbol '" + node->m_childernNodes[0]->nodeAttributes.name + "' is not declared.");
                                     // printError(1, t->m_lineNumber, 0, node->child[0]->nodeAttributes.name, NULL, NULL, 0); 
                                     node->m_isDeclError = true;
                                 }
@@ -776,19 +792,20 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
     bool leftStr, rightStr, isBinary, leftArr, rightArr, leftIndx, rightIndx, leftInit, leftDecl, rightInit, rightDecl, throwError;
     leftStr = rightStr = isBinary = leftArr = rightArr = leftIndx = rightIndx = leftInit = leftDecl = rightInit = rightDecl = throwError = false;
 
-    ExpType leftSide, rightSide, returnType, leftExpected, rightExpected, childReturnType;
-    leftSide = rightSide = returnType = leftExpected = rightExpected = childReturnType = UndefinedType;
+    ParmType leftSide, rightSide, returnType, leftExpected, rightExpected, childReturnType;
+    leftSide = rightSide = returnType = leftExpected = rightExpected = childReturnType = ParmType::UNDEFINED;
 
     bool rightErr, leftErr, unaryErrors;
     rightErr = leftErr = unaryErrors = false;
 
-    TreeNode* valFound = NULL;
-    TreeNode* leftNode = NULL;
-    TreeNode* rightNode = NULL;
+    Node* valFound = nullptr;
+    Node* leftNode = nullptr;
+    Node* rightNode = nullptr;
 
-    switch(t->nodeSubType.exp) {
-        case AssignK:
-        case OpK:
+    switch(node->nodeSubType.expression) 
+    {
+        case ExpressionType::ASSIGN:
+        case ExpressionType::OP:
 
             if(!strcmp(t->nodeAttributes.name, "<=")){
 
