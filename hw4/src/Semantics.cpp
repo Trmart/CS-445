@@ -36,7 +36,7 @@ int rangePos = 0;
 int returnm_lineNumber;
 int functionLine;
 
-char *functionName;
+std::string functionName;
 
 Node* curFunc = nullptr;
 
@@ -250,130 +250,171 @@ void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
 
     Node* declared;
     
-    if(t->nodeSubType.decl != VarK && !symbolTable.insert(t->nodeAttributes.name, t))
+    if(node->nodeSubType.declaration != DeclarationType::VARIABLE && !symbolTable.insert(node->nodeAttributes.name, node))
     {
-        declared = (TreeNode*)symbolTable.lookup(t->nodeAttributes.name);
-        printError(0, t->m_lineNumber, declared->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
+        declared = (Node* )symbolTable.lookup(node->nodeAttributes.name);
+        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Symbol '" + node->nodeAttributes.name +  "' is already declared at line " + std::to_string(declared->m_lineNumber) + ".");
+        // printError(0, t->m_lineNumber, declared->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
     }
 
-    switch(t->nodeSubType.decl){
+    switch(node->nodeSubType.declaration)
+    {
         
-        case VarK:
+        case DeclarationType::VARIABLE:
+        {
+            if(node->m_childernNodes[0] != nullptr)
+            {
 
-            if(t->child[0] != NULL){
-
-                for(int i = 0; i < MAXCHILDREN; i++){
-                    check(t->child[i], nErrors, nWarnings);
+                for(int i = 0; i < MAXCHILDREN; i++)
+                {
+                    analyze(node->m_childernNodes[i], nErrors, nWarnings);
                 }
             }          
 
-           TreeNode* exists;
-           if(!symbolTable.insert(t->nodeAttributes.name, t)){
-               exists = (TreeNode*)symbolTable.lookup(t->nodeAttributes.name);
-               printError(0, t->m_lineNumber, exists->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
+           Node* exists;
+
+
+           if(!symbolTable.insert(node->nodeAttributes.name, node))
+           {
+                exists = (Node*)symbolTable.lookup(node->nodeAttributes.name);
+                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Symbol '" + node->nodeAttributes.name +  "' is already declared at line " + std::to_string(exists->m_lineNumber) + ".");
+                //printError(0, t->m_lineNumber, exists->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
            }
 
-           if(t->sibling != NULL){
+           if(node->m_siblingNode != nullptr)
+           {
 
-                if(t->isStatic && t->m_lineNumber == t->sibling->m_lineNumber){
-                    t->sibling->isStatic = t->isStatic;
+                if(node->m_isStatic && node->m_lineNumber == node->m_siblingNode->m_lineNumber)
+                {
+                    node->m_siblingNode->m_isStatic = node->m_isStatic;
                 }
             }
 
-           if(t->child[0] != NULL){
-
-               if(t->child[0]->nodeSubType.exp == IdK || t->child[0]->nodeSubType.exp == CallK){
-                   printError(32, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+           if(node->m_childernNodes[0] != nullptr)
+           {
+               if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER || node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::CALL)
+               {
+                //    printError(32, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Initializer for variable '" + node->nodeAttributes.name + "' is not a constant expression.");
                }
 
-               else if(t->child[0]->nodeSubType.exp == OpK){
+               else if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::OP)
+               {
 
-                   if(t->child[0] != NULL && t->child[0]->child[1] == NULL){
+                   if(node->m_childernNodes[0] != nullptr && node->m_childernNodes[0]->m_childernNodes[1] == nullptr)
+                   {
 
-                       if(strcmp(t->child[0]->nodeAttributes.name, "-") && !t->isArray){
-                        printError(32, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                       if(node->m_childernNodes[0]->nodeAttributes.name == "-" && !node->m_isArray)
+                       {
+                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Initializer for variable '" + node->nodeAttributes.name + "' is not a constant expression.");
+                        //printError(32, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                        }
                    }
 
-                   else if(t->child[0]->child[0] != NULL && t->child[0]->child[1] != NULL){
-                       checkNestOpsInit(t, t->child[0]);
+                   else if(node->m_childernNodes[0]->m_childernNodes[0] != nullptr && node->m_childernNodes[0]->m_childernNodes[1] != nullptr)
+                   {
+                       analyzeNestedOperators(node, node->m_childernNodes[0]);
                    }
                }
 
-               if(t->expType != t->child[0]->expType){
+               if(node->m_parmType != node->m_childernNodes[0]->m_parmType)
+               {
 
-                    if(t->expType == Char && t->child[0]->expType == CharInt){
+                    if(node->m_parmType == ParmType::CHAR && node->m_childernNodes[0]->m_parmType == ParmType::CHARINT)
+                    {
                         ; // do nothing
                     }
 
-                    else if(t->expType == Integer && t->child[0]->expType == CharInt){
+                    else if(node->m_parmType == ParmType::INTEGER && node->m_childernNodes[0]->m_parmType == ParmType::CHARINT)
+                    {
                         char charInsert[] = "char";
-                        printError(33, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->expType), charInsert, 0);
+                        // Initializer for variable '%s' of type %s is of type %s
+                        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Initializer for variable '" + node->nodeAttributes.name + "' of type " + ConvertParmToString(node->m_parmType) + " is of type char.");
+                        //printError(33, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->expType), charInsert, 0);
                     }
 
-                    else if(t->child[0]->expType == Void && t->child[0]->nodeSubType.exp == IdK){
+                    else if(node->m_childernNodes[0]->m_parmType == ParmType::VOID && node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                    {
                        //do nothing 
                     }
 
-                    else{
-                        printError(33, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->expType), ExpTypetwo(t->child[0]->expType), 0);
+                    else
+                    {
+                        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Initializer for variable '" + node->nodeAttributes.name + "' of type " + ConvertParmToString(node->m_parmType) + " is of type " + ConvertParmToString(node->m_childernNodes[0]->m_parmType) + ".");
+                        //printError(33, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->expType), ExpTypetwo(t->child[0]->expType), 0);
                     }
                }
 
-               if(t->isArray && !t->child[0]->isArray){
-                   printError(35, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+               if(node->m_isArray && !node->m_childernNodes[0]->m_isArray)
+               {
+                // Initializer for variable '%s' requires both operands be arrays or not but variable is an array and rhs is not an array.
+                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Initializer for variable '" + node->nodeAttributes.name + "' requires both operands be arrays or not but variable is an array and rhs is not an array.");
+                //    printError(35, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                }
 
-               if(!t->isArray && t->child[0]->isArray){
-                   printError(34, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+               if(!node->m_isArray && node->m_childernNodes[0]->m_isArray)
+               {
+                //Initializer for variable '%s' requires both operands be arrays or not but variable is not an array and rhs is an array.
+                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Initializer for variable '" + node->nodeAttributes.name + "' requires both operands be arrays or not but variable is not an array and rhs is an array.");
+                //    printError(34, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                }
 
-               t->isInit = true;
-               t->isDeclared = true;        
+               node->m_isInitialized = true;
+               node->m_isDeclared = true;        
            }
-           else{
-               t->isDeclared = true;
+           else
+           {
+               node->m_isDeclared = true;
            }
 
-           break;
+        }
+        break;
 
-        case FuncK:
+        case DeclarationType::FUNCTION:
+                                    {
+                                        curFunc = node;
+                                        Flag = false;
 
-            curFunc = t;
-            Flag = false;
+                                        symbolTable.enter(node->nodeAttributes.name);
 
-            symbolTable.enter(t->nodeAttributes.name);
+                                        scopeDepth = false;
+                                        functionReturnType = node->m_parmType;
+                                        functionName = node->nodeAttributes.name;
+                                        functionLine = node->m_lineNumber;
+                                        
+                                        //analyze childern nodes
+                                        for(int i = 0; i < MAXCHILDREN; i++)
+                                        {
+                                            analyze(node->m_childernNodes[i], nErrors, nWarnings);
+                                        }
 
-            scopeDepth = false;
-            functionReturnType = t->expType;
-            functionName = t->nodeAttributes.name;
-            functionLine = t->m_lineNumber;
-            
-            for(int i = 0; i < MAXCHILDREN; i++){
-                check(t->child[i], nErrors, nWarnings);
-            }
+                                        if(Flag == false && node->m_parmType != ParmType::VOID)
+                                        {
+                                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Expecting to return type " + ConvertParmToString(node->m_parmType) + " but function '" + node->nodeAttributes.name + "' has no return statement.");
+                                            //printError(19, node->m_lineNumber, 0, ExpTypetwo(functionReturnType), node->nodeAttributes.name, NULL, 0);
+                                        }
 
-            if(Flag == false && t->expType != Void){
-                printError(19, t->m_lineNumber, 0, ExpTypetwo(functionReturnType), t->nodeAttributes.name, NULL, 0);
-            }
+                                        symbolTable.applyToAll(analyzeWarnings);
+                                        symbolTable.leave();
+                                        curFunc = nullptr;
+                                    }
+                                    break;
 
-            symbolTable.applyToAll(Warninit);
-            symbolTable.leave();
-            curFunc = NULL;
-
-            break;
-
-        case ParamK:
-
-            for(int i = 0; i < MAXCHILDREN; i++){
-                
-                check(t->child[i], nErrors, nWarnings);
-                if(t->child[0] != NULL){
-                    t->child[0]->isInit = true;
-                }
-            }
-            t->isInit = true;
-            break;
+        case DeclarationType::PARAMETER:
+                                    {
+                                        for(int i = 0; i < MAXCHILDREN; i++)
+                                        {
+                                            
+                                            analyze(node->m_childernNodes[i], nErrors, nWarnings);
+                                            
+                                            if(node->m_childernNodes[0] != nullptr)
+                                            {
+                                                node->m_childernNodes[0]->m_isInitialized = true;
+                                            }
+                                        }
+                                        node->m_isInitialized = true;
+                                    }
+                                    break;
     }
 }
 
@@ -1268,7 +1309,7 @@ void analyzeAssign(Node* node, int& nErrors, int& nWarnings)
 
 void analyzeInit(Node* node, int& nErrors, int& nWarnings)
 {
-    
+
 }
 
 
