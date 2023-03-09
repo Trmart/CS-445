@@ -1080,7 +1080,8 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                 }
                             }
                         }
-                            else{
+                            else
+                            {
                                 if(!unaryErrors)
                                 {
 
@@ -1094,7 +1095,9 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                         if(ConvertParmToString(leftSide) != "int" && ConvertParmToString(rightSide) != "CharInt")
                                         {
-                                            char diffCharInt[] = "char";
+                                            // char diffCharInt[] = "char";
+                                            //'%s' requires operands of the same type but lhs is type %s and rhs is type %s.
+                                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of the same type but lhs is type " + ConvertParmToString(leftSide) + " and rhs is type char.");
                                             //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), diffCharInt, 0);
                                         }
                                         else if(ConvertParmToString(leftSide) != "char" && ConvertParmToString(rightSide) != "CharInt")
@@ -1109,11 +1112,15 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                         
                                             if(childReturnType != node->m_childernNodes[0]->m_parmType)
                                             {
+                                                //'%s' requires operands of the same type but lhs is type %s and rhs is type %s.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of the same type but lhs is type " + ConvertParmToString(leftSide) + " and rhs is type " + ConvertParmToString(rightSide) + ".");
                                                 // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
                                             }
 
                                             else if(node->m_childernNodes[1]->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL)
                                             {
+                                                //'%s' requires operands of the same type but lhs is type %s and rhs is type %s.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of the same type but lhs is type " + ConvertParmToString(leftSide) + " and rhs is type " + ConvertParmToString(rightSide) + ".");
                                                 // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
                                             }
                                         }
@@ -1122,7 +1129,8 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                             if(node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::CALL)
                                             {
-
+                                                //'%s' requires operands of the same type but lhs is type %s and rhs is type %s.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of the same type but lhs is type " + ConvertParmToString(leftSide) + " and rhs is type " + ConvertParmToString(rightSide) + ".");
                                                 //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(rightSide), 0);
                                             }
                                             else
