@@ -439,128 +439,159 @@ void analyzeParam(Node* node, int& nErrors, int& nWarnings)
 
 void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
 
-    switch(t->nodeSubType.stmt){
-        case IfK:
+    switch(node->nodeSubType.statement)
+    {
+        case StatementType::IF:
+        {
             loop = true;
-            symbolTable.enter(t->nodeAttributes.name);
+            symbolTable.enter(node->nodeAttributes.name);
             loopDepth++;
             scopeDepth = false;
-            for(int i = 0; i < MAXCHILDREN; i++){
-                if(t->child[0]){
-                    check(t->child[i], nErrors, nWarnings);
+            
+            for(int i = 0; i < MAXCHILDREN; i++)
+            {
+                if(node->m_childernNodes[0])
+                {
+                    analyze(node->m_childernNodes[i], nErrors, nWarnings);
                 }
             }
 
 
-            if(t->child[0]->expType != Boolean && t->child[0]->nodeSubType.exp != OpK && !t->child[0]->declErr){
-                char ifStmt[] = "if";
-                printError(27, t->m_lineNumber, 0, ifStmt, ExpTypetwo(t->child[0]->expType), NULL, 0 );
+            if(node->m_childernNodes[0]->m_parmType != ParmType::BOOL && node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::OP && !node->m_childernNodes[0]->m_isDeclError)
+            {
+                // char ifStmt[] = "if";
+                //Expecting Boolean test condition in %s statement but got type %s.
+                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Expecting Boolean test condition in if statement but got type " + ConvertParmToString(node->m_childernNodes[0]->m_parmType) + ".");
+                // printError(27, t->m_lineNumber, 0, ifStmt, ExpTypetwo(t->m_childernNodes[0]->expType), NULL, 0 );
             }
 
-            if(t->child[0]->isArray){
-                char ifStmt[] = "if";
-                printError(23, t->m_lineNumber, 0, ifStmt, NULL, NULL, 0);
+            if(node->m_childernNodes[0]->m_isArray)
+            {
+                // char ifStmt[] = "if";
+                //Cannot use array as test condition in %s statement.
+                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Cannot use array as test condition in if statement.");
+                // printError(23, t->m_lineNumber, 0, ifStmt, NULL, NULL, 0);
             }
             
             loopDepth--;
 
-            symbolTable.applyToAll(Warninit);
+            symbolTable.applyToAll(analyzeWarnings);
 
-            if(loopDepth == 1){
+            if(loopDepth == 1)
+            {
                 loop = false;
             }
             symbolTable.leave();
             scopeDepth = true;
-            break;
+        }
+        break;
 
-        case ForK:
+        case StatementType::FOR:
+        {
             loop = true;
             inFor = true;
             loopDepth++;
-            symbolTable.enter(t->nodeAttributes.name);
+            symbolTable.enter(node->nodeAttributes.name);
             scopeDepth = false;
             
-            for(int i = 0; i < MAXCHILDREN; i++){
-                if(t->child[i]){
-
-                check(t->child[i], nErrors, nWarnings);
-                t->child[0]->isInit = true;
-                t->child[1]->isInit = true;
+            for(int i = 0; i < MAXCHILDREN; i++)
+            {
+                if(node->m_childernNodes[i])
+                {
+                    analyze(node->m_childernNodes[i], nErrors, nWarnings);
+                    node->m_childernNodes[0]->m_isInitialized = true;
+                    node->m_childernNodes[1]->m_isInitialized = true;
                 }
             }
 
             loopDepth--;
 
-            if(loopDepth == 1){
+            if(loopDepth == 1)
+            {
                 loop = false;
             }
 
                 inFor = false;
-                symbolTable.applyToAll(Warninit);
+                symbolTable.applyToAll(analyzeWarnings);
                 symbolTable.leave();
                 scopeDepth = true;
+        }
+        break;
 
-            break;
+        case StatementType::WHILE:
+        {
 
-        case WhileK:
             loop = true;
-            symbolTable.enter(t->nodeAttributes.name);
+            symbolTable.enter(node->nodeAttributes.name);
             loopDepth ++;
             scopeDepth = false;
 
-            for(int i = 0; i < MAXCHILDREN; i++){
-                if(t->child[i]){
-                check(t->child[i], nErrors, nWarnings);
+            for(int i = 0; i < MAXCHILDREN; i++)
+            {
+                if(node->m_childernNodes[i])
+                {
+                    analyze(node->m_childernNodes[i], nErrors, nWarnings);
 
-                if(i < 1){
-                    if(t->child[0]->expType != Boolean && t->child[0]->nodeSubType.exp != OpK && !t->child[0]->declErr){
-                        char whileStmt[] = "while";
-                        printError(27, t->m_lineNumber, 0, whileStmt, ExpTypetwo(t->child[0]->expType), NULL, 0 );
-                    }
+                    if(i < 1)
+                    {
+                        if(node->m_childernNodes[0]->m_parmType != ParmType::BOOL && node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::OP && !node->m_childernNodes[0]->m_isDeclError)
+                        {
+                            // char whileStmt[] = "while";
+                            //Expecting Boolean test condition in %s statement but got type %s.
+                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Expecting Boolean test condition in while statement but got type " + ConvertParmToString(node->m_childernNodes[0]->m_parmType) + ".");
+                            // printError(27, t->m_lineNumber, 0, whileStmt, ExpTypetwo(t->m_childernNodes[0]->expType), NULL, 0 );
+                        }
 
-                    if(t->child[0]->isArray){
-                        char whileStmt[] = "while";
-                        printError(23, t->m_lineNumber, 0, whileStmt, NULL, NULL, 0);
+                        if(node->m_childernNodes[0]->m_isArray)
+                        {
+                            // char whileStmt[] = "while";
+                            //Cannot use array as test condition in %s statement.
+                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Cannot use array as test condition in while statement.");
+                            // printError(23, t->m_lineNumber, 0, whileStmt, NULL, NULL, 0);
+                        }
                     }
-            }
                 }
             }
 
             loopDepth--;
 
-            symbolTable.applyToAll(Warninit);
+            symbolTable.applyToAll(analyzeWarnings);
 
-            if(loopDepth == 1){
+            if(loopDepth == 1)
+            {
                 loop = false;
             }
+
             symbolTable.leave();
+            
             scopeDepth = true;
-            break;
+        }
+        break;
 
-        case ReturnK:
+        case StatementType::RETURN:
+        {
+            Flag = true;
+            returnm_lineNumber = node->m_lineNumber;
 
-                Flag = true;
-                returnm_lineNumber = t->m_lineNumber;
+            check(node->m_childernNodes[0], nErrors, nWarnings);
 
-            check(t->child[0], nErrors, nWarnings);
+            if(node->m_childernNodes[0] != NULL){
 
-            if(t->child[0] != NULL){
-
-                actualReturnType = t->child[0]->expType;
+                actualReturnType = node->m_childernNodes[0]->expType;
 
                 if(curFunc == NULL){
                     break;
                 }
 
-                else if(t->child[0]->isArray){
-                    printError(10, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
+                else if(node->m_childernNodes[0]->isArray){
+                    // printError(10, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
                 }
 
-                else if(t->child[0]->child[0] != NULL){
-                    if(t->child[0]->child[0]->isArray){
+                else if(node->m_childernNodes[0]->m_childernNodes[0] != NULL){
+                    if(node->m_childernNodes[0]->m_childernNodes[0]->isArray){
 
-                        if(strcmp(t->child[0]->nodeAttributes.name, "[")){
-                            printError(10, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
+                        if(strcmp(node->m_childernNodes[0]->nodeAttributes.name, "[")){
+                            // printError(10, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
                         }
                     }
                 }
@@ -584,41 +615,46 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
                 }
             }
 
-            else if(t->child[0] == NULL){
+            else if(node->m_childernNodes[0] == NULL){
 
                 if(functionReturnType != Void){
                     printError(30, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), NULL, 0);
                 }
             }
 
-            break;
+        }
+        break;
 
-        case BreakK:
-
-            if(!loop){
-                printError(22, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
+        case StatementType::BREAK:
+        {
+            if(!loop)
+            {
+                // printError(22, node->m_lineNumber, 0, NULL, NULL, NULL, 0);
             }
-            break;
 
-        case RangeK:
+        }
+        break;
 
+
+        case StatementType::RANGE:
+        {
             rangePos;
             range = true;
 
             for(int i = 0; i < MAXCHILDREN; i++){
-                if(t->child[i]){
+                if(node->m_childernNodes[i]){
                     rangePos++;
 
-                        if(t->child[i]->child[0] != NULL && t->child[i]->child[0]->isArray){
-                            t->child[i]->child[0]->isIndexed = true;
+                        if(node->m_childernNodes[i]->m_childernNodes[0] != NULL && node->m_childernNodes[i]->m_childernNodes[0]->isArray){
+                            node->m_childernNodes[i]->m_childernNodes[0]->isIndexed = true;
                         }
 
                         else if(rangePos == 1){
-                            if(t->child[0]->nodeSubType.exp == IdK){
-                                TreeNode* valFound = (TreeNode*)symbolTable.lookup(t->child[0]->nodeAttributes.name);
+                            if(node->m_childernNodes[0]->nodeSubType.exp == IdK){
+                                TreeNode* valFound = (TreeNode*)symbolTable.lookup(t->m_childernNodes[0]->nodeAttributes.name);
                                 if(valFound == NULL){
-                                    printError(1, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0); 
-                                    t->declErr = true;
+                                    printError(1, t->m_lineNumber, 0, node->child[0]->nodeAttributes.name, NULL, NULL, 0); 
+                                    node->declErr = true;
                                 }
                                 else{
                                     valFound->wasUsed = true;
@@ -626,18 +662,18 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
                             }
                         }
 
-                    check(t->child[i], nErrors, nWarnings);
+                    check(node->m_childernNodes[i], nErrors, nWarnings);
 
                 }
             }
 
             range = false;
             rangePos = 0;
+        }
+        break;
 
-            break;
-
-        case CompoundK:
-
+        case StatementType::COMPOUND:
+        {
             bool keepCurScope = scopeDepth;
 
             if(keepCurScope){
@@ -656,11 +692,9 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
                 symbolTable.applyToAll(Warninit);
                 symbolTable.leave();
             }
-
-            break;
-
+        }
+        break;
     }
-
 }
 
 
