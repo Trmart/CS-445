@@ -50,7 +50,7 @@ SymbolTable getSymbolTable()
     return symbolTable;
 }
 
-//Function checks each node. 
+//analyzes the three types of nodes in the AST (Decl, Exp, Stmt) and calls the appropriate function
 void analyze(Node* node, int& nErrors, int& nWarnings)
 {
 
@@ -85,7 +85,7 @@ void analyze(Node* node, int& nErrors, int& nWarnings)
     }
 }
 
-//function analizes semantics first by checking for keyword "main"
+//function analyzes semantics. Also checks for undefined main warnings
 void semanticAnalysis(Node* node, int& errors, int& warnings)
 {
 
@@ -173,7 +173,7 @@ void analyzeWarnings(std::string symbol, void* t)
     }
 }
 
-//function prints errors for arrays.
+//function prints errors encountered for array data containers
 void printArrayErrors(Node* node)
 {
 
@@ -235,18 +235,23 @@ void printArrayErrors(Node* node)
 
 }
 
-//function checks declaration nodes
-void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
+//function analyzes declaration nodes
+void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
+{
   
-    if(symbolTable.depth() == 1){
-        t->isGlobal = true;
+    if(symbolTable.depth() == 1)
+    {
+        node->m_isGlobal = true;
     }
-    else{
-        t->isGlobal = false;
+    else
+    {
+        node->m_isGlobal = false;
     }
 
-    TreeNode *declared;
-    if(t->nodeSubType.decl != VarK && !symbolTable.insert(t->nodeAttributes.name, t)){
+    Node* declared;
+    
+    if(t->nodeSubType.decl != VarK && !symbolTable.insert(t->nodeAttributes.name, t))
+    {
         declared = (TreeNode*)symbolTable.lookup(t->nodeAttributes.name);
         printError(0, t->m_lineNumber, declared->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
     }
@@ -372,8 +377,26 @@ void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
     }
 }
 
-//Function checks statement nodes
-void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
+
+void analyzeVar(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeFunc(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeParam(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+//Function analyzes statement nodes
+
+void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
 
     switch(t->nodeSubType.stmt){
         case IfK:
@@ -599,8 +622,57 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
 
 }
 
-//function checks expression nodes. 
-void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
+
+void analyzeNullStmt(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeIf(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeWhile(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeFor(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeCompound(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeReturn(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeBreak(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeRange(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+//function analyzes expression nodes. 
+void analyzeExp(Node* node, int& nErrors, int& nWarnings)
+{
  
     bool leftStr, rightStr, isBinary, leftArr, rightArr, leftIndx, rightIndx, leftInit, leftDecl, rightInit, rightDecl, throwError;
     leftStr = rightStr = isBinary = leftArr = rightArr = leftIndx = rightIndx = leftInit = leftDecl = rightInit = rightDecl = throwError = false;
@@ -1170,8 +1242,39 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
 
 }
 
+void analyzeOp(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeConst(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeId(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeAssign(Node* node, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+void analyzeInit(Node* node, int& nErrors, int& nWarnings)
+{
+    
+}
+
+
+
 //function gets all expected types. 
-void getExpTypes(const char* strng, bool isBinary, bool &unaryErrors, ExpType &left, ExpType &right, ExpType &rightT){
+void getExpTypes(const char* strng, bool isBinary, bool &unaryErrors, ParmType &left, ParmType &right, ParmType &rightT){
 
     std::string unaryOps[6] = {"not", "*", "?", "-", "--", "++"};
 
@@ -1292,7 +1395,9 @@ std::string ConvertParmToString(ParmType type)
     }
 }
 
-void getReturnType(const char* strng, bool isBinary, ExpType &rightT){
+
+void getReturnType(const char* strng, bool isBinary, ParmType &rightT)
+{
 
     std::string unaryOps[6] = {"not", "*", "?", "-", "--", "++"};
 

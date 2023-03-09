@@ -29,10 +29,34 @@ void analyzeNestedAssign(Node* child);
 void analyzeNestedOperators(Node* node, Node* child);
 
 
+//Declaration analyzers
+void analyzeVar(Node* node, int& nErrors, int& nWarnings);
+void analyzeFunc(Node* node, int& nErrors, int& nWarnings);
+void analyzeParam(Node* node, int& nErrors, int& nWarnings);
+
+//Statement analyzers
+void analyzeNullStmt(Node* node, int& nErrors, int& nWarnings);
+void analyzeIf(Node* node, int& nErrors, int& nWarnings);
+void analyzeWhile(Node* node, int& nErrors, int& nWarnings);
+void analyzeFor(Node* node, int& nErrors, int& nWarnings);
+void analyzeCompound(Node* node, int& nErrors, int& nWarnings);
+void analyzeReturn(Node* node, int& nErrors, int& nWarnings);
+void analyzeBreak(Node* node, int& nErrors, int& nWarnings);
+void analyzeRange(Node* node, int& nErrors, int& nWarnings);
+
+
+//Expression analyzers
+void analyzeOp(Node* node, int& nErrors, int& nWarnings);
+void analyzeConst(Node* node, int& nErrors, int& nWarnings);
+void analyzeId(Node* node, int& nErrors, int& nWarnings);
+void analyzeAssign(Node* node, int& nErrors, int& nWarnings);
+void analyzeInit(Node* node, int& nErrors, int& nWarnings);
+
+
 //getters
-void getReturnType(const std::string str, bool isBinary, ExpressionType &childReturnType);
+void getReturnType(const std::string str, bool isBinary, ParmType &childReturnType);
 SymbolTable getSymbolTable();
-void getExpTypes(const std::string str, bool isBinary, bool &unaryErrors, ExpressionType &left, ExpressionType &right, ExpressionType &rightT);
+void getExpTypes(const std::string str, bool isBinary, bool &unaryErrors, ParmType &left, ParmType &right, ParmType &rightT);
 
 
 //helper functions
