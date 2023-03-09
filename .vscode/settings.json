@@ -70,6 +70,15 @@
         "regex": "cpp",
         "string": "cpp",
         "compare": "cpp",
-        "memory_resource": "cpp"
+        "memory_resource": "cpp",
+        "bit": "cpp",
+        "concepts": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "iterator": "cpp",
+        "random": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp"
     }
 }

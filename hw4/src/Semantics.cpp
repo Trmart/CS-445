@@ -573,52 +573,65 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
             Flag = true;
             returnm_lineNumber = node->m_lineNumber;
 
-            check(node->m_childernNodes[0], nErrors, nWarnings);
+            analyze(node->m_childernNodes[0], nErrors, nWarnings);
 
-            if(node->m_childernNodes[0] != NULL){
+            if(node->m_childernNodes[0] != nullptr)
+            {
 
-                actualReturnType = node->m_childernNodes[0]->expType;
+                actualReturnType = node->m_childernNodes[0]->m_parmType;
 
-                if(curFunc == NULL){
+                if(curFunc == nullptr)
+                {
                     break;
                 }
 
-                else if(node->m_childernNodes[0]->isArray){
+                else if(node->m_childernNodes[0]->m_isArray)
+                {
                     // printError(10, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
                 }
 
-                else if(node->m_childernNodes[0]->m_childernNodes[0] != NULL){
-                    if(node->m_childernNodes[0]->m_childernNodes[0]->isArray){
+                else if(node->m_childernNodes[0]->m_childernNodes[0] != nullptr)
+                {
+                    if(node->m_childernNodes[0]->m_childernNodes[0]->m_isArray)
+                    {
 
-                        if(strcmp(node->m_childernNodes[0]->nodeAttributes.name, "[")){
+                        if(node->m_childernNodes[0]->nodeAttributes.name == "[")
+                        {
                             // printError(10, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
                         }
                     }
                 }
             
-                if(functionReturnType == Void){
-                    printError(29, returnm_lineNumber, functionLine, functionName, NULL, NULL, 0);
+                if(functionReturnType == ParmType::VOID)
+                {
+                    // printError(29, returnm_lineNumber, functionLine, functionName, NULL, NULL, 0);
                 }
 
-                else if(functionReturnType != actualReturnType && actualReturnType != Void && functionReturnType != Void){
+                else if(functionReturnType != actualReturnType && actualReturnType != ParmType::VOID && functionReturnType != ParmType::VOID)
+                {
 
-                    if(!(functionReturnType == Char && actualReturnType == CharInt)){
-                        printError(31, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
+                    if(!(functionReturnType == ParmType::CHAR && actualReturnType == ParmType::CHARINT))
+                    {
+                        // printError(31, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
                     }
                 }
 
-                else if(functionReturnType != actualReturnType && functionReturnType != Void && t->child[0]->nodeSubType.exp == CallK){
+                else if(functionReturnType != actualReturnType && functionReturnType != ParmType::VOID && node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::CALL)
+                {
                     
-                    if(!(functionReturnType == Char && actualReturnType == CharInt)){
-                        printError(31, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
+                    if(!(functionReturnType == ParmType::CHAR && actualReturnType == ParmType::CHARINT))
+                    {
+                        // printError(31, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
                     }
                 }
             }
 
-            else if(node->m_childernNodes[0] == NULL){
+            else if(node->m_childernNodes[0] == nullptr)
+            {
 
-                if(functionReturnType != Void){
-                    printError(30, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), NULL, 0);
+                if(functionReturnType != ParmType::VOID)
+                {
+                    // printError(30, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), NULL, 0);
                 }
             }
 
@@ -1572,7 +1585,7 @@ void analyzeNestedAssign(Node* child)
 {
     if(child->m_childernNodes[0] != nullptr)
     {
-        child->m_childernNodes[0]->m_isInit = true;
+        child->m_childernNodes[0]->m_isInitialized = true;
     }
 }
 //Node *funcFound, Node *t, TreeNode *ffParm, TreeNode *tParm, int paramCount
@@ -1583,13 +1596,13 @@ void parameterErrors(Node* funcFound, Node* node, Node* funcParm, Node* nodeParm
 
     if(funcParm->m_siblingNode == nullptr && nodeParm->m_siblingNode != nullptr)
     {
-        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too many parameters passed for function '" + funcFound->nodenodeAttributesibutes.name + "' declared on line " + funcFound->m_lineNumber + ".");
+        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too many parameters passed for function '" + funcFound->nodeAttributes.name + "' declared on line " + std::to_string(funcFound->m_lineNumber) + ".");
         //printError(38, t->m_lineNumber, funcFound->m_lineNumber, node->nodeAttributes.name, nullptr, NULL, 0);
     }
 
     else if(funcParm->m_siblingNode != nullptr && nodeParm->m_siblingNode == nullptr)
     {
-        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too few parameters passed for function '" + funcFound->nodenodeAttributesibutes.name + "' declared on line " + funcFound->m_lineNumber + ".");
+        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too few parameters passed for function '" + funcFound->nodeAttributes.name + "' declared on line " + std::to_string(funcFound->m_lineNumber) + ".");
         //printError(37, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
     }
   
@@ -1599,31 +1612,31 @@ void parameterErrors(Node* funcFound, Node* node, Node* funcParm, Node* nodeParm
         if(funcParm->m_parmType != nodeParm->m_parmType && !nodeParm->m_isDeclError && !funcFound->m_isIO)
         {
             //msg << "Expecting type " << Data::typeToString(funcParmType) << " in parameter " << parmCount << " of call to '" << func->getName() << "' declared on line " << func->getLineNum() <<" but got type " << Data::typeToString(callParmType) << ".";
-            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting type " + funcFound->nodenodeAttributesibutes.name + " in parameter " + paramCount + ExpTypetwo(funcParm->m_parmType) + " of call to '" + ExpTypetwo(nodeParm->m_parmType) + "' declared on line" + node->m_lineNumber + "but got type" + ExpTypetwo(nodeParm->m_parmType) + ".");
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting type " + funcFound->nodeAttributes.name + " in parameter " +  std::to_string(paramCount) + ConvertParmToString(funcParm->m_parmType) + " of call to '" + ConvertParmToString(nodeParm->m_parmType) + "' declared on line" + std::to_string(node->m_lineNumber) + "but got type" + ConvertParmToString(nodeParm->m_parmType) + ".");
             //printError(25, t->m_lineNumber, funcFound->m_lineNumber, funcFound->nodeAttributes.name, ExpTypetwo(funcParm->expType), ExpTypetwo(nodeParm->expType), paramCount);
 
             if(!funcParm->m_isArray && nodeParm->m_isArray)
             {
-                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Not expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
+                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Not expecting array in parameter " + std::to_string(paramCount) + " of call to '" + ConvertParmToString(funcParm->m_parmType) + "' declared on line" + std::to_string(node->m_lineNumber) + ".");
                 //printError(36, t->m_lineNumber, funcFound->m_lineNumber, funcFound->nodeAttributes.name, NULL, NULL, paramCount);
             }
  
             else if(funcParm->m_isArray && !nodeParm->m_isArray)
             {
-                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
+                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting array in parameter " + std::to_string(paramCount) + " of call to '" + ConvertParmToString(funcParm->m_parmType) + "' declared on line" + std::to_string(node->m_lineNumber) + ".");
                 //printError(28, t->m_lineNumber, funcFound->m_lineNumber, funcFound->nodeAttributes.name, NULL, NULL, paramCount);
             }
         }
    
         else if(!funcParm->m_isArray && nodeParm->m_isArray)
         {
-            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Not expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Not expecting array in parameter " + std::to_string(paramCount) + " of call to '" + ConvertParmToString(funcParm->m_parmType) + "' declared on line" + std::to_string(node->m_lineNumber) + ".");
             //printError(36, t->m_lineNumber, funcFound->m_lineNumber, funcFound->nodeAttributes.name, NULL, NULL, paramCount);
         }
        
         else if(funcParm->m_isArray && !nodeParm->m_isArray)
         {
-            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting array in parameter " + std::to_string(paramCount) + " of call to '" + ConvertParmToString(funcParm->m_parmType) + "' declared on line" + std::to_string(node->m_lineNumber) + ".");
             //printError(28, t->m_lineNumber, funcFound->m_lineNumber, funcFound->nodeAttributes.name, NULL, NULL, paramCount);
         }
        
