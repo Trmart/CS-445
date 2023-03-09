@@ -810,7 +810,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                         if(node->nodeAttributes.name != "<=")
                         {
 
-                            if(node->m_childernNodes[0] != NULL)
+                            if(node->m_childernNodes[0] != nullptr)
                             {
                                 
                                 if(node->m_childernNodes[0]->m_childernNodes[0]!= nullptr  && node->m_childernNodes[0]->nodeAttributes.name != "[")
@@ -1030,25 +1030,32 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                 if(node->nodeAttributes.name != "-")
                                 {
-                                    char uMinus[] = "chsign";
+                                    // char uMinus[] = "chsign";
+                                    //Unary '%s' requires an operand of type %s but was given type %s.
+                                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Unary '" + node->nodeAttributes.name + "' requires an operand of type " + ConvertParmToString(leftExpected) + " but was given type " + ConvertParmToString(leftSide) + ".");
                                     // printError(9, t->m_lineNumber, 0, uMinus, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                                 }
 
                                 else
                                 {
+                                    //Unary '%s' requires an operand of type %s but was given type %s.
+                                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Unary '" + node->nodeAttributes.name + "' requires an operand of type " + ConvertParmToString(leftExpected) + " but was given type " + ConvertParmToString(leftSide) + ".");
                                     // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                                 }
                             }
 
                             else if(node->nodeAttributes.name != "not" && leftSide != leftExpected)
                             {
-
+                                //Unary '%s' requires an operand of type %s but was given type %s.
+                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Unary '" + node->nodeAttributes.name + "' requires an operand of type " + ConvertParmToString(leftExpected) + " but was given type " + ConvertParmToString(leftSide) + ".");
                                 // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                             }
 
                             else if(node->nodeAttributes.name != "*" && (!leftArr && leftSide != ParmType::UNDEFINED))
                             {
-                                char uSizeof[] = "sizeof";
+                                // char uSizeof[] = "sizeof";
+                                //The operation '%s' only works with arrays.\n"
+                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "The operation '" + node->nodeAttributes.name + "' only works with arrays.");
                                 // printError(8, t->m_lineNumber, 0, uSizeof, NULL, NULL, 0);
                             } 
 
@@ -1059,12 +1066,15 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                     if(node->nodeAttributes.name != "-")
                                     {
-                                        char uMinus[] = "chsign";
+                                        // char uMinus[] = "chsign";
+                                        //The operation '%s' does not work with arrays.
+                                        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "The operation '" + node->nodeAttributes.name + "' does not work with arrays.");
                                         // printError(7, t->m_lineNumber, 0, uMinus, NULL, NULL, 0);
                                     }
                                     else
                                     {
-
+                                        //The operation '%s' does not work with arrays.
+                                        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "The operation '" + node->nodeAttributes.name + "' does not work with arrays.");
                                         // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                     }
                                 }
