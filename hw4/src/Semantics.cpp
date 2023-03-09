@@ -1381,24 +1381,30 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                                 }
                                             }
 
-                                            if(node->child[0] != NULL)
+                                            if(node->m_childernNodes[0] != nullptr)
                                             {
-                                                check(t->child[0], nErrors, nWarnings);
-                                                if(node->child[0]->expType == Void && !(node->child[0]->nodekind == ExpK && t->child[0]->nodeSubType.exp == CallK)){
+                                                analyze(node->m_childernNodes[0], nErrors, nWarnings);
 
+                                                if(node->m_childernNodes[0]->m_parmType == ParmType::VOID && !(node->m_childernNodes[0]->m_nodeType == NodeType::EXPRESSION && node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::CALL))
+                                                {
+                                                    //do nothing and break out of logic block
                                                     break;
                                                 }
-                                                if(!node->isArray){
-
+                                                if(!node->m_isArray)
+                                                {
+                                                    //do nothing and break out of logic block
                                                     break;
                                                 }
-                                                else{
+                                                else
+                                                {
 
-                                                    if(node->child[0]->expType != Integer){
+                                                    if(node->m_childernNodes[0]->m_parmType != ParmType::INTEGER)
+                                                    {
                                                         // printError(14, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->child[0]->expType), NULL, 0);
                                                     }
                             
-                                                    if(node->child[0]->isArray && node->child[0]->child[0] == NULL){
+                                                    if(node->m_childernNodes[0]->m_isArray && node->m_childernNodes[0]->m_childernNodes[0] == nullptr)
+                                                    {
                                                         // printError(13, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0);
                                                     }
                                                 }
@@ -1410,65 +1416,79 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
         case ExpressionType::CALL:
                             {
                                 int paramCount = 1;
-                                TreeNode* funcFound;
+                                Node* funcFound;
 
-                                if(node->nodeSubType.exp == CallK){
-                                    funcFound = (TreeNode*)symbolTable.lookup(node->nodeAttributes.name);
-                                    if(funcFound == NULL){
-                                        // printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
-                                            node->declErr = true; 
-                                    }
-                                    else{
+                                if(node->nodeSubType.expression == ExpressionType::CALL)
+                                {
+                                    funcFound = (Node* )symbolTable.lookup(node->nodeAttributes.name);
                                     
+                                    if(funcFound == nullptr)
+                                    {
+                                        // printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
+                                        node->m_isDeclError = true; 
+                                    }
+                                    else
+                                    {
+                                        //do nothing
                                     }
                                 }
 
-                                for(int i = 0; i < MAXCHILDREN; i++){
-                                    check(node->child[i], nErrors, nWarnings);
-                                    }
+                                for(int i = 0; i < MAXCHILDREN; i++)
+                                {
+                                    analyze(node->m_childernNodes[i], nErrors, nWarnings);
+                                }
 
-                                if(funcFound != NULL){
-                                    node->expType = funcFound->expType;
-                                    node->isArray = funcFound->isArray;
-                                    node->isGlobal = funcFound->isGlobal;
-                                    node->isStatic = funcFound->isStatic;
-                                    funcFound->wasUsed = true;
+                                if(funcFound != nullptr)
+                                {
+                                    node->m_parmType = funcFound->m_parmType;
+                                    node->m_isArray = funcFound->m_isArray;
+                                    node->m_isGlobal = funcFound->m_isGlobal;
+                                    node->m_isStatic = funcFound->m_isStatic;
+                                    funcFound->m_isUsed = true;
 
 
-                                    if(funcFound->nodeSubType.decl != FuncK){
+                                    if(funcFound->nodeSubType.declaration != DeclarationType::FUNCTION)
+                                    {
                                         // printError(11, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                     }
                                     
 
-                                    else if(range){
+                                    else if(range)
+                                    {
 
                                         if(inFor){
 
-                                            if(node->expType != Integer)
+                                            if(node->m_parmType != ParmType::INTEGER)
                                             {
 
-                                                if(!strcmp(t->nodeAttributes.name, "main")){
+                                                if(node->nodeAttributes.name != "main")
+                                                {
                                                     // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);                               
                                                 }
-                                                else{
-                                                    char intExpect[] = "int";
+                                                else
+                                                {
+                                                    // char intExpect[] = "int";
                                                     // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
                                                 }
                                             }
                                         }
                                     }
 
-                                    else{
+                                    else
+                                    {
 
-                                        if(funcFound->child[0] != NULL && node->child[0] != NULL){
-                                        parameterErrors(funcFound, t, funcFound->child[0], t->child[0], paramCount);
+                                        if(funcFound->m_childernNodes[0] != nullptr && node->m_childernNodes[0] != nullptr)
+                                        {
+                                            parameterErrors(funcFound, node, funcFound->m_childernNodes[0], node->m_childernNodes[0], paramCount);
                                         }
 
-                                        else if(funcFound->child[0] == NULL && node->child[0] != NULL){
+                                        else if(funcFound->m_childernNodes[0] == nullptr && node->m_childernNodes[0] != nullptr)
+                                        {
                                             // printError(38, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
                                         }
 
-                                        else if(funcFound->child[0] != NULL && t->child[0] == NULL){
+                                        else if(funcFound->m_childernNodes[0] != nullptr && node->m_childernNodes[0] == nullptr)
+                                        {
                                             // printError(37, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
                                         }
                                     }
