@@ -33,7 +33,7 @@ int loopDepth = 1;
 bool inFor = false;
 bool sizeOfArrayFlg = false;
 int rangePos = 0;
-int returnlineno;
+int returnm_lineNumber;
 int functionLine;
 
 char *functionName;
@@ -66,145 +66,171 @@ void analyze(Node* node, int& nErrors, int& nWarnings)
                     }
                     break;
 
-        case StmtK:
-            checkStmt(t, nErrors, nWarnings);
-            break;
+        case STATEMENT:
+                    {
+                        analyzeStmt(node, nErrors, nWarnings);
+                    }
+                    break;
 
-        case ExpK:
-            checkExp(t, nErrors, nWarnings);
-            break;
+        case EXPRESSION:
+                    {
+                        analyzeExp(node, nErrors, nWarnings);
+                    } 
+                    break;
     }
 
-    if(t->sibling != NULL){
-        check(t->sibling, nErrors, nWarnings);
+    if(node->m_siblingNode != nullptr)
+    {
+        check(node->m_siblingNode, nErrors, nWarnings);
     }
 }
 
 //function analizes semantics first by checking for keyword "main"
-void semanticAnalysis(TreeNode *t, int& errors, int& warnings){
+void semanticAnalysis(Node* node, int& errors, int& warnings)
+{
 
-    check(t, nErrors, nWarnings);
+    analyze(node, nErrors, nWarnings);
 
-    symbolTable.applyToAll(Warninit);
-    symbolTable.applyToAllGlobal(Warninit);
+    symbolTable.applyToAll(analyzeWarnings);
+    symbolTable.applyToAllGlobal(analyzeWarnings);
 
  
-    TreeNode *mainCheck = (TreeNode*)symbolTable.lookup("main");
-    if(mainCheck == NULL){
-        printError(16, 0, 0, NULL, NULL, NULL, 0);
+    Node* mainCheck = (Node*)symbolTable.lookup("main");
+    
+    if(mainCheck == nullptr)
+    {
+        EmitDiagnostics::Error::emitLinkerError("A function named 'main' with no parameters must be defined.");
+        //printError(16, 0, 0, NULL, NULL, NULL, 0);
     }
-    else if(mainCheck != NULL){
-        if(mainCheck->nodekind == DeclK && mainCheck->subkind.decl != FuncK){
-
-                printError(16, 0, 0, NULL, NULL, NULL, 0);
+    else if(mainCheck != nullptr)
+    {
+        if(mainCheck->m_nodeType == NodeType::DECLARATION && mainCheck->nodeSubType.declaration != DeclarationType::FUNCTION)
+        {
+            EmitDiagnostics::Error::emitLinkerError("A function named 'main' with no parameters must be defined.");
+            //printError(16, 0, 0, NULL, NULL, NULL, 0);
         }
-        else if(mainCheck->child[0] != NULL && mainCheck->child[0]->subkind.decl == ParamK){
-            printError(16, 0, 0, NULL, NULL, NULL, 0);
+        else if(mainCheck->m_childernNodes[0] != nullptr && mainCheck->m_childernNodes[0]->nodeSubType.declaration == DeclarationType::PARAMETER)
+        {
+            EmitDiagnostics::Error::emitLinkerError("A function named 'main' with no parameters must be defined.");
+            //printError(16, 0, 0, NULL, NULL, NULL, 0);
         }
     }
 
-    PrintErrorss();
-    errors = nErrors;
-    warnings = nWarnings;
+    // PrintErrorss();
+    // errors = nErrors;
+    // warnings = nWarnings;
 }
 
 //function checks to see if warnings were used.
-void Warninit(std::string symbol, void* t){
+void analyzeWarnings(std::string symbol, void* t)
+{
 
-    TreeNode* checkUsed;
+    Node* node;
 
-    checkUsed = (TreeNode *)symbolTable.lookup(symbol.c_str());     
+    node = (Node *)symbolTable.lookup(symbol.c_str());     
 
-    if(!checkUsed->wasUsed && !checkUsed->isGlobal){
+    if(!node->m_isUsed && !node->m_isGlobal)
+    {
 
-        if(checkUsed->subkind.decl == ParamK && !checkUsed->wasUsedErr && strcmp(checkUsed->attr.name, "main")){
-            checkUsed->wasUsedErr = true;
-            printError(21, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
+        if(node->nodeSubType.declaration == DeclarationType::PARAMETER && !node->m_isUsedError && node->nodeAttributes.name == "main")
+        {
+            node->m_isUsedError = true;
+            EmitDiagnostics::Warning::emitGenericWarnings(node->m_lineNumber,"The parameter '" + node->nodeAttributes.name + "' seems not to be used.");
+            //printError(21, node->m_lineNumber, 0, node->nodeAttributes.name, NULL, NULL, 0);
         }
 
-        else if(checkUsed->subkind.decl == FuncK && !checkUsed->wasUsedErr && strcmp(checkUsed->attr.name, "main")){
-            checkUsed->wasUsedErr = true;
-            printError(20, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
+        else if(node->nodeSubType.declaration == DeclarationType::FUNCTION && !node->m_isUsedError && node->nodeAttributes.name == "main")
+        {
+            node->m_isUsedError = true;
+            EmitDiagnostics::Warning::emitGenericWarnings(node->m_lineNumber,"The function '" + node->nodeAttributes.name + "' seems not to be used.");
+            // printError(20, node->m_lineNumber, 0, node->nodeAttributes.name, NULL, NULL, 0);
         }
 
-        else{
-            checkUsed->wasUsedErr = true;
-            printError(17, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
+        else
+        {
+            node->m_isUsedError = true;
+            EmitDiagnostics::Warning::emitGenericWarnings(node->m_lineNumber,"The variable '" + node->nodeAttributes.name + "' seems not to be used.");
+            // printError(17, node->m_lineNumber, 0, node->nodeAttributes.name, NULL, NULL, 0);
         }
     }
 
-    else if(!checkUsed->wasUsed && checkUsed->isGlobal && checkUsed->subkind.decl == FuncK){
+    else if(!node->m_isUsed && node->m_isGlobal && node->nodeSubType.declaration == DeclarationType::FUNCTION)
+    {
         
-        if(strcmp(checkUsed->attr.name, "main") && !checkUsed->wasUsedErr){
-            checkUsed->wasUsedErr = true;
-
-            printError(20, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
+        if(node->nodeAttributes.name == "main" && !node->m_isUsedError)
+        {
+            node->m_isUsedError = true;
+            EmitDiagnostics::Warning::emitGenericWarnings(node->m_lineNumber,"The function '" + node->nodeAttributes.name + "' seems not to be used.");
+            // printError(20, node->m_lineNumber, 0, node->nodeAttributes.name, NULL, NULL, 0);
         }
     }
 
-    else if(!checkUsed->wasUsed && checkUsed->isGlobal && !checkUsed->wasUsedErr){
-         checkUsed->wasUsedErr = true;
-         printError(17, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
+    else if(!node->m_isUsed && node->m_isGlobal && !node->m_isUsedError)
+    {
+        node->m_isUsedError = true;
+        EmitDiagnostics::Warning::emitGenericWarnings(node->m_lineNumber,"The variable '" + node->nodeAttributes.name + "' seems not to be used.");
+        // printError(17, node->m_lineNumber, 0, node->nodeAttributes.name, NULL, NULL, 0);
     }
 }
 
 //function prints errors for arrays.
-void errorsArray(TreeNode *t)
+void printArrayErrors(Node* node)
 {
 
-   TreeNode *leftNode = NULL;
-   TreeNode *rightNode = NULL;
-
-   leftNode = t->child[0];
-   rightNode = t->child[1];
+   Node* leftNode = node->m_childernNodes[0];
+   Node* rightNode = node->m_childernNodes[1];
 
 
-   if(t->child[0]->subkind.exp == IdK)
-   {
-
-      leftNode = (TreeNode*)symbolTable.lookup(t->child[0]->attr.name);
-      
-      if(leftNode != NULL)
-      {
-         t->child[0]->expType = leftNode->expType;
-         t->expType = leftNode->expType;
-      }
-
-
-      if(leftNode == NULL || !leftNode->isArray)
-      {
-         printError(15, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
-      }
-   }
-   else
-   {
-      printError(15, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
-   }
-   if(t->child[1] != NULL)
-   {
-      if(t->child[1]->expType != Integer && t->child[1]->expType != UndefinedType)
-      {
-
-          if(t->child[1]->subkind.decl == ParamK && t->child[1]->subkind.exp != CallK && t->child[1]->expType == Void){
+   if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+    {
+        leftNode = (Node* )symbolTable.lookup(node->m_childernNodes[0]->nodeAttributes.name);
         
-          }
-          else{
-            printError(14, t->lineno, 0, t->child[0]->attr.name, ExpTypetwo(t->child[1]->expType), NULL, 0);
-          }
-          
-      }
-   }
-   if(t->child[1] != NULL && t->child[1]->subkind.exp == IdK)
+        if(leftNode != nullptr)
+        {
+            node->m_childernNodes[0]->m_parmType = leftNode->m_parmType;
+            node->m_parmType = leftNode->m_parmType;
+        }
+
+
+        if(leftNode == nullptr || !leftNode->m_isArray)
+        {
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Cannot index nonarray '" + node->m_childernNodes[0]->nodeAttributes.name + "'."); 
+            // printError(15, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0);
+        }
+    }
+   else
+    {
+        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Cannot index nonarray '" + node->m_childernNodes[0]->nodeAttributes.name + "'."); 
+        // printError(15, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0);
+    }
+    if(node->m_childernNodes[1] != nullptr)
+    {
+        if(node->m_childernNodes[1]->m_parmType != ParmType::INTEGER && node->m_childernNodes[1]->m_parmType != ParmType::UNDEFINED)
+        {
+
+            if(node->m_childernNodes[1]->nodeSubType.declaration == DeclarationType::PARAMETER && node->m_childernNodes[1]->nodeSubType.expression != ExpressionType::CALL && node->m_childernNodes[1]->m_parmType == ParmType::VOID)
+            {
+                //do nothing
+            }
+            else
+            {
+                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Array '" + node->m_childernNodes[0]->nodeAttributes.name + "' should be indexed by type int but got type '" + ConvertParmToString(node->m_childernNodes[1]->m_parmType) + "'.");
+                // printError(14, t->m_lineNumber, 0, t->m_childernNodes[0]->nodeAttributes.name, ExpTypetwo(t->child[1]->expType), NULL, 0);
+            }
+            
+        }
+    }
+   if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::IDENTIFIER)
    {
-      
-      if(rightNode != NULL && rightNode->isArray == true)
-      {
-         printError(13, t->lineno, 0, rightNode->attr.name, NULL, NULL, 0); //
-      }
-      if(rightNode != NULL)
-      {
-         t->child[1]->expType = rightNode->expType;
-      }
+        if(rightNode != nullptr && rightNode->m_isArray == true)
+        {
+            // printError(13, t->m_lineNumber, 0, rightNode->nodeAttributes.name, NULL, NULL, 0);
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Array index is the unindexed array '" + rightNode->nodeAttributes.name + "'.");
+        }
+        if(rightNode != nullptr)
+        {
+            node->m_childernNodes[1]->m_parmType = rightNode->m_parmType;
+        }
    }
 
 }
@@ -220,12 +246,12 @@ void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
     }
 
     TreeNode *declared;
-    if(t->subkind.decl != VarK && !symbolTable.insert(t->attr.name, t)){
-        declared = (TreeNode*)symbolTable.lookup(t->attr.name);
-        printError(0, t->lineno, declared->lineno, t->attr.name, NULL, NULL, 0);
+    if(t->nodeSubType.decl != VarK && !symbolTable.insert(t->nodeAttributes.name, t)){
+        declared = (TreeNode*)symbolTable.lookup(t->nodeAttributes.name);
+        printError(0, t->m_lineNumber, declared->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
     }
 
-    switch(t->subkind.decl){
+    switch(t->nodeSubType.decl){
         
         case VarK:
 
@@ -237,30 +263,30 @@ void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
             }          
 
            TreeNode* exists;
-           if(!symbolTable.insert(t->attr.name, t)){
-               exists = (TreeNode*)symbolTable.lookup(t->attr.name);
-               printError(0, t->lineno, exists->lineno, t->attr.name, NULL, NULL, 0);
+           if(!symbolTable.insert(t->nodeAttributes.name, t)){
+               exists = (TreeNode*)symbolTable.lookup(t->nodeAttributes.name);
+               printError(0, t->m_lineNumber, exists->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
            }
 
            if(t->sibling != NULL){
 
-                if(t->isStatic && t->lineno == t->sibling->lineno){
+                if(t->isStatic && t->m_lineNumber == t->sibling->m_lineNumber){
                     t->sibling->isStatic = t->isStatic;
                 }
             }
 
            if(t->child[0] != NULL){
 
-               if(t->child[0]->subkind.exp == IdK || t->child[0]->subkind.exp == CallK){
-                   printError(32, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+               if(t->child[0]->nodeSubType.exp == IdK || t->child[0]->nodeSubType.exp == CallK){
+                   printError(32, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                }
 
-               else if(t->child[0]->subkind.exp == OpK){
+               else if(t->child[0]->nodeSubType.exp == OpK){
 
                    if(t->child[0] != NULL && t->child[0]->child[1] == NULL){
 
-                       if(strcmp(t->child[0]->attr.name, "-") && !t->isArray){
-                        printError(32, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                       if(strcmp(t->child[0]->nodeAttributes.name, "-") && !t->isArray){
+                        printError(32, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                        }
                    }
 
@@ -277,24 +303,24 @@ void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
 
                     else if(t->expType == Integer && t->child[0]->expType == CharInt){
                         char charInsert[] = "char";
-                        printError(33, t->lineno, 0, t->attr.name, ExpTypetwo(t->expType), charInsert, 0);
+                        printError(33, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->expType), charInsert, 0);
                     }
 
-                    else if(t->child[0]->expType == Void && t->child[0]->subkind.exp == IdK){
+                    else if(t->child[0]->expType == Void && t->child[0]->nodeSubType.exp == IdK){
                        //do nothing 
                     }
 
                     else{
-                        printError(33, t->lineno, 0, t->attr.name, ExpTypetwo(t->expType), ExpTypetwo(t->child[0]->expType), 0);
+                        printError(33, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->expType), ExpTypetwo(t->child[0]->expType), 0);
                     }
                }
 
                if(t->isArray && !t->child[0]->isArray){
-                   printError(35, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                   printError(35, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                }
 
                if(!t->isArray && t->child[0]->isArray){
-                   printError(34, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                   printError(34, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                }
 
                t->isInit = true;
@@ -311,19 +337,19 @@ void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
             curFunc = t;
             Flag = false;
 
-            symbolTable.enter(t->attr.name);
+            symbolTable.enter(t->nodeAttributes.name);
 
             scopeDepth = false;
             functionReturnType = t->expType;
-            functionName = t->attr.name;
-            functionLine = t->lineno;
+            functionName = t->nodeAttributes.name;
+            functionLine = t->m_lineNumber;
             
             for(int i = 0; i < MAXCHILDREN; i++){
                 check(t->child[i], nErrors, nWarnings);
             }
 
             if(Flag == false && t->expType != Void){
-                printError(19, t->lineno, 0, ExpTypetwo(functionReturnType), t->attr.name, NULL, 0);
+                printError(19, t->m_lineNumber, 0, ExpTypetwo(functionReturnType), t->nodeAttributes.name, NULL, 0);
             }
 
             symbolTable.applyToAll(Warninit);
@@ -349,10 +375,10 @@ void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
 //Function checks statement nodes
 void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
 
-    switch(t->subkind.stmt){
+    switch(t->nodeSubType.stmt){
         case IfK:
             loop = true;
-            symbolTable.enter(t->attr.name);
+            symbolTable.enter(t->nodeAttributes.name);
             loopDepth++;
             scopeDepth = false;
             for(int i = 0; i < MAXCHILDREN; i++){
@@ -362,14 +388,14 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
             }
 
 
-            if(t->child[0]->expType != Boolean && t->child[0]->subkind.exp != OpK && !t->child[0]->declErr){
+            if(t->child[0]->expType != Boolean && t->child[0]->nodeSubType.exp != OpK && !t->child[0]->declErr){
                 char ifStmt[] = "if";
-                printError(27, t->lineno, 0, ifStmt, ExpTypetwo(t->child[0]->expType), NULL, 0 );
+                printError(27, t->m_lineNumber, 0, ifStmt, ExpTypetwo(t->child[0]->expType), NULL, 0 );
             }
 
             if(t->child[0]->isArray){
                 char ifStmt[] = "if";
-                printError(23, t->lineno, 0, ifStmt, NULL, NULL, 0);
+                printError(23, t->m_lineNumber, 0, ifStmt, NULL, NULL, 0);
             }
             
             loopDepth--;
@@ -387,7 +413,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
             loop = true;
             inFor = true;
             loopDepth++;
-            symbolTable.enter(t->attr.name);
+            symbolTable.enter(t->nodeAttributes.name);
             scopeDepth = false;
             
             for(int i = 0; i < MAXCHILDREN; i++){
@@ -414,7 +440,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
 
         case WhileK:
             loop = true;
-            symbolTable.enter(t->attr.name);
+            symbolTable.enter(t->nodeAttributes.name);
             loopDepth ++;
             scopeDepth = false;
 
@@ -423,14 +449,14 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
                 check(t->child[i], nErrors, nWarnings);
 
                 if(i < 1){
-                    if(t->child[0]->expType != Boolean && t->child[0]->subkind.exp != OpK && !t->child[0]->declErr){
+                    if(t->child[0]->expType != Boolean && t->child[0]->nodeSubType.exp != OpK && !t->child[0]->declErr){
                         char whileStmt[] = "while";
-                        printError(27, t->lineno, 0, whileStmt, ExpTypetwo(t->child[0]->expType), NULL, 0 );
+                        printError(27, t->m_lineNumber, 0, whileStmt, ExpTypetwo(t->child[0]->expType), NULL, 0 );
                     }
 
                     if(t->child[0]->isArray){
                         char whileStmt[] = "while";
-                        printError(23, t->lineno, 0, whileStmt, NULL, NULL, 0);
+                        printError(23, t->m_lineNumber, 0, whileStmt, NULL, NULL, 0);
                     }
             }
                 }
@@ -450,7 +476,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
         case ReturnK:
 
                 Flag = true;
-                returnlineno = t->lineno;
+                returnm_lineNumber = t->m_lineNumber;
 
             check(t->child[0], nErrors, nWarnings);
 
@@ -463,33 +489,33 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
                 }
 
                 else if(t->child[0]->isArray){
-                    printError(10, t->lineno, 0, NULL, NULL, NULL, 0);
+                    printError(10, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
                 }
 
                 else if(t->child[0]->child[0] != NULL){
                     if(t->child[0]->child[0]->isArray){
 
-                        if(strcmp(t->child[0]->attr.name, "[")){
-                            printError(10, t->lineno, 0, NULL, NULL, NULL, 0);
+                        if(strcmp(t->child[0]->nodeAttributes.name, "[")){
+                            printError(10, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
                         }
                     }
                 }
             
                 if(functionReturnType == Void){
-                    printError(29, returnlineno, functionLine, functionName, NULL, NULL, 0);
+                    printError(29, returnm_lineNumber, functionLine, functionName, NULL, NULL, 0);
                 }
 
                 else if(functionReturnType != actualReturnType && actualReturnType != Void && functionReturnType != Void){
 
                     if(!(functionReturnType == Char && actualReturnType == CharInt)){
-                        printError(31, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
+                        printError(31, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
                     }
                 }
 
-                else if(functionReturnType != actualReturnType && functionReturnType != Void && t->child[0]->subkind.exp == CallK){
+                else if(functionReturnType != actualReturnType && functionReturnType != Void && t->child[0]->nodeSubType.exp == CallK){
                     
                     if(!(functionReturnType == Char && actualReturnType == CharInt)){
-                        printError(31, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
+                        printError(31, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
                     }
                 }
             }
@@ -497,7 +523,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
             else if(t->child[0] == NULL){
 
                 if(functionReturnType != Void){
-                    printError(30, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), NULL, 0);
+                    printError(30, returnm_lineNumber, functionLine, functionName, ExpTypetwo(functionReturnType), NULL, 0);
                 }
             }
 
@@ -506,7 +532,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
         case BreakK:
 
             if(!loop){
-                printError(22, t->lineno, 0, NULL, NULL, NULL, 0);
+                printError(22, t->m_lineNumber, 0, NULL, NULL, NULL, 0);
             }
             break;
 
@@ -524,10 +550,10 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
                         }
 
                         else if(rangePos == 1){
-                            if(t->child[0]->subkind.exp == IdK){
-                                TreeNode* valFound = (TreeNode*)symbolTable.lookup(t->child[0]->attr.name);
+                            if(t->child[0]->nodeSubType.exp == IdK){
+                                TreeNode* valFound = (TreeNode*)symbolTable.lookup(t->child[0]->nodeAttributes.name);
                                 if(valFound == NULL){
-                                    printError(1, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0); 
+                                    printError(1, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0); 
                                     t->declErr = true;
                                 }
                                 else{
@@ -589,15 +615,15 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
     TreeNode* leftNode = NULL;
     TreeNode* rightNode = NULL;
 
-    switch(t->subkind.exp) {
+    switch(t->nodeSubType.exp) {
         case AssignK:
         case OpK:
 
-            if(!strcmp(t->attr.name, "<=")){
+            if(!strcmp(t->nodeAttributes.name, "<=")){
 
                 if(t->child[0] != NULL){
                     
-                    if(t->child[0]->child[0]!=NULL && !strcmp(t->child[0]->attr.name, "[")){
+                    if(t->child[0]->child[0]!=NULL && !strcmp(t->child[0]->nodeAttributes.name, "[")){
                         t->child[0]->child[0]->isInit = true;
 
                         if(t->child[0]->child[1] != NULL){
@@ -605,7 +631,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
 
                             if(t->child[0]->child[1]->child[0] != NULL && t->child[0]->child[1]->child[1] != NULL){
 
-                            if(t->child[0]->child[1]->subkind.exp == OpK){
+                            if(t->child[0]->child[1]->nodeSubType.exp == OpK){
                                 t->child[0]->child[1]->child[0]->isInit = true;
                                 t->child[0]->child[1]->child[1]->isInit = true;
                             }
@@ -620,18 +646,18 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
 
                     else if(t->child[1] !=NULL && t->child[1]->expType == Void){
 
-                        if(!strcmp(t->child[1]->attr.name, "<=")){
+                        if(!strcmp(t->child[1]->nodeAttributes.name, "<=")){
                             t->child[0]->isInit = true;
                         }
 
-                        if(t->child[1]->subkind.exp == CallK){
+                        if(t->child[1]->nodeSubType.exp == CallK){
                             t->child[0]->isInit = true;
                         }
 
-                        else if(!strcmp(t->child[1]->attr.name, "[")){
+                        else if(!strcmp(t->child[1]->nodeAttributes.name, "[")){
 
-                            char* lhs = strdup(t->child[0]->attr.name);
-                            char* rhs = strdup(t->child[1]->child[0]->attr.name);
+                            char* lhs = strdup(t->child[0]->nodeAttributes.name);
+                            char* rhs = strdup(t->child[1]->child[0]->nodeAttributes.name);
 
                             if(strcmp(lhs, rhs)){
                                 t->child[0]->isInit = true;
@@ -640,19 +666,19 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                         }
                         else if(t->child[0]!=NULL && t->child[1]!=NULL){
     
-                            if(t->child[0]->subkind.exp == IdK && !t->child[0]->isInit){
+                            if(t->child[0]->nodeSubType.exp == IdK && !t->child[0]->isInit){
         
-                                if(t->child[1]->subkind.exp == IdK){
+                                if(t->child[1]->nodeSubType.exp == IdK){
 
-                                    char* lhs = strdup(t->child[0]->attr.name);
-                                    char* rhs = strdup(t->child[1]->attr.name);
+                                    char* lhs = strdup(t->child[0]->nodeAttributes.name);
+                                    char* rhs = strdup(t->child[1]->nodeAttributes.name);
 
                                     if(strcmp(lhs, rhs)){
                                         t->child[0]->isInit = true;
                                     }
                                 }
 
-                                else if(t->child[1]->subkind.exp == AssignK){
+                                else if(t->child[1]->nodeSubType.exp == AssignK){
                                     checkNestAssK(t->child[1]);
                                     t->child[0]->isInit = true;
                                 }
@@ -668,10 +694,10 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
 
                         if(t->child[1] != NULL && t->child[1]->child[0] != NULL){
     
-                            if(t->child[1]->child[0]->subkind.exp == IdK){
+                            if(t->child[1]->child[0]->nodeSubType.exp == IdK){
 
-                                char *c0 = strdup(t->child[0]->attr.name);
-                                char *c10 = strdup(t->child[1]->child[0]->attr.name);
+                                char *c0 = strdup(t->child[0]->nodeAttributes.name);
+                                char *c10 = strdup(t->child[1]->child[0]->nodeAttributes.name);
 
                                 if(strcmp(c0, c10)){
                                     t->child[0]->isInit = true;
@@ -694,7 +720,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
 
             }
 
-            if(strcmp(t->attr.name, "<=")){
+            if(strcmp(t->nodeAttributes.name, "<=")){
                 if(t->child[0] != NULL){
                     t->child[0]->wasUsed = true;
                     
@@ -704,7 +730,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                 }
             }
 
-            if(!strcmp(t->attr.name, "*")){
+            if(!strcmp(t->nodeAttributes.name, "*")){
                 sizeOfArrayFlg = true;
             }
 
@@ -724,10 +750,10 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                     leftIndx = true; 
                 }
                 if(leftNode->nodekind == ExpK){
-                    if(leftNode->subkind.exp == CallK){
+                    if(leftNode->nodeSubType.exp == CallK){
                         leftArr = false;
                     }
-                    if(leftNode->subkind.exp == ConstantK){
+                    if(leftNode->nodeSubType.exp == ConstantK){
                         leftStr = true;
                     }
                 }
@@ -744,22 +770,22 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                     rightIndx = true; 
                 }
                 if(rightNode->nodekind == ExpK){
-                    if(rightNode->subkind.exp == CallK){
+                    if(rightNode->nodeSubType.exp == CallK){
                         rightArr = false;
                     }
-                    if(rightNode->subkind.exp == ConstantK){
+                    if(rightNode->nodeSubType.exp == ConstantK){
                         rightStr = true;
                     }
                 }
                 isBinary = true;
             }
 
-            getExpTypes(t->attr.name, isBinary, unaryErrors, leftExpected, rightExpected, returnType);
+            getExpTypes(t->nodeAttributes.name, isBinary, unaryErrors, leftExpected, rightExpected, returnType);
 
-            if(leftSide == Void && !(leftNode->nodekind == ExpK && leftNode->subkind.exp == CallK)){
+            if(leftSide == Void && !(leftNode->nodekind == ExpK && leftNode->nodeSubType.exp == CallK)){
                 leftErr = true;
             }
-            if(rightSide == Void && !(rightNode->nodekind == ExpK && rightNode->subkind.exp == CallK)){
+            if(rightSide == Void && !(rightNode->nodekind == ExpK && rightNode->nodeSubType.exp == CallK)){
                 rightErr = true;
             }
 
@@ -767,35 +793,35 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
  
                 if(leftSide != leftExpected && leftExpected != UndefinedType){
 
-                    if(!strcmp(t->attr.name, "-")){
+                    if(!strcmp(t->nodeAttributes.name, "-")){
                         char uMinus[] = "chsign";
-                        printError(9, t->lineno, 0, uMinus, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                        printError(9, t->m_lineNumber, 0, uMinus, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                     }
 
                     else{
-                        printError(9, t->lineno, 0, t->attr.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                        printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                     }
                 }
 
-                else if(!strcmp(t->attr.name, "not") && leftSide != leftExpected){
+                else if(!strcmp(t->nodeAttributes.name, "not") && leftSide != leftExpected){
 
-                    printError(9, t->lineno, 0, t->attr.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                    printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                 }
 
-                else if(!strcmp(t->attr.name, "*") && (!leftArr && leftSide != UndefinedType)){
+                else if(!strcmp(t->nodeAttributes.name, "*") && (!leftArr && leftSide != UndefinedType)){
                     char uSizeof[] = "sizeof";
-                    printError(8, t->lineno, 0, uSizeof, NULL, NULL, 0);
+                    printError(8, t->m_lineNumber, 0, uSizeof, NULL, NULL, 0);
                 } 
 
                 if(leftArr){
-                    if(strcmp(t->attr.name, "*") != 0){
+                    if(strcmp(t->nodeAttributes.name, "*") != 0){
 
-                        if(!strcmp(t->attr.name, "-")){
+                        if(!strcmp(t->nodeAttributes.name, "-")){
                             char uMinus[] = "chsign";
-                            printError(7, t->lineno, 0, uMinus, NULL, NULL, 0);
+                            printError(7, t->m_lineNumber, 0, uMinus, NULL, NULL, 0);
                         }
                         else{
-                            printError(7, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                            printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                         }
                     }
                 }
@@ -803,7 +829,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                 else{
                     if(!unaryErrors){
 
-                        if(!strcmp(t->attr.name, "[")){
+                        if(!strcmp(t->nodeAttributes.name, "[")){
                             errorsArray(t);
                         }
                 
@@ -811,29 +837,29 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
 
                             if(!strcmp(ExpTypetwo(leftSide), "int") && !strcmp(ExpTypetwo(rightSide), "CharInt")){
                                 char diffCharInt[] = "char";
-                                 printError(2, t->lineno, 0, t->attr.name, ExpTypetwo(leftSide), diffCharInt, 0);
+                                 printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), diffCharInt, 0);
                             }
                             else if(!strcmp(ExpTypetwo(leftSide), "char") && !strcmp(ExpTypetwo(rightSide), "CharInt")){
                                 ; //do nothing
                             }
   
-                            else if(!strcmp(t->attr.name, "<=") && t->child[1]->subkind.exp == OpK){
+                            else if(!strcmp(t->nodeAttributes.name, "<=") && t->child[1]->nodeSubType.exp == OpK){
  
-                                getReturnType(t->child[1]->attr.name, isBinary, childReturnType);
+                                getReturnType(t->child[1]->nodeAttributes.name, isBinary, childReturnType);
                                
                                 if(childReturnType != t->child[0]->expType){
-                                    printError(2, t->lineno, 0, t->attr.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
+                                    printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
                                 }
 
-                                else if(t->child[1]->child[1] != NULL && t->child[1]->child[1]->subkind.exp == CallK){
-                                    printError(2, t->lineno, 0, t->attr.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
+                                else if(t->child[1]->child[1] != NULL && t->child[1]->child[1]->nodeSubType.exp == CallK){
+                                    printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
                                 }
                             }
                             else{
 
-                                if(t->child[0]->subkind.exp != CallK){
+                                if(t->child[0]->nodeSubType.exp != CallK){
 
-                                 printError(2, t->lineno, 0, t->attr.name, ExpTypetwo(leftSide), ExpTypetwo(rightSide), 0);
+                                 printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(rightSide), 0);
                                 }
                                 else{}
                             }
@@ -848,17 +874,17 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                             ;
                         }
 
-                        else if(leftSide == rightSide && leftNode->subkind.exp == CallK && rightNode->subkind.exp == CallK){
+                        else if(leftSide == rightSide && leftNode->nodeSubType.exp == CallK && rightNode->nodeSubType.exp == CallK){
 
-                             TreeNode* lhs = (TreeNode*)symbolTable.lookup(t->child[0]->attr.name);
-                             TreeNode* rhs = (TreeNode*)symbolTable.lookup(t->child[1]->attr.name);
+                             TreeNode* lhs = (TreeNode*)symbolTable.lookup(t->child[0]->nodeAttributes.name);
+                             TreeNode* rhs = (TreeNode*)symbolTable.lookup(t->child[1]->nodeAttributes.name);
 
                              if(lhs != NULL && rhs != NULL){
 
-                                 if(lhs->subkind.decl == FuncK && rhs->subkind.decl == FuncK && !lhs->isIO && !rhs->isIO){
+                                 if(lhs->nodeSubType.decl == FuncK && rhs->nodeSubType.decl == FuncK && !lhs->isIO && !rhs->isIO){
                                      if(t->child[0]->expType == Void && t->child[1]->expType == Void){
-                                     printError(3, t->lineno, 0, t->attr.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
-                                     printError(4, t->lineno, 0, t->attr.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                     printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                                     printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                      }
                                      
                                  }
@@ -868,16 +894,16 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                         else{
 
                             if(leftSide != leftExpected && !leftErr){
-                                printError(3, t->lineno, 0, t->attr.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                                printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                             }
 
                             if(rightSide != rightExpected && !rightErr && rightSide != UndefinedType){
 
-                                if(rightSide == Void && t->child[1]->subkind.exp == CallK && returnType != Boolean){
-                                    printError(4, t->lineno, 0, t->attr.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                if(rightSide == Void && t->child[1]->nodeSubType.exp == CallK && returnType != Boolean){
+                                    printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                 }
                                 else if(rightSide != Void){
-                                    printError(4, t->lineno, 0, t->attr.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                    printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                 }
                             }
                         }
@@ -885,36 +911,36 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
 
                     if(leftArr || rightArr){
 
-                        if(strcmp(t->attr.name, "<=") && leftExpected != UndefinedType){
-                            if(!strcmp(t->attr.name, "<") || !strcmp(t->attr.name, ">") || !strcmp(t->attr.name, "=") || !strcmp(t->attr.name, "!>") || !strcmp(t->attr.name, "!<") || !strcmp(t->attr.name, "><")){
+                        if(strcmp(t->nodeAttributes.name, "<=") && leftExpected != UndefinedType){
+                            if(!strcmp(t->nodeAttributes.name, "<") || !strcmp(t->nodeAttributes.name, ">") || !strcmp(t->nodeAttributes.name, "=") || !strcmp(t->nodeAttributes.name, "!>") || !strcmp(t->nodeAttributes.name, "!<") || !strcmp(t->nodeAttributes.name, "><")){
                          
                                  if(leftArr && !rightArr){
-                                printError(5, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
 
                                 else if(!leftArr && rightArr){
-                                printError(6, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
                             }
 
                             else{
-                            printError(7, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                            printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                             }
                         }
                         
                         else{
-                            if(!strcmp(t->attr.name, "[")){
+                            if(!strcmp(t->nodeAttributes.name, "[")){
                                 ;
                             }
 
                             else if((leftArr && !rightArr) || (!leftArr && rightArr)){
 
                                 if(leftArr && !rightArr){
-                                printError(5, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
 
                                 else if(!leftArr && rightArr){
-                                    printError(6, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                    printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
                             }
                         }
@@ -941,14 +967,14 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                     if(t->expType != Integer)
                     {
                         char intExpect[] = "int";
-                        printError(26, t->lineno, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                        printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
                     }
                    }
                }
             break;
 
         case IdK:
-            valFound = (TreeNode*)symbolTable.lookup(t->attr.name);
+            valFound = (TreeNode*)symbolTable.lookup(t->nodeAttributes.name);
 
             if(valFound == NULL){
 
@@ -957,7 +983,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                 }
 
                 else{
-                    printError(1, t->lineno, 0, t->attr.name, NULL, NULL, 0); 
+                    printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0); 
                         t->declErr = true;    
                 }           
             }
@@ -973,12 +999,12 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                     {
                         if(!sizeOfArrayFlg){
 
-                            if(!strcmp(t->attr.name, "main")){
-                                printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);  
+                            if(!strcmp(t->nodeAttributes.name, "main")){
+                                printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
                             }
                             else{
                                 char intExpect[] = "int";
-                                printError(26, t->lineno, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                                printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
                             }
                         }
 
@@ -992,7 +1018,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                                 if(!t->isInit){
                                     valFound->warningReported = true;
                                     valFound->wasUsed = true;
-                                    printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                    printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
                                 
                                 else{
@@ -1008,7 +1034,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                     }
 
                     if(valFound->isArray && !sizeOfArrayFlg && !t->isIndexed){
-                        printError(24, t->lineno, 0, NULL, NULL, NULL, rangePos);
+                        printError(24, t->m_lineNumber, 0, NULL, NULL, NULL, rangePos);
                     }
 
                     t->isIndexed = false;
@@ -1025,7 +1051,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                  if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
                      if(!t->isInit){
                         valFound->warningReported = true;
-                        printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                        printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                      }
                      else{
                          valFound->isInit = true;
@@ -1033,8 +1059,8 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                  }
                  }
 
-                if(valFound->subkind.decl == FuncK){
-                    printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                if(valFound->nodeSubType.decl == FuncK){
+                    printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                     valFound->wasUsed = true;
                     break;
                 }
@@ -1044,14 +1070,14 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                     t->isGlobal = valFound->isGlobal;
                     t->isStatic = valFound->isStatic;
 
-                    if(!range && valFound->subkind.decl != FuncK){
+                    if(!range && valFound->nodeSubType.decl != FuncK){
                     valFound->wasUsed = true;
                     }
                 }
 
                 if(t->child[0] != NULL){
                     check(t->child[0], nErrors, nWarnings);
-                    if(t->child[0]->expType == Void && !(t->child[0]->nodekind == ExpK && t->child[0]->subkind.exp == CallK)){
+                    if(t->child[0]->expType == Void && !(t->child[0]->nodekind == ExpK && t->child[0]->nodeSubType.exp == CallK)){
 
                         break;
                     }
@@ -1062,11 +1088,11 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                     else{
 
                         if(t->child[0]->expType != Integer){
-                            printError(14, t->lineno, 0, t->attr.name, ExpTypetwo(t->child[0]->expType), NULL, 0);
+                            printError(14, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->child[0]->expType), NULL, 0);
                         }
  
                         if(t->child[0]->isArray && t->child[0]->child[0] == NULL){
-                            printError(13, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
+                            printError(13, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0);
                         }
                     }
                 }
@@ -1077,10 +1103,10 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
             int paramCount = 1;
             TreeNode* funcFound;
 
-            if(t->subkind.exp == CallK){
-                funcFound = (TreeNode*)symbolTable.lookup(t->attr.name);
+            if(t->nodeSubType.exp == CallK){
+                funcFound = (TreeNode*)symbolTable.lookup(t->nodeAttributes.name);
                 if(funcFound == NULL){
-                    printError(1, t->lineno, 0, t->attr.name, NULL, NULL, 0);  
+                    printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
                         t->declErr = true; 
                 }
                 else{
@@ -1100,8 +1126,8 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                 funcFound->wasUsed = true;
 
 
-                if(funcFound->subkind.decl != FuncK){
-                    printError(11, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                if(funcFound->nodeSubType.decl != FuncK){
+                    printError(11, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                 }
                 
 
@@ -1112,12 +1138,12 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                         if(t->expType != Integer)
                         {
 
-                            if(!strcmp(t->attr.name, "main")){
-                                printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);                               
+                            if(!strcmp(t->nodeAttributes.name, "main")){
+                                printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);                               
                             }
                             else{
                                 char intExpect[] = "int";
-                                printError(26, t->lineno, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                                printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
                             }
                         }
                     }
@@ -1130,11 +1156,11 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                     }
 
                     else if(funcFound->child[0] == NULL && t->child[0] != NULL){
-                        printError(38, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
+                        printError(38, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
                     }
 
                     else if(funcFound->child[0] != NULL && t->child[0] == NULL){
-                        printError(37, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
+                        printError(37, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
                     }
                 }
             }
@@ -1346,18 +1372,18 @@ void analyzeNestedOperators(Node* node, Node* child)
 
         else if(child->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER || child->m_childernNodes[1]->nodeSubType.expression == ExpressionType::IDENTIFIER)
         {
-            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodeAttributes.name + "is not a constant expression.");
-            //printError(32, node->lineno, 0, node->nodeAttributes.name, nullptr, nullptr, 0);
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodenodeAttributesibutes.name + "is not a constant expression.");
+            //printError(32, node->m_lineNumber, 0, node->nodenodeAttributesibutes.name, nullptr, nullptr, 0);
         }
     }
 
     else if(child->m_childernNodes[0] != nullptr && child->m_childernNodes[1] == nullptr)
     {
   
-        if(child->nodeAttributes.name == "not")
+        if(child->nodenodeAttributesibutes.name == "not")
         {
-            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodeAttributes.name + "is not a constant expression.");
-            //printError(32, node->lineno, 0, node->nodeAttributes.name, nullptr, nullptr, 0);
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodenodeAttributesibutes.name + "is not a constant expression.");
+            //printError(32, node->m_lineNumber, 0, node->nodenodeAttributesibutes.name, nullptr, nullptr, 0);
         }
     }
 }
@@ -1377,14 +1403,14 @@ void parameterErrors(Node* funcFound, Node* node, Node* funcParm, Node* nodeParm
 
     if(funcParm->m_siblingNode == nullptr && nodeParm->m_siblingNode != nullptr)
     {
-        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too many parameters passed for function '" + funcFound->nodeAttributes.name + "' declared on line " + funcFound->m_lineNumber + ".");
-        //printError(38, t->lineno, funcFound->lineno, node->attr.name, nullptr, NULL, 0);
+        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too many parameters passed for function '" + funcFound->nodenodeAttributesibutes.name + "' declared on line " + funcFound->m_lineNumber + ".");
+        //printError(38, t->m_lineNumber, funcFound->m_lineNumber, node->nodeAttributes.name, nullptr, NULL, 0);
     }
 
     else if(funcParm->m_siblingNode != nullptr && nodeParm->m_siblingNode == nullptr)
     {
-        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too few parameters passed for function '" + funcFound->nodeAttributes.name + "' declared on line " + funcFound->m_lineNumber + ".");
-        //printError(37, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
+        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too few parameters passed for function '" + funcFound->nodenodeAttributesibutes.name + "' declared on line " + funcFound->m_lineNumber + ".");
+        //printError(37, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
     }
   
     if(nodeParm->m_parmType != ParmType::UNDEFINED)
@@ -1393,32 +1419,32 @@ void parameterErrors(Node* funcFound, Node* node, Node* funcParm, Node* nodeParm
         if(funcParm->m_parmType != nodeParm->m_parmType && !nodeParm->m_isDeclError && !funcFound->m_isIO)
         {
             //msg << "Expecting type " << Data::typeToString(funcParmType) << " in parameter " << parmCount << " of call to '" << func->getName() << "' declared on line " << func->getLineNum() <<" but got type " << Data::typeToString(callParmType) << ".";
-            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting type " + funcFound->nodeAttributes.name + " in parameter " + paramCount + ExpTypetwo(funcParm->m_parmType) + " of call to '" + ExpTypetwo(nodeParm->m_parmType) + "' declared on line" + node->m_lineNumber + "but got type" + ExpTypetwo(nodeParm->m_parmType) + ".");
-            //printError(25, t->lineno, funcFound->lineno, funcFound->attr.name, ExpTypetwo(funcParm->expType), ExpTypetwo(nodeParm->expType), paramCount);
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting type " + funcFound->nodenodeAttributesibutes.name + " in parameter " + paramCount + ExpTypetwo(funcParm->m_parmType) + " of call to '" + ExpTypetwo(nodeParm->m_parmType) + "' declared on line" + node->m_lineNumber + "but got type" + ExpTypetwo(nodeParm->m_parmType) + ".");
+            //printError(25, t->m_lineNumber, funcFound->m_lineNumber, funcFound->nodeAttributes.name, ExpTypetwo(funcParm->expType), ExpTypetwo(nodeParm->expType), paramCount);
 
             if(!funcParm->m_isArray && nodeParm->m_isArray)
             {
                 EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Not expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
-                //printError(36, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+                //printError(36, t->m_lineNumber, funcFound->m_lineNumber, funcFound->nodeAttributes.name, NULL, NULL, paramCount);
             }
  
             else if(funcParm->m_isArray && !nodeParm->m_isArray)
             {
                 EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
-                //printError(28, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+                //printError(28, t->m_lineNumber, funcFound->m_lineNumber, funcFound->nodeAttributes.name, NULL, NULL, paramCount);
             }
         }
    
         else if(!funcParm->m_isArray && nodeParm->m_isArray)
         {
             EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Not expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
-            //printError(36, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+            //printError(36, t->m_lineNumber, funcFound->m_lineNumber, funcFound->nodeAttributes.name, NULL, NULL, paramCount);
         }
        
         else if(funcParm->m_isArray && !nodeParm->m_isArray)
         {
             EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting array in parameter " + paramCount + " of call to '" + ExpTypetwo(funcParm->m_parmType) + "' declared on line" + node->m_lineNumber + ".");
-            //printError(28, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+            //printError(28, t->m_lineNumber, funcFound->m_lineNumber, funcFound->nodeAttributes.name, NULL, NULL, paramCount);
         }
        
     }

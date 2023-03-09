@@ -36,13 +36,13 @@ void getExpTypes(const std::string str, bool isBinary, bool &unaryErrors, Expres
 
 
 //helper functions
-void Warninit(std::string, void*);
-void errorsArray(Node* node);
+void analyzeWarnings(std::string, void*);
 std::string ConvertParmToString(ParmType type);
 void parameterErrors(Node *funcFound, Node* node, Node* funcParm, Node* nodeParm, int paramCount);
 
 
 //printers
+void printArrayErrors(Node* node); 
 //void printError(int errCode, int linenum, int explaineno, char* s1, char* s2, char* s3, int i);
 
 #endif
