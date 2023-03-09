@@ -54,9 +54,9 @@ void analyzeInit(Node* node, int& nErrors, int& nWarnings);
 
 
 //getters
-void getReturnType(const std::string str, bool isBinary, ParmType &childReturnType);
+void getReturnType(const std::string op, bool isBinary, ParmType &childReturnType);
 SymbolTable getSymbolTable();
-void getExpTypes(const std::string str, bool isBinary, bool &unaryErrors, ParmType &left, ParmType &right, ParmType &rightT);
+void getExpTypes(const std::string op, bool isBinary, bool &unaryErrors, ParmType &left, ParmType &right, ParmType &rightT);
 
 
 //helper functions

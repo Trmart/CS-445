@@ -81,7 +81,7 @@ void analyze(Node* node, int& nErrors, int& nWarnings)
 
     if(node->m_siblingNode != nullptr)
     {
-        check(node->m_siblingNode, nErrors, nWarnings);
+        analyze(node->m_siblingNode, nErrors, nWarnings);
     }
 }
 
@@ -654,28 +654,35 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
             rangePos;
             range = true;
 
-            for(int i = 0; i < MAXCHILDREN; i++){
-                if(node->m_childernNodes[i]){
+            for(int i = 0; i < MAXCHILDREN; i++)
+            {
+                if(node->m_childernNodes[i])
+                {
                     rangePos++;
 
-                        if(node->m_childernNodes[i]->m_childernNodes[0] != NULL && node->m_childernNodes[i]->m_childernNodes[0]->isArray){
-                            node->m_childernNodes[i]->m_childernNodes[0]->isIndexed = true;
+                        if(node->m_childernNodes[i]->m_childernNodes[0] != nullptr && node->m_childernNodes[i]->m_childernNodes[0]->m_isArray)
+                        {
+                            node->m_childernNodes[i]->m_childernNodes[0]->m_isIndexed = true;
                         }
 
-                        else if(rangePos == 1){
-                            if(node->m_childernNodes[0]->nodeSubType.exp == IdK){
-                                TreeNode* valFound = (TreeNode*)symbolTable.lookup(t->m_childernNodes[0]->nodeAttributes.name);
-                                if(valFound == NULL){
-                                    printError(1, t->m_lineNumber, 0, node->child[0]->nodeAttributes.name, NULL, NULL, 0); 
-                                    node->declErr = true;
+                        else if(rangePos == 1)
+                        {
+                            if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                            {
+                                Node* valFound = (Node *)symbolTable.lookup(node->m_childernNodes[0]->nodeAttributes.name);
+                                if(valFound == nullptr)
+                                {
+                                    // printError(1, t->m_lineNumber, 0, node->child[0]->nodeAttributes.name, NULL, NULL, 0); 
+                                    node->m_isDeclError = true;
                                 }
-                                else{
-                                    valFound->wasUsed = true;
+                                else
+                                {
+                                    valFound->m_isUsed = true;
                                 }
                             }
                         }
 
-                    check(node->m_childernNodes[i], nErrors, nWarnings);
+                    analyze(node->m_childernNodes[i], nErrors, nWarnings);
 
                 }
             }
@@ -689,20 +696,24 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings){
         {
             bool keepCurScope = scopeDepth;
 
-            if(keepCurScope){
+            if(keepCurScope)
+            {
                 
                 symbolTable.enter("compound");
             }
-            else{
+            else
+            {
                 scopeDepth = true;
             }
 
-            for(int i = 0; i < MAXCHILDREN; i++){
-                check(t->child[i], nErrors, nWarnings);
+            for(int i = 0; i < MAXCHILDREN; i++)
+            {
+                analyze(node->m_childernNodes[i], nErrors, nWarnings);
             }
 
-            if(keepCurScope){
-                symbolTable.applyToAll(Warninit);
+            if(keepCurScope)
+            {
+                symbolTable.applyToAll(analyzeWarnings);
                 symbolTable.leave();
             }
         }
@@ -1362,63 +1373,78 @@ void analyzeInit(Node* node, int& nErrors, int& nWarnings)
 
 
 //function gets all expected types. 
-void getExpTypes(const char* strng, bool isBinary, bool &unaryErrors, ParmType &left, ParmType &right, ParmType &rightT){
+void getExpTypes(std::string op, bool isBinary, bool &unaryErrors, ParmType &left, ParmType &right, ParmType &rightT)
+{
 
     std::string unaryOps[6] = {"not", "*", "?", "-", "--", "++"};
 
     std::string binaryOps[18] = {"+", "-", "*", "/", "%", "+=", "-=", "*=", "/=", ">", "<", "!<", "!>", "==", "!=", "=", "and", "or"};
-    std::string op(strng);
+
     unaryErrors = false;
 
-    if(!isBinary){
+    if(!isBinary)
+    {
 
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < 6; i++)
+        {
 
-            if(op == unaryOps[i]){
+            if(op == unaryOps[i])
+            {
 
-                if(i == 0){
-                    left = right = rightT = Boolean;
+                if(i == 0)
+                {
+                    left = right = rightT = ParmType::BOOL;
                 }
 
-                if(i == 1){
-                    left = right = UndefinedType;
-                    rightT = Integer;
+                if(i == 1)
+                {
+                    left = right = ParmType::UNDEFINED;
+                    rightT = ParmType::INTEGER;
                 }
 
-                if(i >= 2){
-                    left = right = rightT = Integer;
+                if(i >= 2)
+                {
+                    left = right = rightT = ParmType::INTEGER;
                 }
             }
         }
     }
-    else{
+    else
+    {
 
-        for(int i = 0; i < 18; i++){
+        for(int i = 0; i < 18; i++)
+        {
 
-            if(op == binaryOps[i]){
+            if(op == binaryOps[i])
+            {
 
-                if(i >= 0 && i <= 8){
-                    left = right = rightT = Integer;
+                if(i >= 0 && i <= 8)
+                {
+                    left = right = rightT = ParmType::INTEGER;
                     unaryErrors = true;
                 }
   
-                if(i >= 9 && i <= 12){
-                    left = right = CharInt; 
-                    rightT = Boolean;
+                if(i >= 9 && i <= 12)
+                {
+                    left = right = ParmType::CHARINT;; 
+                    rightT = ParmType::BOOL;
                 }
 
-                if(i >= 13 && i <=14){
-                    left = right = UndefinedType;
-                    rightT = Boolean;
+                if(i >= 13 && i <=14)
+                {
+                    left = right = ParmType::UNDEFINED;
+                    rightT = ParmType::BOOL;
                 }
 
-                if(i == 15){
-                    left = right = UndefinedType;
-                    rightT = Boolean;
+                if(i == 15)
+                {
+                    left = right = ParmType::UNDEFINED;
+                    rightT = ParmType::BOOL;
                 }
 
-                if(i >= 16){
-                    left = right = rightT = Boolean;
+                if(i >= 16)
+                {
+                    left = right = rightT = ParmType::BOOL;
                     unaryErrors = true;
                 }
 
@@ -1484,59 +1510,72 @@ std::string ConvertParmToString(ParmType type)
 }
 
 
-void getReturnType(const char* strng, bool isBinary, ParmType &rightT)
+void getReturnType(std::string op, bool isBinary, ParmType &rightT)
 {
 
     std::string unaryOps[6] = {"not", "*", "?", "-", "--", "++"};
 
     std::string binaryOps[18] = {"+", "-", "*", "/", "%", "+=", "-=", "*=", "/=", ">", "<", "!<", "!>", "==", "!=", "=", "and", "or"};
-    std::string op(strng);
 
-    if(!isBinary){
+    if(!isBinary)
+    {
 
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < 6; i++)
+        {
 
-            if(op == unaryOps[i]){
+            if(op == unaryOps[i])
+            {
 
-                if(i == 0){
-                    rightT = Boolean;
+                if(i == 0)
+                {
+                    rightT = ParmType::BOOL;
                 }
                 
-                if(i == 1){
+                if(i == 1)
+                {
                     
-                    rightT = Integer;
+                    rightT = ParmType::INTEGER;
                 }
 
-                if(i >= 2){
-                    rightT = Integer;
+                if(i >= 2)
+                {
+                    rightT = ParmType::INTEGER;
                 }
             }
         }
     }
-    else{
+    else
+    {
 
-        for(int i = 0; i < 18; i++){
+        for(int i = 0; i < 18; i++)
+        {
 
-            if(op == binaryOps[i]){
+            if(op == binaryOps[i])
+            {
 
-                if(i >= 0 && i <= 8){
-                    rightT = Integer;
+                if(i >= 0 && i <= 8)
+                {
+                    rightT = ParmType::INTEGER;
                 }
 
-                if(i >= 9 && i <= 12){
-                    rightT = Boolean;
+                if(i >= 9 && i <= 12)
+                {
+                    rightT = ParmType::BOOL;
                 }
 
-                if(i >= 13 && i <=14){
-                    rightT = Boolean;
+                if(i >= 13 && i <=14)
+                {
+                    rightT = ParmType::BOOL;
                 }
 
-                if(i == 15){
-                    rightT = Boolean;
+                if(i == 15)
+                {
+                    rightT = ParmType::BOOL;
                 }
 
-                if(i >= 16){
-                    rightT = Boolean;
+                if(i >= 16)
+                {
+                    rightT = ParmType::BOOL;
                 }
 
             }
@@ -1565,7 +1604,7 @@ void analyzeNestedOperators(Node* node, Node* child)
 
         else if(child->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER || child->m_childernNodes[1]->nodeSubType.expression == ExpressionType::IDENTIFIER)
         {
-            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodenodeAttributesibutes.name + "is not a constant expression.");
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodeAttributes.name + "is not a constant expression.");
             //printError(32, node->m_lineNumber, 0, node->nodenodeAttributesibutes.name, nullptr, nullptr, 0);
         }
     }
@@ -1573,9 +1612,9 @@ void analyzeNestedOperators(Node* node, Node* child)
     else if(child->m_childernNodes[0] != nullptr && child->m_childernNodes[1] == nullptr)
     {
   
-        if(child->nodenodeAttributesibutes.name == "not")
+        if(child->nodeAttributes.name == "not")
         {
-            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodenodeAttributesibutes.name + "is not a constant expression.");
+            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodeAttributes.name + "is not a constant expression.");
             //printError(32, node->m_lineNumber, 0, node->nodenodeAttributesibutes.name, nullptr, nullptr, 0);
         }
     }
