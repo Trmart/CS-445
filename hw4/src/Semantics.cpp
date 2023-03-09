@@ -967,40 +967,43 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                 leftSide = leftNode->m_parmType;
                 leftArr = leftNode->m_isArray;
 
-                if(leftNode->child[0] != NULL)
+                if(leftNode->m_childernNodes[0] != nullptr)
                 {
                     leftArr = false; 
                     leftIndx = true; 
                 }
-                if(leftNode->nodekind == ExpK)
+               if(leftNode->m_nodeType == NodeType::EXPRESSION)
                 {
-                    if(leftNode->nodeSubType.exp == CallK)
+                    if(leftNode->nodeSubType.expression == ExpressionType::CALL)
                     {
                         leftArr = false;
                     }
-                    if(leftNode->nodeSubType.exp == ConstantK)
+                    if(leftNode->nodeSubType.expression == ExpressionType::CONSTANT)
                     {
                         leftStr = true;
                     }
                 }
             }
 
-            if(t->child[1] != NULL){
-                rightNode = t->child[1];
-                rightSide = rightNode->expType;
-                rightArr = rightNode->isArray;
+            if(node->m_childernNodes[1] != nullptr)
+            {
+                rightNode = node->m_childernNodes[1];
+                rightSide = rightNode->m_parmType;
+                rightArr = rightNode->m_isArray;
                 
 
-                if(rightNode->child[0] != NULL){
+                if(rightNode->m_childernNodes[0] != nullptr)
+                {
                     rightArr = false; 
                     rightIndx = true; 
                 }
-                if(rightNode->nodekind == ExpK){
-                    if(rightNode->nodeSubType.exp == CallK)
+                if(rightNode->m_nodeType == NodeType::EXPRESSION)
+                {
+                    if(rightNode->nodeSubType.expression == ExpressionType::CALL)
                     {
                         rightArr = false;
                     }
-                    if(rightNode->nodeSubType.exp == ConstantK)
+                    if(rightNode->nodeSubType.expression == ExpressionType::CONSTANT)
                     {
                         rightStr = true;
                     }
@@ -1008,38 +1011,42 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                 isBinary = true;
             }
 
-            getExpTypes(t->nodeAttributes.name, isBinary, unaryErrors, leftExpected, rightExpected, returnType);
+            getExpTypes(node->nodeAttributes.name, isBinary, unaryErrors, leftExpected, rightExpected, returnType);
 
-            if(leftSide == Void && !(leftNode->nodekind == ExpK && leftNode->nodeSubType.exp == CallK)){
+            if(leftSide == ParmType::VOID && !(leftNode->m_nodeType == NodeType::EXPRESSION && leftNode->nodeSubType.expression == ExpressionType::CALL))
+            {
                 leftErr = true;
             }
-            if(rightSide == Void && !(rightNode->nodekind == ExpK && rightNode->nodeSubType.exp == CallK))
+            if(rightSide == ParmType::VOID && !(rightNode->m_nodeType == NodeType::EXPRESSION && rightNode->nodeSubType.expression == ExpressionType::CALL))
             {
                 rightErr = true;
             }
 
-            if(!isBinary && !leftErr){
+            if(!isBinary && !leftErr)
+            {
  
-                if(leftSide != leftExpected && leftExpected != UndefinedType)
+                if(leftSide != leftExpected && leftExpected != ParmType::UNDEFINED)
                 {
 
-                    if(!strcmp(t->nodeAttributes.name, "-")){
+                    if(node->nodeAttributes.name != "-")
+                    {
                         char uMinus[] = "chsign";
                         // printError(9, t->m_lineNumber, 0, uMinus, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                     }
 
-                    else{
+                    else
+                    {
                         // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                     }
                 }
 
-                else if(!strcmp(t->nodeAttributes.name, "not") && leftSide != leftExpected)
+                else if(node->nodeAttributes.name != "not" && leftSide != leftExpected)
                 {
 
                     // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                 }
 
-                else if(!strcmp(t->nodeAttributes.name, "*") && (!leftArr && leftSide != UndefinedType))
+                else if(node->nodeAttributes.name != "*" && (!leftArr && leftSide != ParmType::UNDEFINED))
                 {
                     char uSizeof[] = "sizeof";
                     // printError(8, t->m_lineNumber, 0, uSizeof, NULL, NULL, 0);
@@ -1047,134 +1054,169 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                 if(leftArr)
                 {
-                    if(strcmp(t->nodeAttributes.name, "*") != 0)
+                    if(node->nodeAttributes.name == "*")
                     {
 
-                        if(!strcmp(t->nodeAttributes.name, "-"))
+                        if(node->nodeAttributes.name != "-")
                         {
                             char uMinus[] = "chsign";
                             // printError(7, t->m_lineNumber, 0, uMinus, NULL, NULL, 0);
                         }
-                        else{
+                        else
+                        {
+
                             // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                         }
                     }
                 }
             }
                 else{
-                    if(!unaryErrors){
+                    if(!unaryErrors)
+                    {
 
-                        if(!strcmp(t->nodeAttributes.name, "[")){
-                            errorsArray(t);
+                        if(node->nodeAttributes.name != "[")
+                        {
+                            printArrayErrors(node);
                         }
                 
-                        else if(leftSide != rightSide && !leftErr && !rightErr){
+                        else if(leftSide != rightSide && !leftErr && !rightErr)
+                        {
 
-                            if(!strcmp(ExpTypetwo(leftSide), "int") && !strcmp(ExpTypetwo(rightSide), "CharInt")){
+                            if(ConvertParmToString(leftSide) != "int" && ConvertParmToString(rightSide) != "CharInt")
+                            {
                                 char diffCharInt[] = "char";
                                 //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), diffCharInt, 0);
                             }
-                            else if(!strcmp(ExpTypetwo(leftSide), "char") && !strcmp(ExpTypetwo(rightSide), "CharInt")){
-                                ; //do nothing
+                            else if(ConvertParmToString(leftSide) != "char" && ConvertParmToString(rightSide) != "CharInt")
+                            {
+                                //do nothing
                             }
   
-                            else if(!strcmp(t->nodeAttributes.name, "<=") && t->child[1]->nodeSubType.exp == OpK){
+                            else if(node->nodeAttributes.name != "<=" && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::OP)
+                            {
  
-                                getReturnType(t->child[1]->nodeAttributes.name, isBinary, childReturnType);
+                                getReturnType(node->m_childernNodes[1]->nodeAttributes.name, isBinary, childReturnType);
                                
-                                if(childReturnType != t->child[0]->expType){
+                                if(childReturnType != node->m_childernNodes[0]->m_parmType)
+                                {
                                     // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
                                 }
 
-                                else if(t->child[1]->child[1] != NULL && t->child[1]->child[1]->nodeSubType.exp == CallK){
+                                else if(node->m_childernNodes[1]->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL)
+                                {
                                     // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
                                 }
                             }
-                            else{
+                            else
+                            {
 
-                                if(t->child[0]->nodeSubType.exp != CallK){
+                                if(node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::CALL)
+                                {
 
-                                //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(rightSide), 0);
+                                    //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(rightSide), 0);
                                 }
-                                else{}
+                                else
+                                {
+                                    //do nothing
+                                }
                             }
                         }
                     }
 
 
-                    if(!(leftExpected == UndefinedType || rightExpected == UndefinedType)){
+                    if(!(leftExpected == ParmType::UNDEFINED || rightExpected == ParmType::UNDEFINED))
+                    {
                         
-                        if(leftExpected == CharInt || rightExpected == CharInt){
-
-                            ;
+                        if(leftExpected == ParmType::CHARINT || rightExpected == ParmType::CHARINT)
+                        {
+                            // do nothing
                         }
 
-                        else if(leftSide == rightSide && leftNode->nodeSubType.exp == CallK && rightNode->nodeSubType.exp == CallK){
+                        else if(leftSide == rightSide && leftNode->nodeSubType.expression == ExpressionType::CALL && rightNode->nodeSubType.expression == ExpressionType::CALL)
+                        {
 
-                             TreeNode* lhs = (TreeNode*)symbolTable.lookup(t->child[0]->nodeAttributes.name);
-                             TreeNode* rhs = (TreeNode*)symbolTable.lookup(t->child[1]->nodeAttributes.name);
+                            Node* lhs = (Node*)symbolTable.lookup(node->m_childernNodes[0]->nodeAttributes.name);
+                            Node* rhs = (Node*)symbolTable.lookup(node->m_childernNodes[1]->nodeAttributes.name);
 
-                             if(lhs != NULL && rhs != NULL){
+                            if(lhs != nullptr && rhs != nullptr)
+                            {
 
-                                 if(lhs->nodeSubType.decl == FuncK && rhs->nodeSubType.decl == FuncK && !lhs->isIO && !rhs->isIO){
-                                     if(t->child[0]->expType == Void && t->child[1]->expType == Void){
-                                    //  printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
-                                    //  printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
-                                     }
-                                     
-                                 }
+                                if(lhs->nodeSubType.declaration == DeclarationType::FUNCTION && rhs->nodeSubType.declaration == DeclarationType::FUNCTION && !lhs->m_isIO && !rhs->m_isIO)
+                                {
+                                    if(node->m_childernNodes[0]->m_parmType == ParmType::VOID && node->m_childernNodes[1]->m_parmType == ParmType::VOID)
+                                    {
+                                        //  printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                                        //  printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                    }
+                                    
+                                }
 
-                             }
+                            }
                         }
-                        else{
+                        else
+                        {
 
-                            if(leftSide != leftExpected && !leftErr){
+                            if(leftSide != leftExpected && !leftErr)
+                            {
                                 // printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                             }
 
-                            if(rightSide != rightExpected && !rightErr && rightSide != UndefinedType){
+                            if(rightSide != rightExpected && !rightErr && rightSide != ParmType::UNDEFINED)
+                            {
 
-                                if(rightSide == Void && t->child[1]->nodeSubType.exp == CallK && returnType != Boolean){
+                                if(rightSide == ParmType::UNDEFINED && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL && returnType != ParmType::BOOL)
+                                {
                                     // printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                 }
-                                else if(rightSide != Void){
+                                else if(rightSide != ParmType::UNDEFINED)
+                                {
                                     // printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                 }
                             }
                         }
                     }
 
-                    if(leftArr || rightArr){
+                    if(leftArr || rightArr)
+                    {
 
-                        if(strcmp(t->nodeAttributes.name, "<=") && leftExpected != UndefinedType){
-                            if(!strcmp(t->nodeAttributes.name, "<") || !strcmp(t->nodeAttributes.name, ">") || !strcmp(t->nodeAttributes.name, "=") || !strcmp(t->nodeAttributes.name, "!>") || !strcmp(t->nodeAttributes.name, "!<") || !strcmp(t->nodeAttributes.name, "><")){
+                        if(node->nodeAttributes.name == "<=" && leftExpected != ParmType::UNDEFINED)
+                        {
+                            if((node->nodeAttributes.name != "<") || (node->nodeAttributes.name != ">") || (node->nodeAttributes.name != "=") || (node->nodeAttributes.name != "!>") || (node->nodeAttributes.name != "!<") || (node->nodeAttributes.name != "><"))
+                            {
                          
-                                 if(leftArr && !rightArr){
-                                // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                if(leftArr && !rightArr)
+                                {
+                                    // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
 
-                                else if(!leftArr && rightArr){
-                                // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                else if(!leftArr && rightArr)
+                                {
+                                    // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
                             }
 
-                            else{
-                            // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                            else
+                            {
+                                // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                             }
                         }
                         
                         else{
-                            if(!strcmp(t->nodeAttributes.name, "[")){
-                                ;
+                            if(node->nodeAttributes.name != "[")
+                            {
+                                //dp nothing
                             }
 
-                            else if((leftArr && !rightArr) || (!leftArr && rightArr)){
+                            else if((leftArr && !rightArr) || (!leftArr && rightArr))
+                            {
 
-                                if(leftArr && !rightArr){
+                                if(leftArr && !rightArr)
+                                {
                                 // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
 
-                                else if(!leftArr && rightArr){
+                                else if(!leftArr && rightArr)
+                                {
                                     // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
                             }
@@ -1182,7 +1224,8 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                     }
                 }
 
-            if(returnType != UndefinedType){
+            if(returnType != UndefinedType)
+            {
                 t->expType = returnType;
             }
             else{
