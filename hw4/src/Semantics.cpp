@@ -806,644 +806,676 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
     {
         case ExpressionType::ASSIGN:
         case ExpressionType::OP:
-
-            if(node->nodeAttributes.name != "<=")
-            {
-
-                if(node->m_childernNodes[0] != NULL)
-                {
-                    
-                    if(node->m_childernNodes[0]->m_childernNodes[0]!= nullptr  && node->m_childernNodes[0]->nodeAttributes.name != "[")
                     {
-                        node->m_childernNodes[0]->m_childernNodes[0]->m_isInitialized = true;
-
-                        if(node->m_childernNodes[0]->m_childernNodes[1] != nullptr)
+                        if(node->nodeAttributes.name != "<=")
                         {
-                            node->m_childernNodes[0]->m_childernNodes[1]->m_isInitialized = true;
 
-                            if(node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0] != nullptr && node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[1] != nullptr)
+                            if(node->m_childernNodes[0] != NULL)
                             {
-
-                                if(node->m_childernNodes[0]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::OP)
+                                
+                                if(node->m_childernNodes[0]->m_childernNodes[0]!= nullptr  && node->m_childernNodes[0]->nodeAttributes.name != "[")
                                 {
-                                    node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0]->m_isInitialized = true;
-                                    node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[1]->m_isInitialized = true;
+                                    node->m_childernNodes[0]->m_childernNodes[0]->m_isInitialized = true;
+
+                                    if(node->m_childernNodes[0]->m_childernNodes[1] != nullptr)
+                                    {
+                                        node->m_childernNodes[0]->m_childernNodes[1]->m_isInitialized = true;
+
+                                        if(node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0] != nullptr && node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[1] != nullptr)
+                                        {
+
+                                            if(node->m_childernNodes[0]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::OP)
+                                            {
+                                                node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0]->m_isInitialized = true;
+                                                node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[1]->m_isInitialized = true;
+                                            }
+                                        }
+                                    }
+
+                                    else if(node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0] != nullptr)
+                                    {
+                                        node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0]->m_isInitialized = true;
+                                    }
+
                                 }
-                            }
-                        }
 
-                        else if(node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0] != nullptr)
-                        {
-                            node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0]->m_isInitialized = true;
-                        }
-
-                    }
-
-                    else if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_parmType == ParmType::VOID)
-                    {
-
-                        if(node->m_childernNodes[1]->nodeAttributes.name != "<=")
-                        {
-                            node->m_childernNodes[0]->m_isInitialized = true;
-                        }
-
-                        if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL)
-                        {
-                            node->m_childernNodes[0]->m_isInitialized = true;
-                        }
-
-                        else if(node->m_childernNodes[1]->nodeAttributes.name != "[")
-                        {
-
-                            // char* lhs = strdup(node->m_childernNodes[0]->nodeAttributes.name);
-                            std::string lhs = node->m_childernNodes[0]->nodeAttributes.name;
-                            std::string rhs = node->m_childernNodes[1]->nodeAttributes.name;
-
-                            if(lhs == rhs)
-                            {
-                                node->m_childernNodes[0]->m_isInitialized = true;
-                            }
-
-                        }
-                        else if(node->m_childernNodes[0] != nullptr && node->m_childernNodes[1] != nullptr)
-                        {
-    
-                            if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER && !node->m_childernNodes[0]->m_isInitialized)
-                            {
-        
-                                if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                                else if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_parmType == ParmType::VOID)
                                 {
 
-                                    // char* lhs = strdup(node->m_childernNodes[0]->nodeAttributes.name);
-                                    std::string lhs = node->m_childernNodes[0]->nodeAttributes.name;
-                                    std::string rhs = node->m_childernNodes[1]->nodeAttributes.name;
+                                    if(node->m_childernNodes[1]->nodeAttributes.name != "<=")
+                                    {
+                                        node->m_childernNodes[0]->m_isInitialized = true;
+                                    }
 
-                                    if(lhs == rhs)
+                                    if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL)
+                                    {
+                                        node->m_childernNodes[0]->m_isInitialized = true;
+                                    }
+
+                                    else if(node->m_childernNodes[1]->nodeAttributes.name != "[")
+                                    {
+
+                                        // char* lhs = strdup(node->m_childernNodes[0]->nodeAttributes.name);
+                                        std::string lhs = node->m_childernNodes[0]->nodeAttributes.name;
+                                        std::string rhs = node->m_childernNodes[1]->nodeAttributes.name;
+
+                                        if(lhs == rhs)
+                                        {
+                                            node->m_childernNodes[0]->m_isInitialized = true;
+                                        }
+
+                                    }
+                                    else if(node->m_childernNodes[0] != nullptr && node->m_childernNodes[1] != nullptr)
+                                    {
+                
+                                        if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER && !node->m_childernNodes[0]->m_isInitialized)
+                                        {
+                    
+                                            if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                                            {
+
+                                                // char* lhs = strdup(node->m_childernNodes[0]->nodeAttributes.name);
+                                                std::string lhs = node->m_childernNodes[0]->nodeAttributes.name;
+                                                std::string rhs = node->m_childernNodes[1]->nodeAttributes.name;
+
+                                                if(lhs == rhs)
+                                                {
+                                                    node->m_childernNodes[0]->m_isInitialized = true;
+                                                }
+                                            }
+
+                                            else if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::ASSIGN)
+                                            {
+                                                analyzeNestedAssign(node->m_childernNodes[1]);
+                                                node->m_childernNodes[0]->m_isInitialized = true;
+                                            }
+                                        }
+                                    }
+
+                                    else
+                                    {
+                                        //do nothing
+                                    }
+                                }
+                            
+                                else 
+                                {
+
+                                    if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_childernNodes[0] != nullptr)
+                                    {
+                
+                                        if(node->m_childernNodes[1]->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                                        {
+
+                                            // char *c0 = strdup(t->child[0]->nodeAttributes.name);
+                                            // char *c10 = strdup(t->child[1]->child[0]->nodeAttributes.name);
+                                            std::string child_0 = node->m_childernNodes[0]->nodeAttributes.name;
+                                            std::string child_0_1 = node->m_childernNodes[1]->m_childernNodes[0]->nodeAttributes.name;
+
+                                            if(child_0 == child_0_1)
+                                            {
+                                                node->m_childernNodes[0]->m_isInitialized = true;
+                        
+                                            }
+                                        }
+
+                                        else
+                                        {
+                                            node->m_childernNodes[0]->m_isInitialized = true;
+                                        }
+                                        
+
+                                    }
+
+                                    else
                                     {
                                         node->m_childernNodes[0]->m_isInitialized = true;
                                     }
                                 }
+                            }
 
-                                else if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::ASSIGN)
+                        }
+
+                        if(node->nodeAttributes.name == "<=")
+                        {
+                            if(node->m_childernNodes[0] != nullptr)
+                            {
+                                node->m_childernNodes[0]->m_isUsed = true;
+                                
+                            }
+                            if(node->m_childernNodes[1] != nullptr)
+                            {
+                                node->m_childernNodes[1]->m_isUsed = true;
+                            }
+                        }
+
+                        if(node->nodeAttributes.name != "*")
+                        {
+                            sizeOfArrayFlg = true;
+                        }
+
+                        for(int i= 0; i < MAXCHILDREN; i++)
+                        {
+                            analyze(node->m_childernNodes[i], nErrors, nWarnings);
+                        }
+
+                        sizeOfArrayFlg = false;
+
+                        if(node->m_childernNodes[0] != nullptr)
+                        {
+                            leftNode = node->m_childernNodes[0];
+                            leftSide = leftNode->m_parmType;
+                            leftArr = leftNode->m_isArray;
+
+                            if(leftNode->m_childernNodes[0] != nullptr)
+                            {
+                                leftArr = false; 
+                                leftIndx = true; 
+                            }
+                        if(leftNode->m_nodeType == NodeType::EXPRESSION)
+                            {
+                                if(leftNode->nodeSubType.expression == ExpressionType::CALL)
                                 {
-                                    analyzeNestedAssign(node->m_childernNodes[1]);
-                                    node->m_childernNodes[0]->m_isInitialized = true;
+                                    leftArr = false;
+                                }
+                                if(leftNode->nodeSubType.expression == ExpressionType::CONSTANT)
+                                {
+                                    leftStr = true;
                                 }
                             }
                         }
 
-                        else
+                        if(node->m_childernNodes[1] != nullptr)
                         {
-                            //do nothing
-                        }
-                    }
-                   
-                    else 
-                    {
-
-                        if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_childernNodes[0] != nullptr)
-                        {
-    
-                            if(node->m_childernNodes[1]->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER)
-                            {
-
-                                // char *c0 = strdup(t->child[0]->nodeAttributes.name);
-                                // char *c10 = strdup(t->child[1]->child[0]->nodeAttributes.name);
-                                std::string child_0 = node->m_childernNodes[0]->nodeAttributes.name;
-                                std::string child_0_1 = node->m_childernNodes[1]->m_childernNodes[0]->nodeAttributes.name;
-
-                                if(child_0 == child_0_1)
-                                {
-                                    node->m_childernNodes[0]->m_isInitialized = true;
-             
-                                }
-                            }
-
-                            else
-                            {
-                                node->m_childernNodes[0]->m_isInitialized = true;
-                            }
+                            rightNode = node->m_childernNodes[1];
+                            rightSide = rightNode->m_parmType;
+                            rightArr = rightNode->m_isArray;
                             
 
-                        }
-
-                        else
-                        {
-                            node->m_childernNodes[0]->m_isInitialized = true;
-                        }
-                    }
-                }
-
-            }
-
-            if(node->nodeAttributes.name == "<=")
-            {
-                if(node->m_childernNodes[0] != nullptr)
-                {
-                    node->m_childernNodes[0]->m_isUsed = true;
-                    
-                }
-                if(node->m_childernNodes[1] != nullptr)
-                {
-                    node->m_childernNodes[1]->m_isUsed = true;
-                }
-            }
-
-            if(node->nodeAttributes.name != "*")
-            {
-                sizeOfArrayFlg = true;
-            }
-
-            for(int i= 0; i < MAXCHILDREN; i++)
-            {
-                analyze(node->m_childernNodes[i], nErrors, nWarnings);
-            }
-
-            sizeOfArrayFlg = false;
-
-            if(node->m_childernNodes[0] != nullptr)
-            {
-                leftNode = node->m_childernNodes[0];
-                leftSide = leftNode->m_parmType;
-                leftArr = leftNode->m_isArray;
-
-                if(leftNode->m_childernNodes[0] != nullptr)
-                {
-                    leftArr = false; 
-                    leftIndx = true; 
-                }
-               if(leftNode->m_nodeType == NodeType::EXPRESSION)
-                {
-                    if(leftNode->nodeSubType.expression == ExpressionType::CALL)
-                    {
-                        leftArr = false;
-                    }
-                    if(leftNode->nodeSubType.expression == ExpressionType::CONSTANT)
-                    {
-                        leftStr = true;
-                    }
-                }
-            }
-
-            if(node->m_childernNodes[1] != nullptr)
-            {
-                rightNode = node->m_childernNodes[1];
-                rightSide = rightNode->m_parmType;
-                rightArr = rightNode->m_isArray;
-                
-
-                if(rightNode->m_childernNodes[0] != nullptr)
-                {
-                    rightArr = false; 
-                    rightIndx = true; 
-                }
-                if(rightNode->m_nodeType == NodeType::EXPRESSION)
-                {
-                    if(rightNode->nodeSubType.expression == ExpressionType::CALL)
-                    {
-                        rightArr = false;
-                    }
-                    if(rightNode->nodeSubType.expression == ExpressionType::CONSTANT)
-                    {
-                        rightStr = true;
-                    }
-                }
-                isBinary = true;
-            }
-
-            getExpTypes(node->nodeAttributes.name, isBinary, unaryErrors, leftExpected, rightExpected, returnType);
-
-            if(leftSide == ParmType::VOID && !(leftNode->m_nodeType == NodeType::EXPRESSION && leftNode->nodeSubType.expression == ExpressionType::CALL))
-            {
-                leftErr = true;
-            }
-            if(rightSide == ParmType::VOID && !(rightNode->m_nodeType == NodeType::EXPRESSION && rightNode->nodeSubType.expression == ExpressionType::CALL))
-            {
-                rightErr = true;
-            }
-
-            if(!isBinary && !leftErr)
-            {
- 
-                if(leftSide != leftExpected && leftExpected != ParmType::UNDEFINED)
-                {
-
-                    if(node->nodeAttributes.name != "-")
-                    {
-                        char uMinus[] = "chsign";
-                        // printError(9, t->m_lineNumber, 0, uMinus, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
-                    }
-
-                    else
-                    {
-                        // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
-                    }
-                }
-
-                else if(node->nodeAttributes.name != "not" && leftSide != leftExpected)
-                {
-
-                    // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
-                }
-
-                else if(node->nodeAttributes.name != "*" && (!leftArr && leftSide != ParmType::UNDEFINED))
-                {
-                    char uSizeof[] = "sizeof";
-                    // printError(8, t->m_lineNumber, 0, uSizeof, NULL, NULL, 0);
-                } 
-
-                if(leftArr)
-                {
-                    if(node->nodeAttributes.name == "*")
-                    {
-
-                        if(node->nodeAttributes.name != "-")
-                        {
-                            char uMinus[] = "chsign";
-                            // printError(7, t->m_lineNumber, 0, uMinus, NULL, NULL, 0);
-                        }
-                        else
-                        {
-
-                            // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
-                        }
-                    }
-                }
-            }
-                else{
-                    if(!unaryErrors)
-                    {
-
-                        if(node->nodeAttributes.name != "[")
-                        {
-                            printArrayErrors(node);
-                        }
-                
-                        else if(leftSide != rightSide && !leftErr && !rightErr)
-                        {
-
-                            if(ConvertParmToString(leftSide) != "int" && ConvertParmToString(rightSide) != "CharInt")
+                            if(rightNode->m_childernNodes[0] != nullptr)
                             {
-                                char diffCharInt[] = "char";
-                                //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), diffCharInt, 0);
+                                rightArr = false; 
+                                rightIndx = true; 
                             }
-                            else if(ConvertParmToString(leftSide) != "char" && ConvertParmToString(rightSide) != "CharInt")
+                            if(rightNode->m_nodeType == NodeType::EXPRESSION)
                             {
-                                //do nothing
-                            }
-  
-                            else if(node->nodeAttributes.name != "<=" && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::OP)
-                            {
- 
-                                getReturnType(node->m_childernNodes[1]->nodeAttributes.name, isBinary, childReturnType);
-                               
-                                if(childReturnType != node->m_childernNodes[0]->m_parmType)
+                                if(rightNode->nodeSubType.expression == ExpressionType::CALL)
                                 {
-                                    // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
+                                    rightArr = false;
                                 }
-
-                                else if(node->m_childernNodes[1]->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL)
+                                if(rightNode->nodeSubType.expression == ExpressionType::CONSTANT)
                                 {
-                                    // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
+                                    rightStr = true;
                                 }
                             }
-                            else
+                            isBinary = true;
+                        }
+
+                        getExpTypes(node->nodeAttributes.name, isBinary, unaryErrors, leftExpected, rightExpected, returnType);
+
+                        if(leftSide == ParmType::VOID && !(leftNode->m_nodeType == NodeType::EXPRESSION && leftNode->nodeSubType.expression == ExpressionType::CALL))
+                        {
+                            leftErr = true;
+                        }
+                        if(rightSide == ParmType::VOID && !(rightNode->m_nodeType == NodeType::EXPRESSION && rightNode->nodeSubType.expression == ExpressionType::CALL))
+                        {
+                            rightErr = true;
+                        }
+
+                        if(!isBinary && !leftErr)
+                        {
+            
+                            if(leftSide != leftExpected && leftExpected != ParmType::UNDEFINED)
                             {
 
-                                if(node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::CALL)
+                                if(node->nodeAttributes.name != "-")
                                 {
-
-                                    //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(rightSide), 0);
+                                    char uMinus[] = "chsign";
+                                    // printError(9, t->m_lineNumber, 0, uMinus, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                                 }
+
                                 else
                                 {
-                                    //do nothing
+                                    // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                                 }
                             }
-                        }
-                    }
 
-
-                    if(!(leftExpected == ParmType::UNDEFINED || rightExpected == ParmType::UNDEFINED))
-                    {
-                        
-                        if(leftExpected == ParmType::CHARINT || rightExpected == ParmType::CHARINT)
-                        {
-                            // do nothing
-                        }
-
-                        else if(leftSide == rightSide && leftNode->nodeSubType.expression == ExpressionType::CALL && rightNode->nodeSubType.expression == ExpressionType::CALL)
-                        {
-
-                            Node* lhs = (Node*)symbolTable.lookup(node->m_childernNodes[0]->nodeAttributes.name);
-                            Node* rhs = (Node*)symbolTable.lookup(node->m_childernNodes[1]->nodeAttributes.name);
-
-                            if(lhs != nullptr && rhs != nullptr)
+                            else if(node->nodeAttributes.name != "not" && leftSide != leftExpected)
                             {
 
-                                if(lhs->nodeSubType.declaration == DeclarationType::FUNCTION && rhs->nodeSubType.declaration == DeclarationType::FUNCTION && !lhs->m_isIO && !rhs->m_isIO)
+                                // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                            }
+
+                            else if(node->nodeAttributes.name != "*" && (!leftArr && leftSide != ParmType::UNDEFINED))
+                            {
+                                char uSizeof[] = "sizeof";
+                                // printError(8, t->m_lineNumber, 0, uSizeof, NULL, NULL, 0);
+                            } 
+
+                            if(leftArr)
+                            {
+                                if(node->nodeAttributes.name == "*")
                                 {
-                                    if(node->m_childernNodes[0]->m_parmType == ParmType::VOID && node->m_childernNodes[1]->m_parmType == ParmType::VOID)
+
+                                    if(node->nodeAttributes.name != "-")
                                     {
-                                        //  printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
-                                        //  printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                        char uMinus[] = "chsign";
+                                        // printError(7, t->m_lineNumber, 0, uMinus, NULL, NULL, 0);
                                     }
-                                    
+                                    else
+                                    {
+
+                                        // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                    }
+                                }
+                            }
+                        }
+                            else{
+                                if(!unaryErrors)
+                                {
+
+                                    if(node->nodeAttributes.name != "[")
+                                    {
+                                        printArrayErrors(node);
+                                    }
+                            
+                                    else if(leftSide != rightSide && !leftErr && !rightErr)
+                                    {
+
+                                        if(ConvertParmToString(leftSide) != "int" && ConvertParmToString(rightSide) != "CharInt")
+                                        {
+                                            char diffCharInt[] = "char";
+                                            //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), diffCharInt, 0);
+                                        }
+                                        else if(ConvertParmToString(leftSide) != "char" && ConvertParmToString(rightSide) != "CharInt")
+                                        {
+                                            //do nothing
+                                        }
+            
+                                        else if(node->nodeAttributes.name != "<=" && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::OP)
+                                        {
+            
+                                            getReturnType(node->m_childernNodes[1]->nodeAttributes.name, isBinary, childReturnType);
+                                        
+                                            if(childReturnType != node->m_childernNodes[0]->m_parmType)
+                                            {
+                                                // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
+                                            }
+
+                                            else if(node->m_childernNodes[1]->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL)
+                                            {
+                                                // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                            if(node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::CALL)
+                                            {
+
+                                                //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(rightSide), 0);
+                                            }
+                                            else
+                                            {
+                                                //do nothing
+                                            }
+                                        }
+                                    }
                                 }
 
+
+                                if(!(leftExpected == ParmType::UNDEFINED || rightExpected == ParmType::UNDEFINED))
+                                {
+                                    
+                                    if(leftExpected == ParmType::CHARINT || rightExpected == ParmType::CHARINT)
+                                    {
+                                        // do nothing
+                                    }
+
+                                    else if(leftSide == rightSide && leftNode->nodeSubType.expression == ExpressionType::CALL && rightNode->nodeSubType.expression == ExpressionType::CALL)
+                                    {
+
+                                        Node* lhs = (Node*)symbolTable.lookup(node->m_childernNodes[0]->nodeAttributes.name);
+                                        Node* rhs = (Node*)symbolTable.lookup(node->m_childernNodes[1]->nodeAttributes.name);
+
+                                        if(lhs != nullptr && rhs != nullptr)
+                                        {
+
+                                            if(lhs->nodeSubType.declaration == DeclarationType::FUNCTION && rhs->nodeSubType.declaration == DeclarationType::FUNCTION && !lhs->m_isIO && !rhs->m_isIO)
+                                            {
+                                                if(node->m_childernNodes[0]->m_parmType == ParmType::VOID && node->m_childernNodes[1]->m_parmType == ParmType::VOID)
+                                                {
+                                                    //  printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                                                    //  printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                                }
+                                                
+                                            }
+
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        if(leftSide != leftExpected && !leftErr)
+                                        {
+                                            // printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                                        }
+
+                                        if(rightSide != rightExpected && !rightErr && rightSide != ParmType::UNDEFINED)
+                                        {
+
+                                            if(rightSide == ParmType::UNDEFINED && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL && returnType != ParmType::BOOL)
+                                            {
+                                                // printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                            }
+                                            else if(rightSide != ParmType::UNDEFINED)
+                                            {
+                                                // printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if(leftArr || rightArr)
+                                {
+
+                                    if(node->nodeAttributes.name == "<=" && leftExpected != ParmType::UNDEFINED)
+                                    {
+                                        if((node->nodeAttributes.name != "<") || (node->nodeAttributes.name != ">") || (node->nodeAttributes.name != "=") || (node->nodeAttributes.name != "!>") || (node->nodeAttributes.name != "!<") || (node->nodeAttributes.name != "><"))
+                                        {
+                                    
+                                            if(leftArr && !rightArr)
+                                            {
+                                                // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                            }
+
+                                            else if(!leftArr && rightArr)
+                                            {
+                                                // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                            }
+                                        }
+
+                                        else
+                                        {
+                                            // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                        }
+                                    }
+                                    
+                                    else{
+                                        if(node->nodeAttributes.name != "[")
+                                        {
+                                            //dp nothing
+                                        }
+
+                                        else if((leftArr && !rightArr) || (!leftArr && rightArr))
+                                        {
+
+                                            if(leftArr && !rightArr)
+                                            {
+                                            // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                            }
+
+                                            else if(!leftArr && rightArr)
+                                            {
+                                                // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                            }
+                                        }
+                                    }
+                                }
                             }
+
+                        if(returnType != ParmType::UNDEFINED)
+                        {
+                            node->m_parmType = returnType;
                         }
                         else
                         {
-
-                            if(leftSide != leftExpected && !leftErr)
-                            {
-                                // printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
-                            }
-
-                            if(rightSide != rightExpected && !rightErr && rightSide != ParmType::UNDEFINED)
-                            {
-
-                                if(rightSide == ParmType::UNDEFINED && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL && returnType != ParmType::BOOL)
+                            node->m_parmType = leftSide;
+                        }
+                    }
+                    break; 
+        case ExpressionType::CONSTANT:
                                 {
-                                    // printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
-                                }
-                                else if(rightSide != ParmType::UNDEFINED)
-                                {
-                                    // printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
-                                }
-                            }
-                        }
-                    }
+                                    for(int i = 0; i < MAXCHILDREN; i++)
+                                    {
+                                        analyze(node->m_childernNodes[i], nErrors, nWarnings);
+                                    }
+                            
+                                    if(range)
+                                    {
+                                        if(inFor)
+                                        {
+                                            if(node->m_parmType != ParmType::INTEGER)
+                                            {
+                                                char intExpect[] = "int";
+                                                // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                                            }
+                                        }
+                                    }
 
-                    if(leftArr || rightArr)
-                    {
+                                }
+                                break;
 
-                        if(node->nodeAttributes.name == "<=" && leftExpected != ParmType::UNDEFINED)
-                        {
-                            if((node->nodeAttributes.name != "<") || (node->nodeAttributes.name != ">") || (node->nodeAttributes.name != "=") || (node->nodeAttributes.name != "!>") || (node->nodeAttributes.name != "!<") || (node->nodeAttributes.name != "><"))
+        case ExpressionType::IDENTIFIER:
+                                    {
+                                        valFound = (Node*)symbolTable.lookup(node->nodeAttributes.name);
+
+                                        if(valFound == NULL){
+
+                                            if(range && rangePos == 1)
+                                            {
+                                                node->m_isDeclared = true;
+                                            }
+
+                                            else
+                                            {
+                                                // printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0); 
+                                                node->m_isDeclError = true;    
+                                            }           
+                                        }
+
+                                        else if(range)
+                                        {
+
+                                            if(inFor)
+                                            {
+
+                                                node->m_parmType = valFound->m_parmType;
+                                                node->m_isArray = valFound->m_isArray;
+
+                                                if(node->m_parmType != ParmType::INTEGER && rangePos >= 1)
+                                                {
+                                                    if(!sizeOfArrayFlg)
+                                                    {
+
+                                                        if(node->nodeAttributes.name != "main")
+                                                        {
+                                                            // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
+                                                        }
+                                                        else
+                                                        {
+                                                            // char intExpect[] = "int";
+                                                            // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                                                        }
+                                                    }
+
+                                                }
+
+                                                if(rangePos >= 1 && !valFound->m_isInitialized)
+                                                {
+                                                    if(valFound->m_isDeclared == true)
+                                                    {
+
+                                                        if(!valFound->m_isInitialized && !valFound->m_isWarningReported && !valFound->m_isStatic && !valFound->m_isGlobal)
+                                                        {
+
+                                                            if(!node->m_isInitialized)
+                                                            {
+                                                                valFound->m_isWarningReported = true;
+                                                                valFound->m_isUsed = true;
+                                                                // printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                                            }
+                                                            
+                                                            else
+                                                            {
+                                                                valFound->m_isInitialized = true;
+                                                            }
+                                                        }
+                                                
+                                                    }
+                                                }
+
+                                                else if(rangePos > 1 && valFound->m_isInitialized)
+                                                {
+                                                    valFound->m_isUsed = true;
+                                                }
+
+                                                if(valFound->m_isArray && !sizeOfArrayFlg && !node->m_isIndexed)
+                                                {
+                                                    // printError(24, t->m_lineNumber, 0, NULL, NULL, NULL, rangePos);
+                                                }
+
+                                                node->m_isIndexed = false;
+
+                                            }
+
+                                            node->m_isInitialized = true;
+                                        }
+
+                                        else
+                                        {
+
+                                            if(valFound->m_isDeclared == true)
+                                            {
+                                            
+                                                if(!valFound->m_isInitialized && !valFound->m_isWarningReported && !valFound->m_isStatic && !valFound->m_isGlobal)
+                                                {
+                                                    if(!node->m_isInitialized)
+                                                    {
+                                                        valFound->m_isWarningReported = true;
+                                                        // printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                                    }
+                                                    else
+                                                    {
+                                                        valFound->m_isInitialized = true;
+                                                    }
+                                                }
+                                            }
+
+                                            if(valFound->nodeSubType.declaration == DeclarationType::FUNCTION)
+                                            {
+                                                // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                                valFound->m_isUsed = true;
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                node->m_parmType = valFound->m_parmType;
+                                                node->m_isArray = valFound->m_isArray;
+                                                node->m_isGlobal = valFound->m_isGlobal;
+                                                node->m_isStatic = valFound->m_isStatic;
+
+                                                if(!range && valFound->nodeSubType.declaration != DeclarationType::FUNCTION)
+                                                {
+                                                    valFound->m_isUsed = true;
+                                                }
+                                            }
+
+                                            if(node->child[0] != NULL)
+                                            {
+                                                check(t->child[0], nErrors, nWarnings);
+                                                if(node->child[0]->expType == Void && !(node->child[0]->nodekind == ExpK && t->child[0]->nodeSubType.exp == CallK)){
+
+                                                    break;
+                                                }
+                                                if(!node->isArray){
+
+                                                    break;
+                                                }
+                                                else{
+
+                                                    if(node->child[0]->expType != Integer){
+                                                        // printError(14, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->child[0]->expType), NULL, 0);
+                                                    }
+                            
+                                                    if(node->child[0]->isArray && node->child[0]->child[0] == NULL){
+                                                        // printError(13, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+
+        case ExpressionType::CALL:
                             {
-                         
-                                if(leftArr && !rightArr)
-                                {
-                                    // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                int paramCount = 1;
+                                TreeNode* funcFound;
+
+                                if(node->nodeSubType.exp == CallK){
+                                    funcFound = (TreeNode*)symbolTable.lookup(node->nodeAttributes.name);
+                                    if(funcFound == NULL){
+                                        // printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
+                                            node->declErr = true; 
+                                    }
+                                    else{
+                                    
+                                    }
                                 }
 
-                                else if(!leftArr && rightArr)
-                                {
-                                    // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                for(int i = 0; i < MAXCHILDREN; i++){
+                                    check(node->child[i], nErrors, nWarnings);
+                                    }
+
+                                if(funcFound != NULL){
+                                    node->expType = funcFound->expType;
+                                    node->isArray = funcFound->isArray;
+                                    node->isGlobal = funcFound->isGlobal;
+                                    node->isStatic = funcFound->isStatic;
+                                    funcFound->wasUsed = true;
+
+
+                                    if(funcFound->nodeSubType.decl != FuncK){
+                                        // printError(11, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                    }
+                                    
+
+                                    else if(range){
+
+                                        if(inFor){
+
+                                            if(node->expType != Integer)
+                                            {
+
+                                                if(!strcmp(t->nodeAttributes.name, "main")){
+                                                    // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);                               
+                                                }
+                                                else{
+                                                    char intExpect[] = "int";
+                                                    // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    else{
+
+                                        if(funcFound->child[0] != NULL && node->child[0] != NULL){
+                                        parameterErrors(funcFound, t, funcFound->child[0], t->child[0], paramCount);
+                                        }
+
+                                        else if(funcFound->child[0] == NULL && node->child[0] != NULL){
+                                            // printError(38, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
+                                        }
+
+                                        else if(funcFound->child[0] != NULL && t->child[0] == NULL){
+                                            // printError(37, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
+                                        }
+                                    }
                                 }
+
                             }
-
-                            else
-                            {
-                                // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
-                            }
-                        }
-                        
-                        else{
-                            if(node->nodeAttributes.name != "[")
-                            {
-                                //dp nothing
-                            }
-
-                            else if((leftArr && !rightArr) || (!leftArr && rightArr))
-                            {
-
-                                if(leftArr && !rightArr)
-                                {
-                                // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
-                                }
-
-                                else if(!leftArr && rightArr)
-                                {
-                                    // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
-                                }
-                            }
-                        }
-                    }
-                }
-
-            if(returnType != UndefinedType)
-            {
-                t->expType = returnType;
-            }
-            else{
-                t->expType = leftSide;
-            }
-            break;
-
-        case ConstantK:
-            for(int i = 0; i < MAXCHILDREN; i++){
-                check(t->child[i], nErrors, nWarnings);
-            }
-    
-            if(range){
-                   if(inFor){
-
-
-                    if(t->expType != Integer)
-                    {
-                        char intExpect[] = "int";
-                        // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
-                    }
-                   }
-               }
-            break;
-
-        case IdK:
-            valFound = (TreeNode*)symbolTable.lookup(t->nodeAttributes.name);
-
-            if(valFound == NULL){
-
-                if(range && rangePos == 1){
-                    t->isDeclared = true;
-                }
-
-                else{
-                    // printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0); 
-                        t->declErr = true;    
-                }           
-            }
-
-            else if(range){
-
-                if(inFor){
-
-                    t->expType = valFound->expType;
-                    t->isArray = valFound->isArray;
-
-                    if(t->expType != Integer && rangePos >= 1)
-                    {
-                        if(!sizeOfArrayFlg){
-
-                            if(!strcmp(t->nodeAttributes.name, "main")){
-                                // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
-                            }
-                            else{
-                                char intExpect[] = "int";
-                                // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
-                            }
-                        }
-
-                    }
-
-                    if(rangePos >= 1 && !valFound->isInit){
-                        if(valFound->isDeclared == true){
-
-                            if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
-
-                                if(!t->isInit){
-                                    valFound->warningReported = true;
-                                    valFound->wasUsed = true;
-                                    // printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
-                                }
-                                
-                                else{
-                                    valFound->isInit = true;
-                                }
-                            }
-                    
-                        }
-                    }
-
-                    else if(rangePos > 1 && valFound->isInit){
-                        valFound->wasUsed = true;
-                    }
-
-                    if(valFound->isArray && !sizeOfArrayFlg && !t->isIndexed){
-                        // printError(24, t->m_lineNumber, 0, NULL, NULL, NULL, rangePos);
-                    }
-
-                    t->isIndexed = false;
-
-                }
-
-                t->isInit = true;
-            }
-
-            else{
-
-                 if(valFound->isDeclared == true){
-                
-                 if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
-                     if(!t->isInit){
-                        valFound->warningReported = true;
-                        // printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
-                     }
-                     else{
-                         valFound->isInit = true;
-                     }
-                 }
-                 }
-
-                if(valFound->nodeSubType.decl == FuncK){
-                    // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
-                    valFound->wasUsed = true;
-                    break;
-                }
-                else{
-                    t->expType = valFound->expType;
-                    t->isArray = valFound->isArray;
-                    t->isGlobal = valFound->isGlobal;
-                    t->isStatic = valFound->isStatic;
-
-                    if(!range && valFound->nodeSubType.decl != FuncK){
-                    valFound->wasUsed = true;
-                    }
-                }
-
-                if(t->child[0] != NULL){
-                    check(t->child[0], nErrors, nWarnings);
-                    if(t->child[0]->expType == Void && !(t->child[0]->nodekind == ExpK && t->child[0]->nodeSubType.exp == CallK)){
-
-                        break;
-                    }
-                    if(!t->isArray){
-
-                        break;
-                    }
-                    else{
-
-                        if(t->child[0]->expType != Integer){
-                            // printError(14, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->child[0]->expType), NULL, 0);
-                        }
- 
-                        if(t->child[0]->isArray && t->child[0]->child[0] == NULL){
-                            // printError(13, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0);
-                        }
-                    }
-                }
-            }
-            break;
-
-        case CallK:
-            int paramCount = 1;
-            TreeNode* funcFound;
-
-            if(t->nodeSubType.exp == CallK){
-                funcFound = (TreeNode*)symbolTable.lookup(t->nodeAttributes.name);
-                if(funcFound == NULL){
-                    // printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
-                        t->declErr = true; 
-                }
-                else{
-                   
-                }
-            }
-
-             for(int i = 0; i < MAXCHILDREN; i++){
-                check(t->child[i], nErrors, nWarnings);
-                }
-
-            if(funcFound != NULL){
-                t->expType = funcFound->expType;
-                t->isArray = funcFound->isArray;
-                t->isGlobal = funcFound->isGlobal;
-                t->isStatic = funcFound->isStatic;
-                funcFound->wasUsed = true;
-
-
-                if(funcFound->nodeSubType.decl != FuncK){
-                    // printError(11, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
-                }
-                
-
-                else if(range){
-
-                    if(inFor){
-
-                        if(t->expType != Integer)
-                        {
-
-                            if(!strcmp(t->nodeAttributes.name, "main")){
-                                // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);                               
-                            }
-                            else{
-                                char intExpect[] = "int";
-                                // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
-                            }
-                        }
-                    }
-                }
-
-                else{
-
-                    if(funcFound->child[0] != NULL && t->child[0] != NULL){
-                       parameterErrors(funcFound, t, funcFound->child[0], t->child[0], paramCount);
-                    }
-
-                    else if(funcFound->child[0] == NULL && t->child[0] != NULL){
-                        // printError(38, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
-                    }
-
-                    else if(funcFound->child[0] != NULL && t->child[0] == NULL){
-                        // printError(37, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
-                    }
-                }
-            }
-      
-            break;        
+                            break;        
     }
 
 }
