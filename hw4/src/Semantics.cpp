@@ -807,141 +807,179 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
         case ExpressionType::ASSIGN:
         case ExpressionType::OP:
 
-            if(!strcmp(t->nodeAttributes.name, "<=")){
+            if(node->nodeAttributes.name != "<=")
+            {
 
-                if(t->child[0] != NULL){
+                if(node->m_childernNodes[0] != NULL)
+                {
                     
-                    if(t->child[0]->child[0]!=NULL && !strcmp(t->child[0]->nodeAttributes.name, "[")){
-                        t->child[0]->child[0]->isInit = true;
+                    if(node->m_childernNodes[0]->m_childernNodes[0]!= nullptr  && node->m_childernNodes[0]->nodeAttributes.name != "[")
+                    {
+                        node->m_childernNodes[0]->m_childernNodes[0]->m_isInitialized = true;
 
-                        if(t->child[0]->child[1] != NULL){
-                            t->child[0]->child[1]->isInit = true;
+                        if(node->m_childernNodes[0]->m_childernNodes[1] != nullptr)
+                        {
+                            node->m_childernNodes[0]->m_childernNodes[1]->m_isInitialized = true;
 
-                            if(t->child[0]->child[1]->child[0] != NULL && t->child[0]->child[1]->child[1] != NULL){
+                            if(node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0] != nullptr && node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[1] != nullptr)
+                            {
 
-                            if(t->child[0]->child[1]->nodeSubType.exp == OpK){
-                                t->child[0]->child[1]->child[0]->isInit = true;
-                                t->child[0]->child[1]->child[1]->isInit = true;
-                            }
+                                if(node->m_childernNodes[0]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::OP)
+                                {
+                                    node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0]->m_isInitialized = true;
+                                    node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[1]->m_isInitialized = true;
+                                }
                             }
                         }
 
-                        else if(t->child[0]->child[1]->child[0] != NULL){
-                            t->child[0]->child[1]->child[0]->isInit = true;
+                        else if(node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0] != nullptr)
+                        {
+                            node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0]->m_isInitialized = true;
                         }
 
                     }
 
-                    else if(t->child[1] !=NULL && t->child[1]->expType == Void){
+                    else if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_parmType == ParmType::VOID)
+                    {
 
-                        if(!strcmp(t->child[1]->nodeAttributes.name, "<=")){
-                            t->child[0]->isInit = true;
+                        if(node->m_childernNodes[1]->nodeAttributes.name != "<=")
+                        {
+                            node->m_childernNodes[0]->m_isInitialized = true;
                         }
 
-                        if(t->child[1]->nodeSubType.exp == CallK){
-                            t->child[0]->isInit = true;
+                        if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL)
+                        {
+                            node->m_childernNodes[0]->m_isInitialized = true;
                         }
 
-                        else if(!strcmp(t->child[1]->nodeAttributes.name, "[")){
+                        else if(node->m_childernNodes[1]->nodeAttributes.name != "[")
+                        {
 
-                            char* lhs = strdup(t->child[0]->nodeAttributes.name);
-                            char* rhs = strdup(t->child[1]->child[0]->nodeAttributes.name);
+                            // char* lhs = strdup(node->m_childernNodes[0]->nodeAttributes.name);
+                            std::string lhs = node->m_childernNodes[0]->nodeAttributes.name;
+                            std::string rhs = node->m_childernNodes[1]->nodeAttributes.name;
 
-                            if(strcmp(lhs, rhs)){
-                                t->child[0]->isInit = true;
+                            if(lhs == rhs)
+                            {
+                                node->m_childernNodes[0]->m_isInitialized = true;
                             }
 
                         }
-                        else if(t->child[0]!=NULL && t->child[1]!=NULL){
+                        else if(node->m_childernNodes[0] != nullptr && node->m_childernNodes[1] != nullptr)
+                        {
     
-                            if(t->child[0]->nodeSubType.exp == IdK && !t->child[0]->isInit){
+                            if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER && !node->m_childernNodes[0]->m_isInitialized)
+                            {
         
-                                if(t->child[1]->nodeSubType.exp == IdK){
+                                if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                                {
 
-                                    char* lhs = strdup(t->child[0]->nodeAttributes.name);
-                                    char* rhs = strdup(t->child[1]->nodeAttributes.name);
+                                    // char* lhs = strdup(node->m_childernNodes[0]->nodeAttributes.name);
+                                    std::string lhs = node->m_childernNodes[0]->nodeAttributes.name;
+                                    std::string rhs = node->m_childernNodes[1]->nodeAttributes.name;
 
-                                    if(strcmp(lhs, rhs)){
-                                        t->child[0]->isInit = true;
+                                    if(lhs == rhs)
+                                    {
+                                        node->m_childernNodes[0]->m_isInitialized = true;
                                     }
                                 }
 
-                                else if(t->child[1]->nodeSubType.exp == AssignK){
-                                    checkNestAssK(t->child[1]);
-                                    t->child[0]->isInit = true;
+                                else if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::ASSIGN)
+                                {
+                                    analyzeNestedAssign(node->m_childernNodes[1]);
+                                    node->m_childernNodes[0]->m_isInitialized = true;
                                 }
                             }
                         }
 
-                        else{
-                        //do nothing
+                        else
+                        {
+                            //do nothing
                         }
                     }
                    
-                    else {
+                    else 
+                    {
 
-                        if(t->child[1] != NULL && t->child[1]->child[0] != NULL){
+                        if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_childernNodes[0] != nullptr)
+                        {
     
-                            if(t->child[1]->child[0]->nodeSubType.exp == IdK){
+                            if(node->m_childernNodes[1]->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                            {
 
-                                char *c0 = strdup(t->child[0]->nodeAttributes.name);
-                                char *c10 = strdup(t->child[1]->child[0]->nodeAttributes.name);
+                                // char *c0 = strdup(t->child[0]->nodeAttributes.name);
+                                // char *c10 = strdup(t->child[1]->child[0]->nodeAttributes.name);
+                                std::string child_0 = node->m_childernNodes[0]->nodeAttributes.name;
+                                std::string child_0_1 = node->m_childernNodes[1]->m_childernNodes[0]->nodeAttributes.name;
 
-                                if(strcmp(c0, c10)){
-                                    t->child[0]->isInit = true;
+                                if(child_0 == child_0_1)
+                                {
+                                    node->m_childernNodes[0]->m_isInitialized = true;
              
                                 }
                             }
 
-                            else{
-                                t->child[0]->isInit = true;
+                            else
+                            {
+                                node->m_childernNodes[0]->m_isInitialized = true;
                             }
                             
 
                         }
 
-                        else{
-                            t->child[0]->isInit = true;
+                        else
+                        {
+                            node->m_childernNodes[0]->m_isInitialized = true;
                         }
                     }
                 }
 
             }
 
-            if(strcmp(t->nodeAttributes.name, "<=")){
-                if(t->child[0] != NULL){
-                    t->child[0]->wasUsed = true;
+            if(node->nodeAttributes.name == "<=")
+            {
+                if(node->m_childernNodes[0] != nullptr)
+                {
+                    node->m_childernNodes[0]->m_isUsed = true;
                     
                 }
-                if(t->child[1] != NULL){
-                    t->child[1]->wasUsed = true;
+                if(node->m_childernNodes[1] != nullptr)
+                {
+                    node->m_childernNodes[1]->m_isUsed = true;
                 }
             }
 
-            if(!strcmp(t->nodeAttributes.name, "*")){
+            if(node->nodeAttributes.name != "*")
+            {
                 sizeOfArrayFlg = true;
             }
 
-            for(int i= 0; i < MAXCHILDREN; i++){
-                check(t->child[i], nErrors, nWarnings);
+            for(int i= 0; i < MAXCHILDREN; i++)
+            {
+                analyze(node->m_childernNodes[i], nErrors, nWarnings);
             }
 
             sizeOfArrayFlg = false;
 
-            if(t->child[0] != NULL){
-                leftNode = t->child[0];
-                leftSide = leftNode->expType;
-                leftArr = leftNode->isArray;
+            if(node->m_childernNodes[0] != nullptr)
+            {
+                leftNode = node->m_childernNodes[0];
+                leftSide = leftNode->m_parmType;
+                leftArr = leftNode->m_isArray;
 
-                if(leftNode->child[0] != NULL){
+                if(leftNode->child[0] != NULL)
+                {
                     leftArr = false; 
                     leftIndx = true; 
                 }
-                if(leftNode->nodekind == ExpK){
-                    if(leftNode->nodeSubType.exp == CallK){
+                if(leftNode->nodekind == ExpK)
+                {
+                    if(leftNode->nodeSubType.exp == CallK)
+                    {
                         leftArr = false;
                     }
-                    if(leftNode->nodeSubType.exp == ConstantK){
+                    if(leftNode->nodeSubType.exp == ConstantK)
+                    {
                         leftStr = true;
                     }
                 }
@@ -958,10 +996,12 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                     rightIndx = true; 
                 }
                 if(rightNode->nodekind == ExpK){
-                    if(rightNode->nodeSubType.exp == CallK){
+                    if(rightNode->nodeSubType.exp == CallK)
+                    {
                         rightArr = false;
                     }
-                    if(rightNode->nodeSubType.exp == ConstantK){
+                    if(rightNode->nodeSubType.exp == ConstantK)
+                    {
                         rightStr = true;
                     }
                 }
@@ -973,43 +1013,50 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
             if(leftSide == Void && !(leftNode->nodekind == ExpK && leftNode->nodeSubType.exp == CallK)){
                 leftErr = true;
             }
-            if(rightSide == Void && !(rightNode->nodekind == ExpK && rightNode->nodeSubType.exp == CallK)){
+            if(rightSide == Void && !(rightNode->nodekind == ExpK && rightNode->nodeSubType.exp == CallK))
+            {
                 rightErr = true;
             }
 
             if(!isBinary && !leftErr){
  
-                if(leftSide != leftExpected && leftExpected != UndefinedType){
+                if(leftSide != leftExpected && leftExpected != UndefinedType)
+                {
 
                     if(!strcmp(t->nodeAttributes.name, "-")){
                         char uMinus[] = "chsign";
-                        printError(9, t->m_lineNumber, 0, uMinus, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                        // printError(9, t->m_lineNumber, 0, uMinus, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                     }
 
                     else{
-                        printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                        // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                     }
                 }
 
-                else if(!strcmp(t->nodeAttributes.name, "not") && leftSide != leftExpected){
+                else if(!strcmp(t->nodeAttributes.name, "not") && leftSide != leftExpected)
+                {
 
-                    printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                    // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                 }
 
-                else if(!strcmp(t->nodeAttributes.name, "*") && (!leftArr && leftSide != UndefinedType)){
+                else if(!strcmp(t->nodeAttributes.name, "*") && (!leftArr && leftSide != UndefinedType))
+                {
                     char uSizeof[] = "sizeof";
-                    printError(8, t->m_lineNumber, 0, uSizeof, NULL, NULL, 0);
+                    // printError(8, t->m_lineNumber, 0, uSizeof, NULL, NULL, 0);
                 } 
 
-                if(leftArr){
-                    if(strcmp(t->nodeAttributes.name, "*") != 0){
+                if(leftArr)
+                {
+                    if(strcmp(t->nodeAttributes.name, "*") != 0)
+                    {
 
-                        if(!strcmp(t->nodeAttributes.name, "-")){
+                        if(!strcmp(t->nodeAttributes.name, "-"))
+                        {
                             char uMinus[] = "chsign";
-                            printError(7, t->m_lineNumber, 0, uMinus, NULL, NULL, 0);
+                            // printError(7, t->m_lineNumber, 0, uMinus, NULL, NULL, 0);
                         }
                         else{
-                            printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                            // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                         }
                     }
                 }
@@ -1025,7 +1072,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                             if(!strcmp(ExpTypetwo(leftSide), "int") && !strcmp(ExpTypetwo(rightSide), "CharInt")){
                                 char diffCharInt[] = "char";
-                                 printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), diffCharInt, 0);
+                                //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), diffCharInt, 0);
                             }
                             else if(!strcmp(ExpTypetwo(leftSide), "char") && !strcmp(ExpTypetwo(rightSide), "CharInt")){
                                 ; //do nothing
@@ -1036,18 +1083,18 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                 getReturnType(t->child[1]->nodeAttributes.name, isBinary, childReturnType);
                                
                                 if(childReturnType != t->child[0]->expType){
-                                    printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
+                                    // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
                                 }
 
                                 else if(t->child[1]->child[1] != NULL && t->child[1]->child[1]->nodeSubType.exp == CallK){
-                                    printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
+                                    // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
                                 }
                             }
                             else{
 
                                 if(t->child[0]->nodeSubType.exp != CallK){
 
-                                 printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(rightSide), 0);
+                                //  printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(rightSide), 0);
                                 }
                                 else{}
                             }
@@ -1071,8 +1118,8 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                  if(lhs->nodeSubType.decl == FuncK && rhs->nodeSubType.decl == FuncK && !lhs->isIO && !rhs->isIO){
                                      if(t->child[0]->expType == Void && t->child[1]->expType == Void){
-                                     printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
-                                     printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                    //  printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                                    //  printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                      }
                                      
                                  }
@@ -1082,16 +1129,16 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                         else{
 
                             if(leftSide != leftExpected && !leftErr){
-                                printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                                // printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                             }
 
                             if(rightSide != rightExpected && !rightErr && rightSide != UndefinedType){
 
                                 if(rightSide == Void && t->child[1]->nodeSubType.exp == CallK && returnType != Boolean){
-                                    printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                    // printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                 }
                                 else if(rightSide != Void){
-                                    printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                    // printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                 }
                             }
                         }
@@ -1103,16 +1150,16 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                             if(!strcmp(t->nodeAttributes.name, "<") || !strcmp(t->nodeAttributes.name, ">") || !strcmp(t->nodeAttributes.name, "=") || !strcmp(t->nodeAttributes.name, "!>") || !strcmp(t->nodeAttributes.name, "!<") || !strcmp(t->nodeAttributes.name, "><")){
                          
                                  if(leftArr && !rightArr){
-                                printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
 
                                 else if(!leftArr && rightArr){
-                                printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
                             }
 
                             else{
-                            printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                            // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                             }
                         }
                         
@@ -1124,11 +1171,11 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                             else if((leftArr && !rightArr) || (!leftArr && rightArr)){
 
                                 if(leftArr && !rightArr){
-                                printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
 
                                 else if(!leftArr && rightArr){
-                                    printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                    // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
                             }
                         }
@@ -1155,7 +1202,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                     if(t->expType != Integer)
                     {
                         char intExpect[] = "int";
-                        printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                        // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
                     }
                    }
                }
@@ -1171,7 +1218,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                 }
 
                 else{
-                    printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0); 
+                    // printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0); 
                         t->declErr = true;    
                 }           
             }
@@ -1188,11 +1235,11 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                         if(!sizeOfArrayFlg){
 
                             if(!strcmp(t->nodeAttributes.name, "main")){
-                                printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
+                                // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
                             }
                             else{
                                 char intExpect[] = "int";
-                                printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                                // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
                             }
                         }
 
@@ -1206,7 +1253,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                 if(!t->isInit){
                                     valFound->warningReported = true;
                                     valFound->wasUsed = true;
-                                    printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                    // printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                 }
                                 
                                 else{
@@ -1222,7 +1269,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                     }
 
                     if(valFound->isArray && !sizeOfArrayFlg && !t->isIndexed){
-                        printError(24, t->m_lineNumber, 0, NULL, NULL, NULL, rangePos);
+                        // printError(24, t->m_lineNumber, 0, NULL, NULL, NULL, rangePos);
                     }
 
                     t->isIndexed = false;
@@ -1239,7 +1286,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                  if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
                      if(!t->isInit){
                         valFound->warningReported = true;
-                        printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                        // printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                      }
                      else{
                          valFound->isInit = true;
@@ -1248,7 +1295,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                  }
 
                 if(valFound->nodeSubType.decl == FuncK){
-                    printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                    // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                     valFound->wasUsed = true;
                     break;
                 }
@@ -1276,11 +1323,11 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                     else{
 
                         if(t->child[0]->expType != Integer){
-                            printError(14, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->child[0]->expType), NULL, 0);
+                            // printError(14, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->child[0]->expType), NULL, 0);
                         }
  
                         if(t->child[0]->isArray && t->child[0]->child[0] == NULL){
-                            printError(13, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0);
+                            // printError(13, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0);
                         }
                     }
                 }
@@ -1294,7 +1341,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
             if(t->nodeSubType.exp == CallK){
                 funcFound = (TreeNode*)symbolTable.lookup(t->nodeAttributes.name);
                 if(funcFound == NULL){
-                    printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
+                    // printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
                         t->declErr = true; 
                 }
                 else{
@@ -1315,7 +1362,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
 
                 if(funcFound->nodeSubType.decl != FuncK){
-                    printError(11, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                    // printError(11, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                 }
                 
 
@@ -1327,11 +1374,11 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                         {
 
                             if(!strcmp(t->nodeAttributes.name, "main")){
-                                printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);                               
+                                // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);                               
                             }
                             else{
                                 char intExpect[] = "int";
-                                printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                                // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
                             }
                         }
                     }
@@ -1344,11 +1391,11 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                     }
 
                     else if(funcFound->child[0] == NULL && t->child[0] != NULL){
-                        printError(38, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
+                        // printError(38, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
                     }
 
                     else if(funcFound->child[0] != NULL && t->child[0] == NULL){
-                        printError(37, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
+                        // printError(37, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
                     }
                 }
             }
