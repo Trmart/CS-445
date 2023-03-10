@@ -6,14 +6,14 @@ HW4
 Dr. Wilder
 DUE: 3/12/2023
 
-FILE: CompilerFlags.cpp
-DESC: Class functions definitions to detect and hold c- compiler flags
+FILE: semantic.h
+DESC:  Semantic analysis functions
 */
 
 #ifndef SEMANTIC 
 #define SEMANTIC
 
-#include "tree.h"
+#include "AST.h"
 #include "symbolTable.h"
 #include "scanType.h"
 

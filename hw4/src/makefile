@@ -12,9 +12,9 @@
 BIN = parser
 CC = g++ -std=c++17
 
-FLES = tree.c symbolTable.cpp semantic.cpp IOinit.cpp TokenFormatter.c
+FLES = AST.c symbolTable.cpp semantic.cpp IOinit.cpp TokenFormatter.c
 SRCS = $(BIN).y  $(BIN).l
-HDRS = scanType.h tree.h symbolTable.h semantic.h IOinit.h TokenFormatter.h
+HDRS = scanType.h AST.h symbolTable.h semantic.h IOinit.h TokenFormatter.h
 OBJS = lex.yy.o $(BIN).tab.o 
 
 $(BIN) : $(OBJS)

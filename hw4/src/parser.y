@@ -13,7 +13,7 @@ DESC: Holds the grammar for the c- language.
 */
 
 #include "scanType.h"  
-#include "tree.h"
+#include "AST.h"
 #include "semantic.h"
 #include "IOinit.h"
 

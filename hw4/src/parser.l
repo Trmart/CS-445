@@ -14,7 +14,7 @@ DESC: This file is the lexer for the compiler. It will take in a file and parse 
 */
 
 #include "scanType.h"  
-#include "tree.h"  
+#include "AST.h"  
 #include "parser.tab.h"  
 
 #include <stdio.h>

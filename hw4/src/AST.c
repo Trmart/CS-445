@@ -10,7 +10,7 @@ FILE: CompilerFlags.cpp
 DESC: Class functions definitions to detect and hold c- compiler flags
 */
 
-#include "tree.h"
+#include "AST.h"
 #include "scanType.h"
 #include "parser.tab.h"
 

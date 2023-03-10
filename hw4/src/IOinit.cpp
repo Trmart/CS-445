@@ -11,14 +11,7 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 */
 
 #include "IOinit.h"
-#include "symbolTable.h"
-#include "tree.h"
-#include "scanType.h"
-#include "semantic.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <iostream>
 
 extern SymbolTable symbolTable;
 
