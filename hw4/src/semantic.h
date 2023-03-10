@@ -43,7 +43,7 @@ void analyzeRange(TreeNode* node, int& nErrors, int& nWarnings);
 
 //Expression analyzers
 void analyzeExp(TreeNode* node, int& nErrors, int& nWarnings);
-void analyzeOp(TreeNode* node, TreeNode* leftNode, TreeNode* rightNode, int& nErrors, int& nWarnings);
+void analyzeCall(TreeNode* node, int& nErrors, int& nWarnings);
 void analyzeConst(TreeNode* node, int& nErrors, int& nWarnings);
 void analyzeId(TreeNode* node, TreeNode* valueFound, int& nErrors, int& nWarnings);
 void analyze_Op_and_Assign(TreeNode* node,  TreeNode* leftNode, TreeNode* rightNode,  int& nErrors, int& nWarnings);
