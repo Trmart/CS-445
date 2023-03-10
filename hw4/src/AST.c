@@ -60,7 +60,6 @@ void setType(TreeNode* node, ExpType type)
     }
 }
 
-
 // Creates a new declaration node for syntax tree construction
 TreeNode* newDeclNode(DeclKind kind, TokenData* token)
 {
@@ -344,9 +343,36 @@ void printStmtNode(TreeNode* tree, bool isShowingTypes)
 void printDeclNode(TreeNode* tree, bool isShowingTypes)
 {
     switch(tree->subkind.decl)
-            {
+    {
+        case FuncK:
+                {
+                    printf("Func: %s returns type ", tree->attr.name);
+                    printExp(tree->expType);
+                    printf(" [line: %d]\n", tree->lineno);
+                }
+                break;
 
-                case VarK:
+
+
+        case ParamK:
+                {
+                    if(tree->isArray)
+                    {
+                        printf("Parm: %s is array of type ", tree->attr.name);
+                        printExp(tree->expType);
+                        printf(" [line: %d]\n", tree->lineno);
+                    }
+                    else
+                    {
+                        printf("Parm: %s of type ", tree->attr.name);
+                        printExp(tree->expType);
+                        printf(" [line: %d]\n", tree->lineno);
+                    }
+                }
+                break;
+        
+        case VarK:
+                {
                     if(tree->isArray == true)
                     {
                         printf("Var: %s is array of type ", tree->attr.name);
@@ -367,207 +393,253 @@ void printDeclNode(TreeNode* tree, bool isShowingTypes)
                         printExp(tree->expType);
                         printf(" [line: %d]\n", tree->lineno);
                     }
-                    break;
+                }
+                break;
+        default:
+        {
+            printf("Unknown Decl Kind Line:%d\n", tree->lineno);
+        }
+        break;
+    }
+}
 
-                case FuncK:
-                    printf("Func: %s returns type ", tree->attr.name);
-                    printExp(tree->expType);
-                        printf(" [line: %d]\n", tree->lineno);
-                    break;
 
-                case ParamK:
-                    if(tree->isArray){
-                        printf("Parm: %s is array of type ", tree->attr.name);
-                        printExp(tree->expType);
-                        printf(" [line: %d]\n", tree->lineno);
-                    }
-                    else{
-                        printf("Parm: %s of type ", tree->attr.name);
-                        printExp(tree->expType);
-                        printf(" [line: %d]\n", tree->lineno);
-                    }
-                    break;
-                
-                default:
-                printf("Unknown Decl Kind Line:%d\n", tree->lineno);
+void printConstantNode(TreeNode* tree, bool isShowingTypes)
+{
+    if(tree->expType == Boolean)
+    {
+        printf("Const %s", tree->attr.name);
+
+        if(isShowingTypes)
+        {
+            printf(" of type bool");
+        }
+
+        printf(" [line: %d]\n", tree->lineno);
+    }
+
+    else if(tree->expType == CharInt)
+    {
+        printf("Const is array ");
+        
+        printf("%s", tree->attr.name);
+
+        if(isShowingTypes)
+        {
+            printf(" of type char");
+        }
+
+        printf(" [line: %d]\n", tree->lineno);
+    }
+
+    else if(tree->expType == Char)
+    {
+        printf("Const \'%c\'", tree->thisTokenData->cvalue);
+
+        if(isShowingTypes)
+        {
+            printf(" of type char");
+        }
+
+        printf(" [line: %d]\n", tree->lineno);
+    }
+
+    else
+    {
+        printf("Const %d", tree->attr.value);
+
+        if(isShowingTypes)
+        {
+            printf(" of type int");
+        }
+
+        printf(" [line: %d]\n", tree->lineno);
+    }
+}
+
+
+void printOpNode(TreeNode* tree, bool isShowingTypes)
+{
+    if(tree->child[1] != NULL && !strcmp(tree->attr.name, "="))
+    {
+        printf("Op: %s", tree->attr.name);
+        
+        if(tree->expType == UndefinedType)
+        {
+            
+            if(isShowingTypes)
+            {
+                printf(" of undefined type");
             }
+        }
+        else
+        {
+            if(isShowingTypes)
+            {
+                printf(" of type bool");
+            }
+        }
+        printf(" [line: %d]\n", tree->lineno);
+    }
+                                        
+    else if(tree->child[1] == NULL && !strcmp(tree->attr.name, "-"))
+    {
+        
+        printf("Op: chsign");
+        
+        if(isShowingTypes)
+        {
+            if(tree->expType == UndefinedType)
+            {
+                printf(" of undefined type");
+            }
+            else
+            {
+                printf(" of type ");
+                printExp(tree->expType);
+            }
+        }
+        printf(" [line: %d]\n", tree->lineno);
+        
+    }
+
+    else if(tree->child[1] == NULL && !strcmp(tree->attr.name, "*"))
+    {
+        printf("Op: sizeof");
+        
+        if(isShowingTypes){
+            if(tree->expType == UndefinedType || !tree->child[0]->isArray)
+            {
+                printf(" of undefined type");
+            }
+            else
+            {
+                printf(" of type ");
+                printExp(tree->expType);
+            }
+        }
+        printf(" [line: %d]\n", tree->lineno);
+    }
+
+    else if(!strcmp(tree->attr.name, "%"))
+    {
+        printf("Op: %s", tree->attr.name);
+        
+        if(isShowingTypes)
+        {
+            if(tree->expType == UndefinedType)
+            {
+                printf(" of undefined type");
+            }
+            else
+            {
+                printf(" of type ");
+                printExp(tree->expType);
+            }
+        }
+        printf(" [line: %d]\n", tree->lineno);
+    }
+
+    else
+    {
+        printf("Op: %s", tree->attr.name);
+        if(isShowingTypes)
+        {
+            if(tree->expType == UndefinedType)
+            {
+                printf(" of undefined type");
+            }
+            
+            else
+            {
+                printf(" of type ");
+                printExp(tree->expType);
+            }
+        }
+        printf(" [line: %d]\n", tree->lineno);
+    }
 }
 
 
 void printExpNode(TreeNode* tree, bool isShowingTypes)
 {
     switch(tree->subkind.exp)
-            {
-                
-                case OpK:
-
-                if(tree->child[1] != NULL && !strcmp(tree->attr.name, "=")){
-                    printf("Op: %s", tree->attr.name);
-                    if(tree->expType == UndefinedType){
-                       
-                        if(isShowingTypes){
-                            printf(" of undefined type");
-                        }
+    {
+        
+        case OpK:
+                {
+                    printOpNode(tree, isShowingTypes);
+                }
+                break;
+        
+        case ConstantK:
+                    {
+                        printConstantNode(tree, isShowingTypes);
                     }
-                    else{
+                    break;
+
+        case AssignK:
+                    {
+                        printf("Assign: %s", tree->attr.name);
                         
-                        if(isShowingTypes){
-                            printf(" of type bool");
-                            //printExp(tree->expType);
-                        }
-                    }
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-                                                
-                else if(tree->child[1] == NULL && !strcmp(tree->attr.name, "-")){
-                    
-                    printf("Op: chsign");
-                    if(isShowingTypes){
-                        if(tree->expType == UndefinedType){
-                            printf(" of undefined type");
-                        }
-                        else{
+                        if(isShowingTypes)
+                        {
                             printf(" of type ");
                             printExp(tree->expType);
                         }
+
+                        printf(" [line: %d]\n", tree->lineno);
                     }
-                    printf(" [line: %d]\n", tree->lineno);
-                    
-                }
+                    break;
 
-                else if(tree->child[1] == NULL && !strcmp(tree->attr.name, "*")){
-                    printf("Op: sizeof");
-                    if(isShowingTypes){
-                        if(tree->expType == UndefinedType || !tree->child[0]->isArray){
-                            printf(" of undefined type");
-                        }
-                        else{
-                            printf(" of type ");
-                            printExp(tree->expType);
-                        }
-                    }
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-
-                else if(!strcmp(tree->attr.name, "%")){
-                    printf("Op: %s", tree->attr.name);
-                    if(isShowingTypes){
-                        if(tree->expType == UndefinedType){
-                            printf(" of undefined type");
-                        }
-                        else{
-                            printf(" of type ");
-                            printExp(tree->expType);
-                        }
-                    }
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-
-                else{
-                    printf("Op: %s", tree->attr.name);
-                    if(isShowingTypes){
-                        if(tree->expType == UndefinedType){
-                            printf(" of undefined type");
-                        }
-                        
-                        else{
-                            printf(" of type ");
-                            printExp(tree->expType);
-                        }
-                    }
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-                break;
-                case ConstantK:
-
-                if(tree->expType == Boolean){
-                    printf("Const %s", tree->attr.name);
-
-                    if(isShowingTypes){
-                        printf(" of type bool");
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-
-                else if(tree->expType == CharInt){
-                    printf("Const is array ");
-                    printf("%s", tree->attr.name);
-
-                    if(isShowingTypes){
-                        printf(" of type char");
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-
-                else if(tree->expType == Char){
-                    printf("Const \'%c\'", tree->thisTokenData->cvalue);
-
-                    if(isShowingTypes){
-                        printf(" of type char");
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-
-                else{
-                    printf("Const %d", tree->attr.value);
-
-                    if(isShowingTypes){
-                        printf(" of type int");
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                }
-                break;
-
-                case AssignK:
-                    printf("Assign: %s", tree->attr.name);
-                    
-                    if(isShowingTypes){
-                        printf(" of type ");
-                        printExp(tree->expType);
-                    }
-
-                    printf(" [line: %d]\n", tree->lineno);
-                break;
- 
-                case IdK:
+        case IdK:
+                {
                     printf("Id: %s", tree->attr.name);
 
-                    if(isShowingTypes){
-                        if(tree->expType == UndefinedType || tree->expType == Void){
+                    if(isShowingTypes)
+                    {
+                        if(tree->expType == UndefinedType || tree->expType == Void)
+                        {
                             printf(" of undefined type");
                         }
-                        else{
+                        else
+                        {
                             printf(" of type ");
                             printExp(tree->expType);
                         }
                     }
 
                     printf(" [line: %d]\n", tree->lineno);
+                }
                 break;
 
-                case InitK:
+        case InitK:
+                {
+                    //do nothing
+                }
                 break;
 
-                case CallK:
-                     printf("Call: %s", tree->attr.name);
+        case CallK:
+                {
+                    printf("Call: %s", tree->attr.name);
                     
-                    if(isShowingTypes){
+                    if(isShowingTypes)
+                    {
                         printf(" of type ");
                         printExp(tree->expType);
                     }
 
                     printf(" [line: %d]\n", tree->lineno);
+                }
                 break;
 
-                default:
-                    printf("ERROR %i ", CallK);
+        default:
+                {
+                    printf("ERROR %i ", ExpK);
                     printf("Unknown ExpNode subkind Line: %d\n", tree->lineno);
+                }
                 break;
-            }
+    }
 }
 
 

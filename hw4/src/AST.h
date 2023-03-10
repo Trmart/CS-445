@@ -142,6 +142,8 @@ void printExp(ExpType type);
 void printStmtNode(TreeNode* tree, bool isShowingTypes);
 void printDeclNode(TreeNode* tree, bool isShowingTypes);
 void printExpNode(TreeNode* tree, bool isShowingTypes);
+void printConstantNode(TreeNode* tree, bool isShowingTypes);
+void printOpNode(TreeNode* tree, bool isShowingTypes);
 
 
 //setters 
