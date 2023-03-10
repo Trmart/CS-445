@@ -74,7 +74,6 @@ typedef enum
     Boolean, 
     Char, 
     CharInt, 
-    Equal, 
     UndefinedType
 } ExpType;
 
@@ -136,9 +135,14 @@ TreeNode* newExpNode(ExpKind kind, TokenData* token);
 TreeNode *newDeclNodeIO(DeclKind kind);
 
 //print functions
-void printAST(TreeNode *ast, int numsiblings, bool alltype);
+void printAST(TreeNode *ast, int numsiblings, bool isShowingTypes);
 void printTabs(int numTabs);
 void printExp(ExpType type);
+
+void printStmtNode(TreeNode* tree, bool isShowingTypes);
+void printDeclNode(TreeNode* tree, bool isShowingTypes);
+void printExpNode(TreeNode* tree, bool isShowingTypes);
+
 
 //setters 
 void setType(TreeNode* node, ExpType type);

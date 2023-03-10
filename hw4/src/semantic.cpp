@@ -1233,8 +1233,6 @@ char* ExpTypetwo(ExpType type){
             return strdup("char");
         case CharInt:
             return strdup("CharInt");
-        case Equal:
-            return strdup("Equal");
         case UndefinedType:
             return strdup("undefined type");
         default:

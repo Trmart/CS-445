@@ -19,177 +19,350 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 #include <string.h>
 #include <ctype.h>
 
-int WSC = 0;
+int numTabs = 0;
 
-//function adds a sibling
-TreeNode *addSibling(TreeNode *t, TreeNode *s)
+//adds sibling to node
+TreeNode* addSibling(TreeNode *node, TreeNode *sibling)
 {
-    if (t!=NULL) 
+    if (node!=NULL) 
     {
-        TreeNode *tmp;
+        TreeNode *tmp = node;
         
-        tmp = t;
-        while (tmp->sibling!=NULL) tmp = tmp->sibling;
-        tmp->sibling = s;
-        return t;
+        while (tmp->sibling != NULL)
+        {
+            tmp = tmp->sibling;
+        } 
+        
+        tmp->sibling = sibling;
+        
+        return node;
     }
-    return s;
 
-    if(t == NULL){
-        return s;   
+    return sibling;
+
+    if(node == NULL)
+    {
+        return sibling;   
     }
-    else if(s == NULL){
-        return t;
+    else if(sibling == NULL)
+    {
+        return node;
     }
 }
 
 // Function Passes the type attributes down the sibling list.
-void setType(TreeNode *t, ExpType type){
-
-    while (t != NULL) {
-        t->expType = type;
-        t = t->sibling;
+void setType(TreeNode* node, ExpType type)
+{
+    while (node != NULL) 
+    {
+        node->expType = type;
+        node = node->sibling;
     }
-
 }
-/* Function newDeclNode creates a new declaration
- * node for syntax tree construction
- */
-TreeNode *newDeclNode(DeclKind kind, TokenData* token){
-    TreeNode *t = (TreeNode *) malloc(sizeof(TreeNode));
+
+
+// Creates a new declaration node for syntax tree construction
+TreeNode* newDeclNode(DeclKind kind, TokenData* token)
+{
+    TreeNode* node = (TreeNode *) malloc(sizeof(TreeNode));
+    
     int i;
-    if( t==NULL){
+    
+    if( node==NULL)
+    {
         printf("Out of memory error at line %d\n", token->lineno);
     }
-    else{
-        for(i=0; i<MAXCHILDREN; i++){
-            t->child[i] = NULL;
-            t->sibling = NULL;
-            t->nodekind = DeclK;
-            t->subkind.decl = kind;
-            t->lineno = token->lineno;
-            t->expType = Void;
-            t->attr.name = strdup(token->tokenstr);
+    else
+    {
+        for(i=0; i<MAXCHILDREN; i++)
+        {
+            node->child[i] = NULL;
+            node->sibling = NULL;
+            node->nodekind = DeclK;
+            node->subkind.decl = kind;
+            node->lineno = token->lineno;
+            node->expType = Void;
+            node->attr.name = strdup(token->tokenstr);
         }
     }
 
-    return t;
+    return node;
 }
 
-/* Function newStmtNode creates a new statement
- * node for syntax tree construction
- */
-TreeNode *newStmtNode(StmtKind kind, TokenData *token){
-    TreeNode *t = (TreeNode *) malloc(sizeof(TreeNode));
+
+TreeNode *newDeclNodeIO(DeclKind kind)
+{
+    TreeNode* node = (TreeNode *)malloc(sizeof(TreeNode));
     int i;
-    if( t==NULL){
+
+    for(i = 0; i<MAXCHILDREN; i++)
+    {
+        node->child[i] = NULL;
+        node->sibling = NULL;
+        node->nodekind = DeclK;
+        node->subkind.decl = kind;
+        node->expType = Void;
+    }
+
+    return node;
+}
+
+
+TreeNode* newStmtNode(StmtKind kind, TokenData *token)
+{
+    TreeNode* node = (TreeNode *) malloc(sizeof(TreeNode));
+    int i;
+    
+    if(node ==NULL)
+    {
         printf("Out of memory error at line %d\n", token->lineno);
     }
-    else{
-        for(i=0; i<MAXCHILDREN; i++){
-            t->child[i] = NULL;
-            t->sibling = NULL;
-            t->nodekind = StmtK;
-            t->subkind.stmt = kind;
-            t->lineno = token->lineno;
-            t->expType = Void;
-            t->attr.name = strdup(token->tokenstr);
+    else
+    {
+        for(i=0; i<MAXCHILDREN; i++)
+        {
+            node->child[i] = NULL;
+            node->sibling = NULL;
+            node->nodekind = StmtK;
+            node->subkind.stmt = kind;
+            node->lineno = token->lineno;
+            node->expType = Void;
+            node->attr.name = strdup(token->tokenstr);
         }
     }
 
-    return t;
+    return node;
 }
 
-/* Function newExpNode creates a new expression 
- * node for syntax tree construction
- */
-TreeNode *newExpNode(ExpKind kind, TokenData *token){
-    TreeNode *t = (TreeNode *) malloc(sizeof(TreeNode));
+
+TreeNode* newExpNode(ExpKind kind, TokenData *token)
+{
+    TreeNode* node = (TreeNode *) malloc(sizeof(TreeNode));
+    
     int i;
-    if( t==NULL){
+    
+    if( node==NULL)
+    {
         printf("Out of memory error at line %d\n", token->lineno);
     }  
-    else{
-        for(i=0; i<MAXCHILDREN; i++){
-            t->child[i] = NULL;
-            t->sibling = NULL;
-            t->nodekind = ExpK;
-            t->subkind.exp = kind;
-            t->lineno = token->lineno;
-            t->expType = Void;
+    else
+    {
+        for(i=0; i < MAXCHILDREN; i++)
+        {
+            node->child[i] = NULL;
+            node->sibling = NULL;
+            node->nodekind = ExpK;
+            node->subkind.exp = kind;
+            node->lineno = token->lineno;
+            node->expType = Void;
         }
     }
 
-    return t;
+    return node;
 }
 
-//prints expected type in grammar, eliminates use of more if statements. 
-void printExp(ExpType t){
 
-    switch(t){
+void printExp(ExpType type)
+{
+
+    switch(type)
+    {
 
         case Void:
-            printf("void");
-            break;
+                {
+                    printf("void");
+                }
+                break;
+
 
         case Integer:
-            printf("int");
-            break;
+                    {
+                        printf("int");
+                    }
+                    break;
 
         case Char:
-            printf("char");
-            break;
+                {
+                    printf("char");
+                }
+                break;
 
         case CharInt:
-            printf("CharInt");
-            break;
+                    {
+                        printf("CharInt");
+                    }
+                    break;
 
         case Boolean:
-            printf("bool");
-            break;
-
-        case Equal:
-            printf("Equal");
-            break;
+                    {
+                        printf("bool");
+                    }
+                    break;
 
         case UndefinedType:
-            printf("undefined type");
-            break;
+                        {
+                            printf("UndefinedType");
+                        }
+                        break;
 
         default:
-            printf("exprType not found\n");
+                {
+                    printf("Error: Type not found");
+                }
+                break;
+    }
+}
+
+
+void printAST(TreeNode *tree, int nsiblings, bool isShowingTypes)
+{
+    int i;
+
+    if(tree==NULL)
+    {
+        printf("Unable to print tree\n");
+    }
+
+    while(tree != NULL)
+    {
+        switch (tree->nodekind)
+        {
+            case DeclK:
+                    {
+                        printDeclNode(tree, isShowingTypes);
+                    }
+                    break;
+
+            case StmtK:
+                    {
+                        printStmtNode(tree, isShowingTypes);
+                    }
+                    break;
+
+            case ExpK:
+                    {
+                        printExpNode(tree, isShowingTypes);
+                    }
+                    break;
+
+            default:
+                    {
+                        printf("Unknown node type: %d Line: %d\n", tree->nodekind, tree->lineno);
+                    }
+                    break;
+        }
+
+        //print and analyze children
+        for(i=0; i< MAXCHILDREN; i++)
+        {
+
+            if(tree->child[i] != NULL)
+            {
+                numTabs++;
+                printTabs(numTabs);
+                printf("Child: %d  ", i);
+                printAST(tree->child[i], 0, isShowingTypes);
+                numTabs--;
+            }
+        }
+
+        //print and analyze siblings
+        if(tree->sibling != NULL)
+        {
+            nsiblings++;
+            printTabs(numTabs);
+            printf("Sibling: %d  ", nsiblings);
+        }
+        
+        tree = tree->sibling;
+    }
+}
+
+
+void printStmtNode(TreeNode* tree, bool isShowingTypes)
+{
+    switch(tree->subkind.stmt)
+    {
+        
+        case BreakK:
+                {
+                    printf("Break [line: %d]\n", tree->lineno);
+                }
+                break;
+
+        case CompoundK:
+                    {
+                        printf("Compound [line: %d]\n", tree->lineno);
+                    }
+                    break;
+
+        case ForK:
+                {
+                    printf("For [line: %d]\n", tree->lineno);
+                }
+                break;
+
+        case IfK:
+                {
+                    printf("If [line: %d]\n", tree->lineno);
+                }
+                break;
+
+        case NullK:
+                {
+                    printf("NULL [line: %d]\n", tree->lineno);
+                }
+                break;
+
+        case RangeK:
+                {
+                    printf("Range [line: %d]\n", tree->lineno);
+                }
+                break;
+
+        case ReturnK:
+                    {
+                        printf("Return [line: %d]\n", tree->lineno);
+                    }
+                    break;
+
+        case WhileK:
+                {
+                    printf("While [line: %d]\n", tree->lineno);
+                }
+                break;
+        
+        default:
+            {
+                printf("Unknown StmtNode type: %d Line: %d\n", tree->subkind.stmt, tree->lineno);
+            }
             break;
     }
 }
 
-//function to print tree, uses recursion
-void printAST(TreeNode *tree, int nsiblings, bool alltype){
-    int i;
-    bool ALLTYPE = alltype;
 
-    if(tree==NULL){
-        printf("Unable to print tree\n");
-    }
-    while(tree != NULL){
-            
-        if(tree->nodekind == DeclK){
-
-            switch(tree->subkind.decl){
+void printDeclNode(TreeNode* tree, bool isShowingTypes)
+{
+    switch(tree->subkind.decl)
+            {
 
                 case VarK:
-                    if(tree->isArray == true){
+                    if(tree->isArray == true)
+                    {
                         printf("Var: %s is array of type ", tree->attr.name);
                         printExp(tree->expType);
                         printf(" [line: %d]\n", tree->lineno);
                     }
-                    else if(!ALLTYPE){
+                    else if(!isShowingTypes)
+                    {
                         if(tree->isStatic == true){
                         printf("Var: %s of static type ", tree->attr.name);
                         printExp(tree->expType);
                         printf(" [line: %d]\n", tree->lineno);
                         }
                     }
-                    else{
+                    else
+                    {
                         printf("Var: %s of type ", tree->attr.name);
                         printExp(tree->expType);
                         printf(" [line: %d]\n", tree->lineno);
@@ -218,51 +391,13 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                 default:
                 printf("Unknown Decl Kind Line:%d\n", tree->lineno);
             }
-        }
+}
 
-        else if(tree->nodekind == StmtK){
-            switch(tree->subkind.stmt){
-                
-                case NullK:
-                    printf("NULL [line: %d]\n", tree->lineno);
-                break;
 
-                case IfK:
-                    printf("If [line: %d]\n", tree->lineno);
-                break;
-
-                case WhileK:
-                    printf("While [line: %d]\n", tree->lineno);
-                break;
-
-                case ForK:
-                    printf("For [line: %d]\n", tree->lineno);
-                break;
-
-                case BreakK:
-                    printf("Break [line: %d]\n", tree->lineno);
-                break;
-
-                case CompoundK:
-                    printf("Compound [line: %d]\n", tree->lineno);
-                break;
-
-                case ReturnK:
-                    printf("Return [line: %d]\n", tree->lineno);
-                break;
-
-                case RangeK:
-                    printf("Range [line: %d]\n", tree->lineno);
-                break;
-
-                default:
-                break;
-            }
-        }
-        //Added statments for the -P option.
-        else if(tree->nodekind == ExpK){
-
-            switch(tree->subkind.exp){
+void printExpNode(TreeNode* tree, bool isShowingTypes)
+{
+    switch(tree->subkind.exp)
+            {
                 
                 case OpK:
 
@@ -270,13 +405,13 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                     printf("Op: %s", tree->attr.name);
                     if(tree->expType == UndefinedType){
                        
-                        if(ALLTYPE){
+                        if(isShowingTypes){
                             printf(" of undefined type");
                         }
                     }
                     else{
                         
-                        if(ALLTYPE){
+                        if(isShowingTypes){
                             printf(" of type bool");
                             //printExp(tree->expType);
                         }
@@ -287,7 +422,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                 else if(tree->child[1] == NULL && !strcmp(tree->attr.name, "-")){
                     
                     printf("Op: chsign");
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         if(tree->expType == UndefinedType){
                             printf(" of undefined type");
                         }
@@ -302,7 +437,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
 
                 else if(tree->child[1] == NULL && !strcmp(tree->attr.name, "*")){
                     printf("Op: sizeof");
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         if(tree->expType == UndefinedType || !tree->child[0]->isArray){
                             printf(" of undefined type");
                         }
@@ -316,7 +451,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
 
                 else if(!strcmp(tree->attr.name, "%")){
                     printf("Op: %s", tree->attr.name);
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         if(tree->expType == UndefinedType){
                             printf(" of undefined type");
                         }
@@ -330,7 +465,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
 
                 else{
                     printf("Op: %s", tree->attr.name);
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         if(tree->expType == UndefinedType){
                             printf(" of undefined type");
                         }
@@ -348,7 +483,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                 if(tree->expType == Boolean){
                     printf("Const %s", tree->attr.name);
 
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         printf(" of type bool");
                     }
 
@@ -359,7 +494,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                     printf("Const is array ");
                     printf("%s", tree->attr.name);
 
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         printf(" of type char");
                     }
 
@@ -369,7 +504,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                 else if(tree->expType == Char){
                     printf("Const \'%c\'", tree->thisTokenData->cvalue);
 
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         printf(" of type char");
                     }
 
@@ -379,7 +514,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                 else{
                     printf("Const %d", tree->attr.value);
 
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         printf(" of type int");
                     }
 
@@ -390,7 +525,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                 case AssignK:
                     printf("Assign: %s", tree->attr.name);
                     
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         printf(" of type ");
                         printExp(tree->expType);
                     }
@@ -401,7 +536,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                 case IdK:
                     printf("Id: %s", tree->attr.name);
 
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         if(tree->expType == UndefinedType || tree->expType == Void){
                             printf(" of undefined type");
                         }
@@ -420,7 +555,7 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                 case CallK:
                      printf("Call: %s", tree->attr.name);
                     
-                    if(ALLTYPE){
+                    if(isShowingTypes){
                         printf(" of type ");
                         printExp(tree->expType);
                     }
@@ -433,51 +568,14 @@ void printAST(TreeNode *tree, int nsiblings, bool alltype){
                     printf("Unknown ExpNode subkind Line: %d\n", tree->lineno);
                 break;
             }
-        }
-
-        else{
-            printf("Unknown node type: %d Line: %d\n", tree->nodekind, tree->lineno);
-        }
-        
-        for(i=0; i< MAXCHILDREN; i++){
-            if(tree->child[i] != NULL){
-                WSC++;
-                printTabs(WSC);
-                printf("Child: %d  ", i);
-                printAST(tree->child[i], 0, ALLTYPE);
-                WSC--;
-            }
-        }
-
-        if(tree->sibling != NULL){
-            nsiblings++;
-            printTabs(WSC);
-            printf("Sibling: %d  ", nsiblings);
-        }
-        tree = tree->sibling;
-    }
 }
 
-//Function to print white spaces
-void printTabs(int WS){
+
+void printTabs(int numTabs)
+{
     int i;
-    for(i = 0; i < WS; i++){
+    for(i = 0; i < numTabs; i++)
+    {
         printf(".   ");
     }
-}
-
-//function for setting up IO functions since we can't take in any tokenData
-TreeNode *newDeclNodeIO(DeclKind kind){
-    TreeNode *t = (TreeNode *)malloc(sizeof(TreeNode));
-    int i;
-
-    for(i = 0; i<MAXCHILDREN; i++){
-        t->child[i] = NULL;
-        t->sibling = NULL;
-        t->nodekind = DeclK;
-        t->subkind.decl = kind;
-        t->expType = Void;
-    }
-
-    return t;
 }
