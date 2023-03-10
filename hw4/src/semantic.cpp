@@ -52,46 +52,49 @@ ExpType actualReturnType;
 SymbolTable symbolTable;
 
 //function returns symbol table
-SymbolTable returnSymbolTable() {
+SymbolTable getSymbolTable() 
+{
     return symbolTable;
 }
 
 //function prints error messages. 
-void PrintErrorss(){
-    for(int i = 0; i < errBuffer.size(); i++){
+void PrintErrorss()
+{
+    for(int i = 0; i < errBuffer.size(); i++)
+    {
         printf("%s", errBuffer[i].errorMsg);
     }
 }
 
 //Function checks each node. 
-void check(TreeNode *t, int& nErrors, int& nWarnings){
+void analyze(TreeNode *t, int& nErrors, int& nWarnings){
 
     if(t == NULL){
         return;
     }
     switch(t->nodekind){
         case DeclK:
-            checkDecl(t, nErrors, nWarnings);
+            analyzeDecl(t, nErrors, nWarnings);
             break;
 
         case StmtK:
-            checkStmt(t, nErrors, nWarnings);
+            analyzeStmt(t, nErrors, nWarnings);
             break;
 
         case ExpK:
-            checkExp(t, nErrors, nWarnings);
+            analyzeExp(t, nErrors, nWarnings);
             break;
     }
 
     if(t->sibling != NULL){
-        check(t->sibling, nErrors, nWarnings);
+        analyze(t->sibling, nErrors, nWarnings);
     }
 }
 
 //function analizes semantics first by checking for keyword "main"
 void semanticAnalysis(TreeNode *t, int& errors, int& warnings){
 
-    check(t, nErrors, nWarnings);
+    analyze(t, nErrors, nWarnings);
 
     symbolTable.applyToAll(Warninit);
     symbolTable.applyToAllGlobal(Warninit);
@@ -218,7 +221,7 @@ void errorsArray(TreeNode *t)
 }
 
 //function checks declaration nodes
-void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
+void analyzeDecl(TreeNode *t, int& nErrors, int& nWarnings){
   
     if(symbolTable.depth() == 1){
         t->isGlobal = true;
@@ -240,7 +243,7 @@ void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
             if(t->child[0] != NULL){
 
                 for(int i = 0; i < MAXCHILDREN; i++){
-                    check(t->child[i], nErrors, nWarnings);
+                    analyze(t->child[i], nErrors, nWarnings);
                 }
             }          
 
@@ -327,7 +330,7 @@ void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
             functionLine = t->lineno;
             
             for(int i = 0; i < MAXCHILDREN; i++){
-                check(t->child[i], nErrors, nWarnings);
+                analyze(t->child[i], nErrors, nWarnings);
             }
 
             if(Flag == false && t->expType != Void){
@@ -344,7 +347,7 @@ void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
 
             for(int i = 0; i < MAXCHILDREN; i++){
                 
-                check(t->child[i], nErrors, nWarnings);
+                analyze(t->child[i], nErrors, nWarnings);
                 if(t->child[0] != NULL){
                     t->child[0]->isInit = true;
                 }
@@ -355,7 +358,7 @@ void checkDecl(TreeNode *t, int& nErrors, int& nWarnings){
 }
 
 //Function checks statement nodes
-void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
+void analyzeStmt(TreeNode *t, int& nErrors, int& nWarnings){
 
     switch(t->subkind.stmt){
         case IfK:
@@ -365,7 +368,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
             scopeDepth = false;
             for(int i = 0; i < MAXCHILDREN; i++){
                 if(t->child[0]){
-                    check(t->child[i], nErrors, nWarnings);
+                    analyze(t->child[i], nErrors, nWarnings);
                 }
             }
 
@@ -401,7 +404,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
             for(int i = 0; i < MAXCHILDREN; i++){
                 if(t->child[i]){
 
-                check(t->child[i], nErrors, nWarnings);
+                analyze(t->child[i], nErrors, nWarnings);
                 t->child[0]->isInit = true;
                 t->child[1]->isInit = true;
                 }
@@ -428,7 +431,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
 
             for(int i = 0; i < MAXCHILDREN; i++){
                 if(t->child[i]){
-                check(t->child[i], nErrors, nWarnings);
+                analyze(t->child[i], nErrors, nWarnings);
 
                 if(i < 1){
                     if(t->child[0]->expType != Boolean && t->child[0]->subkind.exp != OpK && !t->child[0]->declErr){
@@ -460,7 +463,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
                 Flag = true;
                 returnlineno = t->lineno;
 
-            check(t->child[0], nErrors, nWarnings);
+            analyze(t->child[0], nErrors, nWarnings);
 
             if(t->child[0] != NULL){
 
@@ -544,7 +547,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
                             }
                         }
 
-                    check(t->child[i], nErrors, nWarnings);
+                    analyze(t->child[i], nErrors, nWarnings);
 
                 }
             }
@@ -567,7 +570,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
             }
 
             for(int i = 0; i < MAXCHILDREN; i++){
-                check(t->child[i], nErrors, nWarnings);
+                analyze(t->child[i], nErrors, nWarnings);
             }
 
             if(keepCurScope){
@@ -582,7 +585,7 @@ void checkStmt(TreeNode *t, int& nErrors, int& nWarnings){
 }
 
 //function checks expression nodes. 
-void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
+void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings){
  
     bool leftStr, rightStr, isBinary, leftArr, rightArr, leftIndx, rightIndx, leftInit, leftDecl, rightInit, rightDecl, throwError;
     leftStr = rightStr = isBinary = leftArr = rightArr = leftIndx = rightIndx = leftInit = leftDecl = rightInit = rightDecl = throwError = false;
@@ -717,7 +720,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
             }
 
             for(int i= 0; i < MAXCHILDREN; i++){
-                check(t->child[i], nErrors, nWarnings);
+                analyze(t->child[i], nErrors, nWarnings);
             }
 
             sizeOfArrayFlg = false;
@@ -939,7 +942,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
 
         case ConstantK:
             for(int i = 0; i < MAXCHILDREN; i++){
-                check(t->child[i], nErrors, nWarnings);
+                analyze(t->child[i], nErrors, nWarnings);
             }
     
             if(range){
@@ -1058,7 +1061,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
                 }
 
                 if(t->child[0] != NULL){
-                    check(t->child[0], nErrors, nWarnings);
+                    analyze(t->child[0], nErrors, nWarnings);
                     if(t->child[0]->expType == Void && !(t->child[0]->nodekind == ExpK && t->child[0]->subkind.exp == CallK)){
 
                         break;
@@ -1097,7 +1100,7 @@ void checkExp(TreeNode *t, int& nErrors, int& nWarnings){
             }
 
              for(int i = 0; i < MAXCHILDREN; i++){
-                check(t->child[i], nErrors, nWarnings);
+                analyze(t->child[i], nErrors, nWarnings);
                 }
 
             if(funcFound != NULL){
