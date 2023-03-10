@@ -215,7 +215,7 @@ void printArrayErrors(TreeNode *t)
 
       if(leftNode == NULL || !leftNode->isArray)
       {
-         printError(15, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
+        printError(15, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
       }
    }
    else
@@ -224,28 +224,30 @@ void printArrayErrors(TreeNode *t)
    }
    if(t->child[1] != NULL)
    {
-      if(t->child[1]->expType != Integer && t->child[1]->expType != UndefinedType)
-      {
+        if(t->child[1]->expType != Integer && t->child[1]->expType != UndefinedType)
+        {
 
-          if(t->child[1]->subkind.decl == ParamK && t->child[1]->subkind.exp != CallK && t->child[1]->expType == Void){
-        
-          }
-          else{
-            printError(14, t->lineno, 0, t->child[0]->attr.name, ExpTypetwo(t->child[1]->expType), NULL, 0);
-          }
-          
-      }
+            if(t->child[1]->subkind.decl == ParamK && t->child[1]->subkind.exp != CallK && t->child[1]->expType == Void)
+            {
+                //do nothing
+            }
+            else
+            {
+                printError(14, t->lineno, 0, t->child[0]->attr.name, ExpTypetwo(t->child[1]->expType), NULL, 0);
+            }
+            
+        }
    }
    if(t->child[1] != NULL && t->child[1]->subkind.exp == IdK)
    {
       
       if(rightNode != NULL && rightNode->isArray == true)
       {
-         printError(13, t->lineno, 0, rightNode->attr.name, NULL, NULL, 0); //
+        printError(13, t->lineno, 0, rightNode->attr.name, NULL, NULL, 0);
       }
       if(rightNode != NULL)
       {
-         t->child[1]->expType = rightNode->expType;
+        t->child[1]->expType = rightNode->expType;
       }
    }
 
