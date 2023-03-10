@@ -67,50 +67,71 @@ void PrintErrorss()
 }
 
 //Function checks each node. 
-void analyze(TreeNode *t, int& nErrors, int& nWarnings)
+void analyze(TreeNode* node, int& nErrors, int& nWarnings)
 {
 
-    if(t == NULL){
+    if(node == nullptr)
+    {
         return;
     }
-    switch(t->nodekind){
+
+    switch(node->nodekind)
+    {
         case DeclK:
-            analyzeDecl(t, nErrors, nWarnings);
-            break;
+                {
+                    analyzeDecl(node, nErrors, nWarnings);
+                }
+                break;
 
         case StmtK:
-            analyzeStmt(t, nErrors, nWarnings);
-            break;
+                {
+                    analyzeStmt(node, nErrors, nWarnings);
+                }
+                break;
 
         case ExpK:
-            analyzeExp(t, nErrors, nWarnings);
-            break;
+                {
+                    analyzeExp(node, nErrors, nWarnings);
+                }
+                break;
+        default:
+            {
+                printf("Error: Unknown node kind\n");
+            }
+            break;  
     }
 
-    if(t->sibling != NULL){
-        analyze(t->sibling, nErrors, nWarnings);
+    if(node->sibling != nullptr)
+    {
+        analyze(node->sibling, nErrors, nWarnings);
     }
 }
 
 //function analizes semantics first by checking for keyword "main"
-void semanticAnalysis(TreeNode *t, int& errors, int& warnings){
+void semanticAnalysis(TreeNode* node, int& errors, int& warnings)
+{
 
-    analyze(t, nErrors, nWarnings);
+    analyze(node, nErrors, nWarnings);
 
     symbolTable.applyToAll(Warninit);
+    
     symbolTable.applyToAllGlobal(Warninit);
 
  
     TreeNode *mainCheck = (TreeNode*)symbolTable.lookup("main");
-    if(mainCheck == NULL){
+    
+    if(mainCheck == nullptr)
+    {
         printError(16, 0, 0, NULL, NULL, NULL, 0);
     }
-    else if(mainCheck != NULL){
-        if(mainCheck->nodekind == DeclK && mainCheck->subkind.decl != FuncK){
-
-                printError(16, 0, 0, NULL, NULL, NULL, 0);
+    else if(mainCheck != nullptr)
+    {
+        if(mainCheck->nodekind == DeclK && mainCheck->subkind.decl != FuncK)
+        {
+            printError(16, 0, 0, NULL, NULL, NULL, 0);
         }
-        else if(mainCheck->child[0] != NULL && mainCheck->child[0]->subkind.decl == ParamK){
+        else if(mainCheck->child[0] != NULL && mainCheck->child[0]->subkind.decl == ParamK)
+        {
             printError(16, 0, 0, NULL, NULL, NULL, 0);
         }
     }
@@ -330,7 +351,7 @@ void analyzeVar(TreeNode* node, int& nErrors, int& nWarnings)
 
             if(node->expType == Char && node->child[0]->expType == CharInt)
             {
-                ; // do nothing
+                // do nothing
             }
 
             else if(node->expType == Integer && node->child[0]->expType == CharInt)
@@ -397,7 +418,9 @@ void analyzeFunc(TreeNode* node, int& nErrors, int& nWarnings)
     }
 
     symbolTable.applyToAll(Warninit);
+    
     symbolTable.leave();
+    
     curFunc = nullptr;
 }
 
@@ -423,245 +446,288 @@ void analyzeParam(TreeNode* node, int& nErrors, int& nWarnings)
 //********************************************************************************
 
 //analyze statement nodes
-void analyzeStmt(TreeNode *t, int& nErrors, int& nWarnings){
-
-    switch(t->subkind.stmt)
+void analyzeStmt(TreeNode* node, int& nErrors, int& nWarnings)
+{
+    switch(node->subkind.stmt)
     {
         case IfK:
-        {
-            analyzeIf(t, nErrors, nWarnings);
-        }
-        break;
+                {
+                    analyzeIf(node, nErrors, nWarnings);
+                }
+                break;
 
         case ForK:
-        {
-            analyzeFor(t, nErrors, nWarnings);
-        }
-        break;
+                {
+                    analyzeFor(node, nErrors, nWarnings);
+                }
+                break;
 
 
         case WhileK:
-        {
-            analyzeWhile(t, nErrors, nWarnings);
-        }
-        break;
+                {
+                    analyzeWhile(node, nErrors, nWarnings);
+                }
+                break;
 
         case ReturnK:
-        {
-            analyzeReturn(t, nErrors, nWarnings);
-        }
-        break;
+                {
+                    analyzeReturn(node, nErrors, nWarnings);
+                }
+                break;
 
         case BreakK:
-        {
-            analyzeBreak(t, nErrors, nWarnings);
-        }
-        break;
+                {
+                    analyzeBreak(node, nErrors, nWarnings);
+                }
+                break;
 
         case RangeK:
-        {
-            analyzeRange(t, nErrors, nWarnings);
-        }
-        break;
+                {
+                    analyzeRange(node, nErrors, nWarnings);
+                }
+                break;
 
         case CompoundK:
-        {
-            analyzeCompound(t, nErrors, nWarnings);
-        }
-        break;
+                    {
+                        analyzeCompound(node, nErrors, nWarnings);
+                    }
+                    break;
 
-
-
-
+        default:
+            {
+                printf("Error: Unknown statement node kind\n");
+            }
+            break; 
     }
 
 }
 
-//analyze null statement
-void analyzeNullStmt(TreeNode* t, int& nErrors, int& nWarnings)
-{
-
-}
-
 //analyze if statement
-void analyzeIf(TreeNode* t, int& nErrors, int& nWarnings)
+void analyzeIf(TreeNode* node, int& nErrors, int& nWarnings)
 {
     loop = true;
-            symbolTable.enter(t->attr.name);
-            loopDepth++;
-            scopeDepth = false;
-            for(int i = 0; i < MAXCHILDREN; i++){
-                if(t->child[0]){
-                    analyze(t->child[i], nErrors, nWarnings);
-                }
-            }
+    
+    symbolTable.enter(node->attr.name);
+    
+    loopDepth++;
+    
+    scopeDepth = false;
+    
+    for(int i = 0; i < MAXCHILDREN; i++)
+    {
+        if(node->child[0])
+        {
+            analyze(node->child[i], nErrors, nWarnings);
+        }
+    }
 
 
-            if(t->child[0]->expType != Boolean && t->child[0]->subkind.exp != OpK && !t->child[0]->declErr){
-                char ifStmt[] = "if";
-                printError(27, t->lineno, 0, ifStmt, ExpTypetwo(t->child[0]->expType), NULL, 0 );
-            }
+    if(node->child[0]->expType != Boolean && node->child[0]->subkind.exp != OpK && !node->child[0]->declErr)
+    {
+        char ifStmt[] = "if";
+        printError(27, node->lineno, 0, ifStmt, ExpTypetwo(node->child[0]->expType), NULL, 0 );
+    }
 
-            if(t->child[0]->isArray){
-                char ifStmt[] = "if";
-                printError(23, t->lineno, 0, ifStmt, NULL, NULL, 0);
-            }
-            
-            loopDepth--;
+    if(node->child[0]->isArray)
+    {
+        char ifStmt[] = "if";
+        printError(23, node->lineno, 0, ifStmt, NULL, NULL, 0);
+    }
+    
+    loopDepth--;
 
-            symbolTable.applyToAll(Warninit);
+    symbolTable.applyToAll(Warninit);
 
-            if(loopDepth == 1){
-                loop = false;
-            }
-            symbolTable.leave();
-            scopeDepth = true;
+    if(loopDepth == 1)
+    {
+        loop = false;
+    }
+    
+    symbolTable.leave();
+    
+    scopeDepth = true;
 }
 
 //analyze while statement
-void analyzeWhile(TreeNode* t, int& nErrors, int& nWarnings)
+void analyzeWhile(TreeNode* node, int& nErrors, int& nWarnings)
 {
     loop = true;
-            symbolTable.enter(t->attr.name);
-            loopDepth ++;
-            scopeDepth = false;
+    
+    symbolTable.enter(node->attr.name);
+    
+    loopDepth ++;
+    
+    scopeDepth = false;
 
-            for(int i = 0; i < MAXCHILDREN; i++){
-                if(t->child[i]){
-                analyze(t->child[i], nErrors, nWarnings);
+    for(int i = 0; i < MAXCHILDREN; i++)
+    {
+        if(node->child[i])
+        {
+            analyze(node->child[i], nErrors, nWarnings);
 
-                if(i < 1){
-                    if(t->child[0]->expType != Boolean && t->child[0]->subkind.exp != OpK && !t->child[0]->declErr){
-                        char whileStmt[] = "while";
-                        printError(27, t->lineno, 0, whileStmt, ExpTypetwo(t->child[0]->expType), NULL, 0 );
-                    }
+            if(i < 1)
+            {
+                if(node->child[0]->expType != Boolean && node->child[0]->subkind.exp != OpK && !node->child[0]->declErr)
+                {
+                    char whileStmt[] = "while";
+                    printError(27, node->lineno, 0, whileStmt, ExpTypetwo(node->child[0]->expType), NULL, 0 );
+                }
 
-                    if(t->child[0]->isArray){
-                        char whileStmt[] = "while";
-                        printError(23, t->lineno, 0, whileStmt, NULL, NULL, 0);
-                    }
-            }
+                if(node->child[0]->isArray)
+                {
+                    char whileStmt[] = "while";
+                    printError(23, node->lineno, 0, whileStmt, NULL, NULL, 0);
                 }
             }
+        }
+    }
 
-            loopDepth--;
+    loopDepth--;
 
-            symbolTable.applyToAll(Warninit);
+    symbolTable.applyToAll(Warninit);
 
-            if(loopDepth == 1){
-                loop = false;
-            }
-            symbolTable.leave();
-            scopeDepth = true;
+    if(loopDepth == 1)
+    {
+        loop = false;
+    }
+    
+    symbolTable.leave();
+    
+    scopeDepth = true;
 }
 
 //analyze for statement
-void analyzeFor(TreeNode* t, int& nErrors, int& nWarnings)
+void analyzeFor(TreeNode* node, int& nErrors, int& nWarnings)
 {
-                loop = true;
-            inFor = true;
-            loopDepth++;
-            symbolTable.enter(t->attr.name);
-            scopeDepth = false;
-            
-            for(int i = 0; i < MAXCHILDREN; i++){
-                if(t->child[i]){
+    loop = true;
+    
+    inFor = true;
+    
+    loopDepth++;
+    
+    symbolTable.enter(node->attr.name);
+    
+    scopeDepth = false;
+    
+    for(int i = 0; i < MAXCHILDREN; i++)
+    {
+        if(node->child[i])
+        {
+            analyze(node->child[i], nErrors, nWarnings);
+            node->child[0]->isInit = true;
+            node->child[1]->isInit = true;
+        }
+    }
 
-                analyze(t->child[i], nErrors, nWarnings);
-                t->child[0]->isInit = true;
-                t->child[1]->isInit = true;
-                }
-            }
+    loopDepth--;
 
-            loopDepth--;
+    if(loopDepth == 1)
+    {
+        loop = false;
+    }
 
-            if(loopDepth == 1){
-                loop = false;
-            }
-
-                inFor = false;
-                symbolTable.applyToAll(Warninit);
-                symbolTable.leave();
-                scopeDepth = true;
+    inFor = false;
+    
+    symbolTable.applyToAll(Warninit);
+    
+    symbolTable.leave();
+    
+    scopeDepth = true;
 }
 
 //analyze compound statement
-void analyzeCompound(TreeNode* t, int& nErrors, int& nWarnings)
+void analyzeCompound(TreeNode* node, int& nErrors, int& nWarnings)
 {
-                bool keepCurScope = scopeDepth;
+    bool isInCurScope = scopeDepth;
 
-            if(keepCurScope){
-                
-                symbolTable.enter("compound");
-            }
-            else{
-                scopeDepth = true;
-            }
+    if(isInCurScope)
+    {
+        symbolTable.enter("compound");
+    }
+    else
+    {
+        scopeDepth = true;
+    }
 
-            for(int i = 0; i < MAXCHILDREN; i++){
-                analyze(t->child[i], nErrors, nWarnings);
-            }
+    for(int i = 0; i < MAXCHILDREN; i++)
+    {
+        analyze(node->child[i], nErrors, nWarnings);
+    }
 
-            if(keepCurScope){
-                symbolTable.applyToAll(Warninit);
-                symbolTable.leave();
-            }
+    if(isInCurScope)
+    {
+        symbolTable.applyToAll(Warninit);
+        symbolTable.leave();
+    }
 }
 
 //analyze return statement
-void analyzeReturn(TreeNode* t, int& nErrors, int& nWarnings)
+void analyzeReturn(TreeNode* node, int& nErrors, int& nWarnings)
 {
     Flag = true;
-                returnlineno = t->lineno;
+    returnlineno = node->lineno;
 
-            analyze(t->child[0], nErrors, nWarnings);
+    analyze(node->child[0], nErrors, nWarnings);
 
-            if(t->child[0] != NULL){
+    if(node->child[0] != NULL)
+    {
 
-                actualReturnType = t->child[0]->expType;
+        actualReturnType = node->child[0]->expType;
 
-                if(curFunc == NULL){
-                    return;
+        if(curFunc == NULL)
+        {
+            return;
+        }
+
+        else if(node->child[0]->isArray)
+        {
+            printError(10, node->lineno, 0, NULL, NULL, NULL, 0);
+        }
+
+        else if(node->child[0]->child[0] != NULL)
+        {
+            if(node->child[0]->child[0]->isArray)
+            {
+
+                if(strcmp(node->child[0]->attr.name, "["))
+                {
+                    printError(10, node->lineno, 0, NULL, NULL, NULL, 0);
                 }
+            }
+        }
+    
+        if(functionReturnType == Void)
+        {
+            printError(29, returnlineno, functionLine, functionName, NULL, NULL, 0);
+        }
 
-                else if(t->child[0]->isArray){
-                    printError(10, t->lineno, 0, NULL, NULL, NULL, 0);
-                }
+        else if(functionReturnType != actualReturnType && actualReturnType != Void && functionReturnType != Void)
+        {
 
-                else if(t->child[0]->child[0] != NULL){
-                    if(t->child[0]->child[0]->isArray){
+            if(!(functionReturnType == Char && actualReturnType == CharInt))
+            {
+                printError(31, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
+            }
+        }
 
-                        if(strcmp(t->child[0]->attr.name, "[")){
-                            printError(10, t->lineno, 0, NULL, NULL, NULL, 0);
-                        }
-                    }
-                }
+        else if(functionReturnType != actualReturnType && functionReturnType != Void && node->child[0]->subkind.exp == CallK)
+        {
             
-                if(functionReturnType == Void){
-                    printError(29, returnlineno, functionLine, functionName, NULL, NULL, 0);
-                }
-
-                else if(functionReturnType != actualReturnType && actualReturnType != Void && functionReturnType != Void){
-
-                    if(!(functionReturnType == Char && actualReturnType == CharInt)){
-                        printError(31, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
-                    }
-                }
-
-                else if(functionReturnType != actualReturnType && functionReturnType != Void && t->child[0]->subkind.exp == CallK){
-                    
-                    if(!(functionReturnType == Char && actualReturnType == CharInt)){
-                        printError(31, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
-                    }
-                }
+            if(!(functionReturnType == Char && actualReturnType == CharInt))
+            {
+                printError(31, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
             }
+        }
+    }
 
-            else if(t->child[0] == NULL){
+    else if(node->child[0] == NULL)
+    {
 
-                if(functionReturnType != Void){
-                    printError(30, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), NULL, 0);
-                }
-            }
+        if(functionReturnType != Void)
+        {
+            printError(30, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), NULL, 0);
+        }
+    }
 }
 
 //analyze break statement
@@ -674,39 +740,48 @@ void analyzeBreak(TreeNode* node, int& nErrors, int& nWarnings)
 }
 
 //analyze range statement
-void analyzeRange(TreeNode* t, int& nErrors, int& nWarnings)
+void analyzeRange(TreeNode* node, int& nErrors, int& nWarnings)
 {
     rangePos;
-            range = true;
+    
+    range = true;
 
-            for(int i = 0; i < MAXCHILDREN; i++){
-                if(t->child[i]){
-                    rangePos++;
+    for(int i = 0; i < MAXCHILDREN; i++)
+    {
+        if(node->child[i])
+        {
+            rangePos++;
 
-                        if(t->child[i]->child[0] != NULL && t->child[i]->child[0]->isArray){
-                            t->child[i]->child[0]->isIndexed = true;
-                        }
-
-                        else if(rangePos == 1){
-                            if(t->child[0]->subkind.exp == IdK){
-                                TreeNode* valFound = (TreeNode*)symbolTable.lookup(t->child[0]->attr.name);
-                                if(valFound == NULL){
-                                    printError(1, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0); 
-                                    t->declErr = true;
-                                }
-                                else{
-                                    valFound->wasUsed = true;
-                                }
-                            }
-                        }
-
-                    analyze(t->child[i], nErrors, nWarnings);
-
+                if(node->child[i]->child[0] != NULL && node->child[i]->child[0]->isArray)
+                {
+                    node->child[i]->child[0]->isIndexed = true;
                 }
-            }
 
-            range = false;
-            rangePos = 0;
+                else if(rangePos == 1)
+                {
+                    if(node->child[0]->subkind.exp == IdK)
+                    {
+                        TreeNode* valFound = (TreeNode*)symbolTable.lookup(node->child[0]->attr.name);
+                        
+                        if(valFound == NULL)
+                        {
+                            printError(1, node->lineno, 0, node->child[0]->attr.name, NULL, NULL, 0); 
+                            node->declErr = true;
+                        }
+                        else
+                        {
+                            valFound->wasUsed = true;
+                        }
+                    }
+                }
+
+            analyze(node->child[i], nErrors, nWarnings);
+
+        }
+    }
+
+    range = false;
+    rangePos = 0;
 }
 
 

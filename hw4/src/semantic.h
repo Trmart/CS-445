@@ -30,7 +30,6 @@ void analyzeParam(TreeNode* node, int& nErrors, int& nWarnings);
 
 //Statement analyzers
 void analyzeStmt(TreeNode* node, int& nErrors, int& nWarnings);
-void analyzeNullStmt(TreeNode* node, int& nErrors, int& nWarnings);
 void analyzeIf(TreeNode* node, int& nErrors, int& nWarnings);
 void analyzeWhile(TreeNode* node, int& nErrors, int& nWarnings);
 void analyzeFor(TreeNode* node, int& nErrors, int& nWarnings);
