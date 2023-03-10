@@ -804,6 +804,253 @@ void analyzeRange(TreeNode* node, int& nErrors, int& nWarnings)
 void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
 {
  
+    // bool leftStr, rightStr, isBinary, leftArr, rightArr, leftIndx, rightIndx, leftInit, leftDecl, rightInit, rightDecl, throwError;
+    // leftStr = rightStr = isBinary = leftArr = rightArr = leftIndx = rightIndx = leftInit = leftDecl = rightInit = rightDecl = throwError = false;
+
+    // ExpType leftSide, rightSide, returnType, leftExpected, rightExpected, childReturnType;
+    // leftSide = rightSide = returnType = leftExpected = rightExpected = childReturnType = UndefinedType;
+
+    bool rightErr, leftErr, unaryErrors;
+    rightErr = leftErr = unaryErrors = false;
+
+    TreeNode* valFound = NULL;
+    TreeNode* leftNode = NULL;
+    TreeNode* rightNode = NULL;
+
+    switch(t->subkind.exp) 
+    {
+        case AssignK:
+                {
+                    analyze_Op_and_Assign(t, leftNode, rightNode, nErrors, nWarnings);
+                }
+                break; 
+
+        case OpK:
+                {
+                    analyze_Op_and_Assign(t, leftNode, rightNode, nErrors, nWarnings);
+                }
+                break;
+
+        case ConstantK:
+            for(int i = 0; i < MAXCHILDREN; i++){
+                analyze(t->child[i], nErrors, nWarnings);
+            }
+    
+            if(range){
+                   if(inFor){
+
+
+                    if(t->expType != Integer)
+                    {
+                        char intExpect[] = "int";
+                        printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
+                    }
+                   }
+               }
+            break;
+
+        case IdK:
+            valFound = (TreeNode*)symbolTable.lookup(t->attr.name);
+
+            if(valFound == NULL){
+
+                if(range && rangePos == 1){
+                    t->isDeclared = true;
+                }
+
+                else{
+                    printError(1, t->lineno, 0, t->attr.name, NULL, NULL, 0); 
+                        t->declErr = true;    
+                }           
+            }
+
+            else if(range){
+
+                if(inFor){
+
+                    t->expType = valFound->expType;
+                    t->isArray = valFound->isArray;
+
+                    if(t->expType != Integer && rangePos >= 1)
+                    {
+                        if(!sizeOfArrayFlg){
+
+                            if(!strcmp(t->attr.name, "main")){
+                                printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);  
+                            }
+                            else{
+                                char intExpect[] = "int";
+                                printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
+                            }
+                        }
+
+                    }
+
+                    if(rangePos >= 1 && !valFound->isInit){
+                        if(valFound->isDeclared == true){
+
+                            if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
+
+                                if(!t->isInit){
+                                    valFound->warningReported = true;
+                                    valFound->wasUsed = true;
+                                    printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                }
+                                
+                                else{
+                                    valFound->isInit = true;
+                                }
+                            }
+                    
+                        }
+                    }
+
+                    else if(rangePos > 1 && valFound->isInit){
+                        valFound->wasUsed = true;
+                    }
+
+                    if(valFound->isArray && !sizeOfArrayFlg && !t->isIndexed){
+                        printError(24, t->lineno, 0, NULL, NULL, NULL, rangePos);
+                    }
+
+                    t->isIndexed = false;
+
+                }
+
+                t->isInit = true;
+            }
+
+            else{
+
+                 if(valFound->isDeclared == true){
+                
+                 if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
+                     if(!t->isInit){
+                        valFound->warningReported = true;
+                        printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                     }
+                     else{
+                         valFound->isInit = true;
+                     }
+                 }
+                 }
+
+                if(valFound->subkind.decl == FuncK){
+                    printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                    valFound->wasUsed = true;
+                    break;
+                }
+                else{
+                    t->expType = valFound->expType;
+                    t->isArray = valFound->isArray;
+                    t->isGlobal = valFound->isGlobal;
+                    t->isStatic = valFound->isStatic;
+
+                    if(!range && valFound->subkind.decl != FuncK){
+                    valFound->wasUsed = true;
+                    }
+                }
+
+                if(t->child[0] != NULL){
+                    analyze(t->child[0], nErrors, nWarnings);
+                    if(t->child[0]->expType == Void && !(t->child[0]->nodekind == ExpK && t->child[0]->subkind.exp == CallK)){
+
+                        break;
+                    }
+                    if(!t->isArray){
+
+                        break;
+                    }
+                    else{
+
+                        if(t->child[0]->expType != Integer){
+                            printError(14, t->lineno, 0, t->attr.name, ConvertExpToString(t->child[0]->expType), NULL, 0);
+                        }
+ 
+                        if(t->child[0]->isArray && t->child[0]->child[0] == NULL){
+                            printError(13, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
+                        }
+                    }
+                }
+            }
+            break;
+
+        case CallK:
+            int paramCount = 1;
+            TreeNode* funcFound;
+
+            if(t->subkind.exp == CallK){
+                funcFound = (TreeNode*)symbolTable.lookup(t->attr.name);
+                if(funcFound == NULL){
+                    printError(1, t->lineno, 0, t->attr.name, NULL, NULL, 0);  
+                        t->declErr = true; 
+                }
+                else{
+                   
+                }
+            }
+
+             for(int i = 0; i < MAXCHILDREN; i++){
+                analyze(t->child[i], nErrors, nWarnings);
+                }
+
+            if(funcFound != NULL){
+                t->expType = funcFound->expType;
+                t->isArray = funcFound->isArray;
+                t->isGlobal = funcFound->isGlobal;
+                t->isStatic = funcFound->isStatic;
+                funcFound->wasUsed = true;
+
+
+                if(funcFound->subkind.decl != FuncK){
+                    printError(11, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                }
+                
+
+                else if(range){
+
+                    if(inFor){
+
+                        if(t->expType != Integer)
+                        {
+
+                            if(!strcmp(t->attr.name, "main")){
+                                printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);                               
+                            }
+                            else{
+                                char intExpect[] = "int";
+                                printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
+                            }
+                        }
+                    }
+                }
+
+                else{
+
+                    if(funcFound->child[0] != NULL && t->child[0] != NULL){
+                       parameterErrors(funcFound, t, funcFound->child[0], t->child[0], paramCount);
+                    }
+
+                    else if(funcFound->child[0] == NULL && t->child[0] != NULL){
+                        printError(38, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
+                    }
+
+                    else if(funcFound->child[0] != NULL && t->child[0] == NULL){
+                        printError(37, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
+                    }
+                }
+            }
+      
+            break;        
+    }
+
+}
+
+
+//analyze Op Expression
+void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode, int& nErrors, int& nWarnings)
+{
+
     bool leftStr, rightStr, isBinary, leftArr, rightArr, leftIndx, rightIndx, leftInit, leftDecl, rightInit, rightDecl, throwError;
     leftStr = rightStr = isBinary = leftArr = rightArr = leftIndx = rightIndx = leftInit = leftDecl = rightInit = rightDecl = throwError = false;
 
@@ -813,15 +1060,7 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
     bool rightErr, leftErr, unaryErrors;
     rightErr = leftErr = unaryErrors = false;
 
-    TreeNode* valFound = NULL;
-    TreeNode* leftNode = NULL;
-    TreeNode* rightNode = NULL;
-
-    switch(t->subkind.exp) {
-        case AssignK:
-        case OpK:
-
-            if(!strcmp(t->attr.name, "<=")){
+     if(!strcmp(t->attr.name, "<=")){
 
                 if(t->child[0] != NULL){
                     
@@ -1155,228 +1394,6 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
             else{
                 t->expType = leftSide;
             }
-            break;
-
-        case ConstantK:
-            for(int i = 0; i < MAXCHILDREN; i++){
-                analyze(t->child[i], nErrors, nWarnings);
-            }
-    
-            if(range){
-                   if(inFor){
-
-
-                    if(t->expType != Integer)
-                    {
-                        char intExpect[] = "int";
-                        printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
-                    }
-                   }
-               }
-            break;
-
-        case IdK:
-            valFound = (TreeNode*)symbolTable.lookup(t->attr.name);
-
-            if(valFound == NULL){
-
-                if(range && rangePos == 1){
-                    t->isDeclared = true;
-                }
-
-                else{
-                    printError(1, t->lineno, 0, t->attr.name, NULL, NULL, 0); 
-                        t->declErr = true;    
-                }           
-            }
-
-            else if(range){
-
-                if(inFor){
-
-                    t->expType = valFound->expType;
-                    t->isArray = valFound->isArray;
-
-                    if(t->expType != Integer && rangePos >= 1)
-                    {
-                        if(!sizeOfArrayFlg){
-
-                            if(!strcmp(t->attr.name, "main")){
-                                printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);  
-                            }
-                            else{
-                                char intExpect[] = "int";
-                                printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
-                            }
-                        }
-
-                    }
-
-                    if(rangePos >= 1 && !valFound->isInit){
-                        if(valFound->isDeclared == true){
-
-                            if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
-
-                                if(!t->isInit){
-                                    valFound->warningReported = true;
-                                    valFound->wasUsed = true;
-                                    printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                                }
-                                
-                                else{
-                                    valFound->isInit = true;
-                                }
-                            }
-                    
-                        }
-                    }
-
-                    else if(rangePos > 1 && valFound->isInit){
-                        valFound->wasUsed = true;
-                    }
-
-                    if(valFound->isArray && !sizeOfArrayFlg && !t->isIndexed){
-                        printError(24, t->lineno, 0, NULL, NULL, NULL, rangePos);
-                    }
-
-                    t->isIndexed = false;
-
-                }
-
-                t->isInit = true;
-            }
-
-            else{
-
-                 if(valFound->isDeclared == true){
-                
-                 if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
-                     if(!t->isInit){
-                        valFound->warningReported = true;
-                        printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                     }
-                     else{
-                         valFound->isInit = true;
-                     }
-                 }
-                 }
-
-                if(valFound->subkind.decl == FuncK){
-                    printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                    valFound->wasUsed = true;
-                    break;
-                }
-                else{
-                    t->expType = valFound->expType;
-                    t->isArray = valFound->isArray;
-                    t->isGlobal = valFound->isGlobal;
-                    t->isStatic = valFound->isStatic;
-
-                    if(!range && valFound->subkind.decl != FuncK){
-                    valFound->wasUsed = true;
-                    }
-                }
-
-                if(t->child[0] != NULL){
-                    analyze(t->child[0], nErrors, nWarnings);
-                    if(t->child[0]->expType == Void && !(t->child[0]->nodekind == ExpK && t->child[0]->subkind.exp == CallK)){
-
-                        break;
-                    }
-                    if(!t->isArray){
-
-                        break;
-                    }
-                    else{
-
-                        if(t->child[0]->expType != Integer){
-                            printError(14, t->lineno, 0, t->attr.name, ConvertExpToString(t->child[0]->expType), NULL, 0);
-                        }
- 
-                        if(t->child[0]->isArray && t->child[0]->child[0] == NULL){
-                            printError(13, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
-                        }
-                    }
-                }
-            }
-            break;
-
-        case CallK:
-            int paramCount = 1;
-            TreeNode* funcFound;
-
-            if(t->subkind.exp == CallK){
-                funcFound = (TreeNode*)symbolTable.lookup(t->attr.name);
-                if(funcFound == NULL){
-                    printError(1, t->lineno, 0, t->attr.name, NULL, NULL, 0);  
-                        t->declErr = true; 
-                }
-                else{
-                   
-                }
-            }
-
-             for(int i = 0; i < MAXCHILDREN; i++){
-                analyze(t->child[i], nErrors, nWarnings);
-                }
-
-            if(funcFound != NULL){
-                t->expType = funcFound->expType;
-                t->isArray = funcFound->isArray;
-                t->isGlobal = funcFound->isGlobal;
-                t->isStatic = funcFound->isStatic;
-                funcFound->wasUsed = true;
-
-
-                if(funcFound->subkind.decl != FuncK){
-                    printError(11, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                }
-                
-
-                else if(range){
-
-                    if(inFor){
-
-                        if(t->expType != Integer)
-                        {
-
-                            if(!strcmp(t->attr.name, "main")){
-                                printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);                               
-                            }
-                            else{
-                                char intExpect[] = "int";
-                                printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
-                            }
-                        }
-                    }
-                }
-
-                else{
-
-                    if(funcFound->child[0] != NULL && t->child[0] != NULL){
-                       parameterErrors(funcFound, t, funcFound->child[0], t->child[0], paramCount);
-                    }
-
-                    else if(funcFound->child[0] == NULL && t->child[0] != NULL){
-                        printError(38, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
-                    }
-
-                    else if(funcFound->child[0] != NULL && t->child[0] == NULL){
-                        printError(37, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
-                    }
-                }
-            }
-      
-            break;        
-    }
-
-}
-
-
-//analyze Op Expression
-void analyzeOp(TreeNode* t, int& nErrors, int& nWarnings)
-{
-
 }
 
 //analyze Const Expression
@@ -1404,7 +1421,7 @@ void analyzeInit(TreeNode* t, int& nErrors, int& nWarnings)
 }
 
 
-//function gets all expected types. 
+
 void getExpTypes(const char* strng, bool isBinary, bool &unaryErrors, ExpType &left, ExpType &right, ExpType &rightT){
 
     std::string unaryOps[6] = {"not", "*", "?", "-", "--", "++"};
@@ -1574,7 +1591,7 @@ void getReturnType(const char* strng, bool isBinary, ExpType &rightT){
 
 }
 
-//prints all errors based on the error code.
+
 void printError(int errCode, int lineno, int reasonNum, char* s1, char* s2, char* s3, int i){
 
     if(errCode > 16 && errCode < 22){
