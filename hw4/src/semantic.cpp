@@ -191,63 +191,63 @@ void initializeWarningMessages(std::string symbol, void* t)
 }
 
 //function prints errors for arrays.
-void printArrayErrors(TreeNode *t)
+void printArrayErrors(TreeNode* node)
 {
 
    TreeNode *leftNode = NULL;
    TreeNode *rightNode = NULL;
 
-   leftNode = t->child[0];
-   rightNode = t->child[1];
+   leftNode = node->child[0];
+   rightNode = node->child[1];
 
 
-   if(t->child[0]->subkind.exp == IdK)
+   if(node->child[0]->subkind.exp == IdK)
    {
 
-      leftNode = (TreeNode*)symbolTable.lookup(t->child[0]->attr.name);
+      leftNode = (TreeNode*)symbolTable.lookup(node->child[0]->attr.name);
       
       if(leftNode != NULL)
       {
-         t->child[0]->expType = leftNode->expType;
-         t->expType = leftNode->expType;
+         node->child[0]->expType = leftNode->expType;
+         node->expType = leftNode->expType;
       }
 
 
       if(leftNode == NULL || !leftNode->isArray)
       {
-        printError(15, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
+        printError(15, node->lineno, 0, node->child[0]->attr.name, NULL, NULL, 0);
       }
    }
    else
    {
-      printError(15, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
+      printError(15, node->lineno, 0, node->child[0]->attr.name, NULL, NULL, 0);
    }
-   if(t->child[1] != NULL)
+   if(node->child[1] != NULL)
    {
-        if(t->child[1]->expType != Integer && t->child[1]->expType != UndefinedType)
+        if(node->child[1]->expType != Integer && node->child[1]->expType != UndefinedType)
         {
 
-            if(t->child[1]->subkind.decl == ParamK && t->child[1]->subkind.exp != CallK && t->child[1]->expType == Void)
+            if(node->child[1]->subkind.decl == ParamK && node->child[1]->subkind.exp != CallK && node->child[1]->expType == Void)
             {
                 //do nothing
             }
             else
             {
-                printError(14, t->lineno, 0, t->child[0]->attr.name, ConvertExpToString(t->child[1]->expType), NULL, 0);
+                printError(14, node->lineno, 0, node->child[0]->attr.name, ConvertExpToString(node->child[1]->expType), NULL, 0);
             }
             
         }
    }
-   if(t->child[1] != NULL && t->child[1]->subkind.exp == IdK)
+   if(node->child[1] != NULL && node->child[1]->subkind.exp == IdK)
    {
       
       if(rightNode != NULL && rightNode->isArray == true)
       {
-        printError(13, t->lineno, 0, rightNode->attr.name, NULL, NULL, 0);
+        printError(13, node->lineno, 0, rightNode->attr.name, NULL, NULL, 0);
       }
       if(rightNode != NULL)
       {
-        t->child[1]->expType = rightNode->expType;
+        node->child[1]->expType = rightNode->expType;
       }
    }
 
@@ -847,7 +847,7 @@ void analyzeExp(TreeNode *node, int& nErrors, int& nWarnings)
 }
 
 //analyze Op Expression
-void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode, int& nErrors, int& nWarnings)
+void analyze_Op_and_Assign(TreeNode* node, TreeNode* leftNode, TreeNode* rightNode, int& nErrors, int& nWarnings)
 {
 
     bool leftStr, rightStr, isBinary, leftArr, rightArr, leftIndx, rightIndx, leftInit, leftDecl, rightInit, rightDecl, throwError;
@@ -859,68 +859,68 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
     bool rightErr, leftErr, unaryErrors;
     rightErr = leftErr = unaryErrors = false;
 
-     if(!strcmp(t->attr.name, "<=")){
+     if(!strcmp(node->attr.name, "<=")){
 
-                if(t->child[0] != NULL){
+                if(node->child[0] != NULL){
                     
-                    if(t->child[0]->child[0]!=NULL && !strcmp(t->child[0]->attr.name, "[")){
-                        t->child[0]->child[0]->isInit = true;
+                    if(node->child[0]->child[0]!=NULL && !strcmp(node->child[0]->attr.name, "[")){
+                        node->child[0]->child[0]->isInit = true;
 
-                        if(t->child[0]->child[1] != NULL){
-                            t->child[0]->child[1]->isInit = true;
+                        if(node->child[0]->child[1] != NULL){
+                            node->child[0]->child[1]->isInit = true;
 
-                            if(t->child[0]->child[1]->child[0] != NULL && t->child[0]->child[1]->child[1] != NULL){
+                            if(node->child[0]->child[1]->child[0] != NULL && node->child[0]->child[1]->child[1] != NULL){
 
-                            if(t->child[0]->child[1]->subkind.exp == OpK){
-                                t->child[0]->child[1]->child[0]->isInit = true;
-                                t->child[0]->child[1]->child[1]->isInit = true;
+                            if(node->child[0]->child[1]->subkind.exp == OpK){
+                                node->child[0]->child[1]->child[0]->isInit = true;
+                                node->child[0]->child[1]->child[1]->isInit = true;
                             }
                             }
                         }
 
-                        else if(t->child[0]->child[1]->child[0] != NULL){
-                            t->child[0]->child[1]->child[0]->isInit = true;
+                        else if(node->child[0]->child[1]->child[0] != NULL){
+                            node->child[0]->child[1]->child[0]->isInit = true;
                         }
 
                     }
 
-                    else if(t->child[1] !=NULL && t->child[1]->expType == Void){
+                    else if(node->child[1] !=NULL && node->child[1]->expType == Void){
 
-                        if(!strcmp(t->child[1]->attr.name, "<=")){
-                            t->child[0]->isInit = true;
+                        if(!strcmp(node->child[1]->attr.name, "<=")){
+                            node->child[0]->isInit = true;
                         }
 
-                        if(t->child[1]->subkind.exp == CallK){
-                            t->child[0]->isInit = true;
+                        if(node->child[1]->subkind.exp == CallK){
+                            node->child[0]->isInit = true;
                         }
 
-                        else if(!strcmp(t->child[1]->attr.name, "[")){
+                        else if(!strcmp(node->child[1]->attr.name, "[")){
 
-                            char* lhs = strdup(t->child[0]->attr.name);
-                            char* rhs = strdup(t->child[1]->child[0]->attr.name);
+                            char* lhs = strdup(node->child[0]->attr.name);
+                            char* rhs = strdup(node->child[1]->child[0]->attr.name);
 
                             if(strcmp(lhs, rhs)){
-                                t->child[0]->isInit = true;
+                                node->child[0]->isInit = true;
                             }
 
                         }
-                        else if(t->child[0]!=NULL && t->child[1]!=NULL){
+                        else if(node->child[0]!=NULL && node->child[1]!=NULL){
     
-                            if(t->child[0]->subkind.exp == IdK && !t->child[0]->isInit){
+                            if(node->child[0]->subkind.exp == IdK && !node->child[0]->isInit){
         
-                                if(t->child[1]->subkind.exp == IdK){
+                                if(node->child[1]->subkind.exp == IdK){
 
-                                    char* lhs = strdup(t->child[0]->attr.name);
-                                    char* rhs = strdup(t->child[1]->attr.name);
+                                    char* lhs = strdup(node->child[0]->attr.name);
+                                    char* rhs = strdup(node->child[1]->attr.name);
 
                                     if(strcmp(lhs, rhs)){
-                                        t->child[0]->isInit = true;
+                                        node->child[0]->isInit = true;
                                     }
                                 }
 
-                                else if(t->child[1]->subkind.exp == AssignK){
-                                    analyzeNestedAssign(t->child[1]);
-                                    t->child[0]->isInit = true;
+                                else if(node->child[1]->subkind.exp == AssignK){
+                                    analyzeNestedAssign(node->child[1]);
+                                    node->child[0]->isInit = true;
                                 }
                             }
                         }
@@ -932,56 +932,56 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
                    
                     else {
 
-                        if(t->child[1] != NULL && t->child[1]->child[0] != NULL){
+                        if(node->child[1] != NULL && node->child[1]->child[0] != NULL){
     
-                            if(t->child[1]->child[0]->subkind.exp == IdK){
+                            if(node->child[1]->child[0]->subkind.exp == IdK){
 
-                                char *c0 = strdup(t->child[0]->attr.name);
-                                char *c10 = strdup(t->child[1]->child[0]->attr.name);
+                                char *c0 = strdup(node->child[0]->attr.name);
+                                char *c10 = strdup(node->child[1]->child[0]->attr.name);
 
                                 if(strcmp(c0, c10)){
-                                    t->child[0]->isInit = true;
+                                    node->child[0]->isInit = true;
              
                                 }
                             }
 
                             else{
-                                t->child[0]->isInit = true;
+                                node->child[0]->isInit = true;
                             }
                             
 
                         }
 
                         else{
-                            t->child[0]->isInit = true;
+                            node->child[0]->isInit = true;
                         }
                     }
                 }
 
             }
 
-            if(strcmp(t->attr.name, "<=")){
-                if(t->child[0] != NULL){
-                    t->child[0]->wasUsed = true;
+            if(strcmp(node->attr.name, "<=")){
+                if(node->child[0] != NULL){
+                    node->child[0]->wasUsed = true;
                     
                 }
-                if(t->child[1] != NULL){
-                    t->child[1]->wasUsed = true;
+                if(node->child[1] != NULL){
+                    node->child[1]->wasUsed = true;
                 }
             }
 
-            if(!strcmp(t->attr.name, "*")){
+            if(!strcmp(node->attr.name, "*")){
                 sizeOfArrayFlg = true;
             }
 
             for(int i= 0; i < MAXCHILDREN; i++){
-                analyze(t->child[i], nErrors, nWarnings);
+                analyze(node->child[i], nErrors, nWarnings);
             }
 
             sizeOfArrayFlg = false;
 
-            if(t->child[0] != NULL){
-                leftNode = t->child[0];
+            if(node->child[0] != NULL){
+                leftNode = node->child[0];
                 leftSide = leftNode->expType;
                 leftArr = leftNode->isArray;
 
@@ -999,8 +999,8 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
                 }
             }
 
-            if(t->child[1] != NULL){
-                rightNode = t->child[1];
+            if(node->child[1] != NULL){
+                rightNode = node->child[1];
                 rightSide = rightNode->expType;
                 rightArr = rightNode->isArray;
                 
@@ -1020,7 +1020,7 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
                 isBinary = true;
             }
 
-            getExpTypes(t->attr.name, isBinary, unaryErrors, leftExpected, rightExpected, returnType);
+            getExpTypes(node->attr.name, isBinary, unaryErrors, leftExpected, rightExpected, returnType);
 
             if(leftSide == Void && !(leftNode->nodekind == ExpK && leftNode->subkind.exp == CallK)){
                 leftErr = true;
@@ -1033,35 +1033,35 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
  
                 if(leftSide != leftExpected && leftExpected != UndefinedType){
 
-                    if(!strcmp(t->attr.name, "-")){
+                    if(!strcmp(node->attr.name, "-")){
                         char uMinus[] = "chsign";
-                        printError(9, t->lineno, 0, uMinus, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                        printError(9, node->lineno, 0, uMinus, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
                     }
 
                     else{
-                        printError(9, t->lineno, 0, t->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                        printError(9, node->lineno, 0, node->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
                     }
                 }
 
-                else if(!strcmp(t->attr.name, "not") && leftSide != leftExpected){
+                else if(!strcmp(node->attr.name, "not") && leftSide != leftExpected){
 
-                    printError(9, t->lineno, 0, t->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                    printError(9, node->lineno, 0, node->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
                 }
 
-                else if(!strcmp(t->attr.name, "*") && (!leftArr && leftSide != UndefinedType)){
+                else if(!strcmp(node->attr.name, "*") && (!leftArr && leftSide != UndefinedType)){
                     char uSizeof[] = "sizeof";
-                    printError(8, t->lineno, 0, uSizeof, NULL, NULL, 0);
+                    printError(8, node->lineno, 0, uSizeof, NULL, NULL, 0);
                 } 
 
                 if(leftArr){
-                    if(strcmp(t->attr.name, "*") != 0){
+                    if(strcmp(node->attr.name, "*") != 0){
 
-                        if(!strcmp(t->attr.name, "-")){
+                        if(!strcmp(node->attr.name, "-")){
                             char uMinus[] = "chsign";
-                            printError(7, t->lineno, 0, uMinus, NULL, NULL, 0);
+                            printError(7, node->lineno, 0, uMinus, NULL, NULL, 0);
                         }
                         else{
-                            printError(7, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                            printError(7, node->lineno, 0, node->attr.name, NULL, NULL, 0);
                         }
                     }
                 }
@@ -1069,37 +1069,37 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
                 else{
                     if(!unaryErrors){
 
-                        if(!strcmp(t->attr.name, "[")){
-                            printArrayErrors(t);
+                        if(!strcmp(node->attr.name, "[")){
+                            printArrayErrors(node);
                         }
                 
                         else if(leftSide != rightSide && !leftErr && !rightErr){
 
                             if(!strcmp(ConvertExpToString(leftSide), "int") && !strcmp(ConvertExpToString(rightSide), "CharInt")){
                                 char diffCharInt[] = "char";
-                                 printError(2, t->lineno, 0, t->attr.name, ConvertExpToString(leftSide), diffCharInt, 0);
+                                 printError(2, node->lineno, 0, node->attr.name, ConvertExpToString(leftSide), diffCharInt, 0);
                             }
                             else if(!strcmp(ConvertExpToString(leftSide), "char") && !strcmp(ConvertExpToString(rightSide), "CharInt")){
                                 ; //do nothing
                             }
   
-                            else if(!strcmp(t->attr.name, "<=") && t->child[1]->subkind.exp == OpK){
+                            else if(!strcmp(node->attr.name, "<=") && node->child[1]->subkind.exp == OpK){
  
-                                getReturnType(t->child[1]->attr.name, isBinary, childReturnType);
+                                getReturnType(node->child[1]->attr.name, isBinary, childReturnType);
                                
-                                if(childReturnType != t->child[0]->expType){
-                                    printError(2, t->lineno, 0, t->attr.name, ConvertExpToString(leftSide), ConvertExpToString(childReturnType), 0);
+                                if(childReturnType != node->child[0]->expType){
+                                    printError(2, node->lineno, 0, node->attr.name, ConvertExpToString(leftSide), ConvertExpToString(childReturnType), 0);
                                 }
 
-                                else if(t->child[1]->child[1] != NULL && t->child[1]->child[1]->subkind.exp == CallK){
-                                    printError(2, t->lineno, 0, t->attr.name, ConvertExpToString(leftSide), ConvertExpToString(childReturnType), 0);
+                                else if(node->child[1]->child[1] != NULL && node->child[1]->child[1]->subkind.exp == CallK){
+                                    printError(2, node->lineno, 0, node->attr.name, ConvertExpToString(leftSide), ConvertExpToString(childReturnType), 0);
                                 }
                             }
                             else{
 
-                                if(t->child[0]->subkind.exp != CallK){
+                                if(node->child[0]->subkind.exp != CallK){
 
-                                 printError(2, t->lineno, 0, t->attr.name, ConvertExpToString(leftSide), ConvertExpToString(rightSide), 0);
+                                 printError(2, node->lineno, 0, node->attr.name, ConvertExpToString(leftSide), ConvertExpToString(rightSide), 0);
                                 }
                                 else{}
                             }
@@ -1116,15 +1116,15 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
 
                         else if(leftSide == rightSide && leftNode->subkind.exp == CallK && rightNode->subkind.exp == CallK){
 
-                             TreeNode* lhs = (TreeNode*)symbolTable.lookup(t->child[0]->attr.name);
-                             TreeNode* rhs = (TreeNode*)symbolTable.lookup(t->child[1]->attr.name);
+                             TreeNode* lhs = (TreeNode*)symbolTable.lookup(node->child[0]->attr.name);
+                             TreeNode* rhs = (TreeNode*)symbolTable.lookup(node->child[1]->attr.name);
 
                              if(lhs != NULL && rhs != NULL){
 
                                  if(lhs->subkind.decl == FuncK && rhs->subkind.decl == FuncK && !lhs->isIO && !rhs->isIO){
-                                     if(t->child[0]->expType == Void && t->child[1]->expType == Void){
-                                     printError(3, t->lineno, 0, t->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
-                                     printError(4, t->lineno, 0, t->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
+                                     if(node->child[0]->expType == Void && node->child[1]->expType == Void){
+                                     printError(3, node->lineno, 0, node->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                                     printError(4, node->lineno, 0, node->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
                                      }
                                      
                                  }
@@ -1134,16 +1134,16 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
                         else{
 
                             if(leftSide != leftExpected && !leftErr){
-                                printError(3, t->lineno, 0, t->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                                printError(3, node->lineno, 0, node->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
                             }
 
                             if(rightSide != rightExpected && !rightErr && rightSide != UndefinedType){
 
-                                if(rightSide == Void && t->child[1]->subkind.exp == CallK && returnType != Boolean){
-                                    printError(4, t->lineno, 0, t->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
+                                if(rightSide == Void && node->child[1]->subkind.exp == CallK && returnType != Boolean){
+                                    printError(4, node->lineno, 0, node->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
                                 }
                                 else if(rightSide != Void){
-                                    printError(4, t->lineno, 0, t->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
+                                    printError(4, node->lineno, 0, node->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
                                 }
                             }
                         }
@@ -1151,36 +1151,36 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
 
                     if(leftArr || rightArr){
 
-                        if(strcmp(t->attr.name, "<=") && leftExpected != UndefinedType){
-                            if(!strcmp(t->attr.name, "<") || !strcmp(t->attr.name, ">") || !strcmp(t->attr.name, "=") || !strcmp(t->attr.name, "!>") || !strcmp(t->attr.name, "!<") || !strcmp(t->attr.name, "><")){
+                        if(strcmp(node->attr.name, "<=") && leftExpected != UndefinedType){
+                            if(!strcmp(node->attr.name, "<") || !strcmp(node->attr.name, ">") || !strcmp(node->attr.name, "=") || !strcmp(node->attr.name, "!>") || !strcmp(node->attr.name, "!<") || !strcmp(node->attr.name, "><")){
                          
                                  if(leftArr && !rightArr){
-                                printError(5, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                printError(5, node->lineno, 0, node->attr.name, NULL, NULL, 0);
                                 }
 
                                 else if(!leftArr && rightArr){
-                                printError(6, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                printError(6, node->lineno, 0, node->attr.name, NULL, NULL, 0);
                                 }
                             }
 
                             else{
-                            printError(7, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                            printError(7, node->lineno, 0, node->attr.name, NULL, NULL, 0);
                             }
                         }
                         
                         else{
-                            if(!strcmp(t->attr.name, "[")){
+                            if(!strcmp(node->attr.name, "[")){
                                 ;
                             }
 
                             else if((leftArr && !rightArr) || (!leftArr && rightArr)){
 
                                 if(leftArr && !rightArr){
-                                printError(5, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                printError(5, node->lineno, 0, node->attr.name, NULL, NULL, 0);
                                 }
 
                                 else if(!leftArr && rightArr){
-                                    printError(6, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                    printError(6, node->lineno, 0, node->attr.name, NULL, NULL, 0);
                                 }
                             }
                         }
@@ -1188,10 +1188,10 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
                 }
 
             if(returnType != UndefinedType){
-                t->expType = returnType;
+                node->expType = returnType;
             }
             else{
-                t->expType = leftSide;
+                node->expType = leftSide;
             }
 }
 
@@ -1217,131 +1217,161 @@ void analyzeConst(TreeNode* node, int& nErrors, int& nWarnings)
 }
 
 //analyze Id Expression
-void analyzeId(TreeNode* t, TreeNode* valFound, int& nErrors, int& nWarnings)
+void analyzeId(TreeNode* node, TreeNode* valFound, int& nErrors, int& nWarnings)
 {
-                valFound = (TreeNode*)symbolTable.lookup(t->attr.name);
+    valFound = (TreeNode*)symbolTable.lookup(node->attr.name);
 
-            if(valFound == NULL){
+    if(valFound == nullptr)
+    {
 
-                if(range && rangePos == 1){
-                    t->isDeclared = true;
-                }
+        if(range && rangePos == 1)
+        {
+            node->isDeclared = true;
+        }
 
-                else{
-                    printError(1, t->lineno, 0, t->attr.name, NULL, NULL, 0); 
-                        t->declErr = true;    
-                }           
-            }
+        else
+        {
+            printError(1, node->lineno, 0, node->attr.name, NULL, NULL, 0); 
+            node->declErr = true;    
+        }           
+    }
 
-            else if(range){
+    else if(range)
+    {
 
-                if(inFor){
+        if(inFor)
+        {
 
-                    t->expType = valFound->expType;
-                    t->isArray = valFound->isArray;
+            node->expType = valFound->expType;
+            node->isArray = valFound->isArray;
 
-                    if(t->expType != Integer && rangePos >= 1)
+            if(node->expType != Integer && rangePos >= 1)
+            {
+                if(!sizeOfArrayFlg)
+                {
+
+                    if(!strcmp(node->attr.name, "main"))
                     {
-                        if(!sizeOfArrayFlg){
-
-                            if(!strcmp(t->attr.name, "main")){
-                                printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);  
-                            }
-                            else{
-                                char intExpect[] = "int";
-                                printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
-                            }
-                        }
-
+                        printError(12, node->lineno, 0, node->attr.name, NULL, NULL, 0);  
                     }
-
-                    if(rangePos >= 1 && !valFound->isInit){
-                        if(valFound->isDeclared == true){
-
-                            if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
-
-                                if(!t->isInit){
-                                    valFound->warningReported = true;
-                                    valFound->wasUsed = true;
-                                    printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                                }
-                                
-                                else{
-                                    valFound->isInit = true;
-                                }
-                            }
-                    
-                        }
+                    else
+                    {
+                        char intExpect[] = "int";
+                        printError(26, node->lineno, 0, intExpect, ConvertExpToString(node->expType), NULL, rangePos);
                     }
-
-                    else if(rangePos > 1 && valFound->isInit){
-                        valFound->wasUsed = true;
-                    }
-
-                    if(valFound->isArray && !sizeOfArrayFlg && !t->isIndexed){
-                        printError(24, t->lineno, 0, NULL, NULL, NULL, rangePos);
-                    }
-
-                    t->isIndexed = false;
-
                 }
 
-                t->isInit = true;
             }
 
-            else{
+            if(rangePos >= 1 && !valFound->isInit)
+            {
+                if(valFound->isDeclared == true)
+                {
 
-                 if(valFound->isDeclared == true){
-                
-                 if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
-                     if(!t->isInit){
-                        valFound->warningReported = true;
-                        printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                     }
-                     else{
-                         valFound->isInit = true;
-                     }
-                 }
-                 }
+                    if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal)
+                    {
 
-                if(valFound->subkind.decl == FuncK){
-                    printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                    valFound->wasUsed = true;
-                    return;
-                }
-                else{
-                    t->expType = valFound->expType;
-                    t->isArray = valFound->isArray;
-                    t->isGlobal = valFound->isGlobal;
-                    t->isStatic = valFound->isStatic;
-
-                    if(!range && valFound->subkind.decl != FuncK){
-                    valFound->wasUsed = true;
-                    }
-                }
-
-                if(t->child[0] != NULL){
-                    analyze(t->child[0], nErrors, nWarnings);
-                    if(t->child[0]->expType == Void && !(t->child[0]->nodekind == ExpK && t->child[0]->subkind.exp == CallK)){
-
-                        return;
-                    }
-                    if(!t->isArray){
-
-                        return;
-                    }
-                    else{
-
-                        if(t->child[0]->expType != Integer){
-                            printError(14, t->lineno, 0, t->attr.name, ConvertExpToString(t->child[0]->expType), NULL, 0);
+                        if(!node->isInit)
+                        {
+                            valFound->warningReported = true;
+                            valFound->wasUsed = true;
+                            printError(18, node->lineno, 0, node->attr.name, NULL, NULL, 0);
                         }
- 
-                        if(t->child[0]->isArray && t->child[0]->child[0] == NULL){
-                            printError(13, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
+                        
+                        else
+                        {
+                            valFound->isInit = true;
                         }
                     }
+            
                 }
             }
+
+            else if(rangePos > 1 && valFound->isInit)
+            {
+                valFound->wasUsed = true;
+            }
+
+            if(valFound->isArray && !sizeOfArrayFlg && !node->isIndexed)
+            {
+                printError(24, node->lineno, 0, NULL, NULL, NULL, rangePos);
+            }
+
+            node->isIndexed = false;
+
+        }
+
+        node->isInit = true;
+    }
+
+    else
+    {
+
+        if(valFound->isDeclared == true)
+        {
+        
+            if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal)
+            {
+                if(!node->isInit)
+                {
+                    valFound->warningReported = true;
+                    printError(18, node->lineno, 0, node->attr.name, NULL, NULL, 0);
+                }
+                else
+                {
+                    valFound->isInit = true;
+                }
+            }
+        }
+
+        if(valFound->subkind.decl == FuncK)
+        {
+            printError(12, node->lineno, 0, node->attr.name, NULL, NULL, 0);
+            valFound->wasUsed = true;
+            return;
+        }
+        else
+        {
+            node->expType = valFound->expType;
+            node->isArray = valFound->isArray;
+            node->isGlobal = valFound->isGlobal;
+            node->isStatic = valFound->isStatic;
+
+            if(!range && valFound->subkind.decl != FuncK)
+            {
+                valFound->wasUsed = true;
+            }
+        }
+
+        if(node->child[0] != nullptr)
+        {
+            analyze(node->child[0], nErrors, nWarnings);
+            
+            if(node->child[0]->expType == Void && !(node->child[0]->nodekind == ExpK && node->child[0]->subkind.exp == CallK))
+            {
+                return;
+            }
+            
+            if(!node->isArray)
+            {
+                return;
+            }
+            
+            else
+            {
+
+                if(node->child[0]->expType != Integer)
+                {
+                    printError(14, node->lineno, 0, node->attr.name, ConvertExpToString(node->child[0]->expType), NULL, 0);
+                }
+
+                if(node->child[0]->isArray && node->child[0]->child[0] == nullptr)
+                {
+                    printError(13, node->lineno, 0, node->child[0]->attr.name, NULL, NULL, 0);
+                }
+            }
+        }
+    }
 }
 
 //analyze Assign Expression
@@ -1540,7 +1570,8 @@ char* ConvertExpToString(ExpType type)
 }
 
 
-void getReturnType(const char* strng, bool isBinary, ExpType &rightT){
+void getReturnType(const char* strng, bool isBinary, ExpType &rightT)
+{
 
     std::string unaryOps[6] = {"not", "*", "?", "-", "--", "++"};
 
@@ -1820,38 +1851,38 @@ void analyzeNestedAssign(TreeNode* rightChild)
 }
  
 
-void parameterErrors(TreeNode *funcFound, TreeNode *t, TreeNode *ffParm, TreeNode *tParm, int paramCount){
+void parameterErrors(TreeNode *funcFound, TreeNode *node, TreeNode *ffParm, TreeNode *tParm, int paramCount){
     
 
     if(ffParm->sibling == NULL && tParm->sibling != NULL){
-        printError(38, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
+        printError(38, node->lineno, funcFound->lineno, node->attr.name, NULL, NULL, 0);
     }
 
     else if(ffParm->sibling != NULL && tParm->sibling == NULL){
-        printError(37, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
+        printError(37, node->lineno, funcFound->lineno, node->attr.name, NULL, NULL, 0);
     }
   
     if(tParm->expType != UndefinedType){
         
         if(ffParm->expType != tParm->expType && !tParm->declErr && !funcFound->isIO){
       
-            printError(25, t->lineno, funcFound->lineno, funcFound->attr.name, ConvertExpToString(ffParm->expType), ConvertExpToString(tParm->expType), paramCount);
+            printError(25, node->lineno, funcFound->lineno, funcFound->attr.name, ConvertExpToString(ffParm->expType), ConvertExpToString(tParm->expType), paramCount);
 
             if(!ffParm->isArray && tParm->isArray){
-                printError(36, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+                printError(36, node->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
             }
  
             else if(ffParm->isArray && !tParm->isArray){
-                printError(28, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+                printError(28, node->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
             }
         }
    
         else if(!ffParm->isArray && tParm->isArray){
-            printError(36, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+            printError(36, node->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
         }
        
         else if(ffParm->isArray && !tParm->isArray){
-            printError(28, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+            printError(28, node->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
         }
        
     }
@@ -1859,7 +1890,7 @@ void parameterErrors(TreeNode *funcFound, TreeNode *t, TreeNode *ffParm, TreeNod
     paramCount++;
 
     if(ffParm->sibling != NULL && tParm->sibling != NULL){
-    parameterErrors(funcFound, t, ffParm->sibling, tParm->sibling, paramCount);
+    parameterErrors(funcFound, node, ffParm->sibling, tParm->sibling, paramCount);
     }
 
 }
