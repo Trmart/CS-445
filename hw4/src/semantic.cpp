@@ -221,27 +221,59 @@ void errorsArray(TreeNode *t)
 
 }
 
-//function checks declaration nodes
-void analyzeDecl(TreeNode *t, int& nErrors, int& nWarnings){
+//********************************************************************************
+// ************ DeclarationNode Analyzers *****************************
+//********************************************************************************
+
+//function analyzes declarations
+void analyzeDecl(TreeNode* node, int& nErrors, int& nWarnings)
+{
   
-    if(symbolTable.depth() == 1){
-        t->isGlobal = true;
+    if(symbolTable.depth() == 1)
+    {
+        node->isGlobal = true;
     }
-    else{
-        t->isGlobal = false;
+    else
+    {
+        node->isGlobal = false;
     }
 
+    
     TreeNode *declared;
-    if(t->subkind.decl != VarK && !symbolTable.insert(t->attr.name, t)){
-        declared = (TreeNode*)symbolTable.lookup(t->attr.name);
-        printError(0, t->lineno, declared->lineno, t->attr.name, NULL, NULL, 0);
+    
+    if(node->subkind.decl != VarK && !symbolTable.insert(node->attr.name, node))
+    {
+        declared = (TreeNode*)symbolTable.lookup(node->attr.name);
+        printError(0, node->lineno, declared->lineno, node->attr.name, NULL, NULL, 0);
     }
 
-    switch(t->subkind.decl){
+    switch(node->subkind.decl)
+    {
         
         case VarK:
+                {
+                    analyzeVar(node, nErrors, nWarnings);
+                }
+                break;
 
-            if(t->child[0] != NULL){
+        case FuncK:
+                {
+                    analyzeFunc(node, nErrors, nWarnings);
+                }
+                break;
+
+        case ParamK:
+                {
+                    analyzeParam(node, nErrors, nWarnings);
+                }
+                break;
+    }
+}
+
+//analyze variable nodes
+void analyzeVar(TreeNode* t, int& nErrors, int& nWarnings)
+{
+                if(t->child[0] != NULL){
 
                 for(int i = 0; i < MAXCHILDREN; i++){
                     analyze(t->child[i], nErrors, nWarnings);
@@ -315,12 +347,12 @@ void analyzeDecl(TreeNode *t, int& nErrors, int& nWarnings){
            else{
                t->isDeclared = true;
            }
+}
 
-           break;
-
-        case FuncK:
-
-            curFunc = t;
+//analyze function nodes
+void analyzeFunc(TreeNode* t, int& nErrors, int& nWarnings)
+{
+    curFunc = t;
             Flag = false;
 
             symbolTable.enter(t->attr.name);
@@ -341,12 +373,12 @@ void analyzeDecl(TreeNode *t, int& nErrors, int& nWarnings){
             symbolTable.applyToAll(Warninit);
             symbolTable.leave();
             curFunc = NULL;
+}
 
-            break;
-
-        case ParamK:
-
-            for(int i = 0; i < MAXCHILDREN; i++){
+//analyze parameter nodes
+void analyzeParam(TreeNode* t, int& nErrors, int& nWarnings)
+{
+                for(int i = 0; i < MAXCHILDREN; i++){
                 
                 analyze(t->child[i], nErrors, nWarnings);
                 if(t->child[0] != NULL){
@@ -354,11 +386,14 @@ void analyzeDecl(TreeNode *t, int& nErrors, int& nWarnings){
                 }
             }
             t->isInit = true;
-            break;
-    }
 }
 
-//Function checks statement nodes
+
+//********************************************************************************
+// ************ StatementNode Analyzers *****************************
+//********************************************************************************
+
+//analyze statement nodes
 void analyzeStmt(TreeNode *t, int& nErrors, int& nWarnings){
 
     switch(t->subkind.stmt){
@@ -585,8 +620,62 @@ void analyzeStmt(TreeNode *t, int& nErrors, int& nWarnings){
 
 }
 
-//function checks expression nodes. 
-void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings){
+//analyze null statement
+void analyzeNullStmt(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze if statement
+void analyzeIf(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze while statement
+void analyzeWhile(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze for statement
+void analyzeFor(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze compound statement
+void analyzeCompound(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze return statement
+void analyzeReturn(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze break statement
+void analyzeBreak(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze range statement
+void analyzeRange(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+
+//********************************************************************************
+// ************ ExpressionNodes Analyzers *****************************
+//********************************************************************************
+
+//analyze expression node
+void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
+{
  
     bool leftStr, rightStr, isBinary, leftArr, rightArr, leftIndx, rightIndx, leftInit, leftDecl, rightInit, rightDecl, throwError;
     leftStr = rightStr = isBinary = leftArr = rightArr = leftIndx = rightIndx = leftInit = leftDecl = rightInit = rightDecl = throwError = false;
@@ -1155,6 +1244,38 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings){
     }
 
 }
+
+
+//analyze Op Expression
+void analyzeOp(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze Const Expression
+void analyzeConst(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze Id Expression
+void analyzeId(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze Assign Expression
+void analyzeAssign(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
+//analyze Init Expression
+void analyzeInit(TreeNode* t, int& nErrors, int& nWarnings)
+{
+
+}
+
 
 //function gets all expected types. 
 void getExpTypes(const char* strng, bool isBinary, bool &unaryErrors, ExpType &left, ExpType &right, ExpType &rightT){
