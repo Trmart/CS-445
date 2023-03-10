@@ -1850,47 +1850,57 @@ void analyzeNestedAssign(TreeNode* rightChild)
     }
 }
  
-
-void parameterErrors(TreeNode *funcFound, TreeNode *node, TreeNode *ffParm, TreeNode *tParm, int paramCount){
+//functionNode, node, functionNodeParm,nodeParm,parmcount
+void parameterErrors(TreeNode* functionNode, TreeNode* node, TreeNode* functionNodeParm, TreeNode* nodeParm, int numParms)
+{
     
 
-    if(ffParm->sibling == NULL && tParm->sibling != NULL){
-        printError(38, node->lineno, funcFound->lineno, node->attr.name, NULL, NULL, 0);
+    if(functionNodeParm->sibling == nullptr && nodeParm->sibling != nullptr)
+    {
+        printError(38, node->lineno, functionNode->lineno, node->attr.name, NULL, NULL, 0);
     }
 
-    else if(ffParm->sibling != NULL && tParm->sibling == NULL){
-        printError(37, node->lineno, funcFound->lineno, node->attr.name, NULL, NULL, 0);
+    else if(functionNodeParm->sibling != nullptr && nodeParm->sibling == nullptr)
+    {
+        printError(37, node->lineno, functionNode->lineno, node->attr.name, NULL, NULL, 0);
     }
   
-    if(tParm->expType != UndefinedType){
+    if(nodeParm->expType != UndefinedType)
+    {
         
-        if(ffParm->expType != tParm->expType && !tParm->declErr && !funcFound->isIO){
+        if(functionNodeParm->expType != nodeParm->expType && !nodeParm->declErr && !functionNode->isIO)
+        {
       
-            printError(25, node->lineno, funcFound->lineno, funcFound->attr.name, ConvertExpToString(ffParm->expType), ConvertExpToString(tParm->expType), paramCount);
+            printError(25, node->lineno, functionNode->lineno, functionNode->attr.name, ConvertExpToString(functionNodeParm->expType), ConvertExpToString(nodeParm->expType), numParms);
 
-            if(!ffParm->isArray && tParm->isArray){
-                printError(36, node->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+            if(!functionNodeParm->isArray && nodeParm->isArray)
+            {
+                printError(36, node->lineno, functionNode->lineno, functionNode->attr.name, NULL, NULL, numParms);
             }
  
-            else if(ffParm->isArray && !tParm->isArray){
-                printError(28, node->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+            else if(functionNodeParm->isArray && !nodeParm->isArray)
+            {
+                printError(28, node->lineno, functionNode->lineno, functionNode->attr.name, NULL, NULL, numParms);
             }
         }
    
-        else if(!ffParm->isArray && tParm->isArray){
-            printError(36, node->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+        else if(!functionNodeParm->isArray && nodeParm->isArray)
+        {
+            printError(36, node->lineno, functionNode->lineno, functionNode->attr.name, NULL, NULL, numParms);
         }
        
-        else if(ffParm->isArray && !tParm->isArray){
-            printError(28, node->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
+        else if(functionNodeParm->isArray && !nodeParm->isArray)
+        {
+            printError(28, node->lineno, functionNode->lineno, functionNode->attr.name, NULL, NULL, numParms);
         }
        
     }
 
-    paramCount++;
+    numParms++;
 
-    if(ffParm->sibling != NULL && tParm->sibling != NULL){
-    parameterErrors(funcFound, node, ffParm->sibling, tParm->sibling, paramCount);
+    if(functionNodeParm->sibling != nullptr && nodeParm->sibling != nullptr)
+    {
+        parameterErrors(functionNode, node, functionNodeParm->sibling, nodeParm->sibling, numParms);
     }
 
 }

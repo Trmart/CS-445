@@ -61,6 +61,6 @@ void printArrayErrors(TreeNode* node);
 //helper functions
 void initializeWarningMessages(std::string, void*);
 char* ConvertExpToString(ExpType type);
-void parameterErrors(TreeNode *funcFound, TreeNode* node, TreeNode *ffParm, TreeNode *tParm, int paramCount);
+void parameterErrors(TreeNode* functionNode, TreeNode* node, TreeNode* functionNodeParm, TreeNode* nodeParm, int numParms);
 
 #endif
