@@ -67,7 +67,8 @@ void PrintErrorss()
 }
 
 //Function checks each node. 
-void analyze(TreeNode *t, int& nErrors, int& nWarnings){
+void analyze(TreeNode *t, int& nErrors, int& nWarnings)
+{
 
     if(t == NULL){
         return;
