@@ -24,59 +24,59 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 //Node Types
 enum NodeType
 {
-    DECLARATION, 
-    STATEMENT, 
-    EXPRESSION
+    T_DECLARATION, 
+    T_STATEMENT, 
+    T_EXPRESSION
 }; 
 
 //Declaration Types
 enum DeclarationType
 {
-    VARIABLE, 
-    FUNCTION, 
-    PARAMETER
+    T_VARIABLE, 
+    T_FUNCTION, 
+    T_PARAMETER
 };
 
 // Statement Types
 enum StatementType
 {
-    NULLSTMT, 
-    IF, 
-    WHILE, 
-    FOR, 
-    COMPOUND, 
-    RETURN, 
-    BREAK, 
-    RANGE
+    T_NULLSTMT, 
+    T_IF, 
+    T_WHILE, 
+    T_FOR, 
+    T_COMPOUND, 
+    T_RETURN, 
+    T_BREAK, 
+    T_RANGE
 };
 
 //Expression Types (ExpKind)
 enum ExpressionType 
 {
-    OP, 
-    CONSTANT, 
-    IDENTIFIER, 
-    ASSIGN, 
-    INIT, 
-    CALL
+    T_OP, 
+    T_CONSTANT, 
+    T_IDENTIFIER, 
+    T_ASSIGN, 
+    T_INIT, 
+    T_CALL
 };
 
 //ParmType is used for function return type checking 
 enum ParmType 
 {
-    VOID, 
-    INTEGER, 
-    BOOL, 
-    CHAR, 
-    CHARINT, 
-    EQUAL, 
-    UNDEFINED
+    T_VOID, 
+    T_INTEGER, 
+    T_BOOL, 
+    T_CHAR, 
+    T_CHARINT, 
+    T_EQUAL, 
+    T_UNDEFINED
 };
 
 //What type of scope is the variable in? (decided during typing)
 enum VariableType
 {
-    NONE, LOCAL, GLOBAL, PARAMETER, LOCAL_STATIC
+    T_NONE, T_LOCAL, T_GLOBAL, T_PARM, T_LOCAL_STATIC
 };
 
 //Operator Types 
@@ -151,7 +151,7 @@ struct Node
 
 //Node Utility Functions
 Node* addSiblingNode(Node* sibling, Node* newSibling);
-void setSiblingsType(Node* node, ExpressionType expType);
+void setSiblingsType(Node* node, ParmType parmType);
 Node* newDeclNode(DeclarationType type, TokenData* token);
 Node* newStmtNode(StatementType type, TokenData* token);
 Node* newExpNode(ExpressionType type, TokenData* token); 

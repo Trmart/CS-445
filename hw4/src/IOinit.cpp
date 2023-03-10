@@ -10,58 +10,70 @@ FILE: CompilerFlags.cpp
 DESC: Class functions definitions to detect and hold c- compiler flags
 */
 
-#include "IOinit.hpp"
-#include "symbolTable.hpp"
-#include "AST.hpp"
-#include "scanType.hpp"
-#include "Semantics.hpp"
-#include <string>
+#include "IOinit.h"
+#include "symbolTable.h"
+#include "tree.h"
+#include "scanType.h"
+#include "semantic.h"
+
+#include <stdio.h>
+#include <string.h>
+#include <iostream>
 
 extern SymbolTable symbolTable;
 
-void setupIO()
-{
+void setupIO(){
 
+    //vars for IO nodes and dummy parameters
+    TreeNode* newIONode; 
+    TreeNode* dummyParam;
 
-    Node* IONode; 
-    Node* ParamNode;
+    //each node to set up
+    /*
+    void output(int)
+    void outputb(bool)
+    void outputc(char)
+    int input()
+    bool inputb()
+    char inputc()
+    void outnl()
+    */
 
-
+   //set up each section of new nodes as arrays
    std::string IONameArr[] = {"output", "outputb", "outputc", "input", "inputb", "inputc", "outnl"};
 
-   ParmType expTypeIO[] = {ParmType::VOID, ParmType::VOID, ParmType::VOID, ParmType::INTEGER, ParmType::BOOL, ParmType::CHAR, ParmType::VOID};
-   ParmType parmTypeIO[] = {ParmType::INTEGER, ParmType::BOOL, ParmType::CHAR, ParmType::VOID, ParmType::VOID, ParmType::VOID, ParmType::VOID};
+   ExpType IOexpType[] = {Void, Void, Void, Integer, Boolean, Char, Void};
+   ExpType IOParamExpType[] = {Integer, Boolean, Char, Void, Void, Void, Void};
+
+   //set up nodes
+
+   for(int i = 0; i < 7; i++){
+
+       newIONode = newDeclNodeIO(FuncK);
+       newIONode->attr.name = strdup(IONameArr[i].c_str());
+       newIONode->lineno = -1;
+       newIONode->expType = IOexpType[i];
+
+       //avoid warnings
+       newIONode->isDeclared = true;
+       newIONode->isInit = true;
+       newIONode->wasUsed = true;
+       newIONode->isIO = true;
+
+       //insert into symbolTable
+       symbolTable.insert(newIONode->attr.name, (TreeNode*) newIONode);
 
 
-
-   for(int i = 0; i < 7; i++)
-   {
-
-       IONode = newDeclNodeIO(FUNCTION);
-       IONode->nodeAttributes.name = IONameArr[i];
-       IONode->m_lineNumber = -1;
-       IONode->m_parmType = expTypeIO[i];
-
-
-       IONode->m_isDeclared = true;
-       IONode->m_isInitialized = true;
-       IONode->m_isUsed = true;
-       IONode->m_isIO = true;
-
-       symbolTable.insert(IONode->nodeAttributes.name, (Node *) IONode);
-
-
-       if(parmTypeIO[i] != VOID)
-       {
-           ParamNode = newDeclNodeIO(DeclarationType:: PARAMETER);
-           ParamNode->nodeAttributes.name = "dummy";
-           ParamNode->m_lineNumber = -1;
-           ParamNode->m_parmType - parmTypeIO[i];
-           IONode->m_childernNodes[0] = ParamNode;
+       //set up parameters if not void
+       if(IOParamExpType[i] != Void){
+           dummyParam = newDeclNodeIO(ParamK);
+           dummyParam->attr.name = strdup("dummy");
+           dummyParam->lineno = -1;
+           dummyParam->expType - IOParamExpType[i];
+           newIONode->child[0] = dummyParam;
        }
-       else
-       {
-           IONode->m_childernNodes[0] = nullptr;
+       else{
+           newIONode->child[0] = NULL;
        }
    }
    

@@ -1,4 +1,5 @@
 %{
+    
 /*
 Taylor Martin
 CS-445 Compiler Design
@@ -7,132 +8,173 @@ HW4
 Dr. Wilder
 DUE: 3/12/2023
 
-FILE: parser.l
-DESC: Lex file for the parser
-USAGE: lex parser.l
+FILE: parer.l
+DESC: This file is the lexer for the compiler. It will take in a file and parse it for tokens. 
+      It will then return the tokens to the parser.
 */
 
-#include "scanType.h"  // my header.
-#include "AST.h"  // Tree Struct 
-#include "parser.tab.h"  // flex/Bison header
-#include "TokenFormatter.hpp"
+#include "scanType.h"  
+#include "tree.h"  
+#include "parser.tab.h"  
 
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <iostream>
+#include "TokenFormatter.h"
 
-int lineCount = 1;
-int errorCount;
-int wordLength;
-int index;
-TokenFormatter tokenFormatter;
+int line = 1;
+int numErrors;    
+int tokenLength;
+int i;
 
 
-static int setValue(int lineNumber, int tokenClass,  char *svalue)
+
+
+static int setValue(int lineno, int tokenClass,  char *svalue)
 {
     yylval.tokenData = new TokenData;
 
-    yylval.tokenData->tokenLineNumber = lineNumber;
-    yylval.tokenData->tokenContent = strdup(svalue);
+    yylval.tokenData->lineno = lineno;
+    yylval.tokenData->tokenstr = strdup(svalue);
 
     switch(tokenClass)
     {
 
         case ID:
             {
-                yylval.tokenData->tokenString = "ID";
-                yylval.tokenData->identifierIndex = svalue[0] - 'a';
+                yylval.tokenData->tokenStrprint = strdup("ID");
+                yylval.tokenData->idIndex = svalue[0] - 'a';
             }
             break;
 
         case BOOLCONST:
                     {
-                        yylval.tokenData->tokenString = "BOOLCONST";
+                        yylval.tokenData->tokenStrprint = strdup("BOOLCONST");
 
                         if(strcmp(svalue, "false") == 0)
                         {
-                            yylval.tokenData->numValue = 0;
+                            yylval.tokenData->nvalue = 0;
                         }
                         else
                         {
-                            yylval.tokenData->numValue = 1;
+                            yylval.tokenData->nvalue = 1;
                         }
                     }
                     break;
        
         case NUMCONST:
                     {
-                        yylval.tokenData->tokenString = "NUMCONST";
-                        yylval.tokenData->numValue = atoi(svalue);
+                        yylval.tokenData->tokenStrprint = strdup("NUMCONST");
+                        yylval.tokenData->nvalue = atoi(svalue);
                     }
                     break;
 
         case CHARCONST:
                     {
-                        //create new temp string and concatenate the first and last character of the constantValue string
-                        std::string tempString = tokenFormatter.stringSize(constantValue);
-                        
-                        //parse the tempString and assign the char value to m_tokenData.charValue
-                        charValue = tokenFormatter.parseLeftmostCharacter(tempString);
+                        tokenLength = strlen(svalue);
 
-                        if(tempString.length() > 1 && tempString[0] != '\\')
+            
+                        if(tokenLength == 3)
                         {
-                            //throw error flag
-                            std::cout << "WARNING(" << lineCount << "): character is " << tempString.length() - 1 << " characters long and not a single character: \'" << tempString << "\'. The first char will be used." << std::endl;
-                            yylval.tokenData->charValue = svalue[1];
+                            yylval.tokenData->cvalue = svalue[1];
                         }
+
+                        if(tokenLength > 3)
+                        {
+                        
+                            // check for \ escape (92), n is (110), 0 is (48). 
+                            if(svalue[1] == 92 && svalue[2] != 110 && svalue[2] != 48)
+                            {
+                                yylval.tokenData->cvalue = svalue[2];
+                            }
+                        
+                            else if(svalue[1] == 92 && svalue[2] != 110 && svalue[2] == 48)
+                            {
+                                yylval.tokenData->cvalue = '\0';
+                            }
+                            
+                            else if(svalue[1] == 92 && svalue[2] == 110 && svalue[2] != 48)
+                            {
+                                yylval.tokenData->cvalue = '\n';
+                            }
+                                        
+                            else if(svalue[1] != 92)
+                            {
+                                std::cout << "WARNING(" << line << "): character is " << (tokenLength-2) << " characters long and not a single character: \'" << svalue << "\'. The first char will be used." << std::endl;
+                                yylval.tokenData->cvalue = svalue[1];
+                            }
+                        }
+
+                        yylval.tokenData->tokenStrprint = strdup("CHARCONST");
                     }
-                    break; 
+                    break;
             
         case STRINGCONST:
                     {
-                        stringValue = tokenFormatter.parseCharacters(m_tokenFormatter.deleteLeftmostAndRightmostCharacters(constantValue));
+                        // parse and remove escape characters and newline characters
+                        for(i = 0; i <= strlen(svalue); i++)
+                        {
+                            if(svalue[1] == 92 && svalue[2] == 110 && svalue[2] != 48){
 
+                                svalue[2] = '\n';       
+                            }
+
+                        }
+                        
+                        removeChar(svalue, '\\');
+
+                        yylval.tokenData->tokenStrprint = strdup("STRINGCONST");
+                        
+                        yylval.tokenData->stringvalue = strdup(svalue);
+                        
+                        yylval.tokenData->strlength = getStrLength(svalue);
+                    
                     }
-                    break; 
+                    break;
       
         case GEQ:
-            {
-                yylval.tokenData->tokenString = "GEQ";
-            }
-            break;
+                {
+                    yylval.tokenData->tokenStrprint = strdup("GEQ");
+                }
+                break;
 
         case INC:
-            {
-                yylval.tokenData->tokenString = "INC";
-            }
-            break;
+                {
+                    yylval.tokenData->tokenStrprint = strdup("INC");
+                }
+                break;
 
         case DEC:
-            {
-                yylval.tokenData->tokenString = "DEC";
-            }
-            break;
+                {
+                    yylval.tokenData->tokenStrprint = strdup("DEC");
+                }
+                break;
 
         case NEQ:
-            {
-                yylval.tokenData->tokenString = "NEQ";
-            }
-            break;
+                {
+                    yylval.tokenData->tokenStrprint = strdup("NEQ");
+                }
+                break;
         
         case LEQ:
-            {
-                yylval.tokenData->tokenString = "LEQ";
-            }
-            break;
+                {
+                    yylval.tokenData->tokenStrprint = strdup("LEQ");
+                }
+                break;
 
         case ASGN:
-            {
-                yylval.tokenData->tokenString = "ASGN";
-            }
-            break;
+                {
+                    yylval.tokenData->tokenStrprint = strdup("ASGN");
+                }
+                break;
 
         case ADDASGN:
-            {
-                yylval.tokenData->tokenString = "ADDASGN";
-            }
-            break;
+        {
+            yylval.tokenData->tokenStrprint = strdup("ADDASGN");
+        }
+        break;
        
     }
         
@@ -146,72 +188,73 @@ static int setValue(int lineNumber, int tokenClass,  char *svalue)
 %%
 
 
-\#\#.*\n                    { lineCount++; }                 // Ignore comments
-[ \t]                       { }                 // Ignore whitespace
-"\n"                        { lineCount++; }    // Newlines
 
-"int"                       { return setValue(lineCount,INT,yytext); }
-"bool"                      { return setValue(lineCount,BOOL,yytext); }
-"char"                      { return setValue(lineCount,CHAR,yytext); }
-"static"                    { return setValue(lineCount, STATIC, yytext); }
+"int"                               {return setValue(line, INT, yytext);}
+"bool"                              {return setValue(line, BOOL, yytext);}
+"char"                              {return setValue(line, CHAR, yytext);}
+"static"                            {return setValue(line, STATIC, yytext);}
 
-"if"                        { return setValue(lineCount, IF, yytext); }
-"then"                      { return setValue(lineCount, THEN, yytext); }
-"else"                      { return setValue(lineCount, ELSE, yytext); }
-"while"                     { return setValue(lineCount, WHILE, yytext); }
-"for"                       { return setValue(lineCount, FOR, yytext); }
-".."                        { return setValue(lineCount, TO, yytext); }
-"by"                        { return setValue(lineCount, BY, yytext); }
-"step"                        { return setValue(lineCount, BY, yytext); }
-"do"                        { return setValue(lineCount, DO, yytext); }
+"if"                                {return setValue(line, IF, yytext);}
+"or"                                {return setValue(line, OR, yytext);}
+"not"                               {return setValue(line, NOT, yytext);}
+"by"                                {return setValue(line, BY, yytext);}
+"else"                              {return setValue(line, ELSE, yytext);}
+"then"                              {return setValue(line, THEN, yytext);}
+"for"                               {return setValue(line, FOR, yytext);}
+"break"                             {return setValue(line, BREAK, yytext);}
+"return"                            {return setValue(line, RETURN, yytext);}
+"and"                               {return setValue(line, AND, yytext);}
+"begin"                             {return setValue(line, BEGN, yytext);}
+"end"                               {return setValue(line, FINISH, yytext);}
+"do"                                {return setValue(line, DO, yytext);}
+"while"                             {return setValue(line, WHILE, yytext);}
+"to"                                {return setValue(line, TO, yytext);}
+"true"                              {return setValue(line, BOOLCONST, yytext);}
+"false"                             {return setValue(line, BOOLCONST, yytext);}
+"step"                              {return setValue(line, BY, yytext);}
 
-"return"                    { return setValue(lineCount, RETURN, yytext); }
-"break"                     { return setValue(lineCount, BREAK, yytext); }
 
-"and"                       { return setValue(lineCount, AND, yytext); }
-"or"                        { return setValue(lineCount, OR, yytext); }
-"not"                       { return setValue(lineCount, NOT, yytext); }
 
-"begin"                     { return setValue(lineCount, T_BEGIN, yytext); }
-"end"                       { return setValue(lineCount, T_END, yytext); }
-"("                         { return setValue(lineCount, LPAREN, yytext); }
-")"                         { return setValue(lineCount, RPAREN, yytext); }
-"["                         { return setValue(lineCount, LBRACK, yytext); }
-"]"                         { return setValue(lineCount, RBRACK, yytext); }
+"+="                                {return setValue(line, ADDASGN, yytext);}
+"--"                                {return setValue(line, DEC, yytext);}
+"<="                                {return setValue(line, ASGN, yytext);}
+".."                                {return setValue(line, TO, yytext);}
+"++"                                {return setValue(line, INC, yytext);}
+"!<"                                {return setValue(line, GEQ, yytext);}
+"!>"                                {return setValue(line, LEQ, yytext);}
+"!="                                {return setValue(line, NEQ, yytext);}
+"-="                                {return setValue(line, SUBASS, yytext);}
+"/="                                {return setValue(line, DIVASS, yytext);}
+"*="                                {return setValue(line, MULASS, yytext);}
 
-"*"                         { return setValue(lineCount, MUL, yytext); }
-"/"                         { return setValue(lineCount, DIV, yytext); }
-"%"                         { return setValue(lineCount, MOD, yytext); }
-"+"                         { return setValue(lineCount, ADD, yytext); }
-"-"                         { return setValue(lineCount, SUB, yytext); }
-"++"                        { return setValue(lineCount, INC, yytext); }
-"--"                        { return setValue(lineCount, DEC, yytext); }
+"?"                                 {return setValue(line, QUESTION, yytext);}
+"<"                                 {return setValue(line, LESS, yytext);}
+">"                                 {return setValue(line, GREAT, yytext);}
+"+"                                 {return setValue(line, PLUS, yytext);}
+"="                                 {return setValue(line, EQUAL, yytext);}
+"*"                                 {return setValue(line, MULT, yytext);}
+"/"                                 {return setValue(line, DIV, yytext);}
+"%"                                 {return setValue(line, MOD, yytext);}
+","                                 {return setValue(line, COMMA, yytext);}
+"["                                 {return setValue(line, OBRACKET, yytext);}
+"]"                                 {return setValue(line, CBRACKET, yytext);}
+"-"                                 {return setValue(line, MINUS, yytext);}
+":"                                 {return setValue(line, COLON, yytext);}
+";"                                 {return setValue(line, SEMICOLON, yytext);}
+"("                                 {return setValue(line, OPAREN, yytext);}
+")"                                 {return setValue(line, CPAREN, yytext);}
 
-"+="                        { return setValue(lineCount, ADDASGN, yytext); }
-"-="                        { return setValue(lineCount, SUBASGN, yytext); }
-"*="                        { return setValue(lineCount, MULASGN, yytext); }
-"/="                        { return setValue(lineCount, DIVASGN, yytext); }
-"<="                         { return setValue(lineCount, ASGN, yytext); }
+\'(\\.|[^\n\'])*\'                  {return setValue(line, CHARCONST, yytext);}
+\"(\\.|[^\\\n\"])*\"                {return setValue(line, STRINGCONST, yytext);} 
 
-"="                        { return setValue(lineCount, EQ, yytext); }
-"!="                        { return setValue(lineCount, NEQ, yytext); }
-"<"                         { return setValue(lineCount, LT, yytext); }
-"!>"                        { return setValue(lineCount, LEQ, yytext); }
-">"                         { return setValue(lineCount, GT, yytext); }
-"!<"                        { return setValue(lineCount, GEQ, yytext); }
+[a-zA-Z]([a-zA-Z]|[0-9])*           {return setValue(line, ID, yytext);}
+[0-9]+                              {return setValue(line, NUMCONST, yytext);}
 
-";"                         { return setValue(lineCount, SEMICOLON, yytext); }
-":"                         { return setValue(lineCount, COLON, yytext); }
-","                         { return setValue(lineCount, COMMA, yytext); }
-"?"                         { return setValue(lineCount, QUESTION, yytext); }
+[ \t]+
+"##".*
+\n                                  {line++;}
 
-"true"|"false"              { return setValue(lineCount, BOOLCONST, yytext); }
+.                                   {std::cout << "ERROR(" << line << "): Invalid or misplaced input character: '" << yytext[0] << "'. Character Ignored." << std::endl; numErrors++;}
 
-[a-zA-Z][a-zA-Z0-9]*        { return setValue(lineCount, ID, yytext); }             // Variable names (the id)
-[0-9]+                      { return setValue(lineCount, NUMCONST, yytext); }       // Number literals
-\"((\\\")|([^\n\"]))*\"     { return setValue(lineCount, STRINGCONST, yytext); }    // String literals
-\'((\\\')|([^\n\']))*\'     { return setValue(lineCount, CHARCONST, yytext); }      // Char literals
-
-. { std::cout << "ERROR(" << lineCount << "): Invalid or misplaced input character: '" << yytext[0] << "'. Character Ignored." << std::endl; errorCount++; }  // Any error-causing inputs
 
 %%

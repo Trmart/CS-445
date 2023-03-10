@@ -60,19 +60,19 @@ void analyze(Node* node, int& nErrors, int& nWarnings)
     }
     switch(node->m_nodeType)
     {
-        case DECLARATION:
+        case T_DECLARATION:
                     {
                         analyzeDecl(node, nErrors, nWarnings);
                     }
                     break;
 
-        case STATEMENT:
+        case T_STATEMENT:
                     {
                         analyzeStmt(node, nErrors, nWarnings);
                     }
                     break;
 
-        case EXPRESSION:
+        case T_EXPRESSION:
                     {
                         analyzeExp(node, nErrors, nWarnings);
                     } 
@@ -104,12 +104,12 @@ void semanticAnalysis(Node* node, int& errors, int& warnings)
     }
     else if(mainCheck != nullptr)
     {
-        if(mainCheck->m_nodeType == NodeType::DECLARATION && mainCheck->nodeSubType.declaration != DeclarationType::FUNCTION)
+        if(mainCheck->m_nodeType == NodeType::T_DECLARATION && mainCheck->nodeSubType.declaration != DeclarationType::T_FUNCTION)
         {
             EmitDiagnostics::Error::emitLinkerError("A function named 'main' with no parameters must be defined.");
             //printError(16, 0, 0, NULL, NULL, NULL, 0);
         }
-        else if(mainCheck->m_childernNodes[0] != nullptr && mainCheck->m_childernNodes[0]->nodeSubType.declaration == DeclarationType::PARAMETER)
+        else if(mainCheck->m_childernNodes[0] != nullptr && mainCheck->m_childernNodes[0]->nodeSubType.declaration == DeclarationType::T_PARAMETER)
         {
             EmitDiagnostics::Error::emitLinkerError("A function named 'main' with no parameters must be defined.");
             //printError(16, 0, 0, NULL, NULL, NULL, 0);
@@ -132,14 +132,14 @@ void analyzeWarnings(std::string symbol, void* t)
     if(!node->m_isUsed && !node->m_isGlobal)
     {
 
-        if(node->nodeSubType.declaration == DeclarationType::PARAMETER && !node->m_isUsedError && node->nodeAttributes.name == "main")
+        if(node->nodeSubType.declaration == DeclarationType::T_PARAMETER && !node->m_isUsedError && node->nodeAttributes.name == "main")
         {
             node->m_isUsedError = true;
             EmitDiagnostics::Warning::emitGenericWarnings(node->m_lineNumber,"The parameter '" + node->nodeAttributes.name + "' seems not to be used.");
             //printError(21, node->m_lineNumber, 0, node->nodeAttributes.name, NULL, NULL, 0);
         }
 
-        else if(node->nodeSubType.declaration == DeclarationType::FUNCTION && !node->m_isUsedError && node->nodeAttributes.name == "main")
+        else if(node->nodeSubType.declaration == DeclarationType::T_FUNCTION && !node->m_isUsedError && node->nodeAttributes.name == "main")
         {
             node->m_isUsedError = true;
             EmitDiagnostics::Warning::emitGenericWarnings(node->m_lineNumber,"The function '" + node->nodeAttributes.name + "' seems not to be used.");
@@ -154,7 +154,7 @@ void analyzeWarnings(std::string symbol, void* t)
         }
     }
 
-    else if(!node->m_isUsed && node->m_isGlobal && node->nodeSubType.declaration == DeclarationType::FUNCTION)
+    else if(!node->m_isUsed && node->m_isGlobal && node->nodeSubType.declaration == DeclarationType::T_FUNCTION)
     {
         
         if(node->nodeAttributes.name == "main" && !node->m_isUsedError)
@@ -181,7 +181,7 @@ void printArrayErrors(Node* node)
    Node* rightNode = node->m_childernNodes[1];
 
 
-   if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+   if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_IDENTIFIER)
     {
         leftNode = (Node* )symbolTable.lookup(node->m_childernNodes[0]->nodeAttributes.name);
         
@@ -205,10 +205,10 @@ void printArrayErrors(Node* node)
     }
     if(node->m_childernNodes[1] != nullptr)
     {
-        if(node->m_childernNodes[1]->m_parmType != ParmType::INTEGER && node->m_childernNodes[1]->m_parmType != ParmType::UNDEFINED)
+        if(node->m_childernNodes[1]->m_parmType != ParmType::T_INTEGER && node->m_childernNodes[1]->m_parmType != ParmType::T_UNDEFINED)
         {
 
-            if(node->m_childernNodes[1]->nodeSubType.declaration == DeclarationType::PARAMETER && node->m_childernNodes[1]->nodeSubType.expression != ExpressionType::CALL && node->m_childernNodes[1]->m_parmType == ParmType::VOID)
+            if(node->m_childernNodes[1]->nodeSubType.declaration == DeclarationType::T_PARAMETER && node->m_childernNodes[1]->nodeSubType.expression != ExpressionType::T_CALL && node->m_childernNodes[1]->m_parmType == ParmType::T_VOID)
             {
                 //do nothing
             }
@@ -220,7 +220,7 @@ void printArrayErrors(Node* node)
             
         }
     }
-   if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+   if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::T_IDENTIFIER)
    {
         if(rightNode != nullptr && rightNode->m_isArray == true)
         {
@@ -250,7 +250,7 @@ void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
 
     Node* declared;
     
-    if(node->nodeSubType.declaration != DeclarationType::VARIABLE && !symbolTable.insert(node->nodeAttributes.name, node))
+    if(node->nodeSubType.declaration != DeclarationType::T_VARIABLE && !symbolTable.insert(node->nodeAttributes.name, node))
     {
         declared = (Node* )symbolTable.lookup(node->nodeAttributes.name);
         EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Symbol '" + node->nodeAttributes.name +  "' is already declared at line " + std::to_string(declared->m_lineNumber) + ".");
@@ -260,7 +260,7 @@ void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
     switch(node->nodeSubType.declaration)
     {
         
-        case DeclarationType::VARIABLE:
+        case DeclarationType::T_VARIABLE:
         {
             if(node->m_childernNodes[0] != nullptr)
             {
@@ -292,13 +292,13 @@ void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
 
            if(node->m_childernNodes[0] != nullptr)
            {
-               if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER || node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::CALL)
+               if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_IDENTIFIER || node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_CALL)
                {
                 //    printError(32, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                     EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Initializer for variable '" + node->nodeAttributes.name + "' is not a constant expression.");
                }
 
-               else if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::OP)
+               else if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_OP)
                {
 
                    if(node->m_childernNodes[0] != nullptr && node->m_childernNodes[0]->m_childernNodes[1] == nullptr)
@@ -320,12 +320,12 @@ void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
                if(node->m_parmType != node->m_childernNodes[0]->m_parmType)
                {
 
-                    if(node->m_parmType == ParmType::CHAR && node->m_childernNodes[0]->m_parmType == ParmType::CHARINT)
+                    if(node->m_parmType == ParmType::T_CHAR && node->m_childernNodes[0]->m_parmType == ParmType::T_CHARINT)
                     {
                         ; // do nothing
                     }
 
-                    else if(node->m_parmType == ParmType::INTEGER && node->m_childernNodes[0]->m_parmType == ParmType::CHARINT)
+                    else if(node->m_parmType == ParmType::T_INTEGER && node->m_childernNodes[0]->m_parmType == ParmType::T_CHARINT)
                     {
                         char charInsert[] = "char";
                         // Initializer for variable '%s' of type %s is of type %s
@@ -333,7 +333,7 @@ void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
                         //printError(33, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->expType), charInsert, 0);
                     }
 
-                    else if(node->m_childernNodes[0]->m_parmType == ParmType::VOID && node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                    else if(node->m_childernNodes[0]->m_parmType == ParmType::T_VOID && node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_IDENTIFIER)
                     {
                        //do nothing 
                     }
@@ -370,7 +370,7 @@ void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
         }
         break;
 
-        case DeclarationType::FUNCTION:
+        case DeclarationType::T_FUNCTION:
                                     {
                                         curFunc = node;
                                         Flag = false;
@@ -388,7 +388,7 @@ void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
                                             analyze(node->m_childernNodes[i], nErrors, nWarnings);
                                         }
 
-                                        if(Flag == false && node->m_parmType != ParmType::VOID)
+                                        if(Flag == false && node->m_parmType != ParmType::T_VOID)
                                         {
                                             EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Expecting to return type " + ConvertParmToString(node->m_parmType) + " but function '" + node->nodeAttributes.name + "' has no return statement.");
                                             //printError(19, node->m_lineNumber, 0, ExpTypetwo(functionReturnType), node->nodeAttributes.name, NULL, 0);
@@ -400,7 +400,7 @@ void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
                                     }
                                     break;
 
-        case DeclarationType::PARAMETER:
+        case DeclarationType::T_PARAMETER:
                                     {
                                         for(int i = 0; i < MAXCHILDREN; i++)
                                         {
@@ -442,7 +442,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
 
     switch(node->nodeSubType.statement)
     {
-        case StatementType::IF:
+        case StatementType::T_IF:
         {
             loop = true;
             symbolTable.enter(node->nodeAttributes.name);
@@ -458,7 +458,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
             }
 
 
-            if(node->m_childernNodes[0]->m_parmType != ParmType::BOOL && node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::OP && !node->m_childernNodes[0]->m_isDeclError)
+            if(node->m_childernNodes[0]->m_parmType != ParmType::T_BOOL && node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::T_OP && !node->m_childernNodes[0]->m_isDeclError)
             {
                 // char ifStmt[] = "if";
                 //Expecting Boolean test condition in %s statement but got type %s.
@@ -487,7 +487,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
         }
         break;
 
-        case StatementType::FOR:
+        case StatementType::T_FOR:
         {
             loop = true;
             inFor = true;
@@ -519,7 +519,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
         }
         break;
 
-        case StatementType::WHILE:
+        case StatementType::T_WHILE:
         {
 
             loop = true;
@@ -535,7 +535,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
 
                     if(i < 1)
                     {
-                        if(node->m_childernNodes[0]->m_parmType != ParmType::BOOL && node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::OP && !node->m_childernNodes[0]->m_isDeclError)
+                        if(node->m_childernNodes[0]->m_parmType != ParmType::T_BOOL && node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::T_OP && !node->m_childernNodes[0]->m_isDeclError)
                         {
                             // char whileStmt[] = "while";
                             //Expecting Boolean test condition in %s statement but got type %s.
@@ -569,7 +569,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
         }
         break;
 
-        case StatementType::RETURN:
+        case StatementType::T_RETURN:
         {
             Flag = true;
             returnm_lineNumber = node->m_lineNumber;
@@ -606,17 +606,17 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
                     }
                 }
             
-                if(functionReturnType == ParmType::VOID)
+                if(functionReturnType == ParmType::T_VOID)
                 {
                     //Function '%s' at line %d is expecting no return value, but return has a value.
                     EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Function '" + curFunc->nodeAttributes.name + "' at line " + std::to_string(functionLine) + " is expecting no return value, but return has a value.");
                     // printError(29, returnm_lineNumber, functionLine, functionName, NULL, NULL, 0);
                 }
 
-                else if(functionReturnType != actualReturnType && actualReturnType != ParmType::VOID && functionReturnType != ParmType::VOID)
+                else if(functionReturnType != actualReturnType && actualReturnType != ParmType::T_VOID && functionReturnType != ParmType::T_VOID)
                 {
 
-                    if(!(functionReturnType == ParmType::CHAR && actualReturnType == ParmType::CHARINT))
+                    if(!(functionReturnType == ParmType::T_CHAR && actualReturnType == ParmType::T_CHARINT))
                     {
                         //Function '%s' at line %d is expecting to return type %s but returns type %s.
                         EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Function '" + curFunc->nodeAttributes.name + "' at line " + std::to_string(functionLine) + " is expecting to return type " + ConvertParmToString(functionReturnType) + " but returns type " + ConvertParmToString(actualReturnType) + ".");
@@ -624,10 +624,10 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
                     }
                 }
 
-                else if(functionReturnType != actualReturnType && functionReturnType != ParmType::VOID && node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::CALL)
+                else if(functionReturnType != actualReturnType && functionReturnType != ParmType::T_VOID && node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_CALL)
                 {
                     
-                    if(!(functionReturnType == ParmType::CHAR && actualReturnType == ParmType::CHARINT))
+                    if(!(functionReturnType == ParmType::T_CHAR && actualReturnType == ParmType::T_CHARINT))
                     {
                         //Function '%s' at line %d is expecting to return type %s but returns type %s.
                         EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Function '" + curFunc->nodeAttributes.name + "' at line " + std::to_string(functionLine) + " is expecting to return type " + ConvertParmToString(functionReturnType) + " but returns type " + ConvertParmToString(actualReturnType) + ".");
@@ -639,7 +639,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
             else if(node->m_childernNodes[0] == nullptr)
             {
 
-                if(functionReturnType != ParmType::VOID)
+                if(functionReturnType != ParmType::T_VOID)
                 {
                     //Function '%s' at line %d is expecting to return type %s but return has no value.
                     EmitDiagnostics::Error::emitGenericError(node->m_lineNumber , " Function '" + curFunc->nodeAttributes.name + "' at line " + std::to_string(functionLine) + " is expecting to return type " + ConvertParmToString(functionReturnType) + " but return has no value.");
@@ -650,7 +650,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
         }
         break;
 
-        case StatementType::BREAK:
+        case StatementType::T_BREAK:
         {
             if(!loop)
             {
@@ -663,7 +663,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
         break;
 
 
-        case StatementType::RANGE:
+        case StatementType::T_RANGE:
         {
             rangePos;
             range = true;
@@ -681,7 +681,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
 
                         else if(rangePos == 1)
                         {
-                            if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                            if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_IDENTIFIER)
                             {
                                 Node* valFound = (Node *)symbolTable.lookup(node->m_childernNodes[0]->nodeAttributes.name);
                                 if(valFound == nullptr)
@@ -708,7 +708,7 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
         }
         break;
 
-        case StatementType::COMPOUND:
+        case StatementType::T_COMPOUND:
         {
             bool keepCurScope = scopeDepth;
 
@@ -793,7 +793,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
     leftStr = rightStr = isBinary = leftArr = rightArr = leftIndx = rightIndx = leftInit = leftDecl = rightInit = rightDecl = throwError = false;
 
     ParmType leftSide, rightSide, returnType, leftExpected, rightExpected, childReturnType;
-    leftSide = rightSide = returnType = leftExpected = rightExpected = childReturnType = ParmType::UNDEFINED;
+    leftSide = rightSide = returnType = leftExpected = rightExpected = childReturnType = ParmType::T_UNDEFINED;
 
     bool rightErr, leftErr, unaryErrors;
     rightErr = leftErr = unaryErrors = false;
@@ -804,8 +804,8 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
     switch(node->nodeSubType.expression) 
     {
-        case ExpressionType::ASSIGN:
-        case ExpressionType::OP:
+        case ExpressionType::T_ASSIGN:
+        case ExpressionType::T_OP:
                     {
                         if(node->nodeAttributes.name != "<=")
                         {
@@ -824,7 +824,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                         if(node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0] != nullptr && node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[1] != nullptr)
                                         {
 
-                                            if(node->m_childernNodes[0]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::OP)
+                                            if(node->m_childernNodes[0]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::T_OP)
                                             {
                                                 node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[0]->m_isInitialized = true;
                                                 node->m_childernNodes[0]->m_childernNodes[1]->m_childernNodes[1]->m_isInitialized = true;
@@ -839,7 +839,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                 }
 
-                                else if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_parmType == ParmType::VOID)
+                                else if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_parmType == ParmType::T_VOID)
                                 {
 
                                     if(node->m_childernNodes[1]->nodeAttributes.name != "<=")
@@ -847,7 +847,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                         node->m_childernNodes[0]->m_isInitialized = true;
                                     }
 
-                                    if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL)
+                                    if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::T_CALL)
                                     {
                                         node->m_childernNodes[0]->m_isInitialized = true;
                                     }
@@ -868,10 +868,10 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                     else if(node->m_childernNodes[0] != nullptr && node->m_childernNodes[1] != nullptr)
                                     {
                 
-                                        if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER && !node->m_childernNodes[0]->m_isInitialized)
+                                        if(node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_IDENTIFIER && !node->m_childernNodes[0]->m_isInitialized)
                                         {
                     
-                                            if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                                            if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::T_IDENTIFIER)
                                             {
 
                                                 // char* lhs = strdup(node->m_childernNodes[0]->nodeAttributes.name);
@@ -884,7 +884,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                                 }
                                             }
 
-                                            else if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::ASSIGN)
+                                            else if(node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::T_ASSIGN)
                                             {
                                                 analyzeNestedAssign(node->m_childernNodes[1]);
                                                 node->m_childernNodes[0]->m_isInitialized = true;
@@ -904,7 +904,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                     if(node->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_childernNodes[0] != nullptr)
                                     {
                 
-                                        if(node->m_childernNodes[1]->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+                                        if(node->m_childernNodes[1]->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_IDENTIFIER)
                                         {
 
                                             // char *c0 = strdup(t->child[0]->nodeAttributes.name);
@@ -972,13 +972,13 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                 leftArr = false; 
                                 leftIndx = true; 
                             }
-                        if(leftNode->m_nodeType == NodeType::EXPRESSION)
+                        if(leftNode->m_nodeType == NodeType::T_EXPRESSION)
                             {
-                                if(leftNode->nodeSubType.expression == ExpressionType::CALL)
+                                if(leftNode->nodeSubType.expression == ExpressionType::T_CALL)
                                 {
                                     leftArr = false;
                                 }
-                                if(leftNode->nodeSubType.expression == ExpressionType::CONSTANT)
+                                if(leftNode->nodeSubType.expression == ExpressionType::T_CONSTANT)
                                 {
                                     leftStr = true;
                                 }
@@ -997,13 +997,13 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                 rightArr = false; 
                                 rightIndx = true; 
                             }
-                            if(rightNode->m_nodeType == NodeType::EXPRESSION)
+                            if(rightNode->m_nodeType == NodeType::T_EXPRESSION)
                             {
-                                if(rightNode->nodeSubType.expression == ExpressionType::CALL)
+                                if(rightNode->nodeSubType.expression == ExpressionType::T_CALL)
                                 {
                                     rightArr = false;
                                 }
-                                if(rightNode->nodeSubType.expression == ExpressionType::CONSTANT)
+                                if(rightNode->nodeSubType.expression == ExpressionType::T_CONSTANT)
                                 {
                                     rightStr = true;
                                 }
@@ -1013,11 +1013,11 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                         getExpTypes(node->nodeAttributes.name, isBinary, unaryErrors, leftExpected, rightExpected, returnType);
 
-                        if(leftSide == ParmType::VOID && !(leftNode->m_nodeType == NodeType::EXPRESSION && leftNode->nodeSubType.expression == ExpressionType::CALL))
+                        if(leftSide == ParmType::T_VOID && !(leftNode->m_nodeType == NodeType::T_EXPRESSION && leftNode->nodeSubType.expression == ExpressionType::T_CALL))
                         {
                             leftErr = true;
                         }
-                        if(rightSide == ParmType::VOID && !(rightNode->m_nodeType == NodeType::EXPRESSION && rightNode->nodeSubType.expression == ExpressionType::CALL))
+                        if(rightSide == ParmType::T_VOID && !(rightNode->m_nodeType == NodeType::T_EXPRESSION && rightNode->nodeSubType.expression == ExpressionType::T_CALL))
                         {
                             rightErr = true;
                         }
@@ -1025,7 +1025,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                         if(!isBinary && !leftErr)
                         {
             
-                            if(leftSide != leftExpected && leftExpected != ParmType::UNDEFINED)
+                            if(leftSide != leftExpected && leftExpected != ParmType::T_UNDEFINED)
                             {
 
                                 if(node->nodeAttributes.name != "-")
@@ -1051,7 +1051,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                 // printError(9, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                             }
 
-                            else if(node->nodeAttributes.name != "*" && (!leftArr && leftSide != ParmType::UNDEFINED))
+                            else if(node->nodeAttributes.name != "*" && (!leftArr && leftSide != ParmType::T_UNDEFINED))
                             {
                                 // char uSizeof[] = "sizeof";
                                 //The operation '%s' only works with arrays.\n"
@@ -1105,7 +1105,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                             //do nothing
                                         }
             
-                                        else if(node->nodeAttributes.name != "<=" && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::OP)
+                                        else if(node->nodeAttributes.name != "<=" && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::T_OP)
                                         {
             
                                             getReturnType(node->m_childernNodes[1]->nodeAttributes.name, isBinary, childReturnType);
@@ -1117,7 +1117,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                                 // printError(2, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
                                             }
 
-                                            else if(node->m_childernNodes[1]->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL)
+                                            else if(node->m_childernNodes[1]->m_childernNodes[1] != nullptr && node->m_childernNodes[1]->m_childernNodes[1]->nodeSubType.expression == ExpressionType::T_CALL)
                                             {
                                                 //'%s' requires operands of the same type but lhs is type %s and rhs is type %s.
                                                 EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of the same type but lhs is type " + ConvertParmToString(leftSide) + " and rhs is type " + ConvertParmToString(rightSide) + ".");
@@ -1127,7 +1127,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                         else
                                         {
 
-                                            if(node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::CALL)
+                                            if(node->m_childernNodes[0]->nodeSubType.expression != ExpressionType::T_CALL)
                                             {
                                                 //'%s' requires operands of the same type but lhs is type %s and rhs is type %s.
                                                 EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of the same type but lhs is type " + ConvertParmToString(leftSide) + " and rhs is type " + ConvertParmToString(rightSide) + ".");
@@ -1142,15 +1142,15 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                 }
 
 
-                                if(!(leftExpected == ParmType::UNDEFINED || rightExpected == ParmType::UNDEFINED))
+                                if(!(leftExpected == ParmType::T_UNDEFINED || rightExpected == ParmType::T_UNDEFINED))
                                 {
                                     
-                                    if(leftExpected == ParmType::CHARINT || rightExpected == ParmType::CHARINT)
+                                    if(leftExpected == ParmType::T_CHARINT || rightExpected == ParmType::T_CHARINT)
                                     {
                                         // do nothing
                                     }
 
-                                    else if(leftSide == rightSide && leftNode->nodeSubType.expression == ExpressionType::CALL && rightNode->nodeSubType.expression == ExpressionType::CALL)
+                                    else if(leftSide == rightSide && leftNode->nodeSubType.expression == ExpressionType::T_CALL && rightNode->nodeSubType.expression == ExpressionType::T_CALL)
                                     {
 
                                         Node* lhs = (Node*)symbolTable.lookup(node->m_childernNodes[0]->nodeAttributes.name);
@@ -1159,11 +1159,15 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                         if(lhs != nullptr && rhs != nullptr)
                                         {
 
-                                            if(lhs->nodeSubType.declaration == DeclarationType::FUNCTION && rhs->nodeSubType.declaration == DeclarationType::FUNCTION && !lhs->m_isIO && !rhs->m_isIO)
+                                            if(lhs->nodeSubType.declaration == DeclarationType::T_FUNCTION && rhs->nodeSubType.declaration == DeclarationType::T_FUNCTION && !lhs->m_isIO && !rhs->m_isIO)
                                             {
-                                                if(node->m_childernNodes[0]->m_parmType == ParmType::VOID && node->m_childernNodes[1]->m_parmType == ParmType::VOID)
+                                                if(node->m_childernNodes[0]->m_parmType == ParmType::T_VOID && node->m_childernNodes[1]->m_parmType == ParmType::T_VOID)
                                                 {
+                                                    //'%s' requires operands of type %s but lhs is of type %s.
+                                                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of type " + ConvertParmToString(leftExpected) + " but lhs is of type " + ConvertParmToString(leftSide) + ".");
                                                     //  printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                                                    //'%s' requires operands of type %s but rhs is of type %s.
+                                                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of type " + ConvertParmToString(rightExpected) + " but rhs is of type " + ConvertParmToString(rightSide) + ".");
                                                     //  printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                                 }
                                                 
@@ -1176,18 +1180,24 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                         if(leftSide != leftExpected && !leftErr)
                                         {
+                                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of type " + ConvertParmToString(leftExpected) + " but lhs is of type " + ConvertParmToString(leftSide) + ".");
+                                            //  printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                                             // printError(3, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
                                         }
 
-                                        if(rightSide != rightExpected && !rightErr && rightSide != ParmType::UNDEFINED)
+                                        if(rightSide != rightExpected && !rightErr && rightSide != ParmType::T_UNDEFINED)
                                         {
 
-                                            if(rightSide == ParmType::UNDEFINED && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::CALL && returnType != ParmType::BOOL)
+                                            if(rightSide == ParmType::T_UNDEFINED && node->m_childernNodes[1]->nodeSubType.expression == ExpressionType::T_CALL && returnType != ParmType::T_BOOL)
                                             {
+                                                //'%s' requires operands of type %s but rhs is of type %s.
+                                                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of type " + ConvertParmToString(rightExpected) + " but rhs is of type " + ConvertParmToString(rightSide) + ".");
                                                 // printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                             }
-                                            else if(rightSide != ParmType::UNDEFINED)
+                                            else if(rightSide != ParmType::T_UNDEFINED)
                                             {
+                                                //'%s' requires operands of type %s but rhs is of type %s.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires operands of type " + ConvertParmToString(rightExpected) + " but rhs is of type " + ConvertParmToString(rightSide) + ".");
                                                 // printError(4, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
                                             }
                                         }
@@ -1197,24 +1207,30 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                 if(leftArr || rightArr)
                                 {
 
-                                    if(node->nodeAttributes.name == "<=" && leftExpected != ParmType::UNDEFINED)
+                                    if(node->nodeAttributes.name == "<=" && leftExpected != ParmType::T_UNDEFINED)
                                     {
                                         if((node->nodeAttributes.name != "<") || (node->nodeAttributes.name != ">") || (node->nodeAttributes.name != "=") || (node->nodeAttributes.name != "!>") || (node->nodeAttributes.name != "!<") || (node->nodeAttributes.name != "><"))
                                         {
                                     
                                             if(leftArr && !rightArr)
                                             {
+                                                //'%s' requires both operands be arrays or not but lhs is an array and rhs is not an array.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires both operands be arrays or not but lhs is an array and rhs is not an array.");
                                                 // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                             }
 
                                             else if(!leftArr && rightArr)
                                             {
+                                                //'%s' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires both operands be arrays or not but lhs is not an array and rhs is an array.");
                                                 // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                             }
                                         }
 
                                         else
                                         {
+                                            //The operation '%s' does not work with arrays.
+                                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "The operation '" + node->nodeAttributes.name + "' does not work with arrays.");
                                             // printError(7, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                         }
                                     }
@@ -1230,11 +1246,15 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                             if(leftArr && !rightArr)
                                             {
-                                            // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
+                                                //'%s' requires both operands be arrays or not but lhs is an array and rhs is not an array.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires both operands be arrays or not but lhs is an array and rhs is not an array.");
+                                                // printError(5, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                             }
 
                                             else if(!leftArr && rightArr)
                                             {
+                                                //'%s' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' requires both operands be arrays or not but lhs is not an array and rhs is an array.");
                                                 // printError(6, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                             }
                                         }
@@ -1242,7 +1262,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                 }
                             }
 
-                        if(returnType != ParmType::UNDEFINED)
+                        if(returnType != ParmType::T_UNDEFINED)
                         {
                             node->m_parmType = returnType;
                         }
@@ -1252,7 +1272,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                         }
                     }
                     break; 
-        case ExpressionType::CONSTANT:
+        case ExpressionType::T_CONSTANT:
                                 {
                                     for(int i = 0; i < MAXCHILDREN; i++)
                                     {
@@ -1263,9 +1283,11 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                     {
                                         if(inFor)
                                         {
-                                            if(node->m_parmType != ParmType::INTEGER)
+                                            if(node->m_parmType != ParmType::T_INTEGER)
                                             {
-                                                char intExpect[] = "int";
+                                                // char intExpect[] = "int";
+                                                //Expecting type %s in position %d in range of for statement but got type %s.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting type int in position " + std::to_string(rangePos) + " in range of for statement but got type " + ConvertParmToString(node->m_parmType) + ".");
                                                 // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
                                             }
                                         }
@@ -1274,11 +1296,12 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                 }
                                 break;
 
-        case ExpressionType::IDENTIFIER:
+        case ExpressionType::T_IDENTIFIER:
                                     {
                                         valFound = (Node*)symbolTable.lookup(node->nodeAttributes.name);
 
-                                        if(valFound == NULL){
+                                        if(valFound == nullptr )
+                                        {
 
                                             if(range && rangePos == 1)
                                             {
@@ -1287,6 +1310,8 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                             else
                                             {
+                                                //Symbol '%s' is not declared.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Symbol '" + node->nodeAttributes.name + "' is not declared.");
                                                 // printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0); 
                                                 node->m_isDeclError = true;    
                                             }           
@@ -1301,18 +1326,22 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                                 node->m_parmType = valFound->m_parmType;
                                                 node->m_isArray = valFound->m_isArray;
 
-                                                if(node->m_parmType != ParmType::INTEGER && rangePos >= 1)
+                                                if(node->m_parmType != ParmType::T_INTEGER && rangePos >= 1)
                                                 {
                                                     if(!sizeOfArrayFlg)
                                                     {
 
                                                         if(node->nodeAttributes.name != "main")
                                                         {
+                                                            //Cannot use function '%s' as a variable.
+                                                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Cannot use function '" + node->nodeAttributes.name + "' as a variable.");
                                                             // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
                                                         }
                                                         else
                                                         {
                                                             // char intExpect[] = "int";
+                                                            //Expecting type %s in position %d in range of for statement but got type %s.
+                                                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting type int in position " + std::to_string(rangePos) + " in range of for statement but got type " + ConvertParmToString(node->m_parmType) + ".");
                                                             // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
                                                         }
                                                     }
@@ -1331,6 +1360,8 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                                             {
                                                                 valFound->m_isWarningReported = true;
                                                                 valFound->m_isUsed = true;
+                                                                //Variable '%s' may be uninitialized when used here.
+                                                                EmitDiagnostics::Warning::emitGenericWarnings(node->m_lineNumber, "Variable '" + node->nodeAttributes.name + "' may be uninitialized when used here.");
                                                                 // printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                                             }
                                                             
@@ -1350,6 +1381,8 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                                 if(valFound->m_isArray && !sizeOfArrayFlg && !node->m_isIndexed)
                                                 {
+                                                    //Cannot use array in position %d in range of for statement.
+                                                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Cannot use array in position " + std::to_string(rangePos) + " in range of for statement.");
                                                     // printError(24, t->m_lineNumber, 0, NULL, NULL, NULL, rangePos);
                                                 }
 
@@ -1371,6 +1404,8 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                                     if(!node->m_isInitialized)
                                                     {
                                                         valFound->m_isWarningReported = true;
+                                                        //Variable '%s' may be uninitialized when used here.
+                                                        EmitDiagnostics::Warning::emitGenericWarnings(node->m_lineNumber, "Variable '" + node->nodeAttributes.name + "' may be uninitialized when used here.");
                                                         // printError(18, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                                     }
                                                     else
@@ -1380,8 +1415,10 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                                 }
                                             }
 
-                                            if(valFound->nodeSubType.declaration == DeclarationType::FUNCTION)
+                                            if(valFound->nodeSubType.declaration == DeclarationType::T_FUNCTION)
                                             {
+                                                //Cannot use function '%s' as a variable.
+                                                EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Cannot use function '" + node->nodeAttributes.name + "' as a variable.");
                                                 // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                                 valFound->m_isUsed = true;
                                                 break;
@@ -1393,7 +1430,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                                 node->m_isGlobal = valFound->m_isGlobal;
                                                 node->m_isStatic = valFound->m_isStatic;
 
-                                                if(!range && valFound->nodeSubType.declaration != DeclarationType::FUNCTION)
+                                                if(!range && valFound->nodeSubType.declaration != DeclarationType::T_FUNCTION)
                                                 {
                                                     valFound->m_isUsed = true;
                                                 }
@@ -1403,7 +1440,7 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                             {
                                                 analyze(node->m_childernNodes[0], nErrors, nWarnings);
 
-                                                if(node->m_childernNodes[0]->m_parmType == ParmType::VOID && !(node->m_childernNodes[0]->m_nodeType == NodeType::EXPRESSION && node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::CALL))
+                                                if(node->m_childernNodes[0]->m_parmType == ParmType::T_VOID && !(node->m_childernNodes[0]->m_nodeType == NodeType::T_EXPRESSION && node->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_CALL))
                                                 {
                                                     //do nothing and break out of logic block
                                                     break;
@@ -1416,13 +1453,17 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                                 else
                                                 {
 
-                                                    if(node->m_childernNodes[0]->m_parmType != ParmType::INTEGER)
+                                                    if(node->m_childernNodes[0]->m_parmType != ParmType::T_INTEGER)
                                                     {
+                                                        //Array '%s' should be indexed by type int but got type %s.
+                                                        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Array '" + node->nodeAttributes.name + "' should be indexed by type " + ConvertParmToString(node->m_childernNodes[0]->m_parmType) + " but got type NULL.");
                                                         // printError(14, t->m_lineNumber, 0, t->nodeAttributes.name, ExpTypetwo(t->child[0]->expType), NULL, 0);
                                                     }
                             
                                                     if(node->m_childernNodes[0]->m_isArray && node->m_childernNodes[0]->m_childernNodes[0] == nullptr)
                                                     {
+                                                        //Array index is the unindexed array '%s'.
+                                                        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Array index is the unindexed array '" + node->nodeAttributes.name + "'.");
                                                         // printError(13, t->m_lineNumber, 0, t->child[0]->nodeAttributes.name, NULL, NULL, 0);
                                                     }
                                                 }
@@ -1431,17 +1472,19 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                     }
                                     break;
 
-        case ExpressionType::CALL:
+        case ExpressionType::T_CALL:
                             {
                                 int paramCount = 1;
                                 Node* funcFound;
 
-                                if(node->nodeSubType.expression == ExpressionType::CALL)
+                                if(node->nodeSubType.expression == ExpressionType::T_CALL)
                                 {
                                     funcFound = (Node* )symbolTable.lookup(node->nodeAttributes.name);
                                     
                                     if(funcFound == nullptr)
                                     {
+                                        //Symbol '%s' is not declared.
+                                        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Symbol '" + node->nodeAttributes.name + "' is not declared.");
                                         // printError(1, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);  
                                         node->m_isDeclError = true; 
                                     }
@@ -1465,8 +1508,10 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
                                     funcFound->m_isUsed = true;
 
 
-                                    if(funcFound->nodeSubType.declaration != DeclarationType::FUNCTION)
+                                    if(funcFound->nodeSubType.declaration != DeclarationType::T_FUNCTION)
                                     {
+                                        //'%s' is a simple variable and cannot be called.
+                                        EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "'" + node->nodeAttributes.name + "' is a simple variable and cannot be called.");
                                         // printError(11, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);
                                     }
                                     
@@ -1476,16 +1521,20 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                         if(inFor){
 
-                                            if(node->m_parmType != ParmType::INTEGER)
+                                            if(node->m_parmType != ParmType::T_INTEGER)
                                             {
 
                                                 if(node->nodeAttributes.name != "main")
                                                 {
+                                                    //Cannot use function '%s' as a variable.
+                                                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Cannot use function '" + node->nodeAttributes.name + "' as a variable.");
                                                     // printError(12, t->m_lineNumber, 0, t->nodeAttributes.name, NULL, NULL, 0);                               
                                                 }
                                                 else
                                                 {
                                                     // char intExpect[] = "int";
+                                                    //Expecting type %s in position %d in range of for statement but got type %s.
+                                                    EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Expecting type int in position " + std::to_string(paramCount) + " in range of for statement but got type " + ConvertParmToString(node->m_parmType) + ".");
                                                     // printError(26, t->m_lineNumber, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
                                                 }
                                             }
@@ -1502,11 +1551,15 @@ void analyzeExp(Node* node, int& nErrors, int& nWarnings)
 
                                         else if(funcFound->m_childernNodes[0] == nullptr && node->m_childernNodes[0] != nullptr)
                                         {
+                                            //Too few parameters passed for function '%s' declared on line %d.
+                                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too few parameters passed for function '" + node->nodeAttributes.name + "' declared on line " + std::to_string(funcFound->m_lineNumber) + ".");
                                             // printError(38, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
                                         }
 
                                         else if(funcFound->m_childernNodes[0] != nullptr && node->m_childernNodes[0] == nullptr)
                                         {
+                                            //Too many parameters passed for function '%s' declared on line %d.
+                                            EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Too many parameters passed for function '" + node->nodeAttributes.name + "' declared on line " + std::to_string(funcFound->m_lineNumber) + ".");
                                             // printError(37, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
                                         }
                                     }
@@ -1570,18 +1623,18 @@ void getExpTypes(std::string op, bool isBinary, bool &unaryErrors, ParmType &lef
 
                 if(i == 0)
                 {
-                    left = right = rightT = ParmType::BOOL;
+                    left = right = rightT = ParmType::T_BOOL;
                 }
 
                 if(i == 1)
                 {
-                    left = right = ParmType::UNDEFINED;
-                    rightT = ParmType::INTEGER;
+                    left = right = ParmType::T_UNDEFINED;
+                    rightT = ParmType::T_INTEGER;
                 }
 
                 if(i >= 2)
                 {
-                    left = right = rightT = ParmType::INTEGER;
+                    left = right = rightT = ParmType::T_INTEGER;
                 }
             }
         }
@@ -1597,31 +1650,31 @@ void getExpTypes(std::string op, bool isBinary, bool &unaryErrors, ParmType &lef
 
                 if(i >= 0 && i <= 8)
                 {
-                    left = right = rightT = ParmType::INTEGER;
+                    left = right = rightT = ParmType::T_INTEGER;
                     unaryErrors = true;
                 }
   
                 if(i >= 9 && i <= 12)
                 {
-                    left = right = ParmType::CHARINT;; 
-                    rightT = ParmType::BOOL;
+                    left = right = ParmType::T_CHARINT;; 
+                    rightT = ParmType::T_BOOL;
                 }
 
                 if(i >= 13 && i <=14)
                 {
-                    left = right = ParmType::UNDEFINED;
-                    rightT = ParmType::BOOL;
+                    left = right = ParmType::T_UNDEFINED;
+                    rightT = ParmType::T_BOOL;
                 }
 
                 if(i == 15)
                 {
-                    left = right = ParmType::UNDEFINED;
-                    rightT = ParmType::BOOL;
+                    left = right = ParmType::T_UNDEFINED;
+                    rightT = ParmType::T_BOOL;
                 }
 
                 if(i >= 16)
                 {
-                    left = right = rightT = ParmType::BOOL;
+                    left = right = rightT = ParmType::T_BOOL;
                     unaryErrors = true;
                 }
 
@@ -1637,42 +1690,42 @@ std::string ConvertParmToString(ParmType type)
     switch(type)
     {
        
-        case ParmType::VOID:
+        case ParmType::T_VOID:
         {
             return "void";
         }
         break;
 
-        case ParmType::INTEGER:
+        case ParmType::T_INTEGER:
         {
             return "int";
         }
         break;
 
-        case ParmType::BOOL:
+        case ParmType::T_BOOL:
         {
             return "bool";
         }
         break;
 
-        case ParmType::CHAR:
+        case ParmType::T_CHAR:
         {
             return "char";
         }
         break;
 
-        case ParmType::CHARINT:
+        case ParmType::T_CHARINT:
         {
             return "CharInt";
         }
         break;
 
-        case ParmType::EQUAL:
+        case ParmType::T_EQUAL:
         {
             return "Equal";
         }
 
-        case ParmType::UNDEFINED:
+        case ParmType::T_UNDEFINED:
         {
             return "undefined type";
         }
@@ -1705,18 +1758,18 @@ void getReturnType(std::string op, bool isBinary, ParmType &rightT)
 
                 if(i == 0)
                 {
-                    rightT = ParmType::BOOL;
+                    rightT = ParmType::T_BOOL;
                 }
                 
                 if(i == 1)
                 {
                     
-                    rightT = ParmType::INTEGER;
+                    rightT = ParmType::T_INTEGER;
                 }
 
                 if(i >= 2)
                 {
-                    rightT = ParmType::INTEGER;
+                    rightT = ParmType::T_INTEGER;
                 }
             }
         }
@@ -1732,27 +1785,27 @@ void getReturnType(std::string op, bool isBinary, ParmType &rightT)
 
                 if(i >= 0 && i <= 8)
                 {
-                    rightT = ParmType::INTEGER;
+                    rightT = ParmType::T_INTEGER;
                 }
 
                 if(i >= 9 && i <= 12)
                 {
-                    rightT = ParmType::BOOL;
+                    rightT = ParmType::T_BOOL;
                 }
 
                 if(i >= 13 && i <=14)
                 {
-                    rightT = ParmType::BOOL;
+                    rightT = ParmType::T_BOOL;
                 }
 
                 if(i == 15)
                 {
-                    rightT = ParmType::BOOL;
+                    rightT = ParmType::T_BOOL;
                 }
 
                 if(i >= 16)
                 {
-                    rightT = ParmType::BOOL;
+                    rightT = ParmType::T_BOOL;
                 }
 
             }
@@ -1768,18 +1821,18 @@ void analyzeNestedOperators(Node* node, Node* child)
     if(child->m_childernNodes[0] != nullptr && child->m_childernNodes[1] != nullptr)
     {
 
-        if(child->m_childernNodes[0]->nodeSubType.expression == ExpressionType::OP)
+        if(child->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_OP)
         {
 
             analyzeNestedOperators(node, child->m_childernNodes[0]);
         }
 
-        if(child->m_childernNodes[1]->nodeSubType.expression == ExpressionType::OP)
+        if(child->m_childernNodes[1]->nodeSubType.expression == ExpressionType::T_OP)
         {
             analyzeNestedOperators(node, child->m_childernNodes[1]);
         }
 
-        else if(child->m_childernNodes[0]->nodeSubType.expression == ExpressionType::IDENTIFIER || child->m_childernNodes[1]->nodeSubType.expression == ExpressionType::IDENTIFIER)
+        else if(child->m_childernNodes[0]->nodeSubType.expression == ExpressionType::T_IDENTIFIER || child->m_childernNodes[1]->nodeSubType.expression == ExpressionType::T_IDENTIFIER)
         {
             EmitDiagnostics::Error::emitGenericError(node->m_lineNumber, "Initializer for variable " + node->nodeAttributes.name + "is not a constant expression.");
             //printError(32, node->m_lineNumber, 0, node->nodenodeAttributesibutes.name, nullptr, nullptr, 0);
@@ -1822,7 +1875,7 @@ void parameterErrors(Node* funcFound, Node* node, Node* funcParm, Node* nodeParm
         //printError(37, t->m_lineNumber, funcFound->m_lineNumber, t->nodeAttributes.name, NULL, NULL, 0);
     }
   
-    if(nodeParm->m_parmType != ParmType::UNDEFINED)
+    if(nodeParm->m_parmType != ParmType::T_UNDEFINED)
     {
         
         if(funcParm->m_parmType != nodeParm->m_parmType && !nodeParm->m_isDeclError && !funcFound->m_isIO)

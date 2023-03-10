@@ -28,6 +28,8 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
     
     int compilerFlag; // holds the flag that is passed in
 
+    while(true)
+    {
 
         while((compilerFlag = getopt(argc, argv, "dDhpP")) != EOF)
         {
@@ -59,7 +61,6 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
                 default:
                         {
                             setErrorFlag(true);
-                            exit(1);
                         }
                     break;
             }
@@ -77,19 +78,20 @@ CompilerFlags::CompilerFlags(int argc, char *argv[])
             exit(1);
         }
         // Remove an invalid input option
-        else 
-        {
-            if(optind < argc)
-            {
-                // m_file = argv[optind];
-                setFile(argv[optind]);
-                optind++;
-            }
-            else
-            {
-                break; 
-            }
-        }
+        // else 
+        // {
+        //     if(optind < argc)
+        //     {
+        //         // m_file = argv[optind];
+        //         setFile(argv[optind]);
+        //         optind++;
+        //     }
+        //     else
+        //     {
+        //         break; 
+        //     }
+        // }
+    }
 }
 
 void CompilerFlags::printHelpMenu()
