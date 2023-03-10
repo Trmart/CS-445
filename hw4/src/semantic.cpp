@@ -846,7 +846,6 @@ void analyzeExp(TreeNode *node, int& nErrors, int& nWarnings)
 
 }
 
-
 //analyze Op Expression
 void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode, int& nErrors, int& nWarnings)
 {
@@ -1346,80 +1345,89 @@ void analyzeId(TreeNode* t, TreeNode* valFound, int& nErrors, int& nWarnings)
 }
 
 //analyze Assign Expression
-void analyzeCall(TreeNode* t, int& nErrors, int& nWarnings)
+void analyzeCall(TreeNode* node, int& nErrors, int& nWarnings)
 {
-                int paramCount = 1;
-            TreeNode* funcFound;
+    int paramCount = 1;
+    
+    TreeNode* funcFound;
 
-            if(t->subkind.exp == CallK){
-                funcFound = (TreeNode*)symbolTable.lookup(t->attr.name);
-                if(funcFound == NULL){
-                    printError(1, t->lineno, 0, t->attr.name, NULL, NULL, 0);  
-                        t->declErr = true; 
-                }
-                else{
-                   
-                }
-            }
+    if(node->subkind.exp == CallK)
+    {
+        funcFound = (TreeNode*)symbolTable.lookup(node->attr.name);
+        
+        if(funcFound == nullptr)
+        {
+            printError(1, node->lineno, 0, node->attr.name, NULL, NULL, 0);  
+            node->declErr = true; 
+        }
+        else
+        {
+            //do nothing
+        }
+    }
 
-             for(int i = 0; i < MAXCHILDREN; i++){
-                analyze(t->child[i], nErrors, nWarnings);
-                }
+    for(int i = 0; i < MAXCHILDREN; i++)
+    {
+        analyze(node->child[i], nErrors, nWarnings);
+    }
 
-            if(funcFound != NULL){
-                t->expType = funcFound->expType;
-                t->isArray = funcFound->isArray;
-                t->isGlobal = funcFound->isGlobal;
-                t->isStatic = funcFound->isStatic;
-                funcFound->wasUsed = true;
+    if(funcFound != nullptr)
+    {
+        node->expType = funcFound->expType;
+        node->isArray = funcFound->isArray;
+        node->isGlobal = funcFound->isGlobal;
+        node->isStatic = funcFound->isStatic;
+        funcFound->wasUsed = true;
 
 
-                if(funcFound->subkind.decl != FuncK){
-                    printError(11, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                }
-                
+        if(funcFound->subkind.decl != FuncK)
+        {
+            printError(11, node->lineno, 0, node->attr.name, NULL, NULL, 0);
+        }
+        
 
-                else if(range){
+        else if(range)
+        {
 
-                    if(inFor){
+            if(inFor)
+            {
 
-                        if(t->expType != Integer)
-                        {
+                if(node->expType != Integer)
+                {
 
-                            if(!strcmp(t->attr.name, "main")){
-                                printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);                               
-                            }
-                            else{
-                                char intExpect[] = "int";
-                                printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
-                            }
-                        }
+                    if(!strcmp(node->attr.name, "main"))
+                    {
+                        printError(12, node->lineno, 0, node->attr.name, NULL, NULL, 0);                               
                     }
-                }
-
-                else{
-
-                    if(funcFound->child[0] != NULL && t->child[0] != NULL){
-                       parameterErrors(funcFound, t, funcFound->child[0], t->child[0], paramCount);
-                    }
-
-                    else if(funcFound->child[0] == NULL && t->child[0] != NULL){
-                        printError(38, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
-                    }
-
-                    else if(funcFound->child[0] != NULL && t->child[0] == NULL){
-                        printError(37, t->lineno, funcFound->lineno, t->attr.name, NULL, NULL, 0);
+                    else
+                    {
+                        char intExpect[] = "int";
+                        printError(26, node->lineno, 0, intExpect, ConvertExpToString(node->expType), NULL, rangePos);
                     }
                 }
             }
+        }
+
+        else
+        {
+
+            if(funcFound->child[0] != nullptr && node->child[0] != nullptr)
+            {
+                parameterErrors(funcFound, node, funcFound->child[0], node->child[0], paramCount);
+            }
+
+            else if(funcFound->child[0] == nullptr && node->child[0] != nullptr)
+            {
+                printError(38, node->lineno, funcFound->lineno, node->attr.name, NULL, NULL, 0);
+            }
+
+            else if(funcFound->child[0] != nullptr && node->child[0] == nullptr)
+            {
+                printError(37, node->lineno, funcFound->lineno, node->attr.name, NULL, NULL, 0);
+            }
+        }
+    }
 }
-
-//analyze Init Expression
-void analyzeInit(TreeNode* t, int& nErrors, int& nWarnings)
-{
-
-}
-
 
 
 void getExpTypes(const char* strng, bool isBinary, bool &unaryErrors, ExpType &left, ExpType &right, ExpType &rightT){
@@ -1530,6 +1538,7 @@ char* ConvertExpToString(ExpType type)
                 }
     }
 }
+
 
 void getReturnType(const char* strng, bool isBinary, ExpType &rightT){
 
