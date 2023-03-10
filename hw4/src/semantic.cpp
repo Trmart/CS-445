@@ -113,9 +113,9 @@ void semanticAnalysis(TreeNode* node, int& errors, int& warnings)
 
     analyze(node, nErrors, nWarnings);
 
-    symbolTable.applyToAll(Warninit);
+    symbolTable.applyToAll(initializeWarningMessages);
     
-    symbolTable.applyToAllGlobal(Warninit);
+    symbolTable.applyToAllGlobal(initializeWarningMessages);
 
  
     TreeNode *mainCheck = (TreeNode*)symbolTable.lookup("main");
@@ -137,12 +137,15 @@ void semanticAnalysis(TreeNode* node, int& errors, int& warnings)
     }
 
     PrintErrorss();
+    
     errors = nErrors;
+    
     warnings = nWarnings;
 }
 
 //function checks to see if warnings were used.
-void Warninit(std::string symbol, void* t){
+void initializeWarningMessages(std::string symbol, void* t)
+{
 
     TreeNode* checkUsed;
 
@@ -150,39 +153,45 @@ void Warninit(std::string symbol, void* t){
 
     if(!checkUsed->wasUsed && !checkUsed->isGlobal){
 
-        if(checkUsed->subkind.decl == ParamK && !checkUsed->wasUsedErr && strcmp(checkUsed->attr.name, "main")){
+        if(checkUsed->subkind.decl == ParamK && !checkUsed->wasUsedErr && strcmp(checkUsed->attr.name, "main"))
+        {
             checkUsed->wasUsedErr = true;
             printError(21, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
         }
 
-        else if(checkUsed->subkind.decl == FuncK && !checkUsed->wasUsedErr && strcmp(checkUsed->attr.name, "main")){
+        else if(checkUsed->subkind.decl == FuncK && !checkUsed->wasUsedErr && strcmp(checkUsed->attr.name, "main"))
+        {
             checkUsed->wasUsedErr = true;
             printError(20, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
         }
 
-        else{
+        else
+        {
             checkUsed->wasUsedErr = true;
             printError(17, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
         }
     }
 
-    else if(!checkUsed->wasUsed && checkUsed->isGlobal && checkUsed->subkind.decl == FuncK){
+    else if(!checkUsed->wasUsed && checkUsed->isGlobal && checkUsed->subkind.decl == FuncK)
+    {
         
-        if(strcmp(checkUsed->attr.name, "main") && !checkUsed->wasUsedErr){
+        if(strcmp(checkUsed->attr.name, "main") && !checkUsed->wasUsedErr)
+        {
             checkUsed->wasUsedErr = true;
 
             printError(20, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
         }
     }
 
-    else if(!checkUsed->wasUsed && checkUsed->isGlobal && !checkUsed->wasUsedErr){
-         checkUsed->wasUsedErr = true;
-         printError(17, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
+    else if(!checkUsed->wasUsed && checkUsed->isGlobal && !checkUsed->wasUsedErr)
+    {
+        checkUsed->wasUsedErr = true;
+        printError(17, checkUsed->lineno, 0, checkUsed->attr.name, NULL, NULL, 0);
     }
 }
 
 //function prints errors for arrays.
-void errorsArray(TreeNode *t)
+void printArrayErrors(TreeNode *t)
 {
 
    TreeNode *leftNode = NULL;
@@ -417,7 +426,7 @@ void analyzeFunc(TreeNode* node, int& nErrors, int& nWarnings)
         printError(19, node->lineno, 0, ExpTypetwo(functionReturnType), node->attr.name, NULL, 0);
     }
 
-    symbolTable.applyToAll(Warninit);
+    symbolTable.applyToAll(initializeWarningMessages);
     
     symbolTable.leave();
     
@@ -536,7 +545,7 @@ void analyzeIf(TreeNode* node, int& nErrors, int& nWarnings)
     
     loopDepth--;
 
-    symbolTable.applyToAll(Warninit);
+    symbolTable.applyToAll(initializeWarningMessages);
 
     if(loopDepth == 1)
     {
@@ -584,7 +593,7 @@ void analyzeWhile(TreeNode* node, int& nErrors, int& nWarnings)
 
     loopDepth--;
 
-    symbolTable.applyToAll(Warninit);
+    symbolTable.applyToAll(initializeWarningMessages);
 
     if(loopDepth == 1)
     {
@@ -628,7 +637,7 @@ void analyzeFor(TreeNode* node, int& nErrors, int& nWarnings)
 
     inFor = false;
     
-    symbolTable.applyToAll(Warninit);
+    symbolTable.applyToAll(initializeWarningMessages);
     
     symbolTable.leave();
     
@@ -656,7 +665,7 @@ void analyzeCompound(TreeNode* node, int& nErrors, int& nWarnings)
 
     if(isInCurScope)
     {
-        symbolTable.applyToAll(Warninit);
+        symbolTable.applyToAll(initializeWarningMessages);
         symbolTable.leave();
     }
 }
@@ -1021,7 +1030,7 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
                     if(!unaryErrors){
 
                         if(!strcmp(t->attr.name, "[")){
-                            errorsArray(t);
+                            printArrayErrors(t);
                         }
                 
                         else if(leftSide != rightSide && !leftErr && !rightErr){

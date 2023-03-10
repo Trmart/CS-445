@@ -53,11 +53,11 @@ void getReturnType(const char* string, bool isBinary, ExpType &childReturnType);
 
 //printers
 void printError(int errCode, int linenum, int explaineno, char* s1, char* s2, char* s3, int i);
-void errorsArray(TreeNode* node);
+void printArrayErrors(TreeNode* node);
 
 
 //helper functions
-void Warninit(std::string, void*);
+void initializeWarningMessages(std::string, void*);
 char* ExpTypetwo(ExpType type);
 void parameterErrors(TreeNode *funcFound, TreeNode* node, TreeNode *ffParm, TreeNode *tParm, int paramCount);
 void checkNestAssK(TreeNode* child);
