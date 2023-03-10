@@ -803,19 +803,13 @@ void analyzeRange(TreeNode* node, int& nErrors, int& nWarnings)
 //analyze expression node
 void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
 {
- 
-    // bool leftStr, rightStr, isBinary, leftArr, rightArr, leftIndx, rightIndx, leftInit, leftDecl, rightInit, rightDecl, throwError;
-    // leftStr = rightStr = isBinary = leftArr = rightArr = leftIndx = rightIndx = leftInit = leftDecl = rightInit = rightDecl = throwError = false;
-
-    // ExpType leftSide, rightSide, returnType, leftExpected, rightExpected, childReturnType;
-    // leftSide = rightSide = returnType = leftExpected = rightExpected = childReturnType = UndefinedType;
 
     bool rightErr, leftErr, unaryErrors;
     rightErr = leftErr = unaryErrors = false;
 
-    TreeNode* valFound = NULL;
-    TreeNode* leftNode = NULL;
-    TreeNode* rightNode = NULL;
+    TreeNode* valFound = nullptr;
+    TreeNode* leftNode = nullptr;
+    TreeNode* rightNode = nullptr;
 
     switch(t->subkind.exp) 
     {
@@ -832,147 +826,17 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
                 break;
 
         case ConstantK:
-            for(int i = 0; i < MAXCHILDREN; i++){
-                analyze(t->child[i], nErrors, nWarnings);
-            }
-    
-            if(range){
-                   if(inFor){
-
-
-                    if(t->expType != Integer)
-                    {
-                        char intExpect[] = "int";
-                        printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
-                    }
-                   }
-               }
-            break;
+        {
+            analyzeConst(t, nErrors, nWarnings);
+        }
+        break; 
 
         case IdK:
-            valFound = (TreeNode*)symbolTable.lookup(t->attr.name);
+        {
+            analyzeId(t, valFound, nErrors, nWarnings);
+        }
+        break; 
 
-            if(valFound == NULL){
-
-                if(range && rangePos == 1){
-                    t->isDeclared = true;
-                }
-
-                else{
-                    printError(1, t->lineno, 0, t->attr.name, NULL, NULL, 0); 
-                        t->declErr = true;    
-                }           
-            }
-
-            else if(range){
-
-                if(inFor){
-
-                    t->expType = valFound->expType;
-                    t->isArray = valFound->isArray;
-
-                    if(t->expType != Integer && rangePos >= 1)
-                    {
-                        if(!sizeOfArrayFlg){
-
-                            if(!strcmp(t->attr.name, "main")){
-                                printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);  
-                            }
-                            else{
-                                char intExpect[] = "int";
-                                printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
-                            }
-                        }
-
-                    }
-
-                    if(rangePos >= 1 && !valFound->isInit){
-                        if(valFound->isDeclared == true){
-
-                            if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
-
-                                if(!t->isInit){
-                                    valFound->warningReported = true;
-                                    valFound->wasUsed = true;
-                                    printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                                }
-                                
-                                else{
-                                    valFound->isInit = true;
-                                }
-                            }
-                    
-                        }
-                    }
-
-                    else if(rangePos > 1 && valFound->isInit){
-                        valFound->wasUsed = true;
-                    }
-
-                    if(valFound->isArray && !sizeOfArrayFlg && !t->isIndexed){
-                        printError(24, t->lineno, 0, NULL, NULL, NULL, rangePos);
-                    }
-
-                    t->isIndexed = false;
-
-                }
-
-                t->isInit = true;
-            }
-
-            else{
-
-                 if(valFound->isDeclared == true){
-                
-                 if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
-                     if(!t->isInit){
-                        valFound->warningReported = true;
-                        printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                     }
-                     else{
-                         valFound->isInit = true;
-                     }
-                 }
-                 }
-
-                if(valFound->subkind.decl == FuncK){
-                    printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);
-                    valFound->wasUsed = true;
-                    break;
-                }
-                else{
-                    t->expType = valFound->expType;
-                    t->isArray = valFound->isArray;
-                    t->isGlobal = valFound->isGlobal;
-                    t->isStatic = valFound->isStatic;
-
-                    if(!range && valFound->subkind.decl != FuncK){
-                    valFound->wasUsed = true;
-                    }
-                }
-
-                if(t->child[0] != NULL){
-                    analyze(t->child[0], nErrors, nWarnings);
-                    if(t->child[0]->expType == Void && !(t->child[0]->nodekind == ExpK && t->child[0]->subkind.exp == CallK)){
-
-                        break;
-                    }
-                    if(!t->isArray){
-
-                        break;
-                    }
-                    else{
-
-                        if(t->child[0]->expType != Integer){
-                            printError(14, t->lineno, 0, t->attr.name, ConvertExpToString(t->child[0]->expType), NULL, 0);
-                        }
- 
-                        if(t->child[0]->isArray && t->child[0]->child[0] == NULL){
-                            printError(13, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
-                        }
-                    }
-                }
-            }
             break;
 
         case CallK:
@@ -1397,15 +1261,152 @@ void analyze_Op_and_Assign(TreeNode* t, TreeNode* leftNode, TreeNode* rightNode,
 }
 
 //analyze Const Expression
-void analyzeConst(TreeNode* t, int& nErrors, int& nWarnings)
+void analyzeConst(TreeNode* node, int& nErrors, int& nWarnings)
 {
+    for(int i = 0; i < MAXCHILDREN; i++)
+    {
+        analyze(node->child[i], nErrors, nWarnings);
+    }
 
+    if(range)
+    {
+        if(inFor)
+        {
+            if(node->expType != Integer)
+            {
+                char intExpect[] = "int";
+                printError(26, node->lineno, 0, intExpect, ConvertExpToString(node->expType), NULL, rangePos);
+            }
+        }
+    }
 }
 
 //analyze Id Expression
-void analyzeId(TreeNode* t, int& nErrors, int& nWarnings)
+void analyzeId(TreeNode* t, TreeNode* valFound, int& nErrors, int& nWarnings)
 {
+                valFound = (TreeNode*)symbolTable.lookup(t->attr.name);
 
+            if(valFound == NULL){
+
+                if(range && rangePos == 1){
+                    t->isDeclared = true;
+                }
+
+                else{
+                    printError(1, t->lineno, 0, t->attr.name, NULL, NULL, 0); 
+                        t->declErr = true;    
+                }           
+            }
+
+            else if(range){
+
+                if(inFor){
+
+                    t->expType = valFound->expType;
+                    t->isArray = valFound->isArray;
+
+                    if(t->expType != Integer && rangePos >= 1)
+                    {
+                        if(!sizeOfArrayFlg){
+
+                            if(!strcmp(t->attr.name, "main")){
+                                printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);  
+                            }
+                            else{
+                                char intExpect[] = "int";
+                                printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
+                            }
+                        }
+
+                    }
+
+                    if(rangePos >= 1 && !valFound->isInit){
+                        if(valFound->isDeclared == true){
+
+                            if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
+
+                                if(!t->isInit){
+                                    valFound->warningReported = true;
+                                    valFound->wasUsed = true;
+                                    printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                                }
+                                
+                                else{
+                                    valFound->isInit = true;
+                                }
+                            }
+                    
+                        }
+                    }
+
+                    else if(rangePos > 1 && valFound->isInit){
+                        valFound->wasUsed = true;
+                    }
+
+                    if(valFound->isArray && !sizeOfArrayFlg && !t->isIndexed){
+                        printError(24, t->lineno, 0, NULL, NULL, NULL, rangePos);
+                    }
+
+                    t->isIndexed = false;
+
+                }
+
+                t->isInit = true;
+            }
+
+            else{
+
+                 if(valFound->isDeclared == true){
+                
+                 if(!valFound->isInit && !valFound->warningReported && !valFound->isStatic && !valFound->isGlobal){
+                     if(!t->isInit){
+                        valFound->warningReported = true;
+                        printError(18, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                     }
+                     else{
+                         valFound->isInit = true;
+                     }
+                 }
+                 }
+
+                if(valFound->subkind.decl == FuncK){
+                    printError(12, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+                    valFound->wasUsed = true;
+                    return;
+                }
+                else{
+                    t->expType = valFound->expType;
+                    t->isArray = valFound->isArray;
+                    t->isGlobal = valFound->isGlobal;
+                    t->isStatic = valFound->isStatic;
+
+                    if(!range && valFound->subkind.decl != FuncK){
+                    valFound->wasUsed = true;
+                    }
+                }
+
+                if(t->child[0] != NULL){
+                    analyze(t->child[0], nErrors, nWarnings);
+                    if(t->child[0]->expType == Void && !(t->child[0]->nodekind == ExpK && t->child[0]->subkind.exp == CallK)){
+
+                        return;
+                    }
+                    if(!t->isArray){
+
+                        return;
+                    }
+                    else{
+
+                        if(t->child[0]->expType != Integer){
+                            printError(14, t->lineno, 0, t->attr.name, ConvertExpToString(t->child[0]->expType), NULL, 0);
+                        }
+ 
+                        if(t->child[0]->isArray && t->child[0]->child[0] == NULL){
+                            printError(13, t->lineno, 0, t->child[0]->attr.name, NULL, NULL, 0);
+                        }
+                    }
+                }
+            }
 }
 
 //analyze Assign Expression
