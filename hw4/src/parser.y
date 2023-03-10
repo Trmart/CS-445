@@ -509,7 +509,7 @@ extern int yydebug;
 int main(int argc, char *argv[])
 {
   int compilerFlag = 0;
-  bool printAST = 0;
+  bool isPrintingAST = 0;
   numErrors = 0;
   numWarnings = 0;
 
@@ -521,14 +521,14 @@ int main(int argc, char *argv[])
 
         case 'p':
             {
-              printAST = true;
+              isPrintingAST = true;
               isPrintingTreeTypes = false;
             }
             break;
     
         case 'P':
               {
-                printAST = true;
+                isPrintingAST = true;
                 isPrintingTreeTypes = true;
               }
               break;
@@ -578,18 +578,18 @@ int main(int argc, char *argv[])
 
   yyparse();
 
-  if(printAST && !isPrintingTreeTypes)
+  if(isPrintingAST && !isPrintingTreeTypes)
   {
-    printTree(ROOT, 0, isPrintingTreeTypes);
+    printAST(ROOT, 0, isPrintingTreeTypes);
   }
-  else if(printAST && isPrintingTreeTypes)
+  else if(isPrintingAST && isPrintingTreeTypes)
   {
     setupIO();
     semanticAnalysis(ROOT, numErrors, numWarnings);
 
     if(numErrors < 1)
     {  
-      printTree(ROOT, 0, isPrintingTreeTypes);
+      printAST(ROOT, 0, isPrintingTreeTypes);
     }
   }
 

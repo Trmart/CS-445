@@ -22,8 +22,10 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 int WSC = 0;
 
 //function adds a sibling
-TreeNode *addSibling(TreeNode *t, TreeNode *s){
-      if (t!=NULL) {
+TreeNode *addSibling(TreeNode *t, TreeNode *s)
+{
+    if (t!=NULL) 
+    {
         TreeNode *tmp;
         
         tmp = t;
@@ -161,7 +163,7 @@ void printExp(ExpType t){
 }
 
 //function to print tree, uses recursion
-void printTree(TreeNode *tree, int nsiblings, bool alltype){
+void printAST(TreeNode *tree, int nsiblings, bool alltype){
     int i;
     bool ALLTYPE = alltype;
 
@@ -440,16 +442,16 @@ void printTree(TreeNode *tree, int nsiblings, bool alltype){
         for(i=0; i< MAXCHILDREN; i++){
             if(tree->child[i] != NULL){
                 WSC++;
-                printWhiteSpace(WSC);
+                printTabs(WSC);
                 printf("Child: %d  ", i);
-                printTree(tree->child[i], 0, ALLTYPE);
+                printAST(tree->child[i], 0, ALLTYPE);
                 WSC--;
             }
         }
 
         if(tree->sibling != NULL){
             nsiblings++;
-            printWhiteSpace(WSC);
+            printTabs(WSC);
             printf("Sibling: %d  ", nsiblings);
         }
         tree = tree->sibling;
@@ -457,7 +459,7 @@ void printTree(TreeNode *tree, int nsiblings, bool alltype){
 }
 
 //Function to print white spaces
-void printWhiteSpace(int WS){
+void printTabs(int WS){
     int i;
     for(i = 0; i < WS; i++){
         printf(".   ");

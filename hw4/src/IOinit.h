@@ -6,8 +6,8 @@ HW4
 Dr. Wilder
 DUE: 3/12/2023
 
-FILE: CompilerFlags.cpp
-DESC: Class functions definitions to detect and hold c- compiler flags
+FILE: IOinit.h
+DESC: IOinit functions
 */
 
 #ifndef IOINIT_H
@@ -23,4 +23,6 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 #include <iostream>
 
 void setupIO();
-#endif
+
+
+#endif // IOINIT_H

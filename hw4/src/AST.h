@@ -128,16 +128,22 @@ typedef struct treeNode
     bool isIO;      
 } TreeNode;
 
-
-TreeNode *addSibling(TreeNode *t, TreeNode *s);
-void setType(TreeNode *t, ExpType type);
-TreeNode *newDeclNode(DeclKind kind, TokenData* token);
-TreeNode *newStmtNode(StmtKind kind, TokenData* token);
-TreeNode *newExpNode(ExpKind kind, TokenData* token); 
-void printTree(TreeNode *tree, int nsiblings, bool alltype);
-void printWhiteSpace(int WS);
-void printExp(ExpType tree);
+//Node creation functions
+TreeNode* addSibling(TreeNode* node, TreeNode *sibling);
+TreeNode* newDeclNode(DeclKind kind, TokenData* token);
+TreeNode* newStmtNode(StmtKind kind, TokenData* token);
+TreeNode* newExpNode(ExpKind kind, TokenData* token); 
 TreeNode *newDeclNodeIO(DeclKind kind);
+
+//print functions
+void printAST(TreeNode *ast, int numsiblings, bool alltype);
+void printTabs(int numTabs);
+void printExp(ExpType type);
+
+//setters 
+void setType(TreeNode* node, ExpType type);
+
+
 
 #endif
 
