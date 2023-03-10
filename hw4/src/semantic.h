@@ -20,6 +20,9 @@ DESC:  Semantic analysis functions
 //semantic analysis functions
 void analyze(TreeNode* node, int& nErrors, int& nWarnings);
 void semanticAnalysis(TreeNode* node, int& errors, int& warnings);
+void analyzeNestedAssign(TreeNode* child);
+void analyzeNestedOpInitialization(TreeNode* node, TreeNode* child);
+
 
 //Declaration analyzers
 void analyzeDecl(TreeNode* node, int& nErrors, int& nWarnings);
@@ -58,9 +61,7 @@ void printArrayErrors(TreeNode* node);
 
 //helper functions
 void initializeWarningMessages(std::string, void*);
-char* ExpTypetwo(ExpType type);
+char* ConvertExpToString(ExpType type);
 void parameterErrors(TreeNode *funcFound, TreeNode* node, TreeNode *ffParm, TreeNode *tParm, int paramCount);
-void checkNestAssK(TreeNode* child);
-void checkNestOpsInit(TreeNode* node, TreeNode* child);
 
 #endif

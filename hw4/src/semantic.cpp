@@ -233,7 +233,7 @@ void printArrayErrors(TreeNode *t)
             }
             else
             {
-                printError(14, t->lineno, 0, t->child[0]->attr.name, ExpTypetwo(t->child[1]->expType), NULL, 0);
+                printError(14, t->lineno, 0, t->child[0]->attr.name, ConvertExpToString(t->child[1]->expType), NULL, 0);
             }
             
         }
@@ -353,7 +353,7 @@ void analyzeVar(TreeNode* node, int& nErrors, int& nWarnings)
 
             else if(node->child[0]->child[0] != NULL && node->child[0]->child[1] != NULL)
             {
-                checkNestOpsInit(node, node->child[0]);
+                analyzeNestedOpInitialization(node, node->child[0]);
             }
         }
 
@@ -368,7 +368,7 @@ void analyzeVar(TreeNode* node, int& nErrors, int& nWarnings)
             else if(node->expType == Integer && node->child[0]->expType == CharInt)
             {
                 char charInsert[] = "char";
-                printError(33, node->lineno, 0, node->attr.name, ExpTypetwo(node->expType), charInsert, 0);
+                printError(33, node->lineno, 0, node->attr.name, ConvertExpToString(node->expType), charInsert, 0);
             }
 
             else if(node->child[0]->expType == Void && node->child[0]->subkind.exp == IdK)
@@ -378,7 +378,7 @@ void analyzeVar(TreeNode* node, int& nErrors, int& nWarnings)
 
             else
             {
-                printError(33, node->lineno, 0, node->attr.name, ExpTypetwo(node->expType), ExpTypetwo(node->child[0]->expType), 0);
+                printError(33, node->lineno, 0, node->attr.name, ConvertExpToString(node->expType), ConvertExpToString(node->child[0]->expType), 0);
             }
         }
 
@@ -425,7 +425,7 @@ void analyzeFunc(TreeNode* node, int& nErrors, int& nWarnings)
 
     if(Flag == false && node->expType != Void)
     {
-        printError(19, node->lineno, 0, ExpTypetwo(functionReturnType), node->attr.name, NULL, 0);
+        printError(19, node->lineno, 0, ConvertExpToString(functionReturnType), node->attr.name, NULL, 0);
     }
 
     symbolTable.applyToAll(initializeWarningMessages);
@@ -536,7 +536,7 @@ void analyzeIf(TreeNode* node, int& nErrors, int& nWarnings)
     if(node->child[0]->expType != Boolean && node->child[0]->subkind.exp != OpK && !node->child[0]->declErr)
     {
         char ifStmt[] = "if";
-        printError(27, node->lineno, 0, ifStmt, ExpTypetwo(node->child[0]->expType), NULL, 0 );
+        printError(27, node->lineno, 0, ifStmt, ConvertExpToString(node->child[0]->expType), NULL, 0 );
     }
 
     if(node->child[0]->isArray)
@@ -581,7 +581,7 @@ void analyzeWhile(TreeNode* node, int& nErrors, int& nWarnings)
                 if(node->child[0]->expType != Boolean && node->child[0]->subkind.exp != OpK && !node->child[0]->declErr)
                 {
                     char whileStmt[] = "while";
-                    printError(27, node->lineno, 0, whileStmt, ExpTypetwo(node->child[0]->expType), NULL, 0 );
+                    printError(27, node->lineno, 0, whileStmt, ConvertExpToString(node->child[0]->expType), NULL, 0 );
                 }
 
                 if(node->child[0]->isArray)
@@ -717,7 +717,7 @@ void analyzeReturn(TreeNode* node, int& nErrors, int& nWarnings)
 
             if(!(functionReturnType == Char && actualReturnType == CharInt))
             {
-                printError(31, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
+                printError(31, returnlineno, functionLine, functionName, ConvertExpToString(functionReturnType), ConvertExpToString(actualReturnType), 0);
             }
         }
 
@@ -726,7 +726,7 @@ void analyzeReturn(TreeNode* node, int& nErrors, int& nWarnings)
             
             if(!(functionReturnType == Char && actualReturnType == CharInt))
             {
-                printError(31, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), ExpTypetwo(actualReturnType), 0);
+                printError(31, returnlineno, functionLine, functionName, ConvertExpToString(functionReturnType), ConvertExpToString(actualReturnType), 0);
             }
         }
     }
@@ -736,7 +736,7 @@ void analyzeReturn(TreeNode* node, int& nErrors, int& nWarnings)
 
         if(functionReturnType != Void)
         {
-            printError(30, returnlineno, functionLine, functionName, ExpTypetwo(functionReturnType), NULL, 0);
+            printError(30, returnlineno, functionLine, functionName, ConvertExpToString(functionReturnType), NULL, 0);
         }
     }
 }
@@ -881,7 +881,7 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
                                 }
 
                                 else if(t->child[1]->subkind.exp == AssignK){
-                                    checkNestAssK(t->child[1]);
+                                    analyzeNestedAssign(t->child[1]);
                                     t->child[0]->isInit = true;
                                 }
                             }
@@ -997,17 +997,17 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
 
                     if(!strcmp(t->attr.name, "-")){
                         char uMinus[] = "chsign";
-                        printError(9, t->lineno, 0, uMinus, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                        printError(9, t->lineno, 0, uMinus, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
                     }
 
                     else{
-                        printError(9, t->lineno, 0, t->attr.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                        printError(9, t->lineno, 0, t->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
                     }
                 }
 
                 else if(!strcmp(t->attr.name, "not") && leftSide != leftExpected){
 
-                    printError(9, t->lineno, 0, t->attr.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                    printError(9, t->lineno, 0, t->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
                 }
 
                 else if(!strcmp(t->attr.name, "*") && (!leftArr && leftSide != UndefinedType)){
@@ -1037,11 +1037,11 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
                 
                         else if(leftSide != rightSide && !leftErr && !rightErr){
 
-                            if(!strcmp(ExpTypetwo(leftSide), "int") && !strcmp(ExpTypetwo(rightSide), "CharInt")){
+                            if(!strcmp(ConvertExpToString(leftSide), "int") && !strcmp(ConvertExpToString(rightSide), "CharInt")){
                                 char diffCharInt[] = "char";
-                                 printError(2, t->lineno, 0, t->attr.name, ExpTypetwo(leftSide), diffCharInt, 0);
+                                 printError(2, t->lineno, 0, t->attr.name, ConvertExpToString(leftSide), diffCharInt, 0);
                             }
-                            else if(!strcmp(ExpTypetwo(leftSide), "char") && !strcmp(ExpTypetwo(rightSide), "CharInt")){
+                            else if(!strcmp(ConvertExpToString(leftSide), "char") && !strcmp(ConvertExpToString(rightSide), "CharInt")){
                                 ; //do nothing
                             }
   
@@ -1050,18 +1050,18 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
                                 getReturnType(t->child[1]->attr.name, isBinary, childReturnType);
                                
                                 if(childReturnType != t->child[0]->expType){
-                                    printError(2, t->lineno, 0, t->attr.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
+                                    printError(2, t->lineno, 0, t->attr.name, ConvertExpToString(leftSide), ConvertExpToString(childReturnType), 0);
                                 }
 
                                 else if(t->child[1]->child[1] != NULL && t->child[1]->child[1]->subkind.exp == CallK){
-                                    printError(2, t->lineno, 0, t->attr.name, ExpTypetwo(leftSide), ExpTypetwo(childReturnType), 0);
+                                    printError(2, t->lineno, 0, t->attr.name, ConvertExpToString(leftSide), ConvertExpToString(childReturnType), 0);
                                 }
                             }
                             else{
 
                                 if(t->child[0]->subkind.exp != CallK){
 
-                                 printError(2, t->lineno, 0, t->attr.name, ExpTypetwo(leftSide), ExpTypetwo(rightSide), 0);
+                                 printError(2, t->lineno, 0, t->attr.name, ConvertExpToString(leftSide), ConvertExpToString(rightSide), 0);
                                 }
                                 else{}
                             }
@@ -1085,8 +1085,8 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
 
                                  if(lhs->subkind.decl == FuncK && rhs->subkind.decl == FuncK && !lhs->isIO && !rhs->isIO){
                                      if(t->child[0]->expType == Void && t->child[1]->expType == Void){
-                                     printError(3, t->lineno, 0, t->attr.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
-                                     printError(4, t->lineno, 0, t->attr.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                     printError(3, t->lineno, 0, t->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                                     printError(4, t->lineno, 0, t->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
                                      }
                                      
                                  }
@@ -1096,16 +1096,16 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
                         else{
 
                             if(leftSide != leftExpected && !leftErr){
-                                printError(3, t->lineno, 0, t->attr.name, ExpTypetwo(leftExpected), ExpTypetwo(leftSide), 0);
+                                printError(3, t->lineno, 0, t->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
                             }
 
                             if(rightSide != rightExpected && !rightErr && rightSide != UndefinedType){
 
                                 if(rightSide == Void && t->child[1]->subkind.exp == CallK && returnType != Boolean){
-                                    printError(4, t->lineno, 0, t->attr.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                    printError(4, t->lineno, 0, t->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
                                 }
                                 else if(rightSide != Void){
-                                    printError(4, t->lineno, 0, t->attr.name, ExpTypetwo(rightExpected), ExpTypetwo(rightSide), 0);
+                                    printError(4, t->lineno, 0, t->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
                                 }
                             }
                         }
@@ -1169,7 +1169,7 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
                     if(t->expType != Integer)
                     {
                         char intExpect[] = "int";
-                        printError(26, t->lineno, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                        printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
                     }
                    }
                }
@@ -1206,7 +1206,7 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
                             }
                             else{
                                 char intExpect[] = "int";
-                                printError(26, t->lineno, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                                printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
                             }
                         }
 
@@ -1290,7 +1290,7 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
                     else{
 
                         if(t->child[0]->expType != Integer){
-                            printError(14, t->lineno, 0, t->attr.name, ExpTypetwo(t->child[0]->expType), NULL, 0);
+                            printError(14, t->lineno, 0, t->attr.name, ConvertExpToString(t->child[0]->expType), NULL, 0);
                         }
  
                         if(t->child[0]->isArray && t->child[0]->child[0] == NULL){
@@ -1345,7 +1345,7 @@ void analyzeExp(TreeNode *t, int& nErrors, int& nWarnings)
                             }
                             else{
                                 char intExpect[] = "int";
-                                printError(26, t->lineno, 0, intExpect, ExpTypetwo(t->expType), NULL, rangePos);
+                                printError(26, t->lineno, 0, intExpect, ConvertExpToString(t->expType), NULL, rangePos);
                             }
                         }
                     }
@@ -1472,23 +1472,45 @@ void getExpTypes(const char* strng, bool isBinary, bool &unaryErrors, ExpType &l
 }
 
 
-char* ExpTypetwo(ExpType type){
-    switch(type){
+char* ConvertExpToString(ExpType type)
+{
+    switch(type)
+    {
        
         case Void:
-            return strdup("void");
+                {
+                    return strdup("void");
+                }
+
         case Integer:
-            return strdup("int");
+                    {
+                        return strdup("int");
+                    }
+
         case Boolean:
-            return strdup("bool");
+                    {
+                        return strdup("bool");
+                    }
+        
         case Char:
-            return strdup("char");
+                {
+                    return strdup("char");
+                }
+        
         case CharInt:
-            return strdup("CharInt");
+                    {
+                        return strdup("CharInt");
+                    }
+
         case UndefinedType:
-            return strdup("undefined type");
+                        {
+                            return strdup("UndefinedType");
+                        }
+        
         default:
-            return strdup("expType not found\n");
+                {
+                    return strdup("expType not found\n");
+                }
     }
 }
 
@@ -1728,36 +1750,46 @@ void printError(int errCode, int lineno, int reasonNum, char* s1, char* s2, char
 }
 
 
-void checkNestOpsInit(TreeNode *t, TreeNode *child){
+void analyzeNestedOpInitialization(TreeNode* node, TreeNode* child)
+{
 
-    if(child->child[0] != NULL && child->child[1] != NULL){
+    if(child->child[0] != nullptr && child->child[1] != nullptr)
+    {
 
-        if(child->child[0]->subkind.exp == OpK){
+        if(child->child[0]->subkind.exp == OpK)
+        {
 
-            checkNestOpsInit(t, child->child[0]);
+            analyzeNestedOpInitialization(node, child->child[0]);
         }
 
-        if(child->child[1]->subkind.exp == OpK){
-            checkNestOpsInit(t, child->child[1]);
+        if(child->child[1]->subkind.exp == OpK)
+        {
+            analyzeNestedOpInitialization(node, child->child[1]);
         }
 
-        else if(child->child[0]->subkind.exp == IdK || child->child[1]->subkind.exp == IdK){
-            printError(32, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+        else if(child->child[0]->subkind.exp == IdK || child->child[1]->subkind.exp == IdK)
+        {
+            printError(32, node->lineno, 0, node->attr.name, NULL, NULL, 0);
         }
     }
 
-    else if(child->child[0] != NULL && child->child[1] == NULL){
+    else if(child->child[0] != nullptr && child->child[1] == nullptr)
+    {
   
-        if(strcmp(child->attr.name, "not")){
-        printError(32, t->lineno, 0, t->attr.name, NULL, NULL, 0);
+        if(strcmp(child->attr.name, "not"))
+        {
+            printError(32, node->lineno, 0, node->attr.name, NULL, NULL, 0);
         }
     }
 }
 
-void checkNestAssK(TreeNode *c1){
 
-    if(c1->child[0] != NULL){
-        c1->child[0]->isInit = true;
+void analyzeNestedAssign(TreeNode* rightChild)
+{
+
+    if(rightChild->child[0] != nullptr)
+    {
+        rightChild->child[0]->isInit = true;
     }
 }
  
@@ -1777,7 +1809,7 @@ void parameterErrors(TreeNode *funcFound, TreeNode *t, TreeNode *ffParm, TreeNod
         
         if(ffParm->expType != tParm->expType && !tParm->declErr && !funcFound->isIO){
       
-            printError(25, t->lineno, funcFound->lineno, funcFound->attr.name, ExpTypetwo(ffParm->expType), ExpTypetwo(tParm->expType), paramCount);
+            printError(25, t->lineno, funcFound->lineno, funcFound->attr.name, ConvertExpToString(ffParm->expType), ConvertExpToString(tParm->expType), paramCount);
 
             if(!ffParm->isArray && tParm->isArray){
                 printError(36, t->lineno, funcFound->lineno, funcFound->attr.name, NULL, NULL, paramCount);
