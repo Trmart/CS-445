@@ -6,8 +6,8 @@ HW4
 Dr. Wilder
 DUE: 3/12/2023
 
-FILE: CompilerFlags.cpp
-DESC: Class functions definitions to detect and hold c- compiler flags
+FILE: AST.h
+DESC: Abstract Syntax Tree
 */
 
 #ifndef _AST_H_
@@ -89,13 +89,6 @@ typedef enum
 
 typedef struct treeNode
 {
-    struct treeNode *child[MAXCHILDREN];        
-    struct treeNode *sibling;                   
-
-    //what kind of node
-    int lineno;                                 
-    NodeKind nodekind;                          
-    TokenData *thisTokenData;
 
     union 
     {
@@ -113,18 +106,41 @@ typedef struct treeNode
         char *name;
     } attr;
 
+
+    struct treeNode* child[MAXCHILDREN];        
+    struct treeNode* sibling;                   
+
+
+    int lineno;                                 
+    
+    NodeKind nodekind;                          
+    
+    TokenData *thisTokenData;
+    
     ExpType expType;
+    
     bool isArray;
+    
     bool isStatic;
+    
     bool isGlobal;
+    
     bool isInit;
+    
     bool warningReported;
+    
     bool wasUsed;
+    
     bool isDeclared;
+    
     bool declErr;
+    
     bool wasUsedErr;
+    
     bool isIndexed;
-    bool isIO;      
+    
+    bool isIO;     
+
 } TreeNode;
 
 //Node creation functions

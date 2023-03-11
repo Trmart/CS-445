@@ -6,8 +6,11 @@ HW4
 Dr. Wilder
 DUE: 3/12/2023
 
-FILE: CompilerFlags.cpp
-DESC: Class functions definitions to detect and hold c- compiler flags
+FILE: AST.c
+DESC: This file contains the functions that are used to create the abstract syntax tree.
+      The functions in this file are used to create the nodes for the syntax tree and
+      to print the syntax tree. The functions in this file are called by the parser.y file.
+      The functions in this file are called by the parser.y file.
 */
 
 #include "AST.h"
@@ -22,7 +25,7 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 int numTabs = 0;
 
 //adds sibling to node
-TreeNode* addSibling(TreeNode *node, TreeNode *sibling)
+TreeNode* addSibling(TreeNode* node, TreeNode* sibling)
 {
     if (node!=NULL) 
     {
@@ -213,7 +216,7 @@ void printExp(ExpType type)
 }
 
 
-void printAST(TreeNode *tree, int nsiblings, bool isShowingTypes)
+void printAST(TreeNode* tree, int nsiblings, bool isShowingTypes)
 {
     int i;
 
