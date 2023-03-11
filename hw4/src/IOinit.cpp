@@ -15,7 +15,7 @@ DESC: Functions to setup IO functions
 
 extern SymbolTable symbolTable;
 
-void setupIO()
+void initializeIO()
 {
 
 
@@ -56,7 +56,7 @@ void setupIO()
         }
         else
         {
-            IONode->child[0] = NULL;
+            IONode->child[0] = nullptr;
         }
     }
 }

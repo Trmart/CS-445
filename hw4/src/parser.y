@@ -584,7 +584,8 @@ int main(int argc, char *argv[])
   }
   else if(isPrintingAST && isPrintingTreeTypes)
   {
-    setupIO();
+    initializeIO();
+    
     semanticAnalysis(ROOT, numErrors, numWarnings);
 
     if(numErrors < 1)

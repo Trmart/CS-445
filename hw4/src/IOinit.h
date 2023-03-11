@@ -22,7 +22,7 @@ DESC: IOinit functions
 #include <string.h>
 #include <iostream>
 
-void setupIO();
+void initializeIO();
 
 
 #endif // IOINIT_H

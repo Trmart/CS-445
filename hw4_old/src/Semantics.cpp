@@ -419,24 +419,6 @@ void analyzeDecl(Node* node, int& nErrors, int& nWarnings)
 }
 
 
-void analyzeVar(Node* node, int& nErrors, int& nWarnings)
-{
-
-}
-
-
-void analyzeFunc(Node* node, int& nErrors, int& nWarnings)
-{
-
-}
-
-
-void analyzeParam(Node* node, int& nErrors, int& nWarnings)
-{
-
-}
-//Function analyzes statement nodes
-
 void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
 {
 
@@ -735,54 +717,6 @@ void analyzeStmt(Node* node, int& nErrors, int& nWarnings)
         }
         break;
     }
-}
-
-
-void analyzeNullStmt(Node* node, int& nErrors, int& nWarnings)
-{
-
-}
-
-
-void analyzeIf(Node* node, int& nErrors, int& nWarnings)
-{
-
-}
-
-
-void analyzeWhile(Node* node, int& nErrors, int& nWarnings)
-{
-
-}
-
-
-void analyzeFor(Node* node, int& nErrors, int& nWarnings)
-{
-
-}
-
-
-void analyzeCompound(Node* node, int& nErrors, int& nWarnings)
-{
-
-}
-
-
-void analyzeReturn(Node* node, int& nErrors, int& nWarnings)
-{
-
-}
-
-
-void analyzeBreak(Node* node, int& nErrors, int& nWarnings)
-{
-
-}
-
-
-void analyzeRange(Node* node, int& nErrors, int& nWarnings)
-{
-
 }
 
 //function analyzes expression nodes. 
