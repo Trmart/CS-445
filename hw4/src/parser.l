@@ -16,13 +16,13 @@ DESC: This file is the lexer for the compiler. It will take in a file and parse 
 #include "scanType.h"  
 #include "AST.h"  
 #include "parser.tab.h"  
+#include "TokenFormatter.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
 #include <iostream>
-#include "TokenFormatter.h"
 
 int line = 1;
 int numErrors;    

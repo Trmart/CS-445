@@ -7,7 +7,7 @@ Dr. Wilder
 DUE: 3/12/2023
 
 FILE: TokenFormatter.c
-DESC: Definesfunctions from TokenFormatter.h for formatting strings and chars.
+DESC: Defines functions from TokenFormatter.h for formatting strings and chars.
 */
 
 #include "TokenFormatter.h"

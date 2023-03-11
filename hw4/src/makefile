@@ -12,13 +12,13 @@
 BIN = parser
 CC = g++ -std=c++17
 
-FLES = AST.c symbolTable.cpp semantic.cpp IOinit.cpp TokenFormatter.c
+FILES = AST.c symbolTable.cpp semantic.cpp IOinit.cpp TokenFormatter.c 
 SRCS = $(BIN).y  $(BIN).l
-HDRS = scanType.h AST.h symbolTable.h semantic.h IOinit.h TokenFormatter.h
+HDRS = scanType.h AST.h symbolTable.h semantic.h IOinit.h TokenFormatter.h 
 OBJS = lex.yy.o $(BIN).tab.o 
 
 $(BIN) : $(OBJS)
-	$(CC) $(OBJS) $(FLES) -o c-
+	$(CC) $(OBJS) $(FILES) -o c-
 
 lex.yy.c : $(BIN).l $(BIN).tab.h $(HDRS)
 	flex $(BIN).l 
@@ -30,4 +30,4 @@ clean :
 	rm -f *~ $(OBJS) $(BIN) lex.yy.c $(BIN).tab.h $(BIN).tab.c $(BIN).output c-
 
 tar:
-	tar -cvf $(BIN).tar $(HDRS) $(SRCS) $(FLES) makefile
+	tar -cvf hw4.tar $(HDRS) $(SRCS) $(FILES) makefile

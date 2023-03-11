@@ -61,8 +61,9 @@ void yyerror(const char *msg)
 %token <tokenData> QUESTION LESS GREAT PLUS EQUAL MULT DIV MOD COMMA OBRACKET CBRACKET 
 %token <tokenData> MINUS COLON SEMICOLON OPAREN CPAREN 
 
-%type <node> declarationList declaration funDeclaration varDeclaration scopedtypespecificer vardeclarationList
 %type <type> typespec
+
+%type <node> declarationList declaration funDeclaration varDeclaration scopedtypespecificer vardeclarationList
 %type <node> varDeclarationInit varDeclarationId  parameters parameterList parameterTypeList
 %type <node> parameterIdList parameterId statement matched unmatched statementEnd expstatement compoundstatement 
 %type <node> localdeclaration statementList iterRange returnstatement breakstatement exp asgnop
@@ -70,8 +71,7 @@ void yyerror(const char *msg)
 %type <node> unaryExp unaryop factor mutable immutable call args argList constant
 
 %%
-// note program isn't declared, its a bison cmd. 
-// Pass root as treenode, declarationlist to be read last.
+
 program       : declarationList                                  { ROOT = $1;}
               ;
 
@@ -89,10 +89,11 @@ varDeclaration
               ;
 
 scopedtypespecificer 
-              : STATIC typespec vardeclarationList SEMICOLON   { $$ = $3; 
-                                                                   $$->isStatic = true; 
-                                                                   setType($$, $2);
-                                                                  }
+              : STATIC typespec vardeclarationList SEMICOLON    {   
+                                                                  $$ = $3; 
+                                                                  $$->isStatic = true; 
+                                                                  setType($$, $2);
+                                                                }
 
               | typespec vardeclarationList SEMICOLON          { $$ = $2; setType($$, $1);}
               ;
