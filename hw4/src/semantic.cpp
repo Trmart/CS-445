@@ -1443,7 +1443,7 @@ void analyzeCall(TreeNode* node, int& nErrors, int& nWarnings)
 
             if(funcFound->child[0] != nullptr && node->child[0] != nullptr)
             {
-                parameterErrors(funcFound, node, funcFound->child[0], node->child[0], paramCount);
+                printParmErrors(funcFound, node, funcFound->child[0], node->child[0], paramCount);
             }
 
             else if(funcFound->child[0] == nullptr && node->child[0] != nullptr)
@@ -1460,62 +1460,79 @@ void analyzeCall(TreeNode* node, int& nErrors, int& nWarnings)
 }
 
 
-void getExpTypes(const char* strng, bool isBinary, bool &unaryErrors, ExpType &left, ExpType &right, ExpType &rightT){
+void getExpTypes(const char* strng, bool isBinary, bool &unaryErrors, ExpType &left, ExpType &right, ExpType &rightT)
+{
 
     std::string unaryOps[6] = {"not", "*", "?", "-", "--", "++"};
 
     std::string binaryOps[18] = {"+", "-", "*", "/", "%", "+=", "-=", "*=", "/=", ">", "<", "!<", "!>", "==", "!=", "=", "and", "or"};
+    
     std::string op(strng);
+    
     unaryErrors = false;
 
-    if(!isBinary){
+    if(!isBinary)
+    {
 
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < 6; i++)
+        {
 
-            if(op == unaryOps[i]){
+            if(op == unaryOps[i])
+            {
 
-                if(i == 0){
+                if(i == 0)
+                {
                     left = right = rightT = Boolean;
                 }
 
-                if(i == 1){
+                if(i == 1)
+                {
                     left = right = UndefinedType;
                     rightT = Integer;
                 }
 
-                if(i >= 2){
+                if(i >= 2)
+                {
                     left = right = rightT = Integer;
                 }
             }
         }
     }
-    else{
+    else
+    {
 
-        for(int i = 0; i < 18; i++){
+        for(int i = 0; i < 18; i++)
+        {
 
-            if(op == binaryOps[i]){
+            if(op == binaryOps[i])
+            {
 
-                if(i >= 0 && i <= 8){
+                if(i >= 0 && i <= 8)
+                {
                     left = right = rightT = Integer;
                     unaryErrors = true;
                 }
   
-                if(i >= 9 && i <= 12){
+                if(i >= 9 && i <= 12)
+                {
                     left = right = CharInt; 
                     rightT = Boolean;
                 }
 
-                if(i >= 13 && i <=14){
+                if(i >= 13 && i <=14)
+                {
                     left = right = UndefinedType;
                     rightT = Boolean;
                 }
 
-                if(i == 15){
+                if(i == 15)
+                {
                     left = right = UndefinedType;
                     rightT = Boolean;
                 }
 
-                if(i >= 16){
+                if(i >= 16)
+                {
                     left = right = rightT = Boolean;
                     unaryErrors = true;
                 }
@@ -1850,8 +1867,8 @@ void analyzeNestedAssign(TreeNode* rightChild)
     }
 }
  
-//functionNode, node, functionNodeParm,nodeParm,parmcount
-void parameterErrors(TreeNode* functionNode, TreeNode* node, TreeNode* functionNodeParm, TreeNode* nodeParm, int numParms)
+
+void printParmErrors(TreeNode* functionNode, TreeNode* node, TreeNode* functionNodeParm, TreeNode* nodeParm, int numParms)
 {
     
 
@@ -1900,7 +1917,7 @@ void parameterErrors(TreeNode* functionNode, TreeNode* node, TreeNode* functionN
 
     if(functionNodeParm->sibling != nullptr && nodeParm->sibling != nullptr)
     {
-        parameterErrors(functionNode, node, functionNodeParm->sibling, nodeParm->sibling, numParms);
+        printParmErrors(functionNode, node, functionNodeParm->sibling, nodeParm->sibling, numParms);
     }
 
 }

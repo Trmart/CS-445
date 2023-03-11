@@ -56,11 +56,11 @@ void getReturnType(const char* string, bool isBinary, ExpType &childReturnType);
 //printers
 void printError(int errCode, int linenum, int explaineno, char* s1, char* s2, char* s3, int i);
 void printArrayErrors(TreeNode* node);
+void printParmErrors(TreeNode* functionNode, TreeNode* node, TreeNode* functionNodeParm, TreeNode* nodeParm, int numParms);
 
 
 //helper functions
 void initializeWarningMessages(std::string, void*);
 char* ConvertExpToString(ExpType type);
-void parameterErrors(TreeNode* functionNode, TreeNode* node, TreeNode* functionNodeParm, TreeNode* nodeParm, int numParms);
 
 #endif
