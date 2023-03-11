@@ -143,18 +143,18 @@ typedef struct treeNode
 
 } TreeNode;
 
+
 //Node creation functions
-TreeNode* addSibling(TreeNode* node, TreeNode *sibling);
+TreeNode* addSibling(TreeNode* node, TreeNode* sibling);
 TreeNode* newDeclNode(DeclKind kind, TokenData* token);
 TreeNode* newStmtNode(StmtKind kind, TokenData* token);
 TreeNode* newExpNode(ExpKind kind, TokenData* token); 
-TreeNode *newDeclNodeIO(DeclKind kind);
+TreeNode* newDeclNodeIO(DeclKind kind);
 
 //print functions
-void printAST(TreeNode *ast, int numsiblings, bool isShowingTypes);
+void printAST(TreeNode* ast, int numsiblings, bool isShowingTypes);
 void printTabs(int numTabs);
 void printExp(ExpType type);
-
 void printStmtNode(TreeNode* tree, bool isShowingTypes);
 void printDeclNode(TreeNode* tree, bool isShowingTypes);
 void printExpNode(TreeNode* tree, bool isShowingTypes);
@@ -166,6 +166,5 @@ void printOpNode(TreeNode* tree, bool isShowingTypes);
 void setType(TreeNode* node, ExpType type);
 
 
-
-#endif
+#endif /* _AST_H_ */
 

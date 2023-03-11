@@ -59,7 +59,7 @@ SymbolTable getSymbolTable()
 }
 
 //function prints error messages. 
-void PrintErrorss()
+void printErrorBuffer()
 {
     for(int i = 0; i < errBuffer.size(); i++)
     {
@@ -137,7 +137,7 @@ void semanticAnalysis(TreeNode* node, int& errors, int& warnings)
         }
     }
 
-    PrintErrorss();
+    printErrorBuffer();
     
     errors = nErrors;
     
