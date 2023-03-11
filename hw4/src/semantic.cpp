@@ -20,7 +20,8 @@ DESC: Class functions definitions to detect and hold c- compiler flags
 
 using namespace std;
 
-struct symErrors {
+struct symErrors 
+{
     int lineno;
     char* errorMsg;
 };
@@ -45,7 +46,7 @@ int functionLine;
 
 char *functionName;
 
-TreeNode *curFunc = NULL;
+TreeNode* curFunc = nullptr;
 
 ExpType functionReturnType;
 ExpType actualReturnType;

@@ -50,8 +50,8 @@ void yyerror(const char *msg)
 %union 
 {
   ExpType type;           
-  TokenData *tokenData; 
-  TreeNode *tree;        
+  TokenData* tokenData; 
+  TreeNode* node;        
 }
 
 %token <tokenData> ID NUMCONST CHARCONST STRINGCONST 
@@ -61,13 +61,13 @@ void yyerror(const char *msg)
 %token <tokenData> QUESTION LESS GREAT PLUS EQUAL MULT DIV MOD COMMA OBRACKET CBRACKET 
 %token <tokenData> MINUS COLON SEMICOLON OPAREN CPAREN 
 
-%type <tree> declarationList declaration funDeclaration varDeclaration scopedtypespecificer vardeclarationList
+%type <node> declarationList declaration funDeclaration varDeclaration scopedtypespecificer vardeclarationList
 %type <type> typespec
-%type <tree> varDeclarationInit varDeclarationId  parameters parameterList parameterTypeList
-%type <tree> parameterIdList parameterId statement matched unmatched statementEnd expstatement compoundstatement 
-%type <tree> localdeclaration statementList iterRange returnstatement breakstatement exp asgnop
-%type <tree> simpleExp andExp unaryRelExp relExp operator sumExp sumop mulExp mulop
-%type <tree> unaryExp unaryop factor mutable immutable call args argList constant
+%type <node> varDeclarationInit varDeclarationId  parameters parameterList parameterTypeList
+%type <node> parameterIdList parameterId statement matched unmatched statementEnd expstatement compoundstatement 
+%type <node> localdeclaration statementList iterRange returnstatement breakstatement exp asgnop
+%type <node> simpleExp andExp unaryRelExp relExp operator sumExp sumop mulExp mulop
+%type <node> unaryExp unaryop factor mutable immutable call args argList constant
 
 %%
 // note program isn't declared, its a bison cmd. 
