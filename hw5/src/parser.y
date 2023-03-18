@@ -4,9 +4,9 @@
 Taylor Martin
 CS-445 Compiler Design
 University Of Idaho
-HW4
+HW5
 Dr. Wilder
-DUE: 3/12/2023
+DUE: 4/2/2023
 
 FILE: parser.y
 DESC: Holds the grammar for the c- language. 
@@ -34,16 +34,16 @@ extern int numErrors;
 int numWarnings;       
 bool isPrintingTreeTypes = false;
 
-static TreeNode *ROOT;
+static TreeNode* ROOT;
 
 extern SymbolTable symbolTable;
 
 #define YYERROR_VERBOSE
-void yyerror(const char *msg)
-{
-  std::cout << "ERROR(" << line << "): " << msg << std::endl;
-  numErrors++;
-}
+// void yyerror(const char *msg)
+// {
+//   std::cout << "ERROR(" << line << "): " << msg << std::endl;
+//   numErrors++;
+// }
 
 %}
 
@@ -83,10 +83,13 @@ declarationList
 
 declaration   : funDeclaration                                   { $$ = $1; }
               | varDeclaration                                   { $$ = $1; }
+              | error SEMICOLON                                  { $$ = NULL; }
               ;
 
 varDeclaration
-              : typespec vardeclarationList SEMICOLON         { $$ = $2; setType($$, $1); }
+              : typespec vardeclarationList SEMICOLON         { $$ = $2; setType($$, $1); yyerrok;}
+              | error vardeclarationList SEMICOLON            { $$ = NULL; yyerrok;}
+              | typespec error SEMICOLON                      { $$ = NULL; yyerrok; yyerok;}
               ;
 
 scopedtypespecificer 
@@ -94,19 +97,23 @@ scopedtypespecificer
                                                                   $$ = $3; 
                                                                   $$->isStatic = true; 
                                                                   setType($$, $2);
+                                                                  yyerrok;
                                                                 }
 
-              | typespec vardeclarationList SEMICOLON          { $$ = $2; setType($$, $1);}
+              | typespec vardeclarationList SEMICOLON          { $$ = $2; setType($$, $1); yyerrok;}
               ;
 
 vardeclarationList   
-              : vardeclarationList COMMA varDeclarationInit      { $$ = addSibling($1, $3);}
+              : vardeclarationList COMMA varDeclarationInit      { $$ = addSibling($1, $3); yyerrok;}
+              | vardeclarationList COMMA error                  { $$ = NULL;}
               | varDeclarationInit                               { $$ = $1; }
+              | error                                            { $$ = NULL;}
               ;
 
 varDeclarationInit   
               : varDeclarationId                                 { $$ = $1; }
               | varDeclarationId COLON simpleExp                 { $$ = $1; $1->child[0] = $3;}
+              | error COLON simpleExp                            { $$ = NULL; yyerrok;}
               ;
 
 varDeclarationId     
@@ -120,6 +127,8 @@ varDeclarationId
                                                                    $$->thisTokenData = $1; 
                                                                    $$->expType = UndefinedType;
                                                                  }
+              | ID OBRACKET error                              { $$ = NULL;}
+              | error CBRACKET                                  { $$ = NULL; yyerrok;}
               ;
 //make sure to add typespecifiers for the parameters/etc!
 typespec    : INT                                             { $$ = Integer; }
@@ -144,6 +153,10 @@ funDeclaration
                                                                    $$->child[0] = $3;
                                                                    $$->child[1] = $5;
                                                                  }
+              | typespec error                                   { $$ = NULL;}
+              | typespec ID OPAREN error                         { $$ = NULL;}
+              | ID OPAREN error                                  { $$ = NULL;}
+              | ID OPAREN parameters CPAREN error                { $$ = NULL;}
               ;
 
 parameters    : parameterList                                    { $$ = $1; }
@@ -158,11 +171,14 @@ parameterList
 
 parameterTypeList 
               : typespec parameterIdList                      { $$ = $2; setType($$, $1); }
+              | typespec error                                { $$ = NULL;}
               ;
 
 parameterIdList   
               : parameterIdList COMMA parameterId                { $$ = addSibling($1, $3); }
               | parameterId                                      { $$ = $1; }
+              |parameterIdList COMMA error                       { $$ = NULL;}
+              | error                                            { $$ = NULL;}
               ;
 
 parameterId   : ID                                               { $$ = newDeclNode(ParamK, $1);
@@ -205,6 +221,13 @@ matched       : statementEnd                                     { $$ = $1; }
                                                                    $$->child[2] = $6;
                                                                    
                                                                  }                                                    
+            | IF error                                          { $$ = NULL;}
+            | IF error ELSE matched                             { $$ = NULL; yyerrok;}
+            | IF error THEN matched ELSE matched                { $$ = NULL; yyerrok;}
+            | WHILE error DO matched                            { $$ = NULL; yyerrok;}
+            | WHILE error                                       { $$ = NULL;}
+            | FOR ID ASGN error DO matched                      { $$ = NULL; yyerrok;}
+            | FOR error                                         { $$ = NULL; }
               ;
 
 unmatched     : IF simpleExp THEN matched ELSE unmatched         { $$ = newStmtNode(IfK, $1); 
@@ -229,11 +252,14 @@ unmatched     : IF simpleExp THEN matched ELSE unmatched         { $$ = newStmtN
                                                                    $$->child[2] = $6;
                                                                    
                                                                  }
+              | IF error THEN statement                          { $$ = NULL; yyerrok;}
+              | IF error THEN matched ELSE unmatched             { $$ = NULL; yyerrok;}
 
               ;
 
 expstatement  : exp SEMICOLON                                    { $$ = $1; }
               | SEMICOLON                                        { $$ = NULL; }
+              | error SEMICOLON                                  { $$ = NULL; yyerrok;}
               ;
 
 statementEnd  : expstatement                                     { $$ = $1; }
@@ -247,6 +273,7 @@ compoundstatement
               : BEGN localdeclaration statementList FINISH       { $$ = newStmtNode(CompoundK, $1);
                                                                    $$->child[0] = $2;
                                                                    $$->child[1] = $3;
+                                                                   yyerrok;
                                                                  }
               ;
 
@@ -268,7 +295,9 @@ iterRange     : simpleExp TO simpleExp                           { $$ = newStmtN
                                                                    $$->child[1] = $3;
                                                                    $$->child[2] = $5;
                                                                  }
-              ;
+              | simpleExp TO error                              { $$ = NULL;}
+              | error BY error                                  { $$ = NULL; yyerrok;}
+              | simpleExp TO simpleExp BY error                 { $$ = NULL;}
 
 returnstatement    
               : RETURN SEMICOLON                                 { $$ = newStmtNode(ReturnK, $1);
@@ -278,7 +307,9 @@ returnstatement
                                                                    $$->child[0] = $2;
                                                                    $$->attr.name = $1->tokenstr;
                                                                    $$->expType = $2->expType;
+                                                                  yyerrok;
                                                                  }
+              | RETURN error SEMICOLON                           { $$ = NULL; yyerrok;}
               ;
 
 breakstatement    
@@ -326,6 +357,7 @@ exp           : mutable asgnop exp                               { $$ = $2;
                                                                    $$->attr.name = $2->tokenstr;
                                                                    $$->expType = Integer;
                                                                  }
+              | error asgnop exp                                 { $$ = NULL; yyerrok;}
 
               ;
 
@@ -577,6 +609,8 @@ int main(int argc, char *argv[])
     std::cout << "Number of errors: " << numErrors << std::endl;
     exit(1);
   }
+
+  initErrorProcessing(); 
 
   yyparse();
 
