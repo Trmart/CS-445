@@ -8,7 +8,7 @@ HW5
 Dr. Wilder
 DUE: 4/2/2023
 
-FILE: parer.l
+FILE: parser.l
 DESC: This file is the lexer for the compiler. It will take in a file and parse it for tokens. 
       It will then return the tokens to the parser.
 */
