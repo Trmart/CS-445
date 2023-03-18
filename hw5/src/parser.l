@@ -25,7 +25,8 @@ DESC: This file is the lexer for the compiler. It will take in a file and parse 
 #include <iostream>
 
 int line = 1;
-int numErrors;    
+int numErrors;
+extern int numWarnings;  
 int tokenLength;
 int i;
 
@@ -103,6 +104,7 @@ static int setValue(int lineno, int tokenClass,  char *svalue)
                             else if(svalue[1] != 92)
                             {
                                 std::cout << "WARNING(" << line << "): character is " << (tokenLength-2) << " characters long and not a single character: \'" << svalue << "\'. The first char will be used." << std::endl;
+                                numWarnings++;
                                 yylval.tokenData->cvalue = svalue[1];
                             }
                         }
@@ -254,7 +256,7 @@ static int setValue(int lineno, int tokenClass,  char *svalue)
 "##".*
 \n                                  {line++;}
 
+\'\'                                {std::cout << "ERROR(" << line << "): Empty character ''. Characters ignored." << std::endl; numErrors++;}
 .                                   {std::cout << "ERROR(" << line << "): Invalid or misplaced input character: '" << yytext[0] << "'. Character Ignored." << std::endl; numErrors++;}
-
 
 %%

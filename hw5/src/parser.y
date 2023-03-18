@@ -16,6 +16,7 @@ DESC: Holds the grammar for the c- language.
 #include "AST.h"
 #include "semantic.h"
 #include "IOinit.h"
+#include "yyerror.h"
 
 #include <stdio.h>
 #include <stdlib.h>
