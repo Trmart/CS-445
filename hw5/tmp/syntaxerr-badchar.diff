@@ -1,0 +1,33 @@
+2,33d1
+< ERROR(2): Syntax error, unexpected character constant 'x', expecting "bool" or "char" or "int" or identifier.
+< ERROR(4): Invalid or misplaced input character: '''. Character Ignored.
+< ERROR(4): Syntax error, unexpected "<=", expecting '('.
+< ERROR(5): Invalid or misplaced input character: '$'. Character Ignored.
+< ERROR(5): Invalid or misplaced input character: '!'. Character Ignored.
+< ERROR(5): Invalid or misplaced input character: '#'. Character Ignored.
+< ERROR(5): Invalid or misplaced input character: '.'. Character Ignored.
+< ERROR(5): Invalid or misplaced input character: '@'. Character Ignored.
+< ERROR(5): Invalid or misplaced input character: '\'. Character Ignored.
+< ERROR(5): Invalid or misplaced input character: '^'. Character Ignored.
+< ERROR(5): Invalid or misplaced input character: '_'. Character Ignored.
+< ERROR(5): Invalid or misplaced input character: '`'. Character Ignored.
+< ERROR(5): Invalid or misplaced input character: '~'. Character Ignored.
+< ERROR(5): Syntax error, unexpected '%'.
+< ERROR(5): Syntax error, unexpected "begin", expecting ',' or ';'.
+< ERROR(5): Syntax error, unexpected "or", expecting ',' or ';'.
+< ERROR(6): Invalid or misplaced input character: '$'. Character Ignored.
+< ERROR(6): Invalid or misplaced input character: '#'. Character Ignored.
+< ERROR(6): Invalid or misplaced input character: '.'. Character Ignored.
+< ERROR(6): Invalid or misplaced input character: '@'. Character Ignored.
+< ERROR(6): Invalid or misplaced input character: '\'. Character Ignored.
+< ERROR(6): Invalid or misplaced input character: '^'. Character Ignored.
+< ERROR(6): Invalid or misplaced input character: '_'. Character Ignored.
+< ERROR(6): Invalid or misplaced input character: '`'. Character Ignored.
+< ERROR(6): Invalid or misplaced input character: '~'. Character Ignored.
+< ERROR(6): Syntax error, unexpected '%'.
+< ERROR(7): Syntax error, unexpected character constant 'dogs  and  cats'.
+< FILE: syntaxerr-badchar.c-
+< Number of errors: 27
+< Number of warnings: 2
+< WARNING(3): character is 15 characters long and not a single character: ''dogs  and  cats''.  The first char will be used.
+< WARNING(7): character is 15 characters long and not a single character: ''dogs  and  cats''.  The first char will be used.

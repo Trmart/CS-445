@@ -1,0 +1,24 @@
+2,24d1
+< ERROR(10): Invalid or misplaced input character: '''. Character Ignored.
+< ERROR(10): Invalid or misplaced input character: '.'. Character Ignored.
+< ERROR(11): Invalid or misplaced input character: '''. Character Ignored.
+< ERROR(14): Invalid or misplaced input character: '''. Character Ignored.
+< ERROR(18): Invalid or misplaced input character: '''. Character Ignored.
+< ERROR(25): Invalid or misplaced input character: '''. Character Ignored.
+< ERROR(2): Syntax error, unexpected identifier "be", expecting '('.
+< ERROR(2): Syntax error, unexpected identifier "is", expecting ',' or ';'.
+< ERROR(31): Invalid or misplaced input character: '''. Character Ignored.
+< ERROR(34): Invalid or misplaced input character: '!'. Character Ignored.
+< ERROR(34): Invalid or misplaced input character: '.'. Character Ignored.
+< ERROR(35): Invalid or misplaced input character: '!'. Character Ignored.
+< ERROR(36): Invalid or misplaced input character: '''. Character Ignored.
+< ERROR(36): Invalid or misplaced input character: '.'. Character Ignored.
+< ERROR(3): Invalid or misplaced input character: '''. Character Ignored.
+< ERROR(3): Syntax error, unexpected identifier "tis", expecting ',' or ';'.
+< ERROR(5): Syntax error, unexpected "..", expecting ',' or ';'.
+< ERROR(6): Syntax error, unexpected "step", expecting ',' or ';'.
+< ERROR(9): Invalid or misplaced input character: '''. Character Ignored.
+< FILE: syntaxerr-hamlet.c-
+< Number of errors: 19
+< Number of warnings: 1
+< WARNING(17): character is 22 characters long and not a single character: ''s wrong, the proud man''.  The first char will be used.

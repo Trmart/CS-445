@@ -39,11 +39,6 @@ static TreeNode* ROOT;
 extern SymbolTable symbolTable;
 
 #define YYERROR_VERBOSE
-// void yyerror(const char *msg)
-// {
-//   std::cout << "ERROR(" << line << "): " << msg << std::endl;
-//   numErrors++;
-// }
 
 %}
 
@@ -89,7 +84,7 @@ declaration   : funDeclaration                                   { $$ = $1; }
 varDeclaration
               : typespec vardeclarationList SEMICOLON         { $$ = $2; setType($$, $1); yyerrok;}
               | error vardeclarationList SEMICOLON            { $$ = NULL; yyerrok;}
-              | typespec error SEMICOLON                      { $$ = NULL; yyerrok; yyerok;}
+              | typespec error SEMICOLON                      { $$ = NULL; yyerrok; yyerrok;}
               ;
 
 scopedtypespecificer 
@@ -622,13 +617,15 @@ int main(int argc, char *argv[])
 
   initErrorProcessing(); 
 
+  std::cout << "====================================" << std::endl;
+
   yyparse();
 
-  if(isPrintingAST && !isPrintingTreeTypes)
+  if(isPrintingAST && !isPrintingTreeTypes && numErrors == 0 && ROOT != NULL)
   {
     printAST(ROOT, 0, isPrintingTreeTypes);
   }
-  else if(isPrintingAST && isPrintingTreeTypes)
+  else if(isPrintingAST && isPrintingTreeTypes && numErrors == 0 && ROOT != NULL)
   {
     initializeIO();
     
@@ -640,6 +637,7 @@ int main(int argc, char *argv[])
     }
   }
 
+  std::cout << "FILE: " << fileName.substr(fileName.find_last_of("/\\") + 1) << std::endl;
   std::cout << "Number of warnings: " << numWarnings << std::endl;
   std::cout << "Number of errors: " << numErrors << std::endl;
 

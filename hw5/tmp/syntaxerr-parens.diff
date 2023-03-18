@@ -1,0 +1,7 @@
+2,7d1
+< ERROR(5): Syntax error, unexpected ')', expecting ';'.
+< ERROR(6): Syntax error, unexpected ';', expecting ')'.
+< ERROR(7): Syntax error, unexpected ';', expecting ')'.
+< FILE: syntaxerr-parens.c-
+< Number of errors: 3
+< Number of warnings: 0

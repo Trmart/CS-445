@@ -1,0 +1,12 @@
+====================================
+ERROR(11): Syntax error, unexpected '+'.
+ERROR(15): Syntax error, unexpected ';'.
+ERROR(16): Syntax error, unexpected ';'.
+ERROR(18): Syntax error, unexpected ';'.
+ERROR(21): Syntax error, unexpected '+'.
+ERROR(6): Syntax error, unexpected numeric constant "222", expecting ';'.
+ERROR(8): Syntax error, unexpected '+'.
+ERROR(9): Syntax error, unexpected ';'.
+FILE: syntaxerr-summul.c-
+Number of errors: 8
+Number of warnings: 0

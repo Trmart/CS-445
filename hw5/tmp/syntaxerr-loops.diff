@@ -1,0 +1,8 @@
+2,8d1
+< ERROR(11): Syntax error, unexpected ':', expecting "do".
+< ERROR(12): Syntax error, unexpected ':', expecting "do".
+< ERROR(16): Syntax error, unexpected ':', expecting "do".
+< ERROR(9): Syntax error, unexpected identifier "x", expecting "<=".
+< FILE: syntaxerr-loops.c-
+< Number of errors: 4
+< Number of warnings: 0

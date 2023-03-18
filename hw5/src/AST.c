@@ -27,11 +27,20 @@ int numTabs = 0;
 //adds sibling to node
 TreeNode* addSibling(TreeNode* node, TreeNode* sibling)
 {
-    if (node!=NULL) 
+
+    if(node == NULL)
+    {
+        return sibling;   
+    }
+    if(sibling == NULL)
+    {
+        return node;
+    }
+    if (node!=NULL && sibling!=NULL) 
     {
         TreeNode *tmp = node;
         
-        while (tmp->sibling != NULL)
+        while (tmp != NULL && tmp->sibling != NULL)
         {
             tmp = tmp->sibling;
         } 
@@ -42,15 +51,6 @@ TreeNode* addSibling(TreeNode* node, TreeNode* sibling)
     }
 
     return sibling;
-
-    if(node == NULL)
-    {
-        return sibling;   
-    }
-    else if(sibling == NULL)
-    {
-        return node;
-    }
 }
 
 // Function Passes the type attributes down the sibling list.
