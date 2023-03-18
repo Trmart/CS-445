@@ -320,23 +320,23 @@ breakstatement
 //adding in lessequals, etc. 
 asgnop        : ASGN                                             { $$ = newExpNode(AssignK, $1);
                                                                    $$->attr.name = $1->tokenstr;
-                                                                   //$$->expType = Integer;
+                                                                   
                                                                  }
               | ADDASGN                                          { $$ = newExpNode(AssignK, $1);
                                                                    $$->attr.name = $1->tokenstr;
-                                                                   //$$->expType = Integer;
+                                                                   
                                                                  }
               | SUBASS                                           { $$ = newExpNode(AssignK, $1);
                                                                    $$->attr.name = $1->tokenstr;
-                                                                   //$$->expType = Integer;
+                                                                   
                                                                  }
               | MULASS                                           { $$ = newExpNode(AssignK, $1);
                                                                    $$->attr.name = $1->tokenstr;
-                                                                   //$$->expType = Integer;
+                                                                   
                                                                  }
               | DIVASS                                           { $$ = newExpNode(AssignK, $1);
                                                                    $$->attr.name = $1->tokenstr;
-                                                                   //$$->expType = Integer;
+                                                                   
                                                                  }
               ;
 
@@ -358,7 +358,9 @@ exp           : mutable asgnop exp                               { $$ = $2;
                                                                    $$->expType = Integer;
                                                                  }
               | error asgnop exp                                 { $$ = NULL; yyerrok;}
-
+              | mutable asgnop error                             { $$ = NULL;}
+              | error INC                                        { $$ = NULL; yyerrok;}
+              | error DEC                                        { $$ = NULL; yyerrok;}
               ;
 
 simpleExp     : simpleExp OR andExp                              { $$ = newExpNode(OpK, $2);
@@ -368,7 +370,7 @@ simpleExp     : simpleExp OR andExp                              { $$ = newExpNo
                                                                    $$->expType = Boolean;
                                                                  }
               | andExp                                           { $$ = $1; }
-             
+              | simpleExp OR error                               { $$ = NULL;}
               ;
 
 andExp        : andExp AND unaryRelExp                           { $$ = newExpNode(OpK, $2);
@@ -378,6 +380,7 @@ andExp        : andExp AND unaryRelExp                           { $$ = newExpNo
                                                                    $$->expType = Boolean;
                                                                  }
               | unaryRelExp                                      { $$ = $1; }
+              | andExp AND error                                 { $$ = NULL;}
               ;
 
 relExp        : sumExp operator sumExp                              { $$ = $2; 
@@ -393,6 +396,7 @@ unaryRelExp   : NOT unaryRelExp                                  { $$ = newExpNo
                                                                    $$->expType = Boolean;
                                                                  }
               | relExp                                           { $$ = $1; }
+              | NOT error                                       { $$ = NULL;}
               ;
 //add in my basic operators. 
 operator      : GREAT                                            { $$ = newExpNode(OpK, $1);
@@ -428,6 +432,7 @@ sumExp        : sumExp sumop mulExp                              { $$ = $2;
                                                                    $$->child[1] = $3;
                                                                  }
               | mulExp                                           { $$ = $1; }
+              | sumExp sumop error                               { $$ = NULL;}
               ;
 
 sumop         : PLUS                                             { $$ = newExpNode(OpK, $1);
@@ -445,6 +450,7 @@ mulExp        : mulExp mulop unaryExp                            { $$ = $2;
                                                                    $$->child[1] = $3;
                                                                  }
               | unaryExp                                         { $$ = $1; }
+              | mulExp mulop error                               { $$ = NULL;}
               ;
 
 mulop         : MULT                                             { $$ = newExpNode(OpK, $1);
@@ -465,6 +471,7 @@ unaryExp      : unaryop unaryExp                                 { $$ = $1;
                                                                    $$->child[0] = $2;
                                                                  }
               | factor                                           { $$ = $1; }
+              | unaryop error                                    { $$ = NULL;}
               ;
 
 unaryop       : MINUS                                            { $$ = newExpNode(OpK, $1);
@@ -493,9 +500,10 @@ mutable       : ID                                               { $$ = newExpNo
                                                                  }
               ;
 
-immutable     : OPAREN exp CPAREN                                { $$ = $2; }
+immutable     : OPAREN exp CPAREN                                { $$ = $2; yyerrok; }
               | call                                             { $$ = $1; }
               | constant                                         { $$ = $1; }
+              | OPAREN error                                     { $$ = NULL;}
               ;
 
 factor        : mutable                                          { $$ = $1; }
@@ -507,14 +515,16 @@ call          : ID OPAREN args CPAREN                            { $$ = newExpNo
                                                                    $$->child[0] = $3;
                                                                    $$->attr.name = $1->tokenstr;
                                                                  }
+              | error OPAREN                                   { $$ = NULL; yyerrok; }
               ;
 
 args          : argList                                          { $$ = $1; }
               | %empty                                           { $$ = NULL; }
               ;
 
-argList       : argList COMMA exp                                { $$ = addSibling($1, $3); }
+argList       : argList COMMA exp                                { $$ = addSibling($1, $3); yyerrok; }
               | exp                                              { $$ = $1; }
+              | argList COMMA error                              { $$ = NULL;}
 
 constant      : NUMCONST                                         { $$ = newExpNode(ConstantK, $1);
                                                                    $$->attr.value = $1->nvalue; 
