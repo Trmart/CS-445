@@ -256,7 +256,6 @@ static int setValue(int lineno, int tokenClass,  char *svalue)
 "##".*
 \n                                  {line++;}
 
-\'\'                                {std::cout << "ERROR(" << line << "): Empty character ''. Characters ignored." << std::endl; numErrors++;}
 .                                   {std::cout << "ERROR(" << line << "): Invalid or misplaced input character: '" << yytext[0] << "'. Character Ignored." << std::endl; numErrors++;}
 
 %%

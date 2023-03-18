@@ -10,7 +10,7 @@
 # DESC: makefile for the compiler
 
 BIN = parser
-CC = g++ -std=c++17
+CC = g++ -std=c++17 -g
 
 FILES = AST.c symbolTable.cpp semantic.cpp IOinit.cpp TokenFormatter.c yyerror.cpp
 SRCS = $(BIN).y  $(BIN).l

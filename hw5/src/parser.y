@@ -78,13 +78,13 @@ declarationList
 
 declaration   : funDeclaration                                   { $$ = $1; }
               | varDeclaration                                   { $$ = $1; }
-              | error SEMICOLON                                  { $$ = NULL; }
+              | error                                            { $$ = NULL; }
               ;
 
 varDeclaration
               : typespec vardeclarationList SEMICOLON         { $$ = $2; setType($$, $1); yyerrok;}
               | error vardeclarationList SEMICOLON            { $$ = NULL; yyerrok;}
-              | typespec error SEMICOLON                      { $$ = NULL; yyerrok; yyerrok;}
+              | typespec error SEMICOLON                      { $$ = NULL; yyerrok;}
               ;
 
 scopedtypespecificer 
@@ -162,6 +162,8 @@ parameters    : parameterList                                    { $$ = $1; }
 parameterList     
               : parameterList SEMICOLON parameterTypeList        { $$ = addSibling($1, $3); }
               | parameterTypeList                                { $$ = $1; }
+              | parameterList SEMICOLON error                    { $$ = NULL;}
+              | error                                            { $$ = NULL;}
               ;
 
 parameterTypeList 
@@ -302,7 +304,7 @@ returnstatement
                                                                    $$->child[0] = $2;
                                                                    $$->attr.name = $1->tokenstr;
                                                                    $$->expType = $2->expType;
-                                                                  yyerrok;
+                                                                   yyerrok;
                                                                  }
               | RETURN error SEMICOLON                           { $$ = NULL; yyerrok;}
               ;
