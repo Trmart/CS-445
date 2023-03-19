@@ -15,6 +15,7 @@ DESC: This file contains the error handling functions for the compiler.
 #ifndef _YYERROR_H_
 #define _YYERROR_H_
 
+
 // write a nice error message
 #define YYERROR_VERBOSE
 

@@ -125,7 +125,7 @@ varDeclarationId
               | ID OBRACKET error                              { $$ = NULL;}
               | error CBRACKET                                  { $$ = NULL; yyerrok;}
               ;
-//make sure to add typespecifiers for the parameters/etc!
+
 typespec    : INT                                             { $$ = Integer; }
               | CHAR                                             { $$ = Char; }
               | BOOL                                             { $$ = Boolean;}
@@ -190,7 +190,7 @@ parameterId   : ID                                               { $$ = newDeclN
 statement     : matched                                          { $$ = $1; }   
               | unmatched                                        { $$ = $1; }
               ;
-//Dangling else statement fix using matching/unmatching. 
+
 matched       : statementEnd                                     { $$ = $1; }
               | IF simpleExp THEN matched ELSE matched           { $$ = newStmtNode(IfK, $1); 
                                                                    $$->child[0] = $2;
@@ -314,7 +314,7 @@ breakstatement
                                                                    $$->attr.name = $1->tokenstr;
                                                                  }
               ;
-//adding in lessequals, etc. 
+
 asgnop        : ASGN                                             { $$ = newExpNode(AssignK, $1);
                                                                    $$->attr.name = $1->tokenstr;
                                                                    
@@ -395,7 +395,7 @@ unaryRelExp   : NOT unaryRelExp                                  { $$ = newExpNo
               | relExp                                           { $$ = $1; }
               | NOT error                                       { $$ = NULL;}
               ;
-//add in my basic operators. 
+
 operator      : GREAT                                            { $$ = newExpNode(OpK, $1);
                                                                    $$->attr.name = $1->tokenstr;
                                                                    $$->expType = Boolean;

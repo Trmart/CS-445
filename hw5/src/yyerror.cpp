@@ -12,12 +12,12 @@ DESC: This file contains the error handling functions for the compiler.
         Based on yyerror.cpp code from Dr. Wilder's CS445 Compiler Design course.
 */
 
+#include "yyerror.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <map>
 #include <string>
-#include "yyerror.h"
 
 // // // // // // // // // // // // // // // // // // // // 
 //
@@ -64,7 +64,7 @@ static int split(char *s, char *strs[], char breakchar)
         }
     }
     
-    strs[num] = nullptr;
+    strs[num] = NULL;
     
     return num;
 }
@@ -94,10 +94,9 @@ void initErrorProcessing()
     niceTokenNameMap["BOOL"] = (char *)"\"bool\"";
     niceTokenNameMap["BOOLCONST"] = (char *)"Boolean constant";
     niceTokenNameMap["BREAK"] = (char *)"\"break\"";
-    niceTokenNameMap["BY"] = (char *)"\"step\"";
+    niceTokenNameMap["BY"] = (char *)"\"by\"";
     niceTokenNameMap["CHAR"] = (char *)"\"char\"";
     niceTokenNameMap["CHARCONST"] = (char *)"character constant";
-    niceTokenNameMap["CHSIGN"] = (char *)"-";
     niceTokenNameMap["DEC"] = (char *)"\"--\"";
     niceTokenNameMap["DIVASS"] = (char *)"\"/=\"";
     niceTokenNameMap["DO"] = (char *)"\"do\"";
@@ -116,13 +115,28 @@ void initErrorProcessing()
     niceTokenNameMap["NUMCONST"] = (char *)"numeric constant";
     niceTokenNameMap["OR"] = (char *)"\"or\"";
     niceTokenNameMap["RETURN"] = (char *)"\"return\"";
-    niceTokenNameMap["SIZEOF"] = (char *)"\"*\"";
     niceTokenNameMap["STATIC"] = (char *)"\"static\"";
     niceTokenNameMap["STRINGCONST"] = (char *)"string constant";
     niceTokenNameMap["SUBASS"] = (char *)"\"-=\"";
     niceTokenNameMap["THEN"] = (char *)"\"then\"";
     niceTokenNameMap["TO"] = (char *)"\"..\"";
     niceTokenNameMap["WHILE"] = (char *)"\"while\"";
+    niceTokenNameMap["SEMICOLON"] = (char *)"\";\"";
+    niceTokenNameMap["COLON"] = (char *)"\":\"";
+    niceTokenNameMap["COMMA"] = (char *)"\",\"";
+    niceTokenNameMap["OPAREN"] = (char *)"\"(\"";
+    niceTokenNameMap["CPAREN"] = (char *)"\")\"";
+    niceTokenNameMap["OBRACKET"] = (char *)"\"[\"";
+    niceTokenNameMap["CBRACKET"] = (char *)"\"]\"";
+    niceTokenNameMap["MOD"] = (char *)"\"%\"";
+    niceTokenNameMap["LESS"] = (char *)"\"<\"";
+    niceTokenNameMap["GREATER"] = (char *)"\">\"";
+    niceTokenNameMap["EQUAL"] = (char *)"\"=\"";
+    niceTokenNameMap["PLUS"] = (char *)"\"+\"";
+    niceTokenNameMap["MINUS"] = (char *)"\"-\"";
+    niceTokenNameMap["MULT"] = (char *)"\"*\"";
+    niceTokenNameMap["DIV"] = (char *)"\"/\"";
+    niceTokenNameMap["QUESTION"] = (char *)"\"?\"";
     niceTokenNameMap["$end"] = (char *)"end of input";
 }
 
@@ -174,7 +188,9 @@ static void tinySort(char* base[], int num, int step, bool up)
             if (up ^ (strcmp(base[i], base[j])>0)) 
             {
                 char *tmp;
-                tmp = base[i]; base[i] = base[j]; base[j] = tmp;
+                tmp = base[i]; 
+                base[i] = base[j]; 
+                base[j] = tmp;
             }
         }
     }
