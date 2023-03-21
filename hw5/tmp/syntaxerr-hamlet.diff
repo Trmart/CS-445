@@ -2,7 +2,3 @@
 < ERROR(6): Syntax error, unexpected "step", expecting ',' or ';'.
 ---
 > ERROR(6): Syntax error, unexpected "by", expecting ',' or ';'.
-24c24
-< WARNING(17): character is 22 characters long and not a single character: ''s wrong, the proud man''.  The first char will be used.
----
-> WARNING(17): character is 22 characters long and not a single character: ''s wrong, the proud man''. The first char will be used.

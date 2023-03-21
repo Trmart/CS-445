@@ -7,7 +7,3 @@
 < Number of errors: 5
 ---
 > Number of errors: 4
-10c9
-< WARNING(3): character is 4 characters long and not a single character: ''dogs''.  The first char will be used.
----
-> WARNING(3): character is 4 characters long and not a single character: ''dogs''. The first char will be used.

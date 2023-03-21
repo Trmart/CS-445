@@ -1,6 +1,0 @@
-32,33c32,33
-< WARNING(3): character is 15 characters long and not a single character: ''dogs  and  cats''.  The first char will be used.
-< WARNING(7): character is 15 characters long and not a single character: ''dogs  and  cats''.  The first char will be used.
----
-> WARNING(3): character is 15 characters long and not a single character: ''dogs  and  cats''. The first char will be used.
-> WARNING(7): character is 15 characters long and not a single character: ''dogs  and  cats''. The first char will be used.

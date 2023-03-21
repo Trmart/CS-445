@@ -21,4 +21,4 @@ ERROR(9): Invalid or misplaced input character: '''. Character Ignored.
 FILE: syntaxerr-hamlet.c-
 Number of errors: 19
 Number of warnings: 1
-WARNING(17): character is 22 characters long and not a single character: ''s wrong, the proud man''. The first char will be used.
+WARNING(17): character is 22 characters long and not a single character: ''s wrong, the proud man''.  The first char will be used.

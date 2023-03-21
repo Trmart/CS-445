@@ -6,4 +6,4 @@ ERROR(5): Syntax error, unexpected string constant "dogs", expecting identifier.
 FILE: syntaxerr-constants.c-
 Number of errors: 4
 Number of warnings: 1
-WARNING(3): character is 4 characters long and not a single character: ''dogs''. The first char will be used.
+WARNING(3): character is 4 characters long and not a single character: ''dogs''.  The first char will be used.

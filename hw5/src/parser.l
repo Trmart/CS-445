@@ -103,7 +103,7 @@ static int setValue(int lineno, int tokenClass,  char *svalue)
                                         
                             else if(svalue[1] != 92)
                             {
-                                std::cout << "WARNING(" << line << "): character is " << (tokenLength-2) << " characters long and not a single character: \'" << svalue << "\'. The first char will be used." << std::endl;
+                                std::cout << "WARNING(" << line << "): character is " << (tokenLength-2) << " characters long and not a single character: \'" << svalue << "\'.  The first char will be used." << std::endl;
                                 numWarnings++;
                                 yylval.tokenData->cvalue = svalue[1];
                             }
