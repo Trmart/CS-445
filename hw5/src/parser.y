@@ -384,6 +384,7 @@ relExp        : sumExp operator sumExp                              { $$ = $2;
                                                                    $$->child[0] = $1;
                                                                    $$->child[1] = $3;
                                                                  }
+              | sumExp operator error                            { $$ = NULL;}
               | sumExp                                           { $$ = $1; }
               ;
 
