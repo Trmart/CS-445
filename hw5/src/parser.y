@@ -38,11 +38,11 @@ static TreeNode* ROOT;
 
 extern SymbolTable symbolTable;
 
-#define YYERROR_VERBOSE
+// #define YYERROR_VERBOSE
 
 %}
 
-
+%define parse.error verbose
 %union 
 {
   ExpType type;           

@@ -1,1 +1,3 @@
 ====================================
+ERROR(6): Syntax error, unexpected numeric constant "42", expecting ';'.
+ERROR(SYSTEM): niceTokenStr fails to find string 'GREAT'

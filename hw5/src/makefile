@@ -30,4 +30,4 @@ clean :
 	rm -f *~ $(OBJS) $(BIN) lex.yy.c $(BIN).tab.h $(BIN).tab.c $(BIN).output c-
 
 tar:
-	tar -cvf hw4.tar $(HDRS) $(SRCS) $(FILES) makefile
+	tar -cvf hw5.tar $(HDRS) $(SRCS) $(FILES) makefile

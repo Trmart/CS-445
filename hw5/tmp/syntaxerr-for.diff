@@ -1,12 +1,12 @@
-2,12d1
-< ERROR(10): Syntax error, unexpected "do".
-< ERROR(11): Syntax error, unexpected "while".
+4c4
 < ERROR(12): Syntax error, unexpected "step", expecting "<=".
-< ERROR(14): Syntax error, unexpected ';'.
-< ERROR(4): Syntax error, unexpected "<=", expecting identifier.
+---
+> ERROR(12): Syntax error, unexpected "by", expecting "!>" or "<=".
+7c7
 < ERROR(5): Syntax error, unexpected numeric constant "1", expecting "<=".
-< ERROR(6): Syntax error, unexpected numeric constant "11", expecting ".." or "or".
+---
+> ERROR(5): Syntax error, unexpected numeric constant "1", expecting "!>" or "<=".
+9c9
 < ERROR(9): Syntax error, unexpected "step".
-< FILE: syntaxerr-for.c-
-< Number of errors: 8
-< Number of warnings: 0
+---
+> ERROR(9): Syntax error, unexpected "by".

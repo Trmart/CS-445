@@ -1,5 +1,7 @@
-2,5d1
+2,5c2
 < ERROR(2): Syntax error, unexpected end of input, expecting "bool" or "char" or "int" or identifier.
 < FILE: syntaxerr-empty.c-
 < Number of errors: 1
 < Number of warnings: 0
+---
+> ERROR(SYSTEM): niceTokenStr fails to find string 'en'

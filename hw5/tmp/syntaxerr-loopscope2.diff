@@ -1,5 +1,4 @@
-2,5d1
+2c2
 < ERROR(10): Syntax error, unexpected "begin", expecting "<=".
-< FILE: syntaxerr-loopscope2.c-
-< Number of errors: 1
-< Number of warnings: 0
+---
+> ERROR(10): Syntax error, unexpected "begin", expecting "!>" or "<=".

@@ -121,22 +121,22 @@ void initErrorProcessing()
     niceTokenNameMap["THEN"] = (char *)"\"then\"";
     niceTokenNameMap["TO"] = (char *)"\"..\"";
     niceTokenNameMap["WHILE"] = (char *)"\"while\"";
-    niceTokenNameMap["SEMICOLON"] = (char *)"\";\"";
-    niceTokenNameMap["COLON"] = (char *)"\":\"";
-    niceTokenNameMap["COMMA"] = (char *)"\",\"";
-    niceTokenNameMap["OPAREN"] = (char *)"\"(\"";
-    niceTokenNameMap["CPAREN"] = (char *)"\")\"";
-    niceTokenNameMap["OBRACKET"] = (char *)"\"[\"";
-    niceTokenNameMap["CBRACKET"] = (char *)"\"]\"";
-    niceTokenNameMap["MOD"] = (char *)"\"%\"";
-    niceTokenNameMap["LESS"] = (char *)"\"<\"";
-    niceTokenNameMap["GREATER"] = (char *)"\">\"";
-    niceTokenNameMap["EQUAL"] = (char *)"\"=\"";
-    niceTokenNameMap["PLUS"] = (char *)"\"+\"";
-    niceTokenNameMap["MINUS"] = (char *)"\"-\"";
-    niceTokenNameMap["MULT"] = (char *)"\"*\"";
-    niceTokenNameMap["DIV"] = (char *)"\"/\"";
-    niceTokenNameMap["QUESTION"] = (char *)"\"?\"";
+    niceTokenNameMap["SEMICOLON"] = (char *)"\';\'";
+    niceTokenNameMap["COLON"] = (char *)"\':\'";
+    niceTokenNameMap["COMMA"] = (char *)"\',\'";
+    niceTokenNameMap["OPAREN"] = (char *)"\'(\'";
+    niceTokenNameMap["CPAREN"] = (char *)"\')\'";
+    niceTokenNameMap["OBRACKET"] = (char *)"\'[\'";
+    niceTokenNameMap["CBRACKET"] = (char *)"\']\'";
+    niceTokenNameMap["MOD"] = (char *)"\'%\'";
+    niceTokenNameMap["LESS"] = (char *)"\'<\'";
+    niceTokenNameMap["GREATER"] = (char *)"\'>\'";
+    niceTokenNameMap["EQUAL"] = (char *)"\'=\'";
+    niceTokenNameMap["PLUS"] = (char *)"\'+\'";
+    niceTokenNameMap["MINUS"] = (char *)"\'-\'";
+    niceTokenNameMap["MULT"] = (char *)"\'*\'";
+    niceTokenNameMap["DIV"] = (char *)"\'/\'";
+    niceTokenNameMap["QUESTION"] = (char *)"\'?\'";
     niceTokenNameMap["$end"] = (char *)"end of input";
 }
 
@@ -221,8 +221,10 @@ void yyerror(const char* msg)
     // print components
     printf("ERROR(%d): Syntax error, unexpected %s", line, strs[3]);
     
+    //change to print chars properly??? 
     if (elaborate(strs[3])) 
     {
+        //is this where we print chars????
         if (yytext[0]=='\'' || yytext[0]=='"') printf(" %s", yytext); 
         else printf(" \"%s\"", yytext);
     }

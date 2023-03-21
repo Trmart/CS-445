@@ -1,4 +1,4 @@
-2,125d1
+2,125c2
 < ERROR(108): Syntax error, unexpected numeric constant "3".
 < ERROR(110): Syntax error, unexpected ']'.
 < ERROR(117): Syntax error, unexpected '('.
@@ -123,3 +123,5 @@
 < FILE: syntaxerr-shuffle.c-
 < Number of errors: 121
 < Number of warnings: 0
+---
+> ERROR(SYSTEM): niceTokenStr fails to find string 'GREAT'
