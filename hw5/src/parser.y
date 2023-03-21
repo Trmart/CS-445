@@ -172,7 +172,7 @@ parameterTypeList
               ;
 
 parameterIdList   
-              : parameterIdList COMMA parameterId                { $$ = addSibling($1, $3); }
+              : parameterIdList COMMA parameterId                { $$ = addSibling($1, $3); yyerrok; }
               | parameterId                                      { $$ = $1; }
               |parameterIdList COMMA error                       { $$ = NULL;}
               | error                                            { $$ = NULL;}
@@ -251,7 +251,8 @@ unmatched     : IF simpleExp THEN matched ELSE unmatched         { $$ = newStmtN
                                                                  }
               | IF error THEN statement                          { $$ = NULL; yyerrok;}
               | IF error THEN matched ELSE unmatched             { $$ = NULL; yyerrok;}
-
+              | FOR ID ASGN error DO unmatched                   { $$ = NULL; yyerrok;}
+              | WHILE error DO unmatched                         { $$ = NULL; yyerrok;}
               ;
 
 expstatement  : exp SEMICOLON                                    { $$ = $1; }
