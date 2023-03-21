@@ -6,11 +6,7 @@
 < ERROR(20): Syntax error, unexpected '>', expecting ';'.
 < ERROR(21): Syntax error, unexpected "!>".
 < ERROR(22): Syntax error, unexpected '>'.
-10,14c3
-< ERROR(8): Syntax error, unexpected '>'.
-< ERROR(9): Syntax error, unexpected ';'.
-< FILE: syntaxerr-relop.c-
+13c6
 < Number of errors: 10
-< Number of warnings: 0
 ---
-> ERROR(SYSTEM): niceTokenStr fails to find string 'GREAT'
+> Number of errors: 3

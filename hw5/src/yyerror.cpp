@@ -130,7 +130,7 @@ void initErrorProcessing()
     niceTokenNameMap["CBRACKET"] = (char *)"\']\'";
     niceTokenNameMap["MOD"] = (char *)"\'%\'";
     niceTokenNameMap["LESS"] = (char *)"\'<\'";
-    niceTokenNameMap["GREATER"] = (char *)"\'>\'";
+    niceTokenNameMap["GREAT"] = (char *)"\'>\'";
     niceTokenNameMap["EQUAL"] = (char *)"\'=\'";
     niceTokenNameMap["PLUS"] = (char *)"\'+\'";
     niceTokenNameMap["MINUS"] = (char *)"\'-\'";

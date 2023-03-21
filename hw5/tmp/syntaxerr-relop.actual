@@ -1,3 +1,7 @@
 ====================================
 ERROR(6): Syntax error, unexpected numeric constant "42", expecting ';'.
-ERROR(SYSTEM): niceTokenStr fails to find string 'GREAT'
+ERROR(8): Syntax error, unexpected '>'.
+ERROR(9): Syntax error, unexpected ';'.
+FILE: syntaxerr-relop.c-
+Number of errors: 3
+Number of warnings: 0
