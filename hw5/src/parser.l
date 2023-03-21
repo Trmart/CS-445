@@ -85,23 +85,22 @@ static int setValue(int lineno, int tokenClass,  char *svalue)
                         if(tokenLength > 3)
                         {
                         
-                            // check for \ escape (92), n is (110), 0 is (48). 
-                            if(svalue[1] == 92 && svalue[2] != 110 && svalue[2] != 48)
+                            if(svalue[1] == '\\' && svalue[2] != 'n' && svalue[2] != '0')
                             {
                                 yylval.tokenData->cvalue = svalue[2];
                             }
                         
-                            else if(svalue[1] == 92 && svalue[2] != 110 && svalue[2] == 48)
+                            else if(svalue[1] == '\\' && svalue[2] != 'n' && svalue[2] == '0')
                             {
                                 yylval.tokenData->cvalue = '\0';
                             }
                             
-                            else if(svalue[1] == 92 && svalue[2] == 110 && svalue[2] != 48)
+                            else if(svalue[1] == '\\' && svalue[2] == 'n' && svalue[2] != '0')
                             {
                                 yylval.tokenData->cvalue = '\n';
                             }
                                         
-                            else if(svalue[1] != 92)
+                            else if(svalue[1] != '\\')
                             {
                                 std::cout << "WARNING(" << line << "): character is " << (tokenLength-2) << " characters long and not a single character: \'" << svalue << "\'.  The first char will be used." << std::endl;
                                 numWarnings++;
@@ -118,7 +117,8 @@ static int setValue(int lineno, int tokenClass,  char *svalue)
                         // parse and remove escape characters and newline characters
                         for(i = 0; i <= strlen(svalue); i++)
                         {
-                            if(svalue[1] == 92 && svalue[2] == 110 && svalue[2] != 48){
+                            if(svalue[1] == '\\' && svalue[2] == 'n' && svalue[2] != '0')
+                            {
 
                                 svalue[2] = '\n';       
                             }

@@ -94,7 +94,7 @@ void initErrorProcessing()
     niceTokenNameMap["BOOL"] = (char *)"\"bool\"";
     niceTokenNameMap["BOOLCONST"] = (char *)"Boolean constant";
     niceTokenNameMap["BREAK"] = (char *)"\"break\"";
-    niceTokenNameMap["BY"] = (char *)"\"by\"";
+    niceTokenNameMap["BY"] = (char *)"\"step\"";
     niceTokenNameMap["CHAR"] = (char *)"\"char\"";
     niceTokenNameMap["CHARCONST"] = (char *)"character constant";
     niceTokenNameMap["DEC"] = (char *)"\"--\"";

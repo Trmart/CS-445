@@ -1,12 +1,8 @@
 4c4
 < ERROR(12): Syntax error, unexpected "step", expecting "<=".
 ---
-> ERROR(12): Syntax error, unexpected "by", expecting "!>" or "<=".
+> ERROR(12): Syntax error, unexpected "step", expecting "!>" or "<=".
 7c7
 < ERROR(5): Syntax error, unexpected numeric constant "1", expecting "<=".
 ---
 > ERROR(5): Syntax error, unexpected numeric constant "1", expecting "!>" or "<=".
-9c9
-< ERROR(9): Syntax error, unexpected "step".
----
-> ERROR(9): Syntax error, unexpected "by".

@@ -1,4 +1,0 @@
-19c19
-< ERROR(6): Syntax error, unexpected "step", expecting ',' or ';'.
----
-> ERROR(6): Syntax error, unexpected "by", expecting ',' or ';'.
