@@ -314,6 +314,7 @@ breakstatement
               : BREAK SEMICOLON                                  { $$ = newStmtNode(BreakK, $1);
                                                                    $$->attr.name = $1->tokenstr;
                                                                  }
+              | BREAK error SEMICOLON                            { $$ = NULL; yyerrok;}
               ;
 
 asgnop        : ASGN                                             { $$ = newExpNode(AssignK, $1);

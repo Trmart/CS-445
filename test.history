@@ -383,3 +383,5 @@
 1679432469.0691216,"python3 tester.py hw5/ -P --sort",22,30,52,"['syntaxerr-constants', 'syntaxerr-empty', 'syntaxerr-for', 'syntaxerr-loops', 'syntaxerr-loopscope2', 'syntaxerr-parms', 'syntaxerr-shuffle', 'syntaxerr-testExample']"
 1679432508.7107103,"python3 tester.py hw5/ -P --sort",22,30,52,"['syntaxerr-constants', 'syntaxerr-empty', 'syntaxerr-for', 'syntaxerr-loops', 'syntaxerr-loopscope2', 'syntaxerr-parms', 'syntaxerr-shuffle', 'syntaxerr-testExample']"
 1679432968.553783,"python3 tester.py hw5/ -P --sort",23,30,49,"['syntaxerr-constants', 'syntaxerr-empty', 'syntaxerr-for', 'syntaxerr-loops', 'syntaxerr-loopscope2', 'syntaxerr-shuffle', 'syntaxerr-testExample']"
+1679433479.2870235,"python3 tester.py hw5/ -P --sort",23,30,49,"['syntaxerr-constants', 'syntaxerr-empty', 'syntaxerr-for', 'syntaxerr-loops', 'syntaxerr-loopscope2', 'syntaxerr-shuffle', 'syntaxerr-testExample']"
+1679605490.3171895,"python3 tester.py hw5/ -P --sort",23,30,49,"['syntaxerr-constants', 'syntaxerr-empty', 'syntaxerr-for', 'syntaxerr-loops', 'syntaxerr-loopscope2', 'syntaxerr-shuffle', 'syntaxerr-testExample']"
