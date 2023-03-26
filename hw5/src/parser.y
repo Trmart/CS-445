@@ -174,7 +174,7 @@ parameterTypeList
 parameterIdList   
               : parameterIdList COMMA parameterId                { $$ = addSibling($1, $3); yyerrok; }
               | parameterId                                      { $$ = $1; }
-              |parameterIdList COMMA error                       { $$ = NULL;}
+              | parameterIdList COMMA error                      { $$ = NULL;}
               | error                                            { $$ = NULL;}
               ;
 
@@ -249,10 +249,8 @@ unmatched     : IF simpleExp THEN matched ELSE unmatched         { $$ = newStmtN
                                                                    $$->child[2] = $6;
                                                                    
                                                                  }
-              | IF error THEN statement                          { $$ = NULL; yyerrok;}
-              | IF error THEN matched ELSE unmatched             { $$ = NULL; yyerrok;}
-              | FOR ID ASGN error DO unmatched                   { $$ = NULL; yyerrok;}
-              | WHILE error DO unmatched                         { $$ = NULL; yyerrok;}
+              | IF error THEN statement                          { $$ = NULL; yyerrok;} 
+              | IF error THEN matched ELSE unmatched             { $$ = NULL; yyerrok;} 
               ;
 
 expstatement  : exp SEMICOLON                                    { $$ = $1; }
@@ -314,7 +312,6 @@ breakstatement
               : BREAK SEMICOLON                                  { $$ = newStmtNode(BreakK, $1);
                                                                    $$->attr.name = $1->tokenstr;
                                                                  }
-              | BREAK error SEMICOLON                            { $$ = NULL; yyerrok;}
               ;
 
 asgnop        : ASGN                                             { $$ = newExpNode(AssignK, $1);
