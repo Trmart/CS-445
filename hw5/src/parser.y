@@ -619,7 +619,8 @@ int main(int argc, char *argv[])
 
   initErrorProcessing(); 
 
-  std::cout << "====================================" << std::endl;
+  // remove line 623 before submission. Just For testing
+  /* std::cout << "====================================" << std::endl; */
 
   yyparse();
 
@@ -638,8 +639,10 @@ int main(int argc, char *argv[])
       printAST(ROOT, 0, isPrintingTreeTypes);
     }
   }
-
-  std::cout << "FILE: " << fileName.substr(fileName.find_last_of("/\\") + 1) << std::endl;
+  
+  // remove line 644 before submission. Just For testing
+  /* std::cout << "FILE: " << fileName.substr(fileName.find_last_of("/\\") + 1) << std::endl; */
+  
   std::cout << "Number of warnings: " << numWarnings << std::endl;
   std::cout << "Number of errors: " << numErrors << std::endl;
 
