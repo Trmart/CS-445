@@ -1,4 +1,0 @@
-2c2
-< ERROR(10): Syntax error, unexpected "begin", expecting "<=".
----
-> ERROR(10): Syntax error, unexpected "begin", expecting "!>" or "<=".

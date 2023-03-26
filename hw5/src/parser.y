@@ -209,15 +209,7 @@ matched       : statementEnd                                     { $$ = $1; }
                                                                    $$->child[1] = $4;
                                                                    $$->child[2] = $6;
                                                                    
-                                                                 }
-              | FOR ID LEQ iterRange DO matched                  { $$ = newStmtNode(ForK, $1);
-                                                                   $$->child[0] = newDeclNode(VarK, $2);
-                                                                   $$->child[0]->expType = Integer;
-                                                                   $$->attr.name = $3->tokenstr;
-                                                                   $$->child[1] = $4;
-                                                                   $$->child[2] = $6;
-                                                                   
-                                                                 }                                                    
+                                                                 }                                                   
             | IF error                                          { $$ = NULL;}
             | IF error ELSE matched                             { $$ = NULL; yyerrok;}
             | IF error THEN matched ELSE matched                { $$ = NULL; yyerrok;}

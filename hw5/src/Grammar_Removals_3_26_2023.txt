@@ -1,6 +1,0 @@
-(line 317) BREAK error SEMICOLON                            { $$ = NULL; yyerrok;}
-
-
-(line 254) FOR ID ASGN error DO unmatched                   { $$ = NULL; yyerrok;}
-
-(line 255) WHILE error DO unmatched                         { $$ = NULL; yyerrok;}
