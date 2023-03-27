@@ -612,7 +612,7 @@ int main(int argc, char *argv[])
   initErrorProcessing(); 
 
   // remove line 623 before submission. Just For testing
-  /* std::cout << "====================================" << std::endl; */
+  std::cout << "====================================" << std::endl;
 
   yyparse();
 
@@ -633,7 +633,7 @@ int main(int argc, char *argv[])
   }
   
   // remove line 644 before submission. Just For testing
-  /* std::cout << "FILE: " << fileName.substr(fileName.find_last_of("/\\") + 1) << std::endl; */
+  std::cout << "FILE: " << fileName.substr(fileName.find_last_of("/\\") + 1) << std::endl;
   
   std::cout << "Number of warnings: " << numWarnings << std::endl;
   std::cout << "Number of errors: " << numErrors << std::endl;

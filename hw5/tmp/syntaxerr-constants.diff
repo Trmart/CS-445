@@ -1,9 +1,0 @@
-3,4c3
-< ERROR(3): Empty character ''.  Characters ignored.
-< ERROR(3): Syntax error, unexpected ',', expecting identifier.
----
-> ERROR(3): Syntax error, unexpected character constant '', expecting identifier.
-8c7
-< Number of errors: 5
----
-> Number of errors: 4
