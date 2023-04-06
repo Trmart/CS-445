@@ -1,0 +1,7 @@
+## C-S23
+main()
+ begin 
+   int a;
+   bool b;
+   char c;
+ end 

@@ -1,0 +1,22 @@
+## C-S23
+main()
+ begin 
+   int x;
+
+   if 111 then 
+      for x <= x .. x step x do
+         if 333 then 
+            for x <= 1 ..  x do 555;
+         else 666;
+   else 777;
+
+   if 111 then 
+      for x <= 1 .. 2 step x*x do 333;
+   else
+      for x <= 1 .. x do 555;
+
+   if 111 then 
+      for x <= 1 .. 10 do
+         for x <= x .. 10 do 555;
+   else 666;
+ end 
