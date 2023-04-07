@@ -85,6 +85,7 @@ TreeNode* newDeclNode(DeclKind kind, TokenData* token)
             node->lineno = token->lineno;
             node->expType = Void;
             node->attr.name = strdup(token->tokenstr);
+            node->memorySize = 1; //default memory size
         }
     }
 
@@ -104,6 +105,8 @@ TreeNode *newDeclNodeIO(DeclKind kind)
         node->nodekind = DeclK;
         node->subkind.decl = kind;
         node->expType = Void;
+        node->memorySize = 1; //default memory size
+
     }
 
     return node;
@@ -130,6 +133,7 @@ TreeNode* newStmtNode(StmtKind kind, TokenData *token)
             node->lineno = token->lineno;
             node->expType = Void;
             node->attr.name = strdup(token->tokenstr);
+            node->memorySize = 1; //default memory size
         }
     }
 
@@ -157,10 +161,53 @@ TreeNode* newExpNode(ExpKind kind, TokenData *token)
             node->subkind.exp = kind;
             node->lineno = token->lineno;
             node->expType = Void;
+            node->memorySize = 1; //default memory size
         }
     }
 
     return node;
+}
+
+void printMemoryType(VarKind var)
+{
+    switch(var)
+    {
+        case Global:
+                {
+                    printf("Global");
+                }
+                break;
+
+        case Local:
+                {
+                    printf("Local");
+                }
+                break;
+        
+        case LocalStatic:
+                    {
+                        printf("LocalStatic");
+                    }
+                    break;
+
+        case Parameter:
+                    {
+                        printf("Parameter");
+                    }
+                    break;
+
+        case None:
+                {
+                    printf("None");
+                }
+                break; 
+
+        default:
+                {
+                    printf("Error: Memory type not found");
+                }
+                break;
+    }
 }
 
 
