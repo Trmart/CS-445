@@ -34,6 +34,11 @@ extern int numErrors;
 int numWarnings;       
 bool isPrintingTreeTypes = false;
 
+//memeory information
+bool isPrintingMemoryOffset = false;
+// extern int goffset;
+
+
 static TreeNode* ROOT;
 
 extern SymbolTable symbolTable;
@@ -578,6 +583,13 @@ int main(int argc, char *argv[])
               }  
               break;
 
+        case 'M':
+        {
+          isPrintingAST = true;
+          isPrintingTreeTypes = true;
+          isPrintingMemoryOffsets = true;
+        }
+
         case 'h':
               {
                 std::cout << "usage: c- [options] [sourcefile]" << std::endl;
@@ -587,6 +599,7 @@ int main(int argc, char *argv[])
                 std::cout << "-h     - print this usage message" << std::endl;
                 std::cout << "-p     - print the abstract syntax tree" << std::endl;
                 std::cout << "-P     - print the abstract syntax tree plus type information" << std::endl;
+                std::cout << "-M     - print the abstract syntax tree plus type information and memory offsets" << std::endl;
               }
               break;
 
@@ -629,6 +642,12 @@ int main(int argc, char *argv[])
     if(numErrors < 1)
     {  
       printAST(ROOT, 0, isPrintingTreeTypes);
+
+      if(isPrintingMemoryOffsets)
+      {
+        // print memory offsets
+        /* std:: cout << "Offset for end of global space: " << goffset << std::endl; */
+      }
     }
   }
   
