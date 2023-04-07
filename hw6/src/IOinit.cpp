@@ -27,6 +27,8 @@ void initializeIO()
     ExpType IOexpType[] = {Void, Void, Void, Integer, Boolean, Char, Void};
     ExpType IOParamType[] = {Integer, Boolean, Char, Void, Void, Void, Void};
 
+    int IOMemorySizes[] = {-3, -3, -3, -2, -2, -2, -2};
+
 
     for(int i = 0; i < 7; i++)
     {
@@ -44,6 +46,9 @@ void initializeIO()
         //insert into symbolTable
         symbolTable.insert(IONode->attr.name, (TreeNode*) IONode);
 
+        IONode->memorySize = IOMemorySizes[i];
+        IONode->memoryOffset = 0;
+
 
         //set up parameters if not void
         if(IOParamType[i] != Void)
@@ -53,6 +58,9 @@ void initializeIO()
             dummyParam->lineno = -1;
             dummyParam->expType - IOParamType[i];
             IONode->child[0] = dummyParam;
+
+            dummyParam->memorySize = 1;
+            dummyParam->memoryOffset = -2;
         }
         else
         {
