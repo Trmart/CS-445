@@ -584,11 +584,12 @@ int main(int argc, char *argv[])
               break;
 
         case 'M':
-        {
-          isPrintingAST = true;
-          isPrintingTreeTypes = true;
-          isPrintingMemoryOffsets = true;
-        }
+              {
+                isPrintingAST = true;
+                isPrintingTreeTypes = true;
+                isPrintingMemoryOffsets = true;
+              }
+              break; 
 
         case 'h':
               {
