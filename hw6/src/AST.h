@@ -107,39 +107,45 @@ typedef struct treeNode
     } attr;
 
 
-    struct treeNode* child[MAXCHILDREN];        
-    struct treeNode* sibling;                   
+    struct treeNode* child[MAXCHILDREN]; //array of children        
+    struct treeNode* sibling; //sibling node pointer                   
 
 
-    int lineno;                                 
+    int lineno; //line number of token in source code                                
     
-    NodeKind nodekind;                          
+    NodeKind nodekind;  //decl, stmt, exp                        
     
-    TokenData *thisTokenData;
+    TokenData *thisTokenData; //token data for this node
     
-    ExpType expType;
+    ExpType expType; //type of expression
     
-    bool isArray;
+    bool isArray; //is this an array
     
-    bool isStatic;
+    bool isStatic; //is this static
     
-    bool isGlobal;
+    bool isGlobal; //is this global
     
-    bool isInit;
+    bool isInit; //is the identifier already initialized
     
-    bool warningReported;
+    bool warningReported; //has a warning been reported for this node
     
-    bool wasUsed;
+    bool wasUsed; //was the identifier used
     
-    bool isDeclared;
+    bool isDeclared; //was the identifier declared
     
-    bool declErr;
+    bool declErr; //was there an error in the declaration
     
-    bool wasUsedErr;
+    bool wasUsedErr; //was there an error in the use
     
-    bool isIndexed;
+    bool isIndexed; //is this an indexed variable, for arrays
     
-    bool isIO;     
+    bool isIO; //is this an IO function
+
+    //memory information
+    int memorySize; //size of memory for -M option
+    int memoryOffset; //offset of memory for -M option
+    VarKind memoryType; //type of memory for -M option
+    int arraySize; //size of array for -M option  
 
 } TreeNode;
 
@@ -160,6 +166,7 @@ void printDeclNode(TreeNode* tree, bool isShowingTypes);
 void printExpNode(TreeNode* tree, bool isShowingTypes);
 void printConstantNode(TreeNode* tree, bool isShowingTypes);
 void printOpNode(TreeNode* tree, bool isShowingTypes);
+void printMemoryTypes(VarKind var); 
 
 
 //setters 
