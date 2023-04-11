@@ -24,6 +24,8 @@ DESC: This file contains the functions that are used to create the abstract synt
 
 int numTabs = 0;
 
+extern bool isPrintingMemorySize;
+
 //adds sibling to node
 TreeNode* addSibling(TreeNode* node, TreeNode* sibling)
 {
@@ -210,6 +212,12 @@ void printMemoryType(VarKind var)
     }
 }
 
+void printMemorySizeAndOffset(TreeNode* node)
+{
+    printf("[mem: ");
+    printMemType(node->memoryType);
+    printf(" loc: %d size: %d]", node->memoryOffset, node->memorySize);
+}
 
 void printExp(ExpType type)
 {
@@ -341,13 +349,25 @@ void printStmtNode(TreeNode* tree, bool isShowingTypes)
 
         case CompoundK:
                     {
-                        printf("Compound [line: %d]\n", tree->lineno);
+                        printf("Compound ");
+
+                        if (isPrintingMemorySize)
+                        {
+                            printMemorySizeAndOffset(tree);
+                        }
+                        printf(" [line: %d]\n", tree->lineno);
                     }
                     break;
 
         case ForK:
                 {
-                    printf("For [line: %d]\n", tree->lineno);
+                    printf("For ");
+
+                    if (isPrintingMemorySize)
+                    {
+                        printMemorySizeAndOffset(tree);
+                    }
+                    printf(" [line: %d]\n", tree->lineno);
                 }
                 break;
 

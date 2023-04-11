@@ -36,6 +36,7 @@ bool isPrintingTreeTypes = false;
 
 //memeory information
 bool isPrintingMemoryOffset = false;
+bool isPrintingMemorySize = false;
 // extern int goffset;
 
 
@@ -588,6 +589,7 @@ int main(int argc, char *argv[])
                 isPrintingAST = true;
                 isPrintingTreeTypes = true;
                 isPrintingMemoryOffsets = true;
+                isPrintingMemorySize = true;
               }
               break; 
 
