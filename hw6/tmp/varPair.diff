@@ -69,15 +69,15 @@
 < .   .   Child: 0  Var: lx of type int [mem: Local loc: -2 size: 1] [line: 42]
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -4 size: 1] [line: 5]
 ---
-> .   Child: 0  Parm: px of type int[mem: Parameter loc: 0 size: 1] [line: 3]
+> .   Child: 0  Parm: px of type int[mem: Parameter loc: -2 size: 1] [line: 3]
 > .   .   Child: 0  Var: lx of type int[mem: Local loc: 0 size: 1] [line: 42]
 > .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 5]
 52,53c52,53
 < .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 41]
 < .   Child: 1  Compound [mem: None loc: 0 size: -16] [line: 4]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 4]
 > .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 41]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 4]
 80,83c80,83
 < .   .   .   Child: 1  Id: gx of type int [mem: Global loc: 0 size: 1] [line: 9]
 < .   .   .   Child: 1  Id: px of type int [mem: Parameter loc: -2 size: 1] [line: 25]
@@ -100,7 +100,7 @@
 ---
 > .   .   .   Sibling: 1  Id: gy of array of type int[mem: None loc: 0 size: 1] [line: 45]
 > .   .   .   Sibling: 1  Id: ly of array of type int[mem: None loc: 0 size: 1] [line: 46]
-> .   Sibling: 1  Parm: py is array of type int[mem: Parameter loc: -1 size: 1] [line: 3]
+> .   Sibling: 1  Parm: py is array of type int[mem: Parameter loc: -3 size: 1] [line: 3]
 > Sibling: 1  Var: gy of array of type int[mem: Global loc: 0 size: 1] [line: 2]
 > .   .   Sibling: 1  Var: ly of array of type int[mem: Local loc: 0 size: 1] [line: 42]
 > .   .   Sibling: 1  Var: y of array of type int[mem: Local loc: 0 size: 1] [line: 5]
@@ -108,13 +108,13 @@
 < Sibling: 2  Func: fred returns type void [mem: Global loc: 0 size: -4] [line: 3]
 < .   .   Sibling: 2  Var: sx of static type int [mem: LocalStatic loc: -12 size: 1] [line: 6]
 ---
-> Sibling: 2  Func: fred returns type void[mem: Global loc: 0 size: 1] [line: 3]
+> Sibling: 2  Func: fred returns type void[mem: Global loc: 0 size: -4] [line: 3]
 > .   .   Sibling: 2  Var: sx of static type int[mem: LocalStatic loc: 0 size: 1] [line: 6]
 122,123c121,122
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 41]
 < .   .   Sibling: 3  Var: sy of static array of type int [mem: LocalStatic loc: -14 size: 11] [line: 6]
 ---
-> Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 41]
+> Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 41]
 > .   .   Sibling: 3  Var: sy of static array of type int[mem: LocalStatic loc: 0 size: 1] [line: 6]
 130c129
 < Var: gx of type int [mem: Global loc: 0 size: 1] [line: 2]

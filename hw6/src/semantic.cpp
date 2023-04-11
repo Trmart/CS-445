@@ -420,6 +420,9 @@ void analyzeFunc(TreeNode* node, int& nErrors, int& nWarnings)
 {
     curFunc = node;
     
+    localOffset = 0;
+    localOffset -= 2;
+    
     Flag = false;
 
     symbolTable.enter(node->attr.name);
@@ -447,6 +450,21 @@ void analyzeFunc(TreeNode* node, int& nErrors, int& nWarnings)
     symbolTable.leave();
     
     curFunc = nullptr;
+
+    node->memorySize = 0; //functions have no memory size
+
+    TreeNode* child_0 = node->child[0];
+
+    while (child_0 != nullptr)
+    {
+        node->memorySize--;
+        child_0 = child_0->sibling;
+    }
+
+    node->memorySize -= 2;
+
+    node->memoryOffset = 0;
+    
 }
 
 //analyze parameter nodes

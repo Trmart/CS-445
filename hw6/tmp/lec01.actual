@@ -6,18 +6,18 @@
 .   .   .   Child: 0  Var: i of type int[mem: Local loc: 0 size: 1] [line: 7]
 .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 6]
 .   .   .   Child: 1  Call: dog of type int [line: 9]
-.   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 2]
-.   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 5]
+.   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+.   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
 .   .   .   Child: 1  Const is array "cat" of type char[mem: None loc: 0 size: 1] [line: 8]
-.   .   Child: 1  For [mem: None loc: 0 size: 0] [line: 7]
+.   .   Child: 1  For [mem: None loc: 0 size: -2] [line: 7]
 .   .   .   .   Child: 1  Id: x of type int[mem: None loc: 0 size: 1] [line: 7]
 .   .   .   Child: 1  Range [line: 7]
 .   .   Child: 1  Return [line: 2]
 .   .   .   .   Child: 2  Id: x of type int[mem: None loc: 0 size: 1] [line: 7]
-Func: dog returns type int[mem: Global loc: 0 size: 1] [line: 2]
+Func: dog returns type int[mem: Global loc: 0 size: -2] [line: 2]
 Number of errors: 0
 Number of warnings: 1
-Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 4]
+Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 4]
 .   .   Sibling: 1  Op: = of type bool [line: 8]
 .   .   Sibling: 2  Op: + of type int [line: 9]
 WARNING(7): The variable 'i' seems not to be used.

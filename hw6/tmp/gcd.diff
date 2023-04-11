@@ -24,14 +24,12 @@
 < .   Child: 0  Parm: u of type int [mem: Parameter loc: -2 size: 1] [line: 4]
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 14]
 ---
-> .   Child: 0  Parm: u of type int[mem: Parameter loc: 0 size: 1] [line: 4]
+> .   Child: 0  Parm: u of type int[mem: Parameter loc: -2 size: 1] [line: 4]
 > .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 14]
-20,21c20,21
-< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 5]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 13]
----
+19a20
 > .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 13]
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
+21d21
+< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 13]
 23,24c23,24
 < .   .   .   .   .   .   .   .   Child: 1  Id: v of type int [mem: Parameter loc: -3 size: 1] [line: 9]
 < .   .   .   .   .   .   .   Child: 1  Id: v of type int [mem: Parameter loc: -3 size: 1] [line: 9]
@@ -41,20 +39,20 @@
 29c29
 < Func: gcd returns type int [mem: Global loc: 0 size: -4] [line: 4]
 ---
-> Func: gcd returns type int[mem: Global loc: 0 size: 1] [line: 4]
+> Func: gcd returns type int[mem: Global loc: 0 size: -4] [line: 4]
 32d31
 < Offset for end of global space: 0
 34,35c33,34
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 12]
 < .   .   .   .   Sibling: 1  Id: y of type int [mem: Local loc: -3 size: 1] [line: 18]
 ---
-> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 12]
+> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 12]
 > .   .   .   .   Sibling: 1  Id: y of type int[mem: None loc: 0 size: 1] [line: 18]
 37,38c36,37
 < .   Sibling: 1  Parm: v of type int [mem: Parameter loc: -3 size: 1] [line: 4]
 < .   .   Sibling: 1  Var: y of type int [mem: Local loc: -3 size: 1] [line: 14]
 ---
-> .   Sibling: 1  Parm: v of type int[mem: Parameter loc: -1 size: 1] [line: 4]
+> .   Sibling: 1  Parm: v of type int[mem: Parameter loc: -3 size: 1] [line: 4]
 > .   .   Sibling: 1  Var: y of type int[mem: Local loc: 0 size: 1] [line: 14]
 40c39
 < .   .   Sibling: 2  Var: z of type int [mem: Local loc: -4 size: 1] [line: 14]

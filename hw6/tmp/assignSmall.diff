@@ -27,7 +27,7 @@
 14c14
 < .   Child: 1  Compound [mem: None loc: 0 size: -7] [line: 3]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 3]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
 19c19
 < .   .   .   Child: 1  Id: w of type int [mem: Local loc: -3 size: 1] [line: 10]
 ---
@@ -35,7 +35,7 @@
 22c22
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
-> Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
+> Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 24,25c24
 < Number of warnings: 4
 < Offset for end of global space: 0

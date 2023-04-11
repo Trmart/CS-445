@@ -17,7 +17,7 @@
 .   .   .   Child: 0  Op: [ of type int [line: 13]
 .   .   Child: 0  Var: a of type int[mem: Local loc: 0 size: 1] [line: 3]
 .   .   Child: 1  Assign: <= of type int [line: 6]
-.   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 2]
+.   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
 .   .   .   Child: 1  Const 284 of type int [line: 13]
 .   .   .   .   Child: 1  Const 3 of type int [line: 12]
 .   .   .   .   .   Child: 1  Const 3 of type int [line: 13]
@@ -35,7 +35,7 @@
 .   .   .   Child: 1  Op: [ of type int [line: 8]
 .   .   .   .   Child: 1  Op: [ of type int [line: 9]
 .   .   .   Child: 1  Op: [ of type int [line: 9]
-Func: main returns type void[mem: Global loc: 0 size: 1] [line: 1]
+Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
 Number of errors: 0
 Number of warnings: 5
 .   .   Sibling: 1  Assign: <= of type int [line: 7]

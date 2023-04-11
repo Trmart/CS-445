@@ -5,18 +5,18 @@
 .   .   .   Child: 0  Const true of type bool [line: 8]
 .   .   .   .   Child: 0  Op: chsign of type int [line: 9]
 .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 9]
-.   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 2]
-.   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 5]
+.   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+.   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
 .   .   Child: 1  If [line: 7]
 .   .   .   .   Child: 1  Op: chsign of type int [line: 9]
 .   .   .   Child: 1  Range [line: 9]
 .   .   .   .   Child: 2  Op: chsign of type int [line: 9]
-Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
+Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 Number of errors: 0
 Number of warnings: 2
-Sibling: 1  Func: dogs returns type void[mem: Global loc: 0 size: 1] [line: 4]
+Sibling: 1  Func: dogs returns type void[mem: Global loc: 0 size: -2] [line: 4]
 .   .   Sibling: 1  While [line: 8]
-.   .   Sibling: 2  For [mem: None loc: 0 size: 0] [line: 9]
-.   .   Sibling: 3  Compound [mem: None loc: 0 size: 0] [line: 10]
+.   .   Sibling: 2  For [mem: None loc: 0 size: -2] [line: 9]
+.   .   Sibling: 3  Compound [mem: None loc: 0 size: -2] [line: 10]
 WARNING(4): The function 'dogs' seems not to be used.
 WARNING(9): The variable 'x' seems not to be used.

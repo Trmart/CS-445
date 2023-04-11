@@ -1,12 +1,6 @@
-2,3c2,3
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 4]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 3]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 4]
 6c6
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
-> Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
+> Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 9d8
 < Offset for end of global space: 0

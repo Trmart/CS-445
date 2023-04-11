@@ -13,9 +13,9 @@
 .   .   .   .   Child: 1  Assign: <= of type int [line: 14]
 .   .   .   .   Child: 1  Assign: <= of type int [line: 7]
 .   .   .   .   .   Child: 1  Break [line: 15]
-.   .   .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 13]
-.   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 3]
-.   .   .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 6]
+.   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 13]
+.   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
+.   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 6]
 .   .   .   .   .   Child: 1  Const 111 of type int [line: 7]
 .   .   .   .   .   Child: 1  Const 222 of type int [line: 10]
 .   .   .   .   .   Child: 1  Const 333 of type int [line: 14]
@@ -24,8 +24,8 @@
 .   .   .   .   .   Child: 1  Const 444 of type int [line: 16]
 .   .   .   .   .   .   Child: 1  Const 9 of type int [line: 15]
 .   .   Child: 1  If [line: 6]
-.   .   .   Child: 2  Compound [mem: None loc: 0 size: 0] [line: 9]
-Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
+.   .   .   Child: 2  Compound [mem: None loc: 0 size: -2] [line: 9]
+Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 Number of errors: 0
 Number of warnings: 0
 .   .   .   .   Sibling: 1  If [line: 15]

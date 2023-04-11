@@ -1,23 +1,17 @@
-7,9c7,9
+7c7
 < .   .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 9]
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
 ---
 > .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 9]
-> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 2]
-> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 5]
 14c14
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
-> Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
+> Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 17,18c17
 < Offset for end of global space: 0
 < Sibling: 1  Func: dogs returns type void [mem: Global loc: 0 size: -2] [line: 4]
 ---
-> Sibling: 1  Func: dogs returns type void[mem: Global loc: 0 size: 1] [line: 4]
-20,21c19,20
+> Sibling: 1  Func: dogs returns type void[mem: Global loc: 0 size: -2] [line: 4]
+20c19
 < .   .   Sibling: 2  For [mem: None loc: 0 size: -3] [line: 9]
-< .   .   Sibling: 3  Compound [mem: None loc: 0 size: -2] [line: 10]
 ---
-> .   .   Sibling: 2  For [mem: None loc: 0 size: 0] [line: 9]
-> .   .   Sibling: 3  Compound [mem: None loc: 0 size: 0] [line: 10]
+> .   .   Sibling: 2  For [mem: None loc: 0 size: -2] [line: 9]

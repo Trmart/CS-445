@@ -18,7 +18,7 @@
 .   .   .   Child: 0  Op: !< of type bool [line: 24]
 .   .   .   Child: 0  Op: !< of type bool [line: 6]
 .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 4]
-.   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 3]
+.   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
 .   .   .   .   Child: 1  Const 0 of type int [line: 10]
 .   .   .   .   Child: 1  Const 0 of type int [line: 13]
 .   .   .   .   Child: 1  Const 0 of type int [line: 18]
@@ -47,7 +47,7 @@
 .   .   .   .   Child: 2  Id: z of type int[mem: None loc: 0 size: 1] [line: 30]
 .   .   .   Child: 2  If [line: 26]
 .   .   .   Child: 2  While [line: 11]
-Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
+Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 Number of errors: 0
 Number of warnings: 3
 .   .   Sibling: 1  Const 111 of type int [line: 9]

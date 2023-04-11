@@ -9,9 +9,9 @@
 > .   .   Child: 0  Var: a of type int[mem: Local loc: 0 size: 1] [line: 3]
 > .   .   .   Child: 0  Var: c of type char[mem: Local loc: 0 size: 1] [line: 6]
 > .   .   .   Child: 0  Var: e of type bool[mem: Local loc: 0 size: 1] [line: 10]
-> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 2]
-> .   .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 5]
-> Func: main returns type void[mem: Global loc: 0 size: 1] [line: 1]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+> .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
+> Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
 9,13c9,12
 < Offset for end of global space: 0
 < .   .   Sibling: 1  Compound [mem: None loc: 0 size: -6] [line: 9]
@@ -19,7 +19,7 @@
 < .   .   .   Sibling: 1  Var: d of type char [mem: Local loc: -5 size: 1] [line: 6]
 < .   .   .   Sibling: 1  Var: f of type bool [mem: Local loc: -5 size: 1] [line: 10]
 ---
-> .   .   Sibling: 1  Compound [mem: None loc: 0 size: 0] [line: 9]
+> .   .   Sibling: 1  Compound [mem: None loc: 0 size: -2] [line: 9]
 > .   .   Sibling: 1  Var: b of type int[mem: Local loc: 0 size: 1] [line: 3]
 > .   .   .   Sibling: 1  Var: d of type char[mem: Local loc: 0 size: 1] [line: 6]
 > .   .   .   Sibling: 1  Var: f of type bool[mem: Local loc: 0 size: 1] [line: 10]

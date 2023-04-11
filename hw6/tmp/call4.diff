@@ -106,46 +106,35 @@
 < .   .   Child: 0  Var: tmp of type int [mem: Local loc: -5 size: 1] [line: 79]
 < .   .   Child: 0  Var: z of type int [mem: Local loc: -4 size: 1] [line: 54]
 ---
-> .   Child: 0  Parm: x is array of type int[mem: Parameter loc: -11 size: 1] [line: 77]
-> .   Child: 0  Parm: x is array of type int[mem: Parameter loc: -1 size: 1] [line: 8]
-> .   Child: 0  Parm: x of type bool[mem: Parameter loc: -3 size: 1] [line: 19]
-> .   Child: 0  Parm: x of type int[mem: Parameter loc: 0 size: 1] [line: 2]
-> .   Child: 0  Parm: x of type int[mem: Parameter loc: -4 size: 1] [line: 35]
-> .   Child: 0  Parm: x of type int[mem: Parameter loc: -5 size: 1] [line: 40]
-> .   Child: 0  Parm: x of type int[mem: Parameter loc: -7 size: 1] [line: 45]
-> .   Child: 0  Parm: x of type int[mem: Parameter loc: -9 size: 1] [line: 52]
+> .   Child: 0  Parm: x is array of type int[mem: Parameter loc: -2 size: 1] [line: 77]
+> .   Child: 0  Parm: x is array of type int[mem: Parameter loc: -2 size: 1] [line: 8]
+> .   Child: 0  Parm: x of type bool[mem: Parameter loc: -2 size: 1] [line: 19]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 35]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 40]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 45]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 52]
 > .   .   Child: 0  Var: i of type int[mem: Local loc: 0 size: 1] [line: 10]
 > .   .   Child: 0  Var: p of type int[mem: Local loc: 0 size: 1] [line: 87]
 > .   .   Child: 0  Var: tmp of type int[mem: Local loc: 0 size: 1] [line: 79]
 > .   .   Child: 0  Var: z of type int[mem: Local loc: 0 size: 1] [line: 54]
-105,117c105,117
+105,106d104
 < .   Child: 1  Compound [mem: None loc: 0 size: -26] [line: 86]
 < .   .   .   Child: 1  Compound [mem: None loc: 0 size: -26] [line: 90]
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 26]
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 31]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 20]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 36]
-< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 41]
-< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 46]
+108a107,108
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 86]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 90]
+111a112
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 12]
+114,117c115,117
 < .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 12]
 < .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 9]
 < .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 53]
 < .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 78]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: -11] [line: 53]
-> .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 78]
-> .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 86]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 90]
-> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 3]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 12]
-> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 9]
-> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 20]
-> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 26]
-> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 31]
-> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 36]
-> .   Child: 1  Compound [mem: None loc: 0 size: -7] [line: 41]
-> .   Child: 1  Compound [mem: None loc: 0 size: -9] [line: 46]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 53]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 9]
+> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 78]
 140,151c140,151
 < .   .   .   .   .   .   Child: 1  Id: i of type int [mem: Local loc: -4 size: 1] [line: 13]
 < .   .   .   .   .   .   Child: 1  Id: p of type int [mem: Local loc: -2 size: 1] [line: 91]
@@ -175,24 +164,24 @@
 160c160
 < Func: showInt returns type int [mem: Global loc: 0 size: -3] [line: 2]
 ---
-> Func: showInt returns type int[mem: Global loc: 0 size: 1] [line: 2]
+> Func: showInt returns type int[mem: Global loc: 0 size: -3] [line: 2]
 163d162
 < Offset for end of global space: -1
 166c165
 < Sibling: 10  Func: swap returns type void [mem: Global loc: 0 size: -5] [line: 77]
 ---
-> Sibling: 10  Func: swap returns type void[mem: Global loc: 0 size: 1] [line: 77]
+> Sibling: 10  Func: swap returns type void[mem: Global loc: 0 size: -5] [line: 77]
 169c168
 < Sibling: 11  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 85]
 ---
-> Sibling: 11  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 85]
+> Sibling: 11  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 85]
 189,192c188,191
 < Sibling: 1  Func: showIntArray returns type int [mem: Global loc: 0 size: -4] [line: 8]
 < .   .   .   .   .   Sibling: 1  Id: q of type int [mem: Local loc: -3 size: 1] [line: 111]
 < .   .   .   .   .   Sibling: 1  Id: q of type int [mem: Local loc: -3 size: 1] [line: 111]
 < .   .   .   Sibling: 1  Id: r of array of type int [mem: Local loc: -5 size: 11] [line: 109]
 ---
-> Sibling: 1  Func: showIntArray returns type int[mem: Global loc: 0 size: 1] [line: 8]
+> Sibling: 1  Func: showIntArray returns type int[mem: Global loc: 0 size: -4] [line: 8]
 > .   .   .   .   .   Sibling: 1  Id: q of type int[mem: None loc: 0 size: 1] [line: 111]
 > .   .   .   .   .   Sibling: 1  Id: q of type int[mem: None loc: 0 size: 1] [line: 111]
 > .   .   .   Sibling: 1  Id: r of array of type int[mem: None loc: 0 size: 1] [line: 109]
@@ -205,11 +194,11 @@
 < .   .   Sibling: 1  Var: a of type int [mem: Local loc: -5 size: 1] [line: 55]
 < .   .   Sibling: 1  Var: q of type int [mem: Local loc: -3 size: 1] [line: 87]
 ---
-> .   Sibling: 1  Parm: size of type int[mem: Parameter loc: -2 size: 1] [line: 8]
-> .   Sibling: 1  Parm: y is array of type int[mem: Parameter loc: -10 size: 1] [line: 52]
-> .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -6 size: 1] [line: 40]
-> .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -8 size: 1] [line: 45]
-> .   Sibling: 1  Parm: z1 of type int[mem: Parameter loc: -12 size: 1] [line: 77]
+> .   Sibling: 1  Parm: size of type int[mem: Parameter loc: -3 size: 1] [line: 8]
+> .   Sibling: 1  Parm: y is array of type int[mem: Parameter loc: -3 size: 1] [line: 52]
+> .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -3 size: 1] [line: 40]
+> .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -3 size: 1] [line: 45]
+> .   Sibling: 1  Parm: z1 of type int[mem: Parameter loc: -3 size: 1] [line: 77]
 > .   .   Sibling: 1  Var: a of type int[mem: Local loc: 0 size: 1] [line: 55]
 > .   .   Sibling: 1  Var: q of type int[mem: Local loc: 0 size: 1] [line: 87]
 210,212c209,211
@@ -217,31 +206,31 @@
 < .   Sibling: 2  Parm: z2 of type int [mem: Parameter loc: -4 size: 1] [line: 77]
 < .   .   Sibling: 2  Var: r of array of type int [mem: Local loc: -5 size: 11] [line: 87]
 ---
-> Sibling: 2  Func: showBool returns type int[mem: Global loc: 0 size: 1] [line: 19]
-> .   Sibling: 2  Parm: z2 of type int[mem: Parameter loc: -13 size: 1] [line: 77]
+> Sibling: 2  Func: showBool returns type int[mem: Global loc: 0 size: -3] [line: 19]
+> .   Sibling: 2  Parm: z2 of type int[mem: Parameter loc: -4 size: 1] [line: 77]
 > .   .   Sibling: 2  Var: r of array of type int[mem: Local loc: 0 size: 1] [line: 87]
 215,216c214,215
 < Sibling: 3  Func: truth returns type bool [mem: Global loc: 0 size: -2] [line: 25]
 < .   .   Sibling: 3  Var: s of array of type int [mem: Local loc: -16 size: 11] [line: 87]
 ---
-> Sibling: 3  Func: truth returns type bool[mem: Global loc: 0 size: 1] [line: 25]
+> Sibling: 3  Func: truth returns type bool[mem: Global loc: 0 size: -2] [line: 25]
 > .   .   Sibling: 3  Var: s of array of type int[mem: Local loc: 0 size: 1] [line: 87]
 219c218
 < Sibling: 4  Func: magic returns type int [mem: Global loc: 0 size: -2] [line: 30]
 ---
-> Sibling: 4  Func: magic returns type int[mem: Global loc: 0 size: 1] [line: 30]
+> Sibling: 4  Func: magic returns type int[mem: Global loc: 0 size: -2] [line: 30]
 222c221
 < Sibling: 5  Func: sqr returns type int [mem: Global loc: 0 size: -3] [line: 35]
 ---
-> Sibling: 5  Func: sqr returns type int[mem: Global loc: 0 size: 1] [line: 35]
+> Sibling: 5  Func: sqr returns type int[mem: Global loc: 0 size: -3] [line: 35]
 225c224
 < Sibling: 6  Func: add returns type int [mem: Global loc: 0 size: -4] [line: 40]
 ---
-> Sibling: 6  Func: add returns type int[mem: Global loc: 0 size: 1] [line: 40]
+> Sibling: 6  Func: add returns type int[mem: Global loc: 0 size: -4] [line: 40]
 228c227
 < Sibling: 7  Func: mul returns type int [mem: Global loc: 0 size: -4] [line: 45]
 ---
-> Sibling: 7  Func: mul returns type int[mem: Global loc: 0 size: 1] [line: 45]
+> Sibling: 7  Func: mul returns type int[mem: Global loc: 0 size: -4] [line: 45]
 231c230
 < Sibling: 8  Var: g of type int [mem: Global loc: 0 size: 1] [line: 50]
 ---
@@ -249,4 +238,4 @@
 234c233
 < Sibling: 9  Func: caller returns type void [mem: Global loc: 0 size: -4] [line: 52]
 ---
-> Sibling: 9  Func: caller returns type void[mem: Global loc: 0 size: 1] [line: 52]
+> Sibling: 9  Func: caller returns type void[mem: Global loc: 0 size: -4] [line: 52]

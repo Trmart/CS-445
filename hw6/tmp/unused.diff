@@ -3,15 +3,7 @@
 < .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 ---
 > .   .   .   Child: 0  Id: ug of type int[mem: None loc: 0 size: 1] [line: 6]
-> .   Child: 0  Parm: x of type int[mem: Parameter loc: 0 size: 1] [line: 2]
-4,6c4,6
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 2]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 2]
-> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 3]
-> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 5]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
 10d9
 < Offset for end of global space: -2
 12,16c11,15
@@ -22,7 +14,7 @@
 < Var: g of type int [mem: Global loc: 0 size: 1] [line: 1]
 ---
 > Sibling: 1  Var: ug of type int[mem: Global loc: 0 size: 1] [line: 1]
-> Sibling: 2  Func: dog returns type void[mem: Global loc: 0 size: 1] [line: 2]
-> Sibling: 3  Func: udog returns type void[mem: Global loc: 0 size: 1] [line: 3]
-> Sibling: 4  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 5]
+> Sibling: 2  Func: dog returns type void[mem: Global loc: 0 size: -3] [line: 2]
+> Sibling: 3  Func: udog returns type void[mem: Global loc: 0 size: -2] [line: 3]
+> Sibling: 4  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 5]
 > Var: g of type int[mem: Global loc: 0 size: 1] [line: 1]

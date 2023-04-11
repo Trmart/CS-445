@@ -29,7 +29,7 @@
 < .   .   Child: 0  Var: i of type int [mem: Local loc: -3 size: 1] [line: 5]
 < .   .   Child: 0  Var: n of type int [mem: Local loc: -2 size: 1] [line: 17]
 ---
-> .   Child: 0  Parm: n of type int[mem: Parameter loc: 0 size: 1] [line: 3]
+> .   Child: 0  Parm: n of type int[mem: Parameter loc: -2 size: 1] [line: 3]
 > .   .   Child: 0  Var: i of type int[mem: Local loc: 0 size: 1] [line: 5]
 > .   .   Child: 0  Var: n of type int[mem: Local loc: 0 size: 1] [line: 17]
 23,25c23,25
@@ -37,9 +37,9 @@
 < .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 4]
 < .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 7]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 16]
-> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 4]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 7]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 16]
+> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 4]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 7]
 27,28c27,28
 < .   .   .   .   .   .   Child: 1  Id: i of type int [mem: Local loc: -3 size: 1] [line: 9]
 < .   .   .   .   Child: 1  Id: n of type int [mem: Parameter loc: -2 size: 1] [line: 7]
@@ -49,12 +49,12 @@
 30c30
 < Func: factorial returns type int [mem: Global loc: 0 size: -3] [line: 3]
 ---
-> Func: factorial returns type int[mem: Global loc: 0 size: 1] [line: 3]
+> Func: factorial returns type int[mem: Global loc: 0 size: -3] [line: 3]
 33d32
 < Offset for end of global space: 0
 36,37c35,36
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 15]
 < .   .   Sibling: 1  Var: f of type int [mem: Local loc: -4 size: 1] [line: 5]
 ---
-> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 15]
+> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 15]
 > .   .   Sibling: 1  Var: f of type int[mem: Local loc: 0 size: 1] [line: 5]

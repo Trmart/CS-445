@@ -21,7 +21,7 @@
 22c22
 < .   Child: 1  Compound [mem: None loc: 0 size: -26] [line: 6]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 6]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 6]
 32d31
 < Offset for end of global space: -48
 34,35c33,34
@@ -34,7 +34,7 @@
 < Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 5]
 < .   .   Sibling: 2  Var: c of static array of type int [mem: LocalStatic loc: -14 size: 34] [line: 9]
 ---
-> Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 5]
+> Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 5]
 > .   .   Sibling: 2  Var: c of static array of type int[mem: LocalStatic loc: 0 size: 1] [line: 9]
 40c39
 < .   .   Sibling: 3  Var: z of static type int [mem: LocalStatic loc: -47 size: 1] [line: 10]

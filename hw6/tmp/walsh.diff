@@ -142,35 +142,44 @@
 < .   .   Child: 0  Var: sqr of type int [mem: Local loc: -4 size: 1] [line: 5]
 ---
 > .   Child: 0  Parm: f is array of type int[mem: Parameter loc: -2 size: 1] [line: 18]
-> .   Child: 0  Parm: f is array of type int[mem: Parameter loc: -3 size: 1] [line: 36]
-> .   Child: 0  Parm: f is array of type int[mem: Parameter loc: -8 size: 1] [line: 70]
-> .   Child: 0  Parm: n of type int[mem: Parameter loc: 0 size: 1] [line: 3]
-> .   Child: 0  Parm: w is array of type int[mem: Parameter loc: -5 size: 1] [line: 49]
+> .   Child: 0  Parm: f is array of type int[mem: Parameter loc: -2 size: 1] [line: 36]
+> .   Child: 0  Parm: f is array of type int[mem: Parameter loc: -2 size: 1] [line: 70]
+> .   Child: 0  Parm: n of type int[mem: Parameter loc: -2 size: 1] [line: 3]
+> .   Child: 0  Parm: w is array of type int[mem: Parameter loc: -2 size: 1] [line: 49]
 > .   .   Child: 0  Var: a of type int[mem: Local loc: 0 size: 1] [line: 51]
 > .   .   Child: 0  Var: f of array of type int[mem: Local loc: 0 size: 1] [line: 83]
 > .   .   Child: 0  Var: i of type int[mem: Local loc: 0 size: 1] [line: 38]
 > .   .   Child: 0  Var: i of type int[mem: Local loc: 0 size: 1] [line: 72]
 > .   .   Child: 0  Var: numbits of type int[mem: Local loc: 0 size: 1] [line: 20]
 > .   .   Child: 0  Var: sqr of type int[mem: Local loc: 0 size: 1] [line: 5]
-117,118c117,124
+117,129c117,129
 < .   Child: 1  Compound [mem: None loc: 0 size: -262] [line: 82]
 < .   .   .   Child: 1  Compound [mem: None loc: 0 size: -262] [line: 89]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -10] [line: 71]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -10] [line: 75]
-> .   Child: 1  Compound [mem: None loc: 0 size: -10] [line: 82]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -10] [line: 89]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 10]
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 4]
-> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 19]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 28]
-121,126d126
+< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 37]
+< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 41]
 < .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 71]
 < .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 75]
 < .   .   .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 10]
 < .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 19]
 < .   .   .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 28]
 < .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 4]
+< .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 50]
+< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 54]
+< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 61]
+---
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 82]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 89]
+> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 19]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 28]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 10]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 37]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 4]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 41]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 71]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 75]
+> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 50]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 54]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 61]
 147,167c147,167
 < .   .   .   .   .   .   Child: 1  Id: a of type int [mem: Local loc: -5 size: 1] [line: 62]
 < .   .   .   .   .   .   .   Child: 1  Id: a of type int [mem: Local loc: -5 size: 1] [line: 63]
@@ -218,7 +227,7 @@
 190c190
 < Func: pow returns type int [mem: Global loc: 0 size: -4] [line: 3]
 ---
-> Func: pow returns type int[mem: Global loc: 0 size: 1] [line: 3]
+> Func: pow returns type int[mem: Global loc: 0 size: -4] [line: 3]
 193d192
 < Offset for end of global space: 0
 203,209c202,208
@@ -230,7 +239,7 @@
 < .   .   .   .   .   Sibling: 1  Id: size of type int [mem: Local loc: -259 size: 1] [line: 99]
 < .   .   .   .   .   Sibling: 1  Id: start of type int [mem: Parameter loc: -3 size: 1] [line: 55]
 ---
-> Sibling: 1  Func: getFunc returns type int[mem: Global loc: 0 size: 1] [line: 18]
+> Sibling: 1  Func: getFunc returns type int[mem: Global loc: 0 size: -3] [line: 18]
 > .   .   .   .   Sibling: 1  Id: numbits of type int[mem: None loc: 0 size: 1] [line: 26]
 > .   .   .   .   .   .   Sibling: 1  Id: numbits of type int[mem: None loc: 0 size: 1] [line: 92]
 > .   .   .   .   .   Sibling: 1  Id: size of type int[mem: None loc: 0 size: 1] [line: 100]
@@ -243,10 +252,10 @@
 < .   Sibling: 1  Parm: size of type int [mem: Parameter loc: -3 size: 1] [line: 70]
 < .   Sibling: 1  Parm: start of type int [mem: Parameter loc: -3 size: 1] [line: 49]
 ---
-> .   Sibling: 1  Parm: p of type int[mem: Parameter loc: -1 size: 1] [line: 3]
-> .   Sibling: 1  Parm: size of type int[mem: Parameter loc: -4 size: 1] [line: 36]
-> .   Sibling: 1  Parm: size of type int[mem: Parameter loc: -9 size: 1] [line: 70]
-> .   Sibling: 1  Parm: start of type int[mem: Parameter loc: -6 size: 1] [line: 49]
+> .   Sibling: 1  Parm: p of type int[mem: Parameter loc: -3 size: 1] [line: 3]
+> .   Sibling: 1  Parm: size of type int[mem: Parameter loc: -3 size: 1] [line: 36]
+> .   Sibling: 1  Parm: size of type int[mem: Parameter loc: -3 size: 1] [line: 70]
+> .   Sibling: 1  Parm: start of type int[mem: Parameter loc: -3 size: 1] [line: 49]
 219,222c218,221
 < .   .   Sibling: 1  Var: ans of type int [mem: Local loc: -5 size: 1] [line: 6]
 < .   .   Sibling: 1  Var: b of type int [mem: Local loc: -6 size: 1] [line: 51]
@@ -264,7 +273,7 @@
 < .   .   .   .   .   Sibling: 2  Id: size of type int [mem: Parameter loc: -4 size: 1] [line: 55]
 < .   .   .   .   .   Sibling: 2  Id: size of type int [mem: Parameter loc: -4 size: 1] [line: 56]
 ---
-> Sibling: 2  Func: printFunc returns type void[mem: Global loc: 0 size: 1] [line: 36]
+> Sibling: 2  Func: printFunc returns type void[mem: Global loc: 0 size: -4] [line: 36]
 > .   .   .   .   .   Sibling: 2  Id: size of type int[mem: None loc: 0 size: 1] [line: 55]
 > .   .   .   .   .   Sibling: 2  Id: size of type int[mem: None loc: 0 size: 1] [line: 56]
 > .   .   .   .   .   Sibling: 2  Id: size of type int[mem: None loc: 0 size: 1] [line: 95]
@@ -275,7 +284,7 @@
 < .   .   Sibling: 2  Var: size of type int [mem: Local loc: -5 size: 1] [line: 22]
 < .   .   Sibling: 2  Var: tmp of type int [mem: Local loc: -7 size: 1] [line: 51]
 ---
-> .   Sibling: 2  Parm: size of type int[mem: Parameter loc: -7 size: 1] [line: 49]
+> .   Sibling: 2  Parm: size of type int[mem: Parameter loc: -4 size: 1] [line: 49]
 > .   .   Sibling: 2  Var: numbits of type int[mem: Local loc: 0 size: 1] [line: 86]
 > .   .   Sibling: 2  Var: size of type int[mem: Local loc: 0 size: 1] [line: 22]
 > .   .   Sibling: 2  Var: tmp of type int[mem: Local loc: 0 size: 1] [line: 51]
@@ -283,13 +292,13 @@
 < Sibling: 3  Func: fwt returns type void [mem: Global loc: 0 size: -5] [line: 49]
 < .   .   Sibling: 3  Var: half of type int [mem: Local loc: -261 size: 1] [line: 87]
 ---
-> Sibling: 3  Func: fwt returns type void[mem: Global loc: 0 size: 1] [line: 49]
+> Sibling: 3  Func: fwt returns type void[mem: Global loc: 0 size: -5] [line: 49]
 > .   .   Sibling: 3  Var: half of type int[mem: Local loc: 0 size: 1] [line: 87]
 250c249
 < Sibling: 4  Func: div returns type void [mem: Global loc: 0 size: -4] [line: 70]
 ---
-> Sibling: 4  Func: div returns type void[mem: Global loc: 0 size: 1] [line: 70]
+> Sibling: 4  Func: div returns type void[mem: Global loc: 0 size: -4] [line: 70]
 254c253
 < Sibling: 5  Func: main returns type int [mem: Global loc: 0 size: -2] [line: 81]
 ---
-> Sibling: 5  Func: main returns type int[mem: Global loc: 0 size: 1] [line: 81]
+> Sibling: 5  Func: main returns type int[mem: Global loc: 0 size: -2] [line: 81]

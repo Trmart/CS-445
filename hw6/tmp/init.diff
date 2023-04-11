@@ -7,7 +7,7 @@
 7c7
 < .   Child: 1  Compound [mem: None loc: 0 size: -26] [line: 7]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 7]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 7]
 11,17c11,16
 < Offset for end of global space: -48
 < Sibling: 1  Var: x of type int [mem: Global loc: -12 size: 1] [line: 4]
@@ -19,7 +19,7 @@
 ---
 > Sibling: 1  Var: x of type int[mem: Global loc: 0 size: 1] [line: 4]
 > .   .   Sibling: 1  Var: y of type int[mem: Local loc: 0 size: 1] [line: 9]
-> Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 6]
+> Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 6]
 > .   .   Sibling: 2  Var: c of static array of type int[mem: LocalStatic loc: 0 size: 1] [line: 10]
 > .   .   Sibling: 3  Var: z of static type int[mem: LocalStatic loc: 0 size: 1] [line: 11]
 > Var: a of array of type int[mem: Global loc: 0 size: 1] [line: 3]

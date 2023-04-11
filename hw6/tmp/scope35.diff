@@ -101,29 +101,19 @@
 < .   .   .   Child: 0  Var: d of type int [mem: Local loc: -17 size: 1] [line: 57]
 < .   .   .   Child: 0  Var: e of static type int [mem: LocalStatic loc: -13 size: 1] [line: 75]
 ---
-> .   Child: 0  Parm: fpaa is array of type int[mem: Parameter loc: -5 size: 1] [line: 23]
-> .   Child: 0  Parm: fpa of type int[mem: Parameter loc: 0 size: 1] [line: 5]
+> .   Child: 0  Parm: fpaa is array of type int[mem: Parameter loc: -2 size: 1] [line: 23]
 > .   Child: 0  Parm: fpa of type int[mem: Parameter loc: -2 size: 1] [line: 15]
-> .   Child: 0  Parm: fpa of type int[mem: Parameter loc: -4 size: 1] [line: 21]
-> .   Child: 0  Parm: pa of type int[mem: Parameter loc: -6 size: 1] [line: 25]
+> .   Child: 0  Parm: fpa of type int[mem: Parameter loc: -2 size: 1] [line: 21]
+> .   Child: 0  Parm: fpa of type int[mem: Parameter loc: -2 size: 1] [line: 5]
+> .   Child: 0  Parm: pa of type int[mem: Parameter loc: -2 size: 1] [line: 25]
 > .   .   Child: 0  Var: b of type int[mem: Local loc: 0 size: 1] [line: 27]
 > .   .   .   Child: 0  Var: c of type int[mem: Local loc: 0 size: 1] [line: 44]
 > .   .   .   Child: 0  Var: d of type int[mem: Local loc: 0 size: 1] [line: 57]
 > .   .   .   Child: 0  Var: e of static type int[mem: LocalStatic loc: 0 size: 1] [line: 75]
-80,83c80
+80d79
 < .   Child: 1  Compound [mem: None loc: 0 size: -17] [line: 26]
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 103]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 21]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 23]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 6]
-85c82,85
-< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 6]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 21]
-> .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 23]
-> .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 103]
-> .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 26]
+84a84
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 26]
 114,115c114,115
 < .   .   .   Child: 1  Id: paa of array of type int [mem: Parameter loc: -3 size: 1] [line: 42]
 < .   .   .   Child: 1  Id: pa of type int [mem: Parameter loc: -2 size: 1] [line: 37]
@@ -137,9 +127,9 @@
 < .   .   Sibling: 11  Compound [mem: None loc: 0 size: -30] [line: 56]
 < .   .   Sibling: 12  Compound [mem: None loc: 0 size: -17] [line: 74]
 ---
-> .   .   Sibling: 10  Compound [mem: None loc: 0 size: -8] [line: 43]
-> .   .   Sibling: 11  Compound [mem: None loc: 0 size: -8] [line: 56]
-> .   .   Sibling: 12  Compound [mem: None loc: 0 size: -8] [line: 74]
+> .   .   Sibling: 10  Compound [mem: None loc: 0 size: -4] [line: 43]
+> .   .   Sibling: 11  Compound [mem: None loc: 0 size: -4] [line: 56]
+> .   .   Sibling: 12  Compound [mem: None loc: 0 size: -4] [line: 74]
 138,165c137,164
 < .   .   .   Sibling: 1  Id: aa of array of type int [mem: Global loc: -2 size: 12] [line: 104]
 < .   .   .   Sibling: 1  Id: aa of array of type int [mem: Global loc: -2 size: 12] [line: 39]
@@ -190,9 +180,9 @@
 > .   .   .   .   Sibling: 1  Id: ee of static array of type int[mem: None loc: 0 size: 1] [line: 85]
 > .   .   .   .   Sibling: 1  Id: ee of static array of type int[mem: None loc: 0 size: 1] [line: 90]
 > .   .   .   Sibling: 1  Id: fpaa of array of type int[mem: None loc: 0 size: 1] [line: 18]
-> .   Sibling: 1  Parm: fpaa is array of type int[mem: Parameter loc: -1 size: 1] [line: 5]
 > .   Sibling: 1  Parm: fpaa is array of type int[mem: Parameter loc: -3 size: 1] [line: 15]
-> .   Sibling: 1  Parm: paa is array of type int[mem: Parameter loc: -7 size: 1] [line: 25]
+> .   Sibling: 1  Parm: fpaa is array of type int[mem: Parameter loc: -3 size: 1] [line: 5]
+> .   Sibling: 1  Parm: paa is array of type int[mem: Parameter loc: -3 size: 1] [line: 25]
 > Sibling: 1  Var: aa of array of type int[mem: Global loc: 0 size: 1] [line: 3]
 > .   .   Sibling: 1  Var: bb of array of type int[mem: Local loc: 0 size: 1] [line: 28]
 > .   .   .   Sibling: 1  Var: cc of array of type int[mem: Local loc: 0 size: 1] [line: 45]
@@ -201,27 +191,27 @@
 171c170
 < Sibling: 2  Func: fox returns type void [mem: Global loc: 0 size: -4] [line: 5]
 ---
-> Sibling: 2  Func: fox returns type void[mem: Global loc: 0 size: 1] [line: 5]
+> Sibling: 2  Func: fox returns type void[mem: Global loc: 0 size: -4] [line: 5]
 177c176
 < Sibling: 3  Func: bat returns type void [mem: Global loc: 0 size: -4] [line: 15]
 ---
-> Sibling: 3  Func: bat returns type void[mem: Global loc: 0 size: 1] [line: 15]
+> Sibling: 3  Func: bat returns type void[mem: Global loc: 0 size: -4] [line: 15]
 183c182
 < Sibling: 4  Func: th returns type int [mem: Global loc: 0 size: -3] [line: 21]
 ---
-> Sibling: 4  Func: th returns type int[mem: Global loc: 0 size: 1] [line: 21]
+> Sibling: 4  Func: th returns type int[mem: Global loc: 0 size: -3] [line: 21]
 188c187
 < Sibling: 5  Func: tha returns type int [mem: Global loc: 0 size: -3] [line: 23]
 ---
-> Sibling: 5  Func: tha returns type int[mem: Global loc: 0 size: 1] [line: 23]
+> Sibling: 5  Func: tha returns type int[mem: Global loc: 0 size: -3] [line: 23]
 193c192
 < Sibling: 6  Func: dog returns type void [mem: Global loc: 0 size: -4] [line: 25]
 ---
-> Sibling: 6  Func: dog returns type void[mem: Global loc: 0 size: 1] [line: 25]
+> Sibling: 6  Func: dog returns type void[mem: Global loc: 0 size: -4] [line: 25]
 197c196
 < Sibling: 7  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 102]
 ---
-> Sibling: 7  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 102]
+> Sibling: 7  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 102]
 204c203
 < Var: a of type int [mem: Global loc: 0 size: 1] [line: 2]
 ---

@@ -11,11 +11,8 @@
 19c19
 < .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 ---
-> .   Child: 0  Parm: x of type int[mem: Parameter loc: 0 size: 1] [line: 2]
-20a21
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
-22,24c23,24
-< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 2]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
+23,24c23,24
 < .   .   .   .   .   .   Child: 1  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 < .   .   .   .   .   .   Child: 1  Id: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 ---
@@ -24,12 +21,12 @@
 31c31
 < Func: comp returns type int [mem: Global loc: 0 size: -4] [line: 2]
 ---
-> Func: comp returns type int[mem: Global loc: 0 size: 1] [line: 2]
+> Func: comp returns type int[mem: Global loc: 0 size: -4] [line: 2]
 34d33
 < Offset for end of global space: 0
 41,42c40,41
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
 < .   Sibling: 1  Parm: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 ---
-> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 4]
-> .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -1 size: 1] [line: 2]
+> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 4]
+> .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]

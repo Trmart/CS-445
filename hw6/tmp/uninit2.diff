@@ -35,7 +35,7 @@
 20c20
 < .   Child: 1  Compound [mem: None loc: 0 size: -39] [line: 2]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 2]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
 26,31c26,31
 < .   .   .   Child: 1  Id: a of type int [mem: Local loc: -2 size: 1] [line: 10]
 < .   .   .   Child: 1  Id: a of type int [mem: Local loc: -2 size: 1] [line: 11]
@@ -53,7 +53,7 @@
 38c38
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
 ---
-> Func: main returns type void[mem: Global loc: 0 size: 1] [line: 1]
+> Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
 41d40
 < Offset for end of global space: 0
 43c42
