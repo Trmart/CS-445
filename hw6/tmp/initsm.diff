@@ -2,12 +2,10 @@
 < .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 6]
 ---
 > .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 6]
-6,7c6,7
+6c6
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 3]
-< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 2]
 ---
-> .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 3]
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+> .   .   Child: 0  Var: x of type int[mem: Local loc: -2 size: 1] [line: 3]
 9c9
 < .   .   .   Child: 1  Id: y of type int [mem: Local loc: -3 size: 1] [line: 6]
 ---
@@ -20,4 +18,4 @@
 < Offset for end of global space: 0
 < .   .   Sibling: 1  Var: y of type int [mem: Local loc: -3 size: 1] [line: 4]
 ---
-> .   .   Sibling: 1  Var: y of type int[mem: Local loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 1  Var: y of type int[mem: Local loc: -3 size: 1] [line: 4]

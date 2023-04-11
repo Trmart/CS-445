@@ -9,11 +9,7 @@
 < .   .   Child: 0  Var: x of type bool [mem: Local loc: -2 size: 1] [line: 6]
 ---
 > .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   Child: 0  Var: x of type bool[mem: Local loc: 0 size: 1] [line: 6]
-141a142
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
-143d143
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 5]
+> .   .   Child: 0  Var: x of type bool[mem: Local loc: -2 size: 1] [line: 6]
 214c214
 < Func: ident returns type int [mem: Global loc: 0 size: -3] [line: 2]
 ---

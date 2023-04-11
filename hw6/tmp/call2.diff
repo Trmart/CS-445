@@ -31,11 +31,11 @@
 > .   Child: 0  Parm: x is array of type int[mem: Parameter loc: -2 size: 1] [line: 16]
 > .   Child: 0  Parm: y is array of type int[mem: Parameter loc: -2 size: 1] [line: 9]
 > .   Child: 0  Parm: z is array of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   Child: 0  Var: w of array of type int[mem: Local loc: 0 size: 1] [line: 25]
-28c28
+> .   .   Child: 0  Var: w of array of type int[mem: Local loc: -3 size: 1] [line: 25]
+28d27
 < .   Child: 1  Compound [mem: None loc: 0 size: -13] [line: 24]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 24]
+30a30
+> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 24]
 42c42
 < Func: three returns type void [mem: Global loc: 0 size: -3] [line: 2]
 ---

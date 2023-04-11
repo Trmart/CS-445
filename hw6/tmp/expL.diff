@@ -1,9 +1,7 @@
-4,5c4,5
+4c4
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 4]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
 ---
-> .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 4]
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
+> .   .   Child: 0  Var: x of type int[mem: Local loc: -2 size: 1] [line: 4]
 8c8
 < .   .   .   .   Child: 1  Id: x of type int [mem: Local loc: -2 size: 1] [line: 6]
 ---

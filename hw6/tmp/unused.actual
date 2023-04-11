@@ -8,7 +8,7 @@
 Number of errors: 0
 Number of warnings: 3
 .   .   Sibling: 1  Call: udog of type void [line: 7]
-Sibling: 1  Var: ug of type int[mem: Global loc: 0 size: 1] [line: 1]
+Sibling: 1  Var: ug of type int[mem: Global loc: -1 size: 1] [line: 1]
 Sibling: 2  Func: dog returns type void[mem: Global loc: 0 size: -3] [line: 2]
 Sibling: 3  Func: udog returns type void[mem: Global loc: 0 size: -2] [line: 3]
 Sibling: 4  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 5]

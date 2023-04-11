@@ -8,30 +8,29 @@
 < .   .   .   .   .   .   Child: 0  Var: x of type int [mem: Local loc: -4 size: 1] [line: 9]
 < .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
 ---
-> .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 14]
-> .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 16]
-> .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 19]
-> .   .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 20]
-> .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 4]
-> .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 7]
-> .   .   .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 9]
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
-27,30c27,30
+> .   .   Child: 0  Var: x of type int[mem: Local loc: -2 size: 1] [line: 4]
+> .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: -3 size: 1] [line: 7]
+> .   .   .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: -4 size: 1] [line: 9]
+> .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: -5 size: 1] [line: 14]
+> .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: -6 size: 1] [line: 16]
+> .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: -7 size: 1] [line: 19]
+> .   .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: -8 size: 1] [line: 20]
+> .   Child: 1  Compound [mem: None loc: 0 size: -9] [line: 3]
+27,29c27
 < .   .   .   Child: 1  For [mem: None loc: 0 size: -4] [line: 14]
 < .   .   .   Child: 1  For [mem: None loc: 0 size: -4] [line: 19]
 < .   .   .   Child: 1  For [mem: None loc: 0 size: -4] [line: 7]
-< .   .   .   .   .   Child: 1  For [mem: None loc: 0 size: -5] [line: 9]
 ---
-> .   .   .   Child: 1  For [mem: None loc: 0 size: -2] [line: 14]
-> .   .   .   Child: 1  For [mem: None loc: 0 size: -2] [line: 19]
-> .   .   .   Child: 1  For [mem: None loc: 0 size: -2] [line: 7]
-> .   .   .   .   .   Child: 1  For [mem: None loc: 0 size: -2] [line: 9]
+> .   .   .   Child: 1  For [mem: None loc: 0 size: -5] [line: 7]
+30a29,30
+> .   .   .   Child: 1  For [mem: None loc: 0 size: -6] [line: 14]
+> .   .   .   Child: 1  For [mem: None loc: 0 size: -9] [line: 19]
 47,48c47,48
 < .   .   .   Child: 2  For [mem: None loc: 0 size: -4] [line: 16]
 < .   .   .   .   Child: 2  For [mem: None loc: 0 size: -5] [line: 20]
 ---
-> .   .   .   Child: 2  For [mem: None loc: 0 size: -2] [line: 16]
-> .   .   .   .   Child: 2  For [mem: None loc: 0 size: -2] [line: 20]
+> .   .   .   Child: 2  For [mem: None loc: 0 size: -7] [line: 16]
+> .   .   .   .   Child: 2  For [mem: None loc: 0 size: -9] [line: 20]
 51c51
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---

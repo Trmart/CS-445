@@ -26,16 +26,8 @@
 < .   .   Child: 0  Var: n of type int [mem: Local loc: -2 size: 1] [line: 19]
 ---
 > .   Child: 0  Parm: n of type int[mem: Parameter loc: -2 size: 1] [line: 3]
-> .   .   Child: 0  Var: i of type int[mem: Local loc: 0 size: 1] [line: 5]
-> .   .   Child: 0  Var: n of type int[mem: Local loc: 0 size: 1] [line: 19]
-21,23c21,23
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 18]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 4]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 8]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 18]
-> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 4]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 8]
+> .   .   Child: 0  Var: i of type int[mem: Local loc: -3 size: 1] [line: 5]
+> .   .   Child: 0  Var: n of type int[mem: Local loc: -2 size: 1] [line: 19]
 25,26c25,26
 < .   .   .   .   .   .   Child: 1  Id: i of type int [mem: Local loc: -3 size: 1] [line: 10]
 < .   .   .   .   Child: 1  Id: n of type int [mem: Parameter loc: -2 size: 1] [line: 8]
@@ -53,4 +45,4 @@
 < .   .   Sibling: 1  Var: f of type int [mem: Local loc: -4 size: 1] [line: 5]
 ---
 > Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 17]
-> .   .   Sibling: 1  Var: f of type int[mem: Local loc: 0 size: 1] [line: 5]
+> .   .   Sibling: 1  Var: f of type int[mem: Local loc: -4 size: 1] [line: 5]

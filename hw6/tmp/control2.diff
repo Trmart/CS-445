@@ -21,17 +21,7 @@
 > .   .   .   .   .   Child: 0  Id: y of type bool[mem: None loc: 0 size: 1] [line: 28]
 > .   .   .   Child: 0  Id: y of type bool[mem: None loc: 0 size: 1] [line: 5]
 > .   .   .   Child: 0  Id: y of type bool[mem: None loc: 0 size: 1] [line: 9]
-> .   .   Child: 0  Var: x of type bool[mem: Local loc: 0 size: 1] [line: 2]
-13,16c13,16
-< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 1]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 17]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 25]
-< .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 28]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 1]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 17]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 25]
-> .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 28]
+> .   .   Child: 0  Var: x of type bool[mem: Local loc: -2 size: 1] [line: 2]
 29c29
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
 ---
@@ -41,4 +31,4 @@
 37c36
 < .   .   Sibling: 1  Var: y of type bool [mem: Local loc: -3 size: 1] [line: 2]
 ---
-> .   .   Sibling: 1  Var: y of type bool[mem: Local loc: 0 size: 1] [line: 2]
+> .   .   Sibling: 1  Var: y of type bool[mem: Local loc: -3 size: 1] [line: 2]

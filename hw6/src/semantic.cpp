@@ -342,6 +342,11 @@ void analyzeVar(TreeNode* node, int& nErrors, int& nWarnings)
         if(node->isStatic && node->lineno == node->sibling->lineno)
         {
             node->sibling->isStatic = node->isStatic;
+
+            if(!node->isGlobal)
+            {
+                node->memoryType = LocalStatic;
+            }
         }
     }
 
@@ -412,6 +417,55 @@ void analyzeVar(TreeNode* node, int& nErrors, int& nWarnings)
     else
     {
         node->isDeclared = true;
+    }
+
+    //memory calculations
+    //start with memory size
+    if(node->isArray)
+    {
+
+        node->memorySize = node->arraySize + 1;
+    }
+    else
+    {
+        node->memorySize = 1;
+    }
+
+    //calc memory offsets -- start with global and static checks
+    if(node->isGlobal || node->isStatic)
+    {
+
+        //check for arrays
+        if(node->isArray)
+        {
+            node->memoryOffset = globalOffset - 1;
+        }
+        else
+        {
+            node->memoryOffset = globalOffset;
+        }
+
+        //adjust global offset by memory size
+        globalOffset -= node->memorySize;
+    }
+
+    //calculate local mem offsets
+    else
+    {
+
+        //check for arrays
+        if(node->isArray)
+        {
+
+            node->memoryOffset = localOffset - 1;
+        }
+        else
+        {
+            node->memoryOffset = localOffset;
+        }
+
+        //adjust local offset by memory size
+        localOffset -= node->memorySize;
     }
 }
 

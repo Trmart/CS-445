@@ -38,35 +38,23 @@
 > .   .   .   .   .   Child: 0  Id: z of type int[mem: None loc: 0 size: 1] [line: 7]
 > .   Child: 0  Parm: a of type int[mem: Parameter loc: -2 size: 1] [line: 4]
 > .   Child: 0  Parm: pig of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 9]
-> .   .   .   .   .   Child: 0  Var: y of type int[mem: Local loc: 0 size: 1] [line: 16]
-> .   .   Child: 0  Var: z of type int[mem: Local loc: 0 size: 1] [line: 29]
-> .   .   .   .   Child: 0  Var: z of type int[mem: Local loc: 0 size: 1] [line: 6]
-32a33
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 28]
-34d34
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 28]
-36c36
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 5]
----
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 5]
+> .   .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: -4 size: 1] [line: 9]
+> .   .   .   .   .   Child: 0  Var: y of type int[mem: Local loc: -4 size: 1] [line: 16]
+> .   .   Child: 0  Var: z of type int[mem: Local loc: -2 size: 1] [line: 29]
+> .   .   .   .   Child: 0  Var: z of type int[mem: Local loc: -3 size: 1] [line: 6]
 45c45
 < Func: dog returns type int [mem: Global loc: 0 size: -3] [line: 2]
 ---
 > Func: dog returns type int[mem: Global loc: 0 size: -3] [line: 2]
 48d47
 < Offset for end of global space: -1
-52,53c51,52
-< .   .   .   .   Sibling: 1  Compound [mem: None loc: 0 size: -5] [line: 8]
+53c52
 < Sibling: 1  Func: thor returns type void [mem: Global loc: 0 size: -3] [line: 4]
 ---
-> .   .   .   .   Sibling: 1  Compound [mem: None loc: 0 size: -3] [line: 8]
 > Sibling: 1  Func: thor returns type void[mem: Global loc: 0 size: -3] [line: 4]
-56,57c55,56
-< .   .   .   .   Sibling: 2  Compound [mem: None loc: 0 size: -5] [line: 15]
+57c56
 < Sibling: 2  Var: g of type int [mem: Global loc: 0 size: 1] [line: 27]
 ---
-> .   .   .   .   Sibling: 2  Compound [mem: None loc: 0 size: -3] [line: 15]
 > Sibling: 2  Var: g of type int[mem: Global loc: 0 size: 1] [line: 27]
 61c60
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 28]

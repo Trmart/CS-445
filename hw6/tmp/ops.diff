@@ -121,11 +121,7 @@
 241c241
 < .   .   Child: 0  Var: a of type int [mem: Local loc: -2 size: 1] [line: 9]
 ---
-> .   .   Child: 0  Var: a of type int[mem: Local loc: 0 size: 1] [line: 9]
-249c249
-< .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 8]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 8]
+> .   .   Child: 0  Var: a of type int[mem: Local loc: -2 size: 1] [line: 9]
 345,360c345,360
 < .   .   .   .   Child: 1  Id: a of type int [mem: Local loc: -2 size: 1] [line: 120]
 < .   .   .   .   Child: 1  Id: a of type int [mem: Local loc: -2 size: 1] [line: 31]
@@ -166,19 +162,19 @@
 < .   .   Sibling: 1  Var: b of type int [mem: Local loc: -3 size: 1] [line: 10]
 < Sibling: 1  Var: x of type bool [mem: Global loc: -11 size: 1] [line: 5]
 ---
-> .   .   Sibling: 1  Var: b of type int[mem: Local loc: 0 size: 1] [line: 10]
-> Sibling: 1  Var: x of type bool[mem: Global loc: 0 size: 1] [line: 5]
+> .   .   Sibling: 1  Var: b of type int[mem: Local loc: -3 size: 1] [line: 10]
+> Sibling: 1  Var: x of type bool[mem: Global loc: -1 size: 1] [line: 5]
 421,422c420,421
 < Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 7]
 < .   .   Sibling: 2  Var: c of type int [mem: Local loc: -4 size: 1] [line: 11]
 ---
 > Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 7]
-> .   .   Sibling: 2  Var: c of type int[mem: Local loc: 0 size: 1] [line: 11]
+> .   .   Sibling: 2  Var: c of type int[mem: Local loc: -4 size: 1] [line: 11]
 434c433
 < .   .   Sibling: 3  Var: z of type bool [mem: Local loc: -5 size: 1] [line: 12]
 ---
-> .   .   Sibling: 3  Var: z of type bool[mem: Local loc: 0 size: 1] [line: 12]
+> .   .   Sibling: 3  Var: z of type bool[mem: Local loc: -5 size: 1] [line: 12]
 501c500
 < Var: y of array of type int [mem: Global loc: -1 size: 11] [line: 4]
 ---
-> Var: y of array of type int[mem: Global loc: 0 size: 1] [line: 4]
+> Var: y of array of type int[mem: Global loc: -1 size: 1] [line: 4]

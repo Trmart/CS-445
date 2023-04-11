@@ -17,9 +17,9 @@
 > .   .   .   Child: 0  Id: x of static type int[mem: None loc: 0 size: 1] [line: 22]
 > .   .   .   Child: 0  Id: x of static type int[mem: None loc: 0 size: 1] [line: 25]
 > .   .   .   .   Child: 0  Id: x of static type int[mem: None loc: 0 size: 1] [line: 7]
-> .   .   Child: 0  Var: x of static type int[mem: LocalStatic loc: 0 size: 1] [line: 12]
-> .   .   .   Child: 0  Var: x of static type int[mem: LocalStatic loc: 0 size: 1] [line: 17]
-> .   .   Child: 0  Var: x of static type int[mem: LocalStatic loc: 0 size: 1] [line: 6]
+> .   .   Child: 0  Var: x of static type int[mem: LocalStatic loc: -1 size: 1] [line: 6]
+> .   .   Child: 0  Var: x of static type int[mem: LocalStatic loc: -2 size: 1] [line: 12]
+> .   .   .   Child: 0  Var: x of static type int[mem: LocalStatic loc: -3 size: 1] [line: 17]
 31d30
 < Offset for end of global space: -4
 35c34

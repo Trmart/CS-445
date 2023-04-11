@@ -1,15 +1,15 @@
-1,3c1,3
+1c1
 < .   .   Child: 0  Var: a of type int [mem: Local loc: -2 size: 1] [line: 4]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 3]
+---
+> .   .   Child: 0  Var: a of type int[mem: Local loc: -2 size: 1] [line: 4]
+3c3
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
-> .   .   Child: 0  Var: a of type int[mem: Local loc: 0 size: 1] [line: 4]
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 6,8c6,7
 < Offset for end of global space: 0
 < .   .   Sibling: 1  Var: b of type bool [mem: Local loc: -3 size: 1] [line: 5]
 < .   .   Sibling: 2  Var: c of type char [mem: Local loc: -4 size: 1] [line: 6]
 ---
-> .   .   Sibling: 1  Var: b of type bool[mem: Local loc: 0 size: 1] [line: 5]
-> .   .   Sibling: 2  Var: c of type char[mem: Local loc: 0 size: 1] [line: 6]
+> .   .   Sibling: 1  Var: b of type bool[mem: Local loc: -3 size: 1] [line: 5]
+> .   .   Sibling: 2  Var: c of type char[mem: Local loc: -4 size: 1] [line: 6]

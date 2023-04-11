@@ -67,22 +67,22 @@
 64c63
 < Sibling: 3  Var: y of type bool [mem: Global loc: -1 size: 1] [line: 20]
 ---
-> Sibling: 3  Var: y of type bool[mem: Global loc: 0 size: 1] [line: 20]
+> Sibling: 3  Var: y of type bool[mem: Global loc: -1 size: 1] [line: 20]
 66c65
 < Sibling: 4  Var: z of type char [mem: Global loc: -2 size: 1] [line: 20]
 ---
-> Sibling: 4  Var: z of type char[mem: Global loc: 0 size: 1] [line: 20]
+> Sibling: 4  Var: z of type char[mem: Global loc: -2 size: 1] [line: 20]
 68c67
 < Sibling: 5  Var: XX of array of type int [mem: Global loc: -4 size: 4] [line: 21]
 ---
-> Sibling: 5  Var: XX of array of type int[mem: Global loc: 0 size: 1] [line: 21]
+> Sibling: 5  Var: XX of array of type int[mem: Global loc: -4 size: 1] [line: 21]
 70c69
 < Sibling: 6  Var: YY of array of type bool [mem: Global loc: -8 size: 6] [line: 21]
 ---
-> Sibling: 6  Var: YY of array of type bool[mem: Global loc: 0 size: 1] [line: 21]
+> Sibling: 6  Var: YY of array of type bool[mem: Global loc: -5 size: 1] [line: 21]
 72,73c71,72
 < Sibling: 7  Var: ZZ of array of type char [mem: Global loc: -14 size: 8] [line: 21]
 < Sibling: 8  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 23]
 ---
-> Sibling: 7  Var: ZZ of array of type char[mem: Global loc: 0 size: 1] [line: 21]
+> Sibling: 7  Var: ZZ of array of type char[mem: Global loc: -6 size: 1] [line: 21]
 > Sibling: 8  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 23]

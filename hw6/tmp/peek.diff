@@ -6,18 +6,11 @@
 ---
 > .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 3]
 > .   .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 4]
-> .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 3]
-> .   .   .   Child: 0  Var: y of type int[mem: Local loc: 0 size: 1] [line: 4]
-8c8
-< .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
----
-> .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
+> .   .   .   Child: 0  Var: x of type int[mem: Local loc: -2 size: 1] [line: 3]
+> .   .   .   Child: 0  Var: y of type int[mem: Local loc: -2 size: 1] [line: 4]
 10c10
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
 ---
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
-13,14c13
+13d12
 < Offset for end of global space: 0
-< .   .   Sibling: 1  Compound [mem: None loc: 0 size: -3] [line: 4]
----
-> .   .   Sibling: 1  Compound [mem: None loc: 0 size: -2] [line: 4]

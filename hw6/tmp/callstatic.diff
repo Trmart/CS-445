@@ -59,7 +59,7 @@
 > .   .   .   Sibling: 1  Id: YY of static array of type bool[mem: None loc: 0 size: 1] [line: 34]
 > .   Sibling: 1  Parm: b is array of type bool[mem: Parameter loc: -3 size: 1] [line: 11]
 > .   Sibling: 1  Parm: b of type bool[mem: Parameter loc: -3 size: 1] [line: 2]
-> .   .   Sibling: 1  Var: y of static type bool[mem: LocalStatic loc: 0 size: 1] [line: 22]
+> .   .   Sibling: 1  Var: y of static type bool[mem: LocalStatic loc: -1 size: 1] [line: 22]
 58,63c57,62
 < Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 20]
 < .   .   .   Sibling: 2  Id: z of type char [mem: Local loc: -3 size: 1] [line: 33]
@@ -73,16 +73,16 @@
 > .   .   .   Sibling: 2  Id: ZZ of static array of type char[mem: None loc: 0 size: 1] [line: 34]
 > .   Sibling: 2  Parm: c is array of type char[mem: Parameter loc: -4 size: 1] [line: 11]
 > .   Sibling: 2  Parm: c of type char[mem: Parameter loc: -4 size: 1] [line: 2]
-> .   .   Sibling: 2  Var: z of static type char[mem: LocalStatic loc: 0 size: 1] [line: 22]
+> .   .   Sibling: 2  Var: z of static type char[mem: LocalStatic loc: -2 size: 1] [line: 22]
 67c66
 < .   .   Sibling: 3  Var: XX of static array of type int [mem: LocalStatic loc: -2 size: 4] [line: 23]
 ---
-> .   .   Sibling: 3  Var: XX of static array of type int[mem: LocalStatic loc: 0 size: 1] [line: 23]
+> .   .   Sibling: 3  Var: XX of static array of type int[mem: LocalStatic loc: -4 size: 1] [line: 23]
 69c68
 < .   .   Sibling: 4  Var: YY of array of type bool [mem: Local loc: -5 size: 6] [line: 23]
 ---
-> .   .   Sibling: 4  Var: YY of static array of type bool[mem: LocalStatic loc: 0 size: 1] [line: 23]
+> .   .   Sibling: 4  Var: YY of static array of type bool[mem: LocalStatic loc: -5 size: 1] [line: 23]
 71c70
 < .   .   Sibling: 5  Var: ZZ of array of type char [mem: Local loc: -11 size: 8] [line: 23]
 ---
-> .   .   Sibling: 5  Var: ZZ of static array of type char[mem: LocalStatic loc: 0 size: 1] [line: 23]
+> .   .   Sibling: 5  Var: ZZ of static array of type char[mem: LocalStatic loc: -6 size: 1] [line: 23]

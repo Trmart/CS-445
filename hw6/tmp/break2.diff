@@ -15,15 +15,7 @@
 11c11
 < .   .   Child: 0  Var: i of type int [mem: Local loc: -2 size: 1] [line: 4]
 ---
-> .   .   Child: 0  Var: i of type int[mem: Local loc: 0 size: 1] [line: 4]
-16,18c16,18
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 7]
-< .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 8]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 7]
-> .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 8]
+> .   .   Child: 0  Var: i of type int[mem: Local loc: -2 size: 1] [line: 4]
 23c23
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---

@@ -15,11 +15,7 @@
 13c13
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 3]
 ---
-> .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 3]
-15c15
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 2]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+> .   .   Child: 0  Var: x of type int[mem: Local loc: -2 size: 1] [line: 3]
 22c22
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
 ---

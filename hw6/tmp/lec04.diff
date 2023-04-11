@@ -11,11 +11,7 @@
 10c10
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 3]
 ---
-> .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 3]
-12c12
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 2]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+> .   .   Child: 0  Var: x of type int[mem: Local loc: -2 size: 1] [line: 3]
 17c17
 < .   .   .   .   Child: 1  Id: x of type int [mem: Local loc: -2 size: 1] [line: 6]
 ---
@@ -29,8 +25,8 @@
 27c26
 < .   .   Sibling: 1  Var: y of type int [mem: Local loc: -3 size: 1] [line: 3]
 ---
-> .   .   Sibling: 1  Var: y of type int[mem: Local loc: 0 size: 1] [line: 3]
+> .   .   Sibling: 1  Var: y of type int[mem: Local loc: -3 size: 1] [line: 3]
 29c28
 < .   .   Sibling: 2  Var: z of type int [mem: Local loc: -4 size: 1] [line: 3]
 ---
-> .   .   Sibling: 2  Var: z of type int[mem: Local loc: 0 size: 1] [line: 3]
+> .   .   Sibling: 2  Var: z of type int[mem: Local loc: -4 size: 1] [line: 3]

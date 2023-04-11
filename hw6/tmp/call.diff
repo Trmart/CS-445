@@ -59,15 +59,16 @@
 > .   Child: 0  Parm: a is array of type int[mem: Parameter loc: -2 size: 1] [line: 11]
 > .   Child: 0  Parm: a of type int[mem: Parameter loc: -2 size: 1] [line: 2]
 > .   Child: 0  Parm: z is array of type int[mem: Parameter loc: -2 size: 1] [line: 20]
-> .   .   Child: 0  Var: a of array of type int[mem: Local loc: 0 size: 1] [line: 38]
-> .   .   Child: 0  Var: b of array of type bool[mem: Local loc: 0 size: 1] [line: 22]
-> .   .   .   Child: 0  Var: ga of static array of type int[mem: LocalStatic loc: 0 size: 1] [line: 57]
-52,53c52,53
+> .   .   Child: 0  Var: a of array of type int[mem: Local loc: -3 size: 1] [line: 38]
+> .   .   Child: 0  Var: b of array of type bool[mem: Local loc: -4 size: 1] [line: 22]
+> .   .   .   Child: 0  Var: ga of static array of type int[mem: LocalStatic loc: -4 size: 1] [line: 57]
+52,53d51
 < .   Child: 1  Compound [mem: None loc: 0 size: -15] [line: 21]
 < .   Child: 1  Compound [mem: None loc: 0 size: -23] [line: 37]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 37]
-> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 21]
+54a53
+> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 21]
+55a55
+> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 37]
 81c81
 < Func: cheyenne returns type void [mem: Global loc: 0 size: -5] [line: 2]
 ---
@@ -77,7 +78,7 @@
 87c86
 < .   .   Sibling: 12  Compound [mem: None loc: 0 size: -23] [line: 56]
 ---
-> .   .   Sibling: 12  Compound [mem: None loc: 0 size: -2] [line: 56]
+> .   .   Sibling: 12  Compound [mem: None loc: 0 size: -5] [line: 56]
 95,104c94,103
 < Sibling: 1  Func: sioux returns type void [mem: Global loc: 0 size: -5] [line: 11]
 < .   .   .   Sibling: 1  Id: b of array of type bool [mem: Local loc: -4 size: 6] [line: 27]
@@ -97,9 +98,9 @@
 > .   .   .   .   Sibling: 1  Id: gb of static array of type bool[mem: None loc: 0 size: 1] [line: 64]
 > .   Sibling: 1  Parm: b is array of type bool[mem: Parameter loc: -3 size: 1] [line: 11]
 > .   Sibling: 1  Parm: b of type bool[mem: Parameter loc: -3 size: 1] [line: 2]
-> .   .   Sibling: 1  Var: b of array of type bool[mem: Local loc: 0 size: 1] [line: 39]
-> .   .   Sibling: 1  Var: c of array of type char[mem: Local loc: 0 size: 1] [line: 23]
-> .   .   .   Sibling: 1  Var: gb of static array of type bool[mem: LocalStatic loc: 0 size: 1] [line: 58]
+> .   .   Sibling: 1  Var: b of array of type bool[mem: Local loc: -4 size: 1] [line: 39]
+> .   .   Sibling: 1  Var: c of array of type char[mem: Local loc: -5 size: 1] [line: 23]
+> .   .   .   Sibling: 1  Var: gb of static array of type bool[mem: LocalStatic loc: -5 size: 1] [line: 58]
 112,120c111,119
 < Sibling: 2  Func: comanche returns type void [mem: Global loc: 0 size: -3] [line: 20]
 < .   .   .   Sibling: 2  Id: c of array of type char [mem: Local loc: -10 size: 6] [line: 27]
@@ -118,20 +119,20 @@
 > .   .   .   .   Sibling: 2  Id: gc of static array of type char[mem: None loc: 0 size: 1] [line: 64]
 > .   Sibling: 2  Parm: c is array of type char[mem: Parameter loc: -4 size: 1] [line: 11]
 > .   Sibling: 2  Parm: c of type char[mem: Parameter loc: -4 size: 1] [line: 2]
-> .   .   Sibling: 2  Var: c of array of type char[mem: Local loc: 0 size: 1] [line: 40]
-> .   .   .   Sibling: 2  Var: gc of static array of type char[mem: LocalStatic loc: 0 size: 1] [line: 59]
+> .   .   Sibling: 2  Var: c of array of type char[mem: Local loc: -5 size: 1] [line: 40]
+> .   .   .   Sibling: 2  Var: gc of static array of type char[mem: LocalStatic loc: -6 size: 1] [line: 59]
 125c124
 < Sibling: 3  Var: ga of array of type int [mem: Global loc: -1 size: 6] [line: 32]
 ---
-> Sibling: 3  Var: ga of array of type int[mem: Global loc: 0 size: 1] [line: 32]
+> Sibling: 3  Var: ga of array of type int[mem: Global loc: -1 size: 1] [line: 32]
 128c127
 < Sibling: 4  Var: gb of array of type bool [mem: Global loc: -7 size: 7] [line: 33]
 ---
-> Sibling: 4  Var: gb of array of type bool[mem: Global loc: 0 size: 1] [line: 33]
+> Sibling: 4  Var: gb of array of type bool[mem: Global loc: -2 size: 1] [line: 33]
 130c129
 < Sibling: 5  Var: gc of array of type char [mem: Global loc: -14 size: 8] [line: 34]
 ---
-> Sibling: 5  Var: gc of array of type char[mem: Global loc: 0 size: 1] [line: 34]
+> Sibling: 5  Var: gc of array of type char[mem: Global loc: -3 size: 1] [line: 34]
 132c131
 < Sibling: 6  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 36]
 ---
