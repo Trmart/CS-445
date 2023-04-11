@@ -16,9 +16,7 @@
 > .   .   Child: 1  Id: a of type char[mem: Parameter loc: -2 size: 1] [line: 4]
 > .   .   Child: 1  Id: a of type int[mem: Global loc: 0 size: 1] [line: 18]
 > .   .   .   Child: 1  Id: a of type int[mem: Local loc: -3 size: 1] [line: 7]
-12d11
-< Offset for end of global space: -2
-14,16c13,15
+14,16c14,16
 < Sibling: 1  Func: dog returns type void [mem: Global loc: 0 size: -3] [line: 3]
 < Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 17]
 < .   .   Sibling: 2  Id: a of type char [mem: Parameter loc: -2 size: 1] [line: 9]
@@ -26,7 +24,7 @@
 > Sibling: 1  Func: dog returns type void[mem: Global loc: 0 size: -3] [line: 3]
 > Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 17]
 > .   .   Sibling: 2  Id: a of type char[mem: Parameter loc: -2 size: 1] [line: 9]
-18,19c17,18
+18,19c18,19
 < .   .   Sibling: 4  Id: a of type char [mem: Parameter loc: -2 size: 1] [line: 14]
 < Var: a of type int [mem: Global loc: 0 size: 1] [line: 1]
 ---

@@ -42,9 +42,7 @@
 < Func: factorial returns type int [mem: Global loc: 0 size: -3] [line: 3]
 ---
 > Func: factorial returns type int[mem: Global loc: 0 size: -3] [line: 3]
-34d33
-< Offset for end of global space: 0
-37,38c36,37
+37,38c37,38
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 17]
 < .   .   Sibling: 1  Var: f of type int [mem: Local loc: -4 size: 1] [line: 5]
 ---

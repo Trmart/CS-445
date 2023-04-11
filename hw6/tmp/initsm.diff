@@ -14,8 +14,7 @@
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
 ---
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
-15,16c15
-< Offset for end of global space: 0
+16c16
 < .   .   Sibling: 1  Var: y of type int [mem: Local loc: -3 size: 1] [line: 4]
 ---
 > .   .   Sibling: 1  Var: y of type int[mem: Local loc: -3 size: 1] [line: 4]

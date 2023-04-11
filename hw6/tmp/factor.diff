@@ -100,9 +100,7 @@
 < Func: sqrt returns type int [mem: Global loc: 0 size: -3] [line: 2]
 ---
 > Func: sqrt returns type int[mem: Global loc: 0 size: -3] [line: 2]
-110d109
-< Offset for end of global space: 0
-116,118c115,117
+116,118c116,118
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 20]
 < .   .   Sibling: 1  Var: i of type int [mem: Local loc: -3 size: 1] [line: 23]
 < .   .   Sibling: 1  Var: newguess of type int [mem: Local loc: -4 size: 1] [line: 5]

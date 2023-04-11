@@ -24,9 +24,7 @@
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
-32d31
-< Offset for end of global space: 0
-34c33
+34c34
 < .   .   Sibling: 1  Var: sum of type int [mem: Local loc: -3 size: 1] [line: 4]
 ---
 > .   .   Sibling: 1  Var: sum of type int[mem: Local loc: -3 size: 1] [line: 4]

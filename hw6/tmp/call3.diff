@@ -46,17 +46,15 @@
 < Func: three returns type int [mem: Global loc: 0 size: -3] [line: 2]
 ---
 > Func: three returns type int[mem: Global loc: 0 size: -3] [line: 2]
-55d54
-< Offset for end of global space: 0
-60c59
+60c60
 < Sibling: 1  Func: two returns type int [mem: Global loc: 0 size: -3] [line: 11]
 ---
 > Sibling: 1  Func: two returns type int[mem: Global loc: 0 size: -3] [line: 11]
-65c64
+65c65
 < Sibling: 2  Func: one returns type int [mem: Global loc: 0 size: -3] [line: 20]
 ---
 > Sibling: 2  Func: one returns type int[mem: Global loc: 0 size: -3] [line: 20]
-67c66
+67c67
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 29]
 ---
 > Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 29]

@@ -25,6 +25,7 @@
 Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
 Number of errors: 0
 Number of warnings: 5
+Offset for end of global space: 0
 .   .   Sibling: 10  Var: ee of array of type int[mem: Local loc: -13 size: 1] [line: 4]
 .   .   Sibling: 11  Var: ff of array of type int[mem: Local loc: -14 size: 1] [line: 4]
 .   .   Sibling: 1  Assign: ++ of type int [line: 10]

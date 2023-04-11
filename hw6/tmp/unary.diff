@@ -56,23 +56,21 @@
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 6]
 ---
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 6]
-63d62
-< Offset for end of global space: 0
-68,69c67,68
+68,69c68,69
 < .   .   .   Sibling: 1  Var: y of type bool [mem: Local loc: -19 size: 1] [line: 24]
 < .   .   Sibling: 1  Var: y of type int [mem: Local loc: -3 size: 1] [line: 9]
 ---
 > .   .   .   Sibling: 1  Var: y of type bool[mem: Local loc: -7 size: 1] [line: 24]
 > .   .   Sibling: 1  Var: y of type int[mem: Local loc: -3 size: 1] [line: 9]
-72c71
+72c72
 < .   .   Sibling: 2  Var: a of array of type bool [mem: Local loc: -5 size: 8] [line: 10]
 ---
 > .   .   Sibling: 2  Var: a of array of type bool[mem: Local loc: -5 size: 1] [line: 10]
-75c74
+75c75
 < .   .   Sibling: 3  Var: b of array of type bool [mem: Local loc: -13 size: 6] [line: 10]
 ---
 > .   .   Sibling: 3  Var: b of array of type bool[mem: Local loc: -6 size: 1] [line: 10]
-86c85
+86c86
 < .   .   Sibling: 9  Compound [mem: None loc: 0 size: -20] [line: 23]
 ---
 > .   .   Sibling: 9  Compound [mem: None loc: 0 size: -8] [line: 23]

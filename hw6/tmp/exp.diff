@@ -14,9 +14,7 @@
 < Func: ident returns type int [mem: Global loc: 0 size: -3] [line: 2]
 ---
 > Func: ident returns type int[mem: Global loc: 0 size: -3] [line: 2]
-217d216
-< Offset for end of global space: 0
-229c228
+229c229
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
 ---
 > Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 4]

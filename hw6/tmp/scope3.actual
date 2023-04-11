@@ -11,6 +11,7 @@
 .   Child: 1  Compound [mem: None loc: 0 size: -9] [line: 58]
 Number of errors: 0
 Number of warnings: 47
+Offset for end of global space: -14
 Sibling: 10  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 62]
 .   .   Sibling: 1  Compound [mem: None loc: 0 size: -20] [line: 34]
 .   Sibling: 1  Parm: fpb of type bool[mem: Parameter loc: -3 size: 1] [line: 57]

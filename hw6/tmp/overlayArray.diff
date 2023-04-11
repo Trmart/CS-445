@@ -15,9 +15,7 @@
 ---
 > .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 4]
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
-11d10
-< Offset for end of global space: 0
-13c12
+13c13
 < .   .   Sibling: 1  Compound [mem: None loc: 0 size: -25] [line: 7]
 ---
 > .   .   Sibling: 1  Compound [mem: None loc: 0 size: -3] [line: 7]

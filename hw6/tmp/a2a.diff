@@ -28,19 +28,21 @@
 > .   .   .   Child: 1  Id: a of array of type char[mem: Local loc: -3 size: 1] [line: 8]
 > .   .   .   Child: 1  Id: a of array of type char[mem: Local loc: -3 size: 1] [line: 9]
 > .   .   .   Child: 1  Id: g of array of type char[mem: Global loc: -2 size: 1] [line: 7]
-17d16
+17c17
 < Offset for end of global space: -64
-19,20c18,19
+---
+> Offset for end of global space: -6
+19,20c19,20
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 < .   .   Sibling: 1  Var: b of array of type char [mem: Local loc: -14 size: 11] [line: 4]
 ---
 > Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 > .   .   Sibling: 1  Var: b of array of type char[mem: Local loc: -4 size: 1] [line: 4]
-22c21
+22c22
 < Sibling: 2  Var: endOfGlobals of type int [mem: Global loc: -63 size: 1] [line: 12]
 ---
 > Sibling: 2  Var: endOfGlobals of type int[mem: Global loc: -5 size: 1] [line: 12]
-25c24
+25c25
 < Var: g of array of type char [mem: Global loc: -12 size: 11] [line: 1]
 ---
 > Var: g of array of type char[mem: Global loc: -2 size: 1] [line: 1]

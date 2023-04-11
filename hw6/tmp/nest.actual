@@ -103,6 +103,7 @@
 .   .   .   Child: 1  Const 9 of type int [line: 40]
 Number of errors: 0
 Number of warnings: 0
+Offset for end of global space: -3
 .   .   Sibling: 10  Assign: <= of type int [line: 24]
 .   .   .   Sibling: 10  Assign: <= of type int [line: 66]
 .   .   .   .   Sibling: 10  Assign: <= of type int [line: 88]

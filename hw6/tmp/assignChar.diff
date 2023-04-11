@@ -48,9 +48,11 @@
 ---
 > .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 31]
 > .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 5]
-51d50
+51c51
 < Offset for end of global space: -24
-61,65c60,64
+---
+> Offset for end of global space: -4
+61,65c61,65
 < .   .   .   Sibling: 1  Id: zy of array of type char [mem: Local loc: -4 size: 11] [line: 33]
 < .   Sibling: 1  Parm: py of array of type char [mem: Parameter loc: -3 size: 1] [line: 4]
 < Sibling: 1  Var: gy of array of type char [mem: Global loc: -2 size: 11] [line: 2]
@@ -62,19 +64,19 @@
 > Sibling: 1  Var: gy of array of type char[mem: Global loc: -2 size: 1] [line: 2]
 > .   .   Sibling: 1  Var: y of array of type char[mem: Local loc: -6 size: 1] [line: 6]
 > .   .   Sibling: 1  Var: zy of array of type char[mem: Local loc: -4 size: 1] [line: 32]
-67,68c66,67
+67,68c67,68
 < Sibling: 2  Func: esperanza returns type void [mem: Global loc: 0 size: -4] [line: 4]
 < .   .   Sibling: 2  Var: sx of static type char [mem: LocalStatic loc: -12 size: 1] [line: 7]
 ---
 > Sibling: 2  Func: esperanza returns type void[mem: Global loc: 0 size: -4] [line: 4]
 > .   .   Sibling: 2  Var: sx of static type char[mem: LocalStatic loc: -2 size: 1] [line: 7]
-70,71c69,70
+70,71c70,71
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 30]
 < .   .   Sibling: 3  Var: sy of static array of type char [mem: LocalStatic loc: -14 size: 11] [line: 7]
 ---
 > Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 30]
 > .   .   Sibling: 3  Var: sy of static array of type char[mem: LocalStatic loc: -4 size: 1] [line: 7]
-78c77
+78c78
 < Var: gx of type char [mem: Global loc: 0 size: 1] [line: 2]
 ---
 > Var: gx of type char[mem: Global loc: 0 size: 1] [line: 2]

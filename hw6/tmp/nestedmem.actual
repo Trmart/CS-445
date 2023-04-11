@@ -100,6 +100,7 @@
 Func: fred returns type void[mem: Global loc: 0 size: -2] [line: 3]
 Number of errors: 0
 Number of warnings: 9
+Offset for end of global space: 0
 .   .   .   Sibling: 1  Assign: <= of type int [line: 45]
 .   .   .   .   Sibling: 1  Call: cat of type void [line: 52]
 .   .   Sibling: 1  For [mem: None loc: 0 size: -5] [line: 48]

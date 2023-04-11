@@ -22,9 +22,7 @@
 < Func: comp returns type int [mem: Global loc: 0 size: -4] [line: 2]
 ---
 > Func: comp returns type int[mem: Global loc: 0 size: -4] [line: 2]
-34d33
-< Offset for end of global space: 0
-41,42c40,41
+41,42c41,42
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
 < .   Sibling: 1  Parm: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 ---

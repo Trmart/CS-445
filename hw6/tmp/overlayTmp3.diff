@@ -46,17 +46,15 @@
 < Func: dog returns type int [mem: Global loc: 0 size: -3] [line: 2]
 ---
 > Func: dog returns type int[mem: Global loc: 0 size: -3] [line: 2]
-48d47
-< Offset for end of global space: -1
-53c52
+53c53
 < Sibling: 1  Func: thor returns type void [mem: Global loc: 0 size: -3] [line: 4]
 ---
 > Sibling: 1  Func: thor returns type void[mem: Global loc: 0 size: -3] [line: 4]
-57c56
+57c57
 < Sibling: 2  Var: g of type int [mem: Global loc: 0 size: 1] [line: 27]
 ---
 > Sibling: 2  Var: g of type int[mem: Global loc: 0 size: 1] [line: 27]
-61c60
+61c61
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 28]
 ---
 > Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 28]

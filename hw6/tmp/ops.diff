@@ -156,25 +156,27 @@
 > .   .   .   .   Child: 1  Id: b of type int[mem: Local loc: -3 size: 1] [line: 53]
 > .   .   .   .   Child: 1  Id: b of type int[mem: Local loc: -3 size: 1] [line: 97]
 > .   .   .   .   .   Child: 1  Id: c of type int[mem: Local loc: -4 size: 1] [line: 75]
-370d369
+370c370
 < Offset for end of global space: -12
-408,409c407,408
+---
+> Offset for end of global space: -2
+408,409c408,409
 < .   .   Sibling: 1  Var: b of type int [mem: Local loc: -3 size: 1] [line: 10]
 < Sibling: 1  Var: x of type bool [mem: Global loc: -11 size: 1] [line: 5]
 ---
 > .   .   Sibling: 1  Var: b of type int[mem: Local loc: -3 size: 1] [line: 10]
 > Sibling: 1  Var: x of type bool[mem: Global loc: -1 size: 1] [line: 5]
-421,422c420,421
+421,422c421,422
 < Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 7]
 < .   .   Sibling: 2  Var: c of type int [mem: Local loc: -4 size: 1] [line: 11]
 ---
 > Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 7]
 > .   .   Sibling: 2  Var: c of type int[mem: Local loc: -4 size: 1] [line: 11]
-434c433
+434c434
 < .   .   Sibling: 3  Var: z of type bool [mem: Local loc: -5 size: 1] [line: 12]
 ---
 > .   .   Sibling: 3  Var: z of type bool[mem: Local loc: -5 size: 1] [line: 12]
-501c500
+501c501
 < Var: y of array of type int [mem: Global loc: -1 size: 11] [line: 4]
 ---
 > Var: y of array of type int[mem: Global loc: -1 size: 1] [line: 4]

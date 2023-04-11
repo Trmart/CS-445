@@ -4,8 +4,7 @@
 ---
 > .   Child: 0  Parm: p of type int[mem: Parameter loc: -2 size: 1] [line: 2]
 > .   .   Child: 0  Var: s of static type int[mem: LocalStatic loc: -1 size: 1] [line: 4]
-7,11c7,10
-< Offset for end of global space: -2
+8,11c8,11
 < Sibling: 1  Func: dog returns type void [mem: Global loc: 0 size: -3] [line: 2]
 < .   .   Sibling: 1  Var: i of type int [mem: Local loc: -3 size: 1] [line: 5]
 < Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 8]

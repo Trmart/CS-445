@@ -2,5 +2,3 @@
 < Func: main returns type int [mem: Global loc: 0 size: -2] [line: 1]
 ---
 > Func: main returns type int[mem: Global loc: 0 size: -2] [line: 1]
-64d63
-< Offset for end of global space: 0

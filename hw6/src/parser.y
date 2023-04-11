@@ -37,7 +37,7 @@ bool isPrintingTreeTypes = false;
 //memeory information
 bool isPrintingMemoryOffset = false;
 bool isPrintingMemorySize = false;
-// extern int goffset;
+extern int globalOffset;
 
 
 static TreeNode* ROOT;
@@ -649,7 +649,7 @@ int main(int argc, char *argv[])
       if(isPrintingMemoryOffset)
       {
         // print memory offsets
-        /* std:: cout << "Offset for end of global space: " << goffset << std::endl; */
+        std:: cout << "Offset for end of global space: " << globalOffset << std::endl;
       }
     }
   }

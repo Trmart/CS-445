@@ -40,13 +40,11 @@
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
-37d36
-< Offset for end of global space: 0
-39c38
+39c39
 < .   .   Sibling: 1  Var: y of type int [mem: Local loc: -3 size: 1] [line: 4]
 ---
 > .   .   Sibling: 1  Var: y of type int[mem: Local loc: -3 size: 1] [line: 4]
-41c40
+41c41
 < .   .   Sibling: 2  Var: z of type int [mem: Local loc: -4 size: 1] [line: 4]
 ---
 > .   .   Sibling: 2  Var: z of type int[mem: Local loc: -4 size: 1] [line: 4]

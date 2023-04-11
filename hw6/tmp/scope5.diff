@@ -20,21 +20,19 @@
 > .   .   Child: 0  Var: x of static type int[mem: LocalStatic loc: -1 size: 1] [line: 6]
 > .   .   Child: 0  Var: x of static type int[mem: LocalStatic loc: -2 size: 1] [line: 12]
 > .   .   .   Child: 0  Var: x of static type int[mem: LocalStatic loc: -3 size: 1] [line: 17]
-31d30
-< Offset for end of global space: -4
-35c34
+35c35
 < Sibling: 1  Func: inc returns type int [mem: Global loc: 0 size: -2] [line: 4]
 ---
 > Sibling: 1  Func: inc returns type int[mem: Global loc: 0 size: -2] [line: 4]
-38c37
+38c38
 < Sibling: 2  Func: fred returns type int [mem: Global loc: 0 size: -2] [line: 10]
 ---
 > Sibling: 2  Func: fred returns type int[mem: Global loc: 0 size: -2] [line: 10]
-41c40
+41c41
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 28]
 ---
 > Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 28]
-49c48
+49c49
 < Var: x of type int [mem: Global loc: 0 size: 1] [line: 2]
 ---
 > Var: x of type int[mem: Global loc: 0 size: 1] [line: 2]

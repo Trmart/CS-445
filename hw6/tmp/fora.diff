@@ -24,8 +24,7 @@
 ---
 > .   .   .   .   Child: 2  Id: i of type int[mem: Local loc: -4 size: 1] [line: 7]
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
-27,29c27,28
-< Offset for end of global space: 0
+28,29c28,29
 < .   .   Sibling: 1  For [mem: None loc: 0 size: -3] [line: 5]
 < .   .   Sibling: 2  For [mem: None loc: 0 size: -3] [line: 7]
 ---

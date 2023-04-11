@@ -38,9 +38,11 @@
 < Func: scalar returns type void [mem: Global loc: 0 size: -5] [line: 2]
 ---
 > Func: scalar returns type void[mem: Global loc: 0 size: -5] [line: 2]
-44d43
+44c44
 < Offset for end of global space: -21
-48,52c47,51
+---
+> Offset for end of global space: -6
+48,52c48,52
 < Sibling: 1  Func: array returns type void [mem: Global loc: 0 size: -5] [line: 11]
 < .   .   .   Sibling: 1  Id: y of type bool [mem: Global loc: -1 size: 1] [line: 33]
 < .   .   .   Sibling: 1  Id: YY of array of type bool [mem: Global loc: -8 size: 6] [line: 34]
@@ -52,7 +54,7 @@
 > .   .   .   Sibling: 1  Id: YY of array of type bool[mem: Global loc: -5 size: 1] [line: 34]
 > .   Sibling: 1  Parm: b is array of type bool[mem: Parameter loc: -3 size: 1] [line: 11]
 > .   Sibling: 1  Parm: b of type bool[mem: Parameter loc: -3 size: 1] [line: 2]
-56,60c55,59
+56,60c56,60
 < .   .   .   Sibling: 2  Id: z of type char [mem: Global loc: -2 size: 1] [line: 33]
 < .   .   .   Sibling: 2  Id: ZZ of array of type char [mem: Global loc: -14 size: 8] [line: 34]
 < .   Sibling: 2  Parm: c of array of type char [mem: Parameter loc: -4 size: 1] [line: 11]
@@ -64,23 +66,23 @@
 > .   Sibling: 2  Parm: c is array of type char[mem: Parameter loc: -4 size: 1] [line: 11]
 > .   Sibling: 2  Parm: c of type char[mem: Parameter loc: -4 size: 1] [line: 2]
 > Sibling: 2  Var: x of type int[mem: Global loc: 0 size: 1] [line: 20]
-64c63
+64c64
 < Sibling: 3  Var: y of type bool [mem: Global loc: -1 size: 1] [line: 20]
 ---
 > Sibling: 3  Var: y of type bool[mem: Global loc: -1 size: 1] [line: 20]
-66c65
+66c66
 < Sibling: 4  Var: z of type char [mem: Global loc: -2 size: 1] [line: 20]
 ---
 > Sibling: 4  Var: z of type char[mem: Global loc: -2 size: 1] [line: 20]
-68c67
+68c68
 < Sibling: 5  Var: XX of array of type int [mem: Global loc: -4 size: 4] [line: 21]
 ---
 > Sibling: 5  Var: XX of array of type int[mem: Global loc: -4 size: 1] [line: 21]
-70c69
+70c70
 < Sibling: 6  Var: YY of array of type bool [mem: Global loc: -8 size: 6] [line: 21]
 ---
 > Sibling: 6  Var: YY of array of type bool[mem: Global loc: -5 size: 1] [line: 21]
-72,73c71,72
+72,73c72,73
 < Sibling: 7  Var: ZZ of array of type char [mem: Global loc: -14 size: 8] [line: 21]
 < Sibling: 8  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 23]
 ---

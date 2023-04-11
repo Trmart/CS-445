@@ -32,21 +32,19 @@
 < Func: min returns type int [mem: Global loc: 0 size: -4] [line: 2]
 ---
 > Func: min returns type int[mem: Global loc: 0 size: -4] [line: 2]
-59d58
-< Offset for end of global space: 0
-61c60
+61c61
 < Sibling: 1  Func: f returns type int [mem: Global loc: 0 size: -3] [line: 3]
 ---
 > Sibling: 1  Func: f returns type int[mem: Global loc: 0 size: -3] [line: 3]
-63c62
+63c63
 < .   Sibling: 1  Parm: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 ---
 > .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
-65c64
+65c65
 < Sibling: 2  Func: g returns type int [mem: Global loc: 0 size: -3] [line: 4]
 ---
 > Sibling: 2  Func: g returns type int[mem: Global loc: 0 size: -3] [line: 4]
-67c66
+67c67
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 6]
 ---
 > Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 6]

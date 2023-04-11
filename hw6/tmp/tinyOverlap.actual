@@ -12,6 +12,7 @@
 .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 7]
 Number of errors: 0
 Number of warnings: 8
+Offset for end of global space: -3
 .   .   Sibling: 1  Compound [mem: None loc: 0 size: -5] [line: 10]
 .   .   .   Sibling: 1  Compound [mem: None loc: 0 size: -5] [line: 17]
 Sibling: 1  Func: ibex returns type void[mem: Global loc: 0 size: -3] [line: 4]

@@ -12,5 +12,3 @@
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
-12d11
-< Offset for end of global space: -1

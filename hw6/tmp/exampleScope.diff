@@ -10,9 +10,7 @@
 > .   .   .   .   Child: 0  Var: c of type int[mem: Local loc: -4 size: 1] [line: 9]
 > .   .   .   Child: 0  Var: d of type int[mem: Local loc: -3 size: 1] [line: 13]
 > .   .   .   .   Child: 0  Var: e of type int[mem: Local loc: -4 size: 1] [line: 15]
-12d11
-< Offset for end of global space: -1
-14,16c13,15
+14,16c14,16
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
 < .   .   .   .   Sibling: 1  Var: f of type int [mem: Local loc: -5 size: 1] [line: 16]
 < Var: g of type int [mem: Global loc: 0 size: 1] [line: 2]

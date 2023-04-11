@@ -11,6 +11,7 @@
 .   .   .   Child: 1  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 10]
 Number of errors: 0
 Number of warnings: 14
+Offset for end of global space: -6
 .   .   Sibling: 1  Assign: <= of array of type char [line: 11]
 .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -3 size: 1] [line: 3]
 .   .   Sibling: 1  Var: aa of array of type int[mem: Local loc: -7 size: 1] [line: 5]

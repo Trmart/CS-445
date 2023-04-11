@@ -117,6 +117,7 @@
 .   .   Child: 1  Return [line: 23]
 Number of errors: 0
 Number of warnings: 0
+Offset for end of global space: -4
 .   .   .   Sibling: 10  Call: bat of type void [line: 72]
 .   .   .   Sibling: 10  Call: bat of type void [line: 90]
 .   .   Sibling: 10  Compound [mem: None loc: 0 size: -8] [line: 43]

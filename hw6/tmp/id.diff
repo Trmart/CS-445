@@ -31,7 +31,7 @@
 ---
 > .   .   .   Child: 2  Id: f of type int[mem: Local loc: -8 size: 1] [line: 14]
 > Func: george returns type bool[mem: Global loc: 0 size: -5] [line: 1]
-28,35c28,34
+28,35c28,35
 < Offset for end of global space: -5
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 6]
 < .   .   Sibling: 1  Id: xa of array of type int [mem: Local loc: -3 size: 11] [line: 16]
@@ -41,6 +41,7 @@
 < .   .   Sibling: 1  Var: x of type int [mem: Local loc: -13 size: 1] [line: 9]
 < .   .   Sibling: 2  Id: x of type int [mem: Local loc: -13 size: 1] [line: 17]
 ---
+> Offset for end of global space: -1
 > Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 6]
 > .   .   Sibling: 1  Id: xa of array of type int[mem: Local loc: -3 size: 1] [line: 16]
 > .   .   .   Sibling: 1  Id: xa of array of type int[mem: Local loc: -3 size: 1] [line: 22]
@@ -48,7 +49,7 @@
 > .   .   Sibling: 1  Var: e of type char[mem: Local loc: -6 size: 1] [line: 2]
 > .   .   Sibling: 1  Var: x of type int[mem: Local loc: -3 size: 1] [line: 9]
 > .   .   Sibling: 2  Id: x of type int[mem: Local loc: -3 size: 1] [line: 17]
-37,46c36,45
+37,46c37,46
 < .   Sibling: 2  Parm: c of type int [mem: Parameter loc: -4 size: 1] [line: 1]
 < .   .   Sibling: 2  Var: ca of array of type char [mem: Local loc: -15 size: 11] [line: 10]
 < .   .   Sibling: 2  Var: f of type char [mem: Local loc: -7 size: 1] [line: 2]

@@ -206,9 +206,7 @@
 < Func: pow returns type int [mem: Global loc: 0 size: -4] [line: 3]
 ---
 > Func: pow returns type int[mem: Global loc: 0 size: -4] [line: 3]
-193d192
-< Offset for end of global space: 0
-203,209c202,208
+203,209c203,209
 < Sibling: 1  Func: getFunc returns type int [mem: Global loc: 0 size: -3] [line: 18]
 < .   .   .   .   .   .   Sibling: 1  Id: numbits of type int [mem: Local loc: -260 size: 1] [line: 92]
 < .   .   .   .   Sibling: 1  Id: numbits of type int [mem: Local loc: -3 size: 1] [line: 26]
@@ -224,7 +222,7 @@
 > .   .   .   .   .   Sibling: 1  Id: size of type int[mem: Local loc: -3 size: 1] [line: 96]
 > .   .   .   .   .   Sibling: 1  Id: size of type int[mem: Local loc: -3 size: 1] [line: 99]
 > .   .   .   .   .   Sibling: 1  Id: start of type int[mem: Parameter loc: -3 size: 1] [line: 55]
-214,217c213,216
+214,217c214,217
 < .   Sibling: 1  Parm: p of type int [mem: Parameter loc: -3 size: 1] [line: 3]
 < .   Sibling: 1  Parm: size of type int [mem: Parameter loc: -3 size: 1] [line: 36]
 < .   Sibling: 1  Parm: size of type int [mem: Parameter loc: -3 size: 1] [line: 70]
@@ -234,7 +232,7 @@
 > .   Sibling: 1  Parm: size of type int[mem: Parameter loc: -3 size: 1] [line: 36]
 > .   Sibling: 1  Parm: size of type int[mem: Parameter loc: -3 size: 1] [line: 70]
 > .   Sibling: 1  Parm: start of type int[mem: Parameter loc: -3 size: 1] [line: 49]
-219,222c218,221
+219,222c219,222
 < .   .   Sibling: 1  Var: ans of type int [mem: Local loc: -5 size: 1] [line: 6]
 < .   .   Sibling: 1  Var: b of type int [mem: Local loc: -6 size: 1] [line: 51]
 < .   .   Sibling: 1  Var: i of type int [mem: Local loc: -4 size: 1] [line: 21]
@@ -244,7 +242,7 @@
 > .   .   Sibling: 1  Var: b of type int[mem: Local loc: -6 size: 1] [line: 51]
 > .   .   Sibling: 1  Var: i of type int[mem: Local loc: -4 size: 1] [line: 21]
 > .   .   Sibling: 1  Var: size of type int[mem: Local loc: -3 size: 1] [line: 85]
-230,234c229,233
+230,234c230,234
 < Sibling: 2  Func: printFunc returns type void [mem: Global loc: 0 size: -4] [line: 36]
 < .   .   .   .   .   Sibling: 2  Id: size of type int [mem: Local loc: -259 size: 1] [line: 95]
 < .   .   .   .   .   Sibling: 2  Id: size of type int [mem: Local loc: -259 size: 1] [line: 98]
@@ -256,7 +254,7 @@
 > .   .   .   .   .   Sibling: 2  Id: size of type int[mem: Local loc: -3 size: 1] [line: 98]
 > .   .   .   .   .   Sibling: 2  Id: size of type int[mem: Parameter loc: -4 size: 1] [line: 55]
 > .   .   .   .   .   Sibling: 2  Id: size of type int[mem: Parameter loc: -4 size: 1] [line: 56]
-236,239c235,238
+236,239c236,239
 < .   Sibling: 2  Parm: size of type int [mem: Parameter loc: -4 size: 1] [line: 49]
 < .   .   Sibling: 2  Var: numbits of type int [mem: Local loc: -260 size: 1] [line: 86]
 < .   .   Sibling: 2  Var: size of type int [mem: Local loc: -5 size: 1] [line: 22]
@@ -266,17 +264,17 @@
 > .   .   Sibling: 2  Var: numbits of type int[mem: Local loc: -4 size: 1] [line: 86]
 > .   .   Sibling: 2  Var: size of type int[mem: Local loc: -5 size: 1] [line: 22]
 > .   .   Sibling: 2  Var: tmp of type int[mem: Local loc: -7 size: 1] [line: 51]
-246,247c245,246
+246,247c246,247
 < Sibling: 3  Func: fwt returns type void [mem: Global loc: 0 size: -5] [line: 49]
 < .   .   Sibling: 3  Var: half of type int [mem: Local loc: -261 size: 1] [line: 87]
 ---
 > Sibling: 3  Func: fwt returns type void[mem: Global loc: 0 size: -5] [line: 49]
 > .   .   Sibling: 3  Var: half of type int[mem: Local loc: -5 size: 1] [line: 87]
-250c249
+250c250
 < Sibling: 4  Func: div returns type void [mem: Global loc: 0 size: -4] [line: 70]
 ---
 > Sibling: 4  Func: div returns type void[mem: Global loc: 0 size: -4] [line: 70]
-254c253
+254c254
 < Sibling: 5  Func: main returns type int [mem: Global loc: 0 size: -2] [line: 81]
 ---
 > Sibling: 5  Func: main returns type int[mem: Global loc: 0 size: -2] [line: 81]

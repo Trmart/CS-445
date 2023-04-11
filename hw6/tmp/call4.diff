@@ -154,17 +154,15 @@
 < Func: showInt returns type int [mem: Global loc: 0 size: -3] [line: 2]
 ---
 > Func: showInt returns type int[mem: Global loc: 0 size: -3] [line: 2]
-163d162
-< Offset for end of global space: -1
-166c165
+166c166
 < Sibling: 10  Func: swap returns type void [mem: Global loc: 0 size: -5] [line: 77]
 ---
 > Sibling: 10  Func: swap returns type void[mem: Global loc: 0 size: -5] [line: 77]
-169c168
+169c169
 < Sibling: 11  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 85]
 ---
 > Sibling: 11  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 85]
-189,192c188,191
+189,192c189,192
 < Sibling: 1  Func: showIntArray returns type int [mem: Global loc: 0 size: -4] [line: 8]
 < .   .   .   .   .   Sibling: 1  Id: q of type int [mem: Local loc: -3 size: 1] [line: 111]
 < .   .   .   .   .   Sibling: 1  Id: q of type int [mem: Local loc: -3 size: 1] [line: 111]
@@ -174,7 +172,7 @@
 > .   .   .   .   .   Sibling: 1  Id: q of type int[mem: Local loc: -3 size: 1] [line: 111]
 > .   .   .   .   .   Sibling: 1  Id: q of type int[mem: Local loc: -3 size: 1] [line: 111]
 > .   .   .   Sibling: 1  Id: r of array of type int[mem: Local loc: -5 size: 1] [line: 109]
-196,202c195,201
+196,202c196,202
 < .   Sibling: 1  Parm: size of type int [mem: Parameter loc: -3 size: 1] [line: 8]
 < .   Sibling: 1  Parm: y of array of type int [mem: Parameter loc: -3 size: 1] [line: 52]
 < .   Sibling: 1  Parm: y of type int [mem: Parameter loc: -3 size: 1] [line: 40]
@@ -190,7 +188,7 @@
 > .   Sibling: 1  Parm: z1 of type int[mem: Parameter loc: -3 size: 1] [line: 77]
 > .   .   Sibling: 1  Var: a of type int[mem: Local loc: -5 size: 1] [line: 55]
 > .   .   Sibling: 1  Var: q of type int[mem: Local loc: -3 size: 1] [line: 87]
-210,212c209,211
+210,212c210,212
 < Sibling: 2  Func: showBool returns type int [mem: Global loc: 0 size: -3] [line: 19]
 < .   Sibling: 2  Parm: z2 of type int [mem: Parameter loc: -4 size: 1] [line: 77]
 < .   .   Sibling: 2  Var: r of array of type int [mem: Local loc: -5 size: 11] [line: 87]
@@ -198,33 +196,33 @@
 > Sibling: 2  Func: showBool returns type int[mem: Global loc: 0 size: -3] [line: 19]
 > .   Sibling: 2  Parm: z2 of type int[mem: Parameter loc: -4 size: 1] [line: 77]
 > .   .   Sibling: 2  Var: r of array of type int[mem: Local loc: -5 size: 1] [line: 87]
-215,216c214,215
+215,216c215,216
 < Sibling: 3  Func: truth returns type bool [mem: Global loc: 0 size: -2] [line: 25]
 < .   .   Sibling: 3  Var: s of array of type int [mem: Local loc: -16 size: 11] [line: 87]
 ---
 > Sibling: 3  Func: truth returns type bool[mem: Global loc: 0 size: -2] [line: 25]
 > .   .   Sibling: 3  Var: s of array of type int[mem: Local loc: -6 size: 1] [line: 87]
-219c218
+219c219
 < Sibling: 4  Func: magic returns type int [mem: Global loc: 0 size: -2] [line: 30]
 ---
 > Sibling: 4  Func: magic returns type int[mem: Global loc: 0 size: -2] [line: 30]
-222c221
+222c222
 < Sibling: 5  Func: sqr returns type int [mem: Global loc: 0 size: -3] [line: 35]
 ---
 > Sibling: 5  Func: sqr returns type int[mem: Global loc: 0 size: -3] [line: 35]
-225c224
+225c225
 < Sibling: 6  Func: add returns type int [mem: Global loc: 0 size: -4] [line: 40]
 ---
 > Sibling: 6  Func: add returns type int[mem: Global loc: 0 size: -4] [line: 40]
-228c227
+228c228
 < Sibling: 7  Func: mul returns type int [mem: Global loc: 0 size: -4] [line: 45]
 ---
 > Sibling: 7  Func: mul returns type int[mem: Global loc: 0 size: -4] [line: 45]
-231c230
+231c231
 < Sibling: 8  Var: g of type int [mem: Global loc: 0 size: 1] [line: 50]
 ---
 > Sibling: 8  Var: g of type int[mem: Global loc: 0 size: 1] [line: 50]
-234c233
+234c234
 < Sibling: 9  Func: caller returns type void [mem: Global loc: 0 size: -4] [line: 52]
 ---
 > Sibling: 9  Func: caller returns type void[mem: Global loc: 0 size: -4] [line: 52]

@@ -29,6 +29,7 @@
 Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
 Number of errors: 0
 Number of warnings: 0
+Offset for end of global space: 0
 .   .   Sibling: 1  Assign: <= of type bool [line: 5]
 .   .   .   .   Sibling: 1  Break [line: 19]
 .   .   .   .   Sibling: 1  Break [line: 27]

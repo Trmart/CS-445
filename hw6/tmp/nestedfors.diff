@@ -28,5 +28,3 @@
 ---
 > .   .   .   Child: 2  Compound [mem: None loc: 0 size: -5] [line: 6]
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
-23d22
-< Offset for end of global space: 0

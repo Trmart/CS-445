@@ -10,4 +10,5 @@
 Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 Number of errors: 0
 Number of warnings: 1
+Offset for end of global space: 0
 WARNING(6): Variable 'x' may be uninitialized when used here.

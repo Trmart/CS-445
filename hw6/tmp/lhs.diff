@@ -38,26 +38,25 @@
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
 ---
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
-28,30c28,29
-< Offset for end of global space: 0
+29,30c29,30
 < .   .   Sibling: 10  Var: ee of array of type int [mem: Local loc: -53 size: 11] [line: 4]
 < .   .   Sibling: 11  Var: ff of array of type int [mem: Local loc: -64 size: 11] [line: 4]
 ---
 > .   .   Sibling: 10  Var: ee of array of type int[mem: Local loc: -13 size: 1] [line: 4]
 > .   .   Sibling: 11  Var: ff of array of type int[mem: Local loc: -14 size: 1] [line: 4]
-32c31
+32c32
 < .   .   Sibling: 1  Var: b of type int [mem: Local loc: -3 size: 1] [line: 3]
 ---
 > .   .   Sibling: 1  Var: b of type int[mem: Local loc: -3 size: 1] [line: 3]
-34c33
+34c34
 < .   .   Sibling: 2  Var: c of type int [mem: Local loc: -4 size: 1] [line: 3]
 ---
 > .   .   Sibling: 2  Var: c of type int[mem: Local loc: -4 size: 1] [line: 3]
-36c35
+36c36
 < .   .   Sibling: 3  Var: d of type int [mem: Local loc: -5 size: 1] [line: 3]
 ---
 > .   .   Sibling: 3  Var: d of type int[mem: Local loc: -5 size: 1] [line: 3]
-38,43c37,42
+38,43c38,43
 < .   .   Sibling: 4  Var: e of type int [mem: Local loc: -6 size: 1] [line: 3]
 < .   .   Sibling: 5  Var: f of type int [mem: Local loc: -7 size: 1] [line: 3]
 < .   .   Sibling: 6  Var: aa of array of type int [mem: Local loc: -9 size: 11] [line: 4]

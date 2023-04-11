@@ -28,21 +28,23 @@
 < .   .   .   Child: 1  Id: a of type int [mem: Parameter loc: -2 size: 1] [line: 11]
 ---
 > .   .   .   Child: 1  Id: a of type int[mem: Parameter loc: -2 size: 1] [line: 11]
-24d23
+24c24
 < Offset for end of global space: -6
-26,27c25,26
+---
+> Offset for end of global space: -2
+26,27c26,27
 < .   .   .   .   Sibling: 1  Id: b of type bool [mem: Local loc: -3 size: 1] [line: 23]
 < .   Sibling: 1  Parm: b of type bool [mem: Parameter loc: -3 size: 1] [line: 8]
 ---
 > .   .   .   .   Sibling: 1  Id: b of type bool[mem: Local loc: -3 size: 1] [line: 23]
 > .   Sibling: 1  Parm: b of type bool[mem: Parameter loc: -3 size: 1] [line: 8]
-29,30c28,29
+29,30c29,30
 < .   .   Sibling: 1  Var: b of type bool [mem: Local loc: -3 size: 1] [line: 18]
 < Sibling: 1  Var: v of array of type bool [mem: Global loc: -2 size: 5] [line: 6]
 ---
 > .   .   Sibling: 1  Var: b of type bool[mem: Local loc: -3 size: 1] [line: 18]
 > Sibling: 1  Var: v of array of type bool[mem: Global loc: -2 size: 1] [line: 6]
-32,37c31,36
+32,37c32,37
 < Sibling: 2  Func: polgara returns type int [mem: Global loc: 0 size: -4] [line: 8]
 < .   .   Sibling: 2  Var: ai of array of type int [mem: Local loc: -5 size: 4] [line: 19]
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 15]

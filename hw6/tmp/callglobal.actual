@@ -41,6 +41,7 @@
 Func: scalar returns type void[mem: Global loc: 0 size: -5] [line: 2]
 Number of errors: 0
 Number of warnings: 0
+Offset for end of global space: -6
 .   .   Sibling: 1  Assign: <= of type bool [line: 26]
 .   .   Sibling: 1  Call: outputb of type void [line: 14]
 .   .   Sibling: 1  Call: outputb of type void [line: 5]

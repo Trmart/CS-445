@@ -10,12 +10,11 @@
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
-17,18c17
-< Offset for end of global space: 0
+18c18
 < Sibling: 1  Func: dogs returns type void [mem: Global loc: 0 size: -2] [line: 4]
 ---
 > Sibling: 1  Func: dogs returns type void[mem: Global loc: 0 size: -2] [line: 4]
-21c20
+21c21
 < .   .   Sibling: 3  Compound [mem: None loc: 0 size: -2] [line: 10]
 ---
 > .   .   Sibling: 3  Compound [mem: None loc: 0 size: -3] [line: 10]

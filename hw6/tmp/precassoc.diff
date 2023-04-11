@@ -20,19 +20,17 @@
 ---
 > .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 4]
 > .   .   Child: 0  Var: y of type int[mem: Local loc: -3 size: 1] [line: 5]
-39d38
-< Offset for end of global space: -1
-41,42c40,41
+41,42c41,42
 < Sibling: 1  Func: dog returns type int [mem: Global loc: 0 size: -3] [line: 4]
 < .   .   Sibling: 1  Var: z of type int [mem: Local loc: -4 size: 1] [line: 5]
 ---
 > Sibling: 1  Func: dog returns type int[mem: Global loc: 0 size: -3] [line: 4]
 > .   .   Sibling: 1  Var: z of type int[mem: Local loc: -4 size: 1] [line: 5]
-44c43
+44c44
 < Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 18]
 ---
 > Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 18]
-47c46
+47c47
 < Var: w of type int [mem: Global loc: 0 size: 1] [line: 2]
 ---
 > Var: w of type int[mem: Global loc: 0 size: 1] [line: 2]

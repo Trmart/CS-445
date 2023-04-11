@@ -14,15 +14,17 @@
 ---
 > .   .   Child: 0  Var: b of array of type int[mem: Local loc: -3 size: 1] [line: 6]
 > .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 5]
-14d13
+14c14
 < Offset for end of global space: -46
-16,17c15,16
+---
+> Offset for end of global space: -2
+16,17c16,17
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
 < .   .   Sibling: 1  Var: c of static array of type int [mem: LocalStatic loc: -13 size: 34] [line: 7]
 ---
 > Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 4]
 > .   .   Sibling: 1  Var: c of static array of type int[mem: LocalStatic loc: -2 size: 1] [line: 7]
-21c20
+21c21
 < Var: a of array of type int [mem: Global loc: -1 size: 12] [line: 2]
 ---
 > Var: a of array of type int[mem: Global loc: -1 size: 1] [line: 2]

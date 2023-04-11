@@ -38,17 +38,19 @@
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
-27d26
+27c27
 < Offset for end of global space: -4
-29c28
+---
+> Offset for end of global space: -1
+29c29
 < .   .   Sibling: 1  Var: b of array of type char [mem: Local loc: -7 size: 4] [line: 4]
 ---
 > .   .   Sibling: 1  Var: b of array of type char[mem: Local loc: -4 size: 1] [line: 4]
-31c30
+31c31
 < .   .   Sibling: 2  Var: c of array of type char [mem: Local loc: -11 size: 3] [line: 5]
 ---
 > .   .   Sibling: 2  Var: c of array of type char[mem: Local loc: -5 size: 1] [line: 5]
-33c32
+33c33
 < .   .   Sibling: 3  Var: d of array of type char [mem: Local loc: -14 size: 5] [line: 5]
 ---
 > .   .   Sibling: 3  Var: d of array of type char[mem: Local loc: -6 size: 1] [line: 5]

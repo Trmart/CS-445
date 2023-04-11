@@ -22,9 +22,7 @@
 < Func: scalar returns type void [mem: Global loc: 0 size: -5] [line: 2]
 ---
 > Func: scalar returns type void[mem: Global loc: 0 size: -5] [line: 2]
-25d24
-< Offset for end of global space: 0
-29,31c28,30
+29,31c29,31
 < Sibling: 1  Func: array returns type void [mem: Global loc: 0 size: -5] [line: 11]
 < .   Sibling: 1  Parm: b of array of type bool [mem: Parameter loc: -3 size: 1] [line: 11]
 < .   Sibling: 1  Parm: b of type bool [mem: Parameter loc: -3 size: 1] [line: 2]
@@ -32,7 +30,7 @@
 > Sibling: 1  Func: array returns type void[mem: Global loc: 0 size: -5] [line: 11]
 > .   Sibling: 1  Parm: b is array of type bool[mem: Parameter loc: -3 size: 1] [line: 11]
 > .   Sibling: 1  Parm: b of type bool[mem: Parameter loc: -3 size: 1] [line: 2]
-35,37c34,36
+35,37c35,37
 < Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 20]
 < .   Sibling: 2  Parm: c of array of type char [mem: Parameter loc: -4 size: 1] [line: 11]
 < .   Sibling: 2  Parm: c of type char [mem: Parameter loc: -4 size: 1] [line: 2]

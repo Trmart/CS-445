@@ -19,7 +19,7 @@
 > .   .   Child: 1  Compound [mem: None loc: 0 size: -20] [line: 25]
 10d10
 < .   Child: 1  Compound [mem: None loc: 0 size: -80] [line: 17]
-14,57c14,56
+14,57c14,57
 < Offset for end of global space: -156
 < Sibling: 10  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 62]
 < .   .   Sibling: 1  Compound [mem: None loc: 0 size: -152] [line: 34]
@@ -65,6 +65,7 @@
 < Sibling: 9  Func: fox returns type void [mem: Global loc: 0 size: -8] [line: 57]
 < Var: a of type int [mem: Global loc: 0 size: 1] [line: 2]
 ---
+> Offset for end of global space: -14
 > Sibling: 10  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 62]
 > .   .   Sibling: 1  Compound [mem: None loc: 0 size: -20] [line: 34]
 > .   Sibling: 1  Parm: fpb of type bool[mem: Parameter loc: -3 size: 1] [line: 57]

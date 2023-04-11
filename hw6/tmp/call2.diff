@@ -40,17 +40,15 @@
 < Func: three returns type void [mem: Global loc: 0 size: -3] [line: 2]
 ---
 > Func: three returns type void[mem: Global loc: 0 size: -3] [line: 2]
-45d44
-< Offset for end of global space: 0
-50c49
+50c50
 < Sibling: 1  Func: two returns type void [mem: Global loc: 0 size: -3] [line: 9]
 ---
 > Sibling: 1  Func: two returns type void[mem: Global loc: 0 size: -3] [line: 9]
-55c54
+55c55
 < Sibling: 2  Func: one returns type void [mem: Global loc: 0 size: -3] [line: 16]
 ---
 > Sibling: 2  Func: one returns type void[mem: Global loc: 0 size: -3] [line: 16]
-57c56
+57c57
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 23]
 ---
 > Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 23]

@@ -6,6 +6,7 @@
 Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 Number of errors: 0
 Number of warnings: 0
+Offset for end of global space: 0
 .   .   .   .   Sibling: 1  Break [line: 6]
 .   .   .   .   Sibling: 2  Const 777 of type int [line: 7]
 .   .   .   .   Sibling: 3  Break [line: 8]

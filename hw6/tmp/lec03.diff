@@ -8,8 +8,7 @@
 < Func: cat returns type int [mem: Global loc: 0 size: -3] [line: 1]
 ---
 > Func: cat returns type int[mem: Global loc: 0 size: -3] [line: 1]
-11,12c11
-< Offset for end of global space: 0
+12c12
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 3]
 ---
 > Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 3]

@@ -32,15 +32,13 @@
 < Func: gcd returns type int [mem: Global loc: 0 size: -4] [line: 2]
 ---
 > Func: gcd returns type int[mem: Global loc: 0 size: -4] [line: 2]
-30d29
-< Offset for end of global space: 0
-32,33c31,32
+32,33c32,33
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
 < .   .   .   .   Sibling: 1  Id: y of type int [mem: Local loc: -3 size: 1] [line: 10]
 ---
 > Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 4]
 > .   .   .   .   Sibling: 1  Id: y of type int[mem: Local loc: -3 size: 1] [line: 10]
-35,36c34,35
+35,36c35,36
 < .   Sibling: 1  Parm: v of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 < .   .   Sibling: 1  Var: y of type int [mem: Local loc: -3 size: 1] [line: 6]
 ---

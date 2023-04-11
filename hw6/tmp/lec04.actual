@@ -22,6 +22,7 @@
 Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
 Number of errors: 0
 Number of warnings: 0
+Offset for end of global space: 0
 .   .   Sibling: 1  Assign: <= of type int [line: 6]
 .   .   Sibling: 1  Var: y of type int[mem: Local loc: -3 size: 1] [line: 3]
 .   .   Sibling: 2  Assign: <= of type int [line: 7]

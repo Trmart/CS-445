@@ -81,6 +81,7 @@
 Func: cheyenne returns type void[mem: Global loc: 0 size: -5] [line: 2]
 Number of errors: 0
 Number of warnings: 0
+Offset for end of global space: -6
 .   .   Sibling: 10  Call: sioux of type void [line: 53]
 .   .   Sibling: 11  Call: comanche of type void [line: 54]
 .   .   Sibling: 12  Compound [mem: None loc: 0 size: -5] [line: 56]

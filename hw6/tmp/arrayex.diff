@@ -24,9 +24,7 @@
 > .   .   .   Child: 1  Id: a of array of type int[mem: Local loc: -3 size: 1] [line: 8]
 > .   .   .   Child: 1  Id: b of array of type int[mem: Local loc: -4 size: 1] [line: 5]
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
-15d14
-< Offset for end of global space: 0
-17c16
+17c17
 < .   .   Sibling: 1  Var: b of array of type int [mem: Local loc: -14 size: 16] [line: 3]
 ---
 > .   .   Sibling: 1  Var: b of array of type int[mem: Local loc: -4 size: 1] [line: 3]

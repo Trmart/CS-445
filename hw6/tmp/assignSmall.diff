@@ -32,12 +32,11 @@
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
-24,25c24
+24c24
 < Number of warnings: 4
-< Offset for end of global space: 0
 ---
 > Number of warnings: 5
-28,32c27,31
+28,32c28,32
 < .   .   Sibling: 1  Var: w of type int [mem: Local loc: -3 size: 1] [line: 4]
 < .   .   Sibling: 2  Id: w of type int [mem: Local loc: -3 size: 1] [line: 8]
 < .   .   Sibling: 2  Var: x of type int [mem: Local loc: -4 size: 1] [line: 4]
@@ -49,9 +48,9 @@
 > .   .   Sibling: 2  Var: x of type int[mem: Local loc: -4 size: 1] [line: 4]
 > .   .   Sibling: 3  Id: w of type int[mem: Local loc: -3 size: 1] [line: 9]
 > .   .   Sibling: 3  Var: y of type int[mem: Local loc: -5 size: 1] [line: 4]
-34c33
+34c34
 < .   .   Sibling: 4  Var: z of type int [mem: Local loc: -6 size: 1] [line: 4]
 ---
 > .   .   Sibling: 4  Var: z of type int[mem: Local loc: -6 size: 1] [line: 4]
-41a41
+41a42
 > WARNING(15): Variable 'z' may be uninitialized when used here.

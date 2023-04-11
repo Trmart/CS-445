@@ -26,14 +26,13 @@
 < Func: yvonne returns type void [mem: Global loc: 0 size: -3] [line: 3]
 ---
 > Func: yvonne returns type void[mem: Global loc: 0 size: -3] [line: 3]
-32,34c32,33
-< Offset for end of global space: 0
+33,34c33,34
 < .   .   Sibling: 1  Compound [mem: None loc: 0 size: -9] [line: 15]
 < Sibling: 1  Func: louise returns type int [mem: Global loc: 0 size: -3] [line: 9]
 ---
 > .   .   Sibling: 1  Compound [mem: None loc: 0 size: -4] [line: 15]
 > Sibling: 1  Func: louise returns type int[mem: Global loc: 0 size: -3] [line: 9]
-36c35
+36c36
 < Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 11]
 ---
 > Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 11]

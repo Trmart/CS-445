@@ -20,7 +20,7 @@
 < .   .   .   .   Child: 1  Id: pa of type int [mem: Parameter loc: -2 size: 1] [line: 4]
 ---
 > .   .   .   .   Child: 1  Id: pa of type int[mem: Parameter loc: -2 size: 1] [line: 4]
-15,24c15,23
+15,24c15,24
 < Offset for end of global space: -101
 < .   Sibling: 1  Parm: pb of type bool [mem: Parameter loc: -3 size: 1] [line: 4]
 < .   .   Sibling: 1  Var: ca of array of type char [mem: Local loc: -4 size: 11] [line: 9]
@@ -32,6 +32,7 @@
 < .   .   Sibling: 3  Var: sca of static array of type char [mem: LocalStatic loc: -81 size: 21] [line: 11]
 < Var: ga of type int [mem: Global loc: 0 size: 1] [line: 1]
 ---
+> Offset for end of global space: -7
 > .   Sibling: 1  Parm: pb of type bool[mem: Parameter loc: -3 size: 1] [line: 4]
 > .   .   Sibling: 1  Var: ca of array of type char[mem: Local loc: -4 size: 1] [line: 9]
 > Sibling: 1  Var: gca of array of type char[mem: Global loc: -3 size: 1] [line: 2]

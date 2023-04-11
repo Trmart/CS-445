@@ -95,16 +95,14 @@
 < Func: fred returns type void [mem: Global loc: 0 size: -2] [line: 3]
 ---
 > Func: fred returns type void[mem: Global loc: 0 size: -2] [line: 3]
-103d102
-< Offset for end of global space: 0
-106d104
+106d105
 < .   .   Sibling: 1  For [mem: None loc: 0 size: -3] [line: 8]
-108c106,107
+108c107,108
 < Sibling: 1  Func: cat returns type void [mem: Global loc: 0 size: -3] [line: 29]
 ---
 > .   .   Sibling: 1  For [mem: None loc: 0 size: -5] [line: 8]
 > Sibling: 1  Func: cat returns type void[mem: Global loc: 0 size: -3] [line: 29]
-110,114c109,113
+110,114c110,114
 < .   .   Sibling: 2  For [mem: None loc: 0 size: -3] [line: 13]
 < Sibling: 2  Func: errorZ returns type void [mem: Global loc: 0 size: -3] [line: 36]
 < .   .   Sibling: 3  For [mem: None loc: 0 size: -3] [line: 18]

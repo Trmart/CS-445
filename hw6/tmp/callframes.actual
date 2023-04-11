@@ -56,6 +56,7 @@
 Func: min returns type int[mem: Global loc: 0 size: -4] [line: 2]
 Number of errors: 0
 Number of warnings: 0
+Offset for end of global space: 0
 .   .   Sibling: 1  Call: outnl of type void [line: 8]
 Sibling: 1  Func: f returns type int[mem: Global loc: 0 size: -3] [line: 3]
 .   .   .   .   .   Sibling: 1  Op: - of type int [line: 4]

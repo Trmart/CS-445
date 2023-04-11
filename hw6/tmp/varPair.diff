@@ -88,9 +88,11 @@
 > .   .   .   Child: 1  Id: px of type int[mem: Parameter loc: -2 size: 1] [line: 25]
 > .   .   .   Child: 1  Id: sx of static type int[mem: LocalStatic loc: -2 size: 1] [line: 33]
 > .   .   .   Child: 1  Id: x of type int[mem: Local loc: -4 size: 1] [line: 17]
-90d89
+90c90
 < Offset for end of global space: -24
-103,108c102,107
+---
+> Offset for end of global space: -4
+103,108c103,108
 < .   .   .   Sibling: 1  Id: gy of array of type int [mem: Global loc: -2 size: 11] [line: 45]
 < .   .   .   Sibling: 1  Id: ly of array of type int [mem: Local loc: -4 size: 11] [line: 46]
 < .   Sibling: 1  Parm: py of array of type int [mem: Parameter loc: -3 size: 1] [line: 3]
@@ -104,19 +106,19 @@
 > Sibling: 1  Var: gy of array of type int[mem: Global loc: -2 size: 1] [line: 2]
 > .   .   Sibling: 1  Var: ly of array of type int[mem: Local loc: -4 size: 1] [line: 42]
 > .   .   Sibling: 1  Var: y of array of type int[mem: Local loc: -6 size: 1] [line: 5]
-119,120c118,119
+119,120c119,120
 < Sibling: 2  Func: fred returns type void [mem: Global loc: 0 size: -4] [line: 3]
 < .   .   Sibling: 2  Var: sx of static type int [mem: LocalStatic loc: -12 size: 1] [line: 6]
 ---
 > Sibling: 2  Func: fred returns type void[mem: Global loc: 0 size: -4] [line: 3]
 > .   .   Sibling: 2  Var: sx of static type int[mem: LocalStatic loc: -2 size: 1] [line: 6]
-122,123c121,122
+122,123c122,123
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 41]
 < .   .   Sibling: 3  Var: sy of static array of type int [mem: LocalStatic loc: -14 size: 11] [line: 6]
 ---
 > Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 41]
 > .   .   Sibling: 3  Var: sy of static array of type int[mem: LocalStatic loc: -4 size: 1] [line: 6]
-130c129
+130c130
 < Var: gx of type int [mem: Global loc: 0 size: 1] [line: 2]
 ---
 > Var: gx of type int[mem: Global loc: 0 size: 1] [line: 2]

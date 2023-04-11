@@ -106,9 +106,11 @@
 > .   .   .   Child: 1  Id: px of type int[mem: Parameter loc: -2 size: 1] [line: 30]
 > .   .   .   Child: 1  Id: sx of static type int[mem: LocalStatic loc: -2 size: 1] [line: 43]
 > .   .   .   Child: 1  Id: x of type int[mem: Local loc: -4 size: 1] [line: 23]
-112d111
+112c112
 < Offset for end of global space: -24
-125,129c124,128
+---
+> Offset for end of global space: -4
+125,129c125,129
 < .   .   .   Sibling: 1  Id: zy of array of type int [mem: Local loc: -4 size: 11] [line: 62]
 < .   Sibling: 1  Parm: py of array of type int [mem: Parameter loc: -3 size: 1] [line: 3]
 < Sibling: 1  Var: gy of array of type int [mem: Global loc: -2 size: 11] [line: 2]
@@ -120,19 +122,19 @@
 > Sibling: 1  Var: gy of array of type int[mem: Global loc: -2 size: 1] [line: 2]
 > .   .   Sibling: 1  Var: y of array of type int[mem: Local loc: -6 size: 1] [line: 5]
 > .   .   Sibling: 1  Var: zy of array of type int[mem: Local loc: -4 size: 1] [line: 53]
-142,143c141,142
+142,143c142,143
 < Sibling: 2  Func: esperanza returns type void [mem: Global loc: 0 size: -4] [line: 3]
 < .   .   Sibling: 2  Var: sx of static type int [mem: LocalStatic loc: -12 size: 1] [line: 6]
 ---
 > Sibling: 2  Func: esperanza returns type void[mem: Global loc: 0 size: -4] [line: 3]
 > .   .   Sibling: 2  Var: sx of static type int[mem: LocalStatic loc: -2 size: 1] [line: 6]
-149,150c148,149
+149,150c149,150
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 51]
 < .   .   Sibling: 3  Var: sy of static array of type int [mem: LocalStatic loc: -14 size: 11] [line: 6]
 ---
 > Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 51]
 > .   .   Sibling: 3  Var: sy of static array of type int[mem: LocalStatic loc: -4 size: 1] [line: 6]
-162c161
+162c162
 < Var: gx of type int [mem: Global loc: 0 size: 1] [line: 2]
 ---
 > Var: gx of type int[mem: Global loc: 0 size: 1] [line: 2]

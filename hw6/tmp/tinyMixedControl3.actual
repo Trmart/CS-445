@@ -51,6 +51,7 @@
 Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
 Number of errors: 0
 Number of warnings: 7
+Offset for end of global space: 0
 .   .   Sibling: 1  If [line: 13]
 .   .   Sibling: 2  If [line: 18]
 WARNING(14): The variable 'x' seems not to be used.

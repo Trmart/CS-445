@@ -21,9 +21,11 @@
 ---
 > .   .   .   Child: 1  Const is array "reconnaissance" of type char[mem: Global loc: -5 size: 1] [line: 11]
 > .   .   .   Child: 1  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 10]
-14d13
+14c14
 < Offset for end of global space: -30
-16,31c15,30
+---
+> Offset for end of global space: -6
+16,31c16,31
 < .   Sibling: 1  Parm: y of type int [mem: Parameter loc: -3 size: 1] [line: 3]
 < .   .   Sibling: 1  Var: aa of array of type int [mem: Local loc: -7 size: 11] [line: 5]
 < Sibling: 1  Var: gg of array of type int [mem: Global loc: -2 size: 11] [line: 1]
