@@ -1,0 +1,22 @@
+.   .   Child: 0  Var: a of type int[mem: None loc: 0 size: 1] [line: 5]
+.   .   .   Child: 0  Var: b of type int[mem: None loc: 0 size: 1] [line: 7]
+.   .   .   .   Child: 0  Var: c of type int[mem: None loc: 0 size: 1] [line: 9]
+.   .   .   Child: 0  Var: d of type int[mem: None loc: 0 size: 1] [line: 13]
+.   .   .   .   Child: 0  Var: e of type int[mem: None loc: 0 size: 1] [line: 15]
+.   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 14]
+.   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 4]
+.   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 6]
+.   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 8]
+Number of errors: 0
+Number of warnings: 7
+.   .   Sibling: 1  Compound [mem: None loc: 0 size: 1] [line: 12]
+Sibling: 1  Func: main returns type void[mem: None loc: 0 size: 1] [line: 4]
+.   .   .   .   Sibling: 1  Var: f of type int[mem: None loc: 0 size: 1] [line: 16]
+Var: g of type int[mem: None loc: 0 size: 1] [line: 2]
+WARNING(13): The variable 'd' seems not to be used.
+WARNING(15): The variable 'e' seems not to be used.
+WARNING(16): The variable 'f' seems not to be used.
+WARNING(2): The variable 'g' seems not to be used.
+WARNING(5): The variable 'a' seems not to be used.
+WARNING(7): The variable 'b' seems not to be used.
+WARNING(9): The variable 'c' seems not to be used.

@@ -1,0 +1,32 @@
+3,7c3,7
+< .   .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 10]
+< .   .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 14]
+< .   .   .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 15]
+< .   .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 16]
+< .   .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 7]
+---
+> .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 10]
+> .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 14]
+> .   .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 15]
+> .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 16]
+> .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 7]
+11c11
+< .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 4]
+---
+> .   .   Child: 0  Var: x of type int[mem: None loc: 0 size: 1] [line: 4]
+16,18c16,18
+< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 13]
+< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
+< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 6]
+---
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 13]
+> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 3]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 6]
+27,28c27,28
+< .   .   .   Child: 2  Compound [mem: None loc: 0 size: -3] [line: 9]
+< Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
+---
+> .   .   .   Child: 2  Compound [mem: None loc: 0 size: 1] [line: 9]
+> Func: main returns type void[mem: None loc: 0 size: 1] [line: 2]
+31d30
+< Offset for end of global space: 0

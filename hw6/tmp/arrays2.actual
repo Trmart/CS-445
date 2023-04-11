@@ -1,0 +1,18 @@
+ERROR(10): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
+ERROR(15): '<=' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+ERROR(16): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
+ERROR(20): '<=' requires operands of the same type but lhs is type int and rhs is type char.
+ERROR(21): '<=' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+ERROR(21): '<=' requires operands of the same type but lhs is type int and rhs is type char.
+ERROR(22): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
+ERROR(22): '<=' requires operands of the same type but lhs is type int and rhs is type char.
+ERROR(23): '<=' requires operands of the same type but lhs is type int and rhs is type char.
+ERROR(24): '<=' requires operands of the same type but lhs is type int and rhs is type UndefinedType.
+ERROR(9): '<=' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+Number of errors: 11
+Number of warnings: 5
+WARNING(14): Variable 'cc' may be uninitialized when used here.
+WARNING(5): The variable 'bbb' seems not to be used.
+WARNING(5): The variable 'bb' seems not to be used.
+WARNING(5): The variable 'b' seems not to be used.
+WARNING(8): Variable 'aa' may be uninitialized when used here.

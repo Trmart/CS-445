@@ -552,7 +552,7 @@ int main(int argc, char *argv[])
   numErrors = 0;
   numWarnings = 0;
 
-  while((compilerFlag = getopt(argc, argv, "dDpPh")) != -1)
+  while((compilerFlag = getopt(argc, argv, "dDpPhM")) != -1)
   {
 
     switch(compilerFlag)
@@ -588,7 +588,7 @@ int main(int argc, char *argv[])
               {
                 isPrintingAST = true;
                 isPrintingTreeTypes = true;
-                isPrintingMemoryOffsets = true;
+                isPrintingMemoryOffset = true;
                 isPrintingMemorySize = true;
               }
               break; 
@@ -628,7 +628,7 @@ int main(int argc, char *argv[])
   initErrorProcessing(); 
 
   // remove line 623 before submission. Just For testing
-  std::cout << "====================================" << std::endl;
+  /* std::cout << "====================================" << std::endl; */
 
   yyparse();
 
@@ -646,7 +646,7 @@ int main(int argc, char *argv[])
     {  
       printAST(ROOT, 0, isPrintingTreeTypes);
 
-      if(isPrintingMemoryOffsets)
+      if(isPrintingMemoryOffset)
       {
         // print memory offsets
         /* std:: cout << "Offset for end of global space: " << goffset << std::endl; */
@@ -655,7 +655,7 @@ int main(int argc, char *argv[])
   }
   
   // remove line 644 before submission. Just For testing
-  std::cout << "FILE: " << fileName.substr(fileName.find_last_of("/\\") + 1) << std::endl;
+  /* std::cout << "FILE: " << fileName.substr(fileName.find_last_of("/\\") + 1) << std::endl; */
   
   std::cout << "Number of warnings: " << numWarnings << std::endl;
   std::cout << "Number of errors: " << numErrors << std::endl;

@@ -1,0 +1,4 @@
+10c10
+< ERROR(24): '<=' requires operands of the same type but lhs is type int and rhs is type char.
+---
+> ERROR(24): '<=' requires operands of the same type but lhs is type int and rhs is type UndefinedType.

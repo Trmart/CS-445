@@ -1,0 +1,22 @@
+## C-S23
+main()
+ begin 
+   int x;
+
+   if true then 
+      for x <= 1 .. 30 do
+         if false then 
+            for x <= 2 .. 40 step 10 do 555;
+         else 666;
+   else 777;
+
+   if false then 
+      for x <= 3 .. 3 do 333;
+   else
+      for x <= -1 .. 20 do 555;
+
+   if true then 
+      for x <= 20 .. 0 step -1 do
+         for x <= 3 .. 7 step 3 do  555;
+   else 666;
+ end 

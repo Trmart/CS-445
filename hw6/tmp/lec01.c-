@@ -1,0 +1,11 @@
+## C-S23
+int dog() begin return 777;   end 
+
+main()
+ begin 
+    int x:10;
+    for i <= x .. x step x do ;
+    "dog" = "cat";
+    666+dog();
+ end 
+

@@ -1,0 +1,27 @@
+1,4c1,4
+< .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 4]
+< .   .   .   Child: 0  Var: z of type int [mem: Local loc: -105 size: 1] [line: 9]
+< .   Child: 1  Compound [mem: None loc: 0 size: -105] [line: 3]
+< .   .   Child: 1  Const "dogs" of array of type char [mem: Global loc: -2 size: 5] [line: 6]
+---
+> .   .   Child: 0  Var: x of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   .   Child: 0  Var: z of type int[mem: None loc: 0 size: 1] [line: 9]
+> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 3]
+> .   .   Child: 1  Const is array "dogs" of type char[mem: None loc: 0 size: 1] [line: 6]
+7,14c7,13
+< Offset for end of global space: -14
+< .   .   Sibling: 1  Const "horses" of array of type char [mem: Global loc: -7 size: 7] [line: 7]
+< Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
+< .   .   Sibling: 1  Var: y of type int [mem: Local loc: -3 size: 1] [line: 4]
+< .   .   Sibling: 2  Compound [mem: None loc: 0 size: -106] [line: 8]
+< .   .   Sibling: 2  Var: c of array of type char [mem: Local loc: -5 size: 101] [line: 5]
+< Sibling: 2  Var: h of type int [mem: Global loc: -13 size: 1] [line: 12]
+< Var: g of type int [mem: Global loc: 0 size: 1] [line: 1]
+---
+> .   .   Sibling: 1  Const is array "horses" of type char[mem: None loc: 0 size: 1] [line: 7]
+> Sibling: 1  Func: main returns type void[mem: None loc: 0 size: 1] [line: 2]
+> .   .   Sibling: 1  Var: y of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 2  Compound [mem: None loc: 0 size: 1] [line: 8]
+> .   .   Sibling: 2  Var: c of array of type char[mem: None loc: 0 size: 1] [line: 5]
+> Sibling: 2  Var: h of type int[mem: None loc: 0 size: 1] [line: 12]
+> Var: g of type int[mem: None loc: 0 size: 1] [line: 1]

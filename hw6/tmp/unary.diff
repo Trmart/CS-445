@@ -1,0 +1,78 @@
+4,24c4,24
+< .   .   .   .   Child: 0  Id: a of array of type bool [mem: Local loc: -5 size: 8] [line: 37]
+< .   .   .   .   Child: 0  Id: b of array of type bool [mem: Local loc: -13 size: 6] [line: 38]
+< .   .   .   .   Child: 0  Id: x of type bool [mem: Local loc: -18 size: 1] [line: 26]
+< .   .   .   .   .   Child: 0  Id: x of type bool [mem: Local loc: -18 size: 1] [line: 27]
+< .   .   .   .   .   Child: 0  Id: x of type bool [mem: Local loc: -18 size: 1] [line: 28]
+< .   .   .   .   .   .   .   Child: 0  Id: x of type bool [mem: Local loc: -18 size: 1] [line: 30]
+< .   .   .   .   .   .   .   Child: 0  Id: x of type bool [mem: Local loc: -18 size: 1] [line: 31]
+< .   .   .   .   .   .   Child: 0  Id: x of type bool [mem: Local loc: -18 size: 1] [line: 32]
+< .   .   .   .   .   .   Child: 0  Id: x of type bool [mem: Local loc: -18 size: 1] [line: 33]
+< .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 12]
+< .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 13]
+< .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 14]
+< .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 15]
+< .   .   .   .   Child: 0  Id: y of type bool [mem: Local loc: -19 size: 1] [line: 27]
+< .   .   .   .   Child: 0  Id: y of type bool [mem: Local loc: -19 size: 1] [line: 29]
+< .   .   .   .   .   .   Child: 0  Id: y of type bool [mem: Local loc: -19 size: 1] [line: 30]
+< .   .   .   .   .   .   Child: 0  Id: y of type bool [mem: Local loc: -19 size: 1] [line: 31]
+< .   .   .   .   .   .   .   Child: 0  Id: y of type bool [mem: Local loc: -19 size: 1] [line: 32]
+< .   .   .   Child: 0  Id: y of type int [mem: Local loc: -3 size: 1] [line: 13]
+< .   .   .   Child: 0  Id: y of type int [mem: Local loc: -3 size: 1] [line: 14]
+< .   .   .   Child: 0  Id: y of type int [mem: Local loc: -3 size: 1] [line: 16]
+---
+> .   .   .   .   Child: 0  Id: a of array of type bool[mem: None loc: 0 size: 1] [line: 37]
+> .   .   .   .   Child: 0  Id: b of array of type bool[mem: None loc: 0 size: 1] [line: 38]
+> .   .   .   .   Child: 0  Id: x of type bool[mem: None loc: 0 size: 1] [line: 26]
+> .   .   .   .   .   Child: 0  Id: x of type bool[mem: None loc: 0 size: 1] [line: 27]
+> .   .   .   .   .   Child: 0  Id: x of type bool[mem: None loc: 0 size: 1] [line: 28]
+> .   .   .   .   .   .   .   Child: 0  Id: x of type bool[mem: None loc: 0 size: 1] [line: 30]
+> .   .   .   .   .   .   .   Child: 0  Id: x of type bool[mem: None loc: 0 size: 1] [line: 31]
+> .   .   .   .   .   .   Child: 0  Id: x of type bool[mem: None loc: 0 size: 1] [line: 32]
+> .   .   .   .   .   .   Child: 0  Id: x of type bool[mem: None loc: 0 size: 1] [line: 33]
+> .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 12]
+> .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 13]
+> .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 14]
+> .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 15]
+> .   .   .   .   Child: 0  Id: y of type bool[mem: None loc: 0 size: 1] [line: 27]
+> .   .   .   .   Child: 0  Id: y of type bool[mem: None loc: 0 size: 1] [line: 29]
+> .   .   .   .   .   .   Child: 0  Id: y of type bool[mem: None loc: 0 size: 1] [line: 30]
+> .   .   .   .   .   .   Child: 0  Id: y of type bool[mem: None loc: 0 size: 1] [line: 31]
+> .   .   .   .   .   .   .   Child: 0  Id: y of type bool[mem: None loc: 0 size: 1] [line: 32]
+> .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 13]
+> .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 14]
+> .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 16]
+45,46c45,46
+< .   .   .   Child: 0  Var: x of type bool [mem: Local loc: -18 size: 1] [line: 23]
+< .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 8]
+---
+> .   .   .   Child: 0  Var: x of type bool[mem: None loc: 0 size: 1] [line: 23]
+> .   .   Child: 0  Var: x of type int[mem: None loc: 0 size: 1] [line: 8]
+49c49
+< .   Child: 1  Compound [mem: None loc: 0 size: -18] [line: 7]
+---
+> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 7]
+60c60
+< Func: main returns type void [mem: Global loc: 0 size: -2] [line: 6]
+---
+> Func: main returns type void[mem: None loc: 0 size: 1] [line: 6]
+63d62
+< Offset for end of global space: 0
+68,69c67,68
+< .   .   .   Sibling: 1  Var: y of type bool [mem: Local loc: -19 size: 1] [line: 24]
+< .   .   Sibling: 1  Var: y of type int [mem: Local loc: -3 size: 1] [line: 9]
+---
+> .   .   .   Sibling: 1  Var: y of type bool[mem: None loc: 0 size: 1] [line: 24]
+> .   .   Sibling: 1  Var: y of type int[mem: None loc: 0 size: 1] [line: 9]
+72c71
+< .   .   Sibling: 2  Var: a of array of type bool [mem: Local loc: -5 size: 8] [line: 10]
+---
+> .   .   Sibling: 2  Var: a of array of type bool[mem: None loc: 0 size: 1] [line: 10]
+75c74
+< .   .   Sibling: 3  Var: b of array of type bool [mem: Local loc: -13 size: 6] [line: 10]
+---
+> .   .   Sibling: 3  Var: b of array of type bool[mem: None loc: 0 size: 1] [line: 10]
+86c85
+< .   .   Sibling: 9  Compound [mem: None loc: 0 size: -20] [line: 23]
+---
+> .   .   Sibling: 9  Compound [mem: None loc: 0 size: 1] [line: 23]

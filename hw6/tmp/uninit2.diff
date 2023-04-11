@@ -1,0 +1,88 @@
+1,14c1,14
+< .   .   .   .   Child: 0  Id: aa of array of type int [mem: Local loc: -7 size: 3] [line: 8]
+< .   .   .   Child: 0  Id: a of type int [mem: Local loc: -2 size: 1] [line: 6]
+< .   .   .   Child: 0  Id: a of type int [mem: Local loc: -2 size: 1] [line: 7]
+< .   .   .   Child: 0  Id: a of type int [mem: Local loc: -2 size: 1] [line: 8]
+< .   .   .   Child: 0  Id: a of type int [mem: Local loc: -2 size: 1] [line: 9]
+< .   .   .   .   Child: 0  Id: bb of array of type int [mem: Local loc: -10 size: 4] [line: 9]
+< .   .   .   .   Child: 0  Id: cc of array of type int [mem: Local loc: -14 size: 6] [line: 10]
+< .   .   .   .   Child: 0  Id: cc of array of type int [mem: Local loc: -14 size: 6] [line: 11]
+< .   .   .   Child: 0  Id: cc of array of type int [mem: Local loc: -14 size: 6] [line: 12]
+< .   .   .   .   Child: 0  Id: cc of array of type int [mem: Local loc: -14 size: 6] [line: 13]
+< .   .   .   .   .   Child: 0  Id: cc of array of type int [mem: Local loc: -14 size: 6] [line: 9]
+< .   .   .   .   .   Child: 0  Id: c of type int [mem: Local loc: -4 size: 1] [line: 11]
+< .   .   .   .   Child: 0  Id: dd of array of type int [mem: Local loc: -20 size: 8] [line: 12]
+< .   .   .   .   .   Child: 0  Id: ee of array of type int [mem: Local loc: -28 size: 12] [line: 13]
+---
+> .   .   .   .   Child: 0  Id: aa of array of type int[mem: None loc: 0 size: 1] [line: 8]
+> .   .   .   Child: 0  Id: a of type int[mem: None loc: 0 size: 1] [line: 6]
+> .   .   .   Child: 0  Id: a of type int[mem: None loc: 0 size: 1] [line: 7]
+> .   .   .   Child: 0  Id: a of type int[mem: None loc: 0 size: 1] [line: 8]
+> .   .   .   Child: 0  Id: a of type int[mem: None loc: 0 size: 1] [line: 9]
+> .   .   .   .   Child: 0  Id: bb of array of type int[mem: None loc: 0 size: 1] [line: 9]
+> .   .   .   .   Child: 0  Id: cc of array of type int[mem: None loc: 0 size: 1] [line: 10]
+> .   .   .   .   Child: 0  Id: cc of array of type int[mem: None loc: 0 size: 1] [line: 11]
+> .   .   .   Child: 0  Id: cc of array of type int[mem: None loc: 0 size: 1] [line: 12]
+> .   .   .   .   Child: 0  Id: cc of array of type int[mem: None loc: 0 size: 1] [line: 13]
+> .   .   .   .   .   Child: 0  Id: cc of array of type int[mem: None loc: 0 size: 1] [line: 9]
+> .   .   .   .   .   Child: 0  Id: c of type int[mem: None loc: 0 size: 1] [line: 11]
+> .   .   .   .   Child: 0  Id: dd of array of type int[mem: None loc: 0 size: 1] [line: 12]
+> .   .   .   .   .   Child: 0  Id: ee of array of type int[mem: None loc: 0 size: 1] [line: 13]
+18c18
+< .   .   Child: 0  Var: a of type int [mem: Local loc: -2 size: 1] [line: 3]
+---
+> .   .   Child: 0  Var: a of type int[mem: None loc: 0 size: 1] [line: 3]
+20c20
+< .   Child: 1  Compound [mem: None loc: 0 size: -39] [line: 2]
+---
+> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 2]
+26,31c26,31
+< .   .   .   Child: 1  Id: a of type int [mem: Local loc: -2 size: 1] [line: 10]
+< .   .   .   Child: 1  Id: a of type int [mem: Local loc: -2 size: 1] [line: 11]
+< .   .   .   Child: 1  Id: b of type int [mem: Local loc: -3 size: 1] [line: 6]
+< .   .   .   Child: 1  Id: b of type int [mem: Local loc: -3 size: 1] [line: 7]
+< .   .   .   .   Child: 1  Id: c of type int [mem: Local loc: -4 size: 1] [line: 10]
+< .   .   .   .   .   Child: 1  Id: d of type int [mem: Local loc: -5 size: 1] [line: 11]
+---
+> .   .   .   Child: 1  Id: a of type int[mem: None loc: 0 size: 1] [line: 10]
+> .   .   .   Child: 1  Id: a of type int[mem: None loc: 0 size: 1] [line: 11]
+> .   .   .   Child: 1  Id: b of type int[mem: None loc: 0 size: 1] [line: 6]
+> .   .   .   Child: 1  Id: b of type int[mem: None loc: 0 size: 1] [line: 7]
+> .   .   .   .   Child: 1  Id: c of type int[mem: None loc: 0 size: 1] [line: 10]
+> .   .   .   .   .   Child: 1  Id: d of type int[mem: None loc: 0 size: 1] [line: 11]
+38c38
+< Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
+---
+> Func: main returns type void[mem: None loc: 0 size: 1] [line: 1]
+41d40
+< Offset for end of global space: 0
+43c42
+< .   .   Sibling: 1  Var: b of type int [mem: Local loc: -3 size: 1] [line: 3]
+---
+> .   .   Sibling: 1  Var: b of type int[mem: None loc: 0 size: 1] [line: 3]
+45c44
+< .   .   Sibling: 2  Var: c of type int [mem: Local loc: -4 size: 1] [line: 3]
+---
+> .   .   Sibling: 2  Var: c of type int[mem: None loc: 0 size: 1] [line: 3]
+47c46
+< .   .   Sibling: 3  Var: d of type int [mem: Local loc: -5 size: 1] [line: 3]
+---
+> .   .   Sibling: 3  Var: d of type int[mem: None loc: 0 size: 1] [line: 3]
+49c48
+< .   .   Sibling: 4  Var: aa of array of type int [mem: Local loc: -7 size: 3] [line: 4]
+---
+> .   .   Sibling: 4  Var: aa of array of type int[mem: None loc: 0 size: 1] [line: 4]
+51c50
+< .   .   Sibling: 5  Var: bb of array of type int [mem: Local loc: -10 size: 4] [line: 4]
+---
+> .   .   Sibling: 5  Var: bb of array of type int[mem: None loc: 0 size: 1] [line: 4]
+53c52
+< .   .   Sibling: 6  Var: cc of array of type int [mem: Local loc: -14 size: 6] [line: 4]
+---
+> .   .   Sibling: 6  Var: cc of array of type int[mem: None loc: 0 size: 1] [line: 4]
+55,56c54,55
+< .   .   Sibling: 7  Var: dd of array of type int [mem: Local loc: -20 size: 8] [line: 4]
+< .   .   Sibling: 8  Var: ee of array of type int [mem: Local loc: -28 size: 12] [line: 4]
+---
+> .   .   Sibling: 7  Var: dd of array of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 8  Var: ee of array of type int[mem: None loc: 0 size: 1] [line: 4]

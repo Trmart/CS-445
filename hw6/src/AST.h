@@ -166,7 +166,7 @@ void printDeclNode(TreeNode* tree, bool isShowingTypes);
 void printExpNode(TreeNode* tree, bool isShowingTypes);
 void printConstantNode(TreeNode* tree, bool isShowingTypes);
 void printOpNode(TreeNode* tree, bool isShowingTypes);
-void printMemoryTypes(VarKind var); 
+void printMemoryType(VarKind var); 
 void printMemorySizeAndOffset(TreeNode* node);
 
 

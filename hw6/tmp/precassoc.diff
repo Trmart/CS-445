@@ -1,0 +1,44 @@
+9,15c9,15
+< .   .   .   Child: 0  Id: w of type int [mem: Global loc: 0 size: 1] [line: 11]
+< .   .   .   Child: 0  Id: w of type int [mem: Global loc: 0 size: 1] [line: 13]
+< .   .   .   .   .   Child: 0  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 7]
+< .   .   .   Child: 0  Id: y of type int [mem: Local loc: -3 size: 1] [line: 7]
+< .   .   .   .   Child: 0  Id: y of type int [mem: Local loc: -3 size: 1] [line: 9]
+< .   .   .   Child: 0  Id: z of type int [mem: Local loc: -4 size: 1] [line: 15]
+< .   .   .   Child: 0  Id: z of type int [mem: Local loc: -4 size: 1] [line: 9]
+---
+> .   .   .   Child: 0  Id: w of type int[mem: None loc: 0 size: 1] [line: 11]
+> .   .   .   Child: 0  Id: w of type int[mem: None loc: 0 size: 1] [line: 13]
+> .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 7]
+> .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 7]
+> .   .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 9]
+> .   .   .   Child: 0  Id: z of type int[mem: None loc: 0 size: 1] [line: 15]
+> .   .   .   Child: 0  Id: z of type int[mem: None loc: 0 size: 1] [line: 9]
+18,19c18,19
+< .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 4]
+< .   .   Child: 0  Var: y of type int [mem: Local loc: -3 size: 1] [line: 5]
+---
+> .   Child: 0  Parm: x of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Child: 0  Var: y of type int[mem: None loc: 0 size: 1] [line: 5]
+23,24c23,24
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 18]
+< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 4]
+---
+> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 18]
+> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 4]
+39d38
+< Offset for end of global space: -1
+41,42c40,41
+< Sibling: 1  Func: dog returns type int [mem: Global loc: 0 size: -3] [line: 4]
+< .   .   Sibling: 1  Var: z of type int [mem: Local loc: -4 size: 1] [line: 5]
+---
+> Sibling: 1  Func: dog returns type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 1  Var: z of type int[mem: None loc: 0 size: 1] [line: 5]
+44c43
+< Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 18]
+---
+> Sibling: 2  Func: main returns type void[mem: None loc: 0 size: 1] [line: 18]
+47c46
+< Var: w of type int [mem: Global loc: 0 size: 1] [line: 2]
+---
+> Var: w of type int[mem: None loc: 0 size: 1] [line: 2]

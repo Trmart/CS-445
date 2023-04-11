@@ -1,0 +1,6 @@
+4a5
+> ERROR(17): '+' requires operands of type int but lhs is of type void.
+9c10
+< Number of errors: 8
+---
+> Number of errors: 9

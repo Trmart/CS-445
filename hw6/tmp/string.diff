@@ -1,0 +1,17 @@
+1,4c1,4
+< .   .   .   Child: 0  Const "beach day" of array of type char [mem: Global loc: -16 size: 10] [line: 3]
+< .   Child: 0  Const "corgi" of array of type char [mem: Global loc: -1 size: 6] [line: 1]
+< .   .   Child: 0  Var: s of array of type char [mem: Local loc: -3 size: 11] [line: 3]
+< .   Child: 1  Compound [mem: None loc: 0 size: -13] [line: 2]
+---
+> .   .   .   Child: 0  Const is array "beach day" of type char[mem: None loc: 0 size: 1] [line: 3]
+> .   Child: 0  Const is array "corgi" of type char[mem: None loc: 0 size: 1] [line: 1]
+> .   .   Child: 0  Var: s of array of type char[mem: None loc: 0 size: 1] [line: 3]
+> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 2]
+7,9c7,8
+< Offset for end of global space: -25
+< Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
+< Var: g of array of type char [mem: Global loc: -7 size: 9] [line: 1]
+---
+> Sibling: 1  Func: main returns type void[mem: None loc: 0 size: 1] [line: 2]
+> Var: g of array of type char[mem: None loc: 0 size: 1] [line: 1]
