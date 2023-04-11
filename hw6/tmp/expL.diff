@@ -5,7 +5,7 @@
 8c8
 < .   .   .   .   Child: 1  Id: x of type int [mem: Local loc: -2 size: 1] [line: 6]
 ---
-> .   .   .   .   Child: 1  Id: x of type int[mem: None loc: 0 size: 1] [line: 6]
+> .   .   .   .   Child: 1  Id: x of type int[mem: Local loc: -2 size: 1] [line: 6]
 10c10
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---

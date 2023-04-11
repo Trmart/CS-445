@@ -7,13 +7,13 @@
 < .   .   .   Child: 0  Id: e of type int [mem: Local loc: -6 size: 1] [line: 13]
 < .   .   .   .   .   Child: 0  Id: ff of array of type int [mem: Local loc: -64 size: 11] [line: 12]
 ---
-> .   .   .   .   .   Child: 0  Id: aa of array of type int[mem: None loc: 0 size: 1] [line: 11]
-> .   .   .   .   Child: 0  Id: aa of array of type int[mem: None loc: 0 size: 1] [line: 9]
-> .   .   .   .   Child: 0  Id: bb of array of type int[mem: None loc: 0 size: 1] [line: 10]
-> .   .   .   .   Child: 0  Id: cc of array of type int[mem: None loc: 0 size: 1] [line: 11]
-> .   .   .   .   Child: 0  Id: ee of array of type int[mem: None loc: 0 size: 1] [line: 12]
-> .   .   .   Child: 0  Id: e of type int[mem: None loc: 0 size: 1] [line: 13]
-> .   .   .   .   .   Child: 0  Id: ff of array of type int[mem: None loc: 0 size: 1] [line: 12]
+> .   .   .   .   .   Child: 0  Id: aa of array of type int[mem: Local loc: -9 size: 1] [line: 11]
+> .   .   .   .   Child: 0  Id: aa of array of type int[mem: Local loc: -9 size: 1] [line: 9]
+> .   .   .   .   Child: 0  Id: bb of array of type int[mem: Local loc: -10 size: 1] [line: 10]
+> .   .   .   .   Child: 0  Id: cc of array of type int[mem: Local loc: -11 size: 1] [line: 11]
+> .   .   .   .   Child: 0  Id: ee of array of type int[mem: Local loc: -13 size: 1] [line: 12]
+> .   .   .   Child: 0  Id: e of type int[mem: Local loc: -6 size: 1] [line: 13]
+> .   .   .   .   .   Child: 0  Id: ff of array of type int[mem: Local loc: -14 size: 1] [line: 12]
 12c12
 < .   .   Child: 0  Var: a of type int [mem: Local loc: -2 size: 1] [line: 3]
 ---
@@ -29,11 +29,11 @@
 < .   .   .   .   .   Child: 1  Id: d of type int [mem: Local loc: -5 size: 1] [line: 11]
 < .   .   .   Child: 1  Id: f of type int [mem: Local loc: -7 size: 1] [line: 13]
 ---
-> .   .   .   .   Child: 1  Id: a of type int[mem: None loc: 0 size: 1] [line: 9]
-> .   .   .   Child: 1  Id: b of type int[mem: None loc: 0 size: 1] [line: 9]
-> .   .   .   .   Child: 1  Id: c of type int[mem: None loc: 0 size: 1] [line: 10]
-> .   .   .   .   .   Child: 1  Id: d of type int[mem: None loc: 0 size: 1] [line: 11]
-> .   .   .   Child: 1  Id: f of type int[mem: None loc: 0 size: 1] [line: 13]
+> .   .   .   .   Child: 1  Id: a of type int[mem: Local loc: -2 size: 1] [line: 9]
+> .   .   .   Child: 1  Id: b of type int[mem: Local loc: -3 size: 1] [line: 9]
+> .   .   .   .   Child: 1  Id: c of type int[mem: Local loc: -4 size: 1] [line: 10]
+> .   .   .   .   .   Child: 1  Id: d of type int[mem: Local loc: -5 size: 1] [line: 11]
+> .   .   .   Child: 1  Id: f of type int[mem: Local loc: -7 size: 1] [line: 13]
 25c25
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
 ---

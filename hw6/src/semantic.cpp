@@ -1442,6 +1442,9 @@ void analyzeId(TreeNode* node, TreeNode* valFound, int& nErrors, int& nWarnings)
 
             node->expType = valFound->expType;
             node->isArray = valFound->isArray;
+            node->memorySize = valFound->memorySize;
+            node->memoryOffset = valFound->memoryOffset;
+            node->memoryType = valFound->memoryType;
 
             if(node->expType != Integer && rangePos >= 1)
             {
@@ -1534,6 +1537,9 @@ void analyzeId(TreeNode* node, TreeNode* valFound, int& nErrors, int& nWarnings)
             node->isArray = valFound->isArray;
             node->isGlobal = valFound->isGlobal;
             node->isStatic = valFound->isStatic;
+            node->memorySize = valFound->memorySize;
+            node->memoryOffset = valFound->memoryOffset;
+            node->memoryType = valFound->memoryType;
 
             if(!range && valFound->subkind.decl != FuncK)
             {
@@ -1606,6 +1612,9 @@ void analyzeCall(TreeNode* node, int& nErrors, int& nWarnings)
         node->isGlobal = funcFound->isGlobal;
         node->isStatic = funcFound->isStatic;
         funcFound->wasUsed = true;
+        node->memorySize = funcFound->memorySize;
+        node->memoryOffset = funcFound->memoryOffset;
+        node->memoryType = funcFound->memoryType;
 
 
         if(funcFound->subkind.decl != FuncK)

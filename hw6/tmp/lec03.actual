@@ -1,5 +1,5 @@
 .   .   .   Child: 0  Const 666 of type int [line: 5]
-.   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 1]
+.   .   .   Child: 0  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 1]
 .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 1]
 .   .   Child: 1  Call: cat of type int [line: 5]
 .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 4]

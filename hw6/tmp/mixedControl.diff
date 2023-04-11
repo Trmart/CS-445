@@ -5,11 +5,11 @@
 < .   .   .   .   Child: 0  Id: y of type int [mem: Local loc: -3 size: 1] [line: 10]
 < .   .   .   .   Child: 0  Id: y of type int [mem: Local loc: -3 size: 1] [line: 13]
 ---
-> .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 18]
-> .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 24]
-> .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 6]
-> .   .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 10]
-> .   .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 13]
+> .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 18]
+> .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 24]
+> .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 6]
+> .   .   .   .   Child: 0  Id: y of type int[mem: Local loc: -3 size: 1] [line: 10]
+> .   .   .   .   Child: 0  Id: y of type int[mem: Local loc: -3 size: 1] [line: 13]
 20c20
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 4]
 ---
@@ -24,14 +24,14 @@
 < .   .   .   .   Child: 1  Id: z of type int [mem: Local loc: -4 size: 1] [line: 15]
 < .   .   .   Child: 1  Id: z of type int [mem: Local loc: -4 size: 1] [line: 24]
 ---
-> .   .   .   .   .   Child: 1  Id: x of type int[mem: None loc: 0 size: 1] [line: 20]
-> .   .   .   .   .   .   Child: 1  Id: x of type int[mem: None loc: 0 size: 1] [line: 28]
-> .   .   .   .   Child: 1  Id: x of type int[mem: None loc: 0 size: 1] [line: 7]
-> .   .   .   Child: 1  Id: y of type int[mem: None loc: 0 size: 1] [line: 10]
-> .   .   .   Child: 1  Id: y of type int[mem: None loc: 0 size: 1] [line: 13]
-> .   .   .   .   Child: 1  Id: z of type int[mem: None loc: 0 size: 1] [line: 11]
-> .   .   .   .   Child: 1  Id: z of type int[mem: None loc: 0 size: 1] [line: 15]
-> .   .   .   Child: 1  Id: z of type int[mem: None loc: 0 size: 1] [line: 24]
+> .   .   .   .   .   Child: 1  Id: x of type int[mem: Local loc: -2 size: 1] [line: 20]
+> .   .   .   .   .   .   Child: 1  Id: x of type int[mem: Local loc: -2 size: 1] [line: 28]
+> .   .   .   .   Child: 1  Id: x of type int[mem: Local loc: -2 size: 1] [line: 7]
+> .   .   .   Child: 1  Id: y of type int[mem: Local loc: -3 size: 1] [line: 10]
+> .   .   .   Child: 1  Id: y of type int[mem: Local loc: -3 size: 1] [line: 13]
+> .   .   .   .   Child: 1  Id: z of type int[mem: Local loc: -4 size: 1] [line: 11]
+> .   .   .   .   Child: 1  Id: z of type int[mem: Local loc: -4 size: 1] [line: 15]
+> .   .   .   Child: 1  Id: z of type int[mem: Local loc: -4 size: 1] [line: 24]
 42,47c42,47
 < .   .   .   .   Child: 2  Id: x of type int [mem: Local loc: -2 size: 1] [line: 16]
 < .   .   .   .   .   Child: 2  Id: y of type int [mem: Local loc: -3 size: 1] [line: 21]
@@ -40,12 +40,12 @@
 < .   .   .   Child: 2  Id: z of type int [mem: Local loc: -4 size: 1] [line: 22]
 < .   .   .   .   Child: 2  Id: z of type int [mem: Local loc: -4 size: 1] [line: 30]
 ---
-> .   .   .   .   Child: 2  Id: x of type int[mem: None loc: 0 size: 1] [line: 16]
-> .   .   .   .   .   Child: 2  Id: y of type int[mem: None loc: 0 size: 1] [line: 21]
-> .   .   .   .   .   .   Child: 2  Id: y of type int[mem: None loc: 0 size: 1] [line: 29]
-> .   .   .   Child: 2  Id: y of type int[mem: None loc: 0 size: 1] [line: 8]
-> .   .   .   Child: 2  Id: z of type int[mem: None loc: 0 size: 1] [line: 22]
-> .   .   .   .   Child: 2  Id: z of type int[mem: None loc: 0 size: 1] [line: 30]
+> .   .   .   .   Child: 2  Id: x of type int[mem: Local loc: -2 size: 1] [line: 16]
+> .   .   .   .   .   Child: 2  Id: y of type int[mem: Local loc: -3 size: 1] [line: 21]
+> .   .   .   .   .   .   Child: 2  Id: y of type int[mem: Local loc: -3 size: 1] [line: 29]
+> .   .   .   Child: 2  Id: y of type int[mem: Local loc: -3 size: 1] [line: 8]
+> .   .   .   Child: 2  Id: z of type int[mem: Local loc: -4 size: 1] [line: 22]
+> .   .   .   .   Child: 2  Id: z of type int[mem: Local loc: -4 size: 1] [line: 30]
 50c50
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---

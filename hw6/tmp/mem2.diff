@@ -6,8 +6,8 @@
 < .   .   .   Child: 0  Var: p of type int [mem: Local loc: -71 size: 1] [line: 13]
 < .   .   .   Child: 0  Var: q of type int [mem: Local loc: -71 size: 1] [line: 14]
 ---
-> .   .   .   Child: 0  Id: a of type int[mem: None loc: 0 size: 1] [line: 10]
-> .   .   .   Child: 0  Id: cc of array of type char[mem: None loc: 0 size: 1] [line: 11]
+> .   .   .   Child: 0  Id: a of type int[mem: Local loc: -5 size: 1] [line: 10]
+> .   .   .   Child: 0  Id: cc of array of type char[mem: Local loc: -11 size: 1] [line: 11]
 > .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 3]
 > .   .   Child: 0  Var: a of type int[mem: Local loc: -5 size: 1] [line: 5]
 > .   .   .   Child: 0  Var: p of type int[mem: Local loc: -11 size: 1] [line: 13]
@@ -20,7 +20,7 @@
 < .   .   .   Child: 1  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 10]
 ---
 > .   .   .   Child: 1  Const is array "reconnaissance" of type char[mem: Global loc: -5 size: 1] [line: 11]
-> .   .   .   Child: 1  Id: x of type int[mem: None loc: 0 size: 1] [line: 10]
+> .   .   .   Child: 1  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 10]
 14d13
 < Offset for end of global space: -30
 16,31c15,30

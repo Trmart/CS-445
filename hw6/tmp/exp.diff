@@ -2,8 +2,8 @@
 < .   .   .   .   Child: 0  Id: x of type bool [mem: Local loc: -2 size: 1] [line: 31]
 < .   .   .   Child: 0  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 ---
-> .   .   .   .   Child: 0  Id: x of type bool[mem: None loc: 0 size: 1] [line: 31]
-> .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 2]
+> .   .   .   .   Child: 0  Id: x of type bool[mem: Local loc: -2 size: 1] [line: 31]
+> .   .   .   Child: 0  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
 138,139c138,139
 < .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 < .   .   Child: 0  Var: x of type bool [mem: Local loc: -2 size: 1] [line: 6]

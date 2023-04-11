@@ -19,7 +19,7 @@
 11c11
 < .   .   .   .   Child: 1  Id: pa of type int [mem: Parameter loc: -2 size: 1] [line: 4]
 ---
-> .   .   .   .   Child: 1  Id: pa of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   .   .   Child: 1  Id: pa of type int[mem: Parameter loc: -2 size: 1] [line: 4]
 15,24c15,23
 < Offset for end of global space: -101
 < .   Sibling: 1  Parm: pb of type bool [mem: Parameter loc: -3 size: 1] [line: 4]

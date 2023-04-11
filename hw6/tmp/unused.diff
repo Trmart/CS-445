@@ -2,7 +2,7 @@
 < .   .   .   Child: 0  Id: ug of type int [mem: Global loc: -1 size: 1] [line: 6]
 < .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 ---
-> .   .   .   Child: 0  Id: ug of type int[mem: None loc: 0 size: 1] [line: 6]
+> .   .   .   Child: 0  Id: ug of type int[mem: Global loc: -1 size: 1] [line: 6]
 > .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
 10d9
 < Offset for end of global space: -2

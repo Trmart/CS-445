@@ -7,7 +7,7 @@
 < .   .   .   Child: 0  Var: e of type int [mem: Local loc: -2 size: 1] [line: 14]
 < .   .   .   Child: 0  Var: xx of type int [mem: Local loc: -2 size: 1] [line: 13]
 ---
-> .   .   .   .   Child: 0  Id: g of type int[mem: None loc: 0 size: 1] [line: 13]
+> .   .   .   .   Child: 0  Id: g of type int[mem: Global loc: 0 size: 1] [line: 13]
 > .   .   .   .   Child: 0  Var: a of type int[mem: Local loc: -2 size: 1] [line: 10]
 > .   .   .   .   Child: 0  Var: b of type int[mem: Local loc: -2 size: 1] [line: 11]
 > .   .   .   .   Child: 0  Var: c of type int[mem: Local loc: -2 size: 1] [line: 12]

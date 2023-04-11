@@ -1,4 +1,4 @@
-.   .   .   .   .   Child: 0  Id: y of array of type int[mem: None loc: 0 size: 1] [line: 10]
+.   .   .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -3 size: 1] [line: 10]
 .   .   .   .   Child: 0  Op: sizeof of type int [line: 10]
 .   .   .   Child: 0  Var: x of array of type int[mem: Local loc: -3 size: 1] [line: 5]
 .   .   .   Child: 0  Var: y of array of type int[mem: Local loc: -3 size: 1] [line: 8]

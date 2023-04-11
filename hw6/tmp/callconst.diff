@@ -6,12 +6,12 @@
 < .   .   .   .   Child: 0  Id: c of array of type char [mem: Parameter loc: -4 size: 1] [line: 15]
 < .   .   .   Child: 0  Id: c of type char [mem: Parameter loc: -4 size: 1] [line: 6]
 ---
-> .   .   .   .   Child: 0  Id: a of array of type int[mem: None loc: 0 size: 1] [line: 13]
-> .   .   .   Child: 0  Id: a of type int[mem: None loc: 0 size: 1] [line: 4]
-> .   .   .   .   Child: 0  Id: b of array of type bool[mem: None loc: 0 size: 1] [line: 14]
-> .   .   .   Child: 0  Id: b of type bool[mem: None loc: 0 size: 1] [line: 5]
-> .   .   .   .   Child: 0  Id: c of array of type char[mem: None loc: 0 size: 1] [line: 15]
-> .   .   .   Child: 0  Id: c of type char[mem: None loc: 0 size: 1] [line: 6]
+> .   .   .   .   Child: 0  Id: a of array of type int[mem: Parameter loc: -2 size: 1] [line: 13]
+> .   .   .   Child: 0  Id: a of type int[mem: Parameter loc: -2 size: 1] [line: 4]
+> .   .   .   .   Child: 0  Id: b of array of type bool[mem: Parameter loc: -3 size: 1] [line: 14]
+> .   .   .   Child: 0  Id: b of type bool[mem: Parameter loc: -3 size: 1] [line: 5]
+> .   .   .   .   Child: 0  Id: c of array of type char[mem: Parameter loc: -4 size: 1] [line: 15]
+> .   .   .   Child: 0  Id: c of type char[mem: Parameter loc: -4 size: 1] [line: 6]
 11,12c11,12
 < .   Child: 0  Parm: a of array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
 < .   Child: 0  Parm: a of type int [mem: Parameter loc: -2 size: 1] [line: 2]

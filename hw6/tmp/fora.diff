@@ -7,9 +7,9 @@
 < .   .   .   Child: 0  Var: j of type int [mem: Local loc: -2 size: 1] [line: 5]
 < .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
 ---
-> .   .   .   .   Child: 0  Id: i of type int[mem: None loc: 0 size: 1] [line: 3]
-> .   .   .   .   Child: 0  Id: i of type int[mem: None loc: 0 size: 1] [line: 7]
-> .   .   .   .   Child: 0  Id: j of type int[mem: None loc: 0 size: 1] [line: 5]
+> .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 3]
+> .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -4 size: 1] [line: 7]
+> .   .   .   .   Child: 0  Id: j of type int[mem: Local loc: -3 size: 1] [line: 5]
 > .   .   .   Child: 0  Var: i of type int[mem: Local loc: -2 size: 1] [line: 3]
 > .   .   .   Child: 0  Var: i of type int[mem: Local loc: -4 size: 1] [line: 7]
 > .   .   .   Child: 0  Var: j of type int[mem: Local loc: -3 size: 1] [line: 5]
@@ -17,12 +17,12 @@
 15c15
 < .   .   .   .   Child: 1  Id: i of type int [mem: Local loc: -2 size: 1] [line: 7]
 ---
-> .   .   .   .   Child: 1  Id: i of type int[mem: None loc: 0 size: 1] [line: 7]
+> .   .   .   .   Child: 1  Id: i of type int[mem: Local loc: -4 size: 1] [line: 7]
 23,24c23,24
 < .   .   .   .   Child: 2  Id: i of type int [mem: Local loc: -2 size: 1] [line: 7]
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
 ---
-> .   .   .   .   Child: 2  Id: i of type int[mem: None loc: 0 size: 1] [line: 7]
+> .   .   .   .   Child: 2  Id: i of type int[mem: Local loc: -4 size: 1] [line: 7]
 > Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
 27,29c27,28
 < Offset for end of global space: 0

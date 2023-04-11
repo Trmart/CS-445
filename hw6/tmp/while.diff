@@ -3,9 +3,9 @@
 < .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 7]
 < .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 7]
 ---
-> .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 5]
-> .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 7]
-> .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 7]
+> .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 5]
+> .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 7]
+> .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 7]
 5c5
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 4]
 ---

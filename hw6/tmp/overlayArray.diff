@@ -1,7 +1,7 @@
 1c1
 < .   .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -3 size: 23] [line: 10]
 ---
-> .   .   .   .   .   Child: 0  Id: y of array of type int[mem: None loc: 0 size: 1] [line: 10]
+> .   .   .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -3 size: 1] [line: 10]
 3,4c3,4
 < .   .   .   Child: 0  Var: x of array of type int [mem: Local loc: -3 size: 12] [line: 5]
 < .   .   .   Child: 0  Var: y of array of type int [mem: Local loc: -3 size: 23] [line: 8]

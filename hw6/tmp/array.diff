@@ -4,10 +4,10 @@
 < .   .   .   .   Child: 0  Id: c of static array of type int [mem: LocalStatic loc: -13 size: 34] [line: 13]
 < .   .   .   Child: 0  Id: c of static array of type int [mem: LocalStatic loc: -13 size: 34] [line: 9]
 ---
-> .   .   .   .   Child: 0  Id: a of array of type int[mem: None loc: 0 size: 1] [line: 11]
-> .   .   .   .   Child: 0  Id: b of array of type int[mem: None loc: 0 size: 1] [line: 12]
-> .   .   .   .   Child: 0  Id: c of static array of type int[mem: None loc: 0 size: 1] [line: 13]
-> .   .   .   Child: 0  Id: c of static array of type int[mem: None loc: 0 size: 1] [line: 9]
+> .   .   .   .   Child: 0  Id: a of array of type int[mem: Global loc: -1 size: 1] [line: 11]
+> .   .   .   .   Child: 0  Id: b of array of type int[mem: Local loc: -3 size: 1] [line: 12]
+> .   .   .   .   Child: 0  Id: c of static array of type int[mem: LocalStatic loc: -2 size: 1] [line: 13]
+> .   .   .   Child: 0  Id: c of static array of type int[mem: LocalStatic loc: -2 size: 1] [line: 9]
 8,9c8,9
 < .   .   Child: 0  Var: b of array of type int [mem: Local loc: -3 size: 23] [line: 6]
 < .   Child: 1  Compound [mem: None loc: 0 size: -25] [line: 5]

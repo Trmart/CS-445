@@ -4,10 +4,10 @@
 < .   .   .   .   .   .   Child: 0  Id: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 < .   .   .   .   Child: 0  Id: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 ---
-> .   .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 2]
-> .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 2]
-> .   .   .   .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 2]
-> .   .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 2]
+> .   .   .   .   .   .   Child: 0  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
+> .   .   .   .   Child: 0  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
+> .   .   .   .   .   .   Child: 0  Id: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
+> .   .   .   .   Child: 0  Id: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
 19c19
 < .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 ---
@@ -16,8 +16,8 @@
 < .   .   .   .   .   .   Child: 1  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 < .   .   .   .   .   .   Child: 1  Id: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 ---
-> .   .   .   .   .   .   Child: 1  Id: x of type int[mem: None loc: 0 size: 1] [line: 2]
-> .   .   .   .   .   .   Child: 1  Id: y of type int[mem: None loc: 0 size: 1] [line: 2]
+> .   .   .   .   .   .   Child: 1  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
+> .   .   .   .   .   .   Child: 1  Id: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
 31c31
 < Func: comp returns type int [mem: Global loc: 0 size: -4] [line: 2]
 ---

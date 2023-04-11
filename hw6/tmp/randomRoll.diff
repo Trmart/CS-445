@@ -6,12 +6,12 @@
 < .   .   .   .   Child: 0  Id: sum of type int [mem: Local loc: -3 size: 1] [line: 6]
 < .   .   .   .   .   Child: 0  Id: sum of type int [mem: Local loc: -3 size: 1] [line: 8]
 ---
-> .   .   .   Child: 0  Id: i of type int[mem: None loc: 0 size: 1] [line: 6]
-> .   .   .   .   Child: 0  Id: i of type int[mem: None loc: 0 size: 1] [line: 7]
-> .   .   .   .   .   Child: 0  Id: i of type int[mem: None loc: 0 size: 1] [line: 9]
-> .   .   .   .   .   Child: 0  Id: sum of type int[mem: None loc: 0 size: 1] [line: 13]
-> .   .   .   .   Child: 0  Id: sum of type int[mem: None loc: 0 size: 1] [line: 6]
-> .   .   .   .   .   Child: 0  Id: sum of type int[mem: None loc: 0 size: 1] [line: 8]
+> .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 6]
+> .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 7]
+> .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 9]
+> .   .   .   .   .   Child: 0  Id: sum of type int[mem: Local loc: -3 size: 1] [line: 13]
+> .   .   .   .   Child: 0  Id: sum of type int[mem: Local loc: -3 size: 1] [line: 6]
+> .   .   .   .   .   Child: 0  Id: sum of type int[mem: Local loc: -3 size: 1] [line: 8]
 16c16
 < .   .   Child: 0  Var: i of type int [mem: Local loc: -2 size: 1] [line: 4]
 ---
@@ -19,7 +19,7 @@
 26c26
 < .   .   .   .   .   Child: 1  Id: sum of type int [mem: Local loc: -3 size: 1] [line: 13]
 ---
-> .   .   .   .   .   Child: 1  Id: sum of type int[mem: None loc: 0 size: 1] [line: 13]
+> .   .   .   .   .   Child: 1  Id: sum of type int[mem: Local loc: -3 size: 1] [line: 13]
 29c29
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---

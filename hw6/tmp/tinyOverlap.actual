@@ -1,4 +1,4 @@
-.   .   .   Child: 0  Id: h of type int[mem: None loc: 0 size: 1] [line: 24]
+.   .   .   Child: 0  Id: h of type int[mem: Global loc: -1 size: 1] [line: 24]
 .   Child: 0  Parm: p of type int[mem: Parameter loc: -2 size: 1] [line: 4]
 .   .   Child: 0  Var: a of type int[mem: Local loc: -3 size: 1] [line: 6]
 .   .   .   .   Child: 0  Var: b of type int[mem: Local loc: -4 size: 1] [line: 15]

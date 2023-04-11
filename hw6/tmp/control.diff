@@ -5,11 +5,11 @@
 < .   .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 16]
 < .   .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 7]
 ---
-> .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 10]
-> .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 14]
-> .   .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 15]
-> .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 16]
-> .   .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 7]
+> .   .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 10]
+> .   .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 14]
+> .   .   .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 15]
+> .   .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 16]
+> .   .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 7]
 11c11
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 4]
 ---

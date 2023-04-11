@@ -2,7 +2,7 @@
 < .   .   .   Child: 0  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 1]
 < .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 1]
 ---
-> .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 1]
+> .   .   .   Child: 0  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 1]
 > .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 1]
 8c8
 < Func: cat returns type int [mem: Global loc: 0 size: -3] [line: 1]

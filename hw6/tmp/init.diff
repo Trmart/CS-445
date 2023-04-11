@@ -2,7 +2,7 @@
 < .   .   .   Child: 0  Id: z of static type int [mem: LocalStatic loc: -47 size: 1] [line: 13]
 < .   .   Child: 0  Var: b of array of type int [mem: Local loc: -3 size: 23] [line: 8]
 ---
-> .   .   .   Child: 0  Id: z of static type int[mem: None loc: 0 size: 1] [line: 13]
+> .   .   .   Child: 0  Id: z of static type int[mem: LocalStatic loc: -3 size: 1] [line: 13]
 > .   .   Child: 0  Var: b of array of type int[mem: Local loc: -3 size: 1] [line: 8]
 7c7
 < .   Child: 1  Compound [mem: None loc: 0 size: -26] [line: 7]

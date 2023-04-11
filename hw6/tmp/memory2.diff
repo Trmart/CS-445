@@ -6,12 +6,12 @@
 < .   .   .   Child: 0  Id: x of type int [mem: Local loc: -4 size: 1] [line: 12]
 < .   .   .   Child: 0  Id: z of type int [mem: Local loc: -11 size: 1] [line: 23]
 ---
-> .   .   .   .   .   Child: 0  Id: i of type int[mem: None loc: 0 size: 1] [line: 23]
-> .   .   .   Child: 0  Id: u of type int[mem: None loc: 0 size: 1] [line: 25]
-> .   .   .   .   Child: 0  Id: v of array of type bool[mem: None loc: 0 size: 1] [line: 26]
-> .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 11]
-> .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 12]
-> .   .   .   Child: 0  Id: z of type int[mem: None loc: 0 size: 1] [line: 23]
+> .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 23]
+> .   .   .   Child: 0  Id: u of type int[mem: Global loc: 0 size: 1] [line: 25]
+> .   .   .   .   Child: 0  Id: v of array of type bool[mem: Global loc: -2 size: 1] [line: 26]
+> .   .   .   Child: 0  Id: x of type int[mem: Local loc: -4 size: 1] [line: 11]
+> .   .   .   Child: 0  Id: x of type int[mem: Local loc: -4 size: 1] [line: 12]
+> .   .   .   Child: 0  Id: z of type int[mem: Local loc: -6 size: 1] [line: 23]
 9,11c9,11
 < .   Child: 0  Parm: a of type int [mem: Parameter loc: -2 size: 1] [line: 8]
 < .   .   Child: 0  Var: i of type int [mem: Local loc: -2 size: 1] [line: 17]
@@ -27,14 +27,14 @@
 21c21
 < .   .   .   Child: 1  Id: a of type int [mem: Parameter loc: -2 size: 1] [line: 11]
 ---
-> .   .   .   Child: 1  Id: a of type int[mem: None loc: 0 size: 1] [line: 11]
+> .   .   .   Child: 1  Id: a of type int[mem: Parameter loc: -2 size: 1] [line: 11]
 24d23
 < Offset for end of global space: -6
 26,27c25,26
 < .   .   .   .   Sibling: 1  Id: b of type bool [mem: Local loc: -3 size: 1] [line: 23]
 < .   Sibling: 1  Parm: b of type bool [mem: Parameter loc: -3 size: 1] [line: 8]
 ---
-> .   .   .   .   Sibling: 1  Id: b of type bool[mem: None loc: 0 size: 1] [line: 23]
+> .   .   .   .   Sibling: 1  Id: b of type bool[mem: Local loc: -3 size: 1] [line: 23]
 > .   Sibling: 1  Parm: b of type bool[mem: Parameter loc: -3 size: 1] [line: 8]
 29,30c28,29
 < .   .   Sibling: 1  Var: b of type bool [mem: Local loc: -3 size: 1] [line: 18]
