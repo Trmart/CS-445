@@ -457,9 +457,19 @@ void printDeclNode(TreeNode* tree, bool isShowingTypes)
         
         case VarK:
                 {
-                    if(tree->isArray == true)
+                    if(tree->isArray && tree->isStatic)
                     {
-                        printf("Var: %s is array of type ", tree->attr.name);
+                        printf("Var: %s of static array of type ", tree->attr.name);
+                        printExp(tree->expType);
+                        if (isPrintingMemorySize)
+                        {
+                            printMemorySizeAndOffset(tree);
+                        }
+                        printf(" [line: %d]\n", tree->lineno);
+                    }
+                    else if(tree->isArray)
+                    {
+                        printf("Var: %s of array of type ", tree->attr.name);
                         printExp(tree->expType);
                         if (isPrintingMemorySize)
                         {
@@ -469,7 +479,7 @@ void printDeclNode(TreeNode* tree, bool isShowingTypes)
                     }
                     else if(!isShowingTypes)
                     {
-                        if(tree->isStatic == true)
+                        if(tree->isStatic)
                         {
                             printf("Var: %s of static type ", tree->attr.name);
                             printExp(tree->expType);
@@ -479,6 +489,16 @@ void printDeclNode(TreeNode* tree, bool isShowingTypes)
                             }
                             printf(" [line: %d]\n", tree->lineno);
                         }
+                    }
+                    else if(tree->isStatic)
+                    {
+                        printf("Var: %s of static type ", tree->attr.name);
+                        printExp(tree->expType);
+                        if (isPrintingMemorySize)
+                        {
+                            printMemorySizeAndOffset(tree);
+                        }
+                        printf(" [line: %d]\n", tree->lineno);
                     }
                     else
                     {
@@ -541,6 +561,14 @@ void printConstantNode(TreeNode* tree, bool isShowingTypes)
         if(isShowingTypes)
         {
             printf(" of type char");
+        }
+
+        if(tree->isArray)
+        {
+            if(isPrintingMemorySize)
+            {
+                printMemorySizeAndOffset(tree);
+            }
         }
 
         printf(" [line: %d]\n", tree->lineno);
@@ -686,8 +714,16 @@ void printExpNode(TreeNode* tree, bool isShowingTypes)
                         
                         if(isShowingTypes)
                         {
-                            printf(" of type ");
-                            printExp(tree->expType);
+                            if(tree->child[0]->isArray)
+                            {
+                                printf(" of array of type ");
+                                printExp(tree->expType);
+                            }
+                            else
+                            {
+                                printf(" of type ");
+                                printExp(tree->expType);
+                            }
                         }
 
                         printf(" [line: %d]\n", tree->lineno);
@@ -700,15 +736,34 @@ void printExpNode(TreeNode* tree, bool isShowingTypes)
 
                     if(isShowingTypes)
                     {
-                        if(tree->expType == UndefinedType || tree->expType == Void)
+                        if(tree->expType == UndefinedType)
                         {
                             printf(" of undefined type");
+                        }
+                        else if(tree->isArray && tree->isStatic)
+                        {
+                            printf(" of static array of type ");
+                            printExp(tree->expType);
+                        }
+                        else if(tree->isStatic)
+                        {
+                            printf(" of static type ");
+                            printExp(tree->expType);
+                        }
+                        else if(tree->isArray)
+                        {
+                            printf(" of array of type ");
+                            printExp(tree->expType);
                         }
                         else
                         {
                             printf(" of type ");
                             printExp(tree->expType);
                         }
+                    }
+                    if (isPrintingMemorySize)
+                    {
+                        printMemorySizeAndOffset(tree);
                     }
 
                     printf(" [line: %d]\n", tree->lineno);
