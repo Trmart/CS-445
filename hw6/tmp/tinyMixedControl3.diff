@@ -11,7 +11,7 @@
 > .   .   .   .   Child: 0  Var: x of type int [mem: Local loc: -6 size: 1] [line: 16]
 > .   .   .   .   Child: 0  Var: x of type int [mem: Local loc: -7 size: 1] [line: 19]
 > .   .   .   .   .   Child: 0  Var: x of type int [mem: Local loc: -8 size: 1] [line: 20]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -9] [line: 3]
+> .   Child: 1  Compound [mem: None loc: 0 size: -9] [line: 3]
 27,30c27,30
 < .   .   .   Child: 1  For [mem: None loc: 0 size: -4] [line: 14]
 < .   .   .   Child: 1  For [mem: None loc: 0 size: -4] [line: 19]

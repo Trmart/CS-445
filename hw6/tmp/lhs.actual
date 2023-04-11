@@ -11,7 +11,7 @@
 .   .   .   Child: 0  Op: [ of type int [line: 9]
 .   .   Child: 0  Var: a of type int [mem: Local loc: -2 size: 1] [line: 3]
 .   .   Child: 1  Assign: <= of type int [line: 9]
-.   Child: 1  Compound  [mem: None loc: 0 size: -14] [line: 2]
+.   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 2]
 .   .   .   .   .   Child: 1  Const 3 of type int [line: 12]
 .   .   .   Child: 1  Const 666 of type int [line: 11]
 .   .   .   Child: 1  Const 777 of type int [line: 12]

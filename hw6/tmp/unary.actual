@@ -46,7 +46,7 @@
 .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 8]
 .   .   .   Child: 1  Assign: <= of type bool [line: 26]
 .   .   Child: 1  Assign: <= of type int [line: 12]
-.   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 7]
+.   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 7]
 .   .   .   Child: 1  Const 88 of type int [line: 12]
 .   .   .   .   Child: 1  Const 9 of type int [line: 13]
 .   .   .   .   Child: 1  Const true of type bool [line: 26]
@@ -83,6 +83,6 @@ Offset for end of global space: 0
 .   .   Sibling: 7  Call: output of type void [line: 20]
 .   .   Sibling: 8  Call: outnl of type void [line: 21]
 .   .   .   Sibling: 8  Call: outnl of type void [line: 34]
-.   .   Sibling: 9  Compound  [mem: None loc: 0 size: -8] [line: 23]
+.   .   Sibling: 9  Compound [mem: None loc: 0 size: -8] [line: 23]
 WARNING(37): Variable 'a' may be uninitialized when used here.
 WARNING(38): Variable 'b' may be uninitialized when used here.

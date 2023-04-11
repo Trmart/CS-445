@@ -1,7 +1,3 @@
-14c14
-< .   Child: 1  Compound [mem: None loc: 0 size: -7] [line: 3]
----
-> .   Child: 1  Compound  [mem: None loc: 0 size: -7] [line: 3]
 24c24
 < Number of warnings: 4
 ---

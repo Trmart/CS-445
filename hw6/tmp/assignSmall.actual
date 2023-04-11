@@ -11,7 +11,7 @@
 .   .   .   Child: 0  Id: z of type int [mem: Local loc: -6 size: 1] [line: 16]
 .   .   Child: 0  Var: v of type int [mem: Local loc: -2 size: 1] [line: 4]
 .   .   Child: 1  Assign: <= of type int [line: 6]
-.   Child: 1  Compound  [mem: None loc: 0 size: -7] [line: 3]
+.   Child: 1  Compound [mem: None loc: 0 size: -7] [line: 3]
 .   .   .   .   Child: 1  Const 1 of type int [line: 6]
 .   .   .   .   Child: 1  Const 1 of type int [line: 7]
 .   .   .   Child: 1  Const 35 of type int [line: 15]

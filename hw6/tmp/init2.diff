@@ -21,7 +21,7 @@
 22c22
 < .   Child: 1  Compound [mem: None loc: 0 size: -26] [line: 6]
 ---
-> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 6]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 6]
 32c32
 < Offset for end of global space: -48
 ---

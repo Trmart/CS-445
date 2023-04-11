@@ -16,19 +16,17 @@
 ---
 > .   .   .   Child: 0  Var: x of array of type int [mem: Local loc: -4 size: 1] [line: 7]
 > .   .   .   Child: 0  Var: y of array of type int [mem: Local loc: -4 size: 1] [line: 17]
-29,31c29,31
+29,30d28
 < .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -104] [line: 10]
 < .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -104] [line: 20]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
----
-> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 3]
-> .   .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 10]
-> .   .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 20]
+31a30,31
+> .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 10]
+> .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 20]
 51c51
 < .   .   Sibling: 1  Compound [mem: None loc: 0 size: -104] [line: 6]
 ---
-> .   .   Sibling: 1  Compound  [mem: None loc: 0 size: -4] [line: 6]
+> .   .   Sibling: 1  Compound [mem: None loc: 0 size: -4] [line: 6]
 55c55
 < .   .   Sibling: 2  Compound [mem: None loc: 0 size: -104] [line: 16]
 ---
-> .   .   Sibling: 2  Compound  [mem: None loc: 0 size: -4] [line: 16]
+> .   .   Sibling: 2  Compound [mem: None loc: 0 size: -4] [line: 16]

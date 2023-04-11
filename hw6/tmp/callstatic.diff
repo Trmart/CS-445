@@ -16,14 +16,10 @@
 < .   Child: 0  Parm: a of array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
 ---
 > .   Child: 0  Parm: a is array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
-27,29c27,29
+27c27
 < .   Child: 1  Compound [mem: None loc: 0 size: -18] [line: 21]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 12]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 3]
 ---
-> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 21]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 12]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 3]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 21]
 45c45
 < Offset for end of global space: -5
 ---

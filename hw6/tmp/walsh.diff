@@ -44,34 +44,12 @@
 < .   .   Child: 0  Var: f of array of type int [mem: Local loc: -3 size: 257] [line: 83]
 ---
 > .   .   Child: 0  Var: f of array of type int [mem: Local loc: -3 size: 1] [line: 83]
-117,129c117,129
+117,118d116
 < .   Child: 1  Compound [mem: None loc: 0 size: -262] [line: 82]
 < .   .   .   Child: 1  Compound [mem: None loc: 0 size: -262] [line: 89]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 37]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 41]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 71]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 75]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 10]
-< .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 19]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 28]
-< .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 4]
-< .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 50]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 54]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 61]
----
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 37]
-> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 41]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 71]
-> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 75]
-> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 10]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 19]
-> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 28]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 4]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 82]
-> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 89]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -8] [line: 50]
-> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -8] [line: 54]
-> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -8] [line: 61]
+126a125,126
+> .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 82]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 89]
 204d203
 < .   .   .   .   .   .   Sibling: 1  Id: numbits of type int [mem: Local loc: -260 size: 1] [line: 92]
 206,208c205,208

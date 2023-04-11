@@ -6,7 +6,7 @@
 .   .   .   Child: 0  Var: i of type int [mem: Local loc: -2 size: 1] [line: 3]
 .   .   .   Child: 0  Var: i of type int [mem: Local loc: -4 size: 1] [line: 7]
 .   .   .   Child: 0  Var: j of type int [mem: Local loc: -3 size: 1] [line: 5]
-.   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 2]
+.   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 2]
 .   .   .   .   Child: 1  Const 11 of type int [line: 3]
 .   .   .   .   Child: 1  Const 22 of type int [line: 5]
 .   .   .   .   Child: 1  Const 3 of type int [line: 3]

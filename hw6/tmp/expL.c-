@@ -1,7 +1,0 @@
-## C-S23
-main()
- begin 
-   int x;
-
-   555*666+x>777;
- end 

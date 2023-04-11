@@ -8,13 +8,11 @@
 ---
 > .   .   .   Child: 0  Var: x of array of type int [mem: Local loc: -3 size: 1] [line: 5]
 > .   .   .   Child: 0  Var: y of array of type int [mem: Local loc: -3 size: 1] [line: 8]
-6,7c6,7
+6d5
 < .   .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 4]
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
----
-> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 3]
-> .   .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 4]
+7a7
+> .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 4]
 13c13
 < .   .   Sibling: 1  Compound [mem: None loc: 0 size: -25] [line: 7]
 ---
-> .   .   Sibling: 1  Compound  [mem: None loc: 0 size: -3] [line: 7]
+> .   .   Sibling: 1  Compound [mem: None loc: 0 size: -3] [line: 7]

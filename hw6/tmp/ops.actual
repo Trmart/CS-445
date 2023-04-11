@@ -246,7 +246,7 @@
 .   .   .   .   Child: 1  Assign: /= of type int [line: 128]
 .   .   .   .   Child: 1  Assign: *= of type int [line: 129]
 .   .   Child: 1  Assign: <= of type int [line: 14]
-.   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 8]
+.   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 8]
 .   .   .   .   Child: 1  Const 0 of type int [line: 14]
 .   .   .   .   Child: 1  Const 0 of type int [line: 160]
 .   .   .   .   Child: 1  Const 0 of type int [line: 163]

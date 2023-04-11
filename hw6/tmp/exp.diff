@@ -1,6 +1,0 @@
-142,143c142,143
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 2]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 5]
----
-> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 2]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 5]

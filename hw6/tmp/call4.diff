@@ -20,34 +20,12 @@
 ---
 > .   Child: 0  Parm: x is array of type int [mem: Parameter loc: -2 size: 1] [line: 77]
 > .   Child: 0  Parm: x is array of type int [mem: Parameter loc: -2 size: 1] [line: 8]
-105,117c105,117
+105,106d104
 < .   Child: 1  Compound [mem: None loc: 0 size: -26] [line: 86]
 < .   .   .   Child: 1  Compound [mem: None loc: 0 size: -26] [line: 90]
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 26]
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 31]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 20]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 36]
-< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 41]
-< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 46]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 12]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 9]
-< .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 53]
-< .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 78]
----
-> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 26]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 31]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 20]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 3]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 36]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 41]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 46]
-> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 12]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 9]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 53]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 78]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 86]
-> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 90]
+117a116,117
+> .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 86]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 90]
 192c192
 < .   .   .   Sibling: 1  Id: r of array of type int [mem: Local loc: -5 size: 11] [line: 109]
 ---

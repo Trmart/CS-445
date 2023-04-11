@@ -1,7 +1,7 @@
 8c8
 < .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
 ---
-> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 3]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 3]
 10c10
 < .   .   .   Child: 1  For [mem: None loc: 0 size: -4] [line: 5]
 ---

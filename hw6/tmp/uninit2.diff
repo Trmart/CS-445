@@ -25,7 +25,7 @@
 20c20
 < .   Child: 1  Compound [mem: None loc: 0 size: -39] [line: 2]
 ---
-> .   Child: 1  Compound  [mem: None loc: 0 size: -11] [line: 2]
+> .   Child: 1  Compound [mem: None loc: 0 size: -11] [line: 2]
 49c49
 < .   .   Sibling: 4  Var: aa of array of type int [mem: Local loc: -7 size: 3] [line: 4]
 ---

@@ -349,7 +349,7 @@ void printStmtNode(TreeNode* tree, bool isShowingTypes)
 
         case CompoundK:
                     {
-                        printf("Compound ");
+                        printf("Compound");
 
                         if (isPrintingMemorySize)
                         {

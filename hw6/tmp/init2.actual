@@ -19,7 +19,7 @@
 .   .   .   Child: 0  Op: sizeof of type int [line: 14]
 .   .   Child: 0  Var: b of array of type int [mem: Local loc: -3 size: 1] [line: 7]
 .   .   Child: 1  Call: output of type void [line: 12]
-.   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 6]
+.   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 6]
 .   .   .   .   .   Child: 1  Const 666 of type int [line: 10]
 .   .   .   Child: 1  Const 888 of type int [line: 3]
 .   .   .   .   .   Child: 1  Const 888 of type int [line: 8]

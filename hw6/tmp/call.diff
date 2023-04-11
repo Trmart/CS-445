@@ -54,16 +54,13 @@
 > .   .   Child: 0  Var: a of array of type int [mem: Local loc: -3 size: 1] [line: 38]
 > .   .   Child: 0  Var: b of array of type bool [mem: Local loc: -4 size: 1] [line: 22]
 > .   .   .   Child: 0  Var: ga of static array of type int [mem: LocalStatic loc: -4 size: 1] [line: 57]
-52,55c52,55
+52,53d51
 < .   Child: 1  Compound [mem: None loc: 0 size: -15] [line: 21]
 < .   Child: 1  Compound [mem: None loc: 0 size: -23] [line: 37]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 12]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 3]
----
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 12]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 21]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 3]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 37]
+54a53
+> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 21]
+55a55
+> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 37]
 84c84
 < Offset for end of global space: -42
 ---
@@ -71,7 +68,7 @@
 87c87
 < .   .   Sibling: 12  Compound [mem: None loc: 0 size: -23] [line: 56]
 ---
-> .   .   Sibling: 12  Compound  [mem: None loc: 0 size: -5] [line: 56]
+> .   .   Sibling: 12  Compound [mem: None loc: 0 size: -5] [line: 56]
 96,100c96,100
 < .   .   .   Sibling: 1  Id: b of array of type bool [mem: Local loc: -4 size: 6] [line: 27]
 < .   .   .   Sibling: 1  Id: b of array of type bool [mem: Local loc: -9 size: 7] [line: 47]

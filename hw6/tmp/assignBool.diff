@@ -24,8 +24,8 @@
 < .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 32]
 < .   Child: 1  Compound [mem: None loc: 0 size: -16] [line: 5]
 ---
-> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 32]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 5]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 32]
+> .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 5]
 51c51
 < Offset for end of global space: -24
 ---

@@ -9,7 +9,7 @@
 .   .   .   Child: 0  Op: [ of type char [line: 8]
 .   .   .   Child: 0  Op: [ of type char [line: 9]
 .   .   Child: 0  Var: a of array of type char [mem: Local loc: -3 size: 1] [line: 4]
-.   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 3]
+.   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 3]
 .   .   .   Child: 1  Const 666 of type int [line: 7]
 .   .   .   .   Child: 1  Const 666 of type int [line: 8]
 .   .   .   .   Child: 1  Const 666 of type int [line: 9]

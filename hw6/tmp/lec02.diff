@@ -1,7 +1,7 @@
 2c2
 < .   Child: 1  Compound [mem: None loc: 0 size: -15] [line: 5]
 ---
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 5]
+> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 5]
 5,7c5,7
 < Offset for end of global space: -102
 < Sibling: 1  Var: d of type int [mem: Global loc: -101 size: 1] [line: 2]

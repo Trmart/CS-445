@@ -1,19 +1,16 @@
-5,11c5,11
+5,8c5,9
 < .   .   .   Child: 0  Var: sa of static type int [mem: LocalStatic loc: -72 size: 1] [line: 44]
 < .   .   .   Child: 0  Var: sla of type int [mem: Local loc: -80 size: 1] [line: 26]
 < .   .   .   Child: 0  Var: tla of type int [mem: Local loc: -80 size: 1] [line: 35]
 < .   .   Child: 1  Compound [mem: None loc: 0 size: -152] [line: 25]
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 62]
-< .   Child: 1  Compound [mem: None loc: 0 size: -80] [line: 17]
-< .   Child: 1  Compound [mem: None loc: 0 size: -9] [line: 58]
 ---
 > .   .   .   Child: 0  Var: sa of static type int [mem: LocalStatic loc: -6 size: 1] [line: 44]
 > .   .   .   Child: 0  Var: sla of type int [mem: Local loc: -14 size: 1] [line: 26]
 > .   .   .   Child: 0  Var: tla of type int [mem: Local loc: -14 size: 1] [line: 35]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -14] [line: 17]
-> .   .   Child: 1  Compound  [mem: None loc: 0 size: -20] [line: 25]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 62]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -9] [line: 58]
+> .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 17]
+> .   .   Child: 1  Compound [mem: None loc: 0 size: -20] [line: 25]
+10d10
+< .   Child: 1  Compound [mem: None loc: 0 size: -80] [line: 17]
 14c14
 < Offset for end of global space: -156
 ---
@@ -21,7 +18,7 @@
 16c16
 < .   .   Sibling: 1  Compound [mem: None loc: 0 size: -152] [line: 34]
 ---
-> .   .   Sibling: 1  Compound  [mem: None loc: 0 size: -20] [line: 34]
+> .   .   Sibling: 1  Compound [mem: None loc: 0 size: -20] [line: 34]
 21,24c21,24
 < .   .   .   Sibling: 1  Var: sb of static type bool [mem: LocalStatic loc: -73 size: 1] [line: 45]
 < .   .   .   Sibling: 1  Var: slb of type bool [mem: Local loc: -81 size: 1] [line: 27]
@@ -31,7 +28,7 @@
 > .   .   .   Sibling: 1  Var: sb of static type bool [mem: LocalStatic loc: -7 size: 1] [line: 45]
 > .   .   .   Sibling: 1  Var: slb of type bool [mem: Local loc: -15 size: 1] [line: 27]
 > .   .   .   Sibling: 1  Var: tlb of type bool [mem: Local loc: -15 size: 1] [line: 36]
-> .   .   Sibling: 2  Compound  [mem: None loc: 0 size: -14] [line: 43]
+> .   .   Sibling: 2  Compound [mem: None loc: 0 size: -14] [line: 43]
 29,52c29,52
 < .   .   .   Sibling: 2  Var: sc of static type char [mem: LocalStatic loc: -74 size: 1] [line: 46]
 < .   .   .   Sibling: 2  Var: slc of type char [mem: Local loc: -82 size: 1] [line: 28]

@@ -42,8 +42,8 @@
 < .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 41]
 < .   Child: 1  Compound [mem: None loc: 0 size: -16] [line: 4]
 ---
-> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 41]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 4]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 41]
+> .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 4]
 82c82
 < .   .   .   Child: 1  Id: sx of static type int [mem: LocalStatic loc: -12 size: 1] [line: 33]
 ---

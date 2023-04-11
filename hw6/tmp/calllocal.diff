@@ -16,14 +16,10 @@
 < .   Child: 0  Parm: a of array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
 ---
 > .   Child: 0  Parm: a is array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
-27,29c27,29
+27d26
 < .   Child: 1  Compound [mem: None loc: 0 size: -23] [line: 21]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 12]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 3]
----
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 12]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 3]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -8] [line: 21]
+29a29
+> .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 21]
 51,52c51,52
 < .   .   .   Sibling: 1  Id: YY of array of type bool [mem: Local loc: -10 size: 6] [line: 34]
 < .   Sibling: 1  Parm: b of array of type bool [mem: Parameter loc: -3 size: 1] [line: 11]

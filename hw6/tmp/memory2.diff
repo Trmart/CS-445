@@ -6,12 +6,10 @@
 < .   .   .   Child: 0  Id: z of type int [mem: Local loc: -11 size: 1] [line: 23]
 ---
 > .   .   .   Child: 0  Id: z of type int [mem: Local loc: -6 size: 1] [line: 23]
-15,16c15,16
+15d14
 < .   Child: 1  Compound [mem: None loc: 0 size: -12] [line: 16]
-< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 9]
----
-> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 9]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -7] [line: 16]
+16a16
+> .   Child: 1  Compound [mem: None loc: 0 size: -7] [line: 16]
 24c24
 < Offset for end of global space: -6
 ---

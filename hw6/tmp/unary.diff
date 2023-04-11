@@ -37,7 +37,7 @@
 49c49
 < .   Child: 1  Compound [mem: None loc: 0 size: -18] [line: 7]
 ---
-> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 7]
+> .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 7]
 68c68
 < .   .   .   Sibling: 1  Var: y of type bool [mem: Local loc: -19 size: 1] [line: 24]
 ---
@@ -53,4 +53,4 @@
 86c86
 < .   .   Sibling: 9  Compound [mem: None loc: 0 size: -20] [line: 23]
 ---
-> .   .   Sibling: 9  Compound  [mem: None loc: 0 size: -8] [line: 23]
+> .   .   Sibling: 9  Compound [mem: None loc: 0 size: -8] [line: 23]

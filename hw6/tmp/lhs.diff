@@ -17,7 +17,7 @@
 14c14
 < .   Child: 1  Compound [mem: None loc: 0 size: -74] [line: 2]
 ---
-> .   Child: 1  Compound  [mem: None loc: 0 size: -14] [line: 2]
+> .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 2]
 29,30c29,30
 < .   .   Sibling: 10  Var: ee of array of type int [mem: Local loc: -53 size: 11] [line: 4]
 < .   .   Sibling: 11  Var: ff of array of type int [mem: Local loc: -64 size: 11] [line: 4]

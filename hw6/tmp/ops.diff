@@ -30,10 +30,6 @@
 > .   .   .   .   .   Child: 0  Id: y of array of type int [mem: Global loc: -1 size: 1] [line: 95]
 > .   .   .   .   .   Child: 0  Id: y of array of type int [mem: Global loc: -1 size: 1] [line: 96]
 > .   .   .   .   .   Child: 0  Id: y of array of type int [mem: Global loc: -1 size: 1] [line: 97]
-249c249
-< .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 8]
----
-> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 8]
 370c370
 < Offset for end of global space: -12
 ---

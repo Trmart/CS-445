@@ -1,9 +1,0 @@
-## C-S23
-main()
- begin 
-    output(111);
-    outputb(true);
-    outputb(false);
-    outputc('x');
-    outnl();
- end 

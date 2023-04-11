@@ -6,7 +6,7 @@
 .   .   .   Child: 0  Id: b of array of type char [mem: Local loc: -4 size: 1] [line: 9]
 .   .   Child: 0  Var: a of array of type char [mem: Local loc: -3 size: 1] [line: 4]
 .   .   Child: 1  Assign: <= of array of type char [line: 6]
-.   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 3]
+.   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 3]
 .   .   .   Child: 1  Const is array "manifested" of type char [mem: Global loc: -3 size: 1] [line: 6]
 .   .   .   Child: 1  Const is array "transformation" of type char [mem: Global loc: -5 size: 1] [line: 10]
 .   .   .   Child: 1  Id: a of array of type char [mem: Local loc: -3 size: 1] [line: 8]

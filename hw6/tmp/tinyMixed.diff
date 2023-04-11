@@ -1,12 +1,10 @@
-8,9c8,9
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+9c9
 < .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
 ---
-> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 2]
-> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 5]
+> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 5]
 20,21c20,21
 < .   .   Sibling: 2  For [mem: None loc: 0 size: -3] [line: 9]
 < .   .   Sibling: 3  Compound [mem: None loc: 0 size: -2] [line: 10]
 ---
 > .   .   Sibling: 2  For  [mem: None loc: 0 size: -3] [line: 9]
-> .   .   Sibling: 3  Compound  [mem: None loc: 0 size: -3] [line: 10]
+> .   .   Sibling: 3  Compound [mem: None loc: 0 size: -3] [line: 10]
