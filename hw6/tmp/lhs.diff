@@ -17,11 +17,11 @@
 12c12
 < .   .   Child: 0  Var: a of type int [mem: Local loc: -2 size: 1] [line: 3]
 ---
-> .   .   Child: 0  Var: a of type int[mem: None loc: 0 size: 1] [line: 3]
+> .   .   Child: 0  Var: a of type int[mem: Local loc: 0 size: 1] [line: 3]
 14c14
 < .   Child: 1  Compound [mem: None loc: 0 size: -74] [line: 2]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 2]
+> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 2]
 18,22c18,22
 < .   .   .   .   Child: 1  Id: a of type int [mem: Local loc: -2 size: 1] [line: 9]
 < .   .   .   Child: 1  Id: b of type int [mem: Local loc: -3 size: 1] [line: 9]
@@ -37,26 +37,26 @@
 25c25
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
 ---
-> Func: main returns type void[mem: None loc: 0 size: 1] [line: 1]
+> Func: main returns type void[mem: Global loc: 0 size: 1] [line: 1]
 28,30c28,29
 < Offset for end of global space: 0
 < .   .   Sibling: 10  Var: ee of array of type int [mem: Local loc: -53 size: 11] [line: 4]
 < .   .   Sibling: 11  Var: ff of array of type int [mem: Local loc: -64 size: 11] [line: 4]
 ---
-> .   .   Sibling: 10  Var: ee of array of type int[mem: None loc: 0 size: 1] [line: 4]
-> .   .   Sibling: 11  Var: ff of array of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 10  Var: ee of array of type int[mem: Local loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 11  Var: ff of array of type int[mem: Local loc: 0 size: 1] [line: 4]
 32c31
 < .   .   Sibling: 1  Var: b of type int [mem: Local loc: -3 size: 1] [line: 3]
 ---
-> .   .   Sibling: 1  Var: b of type int[mem: None loc: 0 size: 1] [line: 3]
+> .   .   Sibling: 1  Var: b of type int[mem: Local loc: 0 size: 1] [line: 3]
 34c33
 < .   .   Sibling: 2  Var: c of type int [mem: Local loc: -4 size: 1] [line: 3]
 ---
-> .   .   Sibling: 2  Var: c of type int[mem: None loc: 0 size: 1] [line: 3]
+> .   .   Sibling: 2  Var: c of type int[mem: Local loc: 0 size: 1] [line: 3]
 36c35
 < .   .   Sibling: 3  Var: d of type int [mem: Local loc: -5 size: 1] [line: 3]
 ---
-> .   .   Sibling: 3  Var: d of type int[mem: None loc: 0 size: 1] [line: 3]
+> .   .   Sibling: 3  Var: d of type int[mem: Local loc: 0 size: 1] [line: 3]
 38,43c37,42
 < .   .   Sibling: 4  Var: e of type int [mem: Local loc: -6 size: 1] [line: 3]
 < .   .   Sibling: 5  Var: f of type int [mem: Local loc: -7 size: 1] [line: 3]
@@ -65,9 +65,9 @@
 < .   .   Sibling: 8  Var: cc of array of type int [mem: Local loc: -31 size: 11] [line: 4]
 < .   .   Sibling: 9  Var: dd of array of type int [mem: Local loc: -42 size: 11] [line: 4]
 ---
-> .   .   Sibling: 4  Var: e of type int[mem: None loc: 0 size: 1] [line: 3]
-> .   .   Sibling: 5  Var: f of type int[mem: None loc: 0 size: 1] [line: 3]
-> .   .   Sibling: 6  Var: aa of array of type int[mem: None loc: 0 size: 1] [line: 4]
-> .   .   Sibling: 7  Var: bb of array of type int[mem: None loc: 0 size: 1] [line: 4]
-> .   .   Sibling: 8  Var: cc of array of type int[mem: None loc: 0 size: 1] [line: 4]
-> .   .   Sibling: 9  Var: dd of array of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 4  Var: e of type int[mem: Local loc: 0 size: 1] [line: 3]
+> .   .   Sibling: 5  Var: f of type int[mem: Local loc: 0 size: 1] [line: 3]
+> .   .   Sibling: 6  Var: aa of array of type int[mem: Local loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 7  Var: bb of array of type int[mem: Local loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 8  Var: cc of array of type int[mem: Local loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 9  Var: dd of array of type int[mem: Local loc: 0 size: 1] [line: 4]

@@ -49,6 +49,9 @@ int functionLine;
 
 char* functionName;
 
+int localOffset = 0;
+int globalOffset = 0;
+
 TreeNode* curFunc = nullptr;
 
 ExpType functionReturnType;
@@ -268,10 +271,17 @@ void analyzeDecl(TreeNode* node, int& nErrors, int& nWarnings)
     if(symbolTable.depth() == 1)
     {
         node->isGlobal = true;
+        node->memoryType = Global;
+    }
+    else if(node->isStatic)
+    {
+        node->isGlobal = false;
+        node->memoryType = LocalStatic;
     }
     else
     {
         node->isGlobal = false;
+        node->memoryType = Local;
     }
 
     
@@ -453,6 +463,12 @@ void analyzeParam(TreeNode* node, int& nErrors, int& nWarnings)
     }
 
     node->isInit = true;
+    
+    //track memsize and offset for parameters
+    node->memorySize = 1;
+    node->memoryOffset = localOffset;
+    node->memoryType = Parameter;
+    localOffset--;
 }
 
 
@@ -648,12 +664,17 @@ void analyzeFor(TreeNode* node, int& nErrors, int& nWarnings)
     symbolTable.leave();
     
     scopeDepth = true;
+
+    node->memorySize = localOffset;
+    node->memoryType = None;
 }
 
 //analyze compound statement
 void analyzeCompound(TreeNode* node, int& nErrors, int& nWarnings)
 {
     bool isInCurScope = scopeDepth;
+
+    int currentSize = localOffset; 
 
     if(isInCurScope)
     {
@@ -674,6 +695,10 @@ void analyzeCompound(TreeNode* node, int& nErrors, int& nWarnings)
         symbolTable.applyToAll(initializeWarningMessages);
         symbolTable.leave();
     }
+
+    node->memorySize = localOffset; 
+    localOffset = currentSize;
+    node->memoryType = None; 
 }
 
 //analyze return statement

@@ -87,15 +87,15 @@
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -4 size: 1] [line: 5]
 < .   .   Child: 0  Var: zx of type int [mem: Local loc: -2 size: 1] [line: 53]
 ---
-> .   Child: 0  Parm: px of type int[mem: None loc: 0 size: 1] [line: 3]
-> .   .   Child: 0  Var: x of type int[mem: None loc: 0 size: 1] [line: 5]
-> .   .   Child: 0  Var: zx of type int[mem: None loc: 0 size: 1] [line: 53]
+> .   Child: 0  Parm: px of type int[mem: Parameter loc: 0 size: 1] [line: 3]
+> .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 5]
+> .   .   Child: 0  Var: zx of type int[mem: Local loc: 0 size: 1] [line: 53]
 67,68c67,68
 < .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 52]
 < .   Child: 1  Compound [mem: None loc: 0 size: -16] [line: 4]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 4]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 52]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 4]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 52]
 101,104c101,104
 < .   .   .   Child: 1  Id: gx of type int [mem: Global loc: 0 size: 1] [line: 14]
 < .   .   .   Child: 1  Id: px of type int [mem: Parameter loc: -2 size: 1] [line: 30]
@@ -116,23 +116,23 @@
 < .   .   Sibling: 1  Var: zy of array of type int [mem: Local loc: -4 size: 11] [line: 53]
 ---
 > .   .   .   Sibling: 1  Id: zy of array of type int[mem: None loc: 0 size: 1] [line: 62]
-> .   Sibling: 1  Parm: py is array of type int[mem: None loc: 0 size: 1] [line: 3]
-> Sibling: 1  Var: gy of array of type int[mem: None loc: 0 size: 1] [line: 2]
-> .   .   Sibling: 1  Var: y of array of type int[mem: None loc: 0 size: 1] [line: 5]
-> .   .   Sibling: 1  Var: zy of array of type int[mem: None loc: 0 size: 1] [line: 53]
+> .   Sibling: 1  Parm: py is array of type int[mem: Parameter loc: -1 size: 1] [line: 3]
+> Sibling: 1  Var: gy of array of type int[mem: Global loc: 0 size: 1] [line: 2]
+> .   .   Sibling: 1  Var: y of array of type int[mem: Local loc: 0 size: 1] [line: 5]
+> .   .   Sibling: 1  Var: zy of array of type int[mem: Local loc: 0 size: 1] [line: 53]
 142,143c141,142
 < Sibling: 2  Func: esperanza returns type void [mem: Global loc: 0 size: -4] [line: 3]
 < .   .   Sibling: 2  Var: sx of static type int [mem: LocalStatic loc: -12 size: 1] [line: 6]
 ---
-> Sibling: 2  Func: esperanza returns type void[mem: None loc: 0 size: 1] [line: 3]
-> .   .   Sibling: 2  Var: sx of static type int[mem: None loc: 0 size: 1] [line: 6]
+> Sibling: 2  Func: esperanza returns type void[mem: Global loc: 0 size: 1] [line: 3]
+> .   .   Sibling: 2  Var: sx of static type int[mem: LocalStatic loc: 0 size: 1] [line: 6]
 149,150c148,149
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 51]
 < .   .   Sibling: 3  Var: sy of static array of type int [mem: LocalStatic loc: -14 size: 11] [line: 6]
 ---
-> Sibling: 3  Func: main returns type void[mem: None loc: 0 size: 1] [line: 51]
-> .   .   Sibling: 3  Var: sy of static array of type int[mem: None loc: 0 size: 1] [line: 6]
+> Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 51]
+> .   .   Sibling: 3  Var: sy of static array of type int[mem: LocalStatic loc: 0 size: 1] [line: 6]
 162c161
 < Var: gx of type int [mem: Global loc: 0 size: 1] [line: 2]
 ---
-> Var: gx of type int[mem: None loc: 0 size: 1] [line: 2]
+> Var: gx of type int[mem: Global loc: 0 size: 1] [line: 2]

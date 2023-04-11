@@ -7,14 +7,14 @@
 > .   .   .   Child: 0  Id: x of static type int[mem: None loc: 0 size: 1] [line: 6]
 > .   .   .   Child: 0  Id: x of static type int[mem: None loc: 0 size: 1] [line: 7]
 > .   .   .   Child: 0  Id: x of static type int[mem: None loc: 0 size: 1] [line: 8]
-> .   .   Child: 0  Var: x of static type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Child: 0  Var: x of static type int[mem: LocalStatic loc: 0 size: 1] [line: 4]
 7c7
 < .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 3]
+> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 3]
 9c9
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
-> Func: main returns type void[mem: None loc: 0 size: 1] [line: 2]
+> Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
 12d11
 < Offset for end of global space: -1

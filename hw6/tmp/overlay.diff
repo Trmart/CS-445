@@ -31,17 +31,17 @@
 < .   .   .   Child: 0  Var: y of array of type int [mem: Local loc: -4 size: 101] [line: 17]
 < .   .   Child: 0  Var: z of type int [mem: Local loc: -2 size: 1] [line: 4]
 ---
-> .   .   .   Child: 0  Var: x of array of type int[mem: None loc: 0 size: 1] [line: 7]
-> .   .   .   Child: 0  Var: y of array of type int[mem: None loc: 0 size: 1] [line: 17]
-> .   .   Child: 0  Var: z of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   .   Child: 0  Var: x of array of type int[mem: Local loc: 0 size: 1] [line: 7]
+> .   .   .   Child: 0  Var: y of array of type int[mem: Local loc: 0 size: 1] [line: 17]
+> .   .   Child: 0  Var: z of type int[mem: Local loc: 0 size: 1] [line: 4]
 29,31c29,31
 < .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -104] [line: 10]
 < .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -104] [line: 20]
 < .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
 ---
-> .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 10]
-> .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 20]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 3]
+> .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 10]
+> .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 20]
+> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 3]
 43,45c43,45
 < .   .   .   .   .   .   .   Child: 1  Id: z of type int [mem: Local loc: -2 size: 1] [line: 11]
 < .   .   .   .   .   .   .   Child: 1  Id: z of type int [mem: Local loc: -2 size: 1] [line: 21]
@@ -49,14 +49,14 @@
 ---
 > .   .   .   .   .   .   .   Child: 1  Id: z of type int[mem: None loc: 0 size: 1] [line: 11]
 > .   .   .   .   .   .   .   Child: 1  Id: z of type int[mem: None loc: 0 size: 1] [line: 21]
-> Func: main returns type void[mem: None loc: 0 size: 1] [line: 2]
+> Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
 48d47
 < Offset for end of global space: 0
 51c50
 < .   .   Sibling: 1  Compound [mem: None loc: 0 size: -104] [line: 6]
 ---
-> .   .   Sibling: 1  Compound [mem: None loc: 0 size: 1] [line: 6]
+> .   .   Sibling: 1  Compound [mem: None loc: 0 size: 0] [line: 6]
 55c54
 < .   .   Sibling: 2  Compound [mem: None loc: 0 size: -104] [line: 16]
 ---
-> .   .   Sibling: 2  Compound [mem: None loc: 0 size: 1] [line: 16]
+> .   .   Sibling: 2  Compound [mem: None loc: 0 size: 0] [line: 16]

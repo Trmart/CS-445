@@ -5,15 +5,15 @@
 .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 6]
 .   .   .   .   Child: 0  Id: x of type int[mem: None loc: 0 size: 1] [line: 8]
 .   .   .   Child: 0  Op: < of type bool [line: 10]
-.   .   Child: 0  Var: x of type int[mem: None loc: 0 size: 1] [line: 4]
+.   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 4]
 .   .   .   Child: 1  Assign: ++ of type int [line: 10]
 .   .   Child: 1  Assign: <= of type int [line: 6]
 .   .   .   Child: 1  Assign: ++ of type int [line: 8]
-.   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 3]
+.   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 3]
 .   .   .   Child: 1  Const 0 of type int [line: 6]
 .   .   .   .   Child: 1  Const 10 of type int [line: 10]
 .   .   .   Child: 2  Assign: -- of type int [line: 11]
-Func: main returns type void[mem: None loc: 0 size: 1] [line: 2]
+Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
 Number of errors: 0
 Number of warnings: 0
 .   .   Sibling: 1  If [line: 8]

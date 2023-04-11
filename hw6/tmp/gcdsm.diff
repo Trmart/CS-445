@@ -20,14 +20,14 @@
 < .   Child: 0  Parm: u of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 6]
 ---
-> .   Child: 0  Parm: u of type int[mem: None loc: 0 size: 1] [line: 2]
-> .   .   Child: 0  Var: x of type int[mem: None loc: 0 size: 1] [line: 6]
+> .   Child: 0  Parm: u of type int[mem: Parameter loc: 0 size: 1] [line: 2]
+> .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 6]
 18,19c18,19
 < .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 2]
 < .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 5]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 2]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 5]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
 21,22c21,22
 < .   .   .   .   .   .   .   .   Child: 1  Id: v of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 < .   .   .   .   .   .   .   Child: 1  Id: v of type int [mem: Parameter loc: -3 size: 1] [line: 2]
@@ -37,18 +37,18 @@
 27c27
 < Func: gcd returns type int [mem: Global loc: 0 size: -4] [line: 2]
 ---
-> Func: gcd returns type int[mem: None loc: 0 size: 1] [line: 2]
+> Func: gcd returns type int[mem: Global loc: 0 size: 1] [line: 2]
 30d29
 < Offset for end of global space: 0
 32,33c31,32
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
 < .   .   .   .   Sibling: 1  Id: y of type int [mem: Local loc: -3 size: 1] [line: 10]
 ---
-> Sibling: 1  Func: main returns type void[mem: None loc: 0 size: 1] [line: 4]
+> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 4]
 > .   .   .   .   Sibling: 1  Id: y of type int[mem: None loc: 0 size: 1] [line: 10]
 35,36c34,35
 < .   Sibling: 1  Parm: v of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 < .   .   Sibling: 1  Var: y of type int [mem: Local loc: -3 size: 1] [line: 6]
 ---
-> .   Sibling: 1  Parm: v of type int[mem: None loc: 0 size: 1] [line: 2]
-> .   .   Sibling: 1  Var: y of type int[mem: None loc: 0 size: 1] [line: 6]
+> .   Sibling: 1  Parm: v of type int[mem: Parameter loc: -1 size: 1] [line: 2]
+> .   .   Sibling: 1  Var: y of type int[mem: Local loc: 0 size: 1] [line: 6]

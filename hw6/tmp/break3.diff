@@ -6,21 +6,21 @@
 < .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 4]
 < .   .   .   .   Child: 0  Var: x of type int [mem: Local loc: -3 size: 1] [line: 5]
 ---
-> .   .   Child: 0  Var: x of type int[mem: None loc: 0 size: 1] [line: 4]
-> .   .   .   .   Child: 0  Var: x of type int[mem: None loc: 0 size: 1] [line: 5]
+> .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 4]
+> .   .   .   .   Child: 0  Var: x of type int[mem: Local loc: 0 size: 1] [line: 5]
 8c8
 < .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 3]
+> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 3]
 10,11c10,11
 < .   .   .   Child: 1  For [mem: None loc: 0 size: -4] [line: 5]
 < .   .   .   .   .   Child: 1  Id: x of type int [mem: Local loc: -3 size: 1] [line: 5]
 ---
-> .   .   .   Child: 1  For [mem: None loc: 0 size: 1] [line: 5]
+> .   .   .   Child: 1  For [mem: None loc: 0 size: 0] [line: 5]
 > .   .   .   .   .   Child: 1  Id: x of type int[mem: None loc: 0 size: 1] [line: 5]
 16c16
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
-> Func: main returns type void[mem: None loc: 0 size: 1] [line: 2]
+> Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
 19d18
 < Offset for end of global space: 0

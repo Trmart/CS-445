@@ -21,19 +21,19 @@
 < .   Child: 0  Parm: n of type int [mem: Parameter loc: -2 size: 1] [line: 4]
 < .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 ---
-> .   Child: 0  Parm: n of type int[mem: None loc: 0 size: 1] [line: 3]
-> .   Child: 0  Parm: n of type int[mem: None loc: 0 size: 1] [line: 4]
-> .   Child: 0  Parm: x of type int[mem: None loc: 0 size: 1] [line: 2]
-39,42c39,42
+> .   Child: 0  Parm: n of type int[mem: Parameter loc: -2 size: 1] [line: 3]
+> .   Child: 0  Parm: n of type int[mem: Parameter loc: -3 size: 1] [line: 4]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: 0 size: 1] [line: 2]
+39c39
 < .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 7]
-< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
+---
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+41,42c41,42
 < .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 4]
 < .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 2]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 2]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 3]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 4]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 7]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 4]
+> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 7]
 47c47
 < .   .   .   .   Child: 1  Id: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 ---
@@ -41,22 +41,22 @@
 56c56
 < Func: min returns type int [mem: Global loc: 0 size: -4] [line: 2]
 ---
-> Func: min returns type int[mem: None loc: 0 size: 1] [line: 2]
+> Func: min returns type int[mem: Global loc: 0 size: 1] [line: 2]
 59d58
 < Offset for end of global space: 0
 61c60
 < Sibling: 1  Func: f returns type int [mem: Global loc: 0 size: -3] [line: 3]
 ---
-> Sibling: 1  Func: f returns type int[mem: None loc: 0 size: 1] [line: 3]
+> Sibling: 1  Func: f returns type int[mem: Global loc: 0 size: 1] [line: 3]
 63c62
 < .   Sibling: 1  Parm: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
 ---
-> .   Sibling: 1  Parm: y of type int[mem: None loc: 0 size: 1] [line: 2]
+> .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -1 size: 1] [line: 2]
 65c64
 < Sibling: 2  Func: g returns type int [mem: Global loc: 0 size: -3] [line: 4]
 ---
-> Sibling: 2  Func: g returns type int[mem: None loc: 0 size: 1] [line: 4]
+> Sibling: 2  Func: g returns type int[mem: Global loc: 0 size: 1] [line: 4]
 67c66
 < Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 6]
 ---
-> Sibling: 3  Func: main returns type void[mem: None loc: 0 size: 1] [line: 6]
+> Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 6]

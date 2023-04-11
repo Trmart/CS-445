@@ -2,8 +2,8 @@
 < .   .   Child: 0  Var: w of type bool [mem: Local loc: -2 size: 1] [line: 6]
 < .   Child: 1  Compound [mem: None loc: 0 size: -15] [line: 5]
 ---
-> .   .   Child: 0  Var: w of type bool[mem: None loc: 0 size: 1] [line: 6]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 5]
+> .   .   Child: 0  Var: w of type bool[mem: Local loc: 0 size: 1] [line: 6]
+> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 5]
 5,10c5,9
 < Offset for end of global space: -102
 < Sibling: 1  Var: d of type int [mem: Global loc: -101 size: 1] [line: 2]
@@ -12,8 +12,8 @@
 < .   .   Sibling: 2  Var: y of type bool [mem: Local loc: -14 size: 1] [line: 6]
 < Var: c of array of type char [mem: Global loc: -1 size: 101] [line: 1]
 ---
-> Sibling: 1  Var: d of type int[mem: None loc: 0 size: 1] [line: 2]
-> .   .   Sibling: 1  Var: x of array of type bool[mem: None loc: 0 size: 1] [line: 6]
-> Sibling: 2  Func: main returns type void[mem: None loc: 0 size: 1] [line: 4]
-> .   .   Sibling: 2  Var: y of type bool[mem: None loc: 0 size: 1] [line: 6]
-> Var: c of array of type char[mem: None loc: 0 size: 1] [line: 1]
+> Sibling: 1  Var: d of type int[mem: Global loc: 0 size: 1] [line: 2]
+> .   .   Sibling: 1  Var: x of array of type bool[mem: Local loc: 0 size: 1] [line: 6]
+> Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 2  Var: y of type bool[mem: Local loc: 0 size: 1] [line: 6]
+> Var: c of array of type char[mem: Global loc: 0 size: 1] [line: 1]

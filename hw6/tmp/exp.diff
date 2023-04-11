@@ -8,21 +8,21 @@
 < .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 < .   .   Child: 0  Var: x of type bool [mem: Local loc: -2 size: 1] [line: 6]
 ---
-> .   Child: 0  Parm: x of type int[mem: None loc: 0 size: 1] [line: 2]
-> .   .   Child: 0  Var: x of type bool[mem: None loc: 0 size: 1] [line: 6]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: 0 size: 1] [line: 2]
+> .   .   Child: 0  Var: x of type bool[mem: Local loc: 0 size: 1] [line: 6]
 142,143c142,143
 < .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 2]
 < .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 5]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 2]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 5]
+> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 2]
+> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 5]
 214c214
 < Func: ident returns type int [mem: Global loc: 0 size: -3] [line: 2]
 ---
-> Func: ident returns type int[mem: None loc: 0 size: 1] [line: 2]
+> Func: ident returns type int[mem: Global loc: 0 size: 1] [line: 2]
 217d216
 < Offset for end of global space: 0
 229c228
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
 ---
-> Sibling: 1  Func: main returns type void[mem: None loc: 0 size: 1] [line: 4]
+> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 4]

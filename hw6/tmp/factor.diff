@@ -68,10 +68,10 @@
 < .   .   .   .   Child: 0  Var: limit of type int [mem: Local loc: -4 size: 1] [line: 26]
 < .   .   Child: 0  Var: n of type int [mem: Local loc: -2 size: 1] [line: 22]
 ---
-> .   Child: 0  Parm: x of type int[mem: None loc: 0 size: 1] [line: 2]
-> .   .   Child: 0  Var: guess of type int[mem: None loc: 0 size: 1] [line: 4]
-> .   .   .   .   Child: 0  Var: limit of type int[mem: None loc: 0 size: 1] [line: 26]
-> .   .   Child: 0  Var: n of type int[mem: None loc: 0 size: 1] [line: 22]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: 0 size: 1] [line: 2]
+> .   .   Child: 0  Var: guess of type int[mem: Local loc: 0 size: 1] [line: 4]
+> .   .   .   .   Child: 0  Var: limit of type int[mem: Local loc: 0 size: 1] [line: 26]
+> .   .   Child: 0  Var: n of type int[mem: Local loc: 0 size: 1] [line: 22]
 64,70c64,70
 < .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 21]
 < .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 10]
@@ -81,13 +81,13 @@
 < .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 37]
 < .   .   .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 38]
 ---
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 10]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 21]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 25]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 3]
-> .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 30]
-> .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 37]
-> .   .   .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 38]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 10]
+> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 21]
+> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 25]
+> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 3]
+> .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 30]
+> .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 37]
+> .   .   .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 38]
 85,95c85,95
 < .   .   .   .   .   .   .   .   Child: 1  Id: guess of type int [mem: Local loc: -3 size: 1] [line: 12]
 < .   .   .   .   .   .   .   Child: 1  Id: guess of type int [mem: Local loc: -3 size: 1] [line: 12]
@@ -115,7 +115,7 @@
 107c107
 < Func: sqrt returns type int [mem: Global loc: 0 size: -3] [line: 2]
 ---
-> Func: sqrt returns type int[mem: None loc: 0 size: 1] [line: 2]
+> Func: sqrt returns type int[mem: Global loc: 0 size: 1] [line: 2]
 110d109
 < Offset for end of global space: 0
 116,118c115,117
@@ -123,6 +123,6 @@
 < .   .   Sibling: 1  Var: i of type int [mem: Local loc: -3 size: 1] [line: 23]
 < .   .   Sibling: 1  Var: newguess of type int [mem: Local loc: -4 size: 1] [line: 5]
 ---
-> Sibling: 1  Func: main returns type void[mem: None loc: 0 size: 1] [line: 20]
-> .   .   Sibling: 1  Var: i of type int[mem: None loc: 0 size: 1] [line: 23]
-> .   .   Sibling: 1  Var: newguess of type int[mem: None loc: 0 size: 1] [line: 5]
+> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 20]
+> .   .   Sibling: 1  Var: i of type int[mem: Local loc: 0 size: 1] [line: 23]
+> .   .   Sibling: 1  Var: newguess of type int[mem: Local loc: 0 size: 1] [line: 5]

@@ -23,11 +23,11 @@
 > .   .   .   Child: 0  Id: y of type int[mem: None loc: 0 size: 1] [line: 14]
 > .   .   .   Child: 0  Id: z of type int[mem: None loc: 0 size: 1] [line: 15]
 > .   .   .   Child: 0  Id: z of type int[mem: None loc: 0 size: 1] [line: 16]
-> .   .   Child: 0  Var: v of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Child: 0  Var: v of type int[mem: Local loc: 0 size: 1] [line: 4]
 14c14
 < .   Child: 1  Compound [mem: None loc: 0 size: -7] [line: 3]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 3]
+> .   Child: 1  Compound [mem: None loc: 0 size: 0] [line: 3]
 19c19
 < .   .   .   Child: 1  Id: w of type int [mem: Local loc: -3 size: 1] [line: 10]
 ---
@@ -35,7 +35,7 @@
 22c22
 < Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
 ---
-> Func: main returns type void[mem: None loc: 0 size: 1] [line: 2]
+> Func: main returns type void[mem: Global loc: 0 size: 1] [line: 2]
 24,25c24
 < Number of warnings: 4
 < Offset for end of global space: 0
@@ -48,14 +48,14 @@
 < .   .   Sibling: 3  Id: w of type int [mem: Local loc: -3 size: 1] [line: 9]
 < .   .   Sibling: 3  Var: y of type int [mem: Local loc: -5 size: 1] [line: 4]
 ---
-> .   .   Sibling: 1  Var: w of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 1  Var: w of type int[mem: Local loc: 0 size: 1] [line: 4]
 > .   .   Sibling: 2  Id: w of type int[mem: None loc: 0 size: 1] [line: 8]
-> .   .   Sibling: 2  Var: x of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 2  Var: x of type int[mem: Local loc: 0 size: 1] [line: 4]
 > .   .   Sibling: 3  Id: w of type int[mem: None loc: 0 size: 1] [line: 9]
-> .   .   Sibling: 3  Var: y of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 3  Var: y of type int[mem: Local loc: 0 size: 1] [line: 4]
 34c33
 < .   .   Sibling: 4  Var: z of type int [mem: Local loc: -6 size: 1] [line: 4]
 ---
-> .   .   Sibling: 4  Var: z of type int[mem: None loc: 0 size: 1] [line: 4]
+> .   .   Sibling: 4  Var: z of type int[mem: Local loc: 0 size: 1] [line: 4]
 41a41
 > WARNING(15): Variable 'z' may be uninitialized when used here.

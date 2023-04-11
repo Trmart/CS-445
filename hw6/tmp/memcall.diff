@@ -13,19 +13,19 @@
 < .   .   Child: 0  Var: y of type int [mem: Local loc: -3 size: 1] [line: 5]
 < .   .   Child: 0  Var: z of type int [mem: Local loc: -2 size: 1] [line: 13]
 ---
-> .   Child: 0  Parm: x of type int[mem: None loc: 0 size: 1] [line: 3]
-> .   Child: 0  Parm: x of type int[mem: None loc: 0 size: 1] [line: 9]
-> .   .   .   Child: 0  Var: x of array of type int[mem: None loc: 0 size: 1] [line: 15]
-> .   .   Child: 0  Var: y of type int[mem: None loc: 0 size: 1] [line: 5]
-> .   .   Child: 0  Var: z of type int[mem: None loc: 0 size: 1] [line: 13]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: 0 size: 1] [line: 3]
+> .   Child: 0  Parm: x of type int[mem: Parameter loc: -1 size: 1] [line: 9]
+> .   .   .   Child: 0  Var: x of array of type int[mem: Local loc: 0 size: 1] [line: 15]
+> .   .   Child: 0  Var: y of type int[mem: Local loc: 0 size: 1] [line: 5]
+> .   .   Child: 0  Var: z of type int[mem: Local loc: 0 size: 1] [line: 13]
 20,22c20,22
 < .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 12]
 < .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 9]
 < .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 4]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 12]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 4]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 9]
+> .   Child: 1  Compound [mem: None loc: 0 size: -1] [line: 4]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 12]
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 9]
 26c26
 < .   .   .   .   Child: 1  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 9]
 ---
@@ -33,15 +33,15 @@
 29c29
 < Func: yvonne returns type void [mem: Global loc: 0 size: -3] [line: 3]
 ---
-> Func: yvonne returns type void[mem: None loc: 0 size: 1] [line: 3]
+> Func: yvonne returns type void[mem: Global loc: 0 size: 1] [line: 3]
 32,34c32,33
 < Offset for end of global space: 0
 < .   .   Sibling: 1  Compound [mem: None loc: 0 size: -9] [line: 15]
 < Sibling: 1  Func: louise returns type int [mem: Global loc: 0 size: -3] [line: 9]
 ---
-> .   .   Sibling: 1  Compound [mem: None loc: 0 size: 1] [line: 15]
-> Sibling: 1  Func: louise returns type int[mem: None loc: 0 size: 1] [line: 9]
+> .   .   Sibling: 1  Compound [mem: None loc: 0 size: -2] [line: 15]
+> Sibling: 1  Func: louise returns type int[mem: Global loc: 0 size: 1] [line: 9]
 36c35
 < Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 11]
 ---
-> Sibling: 2  Func: main returns type void[mem: None loc: 0 size: 1] [line: 11]
+> Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 11]

@@ -13,13 +13,11 @@
 11c11
 < .   Child: 0  Parm: u of type int [mem: Parameter loc: -2 size: 1] [line: 1]
 ---
-> .   Child: 0  Parm: u of type int[mem: None loc: 0 size: 1] [line: 1]
-13,14c13,14
-< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 6]
+> .   Child: 0  Parm: u of type int[mem: Parameter loc: 0 size: 1] [line: 1]
+12a13
+> .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 1]
+14d14
 < .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 1]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 1]
-> .   Child: 1  Compound [mem: None loc: 0 size: 1] [line: 6]
 16,17c16,17
 < .   .   .   .   .   .   .   .   Child: 1  Id: v of type int [mem: Parameter loc: -3 size: 1] [line: 3]
 < .   .   .   .   .   .   .   Child: 1  Id: v of type int [mem: Parameter loc: -3 size: 1] [line: 3]
@@ -29,14 +27,14 @@
 22c22
 < Func: gcd returns type int [mem: Global loc: 0 size: -4] [line: 1]
 ---
-> Func: gcd returns type int[mem: None loc: 0 size: 1] [line: 1]
+> Func: gcd returns type int[mem: Global loc: 0 size: 1] [line: 1]
 25d24
 < Offset for end of global space: 0
 27c26
 < Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 5]
 ---
-> Sibling: 1  Func: main returns type void[mem: None loc: 0 size: 1] [line: 5]
+> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: 1] [line: 5]
 29c28
 < .   Sibling: 1  Parm: v of type int [mem: Parameter loc: -3 size: 1] [line: 1]
 ---
-> .   Sibling: 1  Parm: v of type int[mem: None loc: 0 size: 1] [line: 1]
+> .   Sibling: 1  Parm: v of type int[mem: Parameter loc: -1 size: 1] [line: 1]
