@@ -56,10 +56,6 @@
 < .   .   Sibling: 1  Var: z of type int [mem: Local loc: -26 size: 1] [line: 5]
 ---
 > .   .   Sibling: 1  Var: z of type int [mem: Local loc: -4 size: 1] [line: 5]
-84c84
-< .   .   Sibling: 2  For [mem: None loc: 0 size: -5] [line: 17]
----
-> .   .   Sibling: 2  For  [mem: None loc: 0 size: -5] [line: 17]
 88c88
 < Var: w of array of type int [mem: Global loc: -1 size: 34] [line: 2]
 ---

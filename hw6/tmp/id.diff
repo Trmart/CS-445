@@ -18,7 +18,7 @@
 21c21
 < .   .   Child: 1  For [mem: None loc: 0 size: -39] [line: 14]
 ---
-> .   .   Child: 1  For  [mem: None loc: 0 size: -9] [line: 14]
+> .   .   Child: 1  For [mem: None loc: 0 size: -9] [line: 14]
 24c24
 < .   .   .   Child: 2  Id: f of type int [mem: Local loc: -38 size: 1] [line: 14]
 ---

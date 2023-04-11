@@ -22,7 +22,7 @@ Number of warnings: 9
 Offset for end of global space: -3
 Sibling: 1  Var: g of type int [mem: Global loc: 0 size: 1] [line: 4]
 .   .   Sibling: 1  While [line: 12]
-.   .   Sibling: 2  For  [mem: None loc: 0 size: -3] [line: 13]
+.   .   Sibling: 2  For [mem: None loc: 0 size: -3] [line: 13]
 Sibling: 2  Var: x of array of type int [mem: Global loc: -2 size: 1] [line: 5]
 .   .   Sibling: 3  Compound [mem: None loc: 0 size: -4] [line: 14]
 Sibling: 3  Func: dogs returns type void [mem: Global loc: 0 size: -2] [line: 7]

@@ -361,7 +361,7 @@ void printStmtNode(TreeNode* tree, bool isShowingTypes)
 
         case ForK:
                 {
-                    printf("For ");
+                    printf("For");
 
                     if (isPrintingMemorySize)
                     {

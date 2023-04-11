@@ -51,36 +51,33 @@
 79c79
 < .   .   Child: 1  For [mem: None loc: 0 size: -3] [line: 5]
 ---
-> .   .   Child: 1  For  [mem: None loc: 0 size: -4] [line: 5]
+> .   .   Child: 1  For [mem: None loc: 0 size: -4] [line: 5]
 92,93c92
 < .   .   .   .   Child: 2  Compound [mem: None loc: 0 size: -4] [line: 24]
 < .   .   .   .   Child: 2  Compound [mem: None loc: 0 size: -5] [line: 19]
 ---
 > .   .   .   .   Child: 2  Compound [mem: None loc: 0 size: -10] [line: 24]
-95,97c94,97
+95,96c94,95
 < .   .   .   Child: 2  For [mem: None loc: 0 size: -4] [line: 19]
 < .   .   .   Child: 2  For [mem: None loc: 0 size: -4] [line: 24]
-< .   .   .   Child: 2  For [mem: None loc: 0 size: -4] [line: 6]
 ---
 > .   .   .   .   Child: 2  Compound [mem: None loc: 0 size: -9] [line: 19]
-> .   .   .   Child: 2  For  [mem: None loc: 0 size: -10] [line: 24]
-> .   .   .   Child: 2  For  [mem: None loc: 0 size: -4] [line: 6]
-> .   .   .   Child: 2  For  [mem: None loc: 0 size: -8] [line: 19]
-106,107c106,107
+> .   .   .   Child: 2  For [mem: None loc: 0 size: -10] [line: 24]
+97a97
+> .   .   .   Child: 2  For [mem: None loc: 0 size: -8] [line: 19]
+106d105
 < .   .   Sibling: 1  For [mem: None loc: 0 size: -3] [line: 8]
-< .   .   Sibling: 1  For [mem: None loc: 0 size: -5] [line: 48]
----
-> .   .   Sibling: 1  For  [mem: None loc: 0 size: -5] [line: 48]
-> .   .   Sibling: 1  For  [mem: None loc: 0 size: -5] [line: 8]
+107a107
+> .   .   Sibling: 1  For [mem: None loc: 0 size: -5] [line: 8]
 110c110
 < .   .   Sibling: 2  For [mem: None loc: 0 size: -3] [line: 13]
 ---
-> .   .   Sibling: 2  For  [mem: None loc: 0 size: -6] [line: 13]
+> .   .   Sibling: 2  For [mem: None loc: 0 size: -6] [line: 13]
 112c112
 < .   .   Sibling: 3  For [mem: None loc: 0 size: -3] [line: 18]
 ---
-> .   .   Sibling: 3  For  [mem: None loc: 0 size: -8] [line: 18]
+> .   .   Sibling: 3  For [mem: None loc: 0 size: -8] [line: 18]
 114c114
 < .   .   Sibling: 4  For [mem: None loc: 0 size: -3] [line: 23]
 ---
-> .   .   Sibling: 4  For  [mem: None loc: 0 size: -10] [line: 23]
+> .   .   Sibling: 4  For [mem: None loc: 0 size: -10] [line: 23]

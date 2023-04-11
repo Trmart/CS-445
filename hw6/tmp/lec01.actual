@@ -9,7 +9,7 @@
 .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
 .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 5]
 .   .   .   Child: 1  Const is array "cat" of type char [mem: Global loc: -2 size: 1] [line: 8]
-.   .   Child: 1  For  [mem: None loc: 0 size: -4] [line: 7]
+.   .   Child: 1  For [mem: None loc: 0 size: -4] [line: 7]
 .   .   .   .   Child: 1  Id: x of type int [mem: Local loc: -2 size: 1] [line: 7]
 .   .   .   Child: 1  Range [line: 7]
 .   .   Child: 1  Return [line: 2]

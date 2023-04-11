@@ -17,7 +17,7 @@ Number of warnings: 2
 Offset for end of global space: 0
 Sibling: 1  Func: dogs returns type void [mem: Global loc: 0 size: -2] [line: 4]
 .   .   Sibling: 1  While [line: 8]
-.   .   Sibling: 2  For  [mem: None loc: 0 size: -3] [line: 9]
+.   .   Sibling: 2  For [mem: None loc: 0 size: -3] [line: 9]
 .   .   Sibling: 3  Compound [mem: None loc: 0 size: -3] [line: 10]
 WARNING(4): The function 'dogs' seems not to be used.
 WARNING(9): The variable 'x' seems not to be used.

@@ -18,7 +18,7 @@
 .   .   .   .   Child: 1  Const 3 of type int [line: 3]
 .   .   .   .   .   Child: 1  Const 4 of type int [line: 3]
 .   .   .   .   Child: 1  Const 937 of type int [line: 22]
-.   .   Child: 1  For  [mem: None loc: 0 size: -9] [line: 14]
+.   .   Child: 1  For [mem: None loc: 0 size: -9] [line: 14]
 .   .   .   Child: 1  Range [line: 14]
 .   .   Child: 1  Return [line: 3]
 .   .   .   Child: 2  Id: f of type int [mem: Local loc: -8 size: 1] [line: 14]
