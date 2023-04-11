@@ -1,86 +1,50 @@
-1,14c1,14
-< .   .   .   .   Child: 0  Id: a of array of type int [mem: Parameter loc: -2 size: 1] [line: 13]
-< .   .   .   Child: 0  Id: a of type int [mem: Parameter loc: -2 size: 1] [line: 4]
-< .   .   .   .   Child: 0  Id: b of array of type bool [mem: Parameter loc: -3 size: 1] [line: 14]
-< .   .   .   Child: 0  Id: b of type bool [mem: Parameter loc: -3 size: 1] [line: 5]
-< .   .   .   .   Child: 0  Id: c of array of type char [mem: Parameter loc: -4 size: 1] [line: 15]
-< .   .   .   Child: 0  Id: c of type char [mem: Parameter loc: -4 size: 1] [line: 6]
-< .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 25]
-< .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 33]
+9,10c9,10
 < .   .   .   .   Child: 0  Id: XX of array of type int [mem: Local loc: -6 size: 4] [line: 29]
 < .   .   .   Child: 0  Id: XX of array of type int [mem: Local loc: -6 size: 4] [line: 34]
-< .   .   .   Child: 0  Id: y of type bool [mem: Local loc: -3 size: 1] [line: 26]
+---
+> .   .   .   .   Child: 0  Id: XX of array of type int [mem: Local loc: -6 size: 1] [line: 29]
+> .   .   .   Child: 0  Id: XX of array of type int [mem: Local loc: -6 size: 1] [line: 34]
+12c12
 < .   .   .   .   Child: 0  Id: YY of array of type bool [mem: Local loc: -10 size: 6] [line: 30]
-< .   .   .   Child: 0  Id: z of type char [mem: Local loc: -4 size: 1] [line: 27]
+---
+> .   .   .   .   Child: 0  Id: YY of array of type bool [mem: Local loc: -7 size: 1] [line: 30]
+14c14
 < .   .   .   .   Child: 0  Id: ZZ of array of type char [mem: Local loc: -16 size: 8] [line: 31]
 ---
-> .   .   .   .   Child: 0  Id: a of array of type int[mem: Parameter loc: -2 size: 1] [line: 13]
-> .   .   .   Child: 0  Id: a of type int[mem: Parameter loc: -2 size: 1] [line: 4]
-> .   .   .   .   Child: 0  Id: b of array of type bool[mem: Parameter loc: -3 size: 1] [line: 14]
-> .   .   .   Child: 0  Id: b of type bool[mem: Parameter loc: -3 size: 1] [line: 5]
-> .   .   .   .   Child: 0  Id: c of array of type char[mem: Parameter loc: -4 size: 1] [line: 15]
-> .   .   .   Child: 0  Id: c of type char[mem: Parameter loc: -4 size: 1] [line: 6]
-> .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 25]
-> .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 33]
-> .   .   .   .   Child: 0  Id: XX of array of type int[mem: Local loc: -6 size: 1] [line: 29]
-> .   .   .   Child: 0  Id: XX of array of type int[mem: Local loc: -6 size: 1] [line: 34]
-> .   .   .   Child: 0  Id: y of type bool[mem: Local loc: -3 size: 1] [line: 26]
-> .   .   .   .   Child: 0  Id: YY of array of type bool[mem: Local loc: -7 size: 1] [line: 30]
-> .   .   .   Child: 0  Id: z of type char[mem: Local loc: -4 size: 1] [line: 27]
-> .   .   .   .   Child: 0  Id: ZZ of array of type char[mem: Local loc: -8 size: 1] [line: 31]
-21,23c21,23
+> .   .   .   .   Child: 0  Id: ZZ of array of type char [mem: Local loc: -8 size: 1] [line: 31]
+21c21
 < .   Child: 0  Parm: a of array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
-< .   Child: 0  Parm: a of type int [mem: Parameter loc: -2 size: 1] [line: 2]
-< .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 22]
 ---
-> .   Child: 0  Parm: a is array of type int[mem: Parameter loc: -2 size: 1] [line: 11]
-> .   Child: 0  Parm: a of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   Child: 0  Var: x of type int[mem: Local loc: -2 size: 1] [line: 22]
-27d26
+> .   Child: 0  Parm: a is array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
+27,29c27,29
 < .   Child: 1  Compound [mem: None loc: 0 size: -23] [line: 21]
-29a29
-> .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 21]
-42c42
-< Func: scalar returns type void [mem: Global loc: 0 size: -5] [line: 2]
+< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 12]
+< .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 3]
 ---
-> Func: scalar returns type void[mem: Global loc: 0 size: -5] [line: 2]
-49,54c49,54
-< Sibling: 1  Func: array returns type void [mem: Global loc: 0 size: -5] [line: 11]
-< .   .   .   Sibling: 1  Id: y of type bool [mem: Local loc: -3 size: 1] [line: 33]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 12]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 3]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -8] [line: 21]
+51,52c51,52
 < .   .   .   Sibling: 1  Id: YY of array of type bool [mem: Local loc: -10 size: 6] [line: 34]
 < .   Sibling: 1  Parm: b of array of type bool [mem: Parameter loc: -3 size: 1] [line: 11]
-< .   Sibling: 1  Parm: b of type bool [mem: Parameter loc: -3 size: 1] [line: 2]
-< .   .   Sibling: 1  Var: y of type bool [mem: Local loc: -3 size: 1] [line: 22]
 ---
-> Sibling: 1  Func: array returns type void[mem: Global loc: 0 size: -5] [line: 11]
-> .   .   .   Sibling: 1  Id: y of type bool[mem: Local loc: -3 size: 1] [line: 33]
-> .   .   .   Sibling: 1  Id: YY of array of type bool[mem: Local loc: -7 size: 1] [line: 34]
-> .   Sibling: 1  Parm: b is array of type bool[mem: Parameter loc: -3 size: 1] [line: 11]
-> .   Sibling: 1  Parm: b of type bool[mem: Parameter loc: -3 size: 1] [line: 2]
-> .   .   Sibling: 1  Var: y of type bool[mem: Local loc: -3 size: 1] [line: 22]
-58,63c58,63
-< Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 20]
-< .   .   .   Sibling: 2  Id: z of type char [mem: Local loc: -4 size: 1] [line: 33]
+> .   .   .   Sibling: 1  Id: YY of array of type bool [mem: Local loc: -7 size: 1] [line: 34]
+> .   Sibling: 1  Parm: b is array of type bool [mem: Parameter loc: -3 size: 1] [line: 11]
+60,61c60,61
 < .   .   .   Sibling: 2  Id: ZZ of array of type char [mem: Local loc: -16 size: 8] [line: 34]
 < .   Sibling: 2  Parm: c of array of type char [mem: Parameter loc: -4 size: 1] [line: 11]
-< .   Sibling: 2  Parm: c of type char [mem: Parameter loc: -4 size: 1] [line: 2]
-< .   .   Sibling: 2  Var: z of type char [mem: Local loc: -4 size: 1] [line: 22]
 ---
-> Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 20]
-> .   .   .   Sibling: 2  Id: z of type char[mem: Local loc: -4 size: 1] [line: 33]
-> .   .   .   Sibling: 2  Id: ZZ of array of type char[mem: Local loc: -8 size: 1] [line: 34]
-> .   Sibling: 2  Parm: c is array of type char[mem: Parameter loc: -4 size: 1] [line: 11]
-> .   Sibling: 2  Parm: c of type char[mem: Parameter loc: -4 size: 1] [line: 2]
-> .   .   Sibling: 2  Var: z of type char[mem: Local loc: -4 size: 1] [line: 22]
+> .   .   .   Sibling: 2  Id: ZZ of array of type char [mem: Local loc: -8 size: 1] [line: 34]
+> .   Sibling: 2  Parm: c is array of type char [mem: Parameter loc: -4 size: 1] [line: 11]
 67c67
 < .   .   Sibling: 3  Var: XX of array of type int [mem: Local loc: -6 size: 4] [line: 23]
 ---
-> .   .   Sibling: 3  Var: XX of array of type int[mem: Local loc: -6 size: 1] [line: 23]
+> .   .   Sibling: 3  Var: XX of array of type int [mem: Local loc: -6 size: 1] [line: 23]
 69c69
 < .   .   Sibling: 4  Var: YY of array of type bool [mem: Local loc: -10 size: 6] [line: 23]
 ---
-> .   .   Sibling: 4  Var: YY of array of type bool[mem: Local loc: -7 size: 1] [line: 23]
+> .   .   Sibling: 4  Var: YY of array of type bool [mem: Local loc: -7 size: 1] [line: 23]
 71c71
 < .   .   Sibling: 5  Var: ZZ of array of type char [mem: Local loc: -16 size: 8] [line: 23]
 ---
-> .   .   Sibling: 5  Var: ZZ of array of type char[mem: Local loc: -8 size: 1] [line: 23]
+> .   .   Sibling: 5  Var: ZZ of array of type char [mem: Local loc: -8 size: 1] [line: 23]

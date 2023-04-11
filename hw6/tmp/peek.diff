@@ -1,14 +1,10 @@
-1,4c1,4
-< .   .   .   .   Child: 0  Id: x of type int [mem: Local loc: -2 size: 1] [line: 3]
-< .   .   .   .   Child: 0  Id: y of type int [mem: Local loc: -2 size: 1] [line: 4]
-< .   .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 3]
-< .   .   .   Child: 0  Var: y of type int [mem: Local loc: -2 size: 1] [line: 4]
+7,8c7,8
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+< .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
 ---
-> .   .   .   .   Child: 0  Id: x of type int[mem: Local loc: -2 size: 1] [line: 3]
-> .   .   .   .   Child: 0  Id: y of type int[mem: Local loc: -2 size: 1] [line: 4]
-> .   .   .   Child: 0  Var: x of type int[mem: Local loc: -2 size: 1] [line: 3]
-> .   .   .   Child: 0  Var: y of type int[mem: Local loc: -2 size: 1] [line: 4]
-10c10
-< Func: main returns type void [mem: Global loc: 0 size: -2] [line: 1]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 2]
+> .   .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 3]
+14c14
+< .   .   Sibling: 1  Compound [mem: None loc: 0 size: -3] [line: 4]
 ---
-> Func: main returns type void[mem: Global loc: 0 size: -2] [line: 1]
+> .   .   Sibling: 1  Compound  [mem: None loc: 0 size: -3] [line: 4]

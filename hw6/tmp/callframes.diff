@@ -1,50 +1,10 @@
-14,21c14,21
-< .   .   .   .   .   .   .   Child: 0  Id: n of type int [mem: Parameter loc: -2 size: 1] [line: 3]
-< .   .   .   .   .   .   .   Child: 0  Id: n of type int [mem: Parameter loc: -2 size: 1] [line: 3]
-< .   .   .   .   Child: 0  Id: n of type int [mem: Parameter loc: -2 size: 1] [line: 3]
-< .   .   .   .   .   .   .   .   .   Child: 0  Id: n of type int [mem: Parameter loc: -2 size: 1] [line: 4]
-< .   .   .   .   .   .   .   .   Child: 0  Id: n of type int [mem: Parameter loc: -2 size: 1] [line: 4]
-< .   .   .   .   Child: 0  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
-< .   .   .   .   Child: 0  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
-< .   .   .   .   Child: 0  Id: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
+39,42c39,42
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 7]
+< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
+< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 4]
+< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 2]
 ---
-> .   .   .   .   .   .   .   Child: 0  Id: n of type int[mem: Parameter loc: -2 size: 1] [line: 3]
-> .   .   .   .   .   .   .   Child: 0  Id: n of type int[mem: Parameter loc: -2 size: 1] [line: 3]
-> .   .   .   .   Child: 0  Id: n of type int[mem: Parameter loc: -2 size: 1] [line: 3]
-> .   .   .   .   .   .   .   .   .   Child: 0  Id: n of type int[mem: Parameter loc: -2 size: 1] [line: 4]
-> .   .   .   .   .   .   .   .   Child: 0  Id: n of type int[mem: Parameter loc: -2 size: 1] [line: 4]
-> .   .   .   .   Child: 0  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   .   .   Child: 0  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   .   .   Child: 0  Id: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
-30,32c30,32
-< .   Child: 0  Parm: n of type int [mem: Parameter loc: -2 size: 1] [line: 3]
-< .   Child: 0  Parm: n of type int [mem: Parameter loc: -2 size: 1] [line: 4]
-< .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
----
-> .   Child: 0  Parm: n of type int[mem: Parameter loc: -2 size: 1] [line: 3]
-> .   Child: 0  Parm: n of type int[mem: Parameter loc: -2 size: 1] [line: 4]
-> .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-47c47
-< .   .   .   .   Child: 1  Id: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
----
-> .   .   .   .   Child: 1  Id: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
-56c56
-< Func: min returns type int [mem: Global loc: 0 size: -4] [line: 2]
----
-> Func: min returns type int[mem: Global loc: 0 size: -4] [line: 2]
-61c61
-< Sibling: 1  Func: f returns type int [mem: Global loc: 0 size: -3] [line: 3]
----
-> Sibling: 1  Func: f returns type int[mem: Global loc: 0 size: -3] [line: 3]
-63c63
-< .   Sibling: 1  Parm: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
----
-> .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
-65c65
-< Sibling: 2  Func: g returns type int [mem: Global loc: 0 size: -3] [line: 4]
----
-> Sibling: 2  Func: g returns type int[mem: Global loc: 0 size: -3] [line: 4]
-67c67
-< Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 6]
----
-> Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 6]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 7]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 3]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 4]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 2]

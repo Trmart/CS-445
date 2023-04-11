@@ -1,4 +1,4 @@
-7c7
-< Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
+6c6
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 3]
 ---
-> Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 3]

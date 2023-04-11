@@ -1,34 +1,6 @@
-4,8c4,8
-< .   .   .   .   Child: 0  Id: u of type int [mem: Parameter loc: -2 size: 1] [line: 2]
-< .   .   .   .   .   .   .   .   Child: 0  Id: u of type int [mem: Parameter loc: -2 size: 1] [line: 3]
-< .   .   .   .   .   .   Child: 0  Id: u of type int [mem: Parameter loc: -2 size: 1] [line: 3]
-< .   .   .   .   Child: 0  Id: v of type int [mem: Parameter loc: -3 size: 1] [line: 2]
-< .   .   .   .   .   Child: 0  Id: v of type int [mem: Parameter loc: -3 size: 1] [line: 3]
+13,14c13,14
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 6]
+< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 1]
 ---
-> .   .   .   .   Child: 0  Id: u of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   .   .   .   .   .   .   Child: 0  Id: u of type int[mem: Parameter loc: -2 size: 1] [line: 3]
-> .   .   .   .   .   .   Child: 0  Id: u of type int[mem: Parameter loc: -2 size: 1] [line: 3]
-> .   .   .   .   Child: 0  Id: v of type int[mem: Parameter loc: -3 size: 1] [line: 2]
-> .   .   .   .   .   Child: 0  Id: v of type int[mem: Parameter loc: -3 size: 1] [line: 3]
-11c11
-< .   Child: 0  Parm: u of type int [mem: Parameter loc: -2 size: 1] [line: 1]
----
-> .   Child: 0  Parm: u of type int[mem: Parameter loc: -2 size: 1] [line: 1]
-16,17c16,17
-< .   .   .   .   .   .   .   .   Child: 1  Id: v of type int [mem: Parameter loc: -3 size: 1] [line: 3]
-< .   .   .   .   .   .   .   Child: 1  Id: v of type int [mem: Parameter loc: -3 size: 1] [line: 3]
----
-> .   .   .   .   .   .   .   .   Child: 1  Id: v of type int[mem: Parameter loc: -3 size: 1] [line: 3]
-> .   .   .   .   .   .   .   Child: 1  Id: v of type int[mem: Parameter loc: -3 size: 1] [line: 3]
-22c22
-< Func: gcd returns type int [mem: Global loc: 0 size: -4] [line: 1]
----
-> Func: gcd returns type int[mem: Global loc: 0 size: -4] [line: 1]
-27c27
-< Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 5]
----
-> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 5]
-29c29
-< .   Sibling: 1  Parm: v of type int [mem: Parameter loc: -3 size: 1] [line: 1]
----
-> .   Sibling: 1  Parm: v of type int[mem: Parameter loc: -3 size: 1] [line: 1]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 6]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 1]

@@ -1,16 +1,6 @@
-1,2c1,2
-< .   Child: 0  Parm: p of type int [mem: Parameter loc: -2 size: 1] [line: 2]
-< .   .   Child: 0  Var: s of static type int [mem: LocalStatic loc: -1 size: 1] [line: 4]
+3,4c3,4
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 8]
+< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 3]
 ---
-> .   Child: 0  Parm: p of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   Child: 0  Var: s of static type int[mem: LocalStatic loc: -1 size: 1] [line: 4]
-8,11c8,11
-< Sibling: 1  Func: dog returns type void [mem: Global loc: 0 size: -3] [line: 2]
-< .   .   Sibling: 1  Var: i of type int [mem: Local loc: -3 size: 1] [line: 5]
-< Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 8]
-< Var: g of type int [mem: Global loc: 0 size: 1] [line: 1]
----
-> Sibling: 1  Func: dog returns type void[mem: Global loc: 0 size: -3] [line: 2]
-> .   .   Sibling: 1  Var: i of type int[mem: Local loc: -3 size: 1] [line: 5]
-> Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 8]
-> Var: g of type int[mem: Global loc: 0 size: 1] [line: 1]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 8]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 3]

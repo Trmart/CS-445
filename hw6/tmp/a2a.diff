@@ -7,13 +7,13 @@
 < .   .   .   Child: 0  Id: b of array of type char [mem: Local loc: -14 size: 11] [line: 9]
 < .   .   Child: 0  Var: a of array of type char [mem: Local loc: -3 size: 11] [line: 4]
 ---
-> .   Child: 0  Const is array "pipsissewa" of type char[mem: Global loc: -1 size: 1] [line: 1]
-> .   .   .   Child: 0  Const is array "unquestionable" of type char[mem: Global loc: -4 size: 1] [line: 10]
-> .   .   .   Child: 0  Id: a of array of type char[mem: Local loc: -3 size: 1] [line: 6]
-> .   .   .   Child: 0  Id: b of array of type char[mem: Local loc: -4 size: 1] [line: 7]
-> .   .   .   Child: 0  Id: b of array of type char[mem: Local loc: -4 size: 1] [line: 8]
-> .   .   .   Child: 0  Id: b of array of type char[mem: Local loc: -4 size: 1] [line: 9]
-> .   .   Child: 0  Var: a of array of type char[mem: Local loc: -3 size: 1] [line: 4]
+> .   Child: 0  Const is array "pipsissewa" of type char [mem: Global loc: -1 size: 1] [line: 1]
+> .   .   .   Child: 0  Const is array "unquestionable" of type char [mem: Global loc: -4 size: 1] [line: 10]
+> .   .   .   Child: 0  Id: a of array of type char [mem: Local loc: -3 size: 1] [line: 6]
+> .   .   .   Child: 0  Id: b of array of type char [mem: Local loc: -4 size: 1] [line: 7]
+> .   .   .   Child: 0  Id: b of array of type char [mem: Local loc: -4 size: 1] [line: 8]
+> .   .   .   Child: 0  Id: b of array of type char [mem: Local loc: -4 size: 1] [line: 9]
+> .   .   Child: 0  Var: a of array of type char [mem: Local loc: -3 size: 1] [line: 4]
 9,14c9,14
 < .   Child: 1  Compound [mem: None loc: 0 size: -24] [line: 3]
 < .   .   .   Child: 1  Const "manifested" of array of type char [mem: Global loc: -23 size: 11] [line: 6]
@@ -22,27 +22,25 @@
 < .   .   .   Child: 1  Id: a of array of type char [mem: Local loc: -3 size: 11] [line: 9]
 < .   .   .   Child: 1  Id: g of array of type char [mem: Global loc: -12 size: 11] [line: 7]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 3]
-> .   .   .   Child: 1  Const is array "manifested" of type char[mem: Global loc: -3 size: 1] [line: 6]
-> .   .   .   Child: 1  Const is array "transformation" of type char[mem: Global loc: -5 size: 1] [line: 10]
-> .   .   .   Child: 1  Id: a of array of type char[mem: Local loc: -3 size: 1] [line: 8]
-> .   .   .   Child: 1  Id: a of array of type char[mem: Local loc: -3 size: 1] [line: 9]
-> .   .   .   Child: 1  Id: g of array of type char[mem: Global loc: -2 size: 1] [line: 7]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 3]
+> .   .   .   Child: 1  Const is array "manifested" of type char [mem: Global loc: -3 size: 1] [line: 6]
+> .   .   .   Child: 1  Const is array "transformation" of type char [mem: Global loc: -5 size: 1] [line: 10]
+> .   .   .   Child: 1  Id: a of array of type char [mem: Local loc: -3 size: 1] [line: 8]
+> .   .   .   Child: 1  Id: a of array of type char [mem: Local loc: -3 size: 1] [line: 9]
+> .   .   .   Child: 1  Id: g of array of type char [mem: Global loc: -2 size: 1] [line: 7]
 17c17
 < Offset for end of global space: -64
 ---
 > Offset for end of global space: -6
-19,20c19,20
-< Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
+20c20
 < .   .   Sibling: 1  Var: b of array of type char [mem: Local loc: -14 size: 11] [line: 4]
 ---
-> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
-> .   .   Sibling: 1  Var: b of array of type char[mem: Local loc: -4 size: 1] [line: 4]
+> .   .   Sibling: 1  Var: b of array of type char [mem: Local loc: -4 size: 1] [line: 4]
 22c22
 < Sibling: 2  Var: endOfGlobals of type int [mem: Global loc: -63 size: 1] [line: 12]
 ---
-> Sibling: 2  Var: endOfGlobals of type int[mem: Global loc: -5 size: 1] [line: 12]
+> Sibling: 2  Var: endOfGlobals of type int [mem: Global loc: -5 size: 1] [line: 12]
 25c25
 < Var: g of array of type char [mem: Global loc: -12 size: 11] [line: 1]
 ---
-> Var: g of array of type char[mem: Global loc: -2 size: 1] [line: 1]
+> Var: g of array of type char [mem: Global loc: -2 size: 1] [line: 1]

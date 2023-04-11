@@ -1,22 +1,12 @@
-4,5c4,5
-< .   .   Child: 0  Var: x of type int [mem: Local loc: -2 size: 1] [line: 6]
-< .   .   .   Child: 0  Var: x of type int [mem: Local loc: -3 size: 1] [line: 12]
----
-> .   .   Child: 0  Var: x of type int[mem: Local loc: -2 size: 1] [line: 6]
-> .   .   .   Child: 0  Var: x of type int[mem: Local loc: -3 size: 1] [line: 12]
-7c7
+6,7c6,7
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
 < .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 5]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 5]
-11c11
-< Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
----
-> Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
-15c15
-< Sibling: 1  Func: dogs returns type void [mem: Global loc: 0 size: -2] [line: 4]
----
-> Sibling: 1  Func: dogs returns type void[mem: Global loc: 0 size: -2] [line: 4]
-18c18
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 2]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 5]
+17,18c17,18
+< .   .   Sibling: 2  For [mem: None loc: 0 size: -4] [line: 12]
 < .   .   Sibling: 3  Compound [mem: None loc: 0 size: -3] [line: 13]
 ---
-> .   .   Sibling: 3  Compound [mem: None loc: 0 size: -4] [line: 13]
+> .   .   Sibling: 2  For  [mem: None loc: 0 size: -4] [line: 12]
+> .   .   Sibling: 3  Compound  [mem: None loc: 0 size: -4] [line: 13]

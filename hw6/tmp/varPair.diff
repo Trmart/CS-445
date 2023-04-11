@@ -1,22 +1,18 @@
-1,32c1,32
-< .   .   .   Child: 0  Id: gx of type int [mem: Global loc: 0 size: 1] [line: 10]
-< .   .   .   Child: 0  Id: gx of type int [mem: Global loc: 0 size: 1] [line: 45]
-< .   .   .   Child: 0  Id: gx of type int [mem: Global loc: 0 size: 1] [line: 8]
-< .   .   .   Child: 0  Id: gx of type int [mem: Global loc: 0 size: 1] [line: 9]
+5,8c5,8
 < .   .   .   .   Child: 0  Id: gy of array of type int [mem: Global loc: -2 size: 11] [line: 11]
 < .   .   .   .   Child: 0  Id: gy of array of type int [mem: Global loc: -2 size: 11] [line: 12]
 < .   .   .   .   Child: 0  Id: gy of array of type int [mem: Global loc: -2 size: 11] [line: 12]
 < .   .   .   .   Child: 0  Id: gy of array of type int [mem: Global loc: -2 size: 11] [line: 13]
-< .   .   .   Child: 0  Id: lx of type int [mem: Local loc: -2 size: 1] [line: 44]
-< .   .   .   Child: 0  Id: lx of type int [mem: Local loc: -2 size: 1] [line: 46]
+---
+> .   .   .   .   Child: 0  Id: gy of array of type int [mem: Global loc: -2 size: 1] [line: 11]
+> .   .   .   .   Child: 0  Id: gy of array of type int [mem: Global loc: -2 size: 1] [line: 12]
+> .   .   .   .   Child: 0  Id: gy of array of type int [mem: Global loc: -2 size: 1] [line: 12]
+> .   .   .   .   Child: 0  Id: gy of array of type int [mem: Global loc: -2 size: 1] [line: 13]
+11c11
 < .   .   .   .   .   Child: 0  Id: ly of array of type int [mem: Local loc: -4 size: 11] [line: 44]
-< .   .   .   Child: 0  Id: px of type int [mem: Parameter loc: -2 size: 1] [line: 24]
-< .   .   .   Child: 0  Id: px of type int [mem: Parameter loc: -2 size: 1] [line: 25]
-< .   .   .   Child: 0  Id: px of type int [mem: Parameter loc: -2 size: 1] [line: 26]
-< .   .   .   .   Child: 0  Id: py of array of type int [mem: Parameter loc: -3 size: 1] [line: 27]
-< .   .   .   .   Child: 0  Id: py of array of type int [mem: Parameter loc: -3 size: 1] [line: 28]
-< .   .   .   .   Child: 0  Id: py of array of type int [mem: Parameter loc: -3 size: 1] [line: 28]
-< .   .   .   .   Child: 0  Id: py of array of type int [mem: Parameter loc: -3 size: 1] [line: 29]
+---
+> .   .   .   .   .   Child: 0  Id: ly of array of type int [mem: Local loc: -4 size: 1] [line: 44]
+19,25c19,25
 < .   .   .   Child: 0  Id: sx of static type int [mem: LocalStatic loc: -12 size: 1] [line: 32]
 < .   .   .   Child: 0  Id: sx of static type int [mem: LocalStatic loc: -12 size: 1] [line: 33]
 < .   .   .   Child: 0  Id: sx of static type int [mem: LocalStatic loc: -12 size: 1] [line: 34]
@@ -24,70 +20,34 @@
 < .   .   .   .   Child: 0  Id: sy of static array of type int [mem: LocalStatic loc: -14 size: 11] [line: 36]
 < .   .   .   .   Child: 0  Id: sy of static array of type int [mem: LocalStatic loc: -14 size: 11] [line: 36]
 < .   .   .   .   Child: 0  Id: sy of static array of type int [mem: LocalStatic loc: -14 size: 11] [line: 37]
-< .   .   .   Child: 0  Id: x of type int [mem: Local loc: -4 size: 1] [line: 16]
-< .   .   .   Child: 0  Id: x of type int [mem: Local loc: -4 size: 1] [line: 17]
-< .   .   .   Child: 0  Id: x of type int [mem: Local loc: -4 size: 1] [line: 18]
+---
+> .   .   .   Child: 0  Id: sx of static type int [mem: LocalStatic loc: -2 size: 1] [line: 32]
+> .   .   .   Child: 0  Id: sx of static type int [mem: LocalStatic loc: -2 size: 1] [line: 33]
+> .   .   .   Child: 0  Id: sx of static type int [mem: LocalStatic loc: -2 size: 1] [line: 34]
+> .   .   .   .   Child: 0  Id: sy of static array of type int [mem: LocalStatic loc: -4 size: 1] [line: 35]
+> .   .   .   .   Child: 0  Id: sy of static array of type int [mem: LocalStatic loc: -4 size: 1] [line: 36]
+> .   .   .   .   Child: 0  Id: sy of static array of type int [mem: LocalStatic loc: -4 size: 1] [line: 36]
+> .   .   .   .   Child: 0  Id: sy of static array of type int [mem: LocalStatic loc: -4 size: 1] [line: 37]
+29,32c29,32
 < .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -6 size: 11] [line: 19]
 < .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -6 size: 11] [line: 20]
 < .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -6 size: 11] [line: 20]
 < .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -6 size: 11] [line: 21]
 ---
-> .   .   .   Child: 0  Id: gx of type int[mem: Global loc: 0 size: 1] [line: 10]
-> .   .   .   Child: 0  Id: gx of type int[mem: Global loc: 0 size: 1] [line: 45]
-> .   .   .   Child: 0  Id: gx of type int[mem: Global loc: 0 size: 1] [line: 8]
-> .   .   .   Child: 0  Id: gx of type int[mem: Global loc: 0 size: 1] [line: 9]
-> .   .   .   .   Child: 0  Id: gy of array of type int[mem: Global loc: -2 size: 1] [line: 11]
-> .   .   .   .   Child: 0  Id: gy of array of type int[mem: Global loc: -2 size: 1] [line: 12]
-> .   .   .   .   Child: 0  Id: gy of array of type int[mem: Global loc: -2 size: 1] [line: 12]
-> .   .   .   .   Child: 0  Id: gy of array of type int[mem: Global loc: -2 size: 1] [line: 13]
-> .   .   .   Child: 0  Id: lx of type int[mem: Local loc: -2 size: 1] [line: 44]
-> .   .   .   Child: 0  Id: lx of type int[mem: Local loc: -2 size: 1] [line: 46]
-> .   .   .   .   .   Child: 0  Id: ly of array of type int[mem: Local loc: -4 size: 1] [line: 44]
-> .   .   .   Child: 0  Id: px of type int[mem: Parameter loc: -2 size: 1] [line: 24]
-> .   .   .   Child: 0  Id: px of type int[mem: Parameter loc: -2 size: 1] [line: 25]
-> .   .   .   Child: 0  Id: px of type int[mem: Parameter loc: -2 size: 1] [line: 26]
-> .   .   .   .   Child: 0  Id: py of array of type int[mem: Parameter loc: -3 size: 1] [line: 27]
-> .   .   .   .   Child: 0  Id: py of array of type int[mem: Parameter loc: -3 size: 1] [line: 28]
-> .   .   .   .   Child: 0  Id: py of array of type int[mem: Parameter loc: -3 size: 1] [line: 28]
-> .   .   .   .   Child: 0  Id: py of array of type int[mem: Parameter loc: -3 size: 1] [line: 29]
-> .   .   .   Child: 0  Id: sx of static type int[mem: LocalStatic loc: -2 size: 1] [line: 32]
-> .   .   .   Child: 0  Id: sx of static type int[mem: LocalStatic loc: -2 size: 1] [line: 33]
-> .   .   .   Child: 0  Id: sx of static type int[mem: LocalStatic loc: -2 size: 1] [line: 34]
-> .   .   .   .   Child: 0  Id: sy of static array of type int[mem: LocalStatic loc: -4 size: 1] [line: 35]
-> .   .   .   .   Child: 0  Id: sy of static array of type int[mem: LocalStatic loc: -4 size: 1] [line: 36]
-> .   .   .   .   Child: 0  Id: sy of static array of type int[mem: LocalStatic loc: -4 size: 1] [line: 36]
-> .   .   .   .   Child: 0  Id: sy of static array of type int[mem: LocalStatic loc: -4 size: 1] [line: 37]
-> .   .   .   Child: 0  Id: x of type int[mem: Local loc: -4 size: 1] [line: 16]
-> .   .   .   Child: 0  Id: x of type int[mem: Local loc: -4 size: 1] [line: 17]
-> .   .   .   Child: 0  Id: x of type int[mem: Local loc: -4 size: 1] [line: 18]
-> .   .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -6 size: 1] [line: 19]
-> .   .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -6 size: 1] [line: 20]
-> .   .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -6 size: 1] [line: 20]
-> .   .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -6 size: 1] [line: 21]
-46,48c46,48
-< .   Child: 0  Parm: px of type int [mem: Parameter loc: -2 size: 1] [line: 3]
-< .   .   Child: 0  Var: lx of type int [mem: Local loc: -2 size: 1] [line: 42]
-< .   .   Child: 0  Var: x of type int [mem: Local loc: -4 size: 1] [line: 5]
----
-> .   Child: 0  Parm: px of type int[mem: Parameter loc: -2 size: 1] [line: 3]
-> .   .   Child: 0  Var: lx of type int[mem: Local loc: -2 size: 1] [line: 42]
-> .   .   Child: 0  Var: x of type int[mem: Local loc: -4 size: 1] [line: 5]
+> .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -6 size: 1] [line: 19]
+> .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -6 size: 1] [line: 20]
+> .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -6 size: 1] [line: 20]
+> .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -6 size: 1] [line: 21]
 52,53c52,53
 < .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 41]
 < .   Child: 1  Compound [mem: None loc: 0 size: -16] [line: 4]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 41]
-> .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 4]
-80,83c80,83
-< .   .   .   Child: 1  Id: gx of type int [mem: Global loc: 0 size: 1] [line: 9]
-< .   .   .   Child: 1  Id: px of type int [mem: Parameter loc: -2 size: 1] [line: 25]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 41]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 4]
+82c82
 < .   .   .   Child: 1  Id: sx of static type int [mem: LocalStatic loc: -12 size: 1] [line: 33]
-< .   .   .   Child: 1  Id: x of type int [mem: Local loc: -4 size: 1] [line: 17]
 ---
-> .   .   .   Child: 1  Id: gx of type int[mem: Global loc: 0 size: 1] [line: 9]
-> .   .   .   Child: 1  Id: px of type int[mem: Parameter loc: -2 size: 1] [line: 25]
-> .   .   .   Child: 1  Id: sx of static type int[mem: LocalStatic loc: -2 size: 1] [line: 33]
-> .   .   .   Child: 1  Id: x of type int[mem: Local loc: -4 size: 1] [line: 17]
+> .   .   .   Child: 1  Id: sx of static type int [mem: LocalStatic loc: -2 size: 1] [line: 33]
 90c90
 < Offset for end of global space: -24
 ---
@@ -100,25 +60,17 @@
 < .   .   Sibling: 1  Var: ly of array of type int [mem: Local loc: -4 size: 11] [line: 42]
 < .   .   Sibling: 1  Var: y of array of type int [mem: Local loc: -6 size: 11] [line: 5]
 ---
-> .   .   .   Sibling: 1  Id: gy of array of type int[mem: Global loc: -2 size: 1] [line: 45]
-> .   .   .   Sibling: 1  Id: ly of array of type int[mem: Local loc: -4 size: 1] [line: 46]
-> .   Sibling: 1  Parm: py is array of type int[mem: Parameter loc: -3 size: 1] [line: 3]
-> Sibling: 1  Var: gy of array of type int[mem: Global loc: -2 size: 1] [line: 2]
-> .   .   Sibling: 1  Var: ly of array of type int[mem: Local loc: -4 size: 1] [line: 42]
-> .   .   Sibling: 1  Var: y of array of type int[mem: Local loc: -6 size: 1] [line: 5]
-119,120c119,120
-< Sibling: 2  Func: fred returns type void [mem: Global loc: 0 size: -4] [line: 3]
+> .   .   .   Sibling: 1  Id: gy of array of type int [mem: Global loc: -2 size: 1] [line: 45]
+> .   .   .   Sibling: 1  Id: ly of array of type int [mem: Local loc: -4 size: 1] [line: 46]
+> .   Sibling: 1  Parm: py is array of type int [mem: Parameter loc: -3 size: 1] [line: 3]
+> Sibling: 1  Var: gy of array of type int [mem: Global loc: -2 size: 1] [line: 2]
+> .   .   Sibling: 1  Var: ly of array of type int [mem: Local loc: -4 size: 1] [line: 42]
+> .   .   Sibling: 1  Var: y of array of type int [mem: Local loc: -6 size: 1] [line: 5]
+120c120
 < .   .   Sibling: 2  Var: sx of static type int [mem: LocalStatic loc: -12 size: 1] [line: 6]
 ---
-> Sibling: 2  Func: fred returns type void[mem: Global loc: 0 size: -4] [line: 3]
-> .   .   Sibling: 2  Var: sx of static type int[mem: LocalStatic loc: -2 size: 1] [line: 6]
-122,123c122,123
-< Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 41]
+> .   .   Sibling: 2  Var: sx of static type int [mem: LocalStatic loc: -2 size: 1] [line: 6]
+123c123
 < .   .   Sibling: 3  Var: sy of static array of type int [mem: LocalStatic loc: -14 size: 11] [line: 6]
 ---
-> Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 41]
-> .   .   Sibling: 3  Var: sy of static array of type int[mem: LocalStatic loc: -4 size: 1] [line: 6]
-130c130
-< Var: gx of type int [mem: Global loc: 0 size: 1] [line: 2]
----
-> Var: gx of type int[mem: Global loc: 0 size: 1] [line: 2]
+> .   .   Sibling: 3  Var: sy of static array of type int [mem: LocalStatic loc: -4 size: 1] [line: 6]

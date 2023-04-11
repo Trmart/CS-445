@@ -1,32 +1,14 @@
-1,3c1,3
-< .   Child: 0  Parm: a of type char [mem: Parameter loc: -2 size: 1] [line: 3]
-< .   .   .   Child: 0  Var: a of static type char [mem: LocalStatic loc: -1 size: 1] [line: 11]
-< .   .   .   Child: 0  Var: a of type int [mem: Local loc: -3 size: 1] [line: 6]
+4,5c4,5
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 17]
+< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
 ---
-> .   Child: 0  Parm: a of type char[mem: Parameter loc: -2 size: 1] [line: 3]
-> .   .   .   Child: 0  Var: a of static type char[mem: LocalStatic loc: -1 size: 1] [line: 11]
-> .   .   .   Child: 0  Var: a of type int[mem: Local loc: -3 size: 1] [line: 6]
-6,9c6,9
-< .   .   .   Child: 1  Id: a of static type char [mem: LocalStatic loc: -1 size: 1] [line: 12]
-< .   .   Child: 1  Id: a of type char [mem: Parameter loc: -2 size: 1] [line: 4]
-< .   .   Child: 1  Id: a of type int [mem: Global loc: 0 size: 1] [line: 18]
-< .   .   .   Child: 1  Id: a of type int [mem: Local loc: -3 size: 1] [line: 7]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 17]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 3]
+13c13
+< .   .   Sibling: 1  Compound [mem: None loc: 0 size: -4] [line: 5]
 ---
-> .   .   .   Child: 1  Id: a of static type char[mem: LocalStatic loc: -1 size: 1] [line: 12]
-> .   .   Child: 1  Id: a of type char[mem: Parameter loc: -2 size: 1] [line: 4]
-> .   .   Child: 1  Id: a of type int[mem: Global loc: 0 size: 1] [line: 18]
-> .   .   .   Child: 1  Id: a of type int[mem: Local loc: -3 size: 1] [line: 7]
-14,16c14,16
-< Sibling: 1  Func: dog returns type void [mem: Global loc: 0 size: -3] [line: 3]
-< Sibling: 2  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 17]
-< .   .   Sibling: 2  Id: a of type char [mem: Parameter loc: -2 size: 1] [line: 9]
+> .   .   Sibling: 1  Compound  [mem: None loc: 0 size: -4] [line: 5]
+17c17
+< .   .   Sibling: 3  Compound [mem: None loc: 0 size: -3] [line: 10]
 ---
-> Sibling: 1  Func: dog returns type void[mem: Global loc: 0 size: -3] [line: 3]
-> Sibling: 2  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 17]
-> .   .   Sibling: 2  Id: a of type char[mem: Parameter loc: -2 size: 1] [line: 9]
-18,19c18,19
-< .   .   Sibling: 4  Id: a of type char [mem: Parameter loc: -2 size: 1] [line: 14]
-< Var: a of type int [mem: Global loc: 0 size: 1] [line: 1]
----
-> .   .   Sibling: 4  Id: a of type char[mem: Parameter loc: -2 size: 1] [line: 14]
-> Var: a of type int[mem: Global loc: 0 size: 1] [line: 1]
+> .   .   Sibling: 3  Compound  [mem: None loc: 0 size: -3] [line: 10]

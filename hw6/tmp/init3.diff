@@ -1,32 +1,4 @@
-6,11c6,11
-< .   .   .   Child: 0  Id: b of static type bool [mem: LocalStatic loc: -2 size: 1] [line: 13]
-< .   .   .   Child: 0  Id: c of static type char [mem: LocalStatic loc: -3 size: 1] [line: 14]
-< .   .   .   Child: 0  Id: x of type int [mem: Global loc: 0 size: 1] [line: 10]
-< .   .   .   Child: 0  Id: y of type int [mem: Local loc: -2 size: 1] [line: 11]
-< .   .   .   Child: 0  Id: z of static type int [mem: LocalStatic loc: -1 size: 1] [line: 12]
-< .   .   Child: 0  Var: y of type int [mem: Local loc: -2 size: 1] [line: 5]
+13c13
+< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 4]
 ---
-> .   .   .   Child: 0  Id: b of static type bool[mem: LocalStatic loc: -2 size: 1] [line: 13]
-> .   .   .   Child: 0  Id: c of static type char[mem: LocalStatic loc: -3 size: 1] [line: 14]
-> .   .   .   Child: 0  Id: x of type int[mem: Global loc: 0 size: 1] [line: 10]
-> .   .   .   Child: 0  Id: y of type int[mem: Local loc: -2 size: 1] [line: 11]
-> .   .   .   Child: 0  Id: z of static type int[mem: LocalStatic loc: -1 size: 1] [line: 12]
-> .   .   Child: 0  Var: y of type int[mem: Local loc: -2 size: 1] [line: 5]
-18,19c18,19
-< Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
-< .   .   Sibling: 1  Var: z of static type int [mem: LocalStatic loc: -1 size: 1] [line: 6]
----
-> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 4]
-> .   .   Sibling: 1  Var: z of static type int[mem: LocalStatic loc: -1 size: 1] [line: 6]
-21c21
-< .   .   Sibling: 2  Var: b of static type bool [mem: LocalStatic loc: -2 size: 1] [line: 7]
----
-> .   .   Sibling: 2  Var: b of static type bool[mem: LocalStatic loc: -2 size: 1] [line: 7]
-23c23
-< .   .   Sibling: 3  Var: c of static type char [mem: LocalStatic loc: -3 size: 1] [line: 8]
----
-> .   .   Sibling: 3  Var: c of static type char[mem: LocalStatic loc: -3 size: 1] [line: 8]
-25c25
-< Var: x of type int [mem: Global loc: 0 size: 1] [line: 2]
----
-> Var: x of type int[mem: Global loc: 0 size: 1] [line: 2]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 4]

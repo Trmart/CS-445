@@ -214,7 +214,7 @@ void printMemoryType(VarKind var)
 
 void printMemorySizeAndOffset(TreeNode* node)
 {
-    printf("[mem: ");
+    printf(" [mem: ");
     printMemoryType(node->memoryType);
     printf(" loc: %d size: %d]", node->memoryOffset, node->memorySize);
 }

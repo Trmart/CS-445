@@ -1,22 +1,8 @@
-3,8c3,8
-< .   .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -2 size: 1] [line: 10]
-< .   .   .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -2 size: 1] [line: 11]
-< .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -2 size: 1] [line: 14]
-< .   .   .   Child: 0  Id: i of type int [mem: Local loc: -2 size: 1] [line: 16]
-< .   .   .   Child: 0  Id: i of type int [mem: Local loc: -2 size: 1] [line: 6]
-< .   .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -2 size: 1] [line: 9]
+16,18c16,18
+< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 3]
+< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 7]
+< .   .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 8]
 ---
-> .   .   .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 10]
-> .   .   .   .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 11]
-> .   .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 14]
-> .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 16]
-> .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 6]
-> .   .   .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -2 size: 1] [line: 9]
-11c11
-< .   .   Child: 0  Var: i of type int [mem: Local loc: -2 size: 1] [line: 4]
----
-> .   .   Child: 0  Var: i of type int[mem: Local loc: -2 size: 1] [line: 4]
-23c23
-< Func: main returns type void [mem: Global loc: 0 size: -2] [line: 2]
----
-> Func: main returns type void[mem: Global loc: 0 size: -2] [line: 2]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 3]
+> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 7]
+> .   .   .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 8]

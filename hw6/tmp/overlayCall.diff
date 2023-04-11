@@ -1,15 +1,12 @@
 1c1
 < .   .   .   Child: 0  Var: x of array of type int [mem: Local loc: -3 size: 11] [line: 7]
 ---
-> .   .   .   Child: 0  Var: x of array of type int[mem: Local loc: -3 size: 1] [line: 7]
-3d2
+> .   .   .   Child: 0  Var: x of array of type int [mem: Local loc: -3 size: 1] [line: 7]
+3,5c3,5
 < .   .   Child: 1  Compound [mem: None loc: 0 size: -13] [line: 6]
-6c5,6
-< Func: dog returns type void [mem: Global loc: 0 size: -2] [line: 2]
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
 ---
-> .   .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 6]
-> Func: dog returns type void[mem: Global loc: 0 size: -2] [line: 2]
-11c11
-< Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
----
-> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 4]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 2]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 5]
+> .   .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 6]

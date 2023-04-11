@@ -1,30 +1,6 @@
-13,16c13,16
-< .   .   .   .   .   .   Child: 0  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
-< .   .   .   .   Child: 0  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
-< .   .   .   .   .   .   Child: 0  Id: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
-< .   .   .   .   Child: 0  Id: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
+21,22c21,22
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 5]
+< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 2]
 ---
-> .   .   .   .   .   .   Child: 0  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   .   .   Child: 0  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   .   .   .   .   Child: 0  Id: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
-> .   .   .   .   Child: 0  Id: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
-19c19
-< .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
----
-> .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-23,24c23,24
-< .   .   .   .   .   .   Child: 1  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 2]
-< .   .   .   .   .   .   Child: 1  Id: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
----
-> .   .   .   .   .   .   Child: 1  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   .   .   .   .   Child: 1  Id: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
-31c31
-< Func: comp returns type int [mem: Global loc: 0 size: -4] [line: 2]
----
-> Func: comp returns type int[mem: Global loc: 0 size: -4] [line: 2]
-41,42c41,42
-< Sibling: 1  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 4]
-< .   Sibling: 1  Parm: y of type int [mem: Parameter loc: -3 size: 1] [line: 2]
----
-> Sibling: 1  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 4]
-> .   Sibling: 1  Parm: y of type int[mem: Parameter loc: -3 size: 1] [line: 2]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 5]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 2]

@@ -1,116 +1,92 @@
-14,43c14,43
-< .   .   .   .   .   Child: 0  Id: ii of type int [mem: Local loc: -5 size: 1] [line: 51]
-< .   .   .   .   .   Child: 0  Id: ii of type int [mem: Local loc: -5 size: 1] [line: 52]
+16,18d15
 < .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -2 size: 1] [line: 25]
 < .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -3 size: 1] [line: 11]
 < .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -3 size: 1] [line: 16]
-< .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -3 size: 1] [line: 32]
-< .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -3 size: 1] [line: 7]
+21d17
 < .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -4 size: 1] [line: 21]
-< .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -4 size: 1] [line: 45]
-< .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -5 size: 1] [line: 43]
-< .   .   .   Child: 0  Id: i of type int [mem: Parameter loc: -2 size: 1] [line: 54]
-< .   Child: 0  Parm: i of type int [mem: Parameter loc: -2 size: 1] [line: 29]
-< .   Child: 0  Parm: i of type int [mem: Parameter loc: -2 size: 1] [line: 36]
-< .   .   Child: 0  Var: ii of type int [mem: Local loc: -3 size: 1] [line: 37]
-< .   .   .   .   Child: 0  Var: ii of type int [mem: Local loc: -5 size: 1] [line: 50]
+22a19
+> .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -5 size: 1] [line: 11]
+23a21,23
+> .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -6 size: 1] [line: 16]
+> .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -8 size: 1] [line: 21]
+> .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -8 size: 1] [line: 25]
+29,31d28
 < .   .   .   Child: 0  Var: i of type int [mem: Local loc: -2 size: 1] [line: 13]
 < .   .   .   Child: 0  Var: i of type int [mem: Local loc: -2 size: 1] [line: 18]
 < .   .   .   Child: 0  Var: i of type int [mem: Local loc: -2 size: 1] [line: 23]
-< .   .   .   Child: 0  Var: i of type int [mem: Local loc: -2 size: 1] [line: 5]
+33,35d29
 < .   .   .   Child: 0  Var: i of type int [mem: Local loc: -2 size: 1] [line: 8]
 < .   .   .   .   .   Child: 0  Var: i of type int [mem: Local loc: -3 size: 1] [line: 10]
 < .   .   .   .   .   Child: 0  Var: i of type int [mem: Local loc: -3 size: 1] [line: 15]
-< .   .   .   .   Child: 0  Var: i of type int [mem: Local loc: -3 size: 1] [line: 31]
-< .   .   .   .   Child: 0  Var: i of type int [mem: Local loc: -3 size: 1] [line: 6]
+38d31
 < .   .   .   .   .   Child: 0  Var: i of type int [mem: Local loc: -4 size: 1] [line: 20]
-< .   .   .   Child: 0  Var: i of type int [mem: Local loc: -4 size: 1] [line: 39]
-< .   .   .   Child: 0  Var: i of type int [mem: Local loc: -4 size: 1] [line: 48]
-< .   .   .   .   .   Child: 0  Var: i of type int [mem: Local loc: -5 size: 1] [line: 42]
+40a34,36
+> .   .   .   Child: 0  Var: i of type int [mem: Local loc: -4 size: 1] [line: 8]
+> .   .   .   .   .   Child: 0  Var: i of type int [mem: Local loc: -5 size: 1] [line: 10]
+> .   .   .   Child: 0  Var: i of type int [mem: Local loc: -5 size: 1] [line: 13]
+42,43c38,43
 < .   .   .   .   Child: 0  Var: z of type int [mem: Local loc: -3 size: 1] [line: 19]
 < .   .   .   .   Child: 0  Var: z of type int [mem: Local loc: -3 size: 1] [line: 24]
 ---
-> .   .   .   .   .   Child: 0  Id: ii of type int[mem: Local loc: -5 size: 1] [line: 51]
-> .   .   .   .   .   Child: 0  Id: ii of type int[mem: Local loc: -5 size: 1] [line: 52]
-> .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -3 size: 1] [line: 32]
-> .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -3 size: 1] [line: 7]
-> .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -4 size: 1] [line: 45]
-> .   .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -5 size: 1] [line: 11]
-> .   .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -5 size: 1] [line: 43]
-> .   .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -6 size: 1] [line: 16]
-> .   .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -8 size: 1] [line: 21]
-> .   .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -8 size: 1] [line: 25]
-> .   .   .   Child: 0  Id: i of type int[mem: Parameter loc: -2 size: 1] [line: 54]
-> .   Child: 0  Parm: i of type int[mem: Parameter loc: -2 size: 1] [line: 29]
-> .   Child: 0  Parm: i of type int[mem: Parameter loc: -2 size: 1] [line: 36]
-> .   .   Child: 0  Var: ii of type int[mem: Local loc: -3 size: 1] [line: 37]
-> .   .   .   .   Child: 0  Var: ii of type int[mem: Local loc: -5 size: 1] [line: 50]
-> .   .   .   Child: 0  Var: i of type int[mem: Local loc: -2 size: 1] [line: 5]
-> .   .   .   .   Child: 0  Var: i of type int[mem: Local loc: -3 size: 1] [line: 31]
-> .   .   .   .   Child: 0  Var: i of type int[mem: Local loc: -3 size: 1] [line: 6]
-> .   .   .   Child: 0  Var: i of type int[mem: Local loc: -4 size: 1] [line: 39]
-> .   .   .   Child: 0  Var: i of type int[mem: Local loc: -4 size: 1] [line: 48]
-> .   .   .   Child: 0  Var: i of type int[mem: Local loc: -4 size: 1] [line: 8]
-> .   .   .   .   .   Child: 0  Var: i of type int[mem: Local loc: -5 size: 1] [line: 10]
-> .   .   .   Child: 0  Var: i of type int[mem: Local loc: -5 size: 1] [line: 13]
-> .   .   .   .   .   Child: 0  Var: i of type int[mem: Local loc: -5 size: 1] [line: 42]
-> .   .   .   .   .   Child: 0  Var: i of type int[mem: Local loc: -6 size: 1] [line: 15]
-> .   .   .   Child: 0  Var: i of type int[mem: Local loc: -6 size: 1] [line: 18]
-> .   .   .   .   .   Child: 0  Var: i of type int[mem: Local loc: -8 size: 1] [line: 20]
-> .   .   .   Child: 0  Var: i of type int[mem: Local loc: -8 size: 1] [line: 23]
-> .   .   .   .   Child: 0  Var: z of type int[mem: Local loc: -7 size: 1] [line: 19]
-> .   .   .   .   Child: 0  Var: z of type int[mem: Local loc: -9 size: 1] [line: 24]
-52c52
+> .   .   .   .   .   Child: 0  Var: i of type int [mem: Local loc: -6 size: 1] [line: 15]
+> .   .   .   Child: 0  Var: i of type int [mem: Local loc: -6 size: 1] [line: 18]
+> .   .   .   .   .   Child: 0  Var: i of type int [mem: Local loc: -8 size: 1] [line: 20]
+> .   .   .   Child: 0  Var: i of type int [mem: Local loc: -8 size: 1] [line: 23]
+> .   .   .   .   Child: 0  Var: z of type int [mem: Local loc: -7 size: 1] [line: 19]
+> .   .   .   .   Child: 0  Var: z of type int [mem: Local loc: -9 size: 1] [line: 24]
+52,60c52,60
 < .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 4]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -10] [line: 4]
-55d54
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 57]
+< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 29]
 < .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 14]
-57,58c56
+< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 30]
 < .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 36]
 < .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 9]
+< .   .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 38]
+< .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 41]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 36]
-60a59,60
-> .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 9]
-> .   .   .   .   Child: 1  Compound [mem: None loc: 0 size: -7] [line: 14]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -10] [line: 4]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 57]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 29]
+> .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -4] [line: 30]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 36]
+> .   .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 38]
+> .   .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 41]
+> .   .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -6] [line: 9]
+> .   .   .   .   Child: 1  Compound  [mem: None loc: 0 size: -7] [line: 14]
 79c79
 < .   .   Child: 1  For [mem: None loc: 0 size: -3] [line: 5]
 ---
-> .   .   Child: 1  For [mem: None loc: 0 size: -4] [line: 5]
-92,93c92
+> .   .   Child: 1  For  [mem: None loc: 0 size: -4] [line: 5]
+92,97c92,97
 < .   .   .   .   Child: 2  Compound [mem: None loc: 0 size: -4] [line: 24]
 < .   .   .   .   Child: 2  Compound [mem: None loc: 0 size: -5] [line: 19]
----
-> .   .   .   .   Child: 2  Compound [mem: None loc: 0 size: -10] [line: 24]
-95,96c94,95
+< .   .   .   Child: 2  Compound [mem: None loc: 0 size: -6] [line: 49]
 < .   .   .   Child: 2  For [mem: None loc: 0 size: -4] [line: 19]
 < .   .   .   Child: 2  For [mem: None loc: 0 size: -4] [line: 24]
+< .   .   .   Child: 2  For [mem: None loc: 0 size: -4] [line: 6]
 ---
-> .   .   .   .   Child: 2  Compound [mem: None loc: 0 size: -9] [line: 19]
-> .   .   .   Child: 2  For [mem: None loc: 0 size: -10] [line: 24]
-97a97
-> .   .   .   Child: 2  For [mem: None loc: 0 size: -8] [line: 19]
-100c100
-< Func: fred returns type void [mem: Global loc: 0 size: -2] [line: 3]
----
-> Func: fred returns type void[mem: Global loc: 0 size: -2] [line: 3]
-106d105
+> .   .   .   .   Child: 2  Compound  [mem: None loc: 0 size: -10] [line: 24]
+> .   .   .   Child: 2  Compound  [mem: None loc: 0 size: -6] [line: 49]
+> .   .   .   .   Child: 2  Compound  [mem: None loc: 0 size: -9] [line: 19]
+> .   .   .   Child: 2  For  [mem: None loc: 0 size: -10] [line: 24]
+> .   .   .   Child: 2  For  [mem: None loc: 0 size: -4] [line: 6]
+> .   .   .   Child: 2  For  [mem: None loc: 0 size: -8] [line: 19]
+106,107c106,107
 < .   .   Sibling: 1  For [mem: None loc: 0 size: -3] [line: 8]
-108c107,108
-< Sibling: 1  Func: cat returns type void [mem: Global loc: 0 size: -3] [line: 29]
+< .   .   Sibling: 1  For [mem: None loc: 0 size: -5] [line: 48]
 ---
-> .   .   Sibling: 1  For [mem: None loc: 0 size: -5] [line: 8]
-> Sibling: 1  Func: cat returns type void[mem: Global loc: 0 size: -3] [line: 29]
-110,114c110,114
+> .   .   Sibling: 1  For  [mem: None loc: 0 size: -5] [line: 48]
+> .   .   Sibling: 1  For  [mem: None loc: 0 size: -5] [line: 8]
+110c110
 < .   .   Sibling: 2  For [mem: None loc: 0 size: -3] [line: 13]
-< Sibling: 2  Func: errorZ returns type void [mem: Global loc: 0 size: -3] [line: 36]
+---
+> .   .   Sibling: 2  For  [mem: None loc: 0 size: -6] [line: 13]
+112c112
 < .   .   Sibling: 3  For [mem: None loc: 0 size: -3] [line: 18]
-< Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 57]
+---
+> .   .   Sibling: 3  For  [mem: None loc: 0 size: -8] [line: 18]
+114c114
 < .   .   Sibling: 4  For [mem: None loc: 0 size: -3] [line: 23]
 ---
-> .   .   Sibling: 2  For [mem: None loc: 0 size: -6] [line: 13]
-> Sibling: 2  Func: errorZ returns type void[mem: Global loc: 0 size: -3] [line: 36]
-> .   .   Sibling: 3  For [mem: None loc: 0 size: -8] [line: 18]
-> Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 57]
-> .   .   Sibling: 4  For [mem: None loc: 0 size: -10] [line: 23]
+> .   .   Sibling: 4  For  [mem: None loc: 0 size: -10] [line: 23]

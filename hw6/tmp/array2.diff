@@ -1,15 +1,16 @@
-3,20c3,20
-< .   .   .   .   .   .   .   .   Child: 0  Id: i of type int [mem: Local loc: -4 size: 1] [line: 18]
+4,8c4,8
 < .   .   .   .   Child: 0  Id: w of array of type int [mem: Global loc: -1 size: 34] [line: 16]
 < .   .   .   .   .   .   Child: 0  Id: w of array of type int [mem: Global loc: -1 size: 34] [line: 18]
 < .   .   .   .   .   Child: 0  Id: w of array of type int [mem: Global loc: -1 size: 34] [line: 18]
 < .   .   .   .   .   .   .   .   Child: 0  Id: w of array of type int [mem: Global loc: -1 size: 34] [line: 9]
 < .   .   .   .   Child: 0  Id: w of array of type int [mem: Global loc: -1 size: 34] [line: 9]
-< .   .   .   .   Child: 0  Id: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 15]
-< .   .   .   .   .   Child: 0  Id: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 17]
-< .   .   .   .   .   .   .   Child: 0  Id: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 18]
-< .   .   .   .   .   .   Child: 0  Id: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 18]
-< .   .   .   .   .   Child: 0  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 7]
+---
+> .   .   .   .   Child: 0  Id: w of array of type int [mem: Global loc: -1 size: 1] [line: 16]
+> .   .   .   .   .   .   Child: 0  Id: w of array of type int [mem: Global loc: -1 size: 1] [line: 18]
+> .   .   .   .   .   Child: 0  Id: w of array of type int [mem: Global loc: -1 size: 1] [line: 18]
+> .   .   .   .   .   .   .   .   Child: 0  Id: w of array of type int [mem: Global loc: -1 size: 1] [line: 9]
+> .   .   .   .   Child: 0  Id: w of array of type int [mem: Global loc: -1 size: 1] [line: 9]
+14,20c14,20
 < .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -3 size: 21] [line: 24]
 < .   .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -4 size: 23] [line: 11]
 < .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -4 size: 23] [line: 7]
@@ -18,73 +19,48 @@
 < .   .   .   .   Child: 0  Id: z of type int [mem: Local loc: -26 size: 1] [line: 11]
 < .   .   .   Child: 0  Id: z of type int [mem: Local loc: -26 size: 1] [line: 8]
 ---
-> .   .   .   .   .   .   .   .   Child: 0  Id: i of type int[mem: Local loc: -4 size: 1] [line: 18]
-> .   .   .   .   Child: 0  Id: w of array of type int[mem: Global loc: -1 size: 1] [line: 16]
-> .   .   .   .   .   .   Child: 0  Id: w of array of type int[mem: Global loc: -1 size: 1] [line: 18]
-> .   .   .   .   .   Child: 0  Id: w of array of type int[mem: Global loc: -1 size: 1] [line: 18]
-> .   .   .   .   .   .   .   .   Child: 0  Id: w of array of type int[mem: Global loc: -1 size: 1] [line: 9]
-> .   .   .   .   Child: 0  Id: w of array of type int[mem: Global loc: -1 size: 1] [line: 9]
-> .   .   .   .   Child: 0  Id: x of array of type int[mem: Parameter loc: -2 size: 1] [line: 15]
-> .   .   .   .   .   Child: 0  Id: x of array of type int[mem: Parameter loc: -2 size: 1] [line: 17]
-> .   .   .   .   .   .   .   Child: 0  Id: x of array of type int[mem: Parameter loc: -2 size: 1] [line: 18]
-> .   .   .   .   .   .   Child: 0  Id: x of array of type int[mem: Parameter loc: -2 size: 1] [line: 18]
-> .   .   .   .   .   Child: 0  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 7]
-> .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -3 size: 1] [line: 24]
-> .   .   .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -4 size: 1] [line: 11]
-> .   .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -4 size: 1] [line: 7]
-> .   .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -4 size: 1] [line: 8]
-> .   .   .   .   .   .   Child: 0  Id: y of array of type int[mem: Local loc: -4 size: 1] [line: 9]
-> .   .   .   .   Child: 0  Id: z of type int[mem: Local loc: -4 size: 1] [line: 11]
-> .   .   .   Child: 0  Id: z of type int[mem: Local loc: -4 size: 1] [line: 8]
-33,37c33,37
+> .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -3 size: 1] [line: 24]
+> .   .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -4 size: 1] [line: 11]
+> .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -4 size: 1] [line: 7]
+> .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -4 size: 1] [line: 8]
+> .   .   .   .   .   .   Child: 0  Id: y of array of type int [mem: Local loc: -4 size: 1] [line: 9]
+> .   .   .   .   Child: 0  Id: z of type int [mem: Local loc: -4 size: 1] [line: 11]
+> .   .   .   Child: 0  Id: z of type int [mem: Local loc: -4 size: 1] [line: 8]
+33c33
 < .   Child: 0  Parm: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 14]
-< .   Child: 0  Parm: x of type int [mem: Parameter loc: -2 size: 1] [line: 4]
-< .   .   .   Child: 0  Var: i of type int [mem: Local loc: -4 size: 1] [line: 17]
+---
+> .   Child: 0  Parm: x is array of type int [mem: Parameter loc: -2 size: 1] [line: 14]
+36,37c36,37
 < .   .   Child: 0  Var: y of array of type int [mem: Local loc: -3 size: 21] [line: 22]
 < .   .   Child: 0  Var: y of array of type int [mem: Local loc: -4 size: 23] [line: 5]
 ---
-> .   Child: 0  Parm: x is array of type int[mem: Parameter loc: -2 size: 1] [line: 14]
-> .   Child: 0  Parm: x of type int[mem: Parameter loc: -2 size: 1] [line: 4]
-> .   .   .   Child: 0  Var: i of type int[mem: Local loc: -4 size: 1] [line: 17]
-> .   .   Child: 0  Var: y of array of type int[mem: Local loc: -3 size: 1] [line: 22]
-> .   .   Child: 0  Var: y of array of type int[mem: Local loc: -4 size: 1] [line: 5]
+> .   .   Child: 0  Var: y of array of type int [mem: Local loc: -3 size: 1] [line: 22]
+> .   .   Child: 0  Var: y of array of type int [mem: Local loc: -4 size: 1] [line: 5]
 41,43c41,43
 < .   Child: 1  Compound [mem: None loc: 0 size: -23] [line: 21]
 < .   Child: 1  Compound [mem: None loc: 0 size: -27] [line: 4]
 < .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 14]
 ---
-> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 21]
-> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 14]
-> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 4]
-57,60c57,60
-< .   .   .   .   .   .   Child: 1  Id: i of type int [mem: Local loc: -4 size: 1] [line: 18]
-< .   .   .   .   .   .   Child: 1  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 9]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 21]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 14]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -5] [line: 4]
+59c59
 < .   .   .   .   Child: 1  Id: z of type int [mem: Local loc: -26 size: 1] [line: 9]
-< .   .   .   .   .   Child: 1  Id: z of type int [mem: Parameter loc: -3 size: 1] [line: 18]
 ---
-> .   .   .   .   .   .   Child: 1  Id: i of type int[mem: Local loc: -4 size: 1] [line: 18]
-> .   .   .   .   .   .   Child: 1  Id: x of type int[mem: Parameter loc: -2 size: 1] [line: 9]
-> .   .   .   .   Child: 1  Id: z of type int[mem: Local loc: -4 size: 1] [line: 9]
-> .   .   .   .   .   Child: 1  Id: z of type int[mem: Parameter loc: -3 size: 1] [line: 18]
+> .   .   .   .   Child: 1  Id: z of type int [mem: Local loc: -4 size: 1] [line: 9]
 75c75
 < Offset for end of global space: -34
 ---
 > Offset for end of global space: -1
-80,82c80,82
-< Sibling: 1  Func: dog returns type int [mem: Global loc: 0 size: -3] [line: 4]
-< .   Sibling: 1  Parm: z of type int [mem: Parameter loc: -3 size: 1] [line: 14]
+82c82
 < .   .   Sibling: 1  Var: z of type int [mem: Local loc: -26 size: 1] [line: 5]
 ---
-> Sibling: 1  Func: dog returns type int[mem: Global loc: 0 size: -3] [line: 4]
-> .   Sibling: 1  Parm: z of type int[mem: Parameter loc: -3 size: 1] [line: 14]
-> .   .   Sibling: 1  Var: z of type int[mem: Local loc: -4 size: 1] [line: 5]
-85,86c85,86
-< Sibling: 2  Func: cat returns type void [mem: Global loc: 0 size: -4] [line: 14]
-< Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 21]
+> .   .   Sibling: 1  Var: z of type int [mem: Local loc: -4 size: 1] [line: 5]
+84c84
+< .   .   Sibling: 2  For [mem: None loc: 0 size: -5] [line: 17]
 ---
-> Sibling: 2  Func: cat returns type void[mem: Global loc: 0 size: -4] [line: 14]
-> Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 21]
+> .   .   Sibling: 2  For  [mem: None loc: 0 size: -5] [line: 17]
 88c88
 < Var: w of array of type int [mem: Global loc: -1 size: 34] [line: 2]
 ---
-> Var: w of array of type int[mem: Global loc: -1 size: 1] [line: 2]
+> Var: w of array of type int [mem: Global loc: -1 size: 1] [line: 2]

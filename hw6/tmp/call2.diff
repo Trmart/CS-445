@@ -1,54 +1,28 @@
-1,11c1,11
+1,3c1,3
 < .   .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 11] [line: 27]
 < .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 11] [line: 28]
 < .   .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 11] [line: 29]
-< .   .   .   .   Child: 0  Id: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 17]
-< .   .   .   Child: 0  Id: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 18]
-< .   .   .   .   Child: 0  Id: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 19]
-< .   .   .   .   Child: 0  Id: y of array of type int [mem: Parameter loc: -2 size: 1] [line: 10]
-< .   .   .   Child: 0  Id: y of array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
-< .   .   .   .   Child: 0  Id: y of array of type int [mem: Parameter loc: -2 size: 1] [line: 12]
-< .   .   .   .   Child: 0  Id: z of array of type int [mem: Parameter loc: -2 size: 1] [line: 3]
-< .   .   .   .   Child: 0  Id: z of array of type int [mem: Parameter loc: -2 size: 1] [line: 4]
 ---
-> .   .   .   .   Child: 0  Id: w of array of type int[mem: Local loc: -3 size: 1] [line: 27]
-> .   .   .   Child: 0  Id: w of array of type int[mem: Local loc: -3 size: 1] [line: 28]
-> .   .   .   .   Child: 0  Id: w of array of type int[mem: Local loc: -3 size: 1] [line: 29]
-> .   .   .   .   Child: 0  Id: x of array of type int[mem: Parameter loc: -2 size: 1] [line: 17]
-> .   .   .   Child: 0  Id: x of array of type int[mem: Parameter loc: -2 size: 1] [line: 18]
-> .   .   .   .   Child: 0  Id: x of array of type int[mem: Parameter loc: -2 size: 1] [line: 19]
-> .   .   .   .   Child: 0  Id: y of array of type int[mem: Parameter loc: -2 size: 1] [line: 10]
-> .   .   .   Child: 0  Id: y of array of type int[mem: Parameter loc: -2 size: 1] [line: 11]
-> .   .   .   .   Child: 0  Id: y of array of type int[mem: Parameter loc: -2 size: 1] [line: 12]
-> .   .   .   .   Child: 0  Id: z of array of type int[mem: Parameter loc: -2 size: 1] [line: 3]
-> .   .   .   .   Child: 0  Id: z of array of type int[mem: Parameter loc: -2 size: 1] [line: 4]
+> .   .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 1] [line: 27]
+> .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 1] [line: 28]
+> .   .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 1] [line: 29]
 20,23c20,23
 < .   Child: 0  Parm: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 16]
 < .   Child: 0  Parm: y of array of type int [mem: Parameter loc: -2 size: 1] [line: 9]
 < .   Child: 0  Parm: z of array of type int [mem: Parameter loc: -2 size: 1] [line: 2]
 < .   .   Child: 0  Var: w of array of type int [mem: Local loc: -3 size: 11] [line: 25]
 ---
-> .   Child: 0  Parm: x is array of type int[mem: Parameter loc: -2 size: 1] [line: 16]
-> .   Child: 0  Parm: y is array of type int[mem: Parameter loc: -2 size: 1] [line: 9]
-> .   Child: 0  Parm: z is array of type int[mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   Child: 0  Var: w of array of type int[mem: Local loc: -3 size: 1] [line: 25]
-28d27
+> .   Child: 0  Parm: x is array of type int [mem: Parameter loc: -2 size: 1] [line: 16]
+> .   Child: 0  Parm: y is array of type int [mem: Parameter loc: -2 size: 1] [line: 9]
+> .   Child: 0  Parm: z is array of type int [mem: Parameter loc: -2 size: 1] [line: 2]
+> .   .   Child: 0  Var: w of array of type int [mem: Local loc: -3 size: 1] [line: 25]
+28,31c28,31
 < .   Child: 1  Compound [mem: None loc: 0 size: -13] [line: 24]
-30a30
-> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 24]
-42c42
-< Func: three returns type void [mem: Global loc: 0 size: -3] [line: 2]
+< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 16]
+< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 2]
+< .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 9]
 ---
-> Func: three returns type void[mem: Global loc: 0 size: -3] [line: 2]
-50c50
-< Sibling: 1  Func: two returns type void [mem: Global loc: 0 size: -3] [line: 9]
----
-> Sibling: 1  Func: two returns type void[mem: Global loc: 0 size: -3] [line: 9]
-55c55
-< Sibling: 2  Func: one returns type void [mem: Global loc: 0 size: -3] [line: 16]
----
-> Sibling: 2  Func: one returns type void[mem: Global loc: 0 size: -3] [line: 16]
-57c57
-< Sibling: 3  Func: main returns type void [mem: Global loc: 0 size: -2] [line: 23]
----
-> Sibling: 3  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 23]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 16]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 2]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 24]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -3] [line: 9]

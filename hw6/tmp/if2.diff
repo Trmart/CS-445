@@ -1,4 +1,4 @@
-61c61
-< Func: main returns type int [mem: Global loc: 0 size: -2] [line: 1]
+25c25
+< .   Child: 1  Compound [mem: None loc: 0 size: -2] [line: 2]
 ---
-> Func: main returns type int[mem: Global loc: 0 size: -2] [line: 1]
+> .   Child: 1  Compound  [mem: None loc: 0 size: -2] [line: 2]
