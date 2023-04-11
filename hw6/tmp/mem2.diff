@@ -19,7 +19,7 @@
 < .   .   .   Child: 1  Const "reconnaissance" of array of type char [mem: Global loc: -15 size: 15] [line: 11]
 < .   .   .   Child: 1  Id: x of type int [mem: Parameter loc: -2 size: 1] [line: 10]
 ---
-> .   .   .   Child: 1  Const is array "reconnaissance" of type char[mem: None loc: 0 size: 1] [line: 11]
+> .   .   .   Child: 1  Const is array "reconnaissance" of type char[mem: Global loc: -5 size: 1] [line: 11]
 > .   .   .   Child: 1  Id: x of type int[mem: None loc: 0 size: 1] [line: 10]
 14d13
 < Offset for end of global space: -30
@@ -50,7 +50,7 @@
 > .   .   Sibling: 2  Var: b of type bool[mem: Local loc: -7 size: 1] [line: 6]
 > .   .   Sibling: 3  Compound [mem: None loc: 0 size: -12] [line: 14]
 > .   .   Sibling: 3  Var: bb of array of type bool[mem: Local loc: -9 size: 1] [line: 6]
-> Sibling: 3  Var: h of type int[mem: Global loc: -4 size: 1] [line: 17]
+> Sibling: 3  Var: h of type int[mem: Global loc: -5 size: 1] [line: 17]
 > Sibling: 4  Func: main returns type void[mem: Global loc: 0 size: -2] [line: 19]
 > .   .   Sibling: 4  Var: c of type char[mem: Local loc: -9 size: 1] [line: 7]
 > .   .   Sibling: 5  Var: cc of array of type char[mem: Local loc: -11 size: 1] [line: 7]

@@ -14,7 +14,7 @@
 .   .   .   .   Child: 1  Const 666 of type int [line: 8]
 .   .   .   .   Child: 1  Const 666 of type int [line: 9]
 .   .   .   .   Child: 1  Const 777 of type int [line: 9]
-.   .   .   Child: 1  Const is array "dog" of type char[mem: None loc: 0 size: 1] [line: 10]
+.   .   .   Child: 1  Const is array "dog" of type char[mem: Global loc: -1 size: 1] [line: 10]
 .   .   .   Child: 1  Const 'Q' of type char [line: 8]
 .   .   .   Child: 1  Id: a of array of type char[mem: None loc: 0 size: 1] [line: 11]
 .   .   .   Child: 1  Id: a of array of type char[mem: None loc: 0 size: 1] [line: 12]

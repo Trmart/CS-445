@@ -1404,6 +1404,14 @@ void analyzeConst(TreeNode* node, int& nErrors, int& nWarnings)
             }
         }
     }
+
+    if(node->expType == CharInt)
+    {
+        node->memoryType = Global;
+        node->memoryOffset = globalOffset - 1;
+        node->memorySize = node->arraySize + 1;
+        globalOffset -= node->memorySize;
+    }
 }
 
 //analyze Id Expression

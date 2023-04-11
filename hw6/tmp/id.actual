@@ -1,7 +1,7 @@
 .   .   .   .   Child: 0  Const 1 of type int [line: 14]
 .   .   .   Child: 0  Const 665 of type int [line: 9]
 .   .   .   .   Child: 0  Const 720 of type int [line: 22]
-.   .   .   Child: 0  Const is array "dogs" of type char[mem: None loc: 0 size: 1] [line: 10]
+.   .   .   Child: 0  Const is array "dogs" of type char[mem: Global loc: -1 size: 1] [line: 10]
 .   .   .   Child: 0  Const true of type bool [line: 13]
 .   .   .   Child: 0  Const 'x' of type char [line: 11]
 .   .   .   .   .   Child: 0  Id: b of array of type int[mem: None loc: 0 size: 1] [line: 3]
