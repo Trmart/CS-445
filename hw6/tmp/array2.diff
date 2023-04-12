@@ -1,4 +1,0 @@
-33c33
-< .   Child: 0  Parm: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 14]
----
-> .   Child: 0  Parm: x is array of type int [mem: Parameter loc: -2 size: 1] [line: 14]

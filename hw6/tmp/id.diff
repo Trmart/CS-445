@@ -1,4 +1,0 @@
-32c32
-< .   Sibling: 1  Parm: b of array of type int [mem: Parameter loc: -3 size: 1] [line: 1]
----
-> .   Sibling: 1  Parm: b is array of type int [mem: Parameter loc: -3 size: 1] [line: 1]

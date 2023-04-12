@@ -433,7 +433,7 @@ void printDeclNode(TreeNode* tree, bool isShowingTypes)
                 {
                     if(tree->isArray)
                     {
-                        printf("Parm: %s is array of type ", tree->attr.name);
+                        printf("Parm: %s of array of type ", tree->attr.name);
                         printExp(tree->expType);
 
                         if (isPrintingMemorySize)

@@ -1,4 +1,0 @@
-20c20
-< .   Sibling: 2  Parm: pc of array of type char [mem: Parameter loc: -4 size: 1] [line: 4]
----
-> .   Sibling: 2  Parm: pc is array of type char [mem: Parameter loc: -4 size: 1] [line: 4]

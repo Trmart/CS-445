@@ -1,8 +1,0 @@
-20,22c20,22
-< .   Child: 0  Parm: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 16]
-< .   Child: 0  Parm: y of array of type int [mem: Parameter loc: -2 size: 1] [line: 9]
-< .   Child: 0  Parm: z of array of type int [mem: Parameter loc: -2 size: 1] [line: 2]
----
-> .   Child: 0  Parm: x is array of type int [mem: Parameter loc: -2 size: 1] [line: 16]
-> .   Child: 0  Parm: y is array of type int [mem: Parameter loc: -2 size: 1] [line: 9]
-> .   Child: 0  Parm: z is array of type int [mem: Parameter loc: -2 size: 1] [line: 2]
