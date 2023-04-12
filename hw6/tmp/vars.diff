@@ -3,30 +3,10 @@
 < .   .   .   Child: 0  Const "epistolatory" of array of type char [mem: Global loc: -68 size: 13] [line: 11]
 < .   .   .   Child: 0  Const "retrogressive" of array of type char [mem: Global loc: -53 size: 14] [line: 9]
 ---
-> .   Child: 0  Const is array "cry havoc and let slip the dogs of war." of type char [mem: Global loc: -2 size: 1] [line: 2]
-> .   .   .   Child: 0  Const is array "epistolatory" of type char [mem: Global loc: -6 size: 1] [line: 11]
-> .   .   .   Child: 0  Const is array "retrogressive" of type char [mem: Global loc: -4 size: 1] [line: 9]
-8c8
-< .   Child: 1  Compound [mem: None loc: 0 size: -14] [line: 7]
----
-> .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 7]
-15c15
-< Offset for end of global space: -101
----
-> Offset for end of global space: -7
-17,18c17,18
-< .   .   Sibling: 1  Var: ca of array of type char [mem: Local loc: -4 size: 11] [line: 9]
-< Sibling: 1  Var: gca of array of type char [mem: Global loc: -42 size: 11] [line: 2]
----
-> .   .   Sibling: 1  Var: ca of array of type char [mem: Local loc: -4 size: 1] [line: 9]
-> Sibling: 1  Var: gca of array of type char [mem: Global loc: -3 size: 1] [line: 2]
-20,21c20,21
+> .   Child: 0  Const is array "cry havoc and let slip the dogs of war." of type char [mem: Global loc: -2 size: 40] [line: 2]
+> .   .   .   Child: 0  Const is array "epistolatory" of type char [mem: Global loc: -68 size: 13] [line: 11]
+> .   .   .   Child: 0  Const is array "retrogressive" of type char [mem: Global loc: -53 size: 14] [line: 9]
+20c20
 < .   Sibling: 2  Parm: pc of array of type char [mem: Parameter loc: -4 size: 1] [line: 4]
-< .   .   Sibling: 2  Var: sa of static type int [mem: LocalStatic loc: -66 size: 1] [line: 10]
 ---
 > .   Sibling: 2  Parm: pc is array of type char [mem: Parameter loc: -4 size: 1] [line: 4]
-> .   .   Sibling: 2  Var: sa of static type int [mem: LocalStatic loc: -4 size: 1] [line: 10]
-23c23
-< .   .   Sibling: 3  Var: sca of static array of type char [mem: LocalStatic loc: -81 size: 21] [line: 11]
----
-> .   .   Sibling: 3  Var: sca of static array of type char [mem: LocalStatic loc: -7 size: 1] [line: 11]

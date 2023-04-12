@@ -1,44 +1,10 @@
-34,40c34,40
-< .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 11] [line: 102]
-< .   .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 11] [line: 113]
-< .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 11] [line: 114]
-< .   .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 11] [line: 115]
-< .   .   .   .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 11] [line: 91]
-< .   .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 11] [line: 97]
-< .   .   .   .   Child: 0  Id: s of array of type int [mem: Local loc: -16 size: 11] [line: 98]
----
-> .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 1] [line: 102]
-> .   .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 1] [line: 113]
-> .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 1] [line: 114]
-> .   .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 1] [line: 115]
-> .   .   .   .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 1] [line: 91]
-> .   .   .   .   Child: 0  Id: r of array of type int [mem: Local loc: -5 size: 1] [line: 97]
-> .   .   .   .   Child: 0  Id: s of array of type int [mem: Local loc: -6 size: 1] [line: 98]
 80,81c80,81
 < .   Child: 0  Parm: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 77]
 < .   Child: 0  Parm: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 8]
 ---
 > .   Child: 0  Parm: x is array of type int [mem: Parameter loc: -2 size: 1] [line: 77]
 > .   Child: 0  Parm: x is array of type int [mem: Parameter loc: -2 size: 1] [line: 8]
-105,106d104
-< .   Child: 1  Compound [mem: None loc: 0 size: -26] [line: 86]
-< .   .   .   Child: 1  Compound [mem: None loc: 0 size: -26] [line: 90]
-117a116,117
-> .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 86]
-> .   .   .   Child: 1  Compound [mem: None loc: 0 size: -6] [line: 90]
-192c192
-< .   .   .   Sibling: 1  Id: r of array of type int [mem: Local loc: -5 size: 11] [line: 109]
----
-> .   .   .   Sibling: 1  Id: r of array of type int [mem: Local loc: -5 size: 1] [line: 109]
 197c197
 < .   Sibling: 1  Parm: y of array of type int [mem: Parameter loc: -3 size: 1] [line: 52]
 ---
 > .   Sibling: 1  Parm: y is array of type int [mem: Parameter loc: -3 size: 1] [line: 52]
-212c212
-< .   .   Sibling: 2  Var: r of array of type int [mem: Local loc: -5 size: 11] [line: 87]
----
-> .   .   Sibling: 2  Var: r of array of type int [mem: Local loc: -5 size: 1] [line: 87]
-216c216
-< .   .   Sibling: 3  Var: s of array of type int [mem: Local loc: -16 size: 11] [line: 87]
----
-> .   .   Sibling: 3  Var: s of array of type int [mem: Local loc: -6 size: 1] [line: 87]

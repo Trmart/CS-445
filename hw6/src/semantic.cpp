@@ -749,7 +749,7 @@ void analyzeCompound(TreeNode* node, int& nErrors, int& nWarnings)
 {
     bool isInCurScope = scopeDepth;
 
-    int currentSize = localOffset; 
+    int compoundSize = localOffset; 
 
     if(isInCurScope)
     {
@@ -772,7 +772,7 @@ void analyzeCompound(TreeNode* node, int& nErrors, int& nWarnings)
     }
 
     node->memorySize = localOffset; 
-    localOffset = currentSize;
+    localOffset = compoundSize;
     node->memoryType = None; 
 }
 

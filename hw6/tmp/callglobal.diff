@@ -1,46 +1,12 @@
-9,10c9,10
-< .   .   .   .   Child: 0  Id: XX of array of type int [mem: Global loc: -4 size: 4] [line: 29]
-< .   .   .   Child: 0  Id: XX of array of type int [mem: Global loc: -4 size: 4] [line: 34]
----
-> .   .   .   .   Child: 0  Id: XX of array of type int [mem: Global loc: -4 size: 1] [line: 29]
-> .   .   .   Child: 0  Id: XX of array of type int [mem: Global loc: -4 size: 1] [line: 34]
-12c12
-< .   .   .   .   Child: 0  Id: YY of array of type bool [mem: Global loc: -8 size: 6] [line: 30]
----
-> .   .   .   .   Child: 0  Id: YY of array of type bool [mem: Global loc: -5 size: 1] [line: 30]
-14c14
-< .   .   .   .   Child: 0  Id: ZZ of array of type char [mem: Global loc: -14 size: 8] [line: 31]
----
-> .   .   .   .   Child: 0  Id: ZZ of array of type char [mem: Global loc: -6 size: 1] [line: 31]
 21c21
 < .   Child: 0  Parm: a of array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
 ---
 > .   Child: 0  Parm: a is array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
-44c44
-< Offset for end of global space: -21
----
-> Offset for end of global space: -6
-50,51c50,51
-< .   .   .   Sibling: 1  Id: YY of array of type bool [mem: Global loc: -8 size: 6] [line: 34]
+51c51
 < .   Sibling: 1  Parm: b of array of type bool [mem: Parameter loc: -3 size: 1] [line: 11]
 ---
-> .   .   .   Sibling: 1  Id: YY of array of type bool [mem: Global loc: -5 size: 1] [line: 34]
 > .   Sibling: 1  Parm: b is array of type bool [mem: Parameter loc: -3 size: 1] [line: 11]
-57,58c57,58
-< .   .   .   Sibling: 2  Id: ZZ of array of type char [mem: Global loc: -14 size: 8] [line: 34]
+58c58
 < .   Sibling: 2  Parm: c of array of type char [mem: Parameter loc: -4 size: 1] [line: 11]
 ---
-> .   .   .   Sibling: 2  Id: ZZ of array of type char [mem: Global loc: -6 size: 1] [line: 34]
 > .   Sibling: 2  Parm: c is array of type char [mem: Parameter loc: -4 size: 1] [line: 11]
-68c68
-< Sibling: 5  Var: XX of array of type int [mem: Global loc: -4 size: 4] [line: 21]
----
-> Sibling: 5  Var: XX of array of type int [mem: Global loc: -4 size: 1] [line: 21]
-70c70
-< Sibling: 6  Var: YY of array of type bool [mem: Global loc: -8 size: 6] [line: 21]
----
-> Sibling: 6  Var: YY of array of type bool [mem: Global loc: -5 size: 1] [line: 21]
-72c72
-< Sibling: 7  Var: ZZ of array of type char [mem: Global loc: -14 size: 8] [line: 21]
----
-> Sibling: 7  Var: ZZ of array of type char [mem: Global loc: -6 size: 1] [line: 21]

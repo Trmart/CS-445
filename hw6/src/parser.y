@@ -125,6 +125,7 @@ varDeclarationId
               | ID OBRACKET NUMCONST CBRACKET                    { $$ = newDeclNode(VarK, $1);       
                                                                    $$->attr.name = $1->tokenstr;
                                                                    $$->isArray = true;
+                                                                   $$->arraySize = $3->nvalue;
                                                                    $$->thisTokenData = $1; 
                                                                    $$->expType = UndefinedType;
                                                                  }
@@ -540,6 +541,7 @@ constant      : NUMCONST                                         { $$ = newExpNo
                                                                    $$->attr.string = $1->stringvalue;
                                                                    $$->isArray = true;
                                                                    $$->expType = CharInt;
+                                                                   $$->arraySize = $1->strlength;
                                                                  }
               ;                                                             
 %%

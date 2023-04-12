@@ -6,12 +6,12 @@
 < .   .   .   Child: 0  Id: z of type char [mem: Local loc: -3 size: 1] [line: 27]
 < .   .   .   .   Child: 0  Id: ZZ of array of type char [mem: Local loc: -11 size: 8] [line: 31]
 ---
-> .   .   .   .   Child: 0  Id: XX of static array of type int [mem: LocalStatic loc: -4 size: 1] [line: 29]
-> .   .   .   Child: 0  Id: XX of static array of type int [mem: LocalStatic loc: -4 size: 1] [line: 34]
+> .   .   .   .   Child: 0  Id: XX of static array of type int [mem: LocalStatic loc: -4 size: 4] [line: 29]
+> .   .   .   Child: 0  Id: XX of static array of type int [mem: LocalStatic loc: -4 size: 4] [line: 34]
 > .   .   .   Child: 0  Id: y of static type bool [mem: LocalStatic loc: -1 size: 1] [line: 26]
-> .   .   .   .   Child: 0  Id: YY of static array of type bool [mem: LocalStatic loc: -5 size: 1] [line: 30]
+> .   .   .   .   Child: 0  Id: YY of static array of type bool [mem: LocalStatic loc: -8 size: 6] [line: 30]
 > .   .   .   Child: 0  Id: z of static type char [mem: LocalStatic loc: -2 size: 1] [line: 27]
-> .   .   .   .   Child: 0  Id: ZZ of static array of type char [mem: LocalStatic loc: -6 size: 1] [line: 31]
+> .   .   .   .   Child: 0  Id: ZZ of static array of type char [mem: LocalStatic loc: -14 size: 8] [line: 31]
 21c21
 < .   Child: 0  Parm: a of array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
 ---
@@ -23,14 +23,14 @@
 45c45
 < Offset for end of global space: -5
 ---
-> Offset for end of global space: -6
+> Offset for end of global space: -21
 50,52c50,52
 < .   .   .   Sibling: 1  Id: y of type bool [mem: Local loc: -2 size: 1] [line: 33]
 < .   .   .   Sibling: 1  Id: YY of array of type bool [mem: Local loc: -5 size: 6] [line: 34]
 < .   Sibling: 1  Parm: b of array of type bool [mem: Parameter loc: -3 size: 1] [line: 11]
 ---
 > .   .   .   Sibling: 1  Id: y of static type bool [mem: LocalStatic loc: -1 size: 1] [line: 33]
-> .   .   .   Sibling: 1  Id: YY of static array of type bool [mem: LocalStatic loc: -5 size: 1] [line: 34]
+> .   .   .   Sibling: 1  Id: YY of static array of type bool [mem: LocalStatic loc: -8 size: 6] [line: 34]
 > .   Sibling: 1  Parm: b is array of type bool [mem: Parameter loc: -3 size: 1] [line: 11]
 54c54
 < .   .   Sibling: 1  Var: y of type bool [mem: Local loc: -2 size: 1] [line: 22]
@@ -42,7 +42,7 @@
 < .   Sibling: 2  Parm: c of array of type char [mem: Parameter loc: -4 size: 1] [line: 11]
 ---
 > .   .   .   Sibling: 2  Id: z of static type char [mem: LocalStatic loc: -2 size: 1] [line: 33]
-> .   .   .   Sibling: 2  Id: ZZ of static array of type char [mem: LocalStatic loc: -6 size: 1] [line: 34]
+> .   .   .   Sibling: 2  Id: ZZ of static array of type char [mem: LocalStatic loc: -14 size: 8] [line: 34]
 > .   Sibling: 2  Parm: c is array of type char [mem: Parameter loc: -4 size: 1] [line: 11]
 63c63
 < .   .   Sibling: 2  Var: z of type char [mem: Local loc: -3 size: 1] [line: 22]
@@ -51,12 +51,12 @@
 67c67
 < .   .   Sibling: 3  Var: XX of static array of type int [mem: LocalStatic loc: -2 size: 4] [line: 23]
 ---
-> .   .   Sibling: 3  Var: XX of static array of type int [mem: LocalStatic loc: -4 size: 1] [line: 23]
+> .   .   Sibling: 3  Var: XX of static array of type int [mem: LocalStatic loc: -4 size: 4] [line: 23]
 69c69
 < .   .   Sibling: 4  Var: YY of array of type bool [mem: Local loc: -5 size: 6] [line: 23]
 ---
-> .   .   Sibling: 4  Var: YY of static array of type bool [mem: LocalStatic loc: -5 size: 1] [line: 23]
+> .   .   Sibling: 4  Var: YY of static array of type bool [mem: LocalStatic loc: -8 size: 6] [line: 23]
 71c71
 < .   .   Sibling: 5  Var: ZZ of array of type char [mem: Local loc: -11 size: 8] [line: 23]
 ---
-> .   .   Sibling: 5  Var: ZZ of static array of type char [mem: LocalStatic loc: -6 size: 1] [line: 23]
+> .   .   Sibling: 5  Var: ZZ of static array of type char [mem: LocalStatic loc: -14 size: 8] [line: 23]

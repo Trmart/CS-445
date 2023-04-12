@@ -1,12 +1,8 @@
 4c4
 < .   .   .   Child: 0  Const "dog" of array of type char [mem: Global loc: -1 size: 4] [line: 8]
 ---
-> .   .   .   Child: 0  Const is array "dog" of type char [mem: Global loc: -1 size: 1] [line: 8]
+> .   .   .   Child: 0  Const is array "dog" of type char [mem: Global loc: -1 size: 4] [line: 8]
 11c11
 < .   .   .   Child: 1  Const "cat" of array of type char [mem: Global loc: -5 size: 4] [line: 8]
 ---
-> .   .   .   Child: 1  Const is array "cat" of type char [mem: Global loc: -2 size: 1] [line: 8]
-20c20
-< Offset for end of global space: -8
----
-> Offset for end of global space: -2
+> .   .   .   Child: 1  Const is array "cat" of type char [mem: Global loc: -5 size: 4] [line: 8]

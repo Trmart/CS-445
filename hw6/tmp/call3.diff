@@ -1,22 +1,8 @@
-2,4c2,4
-< .   .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 11] [line: 33]
-< .   .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 11] [line: 34]
-< .   .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 11] [line: 35]
----
-> .   .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 1] [line: 33]
-> .   .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 1] [line: 34]
-> .   .   .   .   Child: 0  Id: w of array of type int [mem: Local loc: -3 size: 1] [line: 35]
-27,30c27,30
+27,29c27,29
 < .   Child: 0  Parm: x of array of type int [mem: Parameter loc: -2 size: 1] [line: 20]
 < .   Child: 0  Parm: y of array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
 < .   Child: 0  Parm: z of array of type int [mem: Parameter loc: -2 size: 1] [line: 2]
-< .   .   Child: 0  Var: w of array of type int [mem: Local loc: -3 size: 11] [line: 31]
 ---
 > .   Child: 0  Parm: x is array of type int [mem: Parameter loc: -2 size: 1] [line: 20]
 > .   Child: 0  Parm: y is array of type int [mem: Parameter loc: -2 size: 1] [line: 11]
 > .   Child: 0  Parm: z is array of type int [mem: Parameter loc: -2 size: 1] [line: 2]
-> .   .   Child: 0  Var: w of array of type int [mem: Local loc: -3 size: 1] [line: 31]
-35d34
-< .   Child: 1  Compound [mem: None loc: 0 size: -13] [line: 30]
-38a38
-> .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 30]
