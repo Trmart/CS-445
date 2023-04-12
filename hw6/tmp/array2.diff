@@ -36,13 +36,12 @@
 ---
 > .   .   Child: 0  Var: y of array of type int [mem: Local loc: -3 size: 1] [line: 22]
 > .   .   Child: 0  Var: y of array of type int [mem: Local loc: -4 size: 1] [line: 5]
-41,43c41,43
+41,42c41
 < .   Child: 1  Compound [mem: None loc: 0 size: -23] [line: 21]
 < .   Child: 1  Compound [mem: None loc: 0 size: -27] [line: 4]
-< .   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 14]
 ---
 > .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 21]
-> .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 14]
+43a43
 > .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 4]
 59c59
 < .   .   .   .   Child: 1  Id: z of type int [mem: Local loc: -26 size: 1] [line: 9]

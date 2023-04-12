@@ -13,7 +13,7 @@
 .   .   .   Child: 0  Var: f of type int [mem: Local loc: -8 size: 1] [line: 14]
 .   .   Child: 0  Var: xa of array of type int [mem: Local loc: -3 size: 1] [line: 8]
 .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 1]
-.   Child: 1  Compound [mem: None loc: 0 size: -9] [line: 7]
+.   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 7]
 .   .   .   .   Child: 1  Const 3 of type int [line: 14]
 .   .   .   .   Child: 1  Const 3 of type int [line: 3]
 .   .   .   .   .   Child: 1  Const 4 of type int [line: 3]

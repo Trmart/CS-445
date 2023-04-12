@@ -39,7 +39,7 @@
 .   .   Child: 1  Assign: <= of type int [line: 7]
 .   .   Child: 1  Call: cat of type void [line: 24]
 .   Child: 1  Compound [mem: None loc: 0 size: -3] [line: 21]
-.   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 14]
+.   Child: 1  Compound [mem: None loc: 0 size: -4] [line: 14]
 .   Child: 1  Compound [mem: None loc: 0 size: -5] [line: 4]
 .   .   .   .   Child: 1  Const 10 of type int [line: 15]
 .   .   .   .   .   Child: 1  Const 111 of type int [line: 7]

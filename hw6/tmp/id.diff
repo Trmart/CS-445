@@ -14,7 +14,7 @@
 > .   .   .   Child: 0  Var: f of type int [mem: Local loc: -8 size: 1] [line: 14]
 > .   .   Child: 0  Var: xa of array of type int [mem: Local loc: -3 size: 1] [line: 8]
 16a16
-> .   Child: 1  Compound [mem: None loc: 0 size: -9] [line: 7]
+> .   Child: 1  Compound [mem: None loc: 0 size: -8] [line: 7]
 21c21
 < .   .   Child: 1  For [mem: None loc: 0 size: -39] [line: 14]
 ---

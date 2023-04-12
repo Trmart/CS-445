@@ -711,6 +711,8 @@ void analyzeFor(TreeNode* node, int& nErrors, int& nWarnings)
     symbolTable.enter(node->attr.name);
     
     scopeDepth = false;
+
+    int forSize = localOffset;
     
     for(int i = 0; i < MAXCHILDREN; i++)
     {
@@ -739,6 +741,7 @@ void analyzeFor(TreeNode* node, int& nErrors, int& nWarnings)
 
     node->memorySize = localOffset;
     node->memoryType = None;
+    localOffset = forSize;
 }
 
 //analyze compound statement
