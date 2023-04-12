@@ -1265,7 +1265,6 @@ void analyze_Op_and_Assign(TreeNode* node, TreeNode* leftNode, TreeNode* rightNo
 
                     if(node->child[0]->subkind.exp != CallK)
                     {
-
                         printError(2, node->lineno, 0, node->attr.name, ConvertExpToString(leftSide), ConvertExpToString(rightSide), 0);
                     }
                     else
