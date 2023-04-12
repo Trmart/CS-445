@@ -1279,6 +1279,8 @@ ERROR(763): The operation 'and' does not work with arrays.
 ERROR(764): The operation 'or' does not work with arrays.
 ERROR(765): '<=' requires both operands be arrays or not but lhs is an array and rhs is not an array.
 ERROR(765): '<=' requires operands of the same type but lhs is type bool and rhs is type void.
+ERROR(766): '<' requires operands of the same type but lhs is type void and rhs is type int.
+ERROR(767): '>' requires operands of the same type but lhs is type void and rhs is type int.
 ERROR(768): '+' requires operands of type int but lhs is of type void.
 ERROR(769): '-' requires operands of type int but lhs is of type void.
 ERROR(76): '*' requires operands of type int but rhs is of type char.
@@ -1291,7 +1293,9 @@ ERROR(773): 'and' requires operands of type bool but rhs is of type int.
 ERROR(774): 'or' requires operands of type bool but lhs is of type void.
 ERROR(774): 'or' requires operands of type bool but rhs is of type int.
 ERROR(775): '<' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+ERROR(775): '<' requires operands of the same type but lhs is type void and rhs is type int.
 ERROR(776): '>' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+ERROR(776): '>' requires operands of the same type but lhs is type void and rhs is type int.
 ERROR(777): '+' requires operands of type int but lhs is of type void.
 ERROR(777): The operation '+' does not work with arrays.
 ERROR(778): '-' requires operands of type int but lhs is of type void.
@@ -1310,6 +1314,8 @@ ERROR(782): The operation 'and' does not work with arrays.
 ERROR(783): 'or' requires operands of type bool but lhs is of type void.
 ERROR(783): 'or' requires operands of type bool but rhs is of type int.
 ERROR(783): The operation 'or' does not work with arrays.
+ERROR(784): '<' requires operands of the same type but lhs is type void and rhs is type char.
+ERROR(785): '>' requires operands of the same type but lhs is type void and rhs is type char.
 ERROR(786): '+' requires operands of type int but lhs is of type void.
 ERROR(786): '+' requires operands of type int but rhs is of type char.
 ERROR(787): '-' requires operands of type int but lhs is of type void.
@@ -1327,7 +1333,9 @@ ERROR(791): 'and' requires operands of type bool but rhs is of type char.
 ERROR(792): 'or' requires operands of type bool but lhs is of type void.
 ERROR(792): 'or' requires operands of type bool but rhs is of type char.
 ERROR(793): '<' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+ERROR(793): '<' requires operands of the same type but lhs is type void and rhs is type char.
 ERROR(794): '>' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+ERROR(794): '>' requires operands of the same type but lhs is type void and rhs is type char.
 ERROR(795): '+' requires operands of type int but lhs is of type void.
 ERROR(795): '+' requires operands of type int but rhs is of type char.
 ERROR(795): The operation '+' does not work with arrays.
@@ -1352,6 +1360,8 @@ ERROR(800): The operation 'and' does not work with arrays.
 ERROR(801): 'or' requires operands of type bool but lhs is of type void.
 ERROR(801): 'or' requires operands of type bool but rhs is of type char.
 ERROR(801): The operation 'or' does not work with arrays.
+ERROR(802): '<' requires operands of the same type but lhs is type void and rhs is type bool.
+ERROR(803): '>' requires operands of the same type but lhs is type void and rhs is type bool.
 ERROR(804): '+' requires operands of type int but lhs is of type void.
 ERROR(804): '+' requires operands of type int but rhs is of type bool.
 ERROR(805): '-' requires operands of type int but lhs is of type void.
@@ -1368,7 +1378,9 @@ ERROR(80): 'or' requires operands of type bool but rhs is of type char.
 ERROR(80): The operation 'or' does not work with arrays.
 ERROR(810): 'or' requires operands of type bool but lhs is of type void.
 ERROR(811): '<' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+ERROR(811): '<' requires operands of the same type but lhs is type void and rhs is type bool.
 ERROR(812): '>' requires both operands be arrays or not but lhs is not an array and rhs is an array.
+ERROR(812): '>' requires operands of the same type but lhs is type void and rhs is type bool.
 ERROR(813): '+' requires operands of type int but lhs is of type void.
 ERROR(813): '+' requires operands of type int but rhs is of type bool.
 ERROR(813): The operation '+' does not work with arrays.
@@ -1456,5 +1468,5 @@ ERROR(96): '%' requires operands of type int but rhs is of type bool.
 ERROR(97): 'and' requires operands of type bool but lhs is of type int.
 ERROR(98): 'or' requires operands of type bool but lhs is of type int.
 ERROR(99): '<=' requires operands of the same type but lhs is type int and rhs is type bool.
-Number of errors: 1458
+Number of errors: 1470
 Number of warnings: 0

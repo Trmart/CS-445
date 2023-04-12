@@ -1097,6 +1097,12 @@ void analyze_Op_and_Assign(TreeNode* node, TreeNode* leftNode, TreeNode* rightNo
         if(node->child[1] != nullptr)
         {
             node->child[1]->wasUsed = true;
+
+            //may or may not need
+            // if(node->subkind.exp == AssignK)
+            // {
+            //     node->child[1]->isInit = true;
+            // }
         }
     }
 
@@ -1263,9 +1269,17 @@ void analyze_Op_and_Assign(TreeNode* node, TreeNode* leftNode, TreeNode* rightNo
                 else
                 {
 
-                    if(node->child[0]->subkind.exp != CallK)
+                    if(node->child[0]->subkind.exp != CallK || (node->child[0]->subkind.exp != node->child[1]->subkind.exp && leftSide == Void))
                     {
-                        printError(2, node->lineno, 0, node->attr.name, ConvertExpToString(leftSide), ConvertExpToString(rightSide), 0);
+                        if(node->child[0]->subkind.exp == CallK && leftSide == Void && node->child[1]->subkind.exp == ConstantK)
+                        {
+                            //do nothing
+                        }
+                        else
+                        {
+                            printError(2, node->lineno, 0, node->attr.name, ConvertExpToString(leftSide), ConvertExpToString(rightSide), 0);
+                        }
+                        // printError(2, node->lineno, 0, node->attr.name, ConvertExpToString(leftSide), ConvertExpToString(rightSide), 0);
                     }
                     else
                     {

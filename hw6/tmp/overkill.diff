@@ -21,28 +21,7 @@
 < ERROR(763): 'and' requires operands of type bool but rhs is of type void.
 1290d1278
 < ERROR(764): 'or' requires operands of type bool but rhs is of type void.
-1294,1295d1281
-< ERROR(766): '<' requires operands of the same type but lhs is type void and rhs is type int.
-< ERROR(767): '>' requires operands of the same type but lhs is type void and rhs is type int.
-1308d1293
-< ERROR(775): '<' requires operands of the same type but lhs is type void and rhs is type int.
-1310d1294
-< ERROR(776): '>' requires operands of the same type but lhs is type void and rhs is type int.
-1329,1330d1312
-< ERROR(784): '<' requires operands of the same type but lhs is type void and rhs is type char.
-< ERROR(785): '>' requires operands of the same type but lhs is type void and rhs is type char.
-1348d1329
-< ERROR(793): '<' requires operands of the same type but lhs is type void and rhs is type char.
-1350d1330
-< ERROR(794): '>' requires operands of the same type but lhs is type void and rhs is type char.
-1375,1376d1354
-< ERROR(802): '<' requires operands of the same type but lhs is type void and rhs is type bool.
-< ERROR(803): '>' requires operands of the same type but lhs is type void and rhs is type bool.
-1393d1370
-< ERROR(811): '<' requires operands of the same type but lhs is type void and rhs is type bool.
-1395d1371
-< ERROR(812): '>' requires operands of the same type but lhs is type void and rhs is type bool.
-1483c1459
+1483c1471
 < Number of errors: 1482
 ---
-> Number of errors: 1458
+> Number of errors: 1470
