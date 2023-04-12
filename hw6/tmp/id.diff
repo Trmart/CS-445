@@ -1,7 +1,3 @@
-4c4
-< .   .   .   Child: 0  Const "dogs" of array of type char [mem: Global loc: -1 size: 5] [line: 10]
----
-> .   .   .   Child: 0  Const is array "dogs" of type char [mem: Global loc: -1 size: 5] [line: 10]
 32c32
 < .   Sibling: 1  Parm: b of array of type int [mem: Parameter loc: -3 size: 1] [line: 1]
 ---

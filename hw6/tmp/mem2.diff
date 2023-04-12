@@ -1,4 +1,0 @@
-10c10
-< .   .   .   Child: 1  Const "reconnaissance" of array of type char [mem: Global loc: -15 size: 15] [line: 11]
----
-> .   .   .   Child: 1  Const is array "reconnaissance" of type char [mem: Global loc: -15 size: 15] [line: 11]

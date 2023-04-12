@@ -537,13 +537,13 @@ void printConstantNode(TreeNode* tree, bool isShowingTypes)
 
     else if(tree->expType == CharInt)
     {
-        printf("Const is array ");
+        printf("Const ");
         
         printf("%s", tree->attr.name);
 
         if(isShowingTypes)
         {
-            printf(" of type char");
+            printf(" of array of type char");
         }
 
         if (isPrintingMemorySize)

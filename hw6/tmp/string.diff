@@ -1,6 +1,0 @@
-1,2c1,2
-< .   .   .   Child: 0  Const "beach day" of array of type char [mem: Global loc: -16 size: 10] [line: 3]
-< .   Child: 0  Const "corgi" of array of type char [mem: Global loc: -1 size: 6] [line: 1]
----
-> .   .   .   Child: 0  Const is array "beach day" of type char [mem: Global loc: -16 size: 10] [line: 3]
-> .   Child: 0  Const is array "corgi" of type char [mem: Global loc: -1 size: 6] [line: 1]

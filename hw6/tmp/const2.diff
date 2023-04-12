@@ -1,8 +1,0 @@
-4c4
-< .   .   Child: 1  Const "dogs" of array of type char [mem: Global loc: -2 size: 5] [line: 6]
----
-> .   .   Child: 1  Const is array "dogs" of type char [mem: Global loc: -2 size: 5] [line: 6]
-8c8
-< .   .   Sibling: 1  Const "horses" of array of type char [mem: Global loc: -7 size: 7] [line: 7]
----
-> .   .   Sibling: 1  Const is array "horses" of type char [mem: Global loc: -7 size: 7] [line: 7]

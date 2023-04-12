@@ -1,11 +1,3 @@
-2,4c2,4
-< .   Child: 0  Const "cry havoc and let slip the dogs of war." of array of type char [mem: Global loc: -2 size: 40] [line: 2]
-< .   .   .   Child: 0  Const "epistolatory" of array of type char [mem: Global loc: -68 size: 13] [line: 11]
-< .   .   .   Child: 0  Const "retrogressive" of array of type char [mem: Global loc: -53 size: 14] [line: 9]
----
-> .   Child: 0  Const is array "cry havoc and let slip the dogs of war." of type char [mem: Global loc: -2 size: 40] [line: 2]
-> .   .   .   Child: 0  Const is array "epistolatory" of type char [mem: Global loc: -68 size: 13] [line: 11]
-> .   .   .   Child: 0  Const is array "retrogressive" of type char [mem: Global loc: -53 size: 14] [line: 9]
 20c20
 < .   Sibling: 2  Parm: pc of array of type char [mem: Parameter loc: -4 size: 1] [line: 4]
 ---
