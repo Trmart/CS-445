@@ -1324,13 +1324,26 @@ void analyze_Op_and_Assign(TreeNode* node, TreeNode* leftNode, TreeNode* rightNo
 
                 if(leftSide != leftExpected && !leftErr)
                 {
-                    printError(3, node->lineno, 0, node->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                    //printError(3, node->lineno, 0, node->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                    if(leftSide == rightSide && node->child[0]->subkind.exp == CallK)
+                    {
+                        //do nothing
+                    }
+                    else if(leftSide == Void && node->child[0]->subkind.exp == CallK && node->child[1]->subkind.exp != ConstantK)
+                    {
+                        printError(3, node->lineno, 0, node->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                    }
+                    else if(leftSide != Void)
+                    {
+                        printError(3, node->lineno, 0, node->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                    }
                 }
+
 
                 if(rightSide != rightExpected && !rightErr && rightSide != UndefinedType)
                 {
 
-                    if(rightSide == Void && node->child[1]->subkind.exp == CallK && returnType != Boolean)
+                    if(rightSide == Void && node->child[1]->subkind.exp == CallK && node->child[0]->subkind.exp != ConstantK)
                     {
                         printError(4, node->lineno, 0, node->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
                     }
@@ -1339,6 +1352,7 @@ void analyze_Op_and_Assign(TreeNode* node, TreeNode* leftNode, TreeNode* rightNo
                         printError(4, node->lineno, 0, node->attr.name, ConvertExpToString(rightExpected), ConvertExpToString(rightSide), 0);
                     }
                 }
+
             }
         }
 
