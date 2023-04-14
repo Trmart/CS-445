@@ -1,0 +1,7 @@
+## C-S23
+main() begin 
+     begin 
+        bool ss: not  true;
+        outputb(ss);
+     end 
+ end 

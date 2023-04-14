@@ -1,0 +1,10 @@
+## C-S23
+cat()
+ begin 
+     output(42);
+ end 
+
+main()
+ begin 
+        cat();
+ end 

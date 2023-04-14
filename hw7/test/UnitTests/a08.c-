@@ -1,0 +1,15 @@
+## C-S23
+bool x;
+
+main()
+ begin 
+     bool y;
+
+     x <= true;
+     y <= false;
+     outputb(x);
+     outnl();
+     outputb(y);
+     outnl();
+ end 
+

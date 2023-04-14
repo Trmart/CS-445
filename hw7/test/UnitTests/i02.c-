@@ -1,0 +1,7 @@
+## C-S23
+bool gb:true;
+main() begin 
+    outputb(gb);
+     begin 
+     end 
+ end 

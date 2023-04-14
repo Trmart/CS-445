@@ -1,0 +1,9 @@
+## C-S23
+cat()
+ begin 
+ end 
+
+main()
+ begin 
+        cat();
+ end 

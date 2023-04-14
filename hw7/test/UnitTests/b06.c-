@@ -1,0 +1,6 @@
+## C-S23
+main()
+ begin 
+     output(50+13);
+     outnl();
+ end 

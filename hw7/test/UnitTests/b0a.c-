@@ -1,0 +1,6 @@
+## C-S23
+main()
+ begin 
+     outputb(true  or  true);
+     outnl();
+ end 

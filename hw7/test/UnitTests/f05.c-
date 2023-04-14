@@ -1,0 +1,13 @@
+## C-S23
+bool cat()
+ begin 
+    return true;
+ end 
+
+main()
+ begin 
+    bool x;
+
+    x <= cat();
+    outputb(x);
+ end 

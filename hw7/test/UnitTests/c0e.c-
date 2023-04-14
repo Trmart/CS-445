@@ -1,0 +1,17 @@
+## C-S23
+
+main()
+ begin 
+    int x;
+
+    x <= 1023;
+    output(x++);
+    outnl();
+    output(x);
+    outnl();
+
+    output(x--);
+    outnl();
+    output(x);
+    outnl();
+ end 

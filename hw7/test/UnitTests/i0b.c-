@@ -1,0 +1,7 @@
+## C-S23
+main() begin 
+     begin 
+        int rr[20];
+        output(*rr);
+     end 
+ end 

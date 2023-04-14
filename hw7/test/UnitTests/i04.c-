@@ -1,0 +1,7 @@
+## C-S23
+main() begin 
+    int ii:666;
+    output(ii);
+     begin 
+     end 
+ end 
