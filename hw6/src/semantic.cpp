@@ -804,7 +804,7 @@ void analyzeReturn(TreeNode* node, int& nErrors, int& nWarnings)
             if(node->child[0]->child[0]->isArray)
             {
 
-                if(strcmp(node->child[0]->attr.name, "["))
+                if(strcmp(node->child[0]->attr.name, "[") && strcmp(node->child[0]->attr.name, "*"))
                 {
                     printError(10, node->lineno, 0, NULL, NULL, NULL, 0);
                 }
@@ -1279,7 +1279,6 @@ void analyze_Op_and_Assign(TreeNode* node, TreeNode* leftNode, TreeNode* rightNo
                         {
                             printError(2, node->lineno, 0, node->attr.name, ConvertExpToString(leftSide), ConvertExpToString(rightSide), 0);
                         }
-                        // printError(2, node->lineno, 0, node->attr.name, ConvertExpToString(leftSide), ConvertExpToString(rightSide), 0);
                     }
                     else
                     {
@@ -1324,7 +1323,7 @@ void analyze_Op_and_Assign(TreeNode* node, TreeNode* leftNode, TreeNode* rightNo
 
                 if(leftSide != leftExpected && !leftErr)
                 {
-                    //printError(3, node->lineno, 0, node->attr.name, ConvertExpToString(leftExpected), ConvertExpToString(leftSide), 0);
+                    
                     if(leftSide == rightSide && node->child[0]->subkind.exp == CallK)
                     {
                         //do nothing

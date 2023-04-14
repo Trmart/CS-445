@@ -1,7 +1,0 @@
-ERROR(24): Cannot return an array.
-Number of errors: 1
-Number of warnings: 4
-WARNING(11): Variable 'n' may be uninitialized when used here.
-WARNING(12): Variable 'a' may be uninitialized when used here.
-WARNING(8): The variable 'k' seems not to be used.
-WARNING(9): The variable 'b' seems not to be used.

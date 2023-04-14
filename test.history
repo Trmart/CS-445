@@ -454,3 +454,4 @@
 1681504543.1558402,"python3 tester.py hw6/ -M --sort",180,186,92,"['arrays2', 'assignSmall', 'basicExtra', 'callstatic', 'errormessages', 'unarystar']"
 1681505112.3125987,"python3 tester.py hw6/ -M --sort",180,186,92,"['arrays2', 'assignSmall', 'basicExtra', 'callstatic', 'errormessages', 'unarystar']"
 1681505310.075592,"python3 tester.py hw6/ -M --sort",182,186,86,"['arrays2', 'assignSmall', 'callstatic', 'unarystar']"
+1681506061.4632716,"python3 tester.py hw6/ -M --sort",183,186,39,"['arrays2', 'assignSmall', 'callstatic']"
