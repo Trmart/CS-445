@@ -4,9 +4,9 @@
 Taylor Martin
 CS-445 Compiler Design
 University Of Idaho
-HW6
+HW7
 Dr. Wilder
-DUE: 4/16/2023
+DUE: 5/5/2023
 
 FILE: parser.y
 DESC: Holds the grammar for the c- language. 
@@ -17,6 +17,7 @@ DESC: Holds the grammar for the c- language.
 #include "semantic.h"
 #include "IOinit.h"
 #include "yyerror.h"
+#include "codeGeneration.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,6 +39,8 @@ bool isPrintingTreeTypes = false;
 bool isPrintingMemoryOffset = false;
 bool isPrintingMemorySize = false;
 extern int globalOffset;
+
+bool isOnlyPrintingMemoryInfo = false;
 
 
 static TreeNode* ROOT;
@@ -553,6 +556,9 @@ int main(int argc, char *argv[])
   bool isPrintingAST = 0;
   numErrors = 0;
   numWarnings = 0;
+  bool isGeneratingCode = true;
+  int optionNumber; 
+  extern int optind; 
 
   while((compilerFlag = getopt(argc, argv, "dDpPhM")) != -1)
   {
@@ -564,6 +570,8 @@ int main(int argc, char *argv[])
             {
               isPrintingAST = true;
               isPrintingTreeTypes = false;
+              isGeneratingCode = false;
+              optionNumber = 0; 
             }
             break;
     
@@ -571,6 +579,8 @@ int main(int argc, char *argv[])
               {
                 isPrintingAST = true;
                 isPrintingTreeTypes = true;
+                isGeneratingCode = false;
+                optionNumber = 1;
               }
               break;
 
@@ -592,6 +602,9 @@ int main(int argc, char *argv[])
                 isPrintingTreeTypes = true;
                 isPrintingMemoryOffset = true;
                 isPrintingMemorySize = true;
+                isOnlyPrintingMemoryInfo = true;
+                isGeneratingCode = false;
+                optionNumber = 1;
               }
               break; 
 
@@ -614,6 +627,14 @@ int main(int argc, char *argv[])
               }
     }
   }
+
+  if(isGeneratingCode)
+  {
+    isOnlyPrintingMemoryInfo = false;
+    isPrintingTreeTypes = true;
+    isPrintingMemorySize = true;
+    optionNumber = 1;
+  }
   
   std::string fileName = argv[argc-1];
   
@@ -634,31 +655,46 @@ int main(int argc, char *argv[])
 
   yyparse();
 
-  if(isPrintingAST && !isPrintingTreeTypes && numErrors == 0 && ROOT != NULL)
+  if(isPrintingAST && !isPrintingTreeTypes && numErrors == 0 && ROOT != NULL && optionNumber == 0)
   {
     printAST(ROOT, 0, isPrintingTreeTypes);
   }
-  else if(isPrintingAST && isPrintingTreeTypes && numErrors == 0 && ROOT != NULL)
+  else if(isPrintingAST && isPrintingTreeTypes && numErrors == 0 && ROOT != NULL && optionNumber == 1)
   {
     initializeIO();
     
     semanticAnalysis(ROOT, numErrors, numWarnings);
 
-    if(numErrors < 1)
+    if(numErrors < 1 && isOnlyPrintingMemoryInfo)
     {  
       printAST(ROOT, 0, isPrintingTreeTypes);
-
-      if(isPrintingMemoryOffset)
-      {
-        // print memory offsets
-        std:: cout << "Offset for end of global space: " << globalOffset << std::endl;
-      }
     }
   }
+
+  //code generation
+  if(numErrors == 0) // if there are no errors
+  {
+    if(isGeneratingCode)
+    {
+        char* tmOutputFile = (char*)malloc(strlen(argv[optind]) + 1);
+        int tmOutputFileLength = strlen(argv[optind]);
+
+        strcpy(tmOutputFile, argv[optind]);
+        tmOutputFile[tmOutputFileLength - 2] = 't';
+        tmOutputFile[tmOutputFileLength - 1] = 'm';
+        /* generateCode(ROOT, tmOutputFile); */
+    }
+
+  }
+
   
   // remove line 644 before submission. Just For testing
   /* std::cout << "FILE: " << fileName.substr(fileName.find_last_of("/\\") + 1) << std::endl; */
-  
+  if(isPrintingMemoryOffset)
+  {
+    // print memory offsets
+    std:: cout << "Offset for end of global space: " << globalOffset << std::endl;
+  }
   std::cout << "Number of warnings: " << numWarnings << std::endl;
   std::cout << "Number of errors: " << numErrors << std::endl;
 

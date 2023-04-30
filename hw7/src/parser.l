@@ -4,9 +4,9 @@
 Taylor Martin
 CS-445 Compiler Design
 University Of Idaho
-HW6
+HW7
 Dr. Wilder
-DUE: 4/16/2023
+DUE: 5/5/2023
 
 FILE: parser.l
 DESC: This file is the lexer for the compiler. It will take in a file and parse it for tokens. 

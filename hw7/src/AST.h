@@ -147,6 +147,9 @@ typedef struct treeNode
     VarKind memoryType; //type of memory for -M option
     int arraySize; //size of array for -M option  
 
+    int emitLocation; //location in the code for this node
+    int emitCodeLine; //line of the code for this node
+
 } TreeNode;
 
 

@@ -2,9 +2,9 @@
 # Taylor Martin
 # CS-445 Compiler Design
 # University Of Idaho
-# HW6
+# HW7
 # Dr. Wilder
-# DUE: 4/16/2023
+# DUE: 5/5/2023
 
 # FILE: makefile
 # DESC: makefile for the compiler
@@ -12,9 +12,9 @@
 BIN = parser
 CC = g++ -std=c++17 -g
 
-FILES = AST.c symbolTable.cpp semantic.cpp IOinit.cpp TokenFormatter.c yyerror.cpp
+FILES = AST.c symbolTable.cpp semantic.cpp IOinit.cpp TokenFormatter.c yyerror.cpp emitCode.cpp codeGeneration.cpp
 SRCS = $(BIN).y  $(BIN).l
-HDRS = scanType.h AST.h symbolTable.h semantic.h IOinit.h TokenFormatter.h yyerror.h
+HDRS = scanType.h AST.h symbolTable.h semantic.h IOinit.h TokenFormatter.h yyerror.h emitCode.h codeGeneration.h
 OBJS = lex.yy.o $(BIN).tab.o 
 
 $(BIN) : $(OBJS)

@@ -1,0 +1,331 @@
+CONTROL STATEMENTS
+  conditional jumps/loops
+
+
+** IF
+-----
+
+
+if (E) A
+
+t1 = E                                    case ifK: { int rememberif;
+                                             traverse(E)
+if_false t1 goto L1   <- backpatch           rememberif = emitskip(1)  // one location
+A                                            traverse(A)               // do the then part
+L1:                                          backpatch(rememberif)
+                                          }
+
+
+
+
+
+if (E) A else B
+                                             case ifK: { int l1patch, l2patch;
+t1 = E                                       traverse(E)
+if_false t1 goto L1   <- backpatch           l1patch = emitskip(1)     goto
+A THEN                                       traverse(A)
+goto L2               <- backpatch
+                                             l2patch = emitskip(1)     goto
+L1:                                          backpatch(l1patch)   L1
+B ELSE                                       traverse(B)
+L2:                                          backpatch(l2patch)   L2
+                                             }
+
+** ELSIF
+--------
+
+if (E1) A1 elsif (E2) A2 else B
+
+goto LBEGIN
+LDONE: goto LEND
+LBEGIN:
+t1 = E1
+if_false t1 goto L1   <- backpatch
+A1
+goto LDONE
+L1:
+t1 = E2
+if_false t1 goto L2   <- backpatch
+A2
+goto LDONE
+L2:
+B
+LEND
+
+if (E1) A1 elsif (E2) A2
+
+goto LBEGIN
+LDONE: goto LEND
+LBEGIN:
+t1 = E1
+if_false t1 goto L1   <- backpatch
+A1
+goto LDONE
+L1:
+t1 = E2
+if_false t1 goto L2   <- backpatch
+A2
+L2:
+LEND:
+
+
+
+** SHORT CUTTING AND
+--------------------
+E1 and E2
+
+t1 = E1
+ans = False
+if_false t1 goto L1              <- backpatch
+ans = E2
+L1:
+
+** SHORT CUTTING OR
+-------------------
+
+E1 or E2
+
+t1 = E1
+ans = True
+if_true t1 goto L1              <- backpatch
+ans = E2
+L1:
+
+
+** CHAINED RELATIONALS
+----------------------
+
+example: W>X>Y>Z
+
+Short cutting version
+
+(((E1 opA E2) opB E3) opC E4)
+
+tmp1 = E1
+tmp2 = E2
+ans = False
+t3 = tmp1 opA tmp2
+if_false t3 goto L1              <- backpatch
+tmp1 = tmp2
+tmp2 = E3
+t3 = tmp1 opB tmp2
+if_false t3 goto L1              <- backpatch
+tmp1 = tmp2
+tmp2 = E4
+t3 = tmp1 opC tmp2
+if_false t3 goto L1              <- backpatch
+ans = True
+L1:
+
+    
+Nonshort cutting:
+
+(((E1 opA E2) opB E3) opC E4)
+
+tmp1 = E1
+tmp2 = E2
+ans = tmp1 opA tmp2
+tmp1 = tmp2
+tmp2 = E3
+ans = ans & (tmp1 opB tmp2)
+tmp1 = tmp2
+tmp2 = E4
+ans = ans & (tmp1 opC tmp2)
+
+
+short cutting: true | x & y
+
+
+** WHILE
+--------
+
+while (E) A
+
+L1:                                 rememberL1 = emit(0)
+t1 = E                              traverse(E)
+if_false t1 goto L2    <- backpatch rememberbp = emit(1)
+A                                   traverse(A)
+goto L1                             jumpbackto(rememberL1)
+L2:                                 backpatch(rememberbp)
+
+
+** BREAK/CONTINUE in a loop
+-----------------
+
+Not a great way to do it:
+
+L1:
+t1 = E
+if_false t1 goto L4             <- backpatch
+A
+...
+goto L4 // for each break   <- backpatch (all places where occur)
+goto L1 // for each continue
+...
+goto L1
+L4:
+
+
+Better because no complex backpatching  (only 1 backpatch) ***
+
+L1:
+t1 = E
+if_true t1 goto L3
+L2: goto L4                     <- backpatch
+L3:
+A
+...
+goto L2 // for each break
+goto L1 // for each continue
+...
+goto L1
+L4:
+
+Better because 1 fewer goto in loop (2 backpatches)
+
+L1: goto L4  // start loop     <- backpatch
+L2: goto L5  // for break      <- backpatch
+L3:
+A
+...
+goto L2 // for each break
+goto L1 // for each continue
+...
+L4:
+t1 = E                          
+if_true t1 goto L3              
+L5:
+
+
+Duplicate test better for optimization because you have a single block
+of code in the loop:
+L1:
+t1 = E
+if_true t1 goto L3
+L2: goto L4           // for break      <- backpatch
+L3:
+A
+...
+goto L2 // for each break
+goto L1 // for each continue
+...                <- removed the jump to here so that you have one block of code
+t1 = E            // repeat test so that between L3 and L4 is one block of code
+if_true t1 goto L3
+L4:
+
+
+
+** FOR
+------
+
+based on WHILE
+
+for (INIT; E; INC) A
+
+INIT
+while (E) {
+   A
+   INC
+}
+
+INIT
+L1:
+t1 = E
+if_true t1 goto L3
+L2: goto L4        <- backpatch
+L3:
+A
+...
+goto L2 // for each break
+goto L1 // for each continue
+...
+INC
+goto L1
+L4:
+
+
+** DO WHILE
+-----------
+
+do
+A
+while (E)
+
+L1: goto L3  // start loop   <- changed this from while
+L2: goto L4  // for break    <- backpatch
+L3:
+A
+...
+goto L2 // for each break
+goto L4 // for each continue    <- backpatch
+...
+L4:
+t1 = E                          
+if_true t1 goto L3              
+L4:
+
+
+** LOOP INDEXED
+---------------
+
+loop i=S..F:X do A
+for (i=S; i<F; i+=X) A
+
+// the parameters of loop are computed first (this is for S21!)
+i=S                  // child0 of range
+tmpf=F               // child1 of range
+tmpx=X               // child2 of range
+L1:  
+t1 = i<tmpf
+if_true t1 goto L3
+L2: goto L4        <- backpatch
+L3:
+A
+...
+goto L2 // for each break
+goto L1 // for each continue
+...
+i+=tmpx
+goto L1
+L4:
+
+
+** LOOP FOREVER
+---------------
+
+loop forever A
+
+L1: goto L3  // start loop   <- changed this from while
+L2: goto L5  // for break
+L3:
+A
+...
+goto L2 // for each break
+goto L3 // for each continue
+
+L1:
+A
+...
+goto L3  // loop back
+
+
+
+** CASE
+-------
+
+SWITCH (E) {
+   CASE v_1: A_1
+   CASE v_2: A_2
+   CASE v_3: A_3
+   CASE v_4: A_4
+   DEFAULT: D
+}
+
+if v_i can be any small set of choices then Linear Search
+if v_i can be any large set of choices then Binary Search
+if v_i can be *compact* (adjacent) set of choices then Compute Directly
+
+Compiler may choose from these options or doing a hybrid
+
+
+
