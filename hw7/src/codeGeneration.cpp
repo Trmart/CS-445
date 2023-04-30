@@ -572,7 +572,7 @@ void emitExp(TreeNode *node)
 
         case CallK:
                 {
-                    emitCall(node);
+                    emitCall(node, callLookup);
                 }
                 break;
     }
@@ -851,7 +851,7 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
     }
 }
 
-void emitOp(TreeNode* node)
+void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
 {
     emitComment((char*)("OP EXPRESSION"));
             
@@ -868,33 +868,40 @@ void emitOp(TreeNode* node)
             emitRO((char *)"NEG", 3, 3, 3, (char *)("Op unary -"), (char *)node->attr.name);
         }
 
-        else if(!strcmp(node->attr.name, "*")){
+        else if(!strcmp(node->attr.name, "*"))
+        {
 
-            if(node->child[0]->memT == Global || node->child[0]->memT == LocalStatic){
+            if(node->child[0]->memoryType == Global || node->child[0]->memoryType == LocalStatic)
+            {
 
-                emitRM((char *)"LDA", 3, leftSide->mOffset, 0, (char *)("Load address of base of array 540"), (char *)leftSide->attr.name);
+                emitRM((char *)"LDA", 3, lhs->memoryOffset, 0, (char *)("Load address of base of array 540"), (char *)lhs->attr.name);
             }
-            else if(node->child[0]->memT == Parameter){
-                emitRM((char *)"LD", 3, leftSide->mOffset, 1, (char *)("Load address of base of array 543"), (char *)leftSide->attr.name);
+            else if(node->child[0]->memoryType == Parameter)
+            {
+                emitRM((char *)"LD", 3, lhs->memoryOffset, 1, (char *)("Load address of base of array 543"), (char *)lhs->attr.name);
             }
-            else{
-                emitRM((char *)"LDA", 3, leftSide->mOffset, 1, (char *)("Load address of base of array 546"), (char *)leftSide->attr.name);
+            else
+            {
+                emitRM((char *)"LDA", 3, lhs->memoryOffset, 1, (char *)("Load address of base of array 546"), (char *)lhs->attr.name);
             }
+            
             emitRM((char *)"LD", 3, 1, 3, (char *)("Load array size 669"));
         }
 
-        else if(!strcmp(node->attr.name, "?")){
-
+        else if(!strcmp(node->attr.name, "?"))
+        {
             emitRO((char *)"RND", 3, 3, 6, (char *)("Op unary"), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, "NOT") || !strcmp(node->attr.name, "not")){
+        else if(!strcmp(node->attr.name, "NOT") || !strcmp(node->attr.name, "not"))
+        {
 
             emitRM((char *)"LDC", 4, 1, 6, (char *)("Load 1"));
             emitRO((char *)"XOR", 3, 3, 4, (char *)("Op XOR to get logical not"));
         }
     }
     //binary checks
-    else{
+    else
+    {
 
         
         stFlag = false;
@@ -904,23 +911,29 @@ void emitOp(TreeNode* node)
 
         //attempt to fix issues with arrays so far...but it
         //seems to be causing problems with c0f.c-
-        if(!strcmp(node->attr.name, "[")){
+        if(!strcmp(node->attr.name, "["))
+        {
 
             //tmpIdx = tempOffset;
-            if(isUnary == false || leftSide->expType == Char){
-                if(leftSide->isArray){
+            if(isUnary == false || lhs->expType == Char)
+            {
+                if(lhs->isArray)
+                {
 
-                    if(leftSide->memT == Global || leftSide->memT == LocalStatic){
-                        emitRM((char *)"LDA", 3, leftSide->mOffset, 0, (char *)"1 Load address of base of array 578", (char*)leftSide->attr.name);
+                    if(lhs->memoryType == Global || lhs->memoryType == LocalStatic)
+                    {
+                        emitRM((char *)"LDA", 3, lhs->memoryOffset, 0, (char *)"1 Load address of base of array 578", (char*)lhs->attr.name);
                     }
                     //might need to add this later
                     
-                    else if(leftSide->memT == Parameter){
-                        emitRM((char *)"LD", 3, leftSide->mOffset, 1, (char *)"2 Load address of base of array 583", (char*)leftSide->attr.name);
+                    else if(lhs->memoryType == Parameter)
+                    {
+                        emitRM((char *)"LD", 3, lhs->memoryOffset, 1, (char *)"2 Load address of base of array 583", (char*)lhs->attr.name);
                     }
                     
-                    else{
-                        emitRM((char *)"LDA", 3, leftSide->mOffset, 1, (char *)"2 Load address of base of array 587", (char*)leftSide->attr.name);
+                    else
+                    {
+                        emitRM((char *)"LDA", 3, lhs->memoryOffset, 1, (char *)"2 Load address of base of array 587", (char*)lhs->attr.name);
                     }
 
                     emitRM((char *)"ST", 3, tempOffset, 1, (char *)"Push left side");
@@ -940,9 +953,11 @@ void emitOp(TreeNode* node)
 
                 }
             }
-            else{
+            else
+            {
 
-                if(leftSide->isArray){
+                if(lhs->isArray)
+                {
 
                     /*printf("Here: %s %d\n", node->attr.name, node->linenum);
 
@@ -951,37 +966,41 @@ void emitOp(TreeNode* node)
                         emitRM((char *)"ST", 3, tempOffset, 1, (char *)"Push left side");
                     }*/
 
-                tempOffset--;
-                emitComment((char*)"TOFF:", tempOffset);
+                    tempOffset--;
+                    emitComment((char*)"TOFF:", tempOffset);
 
-                emitStart(rightSide);
+                    emitStart(rhs);
 
-                tempOffset++;
-                emitComment((char*)"TOFF:", tempOffset);
+                    tempOffset++;
+                    emitComment((char*)"TOFF:", tempOffset);
 
-                if(leftSide->memT == Global || leftSide->memT == LocalStatic){
-                        emitRM((char *)"LDA", 5, leftSide->mOffset, 0, (char *)"1 Load address of base of array 620", (char*)leftSide->attr.name);
+                    if(lhs->memoryType == Global || lhs->memoryType == LocalStatic)
+                    {
+                        emitRM((char *)"LDA", 5, lhs->memoryOffset, 0, (char *)"1 Load address of base of array 620", (char*)lhs->attr.name);
+                    }
+                    else if(lhs->memoryType == Parameter)
+                    {
+                        emitRM((char *)"LD", 5, lhs->memoryOffset, 1, (char *)"2 Load address of base of array 623", (char*)lhs->attr.name);
+                    }
+                    else
+                    {
+                        emitRM((char *)"LDA", 5, lhs->memoryOffset, 1, (char *)"3 Load address of base of array 626", (char*)lhs->attr.name);
+                    }
+
+                    emitRO((char *)"SUB", 5, 5, 3, (char *)"2 Compute location from index");
+                    emitRM((char *)"LD", 3, 0, 5, (char *)"2 Load array element");
+
                 }
-                else if(leftSide->memT == Parameter){
-                    emitRM((char *)"LD", 5, leftSide->mOffset, 1, (char *)"2 Load address of base of array 623", (char*)leftSide->attr.name);
-                }
-                else{
-                    emitRM((char *)"LDA", 5, leftSide->mOffset, 1, (char *)"3 Load address of base of array 626", (char*)leftSide->attr.name);
-                }
-
-                emitRO((char *)"SUB", 5, 5, 3, (char *)"2 Compute location from index");
-                emitRM((char *)"LD", 3, 0, 5, (char *)"2 Load array element");
-
-                }
-
 
             }
         }
+        
         //string literal compare checks
-        else if(leftSide->isArray && rightSide->isArray){
-            emitRM((char *)"LDA", 3, leftSide->mOffset, 1, (char *)"2 Load address of base of array 814", (char*)leftSide->attr.name);
+        else if(lhs->isArray && rhs->isArray)
+        {
+            emitRM((char *)"LDA", 3, lhs->memoryOffset, 1, (char *)"2 Load address of base of array 814", (char*)lhs->attr.name);
             emitRM((char *)"ST", 3, tempOffset, 1, (char *)"Push left side");
-            emitRM((char *)"LDA", 3, rightSide->mOffset, 1, (char *)"2 Load address of base of array 814", (char*)rightSide->attr.name);
+            emitRM((char *)"LDA", 3, rhs->memoryOffset, 1, (char *)"2 Load address of base of array 814", (char*)rhs->attr.name);
             emitRM((char*)"LD", 4, tempOffset, 1, (char*)("Load Left into ac1"), (char*)node->attr.name);
             emitRM((char*)"LD", 5, 1, 3, (char*)("AC2 <- |RHS|"));
             emitRM((char*)"LD", 6, 1, 4, (char*)("AC3 <- |LHS|"));
@@ -994,7 +1013,8 @@ void emitOp(TreeNode* node)
             emitRM((char*)"LDA", 3, 0, 2, (char*)("AC1 <- |RHS|"));
             emitRM((char*)"LDA", 4, 0, 6, (char*)("AC <- |LHS|"));
         }
-        else{
+        else
+        {
 
             emitStart(node->child[0]);
 
@@ -1014,43 +1034,55 @@ void emitOp(TreeNode* node)
         }
         
 
-        if(!strcmp(node->attr.name, "AND") || !strcmp(node->attr.name, "and")){
+        if(!strcmp(node->attr.name, "AND") || !strcmp(node->attr.name, "and"))
+        {
             emitRO((char *)"AND", 3, 4, 3, (char *)("Op AND"), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, "OR") || !strcmp(node->attr.name, "or")){
+        else if(!strcmp(node->attr.name, "OR") || !strcmp(node->attr.name, "or"))
+        {
             emitRO((char *)"OR", 3, 4, 3, (char *)("Op OR"), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, ">")){
+        else if(!strcmp(node->attr.name, ">"))
+        {
             emitRO((char *)"TGT", 3, 4, 3, (char *)("Op >"), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, "<")){
+        else if(!strcmp(node->attr.name, "<"))
+        {
             emitRO((char *)"TLT", 3, 4, 3, (char *)("Op <"), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, ">=")){
+        else if(!strcmp(node->attr.name, ">="))
+        {
             emitRO((char *)"TGE", 3, 4, 3, (char *)("Op >="), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, "<=")){
+        else if(!strcmp(node->attr.name, "<="))
+        {
             emitRO((char *)"TLE", 3, 4, 3, (char *)("Op <="), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, "=")){
+        else if(!strcmp(node->attr.name, "="))
+        {
             emitRO((char *)"TEQ", 3, 4, 3, (char *)("Op =="), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, "!=")){
+        else if(!strcmp(node->attr.name, "!="))
+        {
             emitRO((char *)"TNE", 3, 4, 3, (char *)("Op !="), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, "+")){
+        else if(!strcmp(node->attr.name, "+"))
+        {
             emitRO((char *)"ADD", 3, 4, 3, (char *)("Op +"), (char *)node->attr.name);
         }
         else if(!strcmp(node->attr.name, "-")){
             emitRO((char *)"SUB", 3, 4, 3, (char *)("Op -"), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, "/")){
+        else if(!strcmp(node->attr.name, "/"))
+        {
             emitRO((char *)"DIV", 3, 4, 3, (char *)("Op /"), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, "%")){
+        else if(!strcmp(node->attr.name, "%"))
+        {
             emitRO((char *)"MOD", 3, 4, 3, (char *)("Op %"), (char *)node->attr.name);
         }
-        else if(!strcmp(node->attr.name, "*")){
+        else if(!strcmp(node->attr.name, "*"))
+        {
             emitRO((char *)"MUL", 3, 4, 3, (char *)("Op *"), (char *)node->attr.name);
         }
         //additional check for array here?

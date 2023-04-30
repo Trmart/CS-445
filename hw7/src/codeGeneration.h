@@ -34,7 +34,7 @@ void emitParam(TreeNode* node);
 void emitExp(TreeNode* node);
 void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs);
 void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs);
-void emitCall(TreeNode* node);
+void emitCall(TreeNode* node, TreeNode* callLookUp);
 void emitConstant(TreeNode* node);
 void emitId(TreeNode* node);
 
