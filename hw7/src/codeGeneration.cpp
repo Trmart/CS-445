@@ -20,8 +20,8 @@ DESC:  Code generation functions implementation
 
 using namespace std;
 
-extern int goffset;
-extern int loffset;
+extern int globalOffset;
+extern int localOffset;
 
 FILE *code;
 
@@ -1808,7 +1808,7 @@ void emitInit(TreeNode* node)
 	emitRM((char *)"JMP", 7, bp, 7, (char *)("Jump to init [backpatch]"));
 	emitComment((char *)("INIT"));
 	emitSkip(bp);
-	emitRM((char *)"LDA", 1, 0 + goffset, 0, (char *)("set first frame at end of globals"));
+	emitRM((char *)"LDA", 1, 0 + globalOffset, 0, (char *)("set first frame at end of globals"));
 	emitRM((char *)"ST", 1, 0, 1, (char *)("store old fp (point to self)"));
 	emitComment((char *)("INIT GLOBALS AND STATICS"));
 	emitGlobAndStats(node);
