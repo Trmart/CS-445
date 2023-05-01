@@ -3210,7 +3210,7 @@ int main(int argc, char *argv[])
         strcpy(tmOutputFile, argv[optind]);
         tmOutputFile[tmOutputFileLength - 2] = 't';
         tmOutputFile[tmOutputFileLength - 1] = 'm';
-        /* generateCode(ROOT, tmOutputFile); */
+        generateCode(ROOT, tmOutputFile);
     }
 
   }
