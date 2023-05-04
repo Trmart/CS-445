@@ -52,12 +52,7 @@ void generateCode(TreeNode* node, char* inputFile)
     emitComment((char*)"Author: Taylor Martin");
     emitComment((char*)"File compiled: ", inputFile);
     emitComment((char*)"");
-
-    //emitAbout(inputFile);
-    //emitSkip(1);
     emitIO(node);
-    //emitInput(node);
-    //emitSkip(0);
     emitStart(node);
     emitInit(node);
     fclose(code);
@@ -77,12 +72,6 @@ void emitAbout(char* inputFile)
 
 void emitInput(TreeNode* node)
 {
-    /*for(int i = 0; i < 7; i++){
-        
-        if(node->sibling != NULL){
-            emitStart(t);
-        }
-    }*/
     while(node->sibling != nullptr)
     {
         //t = node->sibling;
@@ -589,7 +578,7 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
     //askOp = (TreeNode*)symbolTable.lookup(node->attr.name);
 
     //check for standard assignment -- like syntaxTree
-    if(!strcmp(node->attr.name, "<-"))
+    if(!strcmp(node->attr.name, "<="))
     {
 
         //check for arrays
@@ -616,7 +605,7 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
             if(rhs->subkind.exp == AssignK)
             {
                 //printf("Here %s %d", rightSide->attr.name, node->linenum);
-                if(!strcmp(rhs->attr.name, "<-"))
+                if(!strcmp(rhs->attr.name, "<="))
                 {
                     nestAsgn = true;
                 }
@@ -1002,16 +991,16 @@ void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
             emitRM((char *)"ST", 3, tempOffset, 1, (char *)"Push left side");
             emitRM((char *)"LDA", 3, rhs->memoryOffset, 1, (char *)"2 Load address of base of array 814", (char*)rhs->attr.name);
             emitRM((char*)"LD", 4, tempOffset, 1, (char*)("Load Left into ac1"), (char*)node->attr.name);
-            emitRM((char*)"LD", 5, 1, 3, (char*)("AC2 <- |RHS|"));
-            emitRM((char*)"LD", 6, 1, 4, (char*)("AC3 <- |LHS|"));
-            emitRM((char*)"LDA", 2, 0, 5, (char*)("R2 <- |RHS|"));
+            emitRM((char*)"LD", 5, 1, 3, (char*)("AC2 <= |RHS|"));
+            emitRM((char*)"LD", 6, 1, 4, (char*)("AC3 <= |LHS|"));
+            emitRM((char*)"LDA", 2, 0, 5, (char*)("R2 <= |RHS|"));
             emitRO((char *)"SWP", 5, 6, 6, (char *)"pick smallest size");
-            emitRM((char*)"LD", 6, 1, 4, (char*)("AC3 <- |LHS|"));
+            emitRM((char*)"LD", 6, 1, 4, (char*)("AC3 <= |LHS|"));
             emitRO((char*)"CO", 4, 3, 5, (char*)("setup array compare LHS vs RHS"));
             emitRO((char*)"TNE", 5, 4, 3, (char*)("if not equal then test"));
             emitRO((char*)"JNZ", 5, 2, 7, (char*)("jump not equal"));
-            emitRM((char*)"LDA", 3, 0, 2, (char*)("AC1 <- |RHS|"));
-            emitRM((char*)"LDA", 4, 0, 6, (char*)("AC <- |LHS|"));
+            emitRM((char*)"LDA", 3, 0, 2, (char*)("AC1 <= |RHS|"));
+            emitRM((char*)"LDA", 4, 0, 6, (char*)("AC <= |LHS|"));
         }
         else
         {

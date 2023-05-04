@@ -20,6 +20,19 @@ void removeChar(char *str, char word)
 
     bool IsChar = false;
     char *start, *end;
+
+    int strLength = strlen(str);
+
+    if(word == '0')
+    {
+        memmove(str, str, strLength);
+        str[strLength-1] = 0;
+    }
+    else
+    {
+        memmove(str, str+1, strLength-2);
+        str[strLength-2] = 0;
+    }
    
     for(start = end = str; *str != '\0'; start++)
     {

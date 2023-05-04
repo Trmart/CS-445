@@ -27,6 +27,7 @@ DESC: Holds the grammar for the c- language.
 #include <getopt.h>
 #include <iostream>
 #include <string>
+#include <fstream>
 
 extern int yylex();
 extern FILE *yyin;
@@ -37,15 +38,16 @@ bool isPrintingTreeTypes = false;
 
 //memeory information
 bool isPrintingMemoryOffset = false;
-bool isPrintingMemorySize = false;
+bool isPrintingMemorySize;
 extern int globalOffset;
 
-bool isOnlyPrintingMemoryInfo = false;
+bool isOnlyPrintingMemoryInfo; 
 
 
 static TreeNode* ROOT;
 
 extern SymbolTable symbolTable;
+
 
 // #define YYERROR_VERBOSE
 
@@ -628,13 +630,14 @@ int main(int argc, char *argv[])
     }
   }
 
-  if(isGeneratingCode)
+  if(isGeneratingCode == true)
   {
-    isOnlyPrintingMemoryInfo = false;
-    isPrintingTreeTypes = true;
-    isPrintingMemorySize = true;
     optionNumber = 1;
+    isPrintingMemorySize = true;
+    isPrintingTreeTypes = true;
+    isOnlyPrintingMemoryInfo = false;
   }
+  
   
   std::string fileName = argv[argc-1];
   
@@ -652,17 +655,16 @@ int main(int argc, char *argv[])
 
   // remove line 623 before submission. Just For testing
   /* std::cout << "====================================" << std::endl; */
-
   yyparse();
 
-  if(isPrintingAST && !isPrintingTreeTypes && numErrors == 0 && ROOT != NULL && optionNumber == 0)
+
+  if(isPrintingAST && optionNumber == 0 && numErrors == 0 && ROOT != NULL)
   {
     printAST(ROOT, 0, isPrintingTreeTypes);
   }
-  else if(isPrintingAST && isPrintingTreeTypes && numErrors == 0 && ROOT != NULL && optionNumber == 1)
+  else if(optionNumber == 1 && numErrors == 0 && ROOT != NULL)
   {
     initializeIO();
-    
     semanticAnalysis(ROOT, numErrors, numWarnings);
 
     if(numErrors < 1 && isOnlyPrintingMemoryInfo)
@@ -674,16 +676,15 @@ int main(int argc, char *argv[])
   //code generation
   if(numErrors == 0) // if there are no errors
   {
-    if(isGeneratingCode)
-    {
-        char* tmOutputFile = (char*)malloc(strlen(argv[optind]) + 1);
-        int tmOutputFileLength = strlen(argv[optind]);
+    
+    char* tmOutputFile = (char*)malloc(strlen(argv[optind]) + 1);
+    int tmOutputFileLength = strlen(argv[optind]);
 
-        strcpy(tmOutputFile, argv[optind]);
-        tmOutputFile[tmOutputFileLength - 2] = 't';
-        tmOutputFile[tmOutputFileLength - 1] = 'm';
-        generateCode(ROOT, tmOutputFile);
-    }
+    strcpy(tmOutputFile, argv[optind]);
+    tmOutputFile[tmOutputFileLength - 2] = 't';
+    tmOutputFile[tmOutputFileLength - 1] = 'm';
+    
+    generateCode(ROOT, tmOutputFile);
 
   }
 
