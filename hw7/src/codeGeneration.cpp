@@ -55,11 +55,11 @@ void generateCode(TreeNode* node, char* inputFile)
     emitIO(node);
     emitStart(node);
     emitInit(node);
+    
     fclose(code);
 
 }
 
-//Emit info about compiler at beginning
 void emitAbout(char* inputFile)
 {
 
@@ -74,12 +74,10 @@ void emitInput(TreeNode* node)
 {
     while(node->sibling != nullptr)
     {
-        //t = node->sibling;
         emitStart(node);
     }
 }
 
-//recursive function for emitting, mimic syntax tree set up
 void emitStart(TreeNode* node)
 {
     if(node == nullptr)
@@ -117,7 +115,6 @@ void emitStart(TreeNode* node)
     }
 }
 
-//emit code for nodekind Decl
 void emitDecl(TreeNode *node)
 {
 
@@ -148,19 +145,15 @@ void emitDecl(TreeNode *node)
 
 void emitVar(TreeNode* node)
 {
-            //printf("Here: %s, %d\n", node->attr.name, node->linenum);
-
             if((!node->isGlobal && !node->isStatic))
             {
 
-                //check for arrays
                 if(node->isArray)
                 {
 
                     emitRM((char*)"LDC", 3, node->memorySize - 1, 6, (char*)"load array size 124", (char*)node->attr.name);
                     emitRM((char*)"ST", 3, node->memoryOffset + 1, 1, (char*)"save array size", (char*)node->attr.name);
 
-                    //check for strings
                     if(node->child[0] != nullptr)
                     {
                         emitStart(node->child[0]);
@@ -178,8 +171,6 @@ void emitVar(TreeNode* node)
                 }
                 else
                 {
-                    
-                    //check initiailzed variable
                     if(node->child[0] != nullptr)
                     {
 
@@ -199,7 +190,6 @@ void emitVar(TreeNode* node)
 
 void emitParam(TreeNode* node)
 {
-    //loop through children
     for(int i = 0; i < MAXCHILDREN; i++)
     {
         emitStart(node->child[i]);
@@ -210,18 +200,18 @@ void emitFunc(TreeNode* node)
 {
     node->emitCodeLine = emitSkip(0);
 
-    TreeNode* cntSiblings;
+    TreeNode* currentSibling;
     int pcount;
     int tmpIdx = tempOffset;
 
-    cntSiblings = node->child[0];
+    currentSibling = node->child[0];
 
-    if(cntSiblings != nullptr)
+    if(currentSibling != nullptr)
     {
 
-        for(pcount = 0; cntSiblings != nullptr; pcount++)
+        for(pcount = 0; currentSibling != nullptr; pcount++)
         {
-            cntSiblings = cntSiblings->sibling;
+            currentSibling = currentSibling->sibling;
         }
 
         if(!(node->child[1]->nodekind == StmtK && node->child[1]->subkind.stmt == CompoundK))
@@ -253,7 +243,6 @@ void emitFunc(TreeNode* node)
     emitRM((char *)"JMP", 7, 0, 3,(char *)("Return"));
     emitComment((char *)("END FUNCTION"), (char *) node->attr.name);
 
-    //tempOffset = 0;
     tempOffset = tmpIdx;
     emitComment((char*)"TOFF:", tempOffset);
 }
@@ -314,27 +303,23 @@ void emitStmt(TreeNode* node)
 
 void emitIf(TreeNode* node, int elseLoc)
 {
-    //start if statement
     emitComment((char*)("IF"));
     stFlag = false;
     inIF = true;
 
-    //analyze child0
     emitStart(node->child[0]);
     emitComment((char*)("THEN"));
 
-    //set else location and then location
     elseLoc = 0;
     thenLoc = emitSkip(1);
+    
     if(node->child[1]->subkind.stmt == IfK)
     {
         nestThen = thenLoc--;
     }            
 
-    //start analyzing child1
     emitStart(node->child[1]);
 
-    //if there is an else statement updated location
     if(node->child[2] != nullptr)
     {
         elseLoc = emitSkip(1);
@@ -342,17 +327,13 @@ void emitIf(TreeNode* node, int elseLoc)
 
     if(node->child[1]->subkind.stmt != IfK)
     {
-        //go back to then section
-        //nestThen -= 2;
         backPatchAJumpToHere((char*)"JZR", 3, thenLoc, (char *)("Jump around the THEN if false [backpatch]"));
     }
     else
     {
-        
         backPatchAJumpToHere((char*)"JZR", 3, nestThen, (char *)("Jump around the THEN if false [backpatch]"));
     }
 
-    //if there is an else statement, analyze child2 jump the else
     if(node->child[2] != nullptr)
     {
         emitComment((char*)"ELSE");
@@ -360,10 +341,8 @@ void emitIf(TreeNode* node, int elseLoc)
         backPatchAJumpToHere((char*)"JMP", 7, elseLoc, (char *)("Jump around the ELSE [backpatch]"));
     }
 
-    //done
     emitComment((char*)"END IF");
     inIF = false;
-
 }
 
 void emitWhile(TreeNode* node, int whileLoc, int tmpBloc, int whileSkp, int ldaLoc)
@@ -419,15 +398,12 @@ void emitFor(TreeNode* node, int forOff, int forLoc, int forSkp)
 
     forOff = tempOffset;
 
-    //emit index var
     emitStart(node->child[0]);
 
-    //emit RangeK section
     emitStart(node->child[1]);
 
     forLoc = emitSkip(0);
 
-    //Check if the range has been exceeded.
     emitRM((char *)"LD", 4, forOff + 3, 1, (char *)"loop index");
     emitRM((char *)"LD", 5, forOff + 2, 1, (char *)"stop value");
     emitRM((char *)"LD", 3, forOff + 1, 1, (char *)"step value");
@@ -436,7 +412,6 @@ void emitFor(TreeNode* node, int forOff, int forLoc, int forSkp)
     
     forSkp = emitSkip(1);
 
-    //go through compound section for for loop
     emitStart(node->child[2]);
 
     emitRM((char *)"LD", 3, forOff + 3, 1, (char *)"Load index");
@@ -454,22 +429,17 @@ void emitFor(TreeNode* node, int forOff, int forLoc, int forSkp)
 
 void emitRange(TreeNode* node)
 {
-    //get first part of range
     emitStart(node->child[0]);
     emitRM((char *)"ST", 3, tempOffset + 3, 1, (char *)"save starting value in index variable");
 
-    //get second part of range
     emitStart(node->child[1]);
     emitRM((char *)"ST", 3, tempOffset + 2, 1, (char *)"save stop value");
 
-    //check if there is a 3rd child in the range
-    //go through 3rd child if so
-    if (node->child[2] != NULL)
+    if (node->child[2] != nullptr)
     {
         emitStart(node->child[2]);
         emitRM((char *)"ST", 3, tempOffset + 1, 1, (char *)"save step value");
     }
-    //else default increment and save current step.
     else
     {
         emitRM((char *)"LDC", 3, 1, 6, (char *)"default increment by 1");
@@ -481,15 +451,18 @@ void emitCompound(TreeNode* node)
 {
     cpdSize = tempOffset;
     emitComment((char*)("COMPOUND"));
-    if(!doingFor){
+    
+    if(!doingFor)
+    {
         tempOffset = node->memorySize;
     }
+    
     emitComment((char*)"TOFF: ", tempOffset);
+    
     for(int i = 0; i < MAXCHILDREN; i++)
     {
-        
-        //maybe only t here instead of node->child[i]?
-        if(node != NULL){
+        if(node != nullptr)
+        {
             emitStart(node->child[i]);
         }
     }
@@ -504,13 +477,10 @@ void emitCompound(TreeNode* node)
 
 void emitExp(TreeNode *node)
 {
-
-    //shorthands for checking child 0 and child1 in AssignK and OpK
     TreeNode* lhs;
     TreeNode* rhs;
     TreeNode* callLookup;
 
-    //setup leftSide and rightSide of AssignKs and OpKs
     if(node->child[0] != nullptr)
     {
         lhs = node->child[0];
@@ -531,10 +501,6 @@ void emitExp(TreeNode *node)
 
     switch(node->subkind.exp)
     {
-
-        //Look up assignment op
-        //TreeNode* askOp;
-
         case AssignK:
                 {
                     emitAssign(node, lhs, rhs);
@@ -569,34 +535,15 @@ void emitExp(TreeNode *node)
 
 void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
 {
-     //int tmpIdx;
-
     emitComment((char*)("ASSIGNMENT EXPRESSION"));
 
-    //tempOffset--;
-
-    //askOp = (TreeNode*)symbolTable.lookup(node->attr.name);
-
-    //check for standard assignment -- like syntaxTree
     if(!strcmp(node->attr.name, "<="))
     {
 
         //check for arrays
         if(!strcmp(node->child[0]->attr.name, "["))
         {
-
-            /*if(leftSide->child[1]->subkind.exp == IdK){
-                emitRM((char *)"LD", 3, leftSide->child[1]->mOffset, 1, (char *)("1 load variable 373"), leftSide->child[1]->attr.name);
-            }
-            else{*/
-            /*if(leftSide->child[1]->subkind.exp == IdK){
-                printf("Here: %s %d\n", leftSide->child[1]->attr.name, node->linenum);
-            }
-            if(leftSide->child[0]->subkind.exp != ConstantK){
-                printf("Here RS %s %d\n", leftSide->child[0]->attr.name, node->linenum);
-            }*/
             emitStart(lhs->child[1]);
-            //}
             
             emitRM((char *)"ST", 3, tempOffset, 1, (char *)("Push index 373"));
             tempOffset--;
@@ -604,7 +551,6 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
 
             if(rhs->subkind.exp == AssignK)
             {
-                //printf("Here %s %d", rightSide->attr.name, node->linenum);
                 if(!strcmp(rhs->attr.name, "<="))
                 {
                     nestAsgn = true;
@@ -628,15 +574,14 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
                     emitRM((char *)"LD", 5, lhs->child[0]->memoryOffset, 1, (char *)("Load address of base of array 493"), (char *)lhs->child[0]->attr.name);
 
                 }
-                else if(nestAsgn){
+                else if(nestAsgn)
+                {
                     emitRM((char *)"LD", 5, lhs->child[0]->memoryOffset, 1, (char *)("Load address of base of array 497"), (char *)lhs->child[0]->attr.name);
                 }
-                //might need to remove
                 else if(node->child[0]->child[1]->subkind.exp == IdK && node->child[1]->subkind.exp == ConstantK && inIF)
                 {
                     emitRM((char *)"LD", 5, lhs->child[0]->memoryOffset, 1, (char *)("Load address of base of array 500"), (char *)lhs->child[0]->attr.name);
                 }
-                
                 else
                 {
                     emitRM((char *)"LDA", 5, lhs->child[0]->memoryOffset, 1, (char *)("Load address of base of array 390"), (char *)lhs->child[0]->attr.name);
@@ -662,8 +607,6 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
                 emitRO((char *)"MOV", 4, 3, 5, (char *)"array op =");
             }
         }
-        //having issues in IdK with localStatics, writing a manual check 
-        //here to manually load the right side
         else if(lhs->memoryType == LocalStatic && rhs->memoryType == LocalStatic)
         {
             emitRM((char *)"LD", 3, node->child[1]->memoryOffset, 0, (char *)("1 Load variable 797"), node->child[1]->attr.name);
@@ -672,7 +615,6 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
             emitStart(lhs);
 
         }
-        //not an array
         else
         {
             emitStart(rhs);
@@ -683,7 +625,6 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
         }
     }
 
-    //check for ++ --
     else if(rhs == nullptr)
     {
 
@@ -692,8 +633,8 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
 
         emitStart(lhs);
 
-        if(!strcmp(lhs->attr.name, "[")){
-
+        if(!strcmp(lhs->attr.name, "["))
+        {
             lhs = lhs->child[0];
             opKarr = true;
         }
@@ -721,10 +662,6 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
 
     else
     {
-
-        //check for array, need to do unique stuff
-        //for an array version
-        //load address of base of array will probably need global checks
         if(!strcmp(lhs->attr.name, "["))
         {
 
@@ -734,7 +671,6 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
             tempOffset--;
             emitComment((char*)"TOFF:", tempOffset);
 
-            //array index to array index assignment
             if(rhs->child[1] != nullptr)
             {
                 emitRM((char *)"LDA", 3, rhs->child[0]->memoryOffset, 0, (char *)("Load address of base of array 446"), (char *)rhs->child[0]->attr.name);
@@ -782,7 +718,7 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
             {
                 emitRO((char *)"DIV", 3, 4, 3, (char *)("Op"), (char *)node->attr.name);
             }
-            //store
+ 
             if(lhs->child[0] != nullptr)
             {
                 emitRM((char *)"ST", 3, lhs->memoryOffset, 5, (char *)("Store variable"),(char *)lhs->child[0]->attr.name);
@@ -801,7 +737,6 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
             isUnary = false;
             emitStart(lhs);
 
-            //check for each other assignment operator
             if(!strcmp(node->attr.name, "+="))
             {
                 emitRM((char *)"LD", 4, lhs->memoryOffset, 0, (char *) "Load LHS var");
@@ -824,7 +759,6 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
             }
         
         
-            //check mem types
             if(lhs->memoryType == Global || lhs->memoryType == LocalStatic)
             {
                 emitRM((char *)"ST", 3, lhs->memoryOffset, 0, (char *)("Store variable"), (char *)lhs->attr.name);
@@ -834,7 +768,6 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
                 emitRM((char *)"ST", 3, lhs->memoryOffset, 1, (char *)("Store variable"), (char *)lhs->attr.name);
             }
             
-            //reset unary flag
             isUnary = true;
         }
     }
@@ -843,9 +776,7 @@ void emitAssign(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
 void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
 {
     emitComment((char*)("OP EXPRESSION"));
-            
 
-    //Check Unary ops
     if(rhs == nullptr)
     {
 
@@ -862,7 +793,6 @@ void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
 
             if(node->child[0]->memoryType == Global || node->child[0]->memoryType == LocalStatic)
             {
-
                 emitRM((char *)"LDA", 3, lhs->memoryOffset, 0, (char *)("Load address of base of array 540"), (char *)lhs->attr.name);
             }
             else if(node->child[0]->memoryType == Parameter)
@@ -888,22 +818,14 @@ void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
             emitRO((char *)"XOR", 3, 3, 4, (char *)("Op XOR to get logical not"));
         }
     }
-    //binary checks
     else
     {
 
-        
         stFlag = false;
 
-        //move past index in use
-        //tmpIdx--; 
-
-        //attempt to fix issues with arrays so far...but it
-        //seems to be causing problems with c0f.c-
         if(!strcmp(node->attr.name, "["))
         {
 
-            //tmpIdx = tempOffset;
             if(isUnary == false || lhs->expType == Char)
             {
                 if(lhs->isArray)
@@ -913,7 +835,6 @@ void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
                     {
                         emitRM((char *)"LDA", 3, lhs->memoryOffset, 0, (char *)"1 Load address of base of array 578", (char*)lhs->attr.name);
                     }
-                    //might need to add this later
                     
                     else if(lhs->memoryType == Parameter)
                     {
@@ -947,14 +868,6 @@ void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
 
                 if(lhs->isArray)
                 {
-
-                    /*printf("Here: %s %d\n", node->attr.name, node->linenum);
-
-                    if(leftSide->expType == Char){
-                        emitRM((char *)"LD", 3, leftSide->mOffset, 1, (char *)"2 Load address of base of array 766", (char*)leftSide->attr.name);
-                        emitRM((char *)"ST", 3, tempOffset, 1, (char *)"Push left side");
-                    }*/
-
                     tempOffset--;
                     emitComment((char*)"TOFF:", tempOffset);
 
@@ -984,7 +897,6 @@ void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
             }
         }
         
-        //string literal compare checks
         else if(lhs->isArray && rhs->isArray)
         {
             emitRM((char *)"LDA", 3, lhs->memoryOffset, 1, (char *)"2 Load address of base of array 814", (char*)lhs->attr.name);
@@ -1007,8 +919,6 @@ void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
 
             emitStart(node->child[0]);
 
-            //save temp index from where we are
-            //tmpIdx = tempOffset;  
 
             emitRM((char*)"ST", 3, tempOffset, 1, (char*)("Push the left side 677"));
             tempOffset--;
@@ -1074,13 +984,7 @@ void emitOp(TreeNode* node, TreeNode* lhs, TreeNode* rhs)
         {
             emitRO((char *)"MUL", 3, 4, 3, (char *)("Op *"), (char *)node->attr.name);
         }
-        //additional check for array here?
-        //else if(!strcmp(node->attr.name, "[")){
-            
-        //}
-
     }
-    //tempOffset = tmpIdx;
 }
 
 void emitCall(TreeNode* node, TreeNode* callLookup)
@@ -1089,14 +993,11 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
 
     emitComment((char*)("CALL EXPRESSION"));
 
-    //track param count and if call has params(children)
     int pCount = 0;
     bool hasChild = false;
 
-    //lookup original fn decl from symbol table
     TreeNode* curFunc = (TreeNode*)symbolTable.lookup(node->attr.name);
 
-    //print call name
     emitComment((char*)"CALL", node->attr.name);
 
     if(node->child[0] != nullptr)
@@ -1114,15 +1015,8 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
             }
         }
 
-        //printf("pCount: %d\n", pCount);
-
-        //tempOffset -= pCount;
-
-        //check single parameter
         if(pCount == 1)
         {
-
-            //printf("%s\n", node->child[0]->attr.name);
 
             if(node->child[0]->subkind.exp == IdK && !node->child[0]->isArray)
             {
@@ -1133,9 +1027,6 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
                     emitComment((char*)"TOFF:", tempOffset);
                 }
             }
-
-            //tempOffset -= pCount;
-
 
             emitRM((char *)"ST", 1, tempOffset, 1, (char *)("1 Store fp in ghost frame for"), (char *)node->attr.name);
 
@@ -1160,16 +1051,11 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
                 }
                 else if(node->child[0]->memoryType == Parameter)
                 {
-                    
                     if(!node->child[0]->isArray)
                     {
-                        //emitRM((char *)"LD", 3, node->child[0]->mOffset, 1, (char *)("2 variable"), node->child[0]->attr.name);
+                        // do nothing
                     }
                 }
-                /*else
-                {
-                    //printf("call name %s, %d\n", node->attr.name, node->linenum);
-                }*/
                 else if(node->child[0]->memoryType == Local)
                 {
                     if(node->child[0]->isArray)
@@ -1187,20 +1073,12 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
             tempOffset-= pCount;
             emitComment((char*)"TOFF:", tempOffset);
 
-            //if not array, adjust temp offset
             if(!node->child[0]->isArray)
             {
 
                 tempOffset -= pCount;
                 stFlag = false;
             }
-            /*else if(nestCall)
-            {
-                emitRM((char *)"LDA", 3, node->child[0]->mOffset, 1, (char *)("Load address of base of array 913"));
-                tempOffset-=pCount;
-                nestCall = false;
-            }*/
-            
 
             emitComment((char*)"TOFF:", tempOffset);
 
@@ -1212,18 +1090,13 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
             emitStart(node->child[0]);
             
             
-
-            //printf("%d\n", isUnary);
-            //check for string lit's taken as args in a call
             if(node->child[0]->expType == CharInt)
             {
                 callLookup = (TreeNode*)symbolTable.lookup(node->attr.name);
                 if(callLookup != nullptr)
                 {
-                    //printf("Here: %s\n", callLookup->attr.name);
                     if(callLookup->child[0]->isArray)
                     {
-                        //printf("Here: %s\n", callLookup->attr.name);
                         emitRM((char *)"LDA", 3, node->child[0]->memoryOffset, 0, (char *)"Load address of char array");
                         tempOffset--;
                     }
@@ -1236,13 +1109,11 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
             
         }
 
-        //more than 1 parameter
         else if(pCount > 1)
         {
-            //set base number of parms
             int parmIterator = 1;
             TreeNode *curChild;
-            //tempOffset++;
+
             emitComment((char*)"TOFF:", tempOffset);
 
             emitRM((char *)"ST", 1, tempOffset, 1, (char *)("2 Store fp in ghost frame for"), (char *)node->attr.name);
@@ -1250,13 +1121,6 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
             if(node->child[0]->subkind.exp == IdK || node->child[0]->subkind.exp == OpK){
 
                 curChild = (TreeNode*)symbolTable.lookup(node->child[0]->attr.name);
-
-                //printf("Here: %s %d", curChild->attr.name, node->linenum);
-
-                //check for array
-                /*if(!strcmp(node->child[0]->attr.name, "[")){
-                    printf("Open Bracket %s\n", node->child[0]->attr.name);
-                }*/
 
                 if(curChild == nullptr)
                 {
@@ -1273,7 +1137,6 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
             
             emitComment((char*)"TOFF:", tempOffset);
 
-            //check for arrays
             if(node->child[0]->subkind.exp != ConstantK && !strcmp(node->child[0]->attr.name, "["))
             {
                 
@@ -1284,23 +1147,6 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
                     tempOffset--;
                     emitComment((char*)"TOFF:", tempOffset);
                     emitComment((char *)("1035 Param"), parmIterator);
-
-                    /*if(node->child[0]->child[0]->isArray)
-                    {
-                        
-                        if(node->child[0]->child[0]->memT == Global)
-                        {
-                            emitRM((char *)"LDA", 3, node->child[0]->child[0]->mOffset, 0, (char *)("MP: Load address of base of array"));
-                        }
-                        else
-                        {
-                            emitRM((char *)"LDA", 3, node->child[0]->child[0]->mOffset, 1, (char *)("MP: Load address of base of array"));
-                        }
-                        emitRM((char *)"ST", 3, tempOffset, 1,(char *)("Push parameter"));
-                        emitRM((char *)"LD", 4, tempOffset, 1, (char *)"1 Pop left into ac1");
-                        emitRO((char *)"SUB", 3, 4, 3, (char *)"1 Compute location from index");
-                        emitRM((char *)"LD", 3, 0, 3, (char *)"1 Load array element");
-                    }*/
                     
                     emitStart(node->child[0]);
                     
@@ -1319,40 +1165,23 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
                 }
             }
 
-            //loop through all children (parameters)
             while(curChild != nullptr)
             {
-
-                //printf("Here %d %d\n", parmIterator, node->linenum);
 
                 tempOffset--;
                 emitComment((char*)"TOFF:", tempOffset);
                 emitComment((char *)("1071 Param"), parmIterator);
 
-                //check for arrays
                 if(curChild->isArray)
                 {
 
-                    //check mem types
                     if(curChild->memoryType == Global || curChild->memoryType == LocalStatic)
                     {
-
-                        //check first parameter
-                        //if(pCount == 1)
-                        //{
-
-                            emitRM((char *)"LDA", 3, curChild->memoryOffset, 0, (char *)("Load address of base of array 1025"), (char *)curChild->attr.name);
-                        //}
-                        /*else
-                        {
-
-                            emitRM((char *)"LDA", 3, curChild->mOffset, 0, (char *)("Load address of base of array"), (char *)curChild->attr.name);
-                        }*/
+                        emitRM((char *)"LDA", 3, curChild->memoryOffset, 0, (char *)("Load address of base of array 1025"), (char *)curChild->attr.name);
                     }
                     else
                     {
 
-                        //check first parameter
                         if(node->child[0]->subkind.exp == OpK)
                         {
 
@@ -1369,10 +1198,6 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
                 else if(curChild->subkind.exp == OpK || curChild->subkind.exp == IdK)
                 {
 
-                    /*emitStart(curChild->child[0]);
-                    emitRM((char *)"ST", 3, tempOffset, 1,(char *)("Push left side"));
-                    emitStart(curChild->child[1]);
-                    */
                     mpCall = true;
                     emitStart(curChild);
                     
@@ -1382,7 +1207,6 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
                     
                 }
                 
-                //not an array
                 else
                 {
                     
@@ -1413,8 +1237,8 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
                     emitRM((char *)"ST", 3, tempOffset, 1,(char *)"3 Push parameter");
                 }
 
-                //increment parmiterator
                 parmIterator++;
+                
                 if(curChild->sibling != nullptr)
                 {
                     curChild = curChild->sibling;
@@ -1429,7 +1253,6 @@ void emitCall(TreeNode* node, TreeNode* callLookup)
 
         }
     }
-    //no parameters
     else if(pCount == 0)
     {
         emitRM((char *)"ST", 1, tmpIdx, 1, (char *)("3 Store fp in ghost frame for"), (char *)node->attr.name);
@@ -1454,8 +1277,6 @@ void emitConstant(TreeNode* node)
     {
         emitRM((char *)"LDC", 3, node->attr.value, 6,(char *)"Load Integer constant");
     }
-    //printing out weird values when using node->attr.value in Boolean
-    //trying to fix by manually setting
     else if(node->expType == Boolean)
     {
         int boolVal;
@@ -1483,165 +1304,157 @@ void emitConstant(TreeNode* node)
 
 void emitId(TreeNode* node)
 {
-    //store
-            if(stFlag)
+    if(stFlag)
+    {
+
+        if(node->memoryType == Global || node->memoryType == LocalStatic)
+        {
+            if(!node->isArray)
             {
-
-                if(node->memoryType == Global || node->memoryType == LocalStatic)
-                {
-                    if(!node->isArray)
-                    {
-                        emitRM((char *)"ST", 3, node->memoryOffset, 0,(char *)("Store variable"), node->attr.name);
-                        stFlag = false;
-                    }
-                }
-                else if(node->memoryType == Local)
-                {
-                    if(!node->isArray)
-                    {
-                        emitRM((char *)"ST", 3, node->memoryOffset, 1, (char *)("Store variable"), node->attr.name);
-                        stFlag = false;
-                    }
-                }
-                else if(node->memoryType == Parameter)
-                {
-                    emitRM((char *)"ST", 3, node->memoryOffset, 1, (char *)("Store variable"), node->attr.name);
-                    stFlag = false;
-                }
-
+                emitRM((char *)"ST", 3, node->memoryOffset, 0,(char *)("Store variable"), node->attr.name);
+                stFlag = false;
             }
-            //load
+        }
+        else if(node->memoryType == Local)
+        {
+            if(!node->isArray)
+            {
+                emitRM((char *)"ST", 3, node->memoryOffset, 1, (char *)("Store variable"), node->attr.name);
+                stFlag = false;
+            }
+        }
+        else if(node->memoryType == Parameter)
+        {
+            emitRM((char *)"ST", 3, node->memoryOffset, 1, (char *)("Store variable"), node->attr.name);
+            stFlag = false;
+        }
+
+    }
+    else
+    {
+
+        if(node->memoryType == Global || node->memoryType == LocalStatic)
+        {
+
+            if(isUnary)
+            {
+                
+                if(node->isArray)
+                {
+                    emitRM((char *)" LDA", 3, node->memoryOffset, 0, (char *)("1 Load address of base of array 671"), node->attr.name);
+                    tempOffset--;
+                    emitComment((char*)"TOFF:", tempOffset);
+                }
+                else
+                {
+                    emitRM((char *)"LD", 3, node->memoryOffset, 0, (char *)("1 Load variable 797"), node->attr.name);
+                }
+            }
             else
             {
+                // do nothing
+            }
+        }
 
-                if(node->memoryType == Global || node->memoryType == LocalStatic)
+        else if(node->memoryType == Local)
+        {
+
+            if(isUnary)
+            {
+                
+                if(node->isArray)
                 {
-
-                    if(isUnary)
+                    emitRM((char *)" LDA", 3, node->memoryOffset, 1, (char *)("2 Load address of base of array 783"), node->attr.name);
+                    emitComment((char*)"TOFF:", tempOffset);
+                }
+                else
+                {
+                    emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("2 Load variable 815"), node->attr.name);
+                }
+            }
+            else
+            {
+                if(!node->isInit)
+                {
+                    if(node->isArray)
                     {
-                        
-                        if(node->isArray)
-                        {
-                            emitRM((char *)" LDA", 3, node->memoryOffset, 0, (char *)("1 Load address of base of array 671"), node->attr.name);
-                            tempOffset--;
-                            emitComment((char*)"TOFF:", tempOffset);
-                        }
-                        else
-                        {
-                            emitRM((char *)"LD", 3, node->memoryOffset, 0, (char *)("1 Load variable 797"), node->attr.name);
-                        }
+                        // do nothing
                     }
                     else
                     {
-                        //emitRM((char *)"LD", 4, node->mOffset, 0, (char *)("1 load lhs variable"), node->attr.name);
+                        emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("1 load variable 851"), node->attr.name);
                     }
                 }
-
-                else if(node->memoryType == Local)
+                else if(node->isInit && !node->isArray)
                 {
-
-                    if(isUnary)
-                    {
-                        
-                        if(node->isArray)
-                        {
-                            emitRM((char *)" LDA", 3, node->memoryOffset, 1, (char *)("2 Load address of base of array 783"), node->attr.name);
-                            //tempOffset--;
-                            emitComment((char*)"TOFF:", tempOffset);
-                        }
-                        else
-                        {
-                            emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("2 Load variable 815"), node->attr.name);
-                        }
-                    }
-                    else
-                    {
-                        if(!node->isInit)
-                        {
-                            if(node->isArray)
-                            {
-                                //printf("Here:%s %d\n", node->attr.name, node->linenum);
-                                //tempOffset--;
-                                 //emitRM((char *)"LD", 3, node->mOffset, 1, (char *)("load address of base of array 836"), node->attr.name);
-                            }
-                            else
-                            {
-                                emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("1 load variable 851"), node->attr.name);
-                            }
-                        }
-                        else if(node->isInit && !node->isArray)
-                        {
-                            //emitRM((char *)"LD", 3, node->mOffset, 1, (char *)("1 load variable 862"), node->attr.name);
-                        }
-                        //emitRM((char *)"LD", 4, node->mOffset, 1, (char *)("2 load lhs variable"), node->attr.name);
-                    }
+                    // do nothing
                 }
+            }
+        }
 
-                else if(node->memoryType == LocalStatic)
+        else if(node->memoryType == LocalStatic)
+        {
+
+            if(isUnary)
+            {
+                
+                if(node->isArray)
                 {
-
-                    if(isUnary)
-                    {
-                        
-                        if(node->isArray)
-                        {
-                            emitRM((char *)" LDA", 3, node->memoryOffset, 0, (char *)("3 Load address of base of array 802"), node->attr.name);
-                            tempOffset--;
-                            emitComment((char*)"TOFF:", tempOffset);
-                        }
-                        else
-                        {
-                            emitRM((char *)"LD", 3, node->memoryOffset, 0, (char *)("3 Load variable 833"), node->attr.name);
-                        }
-                    }
-                    else
-                    {
-                        //emitRM((char *)"LD", 4, node->mOffset, 0, (char *)("3 load lhs variable"), node->attr.name);
-                    }
+                    emitRM((char *)" LDA", 3, node->memoryOffset, 0, (char *)("3 Load address of base of array 802"), node->attr.name);
+                    tempOffset--;
+                    emitComment((char*)"TOFF:", tempOffset);
                 }
-
-                else if(node->memoryType == Parameter)
+                else
                 {
+                    emitRM((char *)"LD", 3, node->memoryOffset, 0, (char *)("3 Load variable 833"), node->attr.name);
+                }
+            }
+            else
+            {
+                // do nothing
+            }
+        }
 
-                    if(isUnary)
-                    {
-                        
-                        if(node->isArray && node->expType != Char)
-                        {
-                            emitRM((char *)" LDA", 3, node->memoryOffset, 1, (char *)("4 Load address of base of array 820"), node->attr.name);
-                            tempOffset--;
-                            emitComment((char*)"TOFF:", tempOffset);
-                        }
-                        else
-                        {
-                            if(node->expType != Char){
-                            emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("4 Load variable 851"), node->attr.name);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //printf("Here IdK: %s %d\n", node->attr.name, node->linenum);
-                        if(!node->isInit)
-                        {
-                            if(node->isArray)
-                            {
-                                tempOffset--;
-                                emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("load address of base of array 836"), node->attr.name);
-                            }
-                            else{
-                                
-                            emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("1 load variable 861"), node->attr.name);
-                            }
-                        }
-                        else if(node->isInit && !node->isArray)
-                        {
-                            emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("1 load variable 861"), node->attr.name);
-                        }
-                        //emitRM((char *)"LD", 4, node->mOffset, 1, (char *)("4 load lhs variable"), node->attr.name);
+        else if(node->memoryType == Parameter)
+        {
+
+            if(isUnary)
+            {
+                
+                if(node->isArray && node->expType != Char)
+                {
+                    emitRM((char *)" LDA", 3, node->memoryOffset, 1, (char *)("4 Load address of base of array 820"), node->attr.name);
+                    tempOffset--;
+                    emitComment((char*)"TOFF:", tempOffset);
+                }
+                else
+                {
+                    if(node->expType != Char){
+                    emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("4 Load variable 851"), node->attr.name);
                     }
                 }
             }
+            else
+            {
+                if(!node->isInit)
+                {
+                    if(node->isArray)
+                    {
+                        tempOffset--;
+                        emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("load address of base of array 836"), node->attr.name);
+                    }
+                    else{
+                        
+                    emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("1 load variable 861"), node->attr.name);
+                    }
+                }
+                else if(node->isInit && !node->isArray)
+                {
+                    emitRM((char *)"LD", 3, node->memoryOffset, 1, (char *)("1 load variable 861"), node->attr.name);
+                }
+            }
+        }
+    }
 }
 
 void emitGlobAndStats(TreeNode* node)
@@ -1791,20 +1604,20 @@ void emitInit(TreeNode* node)
 
     TreeNode* mainFunc;
 	
-	int bp = emitSkip(0)-1;
+	int breakPoint = emitSkip(0)-1;
 	emitNewLoc(0);
 	mainFunc = (TreeNode*)symbolTable.lookup("main"); 
-	emitRM((char *)"JMP", 7, bp, 7, (char *)("Jump to init [backpatch]"));
+	emitRM((char *)"JMP", 7, breakPoint, 7, (char *)("Jump to init [backpatch]"));
 	emitComment((char *)("INIT"));
-	emitSkip(bp);
+	emitSkip(breakPoint);
 	emitRM((char *)"LDA", 1, 0 + globalOffset, 0, (char *)("set first frame at end of globals"));
 	emitRM((char *)"ST", 1, 0, 1, (char *)("store old fp (point to self)"));
 	emitComment((char *)("INIT GLOBALS AND STATICS"));
 	emitGlobAndStats(node);
 	emitComment((char *)("END INIT GLOBALS AND STATICS"));
 	emitRM((char *)"LDA", 3, 1, 7, (char *)("Return address in ac"));
-	bp = emitSkip(0);
-	emitRM((char *)"JMP", 7, (mainFunc->emitCodeLine-bp-1), 7, (char *)("Jump to main"));
+	breakPoint = emitSkip(0);
+	emitRM((char *)"JMP", 7, (mainFunc->emitCodeLine-breakPoint-1), 7, (char *)("Jump to main"));
 	emitRO((char *)"HALT", 0, 0, 0, (char *)("DONE!"));
 	emitComment((char *)("END INIT"));
 }
