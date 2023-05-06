@@ -40,16 +40,16 @@ void emitId(TreeNode* node);
 
 // emit stmt functions
 void emitStmt(TreeNode* node);
-void emitIf(TreeNode* node, int elseLoc);
-void emitWhile(TreeNode* node, int whileLoc, int tmpBloc, int whileSkp, int ldaLoc);
+void emitIf(TreeNode* node, int elseLocation);
+void emitWhile(TreeNode* node, int whileLocation, int tmpBlock, int whileSkip, int LDA_Location);
 void emitReturn(TreeNode* node);
 void emitBreak(TreeNode* node);
-void emitFor(TreeNode* node, int forOff, int forLoc, int forSkp);
+void emitFor(TreeNode* node, int forOffset, int forLocation, int forSkip);
 void emitRange(TreeNode* node);
 void emitCompound(TreeNode* node);
 
 // emit type functions
-void emitGlobAndStats(TreeNode* node);
+void emitGlobalOffsetsAndStats(TreeNode* node);
 
 
 #endif  //CODEGENERATION_H
